@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 using System.Threading.Tasks;
@@ -52,11 +53,14 @@ namespace VsLocalizedIntellisense.Models
             using (var stream = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read))
             {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                raw = serializer.ReadObject(stream);
-            }
-            if (raw == null)
-            {
-                return null;
+                try
+                {
+                    raw = serializer.ReadObject(stream);
+                }
+                catch (SerializationException)
+                {
+                    return null;
+                }
             }
 
             if (raw is T value)

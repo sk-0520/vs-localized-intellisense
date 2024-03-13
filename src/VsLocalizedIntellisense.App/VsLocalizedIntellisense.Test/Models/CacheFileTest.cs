@@ -52,6 +52,39 @@ namespace VsLocalizedIntellisense.Test.Models
         }
 
         [TestMethod]
+        public void Read_empty1_Test()
+        {
+            var dir = Test.GetMethodDirectory(this);
+            var path = Path.Combine(dir.FullName, nameof(Read_empty1_Test));
+            var span = TimeSpan.FromSeconds(10);
+            var currentTimestamp = DateTimeOffset.Now;
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            File.Create(path).Dispose();
+
+            var cf = new CacheFile<Data>(path, span);
+            var actual = cf.Read(currentTimestamp);
+            Assert.IsNull(actual);
+        }
+
+        [TestMethod]
+        public void Read_empty2_Test()
+        {
+            var dir = Test.GetMethodDirectory(this);
+            var path = Path.Combine(dir.FullName, nameof(Read_empty2_Test));
+            var span = TimeSpan.FromSeconds(10);
+            var currentTimestamp = DateTimeOffset.Now;
+            Directory.CreateDirectory(Path.GetDirectoryName(path));
+            using (var stream = File.CreateText(path))
+            {
+                stream.Write("{}");
+            }
+
+            var cf = new CacheFile<Data>(path, span);
+            var actual = cf.Read(currentTimestamp);
+            Assert.IsNull(actual);
+        }
+
+        [TestMethod]
         public void Read_EnabledTime_Test()
         {
             var dir = Test.GetMethodDirectory(this);
