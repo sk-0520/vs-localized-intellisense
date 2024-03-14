@@ -100,6 +100,16 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #endregion
 
+        #region function
+
+        public void ResetPercent()
+        {
+            Model.DownloadPercent = 0;
+            RaisePropertyChanged(nameof(Model.DownloadPercent));
+        }
+
+        #endregion
+
         #region SingleModelViewModelBase
 
         protected override void Dispose(bool disposing)

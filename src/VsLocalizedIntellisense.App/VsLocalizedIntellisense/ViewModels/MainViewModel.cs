@@ -37,9 +37,10 @@ namespace VsLocalizedIntellisense.ViewModels
 
         private DelegateCommand _selectInstallRootDirectoryPathCommand;
         private AsyncDelegateCommand _downloadCommand;
+        private DelegateCommand _backCommand;
         private AsyncDelegateCommand _executeCommand;
         private DelegateCommand _openReleasePageCommand;
-        
+
 
         bool _filterTrace;
         bool _filterDebug;
@@ -197,7 +198,7 @@ namespace VsLocalizedIntellisense.ViewModels
                     this._downloadCommand = new AsyncDelegateCommand(
                         async _ =>
                         {
-                            if(IsDownloading || IsExecuting)
+                            if (IsDownloading || IsExecuting)
                             {
                                 Logger.LogInformation("disable download");
                                 return;
@@ -226,6 +227,28 @@ namespace VsLocalizedIntellisense.ViewModels
                     );
                 }
                 return this._downloadCommand;
+            }
+        }
+
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (this._backCommand == null)
+                {
+                    this._backCommand = new DelegateCommand(
+                        _ =>
+                        {
+                            foreach (var dir in DirectoryCollection.ViewModels)
+                            {
+                                dir.ResetPercent();
+                            }
+                            IsDownloaded = false;
+                        }
+                    );
+                }
+
+                return this._backCommand;
             }
         }
 
@@ -259,13 +282,13 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if(this._openReleasePageCommand == null)
+                if (this._openReleasePageCommand == null)
                 {
                     this._openReleasePageCommand = new DelegateCommand(
                         _ =>
                         {
                             var uri = Configuration.GetReleaseUri();
-                            var  psi = new ProcessStartInfo()
+                            var psi = new ProcessStartInfo()
                             {
                                 FileName = uri.ToString(),
                                 UseShellExecute = true,
@@ -285,9 +308,10 @@ namespace VsLocalizedIntellisense.ViewModels
 
         public void RefreshCommand()
         {
-            this._selectInstallRootDirectoryPathCommand.RaiseCanExecuteChanged();
-            this._downloadCommand.RaiseCanExecuteChanged();
-            this._executeCommand.RaiseCanExecuteChanged();
+            this._selectInstallRootDirectoryPathCommand?.RaiseCanExecuteChanged();
+            this._downloadCommand?.RaiseCanExecuteChanged();
+            this._backCommand?.RaiseCanExecuteChanged();
+            this._executeCommand?.RaiseCanExecuteChanged();
         }
 
         #endregion
@@ -298,12 +322,12 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             if (!IsDisposed)
             {
-                if(StockLogItems != null)
+                if (StockLogItems != null)
                 {
                     StockLogItems.Filter -= StockLogItems_Filter;
                 }
                 PropertyChanged -= MainViewModel_PropertyChanged;
-                
+
             }
             base.Dispose(disposing);
         }
@@ -354,7 +378,7 @@ namespace VsLocalizedIntellisense.ViewModels
                 nameof(IsDownloaded),
                 nameof(IsExecuting),
             };
-            if(propertyNames.Contains(e.PropertyName))
+            if (propertyNames.Contains(e.PropertyName))
             {
                 RefreshCommand();
             }

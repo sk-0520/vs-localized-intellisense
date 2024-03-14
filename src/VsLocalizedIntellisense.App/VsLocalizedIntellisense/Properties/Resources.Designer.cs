@@ -133,6 +133,15 @@ namespace VsLocalizedIntellisense.Properties {
         }
         
         /// <summary>
+        ///   戻る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_Main_InstallDirectory_Back_A {
+            get {
+                return ResourceManager.GetString("UI_Main_InstallDirectory_Back_A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ダウンロード に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UI_Main_InstallDirectory_Download_A {
