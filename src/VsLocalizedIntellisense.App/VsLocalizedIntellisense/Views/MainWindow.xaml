@@ -78,7 +78,16 @@
               <ColumnDefinition Width="Auto" />
             </Grid.ColumnDefinitions>
             <TextBox Grid.Column="0" Text="{Binding InstallRootDirectoryPath, UpdateSourceTrigger=PropertyChanged}" />
-            <Button Grid.Column="1" Command="{Binding SelectInstallRootDirectoryPathCommand}" Content="{x:Static p:Resources.UI_Main_InstallDirectory_SelectDirectory_A}" />
+            <Button
+              Grid.Column="1"
+              Command="{Binding SelectInstallRootDirectoryPathCommand}"
+              Style="{StaticResource ImageButton}"
+              ToolTip="{x:Static p:Resources.UI_Main_InstallDirectory_SelectDirectory_A}"
+            >
+              <Button.Content>
+                <Control Focusable="False" Template="{StaticResource App-Image-Folder}" />
+              </Button.Content>
+            </Button>
           </Grid>
         </Grid>
 
@@ -185,9 +194,10 @@
           <Button
             Grid.Column="1"
             Command="{Binding DownloadCommand}"
+            Style="{StaticResource ImageButton}"
           >
             <Button.Content>
-              <StackPanel Orientation="Horizontal">
+              <StackPanel>
                 <Control Template="{StaticResource App-Image-Download}" />
                 <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Download_A}" />
               </StackPanel>
@@ -221,15 +231,15 @@
 
           <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_InstallCommand_Header_A}" />
           <TextBox
-          Grid.Column="1"
-          ScrollViewer.VerticalScrollBarVisibility="Auto"
-          ScrollViewer.HorizontalScrollBarVisibility="Auto"
-          VerticalAlignment="Stretch"
-          HorizontalAlignment="Stretch"
-          IsReadOnly="True"
-          IsReadOnlyCaretVisible="True"
-          Text="{Binding InstallCommand, Mode=OneWay}"
-        />
+            Grid.Column="1"
+            ScrollViewer.VerticalScrollBarVisibility="Auto"
+            ScrollViewer.HorizontalScrollBarVisibility="Auto"
+            VerticalAlignment="Stretch"
+            HorizontalAlignment="Stretch"
+            IsReadOnly="True"
+            IsReadOnlyCaretVisible="True"
+            Text="{Binding InstallCommand, Mode=OneWay}"
+          />
         </Grid>
 
         <Grid Grid.Row="1">
@@ -238,9 +248,12 @@
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
-          <Button Command="{Binding BackCommand}" >
+          <Button
+            Command="{Binding BackCommand}"
+            Style="{StaticResource ImageButton}"
+          >
             <Button.Content>
-              <StackPanel Orientation="Horizontal">
+              <StackPanel>
                 <Control Template="{StaticResource App-Image-Back}" />
                 <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Back_A}" />
               </StackPanel>
@@ -250,8 +263,13 @@
           <Button
             Grid.Column="1"
             Command="{Binding ExecuteCommand}"
-            Content="{x:Static p:Resources.UI_Main_InstallDirectory_Execute_A}"
-          />
+            Style="{StaticResource ImageButton}"
+          >
+            <StackPanel>
+              <Control Template="{StaticResource App-Image-Install}" />
+              <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Execute_A}" />
+            </StackPanel>
+          </Button>
         </Grid>
       </Grid>
     </Grid>
