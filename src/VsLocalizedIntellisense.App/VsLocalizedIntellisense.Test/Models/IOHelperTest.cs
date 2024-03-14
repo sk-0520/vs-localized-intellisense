@@ -29,6 +29,61 @@ namespace VsLocalizedIntellisense.Test.Models
         #region function
 
         [TestMethod]
+        public void DeleteDirectory_404_Test()
+        {
+            var workDir = Test.GetMethodDirectory(this);
+            Test.ResetDirectory(workDir);
+
+            var path = Path.Combine(workDir.FullName, "file");
+
+            Assert.IsFalse(IOHelper.DeleteDirectory(path));
+        }
+
+        [TestMethod]
+        public void DeleteDirectory_file_Test()
+        {
+            var workDir = Test.GetMethodDirectory(this);
+            Test.ResetDirectory(workDir);
+
+            var path = Path.Combine(workDir.FullName, "file");
+            File.Create(path).Dispose();
+
+            Assert.IsFalse(IOHelper.DeleteDirectory(path));
+        }
+
+        [TestMethod]
+        public void DeleteDirectory_dir_Test()
+        {
+            var workDir = Test.GetMethodDirectory(this);
+            Test.ResetDirectory(workDir);
+
+            var path = Path.Combine(workDir.FullName, "dir");
+            Directory.CreateDirectory(path);
+
+            Assert.IsTrue(IOHelper.DeleteDirectory(path));
+            Assert.IsFalse(Directory.Exists(path));
+        }
+
+        [TestMethod]
+        public void DeleteDirectory_nest_dir_Test()
+        {
+            var workDir = Test.GetMethodDirectory(this);
+            Test.ResetDirectory(workDir);
+
+            var path1 = Path.Combine(workDir.FullName, "dir");
+            Directory.CreateDirectory(path1);
+
+            var path2 = Path.Combine(path1, "dir");
+            Directory.CreateDirectory(path2);
+
+            var path3 = Path.Combine(path2, "file");
+            File.Create(path3).Dispose();
+
+            Assert.IsTrue(IOHelper.DeleteDirectory(path1));
+            Assert.IsFalse(Directory.Exists(path1));
+        }
+
+        [TestMethod]
         public void GetPhysicalDirectory_SystemRoot_Test()
         {
             var actual = IOHelper.GetPhysicalDirectory(EnvKeySystemRoot);

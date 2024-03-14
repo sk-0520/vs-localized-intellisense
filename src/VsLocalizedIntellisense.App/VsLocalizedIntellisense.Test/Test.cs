@@ -40,5 +40,14 @@ namespace VsLocalizedIntellisense.Test
             return new DirectoryInfo(methodTestDirPath);
         }
 
+        public static void ResetDirectory(DirectoryInfo directory)
+        {
+            if (directory.Exists)
+            {
+                directory.Delete(true);
+            }
+            directory.Create();
+        }
+
     }
 }
