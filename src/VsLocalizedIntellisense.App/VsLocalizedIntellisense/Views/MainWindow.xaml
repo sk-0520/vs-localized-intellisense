@@ -65,7 +65,7 @@
           <RowDefinition Height="*" />
           <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="0">
           <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
@@ -89,7 +89,11 @@
           </Grid.ColumnDefinitions>
 
           <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_TargetDirectories_A}" />
-          <ListView Grid.Column="1" ItemsSource="{Binding DirectoryItems}" MinHeight="80">
+          <ListView
+            Grid.Column="1"
+            ItemsSource="{Binding DirectoryItems}"
+            IsEnabled="{Binding DataContext.IsDownloading, Converter={StaticResource LogicalNotConverter}, RelativeSource={RelativeSource AncestorType=Window}}"
+          >
             <ListView.ItemContainerStyle>
               <Style TargetType="ListViewItem">
                 <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -181,8 +185,14 @@
           <Button
             Grid.Column="1"
             Command="{Binding DownloadCommand}"
-            Content="{x:Static p:Resources.UI_Main_InstallDirectory_Download_A}"
-          />
+          >
+            <Button.Content>
+              <StackPanel Orientation="Horizontal">
+                <Control Template="{StaticResource App-Image-Download}" />
+                <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Download_A}" />
+              </StackPanel>
+            </Button.Content>
+          </Button>
         </Grid>
       </Grid>
 
@@ -197,7 +207,7 @@
             <Setter Property="Visibility" Value="Collapsed" />
           </Style>
         </Grid.Style>
-        
+
         <Grid.RowDefinitions>
           <RowDefinition Height="*" />
           <RowDefinition Height="Auto" />
@@ -228,10 +238,15 @@
             <ColumnDefinition Width="*" />
           </Grid.ColumnDefinitions>
 
-          <Button
-            Command="{Binding BackCommand}"
-            Content="{x:Static p:Resources.UI_Main_InstallDirectory_Back_A}"
-          />
+          <Button Command="{Binding BackCommand}" >
+            <Button.Content>
+              <StackPanel Orientation="Horizontal">
+                <Control Template="{StaticResource App-Image-Back}" />
+                <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Back_A}" />
+              </StackPanel>
+            </Button.Content>
+          </Button>
+
           <Button
             Grid.Column="1"
             Command="{Binding ExecuteCommand}"
