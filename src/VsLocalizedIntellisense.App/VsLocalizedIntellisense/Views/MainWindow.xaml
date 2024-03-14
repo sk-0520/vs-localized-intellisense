@@ -5,7 +5,8 @@
   
   xmlns:p="clr-namespace:VsLocalizedIntellisense.Properties"
 
-  xmlns:app_mvvm_views_converter="clr-namespace:VsLocalizedIntellisense.Models.Mvvm.Views.Converter"
+  xmlns:app_models_mvvm_views_converter="clr-namespace:VsLocalizedIntellisense.Models.Mvvm.Views.Converter"
+  xmlns:app_models_logger="clr-namespace:VsLocalizedIntellisense.Models.Logger"
   
   Title="{x:Static p:Resources.ApplicationName}"
   Height="600"
@@ -22,8 +23,8 @@
 >
   <Window.Resources>
     <ResourceDictionary>
-      <app_mvvm_views_converter:LogicalNotConverter x:Key="LogicalNotConverter" />
-      <app_mvvm_views_converter:LocalizeEnumConverter x:Key="LocalizeEnumConverter" />
+      <app_models_mvvm_views_converter:LogicalNotConverter x:Key="LogicalNotConverter" />
+      <app_models_mvvm_views_converter:LocalizeEnumConverter x:Key="LocalizeEnumConverter" />
     </ResourceDictionary>
   </Window.Resources>
   <Grid Grid.IsSharedSizeScope="True">
@@ -291,13 +292,35 @@
 
     <StatusBar Grid.Row="4">
       <TextBlock Text="{Binding AppVersion, Mode=OneTime}" />
-      <Separator />
       <Hyperlink ToolTip="{Binding AppLongRevision, Mode=OneTime}" Command="{Binding OpenReleasePageCommand}">
         <TextBlock>
           <Run Text="{Binding AppShortRevision, Mode=OneTime}" />
           <Run Text="..." />
         </TextBlock>
       </Hyperlink>
+      <Separator />
+      <ToggleButton x:Name="logFilter" Content="{x:Static p:Resources.UI_Main_Status_LogLevel_A}" />
+      <Popup Focusable="False" AllowsTransparency="True"  IsOpen="{Binding IsChecked, ElementName=logFilter}" StaysOpen="False">
+        <Border
+          TextElement.Foreground="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
+          TextElement.FontFamily="{DynamicResource {x:Static SystemFonts.MenuFontFamilyKey}}"
+          TextElement.FontSize="{DynamicResource {x:Static SystemFonts.MenuFontSizeKey}}"
+          TextElement.FontStyle="{DynamicResource {x:Static SystemFonts.MenuFontStyleKey}}"
+          Background="{DynamicResource {x:Static SystemColors.MenuBrushKey}}"
+          BorderBrush="{DynamicResource {x:Static SystemColors.MenuTextBrushKey}}"
+          Padding="4"
+          BorderThickness="1"
+        >
+          <StackPanel>
+            <CheckBox IsChecked="{Binding FilterTrace}" Content="{Binding LoggerTrace, Converter={StaticResource LocalizeEnumConverter}}" />
+            <CheckBox IsChecked="{Binding FilterDebug}" Content="{Binding LoggerDebug, Converter={StaticResource LocalizeEnumConverter}}" />
+            <CheckBox IsChecked="{Binding FilterInformation}" Content="{Binding LoggerInformation, Converter={StaticResource LocalizeEnumConverter}}" />
+            <CheckBox IsChecked="{Binding FilterWarning}" Content="{Binding LoggerWarning, Converter={StaticResource LocalizeEnumConverter}}" />
+            <CheckBox IsChecked="{Binding FilterError}" Content="{Binding LoggerError, Converter={StaticResource LocalizeEnumConverter}}" />
+            <CheckBox IsChecked="{Binding FilterCritical}" Content="{Binding LoggerCritical, Converter={StaticResource LocalizeEnumConverter}}" />
+          </StackPanel>
+        </Border>
+      </Popup>
     </StatusBar>
   </Grid>
 </Window>

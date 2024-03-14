@@ -44,10 +44,10 @@ namespace VsLocalizedIntellisense.ViewModels
 
         bool _filterTrace;
         bool _filterDebug;
-        bool _filterInformation;
-        bool _filterWarning;
-        bool _filterError;
-        bool _filterCritical;
+        bool _filterInformation = true;
+        bool _filterWarning = true;
+        bool _filterError = true;
+        bool _filterCritical = true;
 
         #endregion
 
@@ -156,6 +156,13 @@ namespace VsLocalizedIntellisense.ViewModels
         public string AppVersion => Configuration.Replace("${APP:VERSION}");
         public string AppShortRevision => Configuration.Replace("${APP:REVISION:SHORT}");
         public string AppLongRevision => Configuration.Replace("${APP:REVISION:LONG}");
+
+        public static LogLevel LoggerTrace {get;} = LogLevel.Trace;
+        public static LogLevel LoggerDebug {get;} = LogLevel.Debug;
+        public static LogLevel LoggerInformation {get;} = LogLevel.Information;
+        public static LogLevel LoggerWarning {get;} = LogLevel.Warning;
+        public static LogLevel LoggerError {get;} = LogLevel.Error;
+        public static LogLevel LoggerCritical { get; } = LogLevel.Critical;
 
         #endregion
 
@@ -336,51 +343,66 @@ namespace VsLocalizedIntellisense.ViewModels
 
         private bool StockLogItems_Filter(object obj)
         {
-            var item = obj as LogItemViewModel;
-            if (item == null)
+            if (!(obj is LogItemViewModel item))
             {
                 return false;
             }
 
+            var filter = false;
+
             if (FilterTrace)
             {
-                return Logging.IsEnabled(LogLevel.Trace, item.Level);
+                filter |= item.Level == LogLevel.Trace;
             }
             if (FilterDebug)
             {
-                return Logging.IsEnabled(LogLevel.Debug, item.Level);
+                filter |= item.Level == LogLevel.Debug;
             }
             if (FilterInformation)
             {
-                return Logging.IsEnabled(LogLevel.Information, item.Level);
+                filter |= item.Level == LogLevel.Information;
             }
             if (FilterWarning)
             {
-                return Logging.IsEnabled(LogLevel.Warning, item.Level);
+                filter |= item.Level == LogLevel.Warning;
             }
             if (FilterError)
             {
-                return Logging.IsEnabled(LogLevel.Error, item.Level);
+                filter |= item.Level == LogLevel.Error;
             }
             if (FilterCritical)
             {
-                return Logging.IsEnabled(LogLevel.Critical, item.Level);
+                filter |= item.Level == LogLevel.Critical;
             }
 
-            return true;
+            return filter;
         }
 
         private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var propertyNames = new[]
+            var commandPropertyNames = new[]
             {
                 nameof(IsDownloading),
                 nameof(IsDownloaded),
                 nameof(IsExecuting),
             };
-            if (propertyNames.Contains(e.PropertyName))
+            if (commandPropertyNames.Contains(e.PropertyName))
             {
                 RefreshCommand();
+            }
+
+            var logPropertyNames = new[]
+            {
+                nameof(FilterTrace),
+                nameof(FilterDebug),
+                nameof(FilterInformation),
+                nameof(FilterWarning),
+                nameof(FilterError),
+                nameof(FilterCritical),
+            };
+            if (logPropertyNames.Contains(e.PropertyName))
+            {
+                StockLogItems.Refresh();
             }
         }
     }

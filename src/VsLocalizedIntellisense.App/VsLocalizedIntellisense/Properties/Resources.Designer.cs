@@ -205,6 +205,15 @@ namespace VsLocalizedIntellisense.Properties {
         }
         
         /// <summary>
+        ///   ログレベル に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_Main_Status_LogLevel_A {
+            get {
+                return ResourceManager.GetString("UI_Main_Status_LogLevel_A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   対象ディレクトリ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UI_Main_TargetDirectories_A {
