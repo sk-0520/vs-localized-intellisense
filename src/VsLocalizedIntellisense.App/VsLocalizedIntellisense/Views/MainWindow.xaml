@@ -239,7 +239,17 @@
     </Grid>
 
     <Grid Grid.Row="3">
-      <DataGrid x:Name="listLogs" AutoGenerateColumns="False" ItemsSource="{Binding StockLogItems}">
+      <DataGrid
+        x:Name="listLogs"
+        AutoGenerateColumns="False"
+        CanUserAddRows="False"
+        CanUserResizeColumns="False"
+        CanUserDeleteRows="False"
+        CanUserSortColumns="False"
+        CanUserResizeRows="True"
+        CanUserReorderColumns="False"
+        ItemsSource="{Binding StockLogItems}"
+      >
         <DataGrid.Resources>
           <ResourceDictionary>
             <Style TargetType="DataGridRow">
@@ -264,7 +274,11 @@
           </ResourceDictionary>
         </DataGrid.Resources>
         <DataGrid.Columns>
-          <DataGridTextColumn IsReadOnly="True" Header="{x:Static p:Resources.UI_Main_Log_List_Column_Header_Timestamp}" Width="Auto" Binding="{Binding LocalTimestamp, StringFormat=yyyy-MM-dd HH:mm:ss.fff, Mode=OneTime}" />
+          <DataGridTextColumn IsReadOnly="True" Binding="{Binding LocalTimestamp, StringFormat=yyyy-MM-dd HH:mm:ss.fff, Mode=OneTime}">
+            <DataGridTextColumn.Header>
+              <TextBlock Text="{x:Static p:Resources.UI_Main_Log_List_Column_Header_Timestamp}" Width="Auto" />
+            </DataGridTextColumn.Header>
+          </DataGridTextColumn>
           <DataGridTextColumn IsReadOnly="True" Header="{x:Static p:Resources.UI_Main_Log_List_Column_Header_Level}" Width="Auto" Binding="{Binding Level, Mode=OneTime, Converter={StaticResource LocalizeEnumConverter}}" />
           <DataGridTextColumn IsReadOnly="True" Header="{x:Static p:Resources.UI_Main_Log_List_Column_Header_Message}" Width="*" Binding="{Binding Message, Mode=OneTime}" />
         </DataGrid.Columns>
