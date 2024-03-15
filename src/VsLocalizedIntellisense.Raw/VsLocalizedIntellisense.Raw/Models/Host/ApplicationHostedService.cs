@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,14 +13,16 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
 {
     public class ApplicationHostedService: IHostedService
     {
-        public ApplicationHostedService(IConfiguration configuration, ILoggerFactory loggerFactory)
+        public ApplicationHostedService(IHttpClientFactory httpClientFactory, IConfiguration configuration, ILoggerFactory loggerFactory)
         {
+            HttpClientFactory = httpClientFactory;
             Configuration = configuration;
             Logger = loggerFactory.CreateLogger(GetType());
         }
 
         #region property
 
+        private IHttpClientFactory HttpClientFactory { get; }
         private IConfiguration Configuration { get; }
         private ILogger Logger { get; }
 
@@ -31,10 +34,18 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
         {
             Logger.LogInformation("hello world!");
 
+            var installBaseDirectoryPath = Configuration.GetValue<string>("install-base-dir");
+
+            var httpClient = HttpClientFactory.CreateClient();
+
+            var nugetBaseUrl = Configuration.GetValue<string>("nuget_base_url");
+            var nugetDownloadPath = Configuration.GetValue<string>("nuget_download_path");
+
             var librariesSection = Configuration.GetSection("libraries");
             var libraries = librariesSection.Get<string[]>() ?? throw new ApplicationException("libraries");
             foreach(var library in libraries) {
-                Logger.LogInformation("{library}", library);
+                var url = nugetBaseUrl + nugetDownloadPath + "/" + library;
+                Logger.LogInformation("{library}: {url}", library, url);
             }
 
             return Task.CompletedTask;

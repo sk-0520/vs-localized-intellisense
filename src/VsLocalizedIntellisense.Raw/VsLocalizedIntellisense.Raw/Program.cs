@@ -12,6 +12,7 @@ namespace VsLocalizedIntellisense.Raw
         {
             await Host.CreateDefaultBuilder(args)
                 .ConfigureServices(services => {
+                    services.AddHttpClient();
                     services.AddHostedService<ApplicationHostedService>();
                 })
                 .Build()
