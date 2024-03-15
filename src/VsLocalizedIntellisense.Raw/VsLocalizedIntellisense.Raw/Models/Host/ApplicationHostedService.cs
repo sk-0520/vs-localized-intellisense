@@ -42,13 +42,18 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
             var httpClient = HttpClientFactory.CreateClient();
 
             var nugetBaseUrl = Configuration.GetValue<string>("nuget_base_url");
+            if(string.IsNullOrWhiteSpace(nugetBaseUrl)) {
+                throw new InvalidOperationException("nuget_base_url");
+            }
             var nugetDownloadPath = Configuration.GetValue<string>("nuget_download_path");
-
+            if(string.IsNullOrWhiteSpace(nugetDownloadPath)) {
+                throw new InvalidOperationException("nuget_download_path");
+            }
             var librariesSection = Configuration.GetSection("libraries");
             var libraries = librariesSection.Get<string[]>() ?? throw new ApplicationException("libraries");
             foreach(var library in libraries) {
-                var url = nugetBaseUrl + nugetDownloadPath + "/" + library;
-                Logger.LogInformation("{library}: {url}", library, url);
+                var uri = UrlHelper.JoinUri(nugetBaseUrl, nugetDownloadPath, library);
+                Logger.LogInformation("{library}: {uri}", library, uri);
             }
 
             return Task.CompletedTask;
