@@ -2,7 +2,7 @@ using System;
 using System.Threading.Tasks;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using VsLocalizedIntellisense.Raw.Models;
+using VsLocalizedIntellisense.Raw.Models.Host;
 
 namespace VsLocalizedIntellisense.Raw
 {
