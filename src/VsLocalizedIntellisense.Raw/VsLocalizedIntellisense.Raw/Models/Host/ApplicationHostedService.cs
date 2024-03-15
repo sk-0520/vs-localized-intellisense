@@ -34,7 +34,10 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
         {
             Logger.LogInformation("hello world!");
 
-            var installBaseDirectoryPath = Configuration.GetValue<string>("install-base-dir");
+            var installBaseDirectoryPath = Configuration.GetValue<string>("install_base_dir");
+            if(string.IsNullOrWhiteSpace(installBaseDirectoryPath)) {
+                throw new InvalidOperationException("install_base_dir");
+            }
 
             var httpClient = HttpClientFactory.CreateClient();
 
