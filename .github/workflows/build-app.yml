@@ -1,0 +1,254 @@
+name: Build Application
+
+on:
+  push:
+    paths:
+      - 'src/VsLocalizedIntellisense.App/**/'
+      - '.github/workflows/build-app.yml'
+  pull_request:
+    paths:
+      - 'src/VsLocalizedIntellisense.App/**/'
+      - '.github/workflows/build-app.yml'
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  SOLUTION_PATH: src\VsLocalizedIntellisense.App\VsLocalizedIntellisense.App.sln
+  ASSEMBLY_INFO_PATH: src\VsLocalizedIntellisense.App\VsLocalizedIntellisense\Properties\AssemblyInfo.cs
+  APP_BIN_DIR: src\VsLocalizedIntellisense.App\VsLocalizedIntellisense\bin\Release
+  TEST_BASE_DIR: src\VsLocalizedIntellisense.App\VsLocalizedIntellisense.Test\bin
+  TEST_BIN_NAME: VsLocalizedIntellisense.Test.dll
+  VS_TEST_CONSOLE_PATH: C:\Program Files\Microsoft Visual Studio\2022\Enterprise\Common7\IDE\CommonExtensions\Microsoft\TestWindow
+  NUGET_TOOL_OpenCover: src\VsLocalizedIntellisense.App\packages\OpenCover.4.7.1221\tools\OpenCover.Console.exe
+  NUGET_TOOL_ReportGenerator: src\VsLocalizedIntellisense.App\packages\ReportGenerator.5.2.1\tools\net47\ReportGenerator.exe
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: windows-latest
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+
+      - name: <Replace> Revision
+        shell: pwsh
+        run: |
+          $filePath = "${{ env.ASSEMBLY_INFO_PATH }}"
+          (Get-Content -Path $filePath) |
+            Foreach-Object { $_.Replace("REVISION", "${{ github.sha }}") } |
+            Set-Content -Path $filePath
+
+      - name: <Add> msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: <Restore> Application
+        shell: cmd
+        run: |
+          nuget restore ${{ env.SOLUTION_PATH }}
+
+      - name: <Build> Application
+        shell: pwsh
+        run: |
+          msbuild ${{ env.SOLUTION_PATH }} /t:Build /p:Configuration=Release
+          if(-not $?) {
+            throw 'error: build'
+          }
+          tree /f
+
+      - name: <Test> Application
+        shell: cmd
+        run: |
+          set PATH=%PATH%;${{env.VS_TEST_CONSOLE_PATH}}
+          VSTest.Console "${{ env.TEST_BASE_DIR }}\Release\${{ env.TEST_BIN_NAME }}" /InIsolation
+
+      - name: <Artifact> Application
+        uses: actions/upload-artifact@v4
+        with:
+          name: VsLocalizedIntellisense
+          path: ${{ env.APP_BIN_DIR }}
+
+  test:
+    name: Test
+
+    runs-on: windows-latest
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+
+      - name: <Add> msbuild to PATH
+        uses: microsoft/setup-msbuild@v2
+
+      - name: <Restore> Application
+        shell: cmd
+        run: |
+          nuget restore ${{ env.SOLUTION_PATH }}
+
+      - name: <Build> Application
+        shell: pwsh
+        run: |
+          msbuild ${{ env.SOLUTION_PATH }} /t:Build /p:Configuration=Debug
+          if(-not $?) {
+            throw 'error: build'
+          }
+
+      - name: <Test> Application
+        shell: pwsh
+        run: |
+          #$env:Path += ';${{env.VS_TEST_CONSOLE_PATH}}'
+          $testDir = Join-Path -Path '${{ env.TEST_BASE_DIR }}' -ChildPath 'Debug'
+
+          Write-Host "OpenCover"
+          ${{ env.NUGET_TOOL_OpenCover }} `
+            -register:user `
+            -target:"${{ env.VS_TEST_CONSOLE_PATH }}\VSTest.Console.exe" `
+            -targetdir:"${testDir}" `
+            -targetargs:"${{ env.TEST_BIN_NAME }}" `
+            -filter:"+[VsLocalizedIntellisense*]* -[VsLocalizedIntellisense.Test]* " `
+            -output:"result.xml"
+          if(-not $?) {
+            throw 'error: OpenCover'
+          }
+
+          Write-Host "ReportGenerator"
+          ${{ env.NUGET_TOOL_ReportGenerator }} `
+            -reports:"result.xml" `
+            -reporttypes:HTML `
+            -targetdir:"code-coverage"
+          if(-not $?) {
+            throw 'error: ReportGenerator'
+          }
+          Remove-Item -Path (Join-Path -Path 'code-coverage' -ChildPath 'index.htm')
+
+      - name: <Artifact> Code Coverage
+        uses: actions/upload-artifact@v4
+        with:
+          name: CodeCoverage
+          path: |
+            code-coverage
+            result.xml
+
+  document:
+    name: Document
+
+    runs-on: windows-latest
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+
+      - name: <Install> DocFX
+        shell: pwsh
+        run: |
+          mkdir .\.dotnet-tools
+          dotnet tool install --tool-path .\.dotnet-tools docfx
+
+      - name: <Build> Document
+        shell: pwsh
+        run: |
+          .\.dotnet-tools\docfx docfx.json --warningsAsErrors --template statictoc
+
+      - name: <Artifact> Document
+        uses: actions/upload-artifact@v4
+        with:
+          name: Document
+          path: |
+            metadata
+            document
+
+  deploy:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/ci-test'
+    name: Deploy
+
+    runs-on: windows-latest
+
+    needs:
+      - build
+      - test
+      - document
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+
+      - name: <Download> Application
+        uses: actions/download-artifact@v4
+        with:
+          name: VsLocalizedIntellisense
+          path: VsLocalizedIntellisense
+
+      - name: <Archive> Application
+        shell: pwsh
+        run: |
+          Remove-Item -Path VsLocalizedIntellisense -Include *.pdb -Recurse
+          Compress-Archive -Path VsLocalizedIntellisense/* -DestinationPath VsLocalizedIntellisense.zip -CompressionLevel Optimal
+
+      - name: <Read> Version
+        id: version
+        shell: pwsh
+        run: |
+          $version = (Get-Item VsLocalizedIntellisense\VsLocalizedIntellisense.exe).VersionInfo.FileVersion
+          Write-Output "dot=$version" > $env:GITHUB_OUTPUT
+
+      - name: <Delete> TEST Tag
+        if: github.ref != 'refs/heads/master'
+        continue-on-error: true
+        uses: ClementTsang/delete-tag-and-release@v0.4.0
+        with:
+          delete_release: true
+          tag_name: ${{ steps.version.outputs.dot }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: <Create> Release
+        id: create-release
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const releaseResult = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              generate_release_notes: true,
+              name: '${{ steps.version.outputs.dot }}',
+              tag_name: '${{ steps.version.outputs.dot }}',
+            });
+            return releaseResult['data']['id'];
+
+      - name: <Upload> Application
+        shell: pwsh
+        run: |
+          $headers = @{
+            'Accept' = 'application/vnd.github+json'
+            'Authorization' = "Bearer ${{ secrets.GITHUB_TOKEN }}"
+            'X-GitHub-Api-Version' = '2022-11-28'
+          }
+          $uri = [uri]"https://uploads.github.com/repos/${{ github.repository_owner }}/${{ github.event.repository.name }}/releases/${{ steps.create-release.outputs.result }}/assets?name=VsLocalizedIntellisense.zip"
+
+          Invoke-WebRequest `
+            -Uri $uri `
+            -Method Post `
+            -Headers $headers `
+            -ContentType 'application/octet-stream' `
+            -InFile 'VsLocalizedIntellisense.zip'
+
+
