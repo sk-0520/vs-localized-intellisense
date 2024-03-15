@@ -1,9 +1,4 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models;
 
 namespace VsLocalizedIntellisense.Test.Models
@@ -13,7 +8,7 @@ namespace VsLocalizedIntellisense.Test.Models
     {
         #region function
 
-        internal class TestClass : NotifyPropertyBase
+        internal class TestClass: NotifyPropertyBase
         {
             #region variable
 
@@ -43,8 +38,7 @@ namespace VsLocalizedIntellisense.Test.Models
 
             int count = 0;
 
-            ts.PropertyChanged += (s, e) =>
-            {
+            ts.PropertyChanged += (s, e) => {
                 Assert.AreEqual(nameof(TestClass.Value), e.PropertyName);
                 Assert.AreEqual(count, ts.Value);
             };

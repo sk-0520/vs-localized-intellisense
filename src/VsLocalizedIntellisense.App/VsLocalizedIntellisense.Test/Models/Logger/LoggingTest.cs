@@ -1,10 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 
@@ -78,15 +73,14 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             Assert.AreEqual(expected, actual);
         }
 
-        private class LogFormatOptions : LogOptionsBase, ILogFormatOptions
+        private class LogFormatOptions: LogOptionsBase, ILogFormatOptions
         {
             public string Format { get; set; }
         }
 
         public class FormatTestItem
         {
-            public static readonly FormatTestItem Default = new FormatTestItem(string.Empty, string.Empty)
-            {
+            public static readonly FormatTestItem Default = new FormatTestItem(string.Empty, string.Empty) {
                 Category = "FormatTest",
                 Format = null,
                 Level = LogLevel.Information,
@@ -141,8 +135,7 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
                 item.CallerFilePath,
                 item.CallerLineNumber
             );
-            var options = new LogFormatOptions()
-            {
+            var options = new LogFormatOptions() {
                 Format = item.Format,
             };
             var actual = Logging.Format(item.Category, logItem, options);

@@ -1,12 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VsLocalizedIntellisense.Models.Mvvm.Binding;
 using VsLocalizedIntellisense.Models.Mvvm.Binding.Collection;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
@@ -28,7 +23,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
             Reset,
         }
 
-        private class TestObservableCollectionManager<T> : ObservableCollectionManagerBase<T>
+        private class TestObservableCollectionManager<T>: ObservableCollectionManagerBase<T>
         {
             public TestObservableCollectionManager(ReadOnlyObservableCollection<T> collection)
                 : base(collection)

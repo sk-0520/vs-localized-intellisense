@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
@@ -18,8 +13,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
         {
             DelegateCommand command = null;
             command = new DelegateCommand(
-                o =>
-                {
+                o => {
                     Assert.AreEqual(1, command.ExecutingCount);
                     Assert.IsFalse(command.CanExecute(null));
                 }
@@ -32,13 +26,11 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
         {
             DelegateCommand command = null;
             command = new DelegateCommand(
-                o =>
-                {
+                o => {
                     Assert.AreEqual(1, command.ExecutingCount);
                     Assert.IsTrue(command.CanExecute(null));
                 }
-            )
-            {
+            ) {
                 SuppressCommandWhileExecuting = false,
             };
             command.Execute(null);

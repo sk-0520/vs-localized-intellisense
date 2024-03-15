@@ -1,6 +1,6 @@
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Value
 {
-    public class Text : ValueBase
+    public class Text: ValueBase
     {
         public Text(string data)
         {

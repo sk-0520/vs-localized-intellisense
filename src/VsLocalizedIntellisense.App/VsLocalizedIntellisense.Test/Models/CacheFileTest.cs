@@ -1,11 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models;
 
@@ -17,7 +13,7 @@ namespace VsLocalizedIntellisense.Test.Models
         #region define
 
         [DataContract]
-        private class Data : ICachedTimestamp
+        private class Data: ICachedTimestamp
         {
             [DataMember]
             public DateTimeOffset CachedTimestamp { get; set; }
@@ -31,8 +27,7 @@ namespace VsLocalizedIntellisense.Test.Models
 
         private void Write<T>(string path, T data)
         {
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
+            using(var stream = new FileStream(path, FileMode.Create)) {
                 var serializer = new DataContractJsonSerializer(data.GetType());
                 serializer.WriteObject(stream, data);
             }
@@ -74,8 +69,7 @@ namespace VsLocalizedIntellisense.Test.Models
             var span = TimeSpan.FromSeconds(10);
             var currentTimestamp = DateTimeOffset.Now;
             Directory.CreateDirectory(Path.GetDirectoryName(path));
-            using (var stream = File.CreateText(path))
-            {
+            using(var stream = File.CreateText(path)) {
                 stream.Write("{}");
             }
 
@@ -94,8 +88,7 @@ namespace VsLocalizedIntellisense.Test.Models
             var currentTimestamp = cacheTimestamp + span - TimeSpan.FromMilliseconds(1);
 
             dir.Create();
-            var src = new Data()
-            {
+            var src = new Data() {
                 CachedTimestamp = cacheTimestamp,
                 Value = nameof(Read_EnabledTime_Test),
             };
@@ -118,8 +111,7 @@ namespace VsLocalizedIntellisense.Test.Models
             var currentTimestamp = cacheTimestamp + span;
 
             dir.Create();
-            var src = new Data()
-            {
+            var src = new Data() {
                 CachedTimestamp = cacheTimestamp,
                 Value = nameof(Read_EnabledTime_Test),
             };
@@ -141,8 +133,7 @@ namespace VsLocalizedIntellisense.Test.Models
             var currentTimestamp = cacheTimestamp - span;
 
             dir.Create();
-            var src = new Data()
-            {
+            var src = new Data() {
                 CachedTimestamp = cacheTimestamp,
                 Value = nameof(Read_old_Test),
             };

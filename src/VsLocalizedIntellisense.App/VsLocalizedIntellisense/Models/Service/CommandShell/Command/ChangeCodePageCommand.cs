@@ -1,12 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public class ChangeCodePageCommand : CommandBase
+    public class ChangeCodePageCommand: CommandBase
     {
         public ChangeCodePageCommand()
             : base(Name)

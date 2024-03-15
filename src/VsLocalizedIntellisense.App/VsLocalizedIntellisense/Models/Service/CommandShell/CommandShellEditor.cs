@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Xml.Linq;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
@@ -39,8 +38,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
 
         public EmptyLine[] AddEmptyLines(int length)
         {
-            if (length < 0)
-            {
+            if(length < 0) {
                 throw new ArgumentOutOfRangeException(nameof(length));
             }
 
@@ -56,8 +54,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
         private TCommand CreateCommand<TCommand>()
             where TCommand : CommandBase, new()
         {
-            var result = new TCommand()
-            {
+            var result = new TCommand() {
                 SuppressCommand = Options.SuppressCommand,
                 CommandNameIsUpper = Options.CommandNameIsUpper,
                 IndentSpace = Options.IndentSpace,
@@ -208,8 +205,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
             var sb = new StringBuilder();
 
             var indentContext = new IndentContext(Options.IndentSpace, 0);
-            foreach (var action in Actions)
-            {
+            foreach(var action in Actions) {
                 var statement = action.ToStatement(indentContext);
                 sb.Append(statement);
                 sb.Append(Options.NewLine);
@@ -220,14 +216,11 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
 
         public async Task WriteAsync(Stream stream, CancellationToken cancellationToken = default)
         {
-            using (var writer = new StreamWriter(stream, Options.Encoding, 1024, true)
-            {
+            using(var writer = new StreamWriter(stream, Options.Encoding, 1024, true) {
                 NewLine = Options.NewLine,
-            })
-            {
+            }) {
                 var indentContext = new IndentContext(Options.IndentSpace, 0);
-                foreach (var action in Actions)
-                {
+                foreach(var action in Actions) {
                     cancellationToken.ThrowIfCancellationRequested();
 
                     var statement = action.ToStatement(indentContext);

@@ -1,14 +1,10 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Service.Application;
@@ -16,7 +12,7 @@ using VsLocalizedIntellisense.Models.Service.GitHub;
 
 namespace VsLocalizedIntellisense.Models.Element
 {
-    public class DirectoryElement : ElementBase
+    public class DirectoryElement: ElementBase
     {
         #region variable
 
@@ -70,10 +66,8 @@ namespace VsLocalizedIntellisense.Models.Element
         {
             var physicalPath = Path.Combine(downloadDirectory.FullName, fileName);
             var repositoryPath = gitHubService.BuildPath(languageParts, fileName);
-            using (var contentStream = await gitHubService.GetRawAsync(revision, repositoryPath, cancellationToken))
-            {
-                using (var physicalStream = new FileStream(physicalPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
-                {
+            using(var contentStream = await gitHubService.GetRawAsync(revision, repositoryPath, cancellationToken)) {
+                using(var physicalStream = new FileStream(physicalPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read)) {
                     await contentStream.CopyToAsync(physicalStream, 1024 * 4, cancellationToken);
                 }
             }
@@ -83,19 +77,15 @@ namespace VsLocalizedIntellisense.Models.Element
 
         private async Task<IList<FileInfo>> DownloadIntellisenseFilesCoreAsync(string revision, DirectoryInfo downloadDirectory, AppFileService fileService, GitHubService gitHubService, IProgress<double> progress, CancellationToken cancellationToken)
         {
-            var languageParts = new IntellisenseLanguageParts()
-            {
+            var languageParts = new IntellisenseLanguageParts() {
                 IntellisenseVersion = IntellisenseVersion.DirectoryName,
                 LibraryName = Directory.Name,
                 Language = Language.Language,
             };
             var languageData = fileService.GetIntellisenseLanguageData(languageParts);
-            if (languageData != null)
-            {
+            if(languageData != null) {
                 Logger.LogInformation($"キャッシュからインテリセンス言語データ取得: {languageParts}");
-            }
-            else
-            {
+            } else {
                 Logger.LogInformation($"GitHubからインテリセンス言語データ取得: {languageParts}");
                 var languageItems = await gitHubService.GetIntellisenseLanguageItemsAsync(revision, languageParts, cancellationToken);
 
@@ -107,8 +97,7 @@ namespace VsLocalizedIntellisense.Models.Element
             var result = new List<FileInfo>(languageData.LanguageItems.Length);
             progress.Report(0);
             var percentProgress = new PercentProgress(languageData.LanguageItems.Length, progress);
-            foreach (var languageItem in languageData.LanguageItems)
-            {
+            foreach(var languageItem in languageData.LanguageItems) {
                 var file = await DownloadIntellisenseFileAsync(revision, languageParts, languageItem, downloadDirectory, fileService, gitHubService, cancellationToken);
                 result.Add(file);
                 percentProgress.Increment();

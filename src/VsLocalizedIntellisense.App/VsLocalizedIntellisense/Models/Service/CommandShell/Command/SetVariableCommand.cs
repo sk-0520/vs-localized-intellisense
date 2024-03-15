@@ -1,14 +1,11 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
     // /p はサポートしない: するなら別処理
-    public class SetVariableCommand : CommandBase
+    public class SetVariableCommand: CommandBase
     {
         public SetVariableCommand()
             : base(Name)
@@ -39,8 +36,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 
         public override string GetStatement()
         {
-            if (string.IsNullOrWhiteSpace(VariableName))
-            {
+            if(string.IsNullOrWhiteSpace(VariableName)) {
                 throw new InvalidOperationException(nameof(VariableName));
             }
 
@@ -49,8 +45,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
             sb.Append(GetStatementCommandName());
             sb.Append(' ');
 
-            if (IsExpress)
-            {
+            if(IsExpress) {
                 sb.Append("/a ");
             }
 

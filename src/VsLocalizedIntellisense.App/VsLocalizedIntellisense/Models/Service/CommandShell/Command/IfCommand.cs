@@ -1,15 +1,12 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value.Special;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public abstract class IfCommandBase : CommandBase
+    public abstract class IfCommandBase: CommandBase
     {
         public IfCommandBase()
             : base(Name)
@@ -37,32 +34,26 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 
             sb.Append(GetStatementCommandName());
             sb.Append(' ');
-            if (IsNot)
-            {
+            if(IsNot) {
                 sb.Append("not ");
             }
             sb.Append(Condition.Expression);
             sb.AppendLine(" (");
-            foreach (var command in TrueBlock)
-            {
+            foreach(var command in TrueBlock) {
                 sb.Append(IndentSpace);
                 sb.AppendLine(command.GetStatement());
             }
-            if (FalseBlock.Any())
-            {
+            if(FalseBlock.Any()) {
                 sb.Append(") ");
 
                 sb.Append(ElseName);
                 sb.AppendLine(" (");
-                foreach (var command in FalseBlock)
-                {
+                foreach(var command in FalseBlock) {
                     sb.Append(IndentSpace);
                     sb.AppendLine(command.GetStatement());
                 }
                 sb.Append(")");
-            }
-            else
-            {
+            } else {
                 sb.Append(")");
             }
 
@@ -72,7 +63,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
         #endregion
     }
 
-    public class IfErrorLevelCommand : IfCommandBase
+    public class IfErrorLevelCommand: IfCommandBase
     {
         #region property
 
@@ -110,7 +101,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
         GreaterThanOrEqual,
     }
 
-    public class IfExpressCommand : IfCommandBase
+    public class IfExpressCommand: IfCommandBase
     {
         #region property
 
@@ -140,7 +131,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
         #endregion
     }
 
-    public class IfExistCommand : IfCommandBase
+    public class IfExistCommand: IfCommandBase
     {
         #region property
 

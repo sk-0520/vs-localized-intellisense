@@ -2,7 +2,7 @@ using System;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Value
 {
-    public class Variable : ValueBase
+    public class Variable: ValueBase
     {
         #region variable
 
@@ -25,13 +25,11 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Value
             get => this._name;
             set
             {
-                if (IsReadOnly)
-                {
+                if(IsReadOnly) {
                     throw new InvalidOperationException("readonly");
                 }
 
-                if (string.IsNullOrWhiteSpace(value))
-                {
+                if(string.IsNullOrWhiteSpace(value)) {
                     throw new ArgumentException(nameof(value));
                 }
                 this._name = value;
@@ -49,8 +47,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Value
         {
             get
             {
-                if (DelayedExpansion)
-                {
+                if(DelayedExpansion) {
                     return $"!{Name}!";
                 }
 

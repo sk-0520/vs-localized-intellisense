@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models;
 
@@ -11,7 +6,7 @@ namespace VsLocalizedIntellisense.Test.Models
     [TestClass]
     public class DisposerTest
     {
-        private class TestDisposer : DisposerBase
+        private class TestDisposer: DisposerBase
         {
             public bool Disposing { get; private set; }
 

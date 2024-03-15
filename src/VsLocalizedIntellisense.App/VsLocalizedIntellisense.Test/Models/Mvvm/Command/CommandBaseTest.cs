@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,7 +8,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
     [TestClass]
     public class CommandBaseTest
     {
-        private class TestCommandA : CommandBase
+        private class TestCommandA: CommandBase
         {
             public int ExecuteCount { get; private set; }
 
@@ -63,10 +59,8 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
         {
             var command = new TestCommandA();
 
-            using (var ev = new AutoResetEvent(false))
-            {
-                var task = Task.Run(() =>
-                {
+            using(var ev = new AutoResetEvent(false)) {
+                var task = Task.Run(() => {
                     ev.WaitOne();
                     command.IsEnabled = false;
                 }).ConfigureAwait(false);

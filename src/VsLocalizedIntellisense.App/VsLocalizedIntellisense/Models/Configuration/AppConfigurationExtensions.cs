@@ -1,10 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Models.Configuration
@@ -40,7 +35,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
 
         public static TimeSpan GetCacheTimeoutIntellisenseVersion(this AppConfiguration configuration) => configuration.GetValue<TimeSpan>("cache-timeout-intellisense-version");
         public static TimeSpan GetCacheTimeoutIntellisenseLanguage(this AppConfiguration configuration) => configuration.GetValue<TimeSpan>("cache-timeout-intellisense-language");
-        
+
 
 
         public static string[] GetIntellisenseDirectories(this AppConfiguration configuration) => configuration.GetValues<string>("intellisense-directories", '|');

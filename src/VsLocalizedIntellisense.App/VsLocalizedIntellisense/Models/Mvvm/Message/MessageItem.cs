@@ -6,7 +6,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
     /// <summary>
     /// 保持しているメッセージ。
     /// </summary>
-    public class MessageItem : DisposerBase
+    public class MessageItem: DisposerBase
     {
         public MessageItem(string messageId, Type messageType, object callbackInstance, MethodInfo callbackMethodInfo)
         {
@@ -39,8 +39,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
+            if(!IsDisposed) {
                 CallbackInstance = null;
                 CallbackMethodInfo = null;
             }

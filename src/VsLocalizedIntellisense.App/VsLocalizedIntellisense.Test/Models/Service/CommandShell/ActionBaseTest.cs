@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Redirect;
@@ -12,7 +7,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
     [TestClass]
     public class ActionBaseTest
     {
-        private class TestAction : ActionBase
+        private class TestAction: ActionBase
         {
             public TestAction()
             {
@@ -38,8 +33,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_input_Test()
         {
-            var test = new TestAction()
-            {
+            var test = new TestAction() {
                 Input = "INPUT",
             };
 
@@ -53,8 +47,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_pipe_Test()
         {
-            var test = new TestAction()
-            {
+            var test = new TestAction() {
                 Pipe = new TestAction()
             };
             var actual1 = test.GetStatement();
@@ -67,10 +60,8 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_pipe2_Test()
         {
-            var test = new TestAction()
-            {
-                Pipe = new TestAction()
-                {
+            var test = new TestAction() {
+                Pipe = new TestAction() {
                     Pipe = new TestAction(),
                 }
             };
@@ -85,8 +76,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_null_redirect_Test()
         {
-            var test = new TestAction
-            {
+            var test = new TestAction {
                 Redirect = OutputRedirect.Null
             };
             var actual1 = test.GetStatement();
@@ -99,8 +89,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_null_null_redirect_Test()
         {
-            var test = new TestAction
-            {
+            var test = new TestAction {
                 Redirect = OutputRedirect.NullWithError
             };
             var actual1 = test.GetStatement();
@@ -113,10 +102,8 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_no_append_redirect_Test()
         {
-            var test = new TestAction
-            {
-                Redirect = new OutputRedirect()
-                {
+            var test = new TestAction {
+                Redirect = new OutputRedirect() {
                     Target = "TARGET"
                 }
             };
@@ -127,10 +114,8 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_append_redirect_Test()
         {
-            var test = new TestAction()
-            {
-                Redirect = new OutputRedirect()
-                {
+            var test = new TestAction() {
+                Redirect = new OutputRedirect() {
                     Append = true,
                     Target = "TARGET"
                 }
@@ -142,16 +127,12 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_pipe_redirect_Test()
         {
-            var test = new TestAction()
-            {
-                Redirect = new OutputRedirect()
-                {
+            var test = new TestAction() {
+                Redirect = new OutputRedirect() {
                     Target = "SELF"
                 },
-                Pipe = new TestAction()
-                {
-                    Redirect = new OutputRedirect()
-                    {
+                Pipe = new TestAction() {
+                    Redirect = new OutputRedirect() {
                         Target = "PIPE"
                     }
                 }
@@ -163,17 +144,13 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
         [TestMethod]
         public void GetStatement_input_pipe_redirect_Test()
         {
-            var test = new TestAction()
-            {
+            var test = new TestAction() {
                 Input = "INPUT",
-                Redirect = new OutputRedirect()
-                {
+                Redirect = new OutputRedirect() {
                     Target = "SELF"
                 },
-                Pipe = new TestAction()
-                {
-                    Redirect = new OutputRedirect()
-                    {
+                Pipe = new TestAction() {
+                    Redirect = new OutputRedirect() {
                         Target = "PIPE"
                     }
                 }

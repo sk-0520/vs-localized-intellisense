@@ -1,12 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Element;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
@@ -14,23 +6,20 @@ using VsLocalizedIntellisense.Models.Mvvm.Binding.Collection;
 
 namespace VsLocalizedIntellisense.ViewModels
 {
-    public class DirectoryViewModel : SingleModelViewModelBase<DirectoryElement>
+    public class DirectoryViewModel: SingleModelViewModelBase<DirectoryElement>
     {
         public DirectoryViewModel(DirectoryElement model, ILoggerFactory loggerFactory)
             : base(model, loggerFactory)
         {
-            LibraryVersionCollection = new ModelViewModelObservableCollectionManager<LibraryVersionElement, LibraryVersionViewModel>(Model.LibraryVersionItems, new ModelViewModelObservableCollectionOptions<LibraryVersionElement, LibraryVersionViewModel>()
-            {
+            LibraryVersionCollection = new ModelViewModelObservableCollectionManager<LibraryVersionElement, LibraryVersionViewModel>(Model.LibraryVersionItems, new ModelViewModelObservableCollectionOptions<LibraryVersionElement, LibraryVersionViewModel>() {
                 ToViewModel = m => new LibraryVersionViewModel(m, LoggerFactory),
             });
 
-            IntellisenseVersionCollection = new ModelViewModelObservableCollectionManager<IntellisenseVersionElement, IntellisenseVersionViewModel>(Model.IntellisenseVersionItems, new ModelViewModelObservableCollectionOptions<IntellisenseVersionElement, IntellisenseVersionViewModel>()
-            {
+            IntellisenseVersionCollection = new ModelViewModelObservableCollectionManager<IntellisenseVersionElement, IntellisenseVersionViewModel>(Model.IntellisenseVersionItems, new ModelViewModelObservableCollectionOptions<IntellisenseVersionElement, IntellisenseVersionViewModel>() {
                 ToViewModel = m => new IntellisenseVersionViewModel(m, LoggerFactory),
             });
 
-            LanguageCollection = new ModelViewModelObservableCollectionManager<LanguageElement, LanguageViewModel>(Model.LanguageItems, new ModelViewModelObservableCollectionOptions<LanguageElement, LanguageViewModel>()
-            {
+            LanguageCollection = new ModelViewModelObservableCollectionManager<LanguageElement, LanguageViewModel>(Model.LanguageItems, new ModelViewModelObservableCollectionOptions<LanguageElement, LanguageViewModel>() {
                 ToViewModel = m => new LanguageViewModel(m, LoggerFactory),
             });
 
@@ -114,10 +103,8 @@ namespace VsLocalizedIntellisense.ViewModels
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
-                if (Model != null)
-                {
+            if(!IsDisposed) {
+                if(Model != null) {
                     Model.PropertyChanged -= Model_PropertyChanged;
                 }
             }
@@ -128,8 +115,7 @@ namespace VsLocalizedIntellisense.ViewModels
 
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            if (e.PropertyName == nameof(Model.DownloadPercent))
-            {
+            if(e.PropertyName == nameof(Model.DownloadPercent)) {
                 RaisePropertyChanged(nameof(DownloadPercent));
             }
         }

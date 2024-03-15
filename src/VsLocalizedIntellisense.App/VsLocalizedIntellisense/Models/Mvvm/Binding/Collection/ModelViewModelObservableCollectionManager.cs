@@ -3,13 +3,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
-using System.Reflection;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Data;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
@@ -20,7 +15,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// </summary>
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
-    public class ModelViewModelObservableCollectionManager<TModel, TViewModel> : ObservableCollectionManagerBase<TModel>
+    public class ModelViewModelObservableCollectionManager<TModel, TViewModel>: ObservableCollectionManagerBase<TModel>
         where TModel : BindModelBase
         where TViewModel : ViewModelBase
     {
@@ -33,8 +28,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         public ModelViewModelObservableCollectionManager(ReadOnlyObservableCollection<TModel> collection, ModelViewModelObservableCollectionOptions<TModel, TViewModel> options)
             : base(collection)
         {
-            if (options.ToViewModel == null)
-            {
+            if(options.ToViewModel == null) {
                 throw new ArgumentNullException(nameof(options) + "." + nameof(options.ToViewModel));
             }
 
@@ -45,8 +39,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         public ModelViewModelObservableCollectionManager(ObservableCollection<TModel> collection, ModelViewModelObservableCollectionOptions<TModel, TViewModel> options)
             : base(collection)
         {
-            if (options.ToViewModel == null)
-            {
+            if(options.ToViewModel == null) {
                 throw new ArgumentNullException(nameof(options) + "." + nameof(options.ToViewModel));
             }
 
@@ -73,8 +66,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         {
             get
             {
-                if (this._readOnlyViewModels == null)
-                {
+                if(this._readOnlyViewModels == null) {
                     this._readOnlyViewModels = new ReadOnlyObservableCollection<TViewModel>(EditableViewModels);
                 }
 
@@ -147,8 +139,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         {
             var index = IndexOf(viewModel);
 
-            if (index == -1)
-            {
+            if(index == -1) {
                 result = default;
                 return false;
             }
@@ -164,8 +155,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         /// <returns>見つからない場合は <typeparamref name="TModel"/> の初期値。</returns>
         public TModel GetModel(TViewModel viewModel)
         {
-            if (TryGetModel(viewModel, out var result))
-            {
+            if(TryGetModel(viewModel, out var result)) {
                 return result;
             }
 
@@ -176,8 +166,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         {
             var index = IndexOf(model);
 
-            if (index == -1)
-            {
+            if(index == -1) {
                 result = default;
                 return false;
             }
@@ -194,8 +183,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         /// <returns>見つからない場合は <typeparamref name="TViewModel"/> の初期値。</returns>
         public TViewModel GetViewModel(TModel model)
         {
-            if (TryGetViewModel(model, out var result))
-            {
+            if(TryGetViewModel(model, out var result)) {
                 return result;
             }
 
@@ -213,8 +201,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
                 .ToList()
             ;
 
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.AddItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.AddItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 NewModels = newItems,
@@ -223,8 +210,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             AddItemsKindImpl(parameter);
 
-            foreach (var vm in newViewModels)
-            {
+            foreach(var vm in newViewModels) {
                 EditableViewModels.Add(vm);
             }
 
@@ -240,8 +226,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
                 .ToList()
             ;
 
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.InsertItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.InsertItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 InsertIndex = insertIndex,
@@ -251,8 +236,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             InsertItemsKindImpl(parameter);
 
-            foreach (var item in newViewModels)
-            {
+            foreach(var item in newViewModels) {
                 EditableViewModels.Insert(item.index, item.value);
             }
 
@@ -269,8 +253,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
                 .ToList()
             ;
 
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.RemoveItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.RemoveItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 OldStartingIndex = oldStartingIndex,
@@ -280,14 +263,11 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             RemoveItemsKindImpl(parameter);
 
-            foreach (var _ in Enumerable.Range(0, oldViewModels.Count))
-            {
+            foreach(var _ in Enumerable.Range(0, oldViewModels.Count)) {
                 EditableViewModels.RemoveAt(oldStartingIndex);
             }
-            if (Options.AutoDisposeViewModel)
-            {
-                foreach (var oldViewModel in oldViewModels)
-                {
+            if(Options.AutoDisposeViewModel) {
+                foreach(var oldViewModel in oldViewModels) {
                     oldViewModel.Dispose();
                 }
             }
@@ -310,8 +290,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
                 .ToList()
             ;
 
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.ReplaceItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.ReplaceItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 NewModels = newItems,
@@ -323,8 +302,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             ReplaceItemsKindImpl(parameter);
 
-            for (var i = 0; i < newViewModels.Count; i++)
-            {
+            for(var i = 0; i < newViewModels.Count; i++) {
                 EditableViewModels[i + startIndex] = newViewModels[i];
             }
             //if (Options.AutoDisposeViewModel)
@@ -341,8 +319,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         protected override void MoveItemsImpl(int newStartingIndex, int oldStartingIndex)
         {
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.MoveItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.MoveItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 NewStartingIndex = newStartingIndex,
@@ -361,8 +338,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         {
             var oldViewModels = EditableViewModels;
 
-            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.ResetItemParameter()
-            {
+            var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.ResetItemParameter() {
                 Sender = this,
                 Apply = ModelViewModelObservableCollectionViewModelApply.Before,
                 OldViewModels = oldViewModels,
@@ -371,10 +347,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             ResetItemsKindImpl(parameter);
 
             EditableViewModels.Clear();
-            if (Options.AutoDisposeViewModel)
-            {
-                foreach (var viewModel in oldViewModels)
-                {
+            if(Options.AutoDisposeViewModel) {
+                foreach(var viewModel in oldViewModels) {
                     viewModel.Dispose();
                 }
             }
@@ -386,29 +360,22 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         protected override void CollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             //Application.Current.Dispatcher.Invoke(new Action(() => base.CollectionChanged(e)));
-            if (Options.SynchronizationContext != SynchronizationContext.Current)
-            {
+            if(Options.SynchronizationContext != SynchronizationContext.Current) {
                 Options.SynchronizationContext.Post(_ => base.CollectionChanged(e), null);
-            }
-            else
-            {
+            } else {
                 base.CollectionChanged(e);
             }
         }
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
-                if (disposing)
-                {
+            if(!IsDisposed) {
+                if(disposing) {
                     var oldItems = EditableViewModels.ToArray();
                     EditableViewModels.Clear();
 
-                    if (Options.AutoDisposeViewModel)
-                    {
-                        foreach (var oldItem in oldItems)
-                        {
+                    if(Options.AutoDisposeViewModel) {
+                        foreach(var oldItem in oldItems) {
                             oldItem.Dispose();
                         }
                     }

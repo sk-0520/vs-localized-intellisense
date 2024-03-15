@@ -1,11 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Logger;
@@ -46,8 +41,7 @@ namespace VsLocalizedIntellisense.Models.Service.Application
 
         private void WriteJson<T>(string path, T data)
         {
-            using (var stream = new FileStream(path, FileMode.Create))
-            {
+            using(var stream = new FileStream(path, FileMode.Create)) {
                 var serializer = new DataContractJsonSerializer(data.GetType());
                 serializer.WriteObject(stream, data);
             }

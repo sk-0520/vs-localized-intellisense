@@ -1,12 +1,7 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 
 namespace VsLocalizedIntellisense.Models
 {
@@ -24,8 +19,7 @@ namespace VsLocalizedIntellisense.Models
     {
         public CacheFile(string path, TimeSpan timeout)
         {
-            if (string.IsNullOrEmpty(path))
-            {
+            if(string.IsNullOrEmpty(path)) {
                 throw new ArgumentException(nameof(path));
             }
 
@@ -44,30 +38,23 @@ namespace VsLocalizedIntellisense.Models
 
         public T Read(DateTimeOffset timestamp)
         {
-            if (!File.Exists(Path))
-            {
+            if(!File.Exists(Path)) {
                 return null;
             }
 
             object raw = null;
-            using (var stream = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read))
-            {
+            using(var stream = new FileStream(Path, FileMode.Open, FileAccess.Read, FileShare.Read)) {
                 var serializer = new DataContractJsonSerializer(typeof(T));
-                try
-                {
+                try {
                     raw = serializer.ReadObject(stream);
-                }
-                catch (SerializationException)
-                {
+                } catch(SerializationException) {
                     return null;
                 }
             }
 
-            if (raw is T value)
-            {
+            if(raw is T value) {
                 var span = timestamp - value.CachedTimestamp;
-                if (span < Timeout)
-                {
+                if(span < Timeout) {
                     return value;
                 }
             }

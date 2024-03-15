@@ -1,12 +1,8 @@
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Messaging;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows.Documents;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Message
 {
@@ -23,10 +19,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default) where TMessage : IMessage;
     }
 
-    public interface IMessenger : IReceivableMessenger, ISendableMessenger
+    public interface IMessenger: IReceivableMessenger, ISendableMessenger
     { }
 
-    public class Messenger : DisposerBase, IMessenger
+    public class Messenger: DisposerBase, IMessenger
     {
         public Messenger()
         { }
@@ -45,8 +41,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             var messageType = typeof(TMessage);
 
-            if (!RegisteredSyncTypes.TryGetValue(messageType, out var messages))
-            {
+            if(!RegisteredSyncTypes.TryGetValue(messageType, out var messages)) {
                 messages = new List<MessageItem>();
                 RegisteredSyncTypes.Add(messageType, messages);
             }
@@ -61,8 +56,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             var messageType = typeof(TMessage);
 
-            if (!RegisteredAsyncTypes.TryGetValue(messageType, out var messages))
-            {
+            if(!RegisteredAsyncTypes.TryGetValue(messageType, out var messages)) {
                 messages = new List<MessageItem>();
                 RegisteredAsyncTypes.Add(messageType, messages);
             }
@@ -74,10 +68,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         private bool UnregisterCore(MessageItem messageItem, Dictionary<Type, List<MessageItem>> registeredTypes)
         {
-            if (registeredTypes.TryGetValue(messageItem.MessageType, out var messages))
-            {
-                if (messages.Remove(messageItem))
-                {
+            if(registeredTypes.TryGetValue(messageItem.MessageType, out var messages)) {
+                if(messages.Remove(messageItem)) {
                     messageItem.Dispose();
 
                     return true;
@@ -91,8 +83,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             ThrowIfDisposed();
 
-            if (!UnregisterCore(messageItem, RegisteredSyncTypes))
-            {
+            if(!UnregisterCore(messageItem, RegisteredSyncTypes)) {
                 UnregisterCore(messageItem, RegisteredAsyncTypes);
             }
         }
@@ -107,14 +98,12 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             ThrowIfDisposed();
 
-            if (!RegisteredSyncTypes.TryGetValue(typeof(TMessage), out var messages))
-            {
+            if(!RegisteredSyncTypes.TryGetValue(typeof(TMessage), out var messages)) {
                 return;
             }
 
             var messageItem = SearchMessageItem(message, messages);
-            if (messageItem == null)
-            {
+            if(messageItem == null) {
                 return;
             }
 
@@ -126,14 +115,12 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             ThrowIfDisposed();
 
-            if (!RegisteredAsyncTypes.TryGetValue(typeof(TMessage), out var messages))
-            {
+            if(!RegisteredAsyncTypes.TryGetValue(typeof(TMessage), out var messages)) {
                 return Task.CompletedTask;
             }
 
             var messageItem = SearchMessageItem(message, messages);
-            if (messageItem == null)
-            {
+            if(messageItem == null) {
                 return Task.CompletedTask;
             }
 
@@ -148,10 +135,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         private static void DisposeTypes(Dictionary<Type, List<MessageItem>> registeredTypes)
         {
-            foreach (var pair in registeredTypes)
-            {
-                foreach (var item in pair.Value)
-                {
+            foreach(var pair in registeredTypes) {
+                foreach(var item in pair.Value) {
                     item.Dispose();
                 }
                 pair.Value.Clear();
@@ -161,8 +146,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
+            if(!IsDisposed) {
                 DisposeTypes(RegisteredSyncTypes);
                 DisposeTypes(RegisteredAsyncTypes);
             }

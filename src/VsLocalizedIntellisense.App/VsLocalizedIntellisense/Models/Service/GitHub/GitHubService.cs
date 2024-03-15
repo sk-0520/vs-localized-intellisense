@@ -3,13 +3,9 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
-using System.Runtime.InteropServices.ComTypes;
 using System.Runtime.Serialization.Json;
-using System.Security.Policy;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Models.Service.GitHub
@@ -60,8 +56,7 @@ namespace VsLocalizedIntellisense.Models.Service.GitHub
         {
             var request = new HttpRequestMessage(method, uri);
 
-            foreach (var pair in Options.RequestHeaders)
-            {
+            foreach(var pair in Options.RequestHeaders) {
                 request.Headers.Add(pair.Key, pair.Value);
             }
 
@@ -74,10 +69,8 @@ namespace VsLocalizedIntellisense.Models.Service.GitHub
         private async Task<Stream> RequestStreamAsync(HttpRequestMessage request, CancellationToken cancellationToken)
         {
             var response = await HttpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead, cancellationToken);
-            if (Logger.IsEnabled(LogLevel.Debug))
-            {
-                foreach (var header in response.Headers)
-                {
+            if(Logger.IsEnabled(LogLevel.Debug)) {
+                foreach(var header in response.Headers) {
                     Logger.LogTrace($"{header.Key}: {string.Join(", ", header.Value)}");
                 }
             }
@@ -86,8 +79,7 @@ namespace VsLocalizedIntellisense.Models.Service.GitHub
 
         private async Task<T> RequestJsonAsync<T>(HttpRequestMessage request, CancellationToken cancellationToken)
         {
-            using (var stream = await RequestStreamAsync(request, cancellationToken))
-            {
+            using(var stream = await RequestStreamAsync(request, cancellationToken)) {
                 var serializer = new DataContractJsonSerializer(typeof(T));
                 var rawContent = serializer.ReadObject(stream);
                 return (T)rawContent;
@@ -98,8 +90,7 @@ namespace VsLocalizedIntellisense.Models.Service.GitHub
         {
             var url = Strings.ReplaceFromDictionary(
                 "https://api.github.com/repos/${OWNER}/${NAME}/contents/${PATH}?ref=${REVISION}",
-                new Dictionary<string, string>()
-                {
+                new Dictionary<string, string>() {
                     ["OWNER"] = Repository.Owner,
                     ["NAME"] = Repository.Name,
                     ["REVISION"] = revision,
@@ -117,8 +108,7 @@ namespace VsLocalizedIntellisense.Models.Service.GitHub
         {
             var url = Strings.ReplaceFromDictionary(
                 "https://raw.githubusercontent.com/${OWNER}/${NAME}/${REVISION}/${PATH}",
-                new Dictionary<string, string>()
-                {
+                new Dictionary<string, string>() {
                     ["OWNER"] = Repository.Owner,
                     ["NAME"] = Repository.Name,
                     ["REVISION"] = revision,

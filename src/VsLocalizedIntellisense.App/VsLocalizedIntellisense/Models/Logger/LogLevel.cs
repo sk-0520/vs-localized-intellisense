@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Properties;
 
 namespace VsLocalizedIntellisense.Models.Logger

@@ -1,14 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace VsLocalizedIntellisense.Models.Logger
 {
-    public abstract class LoggerBase : ILogger
+    public abstract class LoggerBase: ILogger
     {
         protected LoggerBase(string category, LogOptionsBase options)
         {
@@ -48,8 +43,7 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         public void Log(LogLevel logLevel, string logMessage, [CallerMemberName] string callerMemberName = "", [CallerFilePath] string callerFilePath = "", [CallerLineNumber] int callerLineNumber = 0)
         {
-            if (!IsEnabled(logLevel))
-            {
+            if(!IsEnabled(logLevel)) {
                 return;
             }
 
@@ -61,7 +55,7 @@ namespace VsLocalizedIntellisense.Models.Logger
         #endregion
     }
 
-    public abstract class LoggerBase<TLogOptions> : LoggerBase
+    public abstract class LoggerBase<TLogOptions>: LoggerBase
         where TLogOptions : LogOptionsBase
     {
         protected LoggerBase(string category, TLogOptions options)

@@ -1,7 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -43,8 +41,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
             var actual = test.AddEmptyLines(length);
 
             Assert.AreEqual(test.Actions.Count, actual.Length);
-            for (var i = 0; i < length; i++)
-            {
+            for(var i = 0; i < length; i++) {
                 Assert.AreEqual(test.Actions[i], actual[i]);
             }
         }
@@ -253,11 +250,10 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
             test.AddRemark("bye");
 
             var expected = test.ToSourceCode();
-            using (var dst = new MemoryStream())
-            {
+            using(var dst = new MemoryStream()) {
                 await test.WriteAsync(dst);
                 var actual = unicode.GetString(dst.ToArray());
-            Assert.AreEqual(expected, actual);
+                Assert.AreEqual(expected, actual);
             }
         }
 

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
@@ -14,8 +10,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandPrompt.Command
         [TestMethod]
         public void Utf8_Test()
         {
-            var chcp = new ChangeCodePageCommand
-            {
+            var chcp = new ChangeCodePageCommand {
                 Encoding = Encoding.UTF8
             };
             var actual = chcp.GetStatement();
@@ -25,8 +20,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandPrompt.Command
         [TestMethod]
         public void ShiftJis_Test()
         {
-            var chcp = new ChangeCodePageCommand()
-            {
+            var chcp = new ChangeCodePageCommand() {
                 Encoding = Encoding.GetEncoding("Shift_JIS"),
             };
             var actual = chcp.GetStatement();

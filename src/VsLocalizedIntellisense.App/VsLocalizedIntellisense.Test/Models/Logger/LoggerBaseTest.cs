@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 
@@ -14,9 +10,9 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
     {
         #region function
 
-        private class TestLogger : LoggerBase<TestLogger.TestLogOptions>
+        private class TestLogger: LoggerBase<TestLogger.TestLogOptions>
         {
-            internal class TestLogOptions : LogOptionsBase
+            internal class TestLogOptions: LogOptionsBase
             {
                 public TestLogOptions(LogLevel level)
                 {
@@ -161,13 +157,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.Log(level, level.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(level.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }

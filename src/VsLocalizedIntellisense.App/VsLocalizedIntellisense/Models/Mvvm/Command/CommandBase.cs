@@ -7,7 +7,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
     /// <summary>
     /// <see cref="ICommand"/>実装基底クラス。
     /// </summary>
-    public abstract class CommandBase : ICommand
+    public abstract class CommandBase: ICommand
     {
         protected CommandBase()
         {
@@ -30,12 +30,9 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         protected virtual void OnCanExecuteChanged()
         {
-            if (SynchronizationContext != SynchronizationContext.Current)
-            {
+            if(SynchronizationContext != SynchronizationContext.Current) {
                 SynchronizationContext.Post(o => CanExecuteChanged?.Invoke(this, EventArgs.Empty), null);
-            }
-            else
-            {
+            } else {
                 CanExecuteChanged?.Invoke(this, EventArgs.Empty);
             }
         }

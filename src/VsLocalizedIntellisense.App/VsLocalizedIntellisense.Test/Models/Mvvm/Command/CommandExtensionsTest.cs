@@ -1,7 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
@@ -13,7 +10,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
     {
         #region function
 
-        private class TestCommand : CommandBase
+        private class TestCommand: CommandBase
         {
             public bool IsEnabled { get; set; } = true;
             public int ExecuteCount { get; private set; }
@@ -50,8 +47,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             var executeCount = 0;
             var stockValue = string.Empty;
             var command = new DelegateCommand<string>(
-                o =>
-                {
+                o => {
                     stockValue = o;
                     executeCount += 1;
                 },
@@ -79,8 +75,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             var executeCount = 0;
             var stockValue = string.Empty;
             var command = new AsyncDelegateCommand<string>(
-                o =>
-                {
+                o => {
                     stockValue = o;
                     executeCount += 1;
                     return Task.CompletedTask;

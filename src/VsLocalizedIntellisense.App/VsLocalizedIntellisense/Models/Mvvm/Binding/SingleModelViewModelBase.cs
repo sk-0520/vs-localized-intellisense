@@ -1,9 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding
@@ -12,7 +7,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     /// モデルとビューモデルを一対一で紐づける。
     /// </summary>
     /// <typeparam name="TModel"></typeparam>
-    public abstract class SingleModelViewModelBase<TModel> : ViewModelBase
+    public abstract class SingleModelViewModelBase<TModel>: ViewModelBase
         where TModel : BindModelBase
     {
         protected SingleModelViewModelBase(TModel model, ILoggerFactory loggerFactory)

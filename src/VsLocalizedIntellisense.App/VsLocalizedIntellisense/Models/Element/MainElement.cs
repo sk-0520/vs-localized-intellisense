@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -7,23 +6,18 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
-using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
-using System.Web.ApplicationServices;
 using VsLocalizedIntellisense.Models.Configuration;
-using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Service.Application;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
-using VsLocalizedIntellisense.Models.Service.GitHub;
 
 namespace VsLocalizedIntellisense.Models.Element
 {
-    public class MainElement : ElementBase
+    public class MainElement: ElementBase
     {
         #region variable
 
@@ -76,42 +70,33 @@ namespace VsLocalizedIntellisense.Models.Element
         private IEnumerable<DirectoryElement> LoadIntellisenseDirectories(string rootDirectoryPath, IEnumerable<string> intellisenseDirectories, IEnumerable<string> intellisenseVersionItems)
         {
             var dir = IOHelper.GetPhysicalDirectory(rootDirectoryPath);
-            if (dir == null)
-            {
+            if(dir == null) {
                 Logger.LogWarning($"無効ディレクトリ: {rootDirectoryPath}");
                 yield break;
             }
 
             var result = new List<DirectoryElement>();
             var targetDirectories = intellisenseDirectories.Select(a => Path.Combine(dir.FullName, a));
-            foreach (var targetDirectoryPath in targetDirectories)
-            {
+            foreach(var targetDirectoryPath in targetDirectories) {
                 var targetDir = new DirectoryInfo(targetDirectoryPath);
-                if (targetDir.Exists)
-                {
+                if(targetDir.Exists) {
                     var libraryVersionItems = targetDir.GetDirectories().Select(a => new LibraryVersionElement(a.Name, LoggerFactory)).OrderBy(a => a.Version).ToList();
 
                     Regex regex = null;
-                    if (Configuration.GetIntellisenseDotNetStandardMappings().Any(a => a == targetDir.Name))
-                    {
+                    if(Configuration.GetIntellisenseDotNetStandardMappings().Any(a => a == targetDir.Name)) {
                         regex = Configuration.GetIntellisenseDotNetStandardVersion();
-                    }
-                    else if (Configuration.GetIntellisenseDotNetRuntimeMappings().Any(a => a == targetDir.Name))
-                    {
+                    } else if(Configuration.GetIntellisenseDotNetRuntimeMappings().Any(a => a == targetDir.Name)) {
                         regex = Configuration.GetIntellisenseDotNetRuntimeVersion();
                     }
-                    if (regex == null)
-                    {
+                    if(regex == null) {
                         Logger.LogWarning($"{targetDir.Name}");
                         continue;
                     }
 
                     var intellisenseVersions = new List<IntellisenseVersionElement>();
-                    foreach (var s in intellisenseVersionItems)
-                    {
+                    foreach(var s in intellisenseVersionItems) {
                         var match = regex.Match(s);
-                        if (!match.Success)
-                        {
+                        if(!match.Success) {
                             continue;
                         }
                         var intellisenseName = match.Groups["NAME"].Value;
@@ -139,15 +124,13 @@ namespace VsLocalizedIntellisense.Models.Element
             var result = new Dictionary<DirectoryElement, IList<FileInfo>>();
 
             var targetElements = IntellisenseDirectoryElements.Where(a => a.IsDownloadTarget).ToArray();
-            foreach (var element in targetElements)
-            {
+            foreach(var element in targetElements) {
                 element.DownloadPercent = -1;
             }
 
             Logger.LogInformation("ダウンロード処理開始");
 
-            foreach (var element in targetElements)
-            {
+            foreach(var element in targetElements) {
                 var downloadBaseDirPath = Path.Combine(downloadRootDirectory.FullName, element.IntellisenseVersion.DirectoryName, element.Directory.Name);
                 var downloadBaseDirectory = Directory.CreateDirectory(downloadBaseDirPath);
                 var downloadFiles = await element.DownloadIntellisenseFilesAsync(revision, downloadBaseDirectory, AppFileService, AppGitHubService);
@@ -157,11 +140,9 @@ namespace VsLocalizedIntellisense.Models.Element
             Logger.LogInformation("ダウンロード処理終了");
 
             Logger.LogDebug("対象ファイル");
-            foreach (var pair in result)
-            {
+            foreach(var pair in result) {
                 Logger.LogDebug(pair.Key.IntellisenseVersion.DirectoryName);
-                foreach (var file in pair.Value)
-                {
+                foreach(var file in pair.Value) {
                     Logger.LogDebug($"file {file.Name} {file.FullName}");
                 }
             }
@@ -183,8 +164,7 @@ namespace VsLocalizedIntellisense.Models.Element
             commandShellEditor.AddEcho("install intellisense");
             commandShellEditor.AddEmptyLine();
 
-            foreach (var pair in installItems)
-            {
+            foreach(var pair in installItems) {
                 commandShellEditor.AddEmptyLine();
                 commandShellEditor.AddEcho(pair.Key.Directory.Name);
 
@@ -202,8 +182,7 @@ namespace VsLocalizedIntellisense.Models.Element
                 var dirIfCommand = commandShellEditor.AddIfExist(dirExpress, true);
                 dirIfCommand.TrueBlock.Add(commandShellEditor.CreateMakeDirectory(dirExpress));
 
-                foreach (var file in pair.Value)
-                {
+                foreach(var file in pair.Value) {
                     var destinationPath = Path.Combine(dirVarCommand.Variable.Expression, file.Name);
                     var copyCommand = commandShellEditor.AddCopy(file.FullName, destinationPath, PromptMode.Silent);
                     copyCommand.IsVerify = true;
@@ -223,27 +202,22 @@ namespace VsLocalizedIntellisense.Models.Element
             var batchDirPath = Path.GetDirectoryName(batchFilePath);
             Directory.CreateDirectory(batchDirPath);
 
-            using (var stream = new FileStream(batchFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
-            {
+            using(var stream = new FileStream(batchFilePath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read)) {
                 await commandShellEditor.WriteAsync(stream);
             }
 
-            var psi = new ProcessStartInfo()
-            {
+            var psi = new ProcessStartInfo() {
                 FileName = batchFilePath,
                 UseShellExecute = true,
                 Verb = "runas",
             };
             Logger.LogInformation($"[BATCH] start {batchFilePath}");
-            try
-            {
+            try {
                 var batchProcess = Process.Start(psi);
                 batchProcess.WaitForExit();
                 Logger.LogInformation($"[BATCH] exit code {batchProcess.ExitCode}");
                 return true;
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 Logger.LogError(ex.ToString());
             }
             return true;
@@ -253,13 +227,11 @@ namespace VsLocalizedIntellisense.Models.Element
 
         private void OnPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            switch (e.PropertyName)
-            {
+            switch(e.PropertyName) {
                 case nameof(InstallRootDirectoryPath):
                     var elements = LoadIntellisenseDirectories(InstallRootDirectoryPath, Configuration.GetIntellisenseDirectories(), IntellisenseVersionItems);
                     IntellisenseDirectoryElements.Clear();
-                    foreach (var element in elements)
-                    {
+                    foreach(var element in elements) {
                         IntellisenseDirectoryElements.Add(element);
                     }
                     break;

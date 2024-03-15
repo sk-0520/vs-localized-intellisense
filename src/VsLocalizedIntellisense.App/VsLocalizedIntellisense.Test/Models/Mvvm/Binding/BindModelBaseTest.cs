@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VsLocalizedIntellisense.Models.Mvvm;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
@@ -14,7 +8,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
     {
         #region function
 
-        private class TestBindModel : BindModelBase
+        private class TestBindModel: BindModelBase
         {
             private int variable;
 
@@ -28,8 +22,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             var tbm = new TestBindModel();
             int changeCount = 0;
             var variableValue = 123;
-            tbm.PropertyChanged += (s, e) =>
-            {
+            tbm.PropertyChanged += (s, e) => {
                 changeCount += 1;
                 Assert.AreEqual("variable", e.PropertyName);
                 Assert.AreEqual(variableValue, tbm.GetVariableTest());

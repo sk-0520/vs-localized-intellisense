@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Command
 {
-    public abstract class AsyncDelegateCommandBase<TParameter> : CommandBase
+    public abstract class AsyncDelegateCommandBase<TParameter>: CommandBase
     {
         #region variable
 
@@ -48,20 +45,16 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         public override async void Execute(object parameter)
         {
             Interlocked.Increment(ref this._executingCount);
-            try
-            {
+            try {
                 await ExecuteAction((TParameter)parameter);
-            }
-            finally
-            {
+            } finally {
                 Interlocked.Decrement(ref this._executingCount);
             }
         }
 
         public override bool CanExecute(object parameter)
         {
-            if (SuppressCommandWhileExecuting)
-            {
+            if(SuppressCommandWhileExecuting) {
                 return ExecutingCount == 0 && CanExecuteFunc((TParameter)parameter);
             }
 
@@ -71,7 +64,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         #endregion
     }
 
-    public class AsyncDelegateCommand : AsyncDelegateCommandBase<object>
+    public class AsyncDelegateCommand: AsyncDelegateCommandBase<object>
     {
         public AsyncDelegateCommand(Func<object, Task> executeAction)
             : base(executeAction)
@@ -82,7 +75,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         { }
     }
 
-    public class AsyncDelegateCommand<TParameter> : AsyncDelegateCommandBase<TParameter>
+    public class AsyncDelegateCommand<TParameter>: AsyncDelegateCommandBase<TParameter>
     {
         public AsyncDelegateCommand(Func<TParameter, Task> executeAction)
             : base(executeAction)

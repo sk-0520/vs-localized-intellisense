@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Message
 {
-    public class ScopedMessenger : DisposerBase, IMessenger
+    public class ScopedMessenger: DisposerBase, IMessenger
     {
         public ScopedMessenger(IMessenger messenger)
         {
@@ -48,8 +48,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             ThrowIfDisposed();
 
-            if (ScopeItems.Contains(messageItem))
-            {
+            if(ScopeItems.Contains(messageItem)) {
                 Messenger.Unregister(messageItem);
                 ScopeItems.Remove(messageItem);
             }
@@ -71,11 +70,9 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
+            if(!IsDisposed) {
                 var items = ScopeItems.ToArray();
-                foreach (var item in items)
-                {
+                foreach(var item in items) {
                     Unregister(item);
                 }
             }

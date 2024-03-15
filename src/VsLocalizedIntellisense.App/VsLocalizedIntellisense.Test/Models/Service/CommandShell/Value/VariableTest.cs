@@ -24,8 +24,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Value
         [TestMethod]
         public void DelayedExpansionTest()
         {
-            var test = new Variable("abc")
-            {
+            var test = new Variable("abc") {
                 DelayedExpansion = true,
             };
             Assert.AreEqual("abc", test.Name);

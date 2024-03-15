@@ -17,8 +17,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         /// <returns>取得した<see cref="IMessenger"/>。取得できなかった場合は<see langword="null"/>を返す。</returns>
         public static IMessenger GetMessengerFromProperty(object dataContext, bool rawMessenger = false)
         {
-            if(dataContext == null)
-            {
+            if(dataContext == null) {
                 throw new InvalidOperationException(nameof(dataContext));
             }
 
@@ -29,16 +28,13 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
                 .FirstOrDefault(a => a.messenger != null)
             ;
 
-            if (messengerAttribute.messenger == null)
-            {
+            if(messengerAttribute.messenger == null) {
                 return null;
             }
 
             var value = messengerAttribute.property.GetValue(dataContext);
-            if (value is IMessenger messenger)
-            {
-                if (rawMessenger)
-                {
+            if(value is IMessenger messenger) {
+                if(rawMessenger) {
                     return messenger;
                 }
 

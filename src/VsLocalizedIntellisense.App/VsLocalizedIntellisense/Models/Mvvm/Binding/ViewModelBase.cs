@@ -1,18 +1,13 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Media.Media3D;
-using System.Xml.Linq;
-using VsLocalizedIntellisense.Models.Mvvm;
 using VsLocalizedIntellisense.Models.Logger;
-using System.ComponentModel;
-using System.Collections;
-using System.ComponentModel.DataAnnotations;
 using VsLocalizedIntellisense.ViewModels;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding
@@ -20,7 +15,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     /// <summary>
     /// ビューモデルの基底。
     /// </summary>
-    public abstract class ViewModelBase : BindModelBase, INotifyDataErrorInfo
+    public abstract class ViewModelBase: BindModelBase, INotifyDataErrorInfo
     {
         protected ViewModelBase(ILoggerFactory loggerFactory)
         {
@@ -53,8 +48,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         private protected bool ChangePropertyValue<TObject, TValue>(TObject obj, TValue value, PropertyInfo objectProperty, string notifyPropertyName)
         {
             var propertyValue = (TValue)objectProperty.GetValue(obj);
-            if (EqualityComparer<TValue>.Default.Equals(propertyValue, value))
-            {
+            if(EqualityComparer<TValue>.Default.Equals(propertyValue, value)) {
                 return false;
             }
 
@@ -94,8 +88,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         private void ValidateProperty<TObject, TValue>(TObject obj, TValue value, PropertyInfo objectProperty, string notifyPropertyName)
         {
-            var context = new ValidationContext(this)
-            {
+            var context = new ValidationContext(this) {
                 MemberName = notifyPropertyName
             };
 
@@ -107,23 +100,18 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
             ;
 
             var validationErrors = new List<ValidationResult>();
-            if (!Validator.TryValidateProperty(validationValue, context, validationErrors))
-            {
-                foreach (var validationError in validationErrors)
-                {
+            if(!Validator.TryValidateProperty(validationValue, context, validationErrors)) {
+                foreach(var validationError in validationErrors) {
                     AddError(notifyPropertyName, new ValidateMessage(validationError.ErrorMessage));
                 }
-            }
-            else
-            {
+            } else {
                 RemoveError(notifyPropertyName);
             }
         }
 
         protected void AddError(string propertyName, ValidateMessage validateMessage)
         {
-            if (!Errors.TryGetValue(propertyName, out var errorMessages))
-            {
+            if(!Errors.TryGetValue(propertyName, out var errorMessages)) {
                 errorMessages = new List<ValidateMessage>();
                 Errors.Add(propertyName, errorMessages);
             }
@@ -148,8 +136,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         public IEnumerable GetErrors(string propertyName)
         {
-            if (Errors.TryGetValue(propertyName, out var errors))
-            {
+            if(Errors.TryGetValue(propertyName, out var errors)) {
                 return errors;
             }
 

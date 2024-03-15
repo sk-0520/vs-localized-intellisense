@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace VsLocalizedIntellisense.Models
@@ -12,7 +8,7 @@ namespace VsLocalizedIntellisense.Models
     /// <summary>
     /// <see cref="IDisposable.Dispose"/>が行われたかどうかを確認できるようにする。
     /// </summary>
-    public interface IDisposed : IDisposable
+    public interface IDisposed: IDisposable
     {
         #region property
 
@@ -27,7 +23,7 @@ namespace VsLocalizedIntellisense.Models
     /// <summary>
     /// <see cref="IDisposable.Dispose"/>をサポートする基底クラス。
     /// </summary>
-    public abstract class DisposerBase : IDisposed
+    public abstract class DisposerBase: IDisposed
     {
         ~DisposerBase()
         {
@@ -50,8 +46,7 @@ namespace VsLocalizedIntellisense.Models
         /// <seealso cref="IDisposed"/>
         protected void ThrowIfDisposed([CallerMemberName] string _callerMemberName = "")
         {
-            if (IsDisposed)
-            {
+            if(IsDisposed) {
                 throw new ObjectDisposedException(_callerMemberName);
             }
         }
@@ -63,13 +58,11 @@ namespace VsLocalizedIntellisense.Models
         /// <param name="disposing">CLRの管理下か。</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (IsDisposed)
-            {
+            if(IsDisposed) {
                 return;
             }
 
-            if (disposing)
-            {
+            if(disposing) {
                 GC.SuppressFinalize(this);
             }
 

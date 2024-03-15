@@ -1,6 +1,3 @@
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
@@ -12,7 +9,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
     {
         #region function
 
-        private class ActionMessage : IMessage
+        private class ActionMessage: IMessage
         {
             public ActionMessage(string messageId = "")
             {

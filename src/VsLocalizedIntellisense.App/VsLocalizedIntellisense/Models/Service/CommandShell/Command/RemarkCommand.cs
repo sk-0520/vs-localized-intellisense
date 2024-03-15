@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
@@ -26,8 +21,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
         public override string GetStatement()
         {
             var value = Comment.Expression;
-            if (string.IsNullOrEmpty(value))
-            {
+            if(string.IsNullOrEmpty(value)) {
                 return $"{GetStatementCommandName()}";
             }
 

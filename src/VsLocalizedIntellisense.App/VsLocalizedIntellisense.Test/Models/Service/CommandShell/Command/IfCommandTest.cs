@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
@@ -16,8 +12,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfTest()
         {
-            var test = new IfErrorLevelCommand
-            {
+            var test = new IfErrorLevelCommand {
                 Level = 10
             };
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
@@ -34,8 +29,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfNotTest()
         {
-            var test = new IfErrorLevelCommand
-            {
+            var test = new IfErrorLevelCommand {
                 Level = 10,
                 IsNot = true,
             };
@@ -53,8 +47,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfElseTest()
         {
-            var test = new IfErrorLevelCommand
-            {
+            var test = new IfErrorLevelCommand {
                 Level = 10
             };
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
@@ -82,8 +75,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfTest()
         {
-            var test = new IfExpressCommand()
-            {
+            var test = new IfExpressCommand() {
                 Left = "l",
                 Right = "r",
             };
@@ -101,8 +93,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfNotTest()
         {
-            var test = new IfExpressCommand()
-            {
+            var test = new IfExpressCommand() {
                 Left = "l",
                 Right = "r",
                 IsNot = true,
@@ -121,8 +112,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfElseTest()
         {
-            var test = new IfExpressCommand()
-            {
+            var test = new IfExpressCommand() {
                 Left = "l",
                 Right = "r"
             };
@@ -151,8 +141,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfTest()
         {
-            var test = new IfExistCommand()
-            {
+            var test = new IfExistCommand() {
                 Path = "path",
             };
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
@@ -169,8 +158,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfNotTest()
         {
-            var test = new IfExistCommand()
-            {
+            var test = new IfExistCommand() {
                 Path = "path",
                 IsNot = true,
             };
@@ -188,8 +176,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IfElseTest()
         {
-            var test = new IfExistCommand()
-            {
+            var test = new IfExistCommand() {
                 Path = "path",
             };
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });

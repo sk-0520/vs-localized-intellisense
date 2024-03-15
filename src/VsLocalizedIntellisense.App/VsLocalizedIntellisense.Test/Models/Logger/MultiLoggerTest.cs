@@ -1,12 +1,7 @@
 using System;
-using System.Collections;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel.Client;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 
@@ -20,8 +15,7 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         [TestMethod]
         public void Constructor_file_Test()
         {
-            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions()
-            {
+            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions() {
                 Options = {
                     ["file"] = new FileLogOptions()
                     {
@@ -39,8 +33,7 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         [TestMethod]
         public void Constructor_debug_Test()
         {
-            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions()
-            {
+            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions() {
                 Options = {
                     ["debug"] = new DebugLogOptions()
                     {
@@ -54,16 +47,14 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             Assert.IsInstanceOfType<DebugLogger>(loggers.ElementAt(0));
         }
 
-        private class TestConstructor_throw : LogOptionsBase
+        private class TestConstructor_throw: LogOptionsBase
         { }
 
         [TestMethod]
         public void Constructor_throw_Test()
         {
-            Assert.ThrowsException<NotImplementedException>(() =>
-            {
-                new MultiLogger(string.Empty, new MultiLogOptions()
-                {
+            Assert.ThrowsException<NotImplementedException>(() => {
+                new MultiLogger(string.Empty, new MultiLogOptions() {
                     Options = {
                         ["throw"] = new TestConstructor_throw()
                     }
@@ -92,8 +83,7 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             var dir = Test.GetMethodDirectory(this);
             var path = Path.Combine(dir.FullName, DateTime.UtcNow.ToString("yyyy-MM-dd'T'HH_mm_ss.fff'.log'"));
 
-            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions()
-            {
+            var multiLogger = new MultiLogger(string.Empty, new MultiLogOptions() {
                 Options = {
                     ["Trace"] = new FileLogOptions()
                     {

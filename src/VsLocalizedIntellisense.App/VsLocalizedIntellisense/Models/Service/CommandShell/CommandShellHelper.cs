@@ -1,8 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell
 {
@@ -29,8 +26,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
             needHatEscape |= raw.Contains('<');
             needHatEscape |= raw.Contains('>');
 
-            if (needHatEscape)
-            {
+            if(needHatEscape) {
                 raw = raw
                     .Replace("^", "^^")
                     .Replace("<", "^<")
@@ -38,8 +34,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
                 ;
             }
 
-            if (needQuotation)
-            {
+            if(needQuotation) {
                 return '"' + raw + '"';
             }
 
@@ -48,18 +43,15 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
 
         public static string ToSafeVariableName(string name)
         {
-            if (string.IsNullOrWhiteSpace(name))
-            {
+            if(string.IsNullOrWhiteSpace(name)) {
                 throw new ArgumentException(nameof(name));
             }
 
             var buffer = name.Trim().ToArray();
-            for (var i = 0; i < buffer.Length; i++)
-            {
+            for(var i = 0; i < buffer.Length; i++) {
                 var c = buffer[i];
                 var isSafe = ('a' <= c && c <= 'z') || ('A' <= c && c <= 'Z') || ('0' <= c && c <= '9') || c == '_';
-                if (!isSafe)
-                {
+                if(!isSafe) {
                     buffer[i] = '_';
                 }
             }

@@ -1,10 +1,6 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Redirect;
+using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell
 {
@@ -60,23 +56,18 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
             var statement = GetStatement();
             sb.Append(statement);
 
-            if (Input != null)
-            {
+            if(Input != null) {
                 sb.Append(" < ");
                 sb.Append(Input.Expression);
             }
 
-            if (Pipe != null)
-            {
+            if(Pipe != null) {
                 var pipeAction = Pipe.ToStatement(new IndentContext());
                 sb.Append(" | ");
                 sb.Append(pipeAction);
-            }
-            else if (Redirect != null)
-            {
+            } else if(Redirect != null) {
                 var redirect = Redirect.Expression;
-                if (!string.IsNullOrWhiteSpace(redirect))
-                {
+                if(!string.IsNullOrWhiteSpace(redirect)) {
                     sb.Append(' ');
                     sb.Append(redirect);
                 }

@@ -1,11 +1,7 @@
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml.Serialization;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding
@@ -13,7 +9,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     /// <summary>
     /// MVVM で使用するモデル基底。
     /// </summary>
-    public abstract class BindModelBase : NotifyPropertyBase, IDisposed
+    public abstract class BindModelBase: NotifyPropertyBase, IDisposed
     {
         /// <summary>
         /// プロパティ値変更処理。
@@ -26,8 +22,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         /// <returns>変更されたか。</returns>
         protected bool SetVariable<T>(ref T variable, T value, [CallerMemberName] string notifyPropertyName = "")
         {
-            if(EqualityComparer<T>.Default.Equals(variable, value))
-            {
+            if(EqualityComparer<T>.Default.Equals(variable, value)) {
                 return false;
             }
 
@@ -53,8 +48,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         /// <seealso cref="IDisposed"/>
         protected void ThrowIfDisposed([CallerMemberName] string _callerMemberName = "")
         {
-            if (IsDisposed)
-            {
+            if(IsDisposed) {
                 throw new ObjectDisposedException(_callerMemberName);
             }
         }
@@ -66,8 +60,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         /// <param name="disposing">CLRの管理下か。</param>
         protected virtual void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
+            if(!IsDisposed) {
                 IsDisposed = true;
             }
         }

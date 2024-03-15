@@ -1,13 +1,10 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public class CopyCommand : CommandBase
+    public class CopyCommand: CommandBase
     {
         public CopyCommand()
             : base(Name)
@@ -49,12 +46,10 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
         {
             var src = Source?.Expression;
             var dst = Destination?.Expression;
-            if (string.IsNullOrWhiteSpace(src))
-            {
+            if(string.IsNullOrWhiteSpace(src)) {
                 throw new InvalidOperationException(nameof(Source));
             }
-            if (string.IsNullOrWhiteSpace(dst))
-            {
+            if(string.IsNullOrWhiteSpace(dst)) {
                 throw new InvalidOperationException(nameof(Destination));
             }
 
@@ -63,18 +58,15 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
             sb.Append(GetStatementCommandName());
             sb.Append(' ');
 
-            if (IsDecryption)
-            {
+            if(IsDecryption) {
                 sb.Append("/d ");
             }
 
-            if (IsVerify)
-            {
+            if(IsVerify) {
                 sb.Append("/v ");
             }
 
-            switch (PromptMode)
-            {
+            switch(PromptMode) {
                 case PromptMode.Default:
                     break;
 

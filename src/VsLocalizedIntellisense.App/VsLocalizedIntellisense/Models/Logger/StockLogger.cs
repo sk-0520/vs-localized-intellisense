@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Element;
 
 namespace VsLocalizedIntellisense.Models.Logger
 {
-    public class StockLogger : LoggerBase<StockLogOptions>
+    public class StockLogger: LoggerBase<StockLogOptions>
     {
         public StockLogger(string category, StockLogOptions options)
             : base(category, options)

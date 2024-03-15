@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Command
 {
-    public abstract class DelegateCommandBase<TParameter> : CommandBase
+    public abstract class DelegateCommandBase<TParameter>: CommandBase
     {
         public DelegateCommandBase(Action<TParameter> executeAction, Func<TParameter, bool> canExecuteFunc)
         {
@@ -41,20 +37,16 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         public override void Execute(object parameter)
         {
             ExecutingCount += 1;
-            try
-            {
+            try {
                 ExecuteAction((TParameter)parameter);
-            }
-            finally
-            {
+            } finally {
                 ExecutingCount -= 1;
             }
         }
 
         public override bool CanExecute(object parameter)
         {
-            if (SuppressCommandWhileExecuting)
-            {
+            if(SuppressCommandWhileExecuting) {
                 return ExecutingCount == 0 && CanExecuteFunc((TParameter)parameter);
             }
 
@@ -64,7 +56,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         #endregion
     }
 
-    public class DelegateCommand : DelegateCommandBase<object>
+    public class DelegateCommand: DelegateCommandBase<object>
     {
         public DelegateCommand(Action<object> executeAction)
             : base(executeAction)
@@ -75,7 +67,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         { }
     }
 
-    public class DelegateCommand<TParameter> : DelegateCommandBase<TParameter>
+    public class DelegateCommand<TParameter>: DelegateCommandBase<TParameter>
     {
         public DelegateCommand(Action<TParameter> executeAction)
             : base(executeAction)

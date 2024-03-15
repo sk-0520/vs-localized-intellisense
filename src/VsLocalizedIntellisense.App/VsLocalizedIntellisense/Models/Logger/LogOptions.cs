@@ -1,9 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Element;
 
 namespace VsLocalizedIntellisense.Models.Logger
@@ -43,7 +39,7 @@ namespace VsLocalizedIntellisense.Models.Logger
     /// <summary>
     /// <see cref="DebugLogger"/> で使用されるオプション。
     /// </summary>
-    public class DebugLogOptions : LogOptionsBase, ILogFormatOptions
+    public class DebugLogOptions: LogOptionsBase, ILogFormatOptions
     {
         #region ILogFormatOptions
 
@@ -55,7 +51,7 @@ namespace VsLocalizedIntellisense.Models.Logger
     /// <summary>
     /// <see cref="FileLogger"/> で使用されるオプション。
     /// </summary>
-    public class FileLogOptions : LogOptionsBase, ILogFormatOptions
+    public class FileLogOptions: LogOptionsBase, ILogFormatOptions
     {
         #region proeprty
 

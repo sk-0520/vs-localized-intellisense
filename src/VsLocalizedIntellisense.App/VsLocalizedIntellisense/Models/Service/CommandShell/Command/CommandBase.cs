@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public abstract class CommandBase : ActionBase
+    public abstract class CommandBase: ActionBase
     {
         #region variable
 

@@ -1,13 +1,5 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VsLocalizedIntellisense.Models.Mvvm;
 using VsLocalizedIntellisense.Models.Logger;
-using VsLocalizedIntellisense.ViewModels;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
@@ -30,7 +22,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             public int Value { get; set; }
         }
 
-        private class TestViewModel : ViewModelBase
+        private class TestViewModel: ViewModelBase
         {
             public TestViewModel()
                 : base(NullLoggerFactory.Instance)
@@ -63,8 +55,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
         {
             var tvm = new TestViewModel();
             bool called = false;
-            tvm.PropertyChanged += (s, e) =>
-            {
+            tvm.PropertyChanged += (s, e) => {
                 Assert.AreEqual(nameof(TestViewModel.PublicValue), e.PropertyName);
                 called = true;
             };
@@ -79,8 +70,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
         {
             var tvm = new TestViewModel();
             bool called = false;
-            tvm.PropertyChanged += (s, e) =>
-            {
+            tvm.PropertyChanged += (s, e) => {
                 Assert.AreEqual(nameof(TestViewModel.PrivateValue), e.PropertyName);
                 called = true;
             };
@@ -95,8 +85,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
         {
             var tvm = new TestViewModel();
             bool called = false;
-            tvm.PropertyChanged += (s, e) =>
-            {
+            tvm.PropertyChanged += (s, e) => {
                 Assert.AreEqual(nameof(TestViewModel.AliasValue), e.PropertyName);
                 called = true;
             };

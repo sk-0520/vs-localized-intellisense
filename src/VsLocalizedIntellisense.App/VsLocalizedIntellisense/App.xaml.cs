@@ -1,18 +1,12 @@
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Configuration;
-using System.Data;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
-using VsLocalizedIntellisense.Models;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Element;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Service.Application;
-using VsLocalizedIntellisense.Models.Service.GitHub;
 using VsLocalizedIntellisense.ViewModels;
 using VsLocalizedIntellisense.Views;
 
@@ -21,7 +15,7 @@ namespace VsLocalizedIntellisense
     /// <summary>
     /// App.xaml の相互作用ロジック
     /// </summary>
-    public partial class App : Application
+    public partial class App: Application
     {
         #region property
 
@@ -44,22 +38,17 @@ namespace VsLocalizedIntellisense
             var appFileService = new AppFileService(appConfiguration, loggerFactory);
             var appGitHubService = new AppGitHubService(appConfiguration, loggerFactory);
             var intellisenseVersionData = appFileService.GetIntellisenseVersionData();
-            if (intellisenseVersionData != null)
-            {
+            if(intellisenseVersionData != null) {
                 Logger.LogInformation("キャッシュからインテリセンスバージョンデータ取得");
-            }
-            else
-            {
+            } else {
                 Logger.LogInformation("GitHubからインテリセンスバージョンデータ取得");
                 var intellisenseVersionItems = await appGitHubService.GetIntellisenseVersionItemsAsync(appConfiguration.GetRepositoryRevision());
-                intellisenseVersionData = new IntellisenseVersionData
-                {
+                intellisenseVersionData = new IntellisenseVersionData {
                     VersionItems = intellisenseVersionItems.ToArray()
                 };
                 appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
             }
-            if (intellisenseVersionData == null)
-            {
+            if(intellisenseVersionData == null) {
                 Logger.LogError("インテリセンスバージョンデータ取得失敗");
                 throw new Exception(nameof(intellisenseVersionData));
             }

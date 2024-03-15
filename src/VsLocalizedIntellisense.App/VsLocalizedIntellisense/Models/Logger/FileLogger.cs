@@ -1,15 +1,9 @@
 using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Logger
 {
-    public sealed class FileLogger : LoggerBase<FileLogOptions>, IDisposable
+    public sealed class FileLogger: LoggerBase<FileLogOptions>, IDisposable
     {
         #region variable
 
@@ -20,21 +14,15 @@ namespace VsLocalizedIntellisense.Models.Logger
         public FileLogger(string category, FileLogOptions options)
             : base(category, options)
         {
-            if (File.Exists(Options.FilePath))
-            {
+            if(File.Exists(Options.FilePath)) {
                 Stream = new FileStream(Options.FilePath, FileMode.Append, FileAccess.Write, FileShare.ReadWrite);
-            }
-            else
-            {
+            } else {
                 var parentDir = Path.GetDirectoryName(Options.FilePath);
                 // スペシャルファイル対策
-                if (!string.IsNullOrEmpty(parentDir))
-                {
+                if(!string.IsNullOrEmpty(parentDir)) {
                     Directory.CreateDirectory(parentDir);
                     Stream = new FileStream(Options.FilePath, FileMode.CreateNew, FileAccess.Write, FileShare.ReadWrite);
-                }
-                else
-                {
+                } else {
                     Stream = FileStream.Null;
                 }
             }
@@ -70,10 +58,8 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         private void Dispose(bool disposing)
         {
-            if (!this._disposedValue)
-            {
-                if (disposing)
-                {
+            if(!this._disposedValue) {
+                if(disposing) {
                     Writer.Dispose();
                 }
 

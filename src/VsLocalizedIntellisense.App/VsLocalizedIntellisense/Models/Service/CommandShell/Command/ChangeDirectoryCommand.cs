@@ -1,13 +1,9 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public class ChangeDirectoryCommand : CommandBase
+    public class ChangeDirectoryCommand: CommandBase
     {
         public ChangeDirectoryCommand()
             : base(Name)
@@ -36,8 +32,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
             sb.Append(GetStatementCommandName());
             sb.Append(' ');
 
-            if (WithDrive)
-            {
+            if(WithDrive) {
                 sb.Append("/d ");
             }
 

@@ -2,8 +2,6 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models;
 
@@ -23,7 +21,7 @@ namespace VsLocalizedIntellisense.Test.Models
             Assert.AreEqual(-1, items.IndexOf(40));
         }
 
-        private class Test_IndexOf_IReadOnlyCollection : IReadOnlyCollection<int>
+        private class Test_IndexOf_IReadOnlyCollection: IReadOnlyCollection<int>
         {
             private static int[] Items { get; } = new[] { 10, 20, 30 };
 

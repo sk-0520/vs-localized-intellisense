@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 
@@ -22,8 +18,7 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
 
             Assert.IsFalse(File.Exists(path));
 
-            var logger = new FileLogger(nameof(SingleTest), new FileLogOptions()
-            {
+            var logger = new FileLogger(nameof(SingleTest), new FileLogOptions() {
                 FilePath = path,
             });
 
@@ -44,13 +39,11 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
 
             Assert.IsFalse(File.Exists(path));
 
-            var logger1 = new FileLogger(nameof(SingleTest), new FileLogOptions()
-            {
+            var logger1 = new FileLogger(nameof(SingleTest), new FileLogOptions() {
                 FilePath = path,
             });
 
-            var logger2 = new FileLogger(nameof(SingleTest), new FileLogOptions()
-            {
+            var logger2 = new FileLogger(nameof(SingleTest), new FileLogOptions() {
                 FilePath = path,
             });
 

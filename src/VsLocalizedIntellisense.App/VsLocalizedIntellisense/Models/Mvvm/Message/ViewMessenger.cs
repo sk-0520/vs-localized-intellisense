@@ -4,7 +4,7 @@ using System.Windows;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Message
 {
-    public class ViewMessenger<TView> : DisposerBase
+    public class ViewMessenger<TView>: DisposerBase
         where TView : FrameworkElement
     {
         public ViewMessenger(TView element, Action<IReceivableMessenger> resisterAction)
@@ -13,15 +13,13 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
             ResisterAction = resisterAction;
 
             Element.Unloaded += Element_Unloaded;
-            if(Element is Window window)
-            {
+            if(Element is Window window) {
                 window.Closed += Window_Closed;
             }
 
             Element.DataContextChanged += Element_DataContextChanged;
 
-            if (Element.IsLoaded)
-            {
+            if(Element.IsLoaded) {
                 Register();
             }
         }
@@ -40,8 +38,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             ThrowIfDisposed();
 
-            if(Element.DataContext == null)
-            {
+            if(Element.DataContext == null) {
                 return;
             }
 
@@ -55,21 +52,17 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
-                if (Element != null)
-                {
+            if(!IsDisposed) {
+                if(Element != null) {
                     Element.DataContextChanged -= Element_DataContextChanged;
 
-                    if (Element is Window window)
-                    {
+                    if(Element is Window window) {
                         window.Closed -= Window_Closed;
                     }
                 }
                 Element = null;
 
-                if (disposing)
-                {
+                if(disposing) {
                     Messenger.Dispose();
                 }
                 Messenger = null;
@@ -84,8 +77,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             Messenger?.Dispose();
 
-            if (e.NewValue != null)
-            {
+            if(e.NewValue != null) {
                 Debug.Assert(e.NewValue == Element.DataContext);
                 Register();
             }

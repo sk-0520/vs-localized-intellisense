@@ -1,15 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Redirect
 {
 
     /// <summary>
     /// 標準エラー出力。
     /// </summary>
-    public class ErrorRedirect : RedirectBase
+    public class ErrorRedirect: RedirectBase
     {
         #region property
 

@@ -25,7 +25,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public abstract class ApplyParameter : IApplyParameter
+        public abstract class ApplyParameter: IApplyParameter
         {
             #region proeprty
 
@@ -35,7 +35,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IAddItemParameter : IApplyParameter
+        public interface IAddItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -44,7 +44,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class AddItemParameter : ApplyParameter, IAddItemParameter
+        public class AddItemParameter: ApplyParameter, IAddItemParameter
         {
             #region IAddItemParameter
 
@@ -54,7 +54,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IInsertItemParameter : IApplyParameter
+        public interface IInsertItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -63,7 +63,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class InsertItemParameter : ApplyParameter, IInsertItemParameter
+        public class InsertItemParameter: ApplyParameter, IInsertItemParameter
         {
             #region IInsertItemParameter
 
@@ -74,7 +74,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IRemoveItemParameter : IApplyParameter
+        public interface IRemoveItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -85,7 +85,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class RemoveItemParameter : ApplyParameter, IRemoveItemParameter
+        public class RemoveItemParameter: ApplyParameter, IRemoveItemParameter
         {
             #region IRemoveItemParameter
 
@@ -96,7 +96,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IReplaceItemParameter : IApplyParameter
+        public interface IReplaceItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -108,7 +108,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class ReplaceItemParameter : ApplyParameter, IReplaceItemParameter
+        public class ReplaceItemParameter: ApplyParameter, IReplaceItemParameter
         {
             #region IReplaceItemParameter
 
@@ -121,7 +121,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IMoveItemParameter : IApplyParameter
+        public interface IMoveItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -130,7 +130,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class MoveItemParameter : ApplyParameter, IMoveItemParameter
+        public class MoveItemParameter: ApplyParameter, IMoveItemParameter
         {
             #region IMoveItemParameter
 
@@ -140,7 +140,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        public interface IResetItemParameter : IApplyParameter
+        public interface IResetItemParameter: IApplyParameter
         {
             #region proeprty
 
@@ -148,7 +148,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             #endregion
         }
-        public class ResetItemParameter : ApplyParameter, IResetItemParameter
+        public class ResetItemParameter: ApplyParameter, IResetItemParameter
         {
             #region IResetItemParameter
 

@@ -4,8 +4,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 {
@@ -13,7 +11,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// <see cref="ObservableCollection{TValue}"/> の変更通知を処理する。
     /// <para>原則このクラスは使用せず、<see cref="ModelViewModelObservableCollectionOptions{TModel, TViewModel}"/>の使用を想定している。ただし実装上一本にまとめると複雑になるために本クラスを継承元として分割している。</para>
     /// </summary>
-    public abstract class ObservableCollectionManagerBase<TValue> : BindModelBase
+    public abstract class ObservableCollectionManagerBase<TValue>: BindModelBase
     {
         private ObservableCollectionManagerBase(IReadOnlyList<TValue> collection, INotifyCollectionChanged collectionNotifyCollectionChanged)
         {
@@ -135,34 +133,27 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         protected virtual void CollectionChanged(NotifyCollectionChangedEventArgs e)
         {
-            switch (e.Action)
-            {
+            switch(e.Action) {
                 case NotifyCollectionChangedAction.Add:
-                    if (e.NewItems != null)
-                    {
+                    if(e.NewItems != null) {
                         // Collection.Count はすでに増えている(イベントから動いているので本処理は事後となる)
                         // ただし終端への挿入は追加扱いとなる(3要素ある際に Insert(`3', obj) とした場合は追加)
-                        if (e.NewStartingIndex + 1 == Collection.Count)
-                        {
+                        if(e.NewStartingIndex + 1 == Collection.Count) {
                             AddItems(ConvertList(e.NewItems));
-                        }
-                        else
-                        {
+                        } else {
                             InsertItems(e.NewStartingIndex, ConvertList(e.NewItems));
                         }
                     }
                     break;
 
                 case NotifyCollectionChangedAction.Remove:
-                    if (e.OldItems != null)
-                    {
+                    if(e.OldItems != null) {
                         RemoveItems(ConvertList(e.OldItems), e.OldStartingIndex);
                     }
                     break;
 
                 case NotifyCollectionChangedAction.Replace:
-                    if (e.NewItems != null && e.OldItems != null)
-                    {
+                    if(e.NewItems != null && e.OldItems != null) {
                         ReplaceItems(e.NewStartingIndex, ConvertList(e.NewItems), ConvertList(e.OldItems));
                     }
                     break;
@@ -199,8 +190,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed && Collection != null)
-            {
+            if(!IsDisposed && Collection != null) {
                 CollectionNotifyCollectionChanged.CollectionChanged -= Collection_CollectionChanged;
                 CollectionNotifyCollectionChanged = null;
                 Collection = null;

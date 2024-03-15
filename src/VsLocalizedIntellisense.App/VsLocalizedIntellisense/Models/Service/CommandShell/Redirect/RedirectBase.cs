@@ -6,7 +6,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Redirect
     /// <summary>
     /// リダイレクト基底。
     /// </summary>
-    public abstract class RedirectBase : IExpression
+    public abstract class RedirectBase: IExpression
     {
         #region property
 
@@ -27,8 +27,7 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Redirect
         {
             get
             {
-                if (Target == null)
-                {
+                if(Target == null) {
                     return string.Empty;
                 }
 

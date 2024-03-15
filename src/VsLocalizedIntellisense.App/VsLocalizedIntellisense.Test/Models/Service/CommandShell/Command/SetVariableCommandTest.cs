@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
@@ -16,8 +12,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void NormalTest()
         {
-            var test = new SetVariableCommand
-            {
+            var test = new SetVariableCommand {
                 VariableName = "var",
                 Value = "abc",
             };
@@ -30,8 +25,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IsExpressTest()
         {
-            var test = new SetVariableCommand
-            {
+            var test = new SetVariableCommand {
                 VariableName = "var",
                 Value = "123",
                 IsExpress = true,
@@ -45,8 +39,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void VariableName_none_Test()
         {
-            var test = new SetVariableCommand
-            {
+            var test = new SetVariableCommand {
                 VariableName = "",
             };
             Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());

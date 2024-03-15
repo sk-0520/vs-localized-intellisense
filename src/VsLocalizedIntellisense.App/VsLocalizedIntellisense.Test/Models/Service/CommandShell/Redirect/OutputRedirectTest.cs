@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Redirect;
 
@@ -23,8 +18,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
         [TestMethod]
         public void Expression_std_Test()
         {
-            var test = new OutputRedirect()
-            {
+            var test = new OutputRedirect() {
                 Target = "OUT",
             };
             Assert.AreEqual("> OUT", test.Expression);
@@ -33,10 +27,8 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
         [TestMethod]
         public void Expression_error_StandardOutput_Test()
         {
-            var test = new OutputRedirect()
-            {
-                Error = new ErrorRedirect()
-                {
+            var test = new OutputRedirect() {
+                Error = new ErrorRedirect() {
                     StandardOutput = true,
                 },
             };
@@ -49,10 +41,8 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
         [TestMethod]
         public void Expression_error_redirect_Test()
         {
-            var test = new OutputRedirect()
-            {
-                Error = new ErrorRedirect()
-                {
+            var test = new OutputRedirect() {
+                Error = new ErrorRedirect() {
                     Target = "ERR"
                 },
             };
@@ -65,8 +55,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
         [TestMethod]
         public void Expression_error_none_Test()
         {
-            var test = new OutputRedirect()
-            {
+            var test = new OutputRedirect() {
                 Error = new ErrorRedirect(),
             };
             Assert.AreEqual("", test.Expression);

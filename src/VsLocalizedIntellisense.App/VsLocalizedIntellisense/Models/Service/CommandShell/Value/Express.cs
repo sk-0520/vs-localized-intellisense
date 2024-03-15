@@ -1,12 +1,9 @@
 using System.Collections.Generic;
 using System.Linq;
-using System.Net.Http.Headers;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Value
 {
-    public class Express : ValueBase
+    public class Express: ValueBase
     {
         #region proeprty
 

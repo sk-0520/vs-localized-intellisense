@@ -1,31 +1,25 @@
-using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using VsLocalizedIntellisense.Models.Mvvm;
+using VsLocalizedIntellisense.Models;
+using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Element;
 using VsLocalizedIntellisense.Models.Logger;
-using VsLocalizedIntellisense.ViewModels.Message;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
+using VsLocalizedIntellisense.Models.Mvvm.Binding.Collection;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
-using VsLocalizedIntellisense.Models;
-using System.ComponentModel.DataAnnotations;
-using VsLocalizedIntellisense.Models.Mvvm.Binding.Collection;
-using System.ComponentModel;
-using VsLocalizedIntellisense.Models.Configuration;
-using System.Collections.ObjectModel;
-using System.IO;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
-using System.Windows;
-using System.Diagnostics;
-using System.Security.Policy;
+using VsLocalizedIntellisense.ViewModels.Message;
 
 namespace VsLocalizedIntellisense.ViewModels
 {
-    public class MainViewModel : SingleModelViewModelBase<MainElement>
+    public class MainViewModel: SingleModelViewModelBase<MainElement>
     {
         #region variable
 
@@ -55,16 +49,13 @@ namespace VsLocalizedIntellisense.ViewModels
             : base(model, loggerFactory)
         {
             Configuration = configuration;
-            DirectoryCollection = new ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel>(Model.IntellisenseDirectoryElements, new ModelViewModelObservableCollectionOptions<DirectoryElement, DirectoryViewModel>()
-            {
+            DirectoryCollection = new ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel>(Model.IntellisenseDirectoryElements, new ModelViewModelObservableCollectionOptions<DirectoryElement, DirectoryViewModel>() {
                 ToViewModel = m => new DirectoryViewModel(m, LoggerFactory),
             });
 
-            StockLogCollection = new ModelViewModelObservableCollectionManager<LogItemElement, LogItemViewModel>(stockLogItems, new ModelViewModelObservableCollectionOptions<LogItemElement, LogItemViewModel>()
-            {
+            StockLogCollection = new ModelViewModelObservableCollectionManager<LogItemElement, LogItemViewModel>(stockLogItems, new ModelViewModelObservableCollectionOptions<LogItemElement, LogItemViewModel>() {
                 ToViewModel = m => new LogItemViewModel(m, LoggerFactory),
-                AddItems = p =>
-                {
+                AddItems = p => {
                     Messenger.Send(new ScrollMessage());
                 }
             });
@@ -157,11 +148,11 @@ namespace VsLocalizedIntellisense.ViewModels
         public string AppShortRevision => Configuration.Replace("${APP:REVISION:SHORT}");
         public string AppLongRevision => Configuration.Replace("${APP:REVISION:LONG}");
 
-        public static LogLevel LoggerTrace {get;} = LogLevel.Trace;
-        public static LogLevel LoggerDebug {get;} = LogLevel.Debug;
-        public static LogLevel LoggerInformation {get;} = LogLevel.Information;
-        public static LogLevel LoggerWarning {get;} = LogLevel.Warning;
-        public static LogLevel LoggerError {get;} = LogLevel.Error;
+        public static LogLevel LoggerTrace { get; } = LogLevel.Trace;
+        public static LogLevel LoggerDebug { get; } = LogLevel.Debug;
+        public static LogLevel LoggerInformation { get; } = LogLevel.Information;
+        public static LogLevel LoggerWarning { get; } = LogLevel.Warning;
+        public static LogLevel LoggerError { get; } = LogLevel.Error;
         public static LogLevel LoggerCritical { get; } = LogLevel.Critical;
 
         #endregion
@@ -172,20 +163,16 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if (this._selectInstallRootDirectoryPathCommand == null)
-                {
+                if(this._selectInstallRootDirectoryPathCommand == null) {
                     this._selectInstallRootDirectoryPathCommand = new DelegateCommand(
-                        o =>
-                        {
-                            var message = new OpenFileDialogMessage()
-                            {
+                        o => {
+                            var message = new OpenFileDialogMessage() {
                                 Kind = OpenFileDialogKind.Directory,
                                 CurrentDirectory = IOHelper.GetPhysicalDirectory(InstallRootDirectoryPath),
                             };
                             Messenger.Send(message);
 
-                            if (message.ResultDirectory != null)
-                            {
+                            if(message.ResultDirectory != null) {
                                 InstallRootDirectoryPath = message.ResultDirectory.FullName;
                             }
                         },
@@ -200,33 +187,26 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if (this._downloadCommand == null)
-                {
+                if(this._downloadCommand == null) {
                     this._downloadCommand = new AsyncDelegateCommand(
-                        async _ =>
-                        {
-                            if (IsDownloading || IsExecuting)
-                            {
+                        async _ => {
+                            if(IsDownloading || IsExecuting) {
                                 Logger.LogInformation("disable download");
                                 return;
                             }
 
                             IsDownloaded = false;
                             IsDownloading = true;
-                            try
-                            {
+                            try {
                                 var items = await Model.DownloadIntellisenseFilesAsync();
                                 InstallItems.Clear();
-                                foreach (var pair in items)
-                                {
+                                foreach(var pair in items) {
                                     InstallItems.Add(pair.Key, pair.Value);
                                 }
                                 GeneratedCommandShellEditor = Model.GenerateShellCommand(InstallItems);
                                 InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
                                 IsDownloaded = true;
-                            }
-                            finally
-                            {
+                            } finally {
                                 //TODO: 頑張ったけどダウンロードボタンがダウンロード直後に死ぬけどもうどうでもいいわ
                                 IsDownloading = false;
                             }
@@ -241,13 +221,10 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if (this._backCommand == null)
-                {
+                if(this._backCommand == null) {
                     this._backCommand = new DelegateCommand(
-                        _ =>
-                        {
-                            foreach (var dir in DirectoryCollection.ViewModels)
-                            {
+                        _ => {
+                            foreach(var dir in DirectoryCollection.ViewModels) {
                                 dir.ResetPercent();
                             }
                             IsDownloaded = false;
@@ -263,18 +240,13 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if (this._executeCommand == null)
-                {
+                if(this._executeCommand == null) {
                     this._executeCommand = new AsyncDelegateCommand(
-                        async _ =>
-                        {
+                        async _ => {
                             IsExecuting = true;
-                            try
-                            {
+                            try {
                                 await Model.ExecuteCommandShellAsync(GeneratedCommandShellEditor);
-                            }
-                            finally
-                            {
+                            } finally {
                                 IsExecuting = false;
                             }
                         },
@@ -289,14 +261,11 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                if (this._openReleasePageCommand == null)
-                {
+                if(this._openReleasePageCommand == null) {
                     this._openReleasePageCommand = new DelegateCommand(
-                        _ =>
-                        {
+                        _ => {
                             var uri = Configuration.GetReleaseUri();
-                            var psi = new ProcessStartInfo()
-                            {
+                            var psi = new ProcessStartInfo() {
                                 FileName = uri.ToString(),
                                 UseShellExecute = true,
                             };
@@ -327,10 +296,8 @@ namespace VsLocalizedIntellisense.ViewModels
 
         protected override void Dispose(bool disposing)
         {
-            if (!IsDisposed)
-            {
-                if (StockLogItems != null)
-                {
+            if(!IsDisposed) {
+                if(StockLogItems != null) {
                     StockLogItems.Filter -= StockLogItems_Filter;
                 }
                 PropertyChanged -= MainViewModel_PropertyChanged;
@@ -343,35 +310,28 @@ namespace VsLocalizedIntellisense.ViewModels
 
         private bool StockLogItems_Filter(object obj)
         {
-            if (!(obj is LogItemViewModel item))
-            {
+            if(!(obj is LogItemViewModel item)) {
                 return false;
             }
 
             var filter = false;
 
-            if (FilterTrace)
-            {
+            if(FilterTrace) {
                 filter |= item.Level == LogLevel.Trace;
             }
-            if (FilterDebug)
-            {
+            if(FilterDebug) {
                 filter |= item.Level == LogLevel.Debug;
             }
-            if (FilterInformation)
-            {
+            if(FilterInformation) {
                 filter |= item.Level == LogLevel.Information;
             }
-            if (FilterWarning)
-            {
+            if(FilterWarning) {
                 filter |= item.Level == LogLevel.Warning;
             }
-            if (FilterError)
-            {
+            if(FilterError) {
                 filter |= item.Level == LogLevel.Error;
             }
-            if (FilterCritical)
-            {
+            if(FilterCritical) {
                 filter |= item.Level == LogLevel.Critical;
             }
 
@@ -386,8 +346,7 @@ namespace VsLocalizedIntellisense.ViewModels
                 nameof(IsDownloaded),
                 nameof(IsExecuting),
             };
-            if (commandPropertyNames.Contains(e.PropertyName))
-            {
+            if(commandPropertyNames.Contains(e.PropertyName)) {
                 RefreshCommand();
             }
 
@@ -400,8 +359,7 @@ namespace VsLocalizedIntellisense.ViewModels
                 nameof(FilterError),
                 nameof(FilterCritical),
             };
-            if (logPropertyNames.Contains(e.PropertyName))
-            {
+            if(logPropertyNames.Contains(e.PropertyName)) {
                 StockLogItems.Refresh();
             }
         }

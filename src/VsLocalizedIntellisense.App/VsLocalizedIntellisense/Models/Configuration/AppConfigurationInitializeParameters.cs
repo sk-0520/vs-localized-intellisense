@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Configuration
 {
@@ -30,8 +26,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
         {
             get
             {
-                if (this._assemblyName == null)
-                {
+                if(this._assemblyName == null) {
                     this._assemblyName = Assembly.GetName();
                 }
 

@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Value;
 
 namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 {
-    public class MakeDirectoryCommand : CommandBase
+    public class MakeDirectoryCommand: CommandBase
     {
         public MakeDirectoryCommand()
             : base(Name)

@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
@@ -16,8 +12,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void Source_throw_Test()
         {
-            var test = new CopyCommand
-            {
+            var test = new CopyCommand {
                 Destination = "dst"
             };
             var e = Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());
@@ -27,8 +22,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void Destination_throw_Test()
         {
-            var test = new CopyCommand
-            {
+            var test = new CopyCommand {
                 Source = "src",
             };
             var e = Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());
@@ -38,8 +32,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IsDecryptionTest()
         {
-            var test = new CopyCommand
-            {
+            var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };
@@ -52,8 +45,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void IsVerifyTest()
         {
-            var test = new CopyCommand
-            {
+            var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };
@@ -66,8 +58,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [TestMethod]
         public void PromptModeTest()
         {
-            var test = new CopyCommand
-            {
+            var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };

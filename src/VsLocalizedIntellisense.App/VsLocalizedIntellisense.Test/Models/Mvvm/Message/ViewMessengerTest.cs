@@ -1,10 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
@@ -15,7 +9,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
     {
         #region define
 
-        private class TestWindow : Window
+        private class TestWindow: Window
         {
             public TestWindow()
                 : base()
@@ -35,8 +29,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
         public void Constructor_none_Test()
         {
             var ui = new Window();
-            var messenger = new ViewMessenger<Window>(ui, m =>
-            {
+            var messenger = new ViewMessenger<Window>(ui, m => {
                 Assert.Fail();
             });
         }
@@ -46,8 +39,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
         {
             var ui = new TestWindow();
             ui.Show();
-            var messenger = new ViewMessenger<Window>(ui, m =>
-            {
+            var messenger = new ViewMessenger<Window>(ui, m => {
                 Assert.Fail();
             });
         }

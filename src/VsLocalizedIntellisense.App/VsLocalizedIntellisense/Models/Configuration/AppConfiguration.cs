@@ -1,21 +1,15 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Configuration;
-using System.Threading.Tasks;
-using System.Configuration.Internal;
-using System.Dynamic;
-using System.Text.RegularExpressions;
-using System.Reflection;
 using System.IO;
-using System.Runtime.InteropServices;
+using System.Linq;
+using System.Reflection;
 
 namespace VsLocalizedIntellisense.Models.Configuration
 {
 
     [Serializable]
-    public class AppConfigurationException : Exception
+    public class AppConfigurationException: Exception
     {
         public AppConfigurationException() { }
         public AppConfigurationException(string message) : base(message) { }
@@ -71,8 +65,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
         /// <returns></returns>
         public static AppConfiguration Open(string path, AppConfigurationInitializeParameters initializeParameters)
         {
-            var map = new ExeConfigurationFileMap
-            {
+            var map = new ExeConfigurationFileMap {
                 ExeConfigFilename = path,
             };
             var conf = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
@@ -109,8 +102,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
         /// <exception cref="KeyNotFoundException">取得に失敗。</exception>
         private KeyValueConfigurationElement Get(string key)
         {
-            if (TryGet(key, out var result))
-            {
+            if(TryGet(key, out var result)) {
                 return result;
             }
 
@@ -126,40 +118,31 @@ namespace VsLocalizedIntellisense.Models.Configuration
         /// <exception cref="AppConfigurationException">変換に失敗。</exception>
         private TResult ConvertValue<TResult>(string value)
         {
-            try
-            {
+            try {
                 var type = typeof(TResult);
 
-                if (type.IsEnum)
-                {
+                if(type.IsEnum) {
                     return (TResult)Enum.Parse(type, value, true);
                 }
 
-                if (type == typeof(Uri))
-                {
+                if(type == typeof(Uri)) {
                     return (TResult)(object)new Uri(value);
                 }
-                if (type == typeof(TimeSpan))
-                {
-                    if (!TimeSpan.TryParse(value, out var result))
-                    {
+                if(type == typeof(TimeSpan)) {
+                    if(!TimeSpan.TryParse(value, out var result)) {
                         result = System.Xml.XmlConvert.ToTimeSpan(value);
                     }
                     return (TResult)(object)result;
                 }
-                if (type == typeof(DateTimeOffset))
-                {
+                if(type == typeof(DateTimeOffset)) {
                     return (TResult)(object)DateTimeOffset.Parse(value);
                 }
-                if (type == typeof(Guid))
-                {
+                if(type == typeof(Guid)) {
                     return (TResult)(object)Guid.Parse(value);
                 }
 
                 return (TResult)Convert.ChangeType(value, type);
-            }
-            catch (Exception ex)
-            {
+            } catch(Exception ex) {
                 throw new AppConfigurationException(ex.Message, ex);
             }
         }
@@ -194,8 +177,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
             // StringSplitOptions.RemoveEmptyEntries は設定ミスに気付かなさそう
             var rawValues = rawValue.Split(new[] { separator }, StringSplitOptions.None);
 
-            if (rawValues.Length == 0)
-            {
+            if(rawValues.Length == 0) {
                 return Array.Empty<TResult>();
             }
 
@@ -208,8 +190,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
 
         private static Dictionary<string, string> CreateReplaceParameters(AppConfigurationInitializeParameters parameters)
         {
-            var map = new Dictionary<string, string>()
-            {
+            var map = new Dictionary<string, string>() {
                 ["DIR:APP"] = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location),
                 ["STARTUP-TIMESTAMP:LOCAL:FILE"] = parameters.UtcTimestamp.ToLocalTime().ToString("yyyy-MM-dd_HHmmss"),
                 ["APP:NAME"] = parameters.AssemblyName.Name,
@@ -223,8 +204,7 @@ namespace VsLocalizedIntellisense.Models.Configuration
 
         public string Replace(string source)
         {
-            if (ReplaceMap == null)
-            {
+            if(ReplaceMap == null) {
                 ReplaceMap = CreateReplaceParameters(InitializeParameters);
             }
 

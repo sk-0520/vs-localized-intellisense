@@ -1,12 +1,8 @@
 using System;
-using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Test
 {
@@ -42,8 +38,7 @@ namespace VsLocalizedIntellisense.Test
 
         public static void ResetDirectory(DirectoryInfo directory)
         {
-            if (directory.Exists)
-            {
+            if(directory.Exists) {
                 directory.Delete(true);
             }
             directory.Create();

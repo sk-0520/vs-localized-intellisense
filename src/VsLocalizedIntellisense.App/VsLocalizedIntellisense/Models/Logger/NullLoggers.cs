@@ -1,13 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Logger
 {
-    public sealed class NullLoggerFactory : ILoggerFactory
+    public sealed class NullLoggerFactory: ILoggerFactory
     {
         #region property
 
@@ -28,7 +23,7 @@ namespace VsLocalizedIntellisense.Models.Logger
         #endregion
     }
 
-    public sealed class NullLogger : ILogger
+    public sealed class NullLogger: ILogger
     {
         public NullLogger()
             : this(string.Empty)

@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
@@ -17,7 +13,7 @@ namespace VsLocalizedIntellisense.ViewModels.Message
         Directory,
     }
 
-    public class OpenFileDialogMessage : IMessage
+    public class OpenFileDialogMessage: IMessage
     {
         public OpenFileDialogMessage(string messageId = "")
         {
@@ -49,19 +45,16 @@ namespace VsLocalizedIntellisense.ViewModels.Message
         {
             Debug.Assert(message.Kind == OpenFileDialogKind.Directory);
 
-            using (var dialog = new System.Windows.Forms.FolderBrowserDialog()
-            {
+            using(var dialog = new System.Windows.Forms.FolderBrowserDialog() {
                 RootFolder = Environment.SpecialFolder.Desktop,
                 SelectedPath = message.CurrentDirectory != null
                     ? message.CurrentDirectory.FullName
                     : Environment.GetFolderPath(Environment.SpecialFolder.Desktop)
                 ,
                 ShowNewFolderButton = false,
-            })
-            {
+            }) {
                 var result = dialog.ShowDialog();
-                if (result == System.Windows.Forms.DialogResult.OK)
-                {
+                if(result == System.Windows.Forms.DialogResult.OK) {
                     return new DirectoryInfo(dialog.SelectedPath);
                 }
             }

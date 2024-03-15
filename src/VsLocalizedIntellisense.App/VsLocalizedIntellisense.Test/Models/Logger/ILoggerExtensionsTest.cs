@@ -1,8 +1,5 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 
@@ -13,9 +10,9 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
     {
         #region function
 
-        private class TestLogger : LoggerBase<TestLogger.TestLogOptions>
+        private class TestLogger: LoggerBase<TestLogger.TestLogOptions>
         {
-            internal class TestLogOptions : LogOptionsBase
+            internal class TestLogOptions: LogOptionsBase
             {
                 public TestLogOptions(LogLevel level)
                 {
@@ -47,13 +44,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogTrace(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }
@@ -70,13 +64,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogDebug(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }
@@ -93,13 +84,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogInformation(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }
@@ -116,13 +104,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogWarning(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }
@@ -139,13 +124,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogError(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }
@@ -162,13 +144,10 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogCritical(defaultLevel.ToString());
-            if (logging)
-            {
+            if(logging) {
                 Assert.AreEqual(1, logger.Items.Count);
                 Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
-            }
-            else
-            {
+            } else {
                 Assert.AreEqual(0, logger.Items.Count);
             }
         }

@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
@@ -17,7 +15,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
     {
         #region define
 
-        private class Model : BindModelBase
+        private class Model: BindModelBase
         {
             #region property
 
@@ -26,7 +24,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
             #endregion
         }
 
-        private class ViewModel : SingleModelViewModelBase<Model>
+        private class ViewModel: SingleModelViewModelBase<Model>
         {
             public ViewModel(Model model, ILoggerFactory loggerFactory)
                 : base(model, loggerFactory)
@@ -70,8 +68,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void Constructor_none_Test()
         {
-            var cm = Create(new int[] { }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             Assert.AreEqual(0, cm.Model.Count);
@@ -81,8 +78,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void Constructor_some_Test()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             Assert.AreEqual(3, cm.Model.Count);
@@ -102,8 +98,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void AddTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model.Add(new Model() { Value = 4 });
@@ -114,11 +109,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void AddDelegateTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                AddItems = p =>
-                {
+                AddItems = p => {
                     Assert.AreEqual(p.NewModels.Count, p.NewViewModels.Count);
 
                     Assert.AreEqual(4, p.NewModels[0].Value);
@@ -133,8 +126,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void InsertTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model.Insert(1, new Model() { Value = 40 });
@@ -145,11 +137,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void InsertDelegateTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                InsertItems = p =>
-                {
+                InsertItems = p => {
                     Assert.AreEqual(1, p.NewModels.Count);
 
                     Assert.AreEqual(1, p.InsertIndex);
@@ -165,8 +155,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void RemoveTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model.RemoveAt(1);
@@ -178,22 +167,17 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void RemoveDelegateTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                RemoveItems = p =>
-                {
+                RemoveItems = p => {
                     Assert.AreEqual(p.OldModels.Count, p.OldViewModels.Count);
 
                     Assert.AreEqual(1, p.OldStartingIndex);
                     Assert.AreEqual(2, p.OldModels[0].Value);
                     Assert.AreEqual(2, p.OldViewModels[0].Value);
-                    if (p.Apply == ModelViewModelObservableCollectionViewModelApply.Before)
-                    {
+                    if(p.Apply == ModelViewModelObservableCollectionViewModelApply.Before) {
                         Assert.IsFalse(p.OldViewModels[0].IsDisposed);
-                    }
-                    else
-                    {
+                    } else {
                         Debug.Assert(p.Apply == ModelViewModelObservableCollectionViewModelApply.After);
                         Assert.IsTrue(p.OldViewModels[0].IsDisposed);
                     }
@@ -209,11 +193,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void RemoveDisposeTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                RemoveItems = p =>
-                {
+                RemoveItems = p => {
                     Assert.AreEqual(p.OldModels.Count, p.OldViewModels.Count);
 
                     Assert.AreEqual(1, p.OldStartingIndex);
@@ -232,8 +214,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void ReplaceTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model[1] = new Model { Value = -2 };
@@ -243,11 +224,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void ReplaceDelegateTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                ReplaceItems = p =>
-                {
+                ReplaceItems = p => {
                     Assert.AreEqual(p.NewModels.Count, p.OldModels.Count);
 
                     Assert.AreEqual(1, p.StartIndex);
@@ -263,8 +242,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void MoveTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model.Move(2, 0);
@@ -275,8 +253,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void ResetTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
             });
             cm.Model.Clear();
@@ -286,17 +263,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void ResetDelegateTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                ResetItems = p =>
-                {
-                    if (p.Apply == ModelViewModelObservableCollectionViewModelApply.Before)
-                    {
+                ResetItems = p => {
+                    if(p.Apply == ModelViewModelObservableCollectionViewModelApply.Before) {
                         Assert.IsTrue(p.OldViewModels.All(a => !a.IsDisposed));
-                    }
-                    else
-                    {
+                    } else {
                         Debug.Assert(p.Apply == ModelViewModelObservableCollectionViewModelApply.After);
                         Assert.IsTrue(p.OldViewModels.All(a => a.IsDisposed));
                     }
@@ -309,11 +281,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
         [TestMethod]
         public void ResetDisposeTest()
         {
-            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>()
-            {
+            var cm = Create(new int[] { 1, 2, 3 }, new ModelViewModelObservableCollectionOptions<Model, ViewModel>() {
                 ToViewModel = m => new ViewModel(m, NullLoggerFactory.Instance),
-                ResetItems = p =>
-                {
+                ResetItems = p => {
                     Assert.IsTrue(p.OldViewModels.All(a => !a.IsDisposed));
                 }
             });

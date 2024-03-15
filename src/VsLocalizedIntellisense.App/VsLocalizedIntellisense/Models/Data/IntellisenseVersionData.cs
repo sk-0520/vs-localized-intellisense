@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Data
 {
@@ -13,7 +9,7 @@ namespace VsLocalizedIntellisense.Models.Data
         #region property
 
         [DataMember]
-        public string[] VersionItems {get;set;} = Array.Empty<string>();
+        public string[] VersionItems { get; set; } = Array.Empty<string>();
 
         #endregion
 

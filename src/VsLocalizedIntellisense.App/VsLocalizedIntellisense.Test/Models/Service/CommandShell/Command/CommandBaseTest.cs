@@ -1,9 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
@@ -12,7 +7,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
     [TestClass]
     public class CommandBaseTest
     {
-        private class TestCommand : CommandBase
+        private class TestCommand: CommandBase
         {
             public TestCommand()
                 : base("test")
@@ -33,8 +28,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         [DataRow("@TEST", true, true)]
         public void GetStatementCommandNameTest(string expected, bool commandNameIsUpper, bool suppressCommand)
         {
-            var test = new TestCommand()
-            {
+            var test = new TestCommand() {
                 CommandNameIsUpper = commandNameIsUpper,
                 SuppressCommand = suppressCommand,
             };

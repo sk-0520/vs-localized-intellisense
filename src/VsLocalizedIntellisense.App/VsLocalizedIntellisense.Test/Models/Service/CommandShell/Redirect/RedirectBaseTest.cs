@@ -6,7 +6,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
     [TestClass]
     public class RedirectBaseTest
     {
-        private class TestRedirect : RedirectBase
+        private class TestRedirect: RedirectBase
         { }
 
         #region function
@@ -16,8 +16,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Redirect
         [DataRow(">> a", "a", true)]
         public void ExpressionTest(string expected, string target, bool append)
         {
-            var test = new TestRedirect()
-            {
+            var test = new TestRedirect() {
                 Target = target,
                 Append = append,
             };

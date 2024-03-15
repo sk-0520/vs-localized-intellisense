@@ -1,9 +1,5 @@
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models
 {
@@ -18,8 +14,7 @@ namespace VsLocalizedIntellisense.Models
         /// <returns>削除できたか。</returns>
         public static bool DeleteDirectory(string path)
         {
-            if(Directory.Exists(path))
-            {
+            if(Directory.Exists(path)) {
                 Directory.Delete(path, true);
                 return true;
             }
@@ -35,14 +30,12 @@ namespace VsLocalizedIntellisense.Models
         /// <returns>ディレクトリ。存在しない場合は<see langword="null" /></returns>
         public static DirectoryInfo GetPhysicalDirectory(string path)
         {
-            if (string.IsNullOrWhiteSpace(path))
-            {
+            if(string.IsNullOrWhiteSpace(path)) {
                 return null;
             }
 
             var dir = Environment.ExpandEnvironmentVariables(path);
-            if (!Directory.Exists(dir))
-            {
+            if(!Directory.Exists(dir)) {
                 return null;
             }
 

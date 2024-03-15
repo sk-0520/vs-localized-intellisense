@@ -1,10 +1,6 @@
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Element;
 
@@ -17,7 +13,7 @@ namespace VsLocalizedIntellisense.Models.Logger
     {
         #region define
 
-        private class DefaultLogFormatOptions : ILogFormatOptions
+        private class DefaultLogFormatOptions: ILogFormatOptions
         {
             public string Format { get; set; } = "${TIMESTAMP:UTC} ${LEVEL} ${CATEGORY} ${MESSAGE} ${FILE}(${LINE})";
         }
@@ -88,8 +84,7 @@ namespace VsLocalizedIntellisense.Models.Logger
 
             var localTimestamp = logItem.Timestamp.ToLocalTime();
 
-            var map = new Dictionary<string, string>()
-            {
+            var map = new Dictionary<string, string>() {
                 ["TIMESTAMP:LOCAL"] = localTimestamp.ToString("yyyy-MM-dd'T'HH:mm:ss.fff"),
                 ["TIMESTAMP:UTC"] = logItem.Timestamp.ToString("yyyy-MM-dd'T'HH:mm:ss.fff"),
                 ["LEVEL"] = logItem.Level.ToString(),
@@ -110,8 +105,7 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         public static string Format(string category, in LogItem logItem, LogOptionsBase options)
         {
-            if (options is ILogFormatOptions formatOptions && !string.IsNullOrEmpty(formatOptions.Format))
-            {
+            if(options is ILogFormatOptions formatOptions && !string.IsNullOrEmpty(formatOptions.Format)) {
                 return FormatFromFormatOptions(category, logItem, options, formatOptions);
             }
 

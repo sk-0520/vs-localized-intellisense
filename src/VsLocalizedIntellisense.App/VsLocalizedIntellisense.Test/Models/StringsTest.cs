@@ -1,8 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models;
 
@@ -39,8 +35,7 @@ namespace VsLocalizedIntellisense.Test.Models
         [DataRow("@[a@[a]]B", "@[a@[a]]@[b]", "@[", "]")]
         public void ReplaceRangeFromDictionaryTest(string expected, string src, string head, string tail)
         {
-            var map = new Dictionary<string, string>()
-            {
+            var map = new Dictionary<string, string>() {
                 ["A"] = "a",
                 ["B"] = "b",
                 ["C"] = "c",
@@ -61,8 +56,7 @@ namespace VsLocalizedIntellisense.Test.Models
         [DataRow("a", "${A}")]
         public void ReplaceFromDictionaryTest(string expected, string src)
         {
-            var map = new Dictionary<string, string>()
-            {
+            var map = new Dictionary<string, string>() {
                 ["A"] = "a",
                 ["B"] = "b",
                 ["C"] = "c",

@@ -1,10 +1,6 @@
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Configuration;
@@ -25,11 +21,9 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
 
         private AppConfiguration Create(string xml, AppConfigurationInitializeParameters initializeParameters)
         {
-            if (BaseConfiguration == null)
-            {
+            if(BaseConfiguration == null) {
                 var path = Path.Combine(Test.GetProjectDirectory().FullName, "Models", "Configuration", "AppConfigurationExtensionsTest.config");
-                var map = new ExeConfigurationFileMap
-                {
+                var map = new ExeConfigurationFileMap {
                     ExeConfigFilename = path,
                 };
                 var config = ConfigurationManager.OpenMappedExeConfiguration(map, ConfigurationUserLevel.None);
@@ -40,8 +34,7 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             var xmlDocument = new System.Xml.XmlDocument();
             xmlDocument.LoadXml(xml);
 
-            foreach (XmlElement element in xmlDocument.GetElementsByTagName("add"))
-            {
+            foreach(XmlElement element in xmlDocument.GetElementsByTagName("add")) {
                 var key = element.GetAttribute("key");
                 var value = element.GetAttribute("value");
 
