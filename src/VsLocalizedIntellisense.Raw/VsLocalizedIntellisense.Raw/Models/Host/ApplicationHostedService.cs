@@ -37,22 +37,9 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
             using var stream = await httpClient.GetStreamAsync(uri);
             using var archive = new ZipArchive(stream);
 
-            // dll に対して同一階層同名の xml があれば該当のお目当てのものとする
-            // サテライトアセンブリがあるようなライブラリは本アプリの対象外なので多分これでいいはず
-            var assemblyEntries = archive.Entries
-                .Where(a => Path.GetExtension(a.Name) == ".dll")
-                .ToArray()
-            ;
+            var nuGetLibrary = new NuGetLibrary();
 
-            //TODO: assemblyEntries に対して本当にアセンブリかどうかを確認する
-            // https://learn.microsoft.com/ja-jp/dotnet/standard/assembly/identify
-            // そんな大事なもんじゃないと思うのでいらんかなぁ
-
-            var langEntries = assemblyEntries
-                .Select(a => archive.GetEntry(Path.ChangeExtension(a.FullName, "xml")))
-                .Where(a => a is not null)
-                .ToArray()
-            ;
+            var langEntries = nuGetLibrary.GetXmlDocumentEntries(archive);;
 
             foreach(var langEntry in langEntries) {
                 var installFilePath = Path.Combine(installDirectoryPath, langEntry!.Name);
