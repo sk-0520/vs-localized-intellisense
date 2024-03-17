@@ -37,15 +37,26 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
             using var stream = await httpClient.GetStreamAsync(uri);
             using var archive = new ZipArchive(stream);
 
-            var refItems = archive.Entries
-                // くっそ適当
-                .Where(a => a.FullName.Contains("ref") && Path.GetExtension(a.Name) == ".xml")
+            // dll に対して同一階層同名の xml があれば該当のお目当てのものとする
+            // サテライトアセンブリがあるようなライブラリは本アプリの対象外なので多分これでいいはず
+            var assemblyEntries = archive.Entries
+                .Where(a => Path.GetExtension(a.Name) == ".dll")
                 .ToArray()
             ;
 
-            foreach(var refItem in refItems) {
-                var installFilePath = Path.Combine(installDirectoryPath, refItem.Name);
-                using var entryStream = refItem.Open();
+            //TODO: assemblyEntries に対して本当にアセンブリかどうかを確認する
+            // https://learn.microsoft.com/ja-jp/dotnet/standard/assembly/identify
+            // そんな大事なもんじゃないと思うのでいらんかなぁ
+
+            var langEntries = assemblyEntries
+                .Select(a => archive.GetEntry(Path.ChangeExtension(a.FullName, "xml")))
+                .Where(a => a is not null)
+                .ToArray()
+            ;
+
+            foreach(var langEntry in langEntries) {
+                var installFilePath = Path.Combine(installDirectoryPath, langEntry!.Name);
+                using var entryStream = langEntry.Open();
                 using var saveStream = new FileStream(installFilePath, FileMode.Create);
                 await entryStream.CopyToAsync(saveStream);
             }
@@ -73,11 +84,8 @@ namespace VsLocalizedIntellisense.Raw.Models.Host
                 throw new InvalidOperationException("nuget_download_path");
             }
 
-            var librariesSection = Configuration.GetSection("libraries");
-            var libraries = librariesSection.Get<string[]>() ?? throw new ApplicationException("libraries");
-            var libraryMapping = Configuration.GetSection("mapping").GetChildren()
-                  .ToDictionary(k => k.Key, v => v.Value)
-            ;
+            var libraries = Configuration.GetSection("libraries").Get<string[]>() ?? throw new ApplicationException("libraries");
+            var libraryMapping = Configuration.GetSection("mapping").Get<Dictionary<string, string>>() ?? throw new ApplicationException("mapping");
             if(libraries.Length != libraryMapping.Count) {
                 throw new ApplicationException("libraries.Length != libraryMapping.Count");
             }
