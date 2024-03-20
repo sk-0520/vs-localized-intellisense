@@ -70,8 +70,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             }
         }
 
-
-
         /// <inheritdoc cref="ICollection{TViewModel}.Count"/>
         public int Count => EditableViewModels.Count;
 
@@ -144,20 +142,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             return true;
         }
 
-        /// <summary>
-        /// 対になる<typeparamref name="TModel"/>を取得。
-        /// </summary>
-        /// <param name="viewModel">対になっている<typeparamref name="TViewModel"/>。</param>
-        /// <returns>見つからない場合は <typeparamref name="TModel"/> の初期値。</returns>
-        public TModel GetModel(TViewModel viewModel)
-        {
-            if(TryGetModel(viewModel, out var result)) {
-                return result;
-            }
-
-            return default;
-        }
-
         public bool TryGetViewModel(TModel model, out TViewModel result)
         {
             var index = IndexOf(model);
@@ -171,21 +155,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             return true;
         }
 
-
-        /// <summary>
-        /// 対になる<typeparamref name="TViewModel"/>を取得。
-        /// </summary>
-        /// <param name="model">対になっている<typeparamref name="TModel"/>。</param>
-        /// <returns>見つからない場合は <typeparamref name="TViewModel"/> の初期値。</returns>
-        public TViewModel GetViewModel(TModel model)
-        {
-            if(TryGetViewModel(model, out var result)) {
-                return result;
-            }
-
-            return default;
-        }
-
         #endregion
 
         #region ObservableManager
@@ -194,7 +163,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         {
             var newViewModels = newItems
                 .Select(m => ToViewModelImpl(m))
-                .ToList()
+                .ToArray()
             ;
 
             var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.AddItemParameter() {
@@ -219,7 +188,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             var newViewModels = newItems
                 .Select(m => ToViewModelImpl(m))
                 .Select((v, i) => (index: i + insertIndex, value: v))
-                .ToList()
+                .ToArray()
             ;
 
             var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.InsertItemParameter() {
@@ -246,7 +215,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             var oldViewModels = EditableViewModels
                 .Skip(oldStartingIndex)
                 .Take(oldItems.Count)
-                .ToList()
+                .ToArray()
             ;
 
             var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.RemoveItemParameter() {
@@ -259,7 +228,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             RemoveItemsKindImpl(parameter);
 
-            foreach(var _ in Enumerable.Range(0, oldViewModels.Count)) {
+            foreach(var _ in Enumerable.Range(0, oldViewModels.Length)) {
                 EditableViewModels.RemoveAt(oldStartingIndex);
             }
             if(Options.AutoDisposeViewModel) {
@@ -277,13 +246,13 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             //TODO: インデックスが必要
             var newViewModels = newItems
                 .Select(m => ToViewModelImpl(m))
-                .ToList()
+                .ToArray()
             ;
 
             var oldViewModels = EditableViewModels
                 .Skip(startIndex)
                 .Take(oldItems.Count)
-                .ToList()
+                .ToArray()
             ;
 
             var parameter = new ModelViewModelObservableCollectionOptions<TModel, TViewModel>.ReplaceItemParameter() {
@@ -298,7 +267,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             ReplaceItemsKindImpl(parameter);
 
-            for(var i = 0; i < newViewModels.Count; i++) {
+            for(var i = 0; i < newViewModels.Length; i++) {
                 EditableViewModels[i + startIndex] = newViewModels[i];
             }
             //if (Options.AutoDisposeViewModel)
@@ -384,4 +353,5 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         #endregion
     }
+
 }

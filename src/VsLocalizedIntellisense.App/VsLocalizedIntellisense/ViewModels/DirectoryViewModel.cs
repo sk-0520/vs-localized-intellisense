@@ -48,12 +48,14 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                return LibraryVersionCollection.GetViewModel(Model.LibraryVersion);
+                LibraryVersionCollection.TryGetViewModel(Model.LibraryVersion, out var result);
+                return result;
             }
             set
             {
-                var model = LibraryVersionCollection.GetModel(value);
-                SetModel(model);
+                if(LibraryVersionCollection.TryGetModel(value, out var model)) {
+                    SetModel(model);
+                }
             }
         }
 
@@ -63,12 +65,14 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                return IntellisenseVersionCollection.GetViewModel(Model.IntellisenseVersion);
+                IntellisenseVersionCollection.TryGetViewModel(Model.IntellisenseVersion, out var result);
+                return result;
             }
             set
             {
-                var model = IntellisenseVersionCollection.GetModel(value);
-                SetModel(model);
+                if(IntellisenseVersionCollection.TryGetModel(value, out var model)) {
+                    SetModel(model);
+                }
             }
         }
 
@@ -78,12 +82,14 @@ namespace VsLocalizedIntellisense.ViewModels
         {
             get
             {
-                return LanguageCollection.GetViewModel(Model.Language);
+                LanguageCollection.TryGetViewModel(Model.Language, out var result);
+                return result;
             }
             set
             {
-                var model = LanguageCollection.GetModel(value);
-                SetModel(model);
+                if(LanguageCollection.TryGetModel(value, out var model)) {
+                    SetModel(model);
+                }
             }
         }
 
