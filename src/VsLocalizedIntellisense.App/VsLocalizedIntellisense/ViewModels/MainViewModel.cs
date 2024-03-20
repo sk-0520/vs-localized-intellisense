@@ -159,124 +159,78 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #region command
 
-        public ICommand SelectInstallRootDirectoryPathCommand
-        {
-            get
-            {
-                if(this._selectInstallRootDirectoryPathCommand == null) {
-                    this._selectInstallRootDirectoryPathCommand = new DelegateCommand(
-                        o => {
-                            var message = new OpenFileDialogMessage() {
-                                Kind = OpenFileDialogKind.Directory,
-                                CurrentDirectory = IOHelper.GetPhysicalDirectory(InstallRootDirectoryPath),
-                            };
-                            Messenger.Send(message);
+        public ICommand SelectInstallRootDirectoryPathCommand => this._selectInstallRootDirectoryPathCommand ??= new DelegateCommand(
+            o => {
+                var message = new OpenFileDialogMessage() {
+                    Kind = OpenFileDialogKind.Directory,
+                    CurrentDirectory = IOHelper.GetPhysicalDirectory(InstallRootDirectoryPath),
+                };
+                Messenger.Send(message);
 
-                            if(message.ResultDirectory != null) {
-                                InstallRootDirectoryPath = message.ResultDirectory.FullName;
-                            }
-                        },
-                        _ => !IsDownloading && !IsExecuting
-                    );
+                if(message.ResultDirectory != null) {
+                    InstallRootDirectoryPath = message.ResultDirectory.FullName;
                 }
-                return this._selectInstallRootDirectoryPathCommand;
-            }
-        }
+            },
+            _ => !IsDownloading && !IsExecuting
+        );
 
-        public ICommand DownloadCommand
-        {
-            get
-            {
-                if(this._downloadCommand == null) {
-                    this._downloadCommand = new AsyncDelegateCommand(
-                        async _ => {
-                            if(IsDownloading || IsExecuting) {
-                                Logger.LogInformation("disable download");
-                                return;
-                            }
-
-                            IsDownloaded = false;
-                            IsDownloading = true;
-                            try {
-                                var items = await Model.DownloadIntellisenseFilesAsync();
-                                InstallItems.Clear();
-                                foreach(var pair in items) {
-                                    InstallItems.Add(pair.Key, pair.Value);
-                                }
-                                GeneratedCommandShellEditor = Model.GenerateShellCommand(InstallItems);
-                                InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
-                                IsDownloaded = true;
-                            } finally {
-                                //TODO: 頑張ったけどダウンロードボタンがダウンロード直後に死ぬけどもうどうでもいいわ
-                                IsDownloading = false;
-                            }
-                        }
-                    );
-                }
-                return this._downloadCommand;
-            }
-        }
-
-        public ICommand BackCommand
-        {
-            get
-            {
-                if(this._backCommand == null) {
-                    this._backCommand = new DelegateCommand(
-                        _ => {
-                            foreach(var dir in DirectoryCollection.ViewModels) {
-                                dir.ResetPercent();
-                            }
-                            IsDownloaded = false;
-                        }
-                    );
+        public ICommand DownloadCommand => this._downloadCommand ??= new AsyncDelegateCommand(
+            async _ => {
+                if(IsDownloading || IsExecuting) {
+                    Logger.LogInformation("disable download");
+                    return;
                 }
 
-                return this._backCommand;
-            }
-        }
-
-        public ICommand ExecuteCommand
-        {
-            get
-            {
-                if(this._executeCommand == null) {
-                    this._executeCommand = new AsyncDelegateCommand(
-                        async _ => {
-                            IsExecuting = true;
-                            try {
-                                await Model.ExecuteCommandShellAsync(GeneratedCommandShellEditor);
-                            } finally {
-                                IsExecuting = false;
-                            }
-                        },
-                        _ => IsDownloaded && !IsExecuting
-                    );
+                IsDownloaded = false;
+                IsDownloading = true;
+                try {
+                    var items = await Model.DownloadIntellisenseFilesAsync();
+                    InstallItems.Clear();
+                    foreach(var pair in items) {
+                        InstallItems.Add(pair.Key, pair.Value);
+                    }
+                    GeneratedCommandShellEditor = Model.GenerateShellCommand(InstallItems);
+                    InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
+                    IsDownloaded = true;
+                } finally {
+                    //TODO: 頑張ったけどダウンロードボタンがダウンロード直後に死ぬけどもうどうでもいいわ
+                    IsDownloading = false;
                 }
-                return this._executeCommand;
             }
-        }
+        );
 
-        public ICommand OpenReleasePageCommand
-        {
-            get
-            {
-                if(this._openReleasePageCommand == null) {
-                    this._openReleasePageCommand = new DelegateCommand(
-                        _ => {
-                            var uri = Configuration.GetReleaseUri();
-                            var psi = new ProcessStartInfo() {
-                                FileName = uri.ToString(),
-                                UseShellExecute = true,
-                            };
-                            Process.Start(psi);
-                        }
-                    );
+        public ICommand BackCommand => this._backCommand ??= new DelegateCommand(
+            _ => {
+                foreach(var dir in DirectoryCollection.ViewModels) {
+                    dir.ResetPercent();
                 }
-
-                return this._openReleasePageCommand;
+                IsDownloaded = false;
             }
-        }
+        );
+
+        public ICommand ExecuteCommand => this._executeCommand ??= new AsyncDelegateCommand(
+            async _ => {
+                IsExecuting = true;
+                try {
+                    await Model.ExecuteCommandShellAsync(GeneratedCommandShellEditor);
+                } finally {
+                    IsExecuting = false;
+                }
+            },
+            _ => IsDownloaded && !IsExecuting
+        );
+
+
+        public ICommand OpenReleasePageCommand => this._openReleasePageCommand ??= new DelegateCommand(
+            _ => {
+                var uri = Configuration.GetReleaseUri();
+                var psi = new ProcessStartInfo() {
+                    FileName = uri.ToString(),
+                    UseShellExecute = true,
+                };
+                Process.Start(psi);
+            }
+        );
 
         #endregion
 

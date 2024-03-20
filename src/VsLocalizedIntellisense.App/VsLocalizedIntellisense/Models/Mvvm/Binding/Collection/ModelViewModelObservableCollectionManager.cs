@@ -58,17 +58,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         /// <summary>
         /// 外部使用する<typeparamref name="TViewModel"/>のコレクション。
         /// </summary>
-        public ReadOnlyObservableCollection<TViewModel> ViewModels
-        {
-            get
-            {
-                if(this._readOnlyViewModels == null) {
-                    this._readOnlyViewModels = new ReadOnlyObservableCollection<TViewModel>(EditableViewModels);
-                }
-
-                return this._readOnlyViewModels;
-            }
-        }
+        public ReadOnlyObservableCollection<TViewModel> ViewModels => this._readOnlyViewModels ??= new ReadOnlyObservableCollection<TViewModel>(EditableViewModels);
 
         /// <inheritdoc cref="ICollection{TViewModel}.Count"/>
         public int Count => EditableViewModels.Count;
@@ -201,8 +191,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
             InsertItemsKindImpl(parameter);
 
-            foreach(var item in newViewModels) {
-                EditableViewModels.Insert(item.index, item.value);
+            foreach(var (index, value) in newViewModels) {
+                EditableViewModels.Insert(index, value);
             }
 
             parameter.Apply = ModelViewModelObservableCollectionViewModelApply.After;
