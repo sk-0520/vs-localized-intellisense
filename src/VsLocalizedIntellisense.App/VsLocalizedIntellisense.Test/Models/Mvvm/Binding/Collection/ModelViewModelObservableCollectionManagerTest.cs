@@ -174,9 +174,9 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
 
                     Assert.AreEqual(1, p.OldStartingIndex);
                     Assert.AreEqual(2, p.OldModels[0].Value);
-                    Assert.AreEqual(2, p.OldViewModels[0].Value);
                     if(p.Apply == ModelViewModelObservableCollectionViewModelApply.Before) {
                         Assert.IsFalse(p.OldViewModels[0].IsDisposed);
+                        Assert.AreEqual(2, p.OldViewModels[0].Value);
                     } else {
                         Debug.Assert(p.Apply == ModelViewModelObservableCollectionViewModelApply.After);
                         Assert.IsTrue(p.OldViewModels[0].IsDisposed);

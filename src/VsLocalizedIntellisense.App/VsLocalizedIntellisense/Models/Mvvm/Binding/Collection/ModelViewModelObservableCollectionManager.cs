@@ -43,15 +43,11 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
                 throw new ArgumentNullException(nameof(options) + "." + nameof(options.ToViewModel));
             }
 
-            SynchronizationContext = SynchronizationContext.Current;
-
             Options = options;
             EditableViewModels = new ObservableCollection<TViewModel>(Collection.Select(m => ToViewModelImpl(m)));
         }
 
         #region property
-
-        private SynchronizationContext SynchronizationContext { get; }
 
         private ModelViewModelObservableCollectionOptions<TModel, TViewModel> Options { get; set; }
 
@@ -360,8 +356,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
         protected override void CollectionChanged(NotifyCollectionChangedEventArgs e)
         {
             //Application.Current.Dispatcher.Invoke(new Action(() => base.CollectionChanged(e)));
-            if(Options.SynchronizationContext != SynchronizationContext.Current) {
-                Options.SynchronizationContext.Post(_ => base.CollectionChanged(e), null);
+            if(Options.SynchronizationContext != null && Options.SynchronizationContext != SynchronizationContext.Current) {
+                Options.SynchronizationContext.Send(_ => base.CollectionChanged(e), null);
             } else {
                 base.CollectionChanged(e);
             }
