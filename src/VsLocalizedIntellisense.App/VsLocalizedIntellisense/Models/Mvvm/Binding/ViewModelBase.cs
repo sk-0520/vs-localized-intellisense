@@ -7,7 +7,9 @@ using System.Diagnostics;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
 using VsLocalizedIntellisense.Models.Logger;
+using VsLocalizedIntellisense.Models.Mvvm.Command;
 using VsLocalizedIntellisense.ViewModels;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding
@@ -29,6 +31,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         protected ILogger Logger { get; }
 
         protected Dictionary<string, IList<ValidateMessage>> Errors { get; } = new Dictionary<string, IList<ValidateMessage>>();
+
+        private IDictionary<ICommand, ISet<string>> CommandHooks { get; } = new Dictionary<ICommand, ISet<string>>();
 
         #endregion
 
@@ -126,6 +130,39 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
             OnErrorsChanged(propertyName);
         }
 
+        protected void AddCommandHook(ICommand command, IEnumerable<string> propertyNames)
+        {
+            ThrowIfDisposed();
+
+            if(!propertyNames.Any()) {
+                throw new ArgumentException(nameof(propertyNames));
+            }
+            if(CommandHooks.Count == 0) {
+                PropertyChanged += ViewModelBase_PropertyChanged;
+            }
+
+            if(!CommandHooks.TryGetValue(command, out var props)) {
+                props = new HashSet<string>();
+                CommandHooks.Add(command, props);
+            }
+            foreach(var propertyName in propertyNames) {
+                props.Add(propertyName);
+            }
+        }
+
+        #endregion
+
+        #region BindModelBase
+
+        protected override void Dispose(bool disposing)
+        {
+            if(!IsDisposed) {
+                PropertyChanged -= ViewModelBase_PropertyChanged;
+            }
+
+            base.Dispose(disposing);
+        }
+
         #endregion
 
         #region INotifyDataErrorInfo
@@ -144,6 +181,28 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         }
 
         #endregion
-    }
 
+        private void ViewModelBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            var commands = new HashSet<ICommand>();
+
+            foreach(var pair in CommandHooks) {
+                if(pair.Value.Contains(e.PropertyName)) {
+                    commands.Add(pair.Key);
+                }
+            }
+
+            var needsCallInvalidateRequerySuggested = false;
+            foreach(var command in commands) {
+                if(command is CommandBase commandBase) {
+                    commandBase.RaiseCanExecuteChanged();
+                } else {
+                    needsCallInvalidateRequerySuggested = true;
+                }
+            }
+            if(needsCallInvalidateRequerySuggested) {
+                CommandManager.InvalidateRequerySuggested();
+            }
+        }
+    }
 }

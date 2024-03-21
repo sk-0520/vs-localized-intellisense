@@ -49,6 +49,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
                 await ExecuteAction((TParameter)parameter);
             } finally {
                 Interlocked.Decrement(ref this._executingCount);
+                RaiseCanExecuteChanged();
             }
         }
 

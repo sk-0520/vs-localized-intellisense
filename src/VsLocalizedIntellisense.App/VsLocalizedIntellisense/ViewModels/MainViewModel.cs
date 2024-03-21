@@ -6,6 +6,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
+using System.Windows.Threading;
 using VsLocalizedIntellisense.Models;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Element;
@@ -64,6 +65,29 @@ namespace VsLocalizedIntellisense.ViewModels
             StockLogItems.Filter += StockLogItems_Filter;
 
             PropertyChanged += MainViewModel_PropertyChanged;
+
+            AddCommandHook(
+                SelectInstallRootDirectoryPathCommand,
+                new[] {
+                    nameof(IsDownloading),
+                    nameof(IsExecuting),
+                }
+            );
+
+            AddCommandHook(
+                DownloadCommand,
+                new[] {
+                    nameof(IsDownloading),
+                }
+            );
+
+            AddCommandHook(
+                ExecuteCommand,
+                new[] {
+                    nameof(IsDownloaded),
+                    nameof(IsExecuting),
+                }
+            );
         }
 
         #region property
@@ -193,10 +217,10 @@ namespace VsLocalizedIntellisense.ViewModels
                     InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
                     IsDownloaded = true;
                 } finally {
-                    //TODO: 頑張ったけどダウンロードボタンがダウンロード直後に死ぬけどもうどうでもいいわ
                     IsDownloading = false;
                 }
-            }
+            },
+            _ => !IsDownloading || !IsExecuting
         );
 
         public ICommand BackCommand => this._backCommand ??= new DelegateCommand(
@@ -235,14 +259,6 @@ namespace VsLocalizedIntellisense.ViewModels
         #endregion
 
         #region function
-
-        public void RefreshCommand()
-        {
-            this._selectInstallRootDirectoryPathCommand?.RaiseCanExecuteChanged();
-            this._downloadCommand?.RaiseCanExecuteChanged();
-            this._backCommand?.RaiseCanExecuteChanged();
-            this._executeCommand?.RaiseCanExecuteChanged();
-        }
 
         #endregion
 
@@ -294,16 +310,6 @@ namespace VsLocalizedIntellisense.ViewModels
 
         private void MainViewModel_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var commandPropertyNames = new[]
-            {
-                nameof(IsDownloading),
-                nameof(IsDownloaded),
-                nameof(IsExecuting),
-            };
-            if(commandPropertyNames.Contains(e.PropertyName)) {
-                RefreshCommand();
-            }
-
             var logPropertyNames = new[]
             {
                 nameof(FilterTrace),
