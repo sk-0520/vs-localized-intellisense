@@ -30,7 +30,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         protected virtual void OnCanExecuteChanged()
         {
-            if(SynchronizationContext != SynchronizationContext.Current) {
+            if(SynchronizationContext != null && SynchronizationContext != SynchronizationContext.Current) {
                 SynchronizationContext.Post(o => CanExecuteChanged?.Invoke(this, EventArgs.Empty), null);
             } else {
                 CanExecuteChanged?.Invoke(this, EventArgs.Empty);
