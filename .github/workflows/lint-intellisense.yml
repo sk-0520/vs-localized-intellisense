@@ -1,0 +1,35 @@
+name: Lint Intellisense
+
+on:
+  push:
+    paths:
+      - 'intellisense/**/'
+      - '.github/workflows/build-intellisense.yml'
+  pull_request:
+    paths:
+      - 'intellisensep/**/'
+      - '.github/workflows/build-intellisense.yml'
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: XML
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+
+      - name: <Install> xmllint
+        run: sudo apt-get install -y libxml2-utils
+
+      - name: <Lint> XML
+        run: |
+          for XML in `find intellisense -type f -name '*.xml'`; do
+            echo "${XML}"
+            xmllint --noout "${XML}"
+          done
