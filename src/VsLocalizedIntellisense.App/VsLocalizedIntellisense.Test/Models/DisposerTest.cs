@@ -1,3 +1,4 @@
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models;
 
@@ -14,6 +15,11 @@ namespace VsLocalizedIntellisense.Test.Models
             {
                 Disposing = disposing;
                 base.Dispose(disposing);
+            }
+
+            public void Procedure()
+            {
+                ThrowIfDisposed();
             }
         }
 
@@ -38,6 +44,16 @@ namespace VsLocalizedIntellisense.Test.Models
 
             Assert.IsTrue(disposer.IsDisposed);
             Assert.IsTrue(disposer.Disposing);
+        }
+
+        [TestMethod]
+        public void ThrowIfDisposedTest()
+        {
+            var disposer = new TestDisposer();
+
+            disposer.Procedure();
+            disposer.Dispose();
+            Assert.ThrowsException<ObjectDisposedException>(() => disposer.Procedure());
         }
     }
 }

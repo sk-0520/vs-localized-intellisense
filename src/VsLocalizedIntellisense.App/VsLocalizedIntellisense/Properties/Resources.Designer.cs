@@ -223,7 +223,7 @@ namespace VsLocalizedIntellisense.Properties {
         }
         
         /// <summary>
-        ///   Directory に類似しているローカライズされた文字列を検索します。
+        ///   ディレクトリ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UI_Main_TargetDirectories_List_Column_Header_Directory {
             get {

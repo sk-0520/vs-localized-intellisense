@@ -34,6 +34,16 @@ namespace VsLocalizedIntellisense.Test.Models
         }
 
         [TestMethod]
+        [DataRow(null)]
+        [DataRow("")]
+        [DataRow(" ")]
+        public void Constructor_throw_Test(string path)
+        {
+            var span = TimeSpan.FromSeconds(10);
+            Assert.ThrowsException<ArgumentException>(() => new CacheFile<Data>(path, span));
+        }
+
+        [TestMethod]
         public void Read_notFound_Test()
         {
             var dir = Test.GetMethodDirectory(this);

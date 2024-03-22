@@ -18,7 +18,6 @@ namespace VsLocalizedIntellisense.Models
 
         #endregion
 
-
         #region function
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = "")

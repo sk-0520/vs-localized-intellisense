@@ -19,7 +19,7 @@ namespace VsLocalizedIntellisense.Models
     {
         public CacheFile(string path, TimeSpan timeout)
         {
-            if(string.IsNullOrEmpty(path)) {
+            if(string.IsNullOrWhiteSpace(path)) {
                 throw new ArgumentException(nameof(path));
             }
 
