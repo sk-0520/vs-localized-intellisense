@@ -3,6 +3,7 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Test
 {
@@ -44,5 +45,9 @@ namespace VsLocalizedIntellisense.Test
             directory.Create();
         }
 
+        public static implicit operator Test(NullLogger v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

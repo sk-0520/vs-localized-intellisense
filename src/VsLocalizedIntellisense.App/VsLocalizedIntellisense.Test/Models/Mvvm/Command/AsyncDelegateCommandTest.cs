@@ -1,13 +1,28 @@
+using System;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
 {
+
     [TestClass]
     public class AsyncDelegateCommandTest
     {
         #region function
+
+        [TestMethod]
+        public void Constructor_throw_Test()
+        {
+            var actual1 = Assert.ThrowsException<ArgumentNullException>(() => new AsyncDelegateCommand(null, null));
+            Assert.AreEqual("executeAction", actual1.ParamName);
+
+            var actual2 = Assert.ThrowsException<ArgumentNullException>(() => new AsyncDelegateCommand(null));
+            Assert.AreEqual("executeAction", actual2.ParamName);
+
+            var actual3 = Assert.ThrowsException<ArgumentNullException>(() => new AsyncDelegateCommand(o => Task.CompletedTask, null));
+            Assert.AreEqual("canExecuteFunc", actual3.ParamName);
+        }
 
         [TestMethod]
         public void ExecuteTest()

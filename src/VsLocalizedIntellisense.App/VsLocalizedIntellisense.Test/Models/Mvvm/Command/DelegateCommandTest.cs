@@ -1,3 +1,5 @@
+using System.Threading.Tasks;
+using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
@@ -7,6 +9,19 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
     public class DelegateCommandTest
     {
         #region function
+
+        [TestMethod]
+        public void Constructor_throw_Test()
+        {
+            var actual1 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(null, null));
+            Assert.AreEqual("executeAction", actual1.ParamName);
+
+            var actual2 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(null));
+            Assert.AreEqual("executeAction", actual2.ParamName);
+
+            var actual3 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(o => { }, null));
+            Assert.AreEqual("canExecuteFunc", actual3.ParamName);
+        }
 
         [TestMethod]
         public void ExecuteTest()
