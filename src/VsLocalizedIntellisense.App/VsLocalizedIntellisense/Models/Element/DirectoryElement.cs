@@ -77,11 +77,7 @@ namespace VsLocalizedIntellisense.Models.Element
 
         private async Task<IList<FileInfo>> DownloadIntellisenseFilesCoreAsync(string revision, DirectoryInfo downloadDirectory, AppFileService fileService, GitHubService gitHubService, IProgress<double> progress, CancellationToken cancellationToken)
         {
-            var languageParts = new IntellisenseLanguageParts() {
-                IntellisenseVersion = IntellisenseVersion.DirectoryName,
-                LibraryName = Directory.Name,
-                Language = Language.Language,
-            };
+            var languageParts = new IntellisenseLanguageParts(IntellisenseVersion.DirectoryName, Directory.Name, Language.Language);
             var languageData = fileService.GetIntellisenseLanguageData(languageParts);
             if(languageData != null) {
                 Logger.LogInformation($"キャッシュからインテリセンス言語データ取得: {languageParts}");
