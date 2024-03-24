@@ -95,6 +95,27 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             Assert.AreEqual(123, tvm.AliasValue);
         }
 
+        [TestMethod]
+        public void SetProperty_equal_Test()
+        {
+            var tvm = new TestViewModel();
+            int callCount = 0;
+            tvm.PropertyChanged += (s, e) => {
+                callCount += 1;
+            };
+            tvm.PublicValue = 123;
+            Assert.AreEqual(1, callCount);
+            Assert.AreEqual(123, tvm.PublicValue);
+
+            tvm.PublicValue = 123;
+            Assert.AreEqual(1, callCount);
+            Assert.AreEqual(123, tvm.PublicValue);
+
+            tvm.PublicValue = 456;
+            Assert.AreEqual(2, callCount);
+            Assert.AreEqual(456, tvm.PublicValue);
+        }
+
         #endregion
     }
 }

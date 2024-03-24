@@ -16,7 +16,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public class ModelViewModelObservableCollectionManager<TModel, TViewModel>: ObservableCollectionManagerBase<TModel>
-        where TModel : BindModelBase
         where TViewModel : ViewModelBase
     {
         #region variable
@@ -147,7 +146,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         #endregion
 
-        #region ObservableManager
+        #region ObservableCollectionManagerBase
 
         protected override void AddItemsImpl(IReadOnlyList<TModel> newItems)
         {
@@ -343,5 +342,4 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
         #endregion
     }
-
 }

@@ -19,6 +19,5 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Views.Converter
         }
 
         #endregion
-
     }
 }

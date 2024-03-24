@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Reflection;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Message
@@ -10,10 +10,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
     {
         public MessageItem(string messageId, Type messageType, object callbackInstance, MethodInfo callbackMethodInfo)
         {
-            MessageId = messageId;
-            MessageType = messageType;
+            MessageId = messageId ?? throw new ArgumentNullException(nameof(messageId));
+            MessageType = messageType ?? throw new ArgumentNullException(nameof(messageType));
             CallbackInstance = callbackInstance;
-            CallbackMethodInfo = callbackMethodInfo;
+            CallbackMethodInfo = callbackMethodInfo ?? throw new ArgumentNullException(nameof(callbackMethodInfo));
         }
 
         #region property
@@ -31,7 +31,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         /// <summary>
         /// 登録された処理のメソッド情報。
         /// </summary>
-        public MethodInfo CallbackMethodInfo { get; private set; }
+        public MethodInfo CallbackMethodInfo { get; }
 
         #endregion
 
@@ -41,7 +41,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         {
             if(!IsDisposed) {
                 CallbackInstance = null;
-                CallbackMethodInfo = null;
             }
             base.Dispose(disposing);
         }

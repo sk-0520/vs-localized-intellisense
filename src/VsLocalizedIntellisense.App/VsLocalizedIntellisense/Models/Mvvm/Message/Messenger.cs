@@ -6,22 +6,74 @@ using System.Threading.Tasks;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Message
 {
+    /// <summary>
+    /// 受信用メッセンジャー。
+    /// </summary>
     public interface IReceivableMessenger
     {
-        MessageItem Register<TMessage>(Action<TMessage> action, string messageId = "") where TMessage : IMessage;
-        MessageItem Register<TMessage>(Func<TMessage, Task> callback, string messageId = "") where TMessage : IMessage;
+        /// <summary>
+        /// 対象となる TMessage(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
+        /// <param name="action">受信時の処理。</param>
+        /// <param name="messageId">メッセージを特定するID。</param>
+        /// <returns>登録されたメッセージ処理。</returns>
+        MessageItem Register<TMessage>(Action<TMessage> action, string messageId = "")
+            where TMessage : IMessage
+        ;
+        /// <summary>
+        /// 対象となる TMessage(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
+        /// <para>非同期版。</para>
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
+        /// <param name="callback">受信時の処理。</param>
+        /// <param name="messageId">メッセージを特定するID。</param>
+        /// <returns>登録されたメッセージ処理。</returns>
+        MessageItem Register<TMessage>(Func<TMessage, Task> callback, string messageId = "")
+            where TMessage : IMessage
+        ;
+        /// <summary>
+        /// 登録されたメッセージ処理の破棄。
+        /// </summary>
+        /// <param name="messageItem">メッセージ処理。</param>
         void Unregister(MessageItem messageItem);
     }
 
+    /// <summary>
+    /// 送信用メッセンジャー。
+    /// </summary>
     public interface ISendableMessenger
     {
-        void Send<TMessage>(TMessage message) where TMessage : IMessage;
-        Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default) where TMessage : IMessage;
+        /// <summary>
+        /// メッセージの送信。
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
+        /// <param name="message">送信メッセージ。</param>
+        void Send<TMessage>(TMessage message)
+            where TMessage : IMessage
+        ;
+        /// <summary>
+        /// メッセージの送信。
+        /// <para>非同期版。</para>
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
+        /// <param name="message">送信メッセージ。</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default)
+            where TMessage : IMessage
+        ;
     }
 
+    /// <summary>
+    /// 主に使用するメッセンジャー。
+    /// </summary>
     public interface IMessenger: IReceivableMessenger, ISendableMessenger
     { }
 
+    /// <summary>
+    /// メッセンジャー。
+    /// </summary>
     public class Messenger: DisposerBase, IMessenger
     {
         public Messenger()
@@ -36,9 +88,33 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
 
         #region function
 
+        private bool UnregisterCore(MessageItem messageItem, Dictionary<Type, List<MessageItem>> registeredTypes)
+        {
+            if(registeredTypes.TryGetValue(messageItem.MessageType, out var messages)) {
+                if(messages.Remove(messageItem)) {
+                    messageItem.Dispose();
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        private MessageItem SearchMessageItem(IMessage needle, IReadOnlyList<MessageItem> haystack)
+        {
+            return haystack.FirstOrDefault(a => a.MessageId == needle.MessageId);
+        }
+
+        #endregion
+
+        #region IMessenger.IReceivableMessenger
+
         public MessageItem Register<TMessage>(Action<TMessage> action, string messageId = "")
             where TMessage : IMessage
         {
+            ThrowIfDisposed();
+
             var messageType = typeof(TMessage);
 
             if(!RegisteredSyncTypes.TryGetValue(messageType, out var messages)) {
@@ -54,6 +130,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         public MessageItem Register<TMessage>(Func<TMessage, Task> callback, string messageId = "")
             where TMessage : IMessage
         {
+            ThrowIfDisposed();
+
             var messageType = typeof(TMessage);
 
             if(!RegisteredAsyncTypes.TryGetValue(messageType, out var messages)) {
@@ -66,19 +144,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
             return item;
         }
 
-        private bool UnregisterCore(MessageItem messageItem, Dictionary<Type, List<MessageItem>> registeredTypes)
-        {
-            if(registeredTypes.TryGetValue(messageItem.MessageType, out var messages)) {
-                if(messages.Remove(messageItem)) {
-                    messageItem.Dispose();
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
-
         public void Unregister(MessageItem messageItem)
         {
             ThrowIfDisposed();
@@ -88,10 +153,9 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
             }
         }
 
-        private MessageItem SearchMessageItem(IMessage needle, IReadOnlyList<MessageItem> haystack)
-        {
-            return haystack.FirstOrDefault(a => a.MessageId == needle.MessageId);
-        }
+        #endregion
+
+        #region IMessenger.ISendableMessenger
 
         public void Send<TMessage>(TMessage message)
             where TMessage : IMessage
