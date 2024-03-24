@@ -10,7 +10,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public class ModelViewModelObservableCollectionOptions<TModel, TViewModel>
-        where TModel : BindModelBase
         where TViewModel : ViewModelBase
     {
         #region define
