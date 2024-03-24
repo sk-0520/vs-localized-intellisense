@@ -5,7 +5,7 @@ using VsLocalizedIntellisense.Models.Mvvm.Binding;
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 {
     [TestClass]
-    public class SingleModelViewModelBaseTest
+    public class SimpleModelViewModelBaseTest
     {
         #region function
 
@@ -70,5 +70,4 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 
         #endregion
     }
-
 }
