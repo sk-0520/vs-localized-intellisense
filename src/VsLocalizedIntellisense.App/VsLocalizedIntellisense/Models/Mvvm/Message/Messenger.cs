@@ -12,17 +12,26 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
     public interface IReceivableMessenger
     {
         /// <summary>
-        /// 対象となる<typeparamref name="TMessage"/>(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
+        /// 対象となる TMessage(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
         /// </summary>
         /// <typeparam name="TMessage">メッセージ。</typeparam>
         /// <param name="action">受信時の処理。</param>
         /// <param name="messageId">メッセージを特定するID。</param>
         /// <returns>登録されたメッセージ処理。</returns>
-        MessageItem Register<TMessage>(Action<TMessage> action, string messageId = "") where TMessage : IMessage;
-        /// <inheritdoc cref="Register{TMessage}(Action{TMessage}, string)"/>
+        MessageItem Register<TMessage>(Action<TMessage> action, string messageId = "")
+            where TMessage : IMessage
+        ;
+        /// <summary>
+        /// 対象となる TMessage(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
+        /// <para>非同期版。</para>
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
         /// <param name="callback">受信時の処理。</param>
-        /// <remarks>非同期処理版</remarks>
-        MessageItem Register<TMessage>(Func<TMessage, Task> callback, string messageId = "") where TMessage : IMessage;
+        /// <param name="messageId">メッセージを特定するID。</param>
+        /// <returns>登録されたメッセージ処理。</returns>
+        MessageItem Register<TMessage>(Func<TMessage, Task> callback, string messageId = "")
+            where TMessage : IMessage
+        ;
         /// <summary>
         /// 登録されたメッセージ処理の破棄。
         /// </summary>
@@ -40,10 +49,20 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         /// </summary>
         /// <typeparam name="TMessage">メッセージ。</typeparam>
         /// <param name="message">送信メッセージ。</param>
-        void Send<TMessage>(TMessage message) where TMessage : IMessage;
-        /// <inheritdoc cref="Send{TMessage}(TMessage)"/>
-        /// <remarks>非同期版。</remarks>
-        Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default) where TMessage : IMessage;
+        void Send<TMessage>(TMessage message)
+            where TMessage : IMessage
+        ;
+        /// <summary>
+        /// メッセージの送信。
+        /// <para>非同期版。</para>
+        /// </summary>
+        /// <typeparam name="TMessage">メッセージ。</typeparam>
+        /// <param name="message">送信メッセージ。</param>
+        /// <param name="cancellationToken"></param>
+        /// <returns></returns>
+        Task SendAsync<TMessage>(TMessage message, CancellationToken cancellationToken = default)
+            where TMessage : IMessage
+        ;
     }
 
     /// <summary>
