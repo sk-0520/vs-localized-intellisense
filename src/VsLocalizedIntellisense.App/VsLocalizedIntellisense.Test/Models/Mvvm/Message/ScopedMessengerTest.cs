@@ -77,5 +77,4 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 
         #endregion  
     }
-
 }

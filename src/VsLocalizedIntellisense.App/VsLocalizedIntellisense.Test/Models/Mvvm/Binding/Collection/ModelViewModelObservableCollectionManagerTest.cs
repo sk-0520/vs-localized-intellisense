@@ -180,6 +180,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding.Collection
                     } else {
                         Debug.Assert(p.Apply == ModelViewModelObservableCollectionViewModelApply.After);
                         Assert.IsTrue(p.OldViewModels[0].IsDisposed);
+                        Assert.ThrowsException<NullReferenceException>(() => p.OldViewModels[0].Value); // モデルには null が強制設定されている
                     }
                 }
             });

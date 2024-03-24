@@ -18,7 +18,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         #region property
 
-        protected TModel Model { get; }
+        protected TModel Model { get; private set; }
 
         #endregion
 
@@ -38,6 +38,19 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
             var prop = type.GetProperty(modelPropertyName);
 
             return ChangePropertyValue(Model, value, prop, notifyPropertyName);
+        }
+
+        #endregion
+
+        #region ViewModelBase
+
+        protected override void Dispose(bool disposing)
+        {
+            if(!IsDisposed) {
+                Model = null;
+            }
+
+            base.Dispose(disposing);
         }
 
         #endregion
