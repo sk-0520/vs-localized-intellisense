@@ -151,7 +151,7 @@ namespace VsLocalizedIntellisense.Models.Element
         }
 
 
-        public CommandShellEditor GenerateShellCommand(Dictionary<DirectoryElement, IList<FileInfo>> installItems)
+        public CommandShellEditor GenerateShellCommand(IReadOnlyDictionary<DirectoryElement, IList<FileInfo>> installItems)
         {
             var commandShellEditor = new CommandShellEditor();
 #if DEBUG
