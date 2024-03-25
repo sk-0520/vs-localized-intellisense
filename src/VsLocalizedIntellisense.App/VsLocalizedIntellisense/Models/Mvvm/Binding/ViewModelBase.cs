@@ -19,16 +19,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     /// </summary>
     public abstract class ViewModelBase: BindModelBase, INotifyDataErrorInfo
     {
-        protected ViewModelBase(ILoggerFactory loggerFactory)
-        {
-            LoggerFactory = loggerFactory;
-            Logger = loggerFactory.CreateLogger(GetType());
-        }
+        protected ViewModelBase()
+        { }
 
         #region property
-
-        protected ILoggerFactory LoggerFactory { get; }
-        protected ILogger Logger { get; }
 
         protected Dictionary<string, IList<ValidateMessage>> Errors { get; } = new Dictionary<string, IList<ValidateMessage>>();
 

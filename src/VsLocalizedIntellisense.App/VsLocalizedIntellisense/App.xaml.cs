@@ -1,6 +1,7 @@
 using System;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Windows;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
@@ -42,15 +43,19 @@ namespace VsLocalizedIntellisense
                 Logger.LogInformation("キャッシュからインテリセンスバージョンデータ取得");
             } else {
                 Logger.LogInformation("GitHubからインテリセンスバージョンデータ取得");
-                var intellisenseVersionItems = await appGitHubService.GetIntellisenseVersionItemsAsync(appConfiguration.GetRepositoryRevision());
-                intellisenseVersionData = new IntellisenseVersionData {
-                    VersionItems = intellisenseVersionItems.ToArray()
-                };
-                appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
+                try {
+                    var intellisenseVersionItems = await appGitHubService.GetIntellisenseVersionItemsAsync(appConfiguration.GetRepositoryRevision());
+                    intellisenseVersionData = new IntellisenseVersionData {
+                        VersionItems = intellisenseVersionItems.ToArray()
+                    };
+                    appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
+                } catch(HttpRequestException ex) {
+                    Logger.LogError(ex.ToString());
+                }
             }
             if(intellisenseVersionData == null) {
                 Logger.LogError("インテリセンスバージョンデータ取得失敗");
-                throw new Exception(nameof(intellisenseVersionData));
+                intellisenseVersionData = new IntellisenseVersionData();
             }
 
             var mainElement = new MainElement(appConfiguration, intellisenseVersionData.VersionItems, appFileService, appGitHubService, loggerFactory);

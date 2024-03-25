@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics;
+using System;
 using System.IO;
 using System.Linq;
 using System.Windows.Input;
@@ -17,6 +18,8 @@ using VsLocalizedIntellisense.Models.Mvvm.Command;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 using VsLocalizedIntellisense.ViewModels.Message;
+using VsLocalizedIntellisense.Models.Service.Application;
+using System.Windows;
 
 namespace VsLocalizedIntellisense.ViewModels
 {
@@ -24,16 +27,9 @@ namespace VsLocalizedIntellisense.ViewModels
     {
         #region variable
 
-        private bool _isDownloading = false;
-        private bool _isDownloaded = false;
-        private bool _isExecuting = false;
+        ViewModelBase _contextContent;
+        ContextMode _contextMode;
 
-        private string _installCommand = string.Empty;
-
-        private DelegateCommand _selectInstallRootDirectoryPathCommand;
-        private AsyncDelegateCommand _downloadCommand;
-        private DelegateCommand _backCommand;
-        private AsyncDelegateCommand _executeCommand;
         private DelegateCommand _openReleasePageCommand;
 
 
@@ -50,6 +46,13 @@ namespace VsLocalizedIntellisense.ViewModels
             : base(model, loggerFactory)
         {
             Configuration = configuration;
+
+            this._contextMode = Model.HasIntellisenseVersionItems
+                ? ContextMode.Download
+                : ContextMode.Refresh
+            ;
+
+
             DirectoryCollection = new ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel>(Model.IntellisenseDirectoryElements, new ModelViewModelObservableCollectionOptions<DirectoryElement, DirectoryViewModel>() {
                 ToViewModel = m => new DirectoryViewModel(m, LoggerFactory),
             });
@@ -65,29 +68,6 @@ namespace VsLocalizedIntellisense.ViewModels
             StockLogItems.Filter += StockLogItems_Filter;
 
             PropertyChanged += MainViewModel_PropertyChanged;
-
-            AddCommandHook(
-                SelectInstallRootDirectoryPathCommand,
-                new[] {
-                    nameof(IsDownloading),
-                    nameof(IsExecuting),
-                }
-            );
-
-            AddCommandHook(
-                DownloadCommand,
-                new[] {
-                    nameof(IsDownloading),
-                }
-            );
-
-            AddCommandHook(
-                ExecuteCommand,
-                new[] {
-                    nameof(IsDownloaded),
-                    nameof(IsExecuting),
-                }
-            );
         }
 
         #region property
@@ -98,7 +78,44 @@ namespace VsLocalizedIntellisense.ViewModels
         private AppConfiguration Configuration { get; }
 
         private Dictionary<DirectoryElement, IList<FileInfo>> InstallItems { get; } = new Dictionary<DirectoryElement, IList<FileInfo>>();
-        private CommandShellEditor GeneratedCommandShellEditor { get; set; }
+
+        public ViewModelBase ContextContent
+        {
+            get
+            {
+                if(this._contextContent != null) {
+                    this._contextContent.Dispose();
+                    this._contextContent = null;
+                }
+
+                switch(ContextMode) {
+                    case ContextMode.Refresh:
+                        this._contextContent = new RefreshViewModel(Model, InstallItems, m => ChangedContext(m), Messenger, Configuration, LoggerFactory);
+                        break;
+
+                    case ContextMode.Download:
+                        foreach(var installItem in InstallItems) {
+                            installItem.Key.DownloadPercent = 0;
+                        }
+                        this._contextContent = new DownloadViewModel(Model, InstallItems, m => ChangedContext(m), Messenger, Configuration, LoggerFactory);
+                        break;
+
+                    case ContextMode.Install:
+                        this._contextContent = new InstallViewModel(Model, InstallItems, m => ChangedContext(m), Messenger, Configuration, LoggerFactory);
+                        break;
+
+                    default:
+                        throw new NotImplementedException();
+                }
+
+                return this._contextContent;
+            }
+        }
+        public ContextMode ContextMode
+        {
+            get => this._contextMode;
+            set => SetVariable(ref this._contextMode, value);
+        }
 
         public bool FilterTrace
         {
@@ -131,37 +148,6 @@ namespace VsLocalizedIntellisense.ViewModels
             set => SetVariable(ref this._filterCritical, value);
         }
 
-        public string InstallCommand
-        {
-            get => this._installCommand;
-            set => SetVariable(ref this._installCommand, value);
-        }
-
-        [Required(ErrorMessageResourceName = nameof(Properties.Resources.UI_Validation_Required), ErrorMessageResourceType = typeof(Properties.Resources))]
-        public string InstallRootDirectoryPath
-        {
-            get => Model.InstallRootDirectoryPath;
-            set => SetModel(value);
-        }
-
-        public bool IsDownloading
-        {
-            get => this._isDownloading;
-            set => SetVariable(ref this._isDownloading, value);
-        }
-
-        public bool IsDownloaded
-        {
-            get => this._isDownloaded;
-            set => SetVariable(ref this._isDownloaded, value);
-        }
-
-        public bool IsExecuting
-        {
-            get => this._isExecuting;
-            set => SetVariable(ref this._isExecuting, value);
-        }
-
         private ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel> DirectoryCollection { get; }
         public ICollectionView DirectoryItems => DirectoryCollection.GetDefaultView();
 
@@ -183,66 +169,10 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #region command
 
-        public ICommand SelectInstallRootDirectoryPathCommand => this._selectInstallRootDirectoryPathCommand ??= new DelegateCommand(
-            o => {
-                var message = new OpenFileDialogMessage() {
-                    Kind = OpenFileDialogKind.Directory,
-                    CurrentDirectory = IOHelper.GetPhysicalDirectory(InstallRootDirectoryPath),
-                };
-                Messenger.Send(message);
 
-                if(message.ResultDirectory != null) {
-                    InstallRootDirectoryPath = message.ResultDirectory.FullName;
-                }
-            },
-            _ => !IsDownloading && !IsExecuting
-        );
 
-        public ICommand DownloadCommand => this._downloadCommand ??= new AsyncDelegateCommand(
-            async _ => {
-                if(IsDownloading || IsExecuting) {
-                    Logger.LogInformation("disable download");
-                    return;
-                }
 
-                IsDownloaded = false;
-                IsDownloading = true;
-                try {
-                    var items = await Model.DownloadIntellisenseFilesAsync();
-                    InstallItems.Clear();
-                    foreach(var pair in items) {
-                        InstallItems.Add(pair.Key, pair.Value);
-                    }
-                    GeneratedCommandShellEditor = Model.GenerateShellCommand(InstallItems);
-                    InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
-                    IsDownloaded = true;
-                } finally {
-                    IsDownloading = false;
-                }
-            },
-            _ => !IsDownloading || !IsExecuting
-        );
 
-        public ICommand BackCommand => this._backCommand ??= new DelegateCommand(
-            _ => {
-                foreach(var dir in DirectoryCollection.ViewModels) {
-                    dir.ResetPercent();
-                }
-                IsDownloaded = false;
-            }
-        );
-
-        public ICommand ExecuteCommand => this._executeCommand ??= new AsyncDelegateCommand(
-            async _ => {
-                IsExecuting = true;
-                try {
-                    await Model.ExecuteCommandShellAsync(GeneratedCommandShellEditor);
-                } finally {
-                    IsExecuting = false;
-                }
-            },
-            _ => IsDownloaded && !IsExecuting
-        );
 
 
         public ICommand OpenReleasePageCommand => this._openReleasePageCommand ??= new DelegateCommand(
@@ -259,6 +189,11 @@ namespace VsLocalizedIntellisense.ViewModels
         #endregion
 
         #region function
+
+        private void ChangedContext(ContextMode mode)
+        {
+            ContextMode = mode;
+        }
 
         #endregion
 
@@ -321,6 +256,10 @@ namespace VsLocalizedIntellisense.ViewModels
             };
             if(logPropertyNames.Contains(e.PropertyName)) {
                 StockLogItems.Refresh();
+            }
+
+            if(e.PropertyName == nameof(ContextMode)) {
+                RaisePropertyChanged(nameof(ContextContent));
             }
         }
     }

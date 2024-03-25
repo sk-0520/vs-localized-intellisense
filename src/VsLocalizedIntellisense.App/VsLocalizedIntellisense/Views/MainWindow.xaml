@@ -5,6 +5,8 @@
   
   xmlns:p="clr-namespace:VsLocalizedIntellisense.Properties"
 
+  xmlns:app_views="clr-namespace:VsLocalizedIntellisense.Views"
+  xmlns:app_viewmodels="clr-namespace:VsLocalizedIntellisense.ViewModels"
   xmlns:app_models_mvvm_views_converter="clr-namespace:VsLocalizedIntellisense.Models.Mvvm.Views.Converter"
   xmlns:app_models_logger="clr-namespace:VsLocalizedIntellisense.Models.Logger"
 
@@ -28,7 +30,7 @@
       <app_models_mvvm_views_converter:LocalizeEnumConverter x:Key="LocalizeEnumConverter" />
     </ResourceDictionary>
   </Window.Resources>
-  <Grid Grid.IsSharedSizeScope="True">
+  <Grid>
     <Grid.RowDefinitions>
       <RowDefinition Height="Auto" />
       <RowDefinition Height="7*" />
@@ -50,229 +52,234 @@
     -->
 
     <Grid Grid.Row="1">
-      <Grid>
-        <Grid.Style>
-          <Style TargetType="Grid">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding IsDownloaded}" Value="True">
-                <Setter Property="Visibility" Value="Collapsed" />
-              </DataTrigger>
-            </Style.Triggers>
-            <Setter Property="Visibility" Value="Visible" />
-          </Style>
-        </Grid.Style>
-        <Grid.RowDefinitions>
-          <RowDefinition Height="Auto" />
-          <RowDefinition Height="*" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-          <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_InstallDirectory_Header_A}" />
-          <Grid Grid.Column="1">
-            <Grid.ColumnDefinitions>
-              <ColumnDefinition Width="*" />
-              <ColumnDefinition Width="Auto" />
-            </Grid.ColumnDefinitions>
-            <TextBox Grid.Column="0" Text="{Binding InstallRootDirectoryPath, UpdateSourceTrigger=PropertyChanged}" />
-            <Button
-              Grid.Column="1"
-              Command="{Binding SelectInstallRootDirectoryPathCommand}"
-              Style="{StaticResource ImageButton}"
-              ToolTip="{x:Static p:Resources.UI_Main_InstallDirectory_SelectDirectory_A}"
-            >
-              <Button.Content>
-                <Control Focusable="False" Template="{StaticResource App-Image-Folder}" />
-              </Button.Content>
-            </Button>
-          </Grid>
-        </Grid>
-
-        <Grid Grid.Row="1">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-
-          <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_TargetDirectories_A}" />
-          <ListView
-            Grid.Column="1"
-            ItemsSource="{Binding DirectoryItems}"
-            IsEnabled="{Binding DataContext.IsDownloading, Converter={StaticResource LogicalNotConverter}, RelativeSource={RelativeSource AncestorType=Window}}"
-          >
-            <ListView.ItemContainerStyle>
-              <Style TargetType="ListViewItem">
-                <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-              </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-              <GridView>
-                <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_Directory}">
-                  <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                      <CheckBox
-                        IsChecked="{Binding IsDownloadTarget}"
-                        Content="{Binding DirectoryName, Mode=OneWay}"
-                      />
-                    </DataTemplate>
-                  </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-
-                <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_LibraryVersion}">
-                  <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                      <ComboBox ItemsSource="{Binding LibraryVersionItems}" SelectedItem="{Binding LibraryVersion}">
-                        <ComboBox.ItemTemplate>
-                          <DataTemplate>
-                            <TextBlock Text="{Binding Version}" />
-                          </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                      </ComboBox>
-                    </DataTemplate>
-                  </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-
-                <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_IntellisenseVersion}">
-                  <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                      <ComboBox ItemsSource="{Binding IntellisenseVersionItems}" SelectedItem="{Binding IntellisenseVersion}">
-                        <ComboBox.ItemTemplate>
-                          <DataTemplate>
-                            <TextBlock Text="{Binding Version}" />
-                          </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                      </ComboBox>
-                    </DataTemplate>
-                  </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-
-                <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_Language}">
-                  <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                      <ComboBox MinWidth="80" ItemsSource="{Binding LanguageItems}" SelectedItem="{Binding Language}">
-                        <ComboBox.ItemTemplate>
-                          <DataTemplate>
-                            <TextBlock Text="{Binding Language}" />
-                          </DataTemplate>
-                        </ComboBox.ItemTemplate>
-                      </ComboBox>
-                    </DataTemplate>
-                  </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-
-                <GridViewColumn Width="100" Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_DownloadProgress}">
-                  <GridViewColumn.CellTemplate>
-                    <DataTemplate>
-                      <ProgressBar Minimum="0" Maximum="1" Height="16" Value="{Binding DownloadPercent, Mode=OneWay}">
-                        <ProgressBar.Style>
-                          <Style TargetType="ProgressBar" BasedOn="{StaticResource {x:Type ProgressBar}}">
-                            <Style.Triggers>
-                              <DataTrigger Binding="{Binding DownloadPercent}" Value="-1">
-                                <Setter Property="IsIndeterminate" Value="True" />
-                              </DataTrigger>
-                            </Style.Triggers>
-                          </Style>
-                        </ProgressBar.Style>
-                      </ProgressBar>
-                    </DataTemplate>
-                  </GridViewColumn.CellTemplate>
-                </GridViewColumn>
-              </GridView>
-            </ListView.View>
-          </ListView>
-        </Grid>
-
-        <Grid Grid.Row="2">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
-
-          <Button
-            Grid.Column="1"
-            Command="{Binding DownloadCommand}"
-            Style="{StaticResource ImageButton}"
-          >
-            <Button.Content>
-              <StackPanel>
-                <Control Template="{StaticResource App-Image-Download}" />
-                <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Download_A}" />
+      <ContentControl Focusable="False" Content="{Binding ContextContent}">
+        <ContentControl.Resources>
+          <DataTemplate DataType="{x:Type app_viewmodels:RefreshViewModel}">
+            <Grid>
+              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Static p:Resources.UI_Main_Refresh_Notices}"/>
+                
+                <Button
+                  Margin="20"
+                  Padding="20"
+                  Command="{Binding RefreshCommand}"
+                  Content="{x:Static p:Resources.UI_Main_Refresh_Execute_A}"
+                />
               </StackPanel>
-            </Button.Content>
-          </Button>
-        </Grid>
-      </Grid>
+            </Grid>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type app_viewmodels:DownloadViewModel}">
+            <Grid Grid.IsSharedSizeScope="True">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
 
-      <Grid>
-        <Grid.Style>
-          <Style TargetType="Grid">
-            <Style.Triggers>
-              <DataTrigger Binding="{Binding IsDownloaded}" Value="True">
-                <Setter Property="Visibility" Value="Visible" />
-              </DataTrigger>
-            </Style.Triggers>
-            <Setter Property="Visibility" Value="Collapsed" />
-          </Style>
-        </Grid.Style>
+              <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_InstallDirectory_Header_A}" />
+                <Grid Grid.Column="1">
+                  <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                  </Grid.ColumnDefinitions>
+                  <TextBox
+                    Grid.Column="0"
+                    IsReadOnly="{Binding IsDownloading}"
+                    Text="{Binding InstallRootDirectoryPath, UpdateSourceTrigger=PropertyChanged}"
+                  />
+                  <Button
+                    Grid.Column="1"
+                    Command="{Binding SelectInstallRootDirectoryPathCommand}"
+                    Style="{StaticResource ImageButton}"
+                    ToolTip="{x:Static p:Resources.UI_Main_InstallDirectory_SelectDirectory_A}"
+                  >
+                    <Button.Content>
+                      <Control Focusable="False" Template="{StaticResource App-Image-Folder}" />
+                    </Button.Content>
+                  </Button>
+                </Grid>
+              </Grid>
 
-        <Grid.RowDefinitions>
-          <RowDefinition Height="*" />
-          <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-        <Grid Grid.Row="0">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_TargetDirectories_A}" />
+                <ListView
+                  Grid.Column="1"
+                  ItemsSource="{Binding DirectoryItems}"
+                  IsEnabled="{Binding IsDownloading, Converter={StaticResource LogicalNotConverter}}"
+                >
+                  <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                      <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    </Style>
+                  </ListView.ItemContainerStyle>
+                  <ListView.View>
+                    <GridView>
+                      <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_Directory}">
+                        <GridViewColumn.CellTemplate>
+                          <DataTemplate>
+                            <CheckBox
+                              IsChecked="{Binding IsDownloadTarget}"
+                              Content="{Binding DirectoryName, Mode=OneWay}"
+                            />
+                          </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                      </GridViewColumn>
 
-          <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_InstallCommand_Header_A}" />
-          <TextBox
-            Grid.Column="1"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            ScrollViewer.HorizontalScrollBarVisibility="Auto"
-            VerticalAlignment="Stretch"
-            HorizontalAlignment="Stretch"
-            IsReadOnly="True"
-            IsReadOnlyCaretVisible="True"
-            Text="{Binding InstallCommand, Mode=OneWay}"
-          />
-        </Grid>
+                      <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_LibraryVersion}">
+                        <GridViewColumn.CellTemplate>
+                          <DataTemplate>
+                            <ComboBox ItemsSource="{Binding LibraryVersionItems}" SelectedItem="{Binding LibraryVersion}">
+                              <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                  <TextBlock Text="{Binding Version}" />
+                                </DataTemplate>
+                              </ComboBox.ItemTemplate>
+                            </ComboBox>
+                          </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                      </GridViewColumn>
 
-        <Grid Grid.Row="1">
-          <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
-            <ColumnDefinition Width="*" />
-          </Grid.ColumnDefinitions>
+                      <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_IntellisenseVersion}">
+                        <GridViewColumn.CellTemplate>
+                          <DataTemplate>
+                            <ComboBox ItemsSource="{Binding IntellisenseVersionItems}" SelectedItem="{Binding IntellisenseVersion}">
+                              <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                  <TextBlock Text="{Binding Version}" />
+                                </DataTemplate>
+                              </ComboBox.ItemTemplate>
+                            </ComboBox>
+                          </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                      </GridViewColumn>
 
-          <Button
-            Command="{Binding BackCommand}"
-            Style="{StaticResource ImageButton}"
-          >
-            <Button.Content>
-              <StackPanel>
-                <Control Template="{StaticResource App-Image-Back}" />
-                <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Back_A}" />
-              </StackPanel>
-            </Button.Content>
-          </Button>
+                      <GridViewColumn Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_Language}">
+                        <GridViewColumn.CellTemplate>
+                          <DataTemplate>
+                            <ComboBox MinWidth="80" ItemsSource="{Binding LanguageItems}" SelectedItem="{Binding Language}">
+                              <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                  <TextBlock Text="{Binding Language}" />
+                                </DataTemplate>
+                              </ComboBox.ItemTemplate>
+                            </ComboBox>
+                          </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                      </GridViewColumn>
 
-          <Button
-            Grid.Column="1"
-            Command="{Binding ExecuteCommand}"
-            Style="{StaticResource ImageButton}"
-          >
-            <StackPanel>
-              <Control Template="{StaticResource App-Image-Install}" />
-              <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Execute_A}" />
-            </StackPanel>
-          </Button>
-        </Grid>
-      </Grid>
+                      <GridViewColumn Width="100" Header="{x:Static p:Resources.UI_Main_TargetDirectories_List_Column_Header_DownloadProgress}">
+                        <GridViewColumn.CellTemplate>
+                          <DataTemplate>
+                            <ProgressBar Minimum="0" Maximum="1" Height="16" Value="{Binding DownloadPercent, Mode=OneWay}">
+                              <ProgressBar.Style>
+                                <Style TargetType="ProgressBar" BasedOn="{StaticResource {x:Type ProgressBar}}">
+                                  <Style.Triggers>
+                                    <DataTrigger Binding="{Binding DownloadPercent}" Value="-1">
+                                      <Setter Property="IsIndeterminate" Value="True" />
+                                    </DataTrigger>
+                                  </Style.Triggers>
+                                </Style>
+                              </ProgressBar.Style>
+                            </ProgressBar>
+                          </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                      </GridViewColumn>
+                    </GridView>
+                  </ListView.View>
+                </ListView>
+              </Grid>
+
+              <Grid Grid.Row="2">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                  Grid.Column="1"
+                  Command="{Binding DownloadCommand}"
+                  Style="{StaticResource ImageButton}"
+                >
+                  <Button.Content>
+                    <StackPanel>
+                      <Control Template="{StaticResource App-Image-Download}" />
+                      <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Download_A}" />
+                    </StackPanel>
+                  </Button.Content>
+                </Button>
+              </Grid>
+            </Grid>
+          </DataTemplate>
+          <DataTemplate DataType="{x:Type app_viewmodels:InstallViewModel}">
+            <Grid Grid.IsSharedSizeScope="True">
+              <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+              </Grid.RowDefinitions>
+
+              <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Label Grid.Column="0" Content="{x:Static p:Resources.UI_Main_InstallCommand_Header_A}" />
+                <TextBox
+                  Grid.Column="1"
+                  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Padding="4"
+                  VerticalAlignment="Stretch"
+                  HorizontalAlignment="Stretch"
+                  IsReadOnly="True"
+                  IsReadOnlyCaretVisible="True"
+                  Text="{Binding InstallCommand, Mode=OneWay}"
+                />
+              </Grid>
+
+              <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                  <ColumnDefinition Width="Auto" SharedSizeGroup="Header" />
+                  <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button
+                  Command="{Binding BackCommand}"
+                  Style="{StaticResource ImageButton}"
+                >
+                  <Button.Content>
+                    <StackPanel>
+                      <Control Template="{StaticResource App-Image-Back}" />
+                      <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Back_A}" />
+                    </StackPanel>
+                  </Button.Content>
+                </Button>
+
+                <Button
+                  Grid.Column="1"
+                  Command="{Binding ExecuteCommand}"
+                  Style="{StaticResource ImageButton}"
+                >
+                  <StackPanel>
+                    <Control Template="{StaticResource App-Image-Install}" />
+                    <Label Content="{x:Static p:Resources.UI_Main_InstallDirectory_Execute_A}" />
+                  </StackPanel>
+                </Button>
+              </Grid>
+            </Grid>
+          </DataTemplate>
+        </ContentControl.Resources>
+      </ContentControl>
     </Grid>
 
     <GridSplitter Grid.Row="2" Height="8" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" />
@@ -355,6 +362,9 @@
           </StackPanel>
         </Border>
       </Popup>
+
+      <Separator />
+      <TextBlock Text="{Binding ContextMode, Mode=OneWay}" />
     </StatusBar>
   </Grid>
 </Window>
