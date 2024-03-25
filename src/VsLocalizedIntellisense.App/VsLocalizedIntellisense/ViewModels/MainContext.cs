@@ -12,6 +12,7 @@ namespace VsLocalizedIntellisense.ViewModels
 {
     public enum ContextMode
     {
+        Refresh,
         Download,
         Install,
     }

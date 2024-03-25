@@ -25,7 +25,7 @@ namespace VsLocalizedIntellisense.Models.Element
 
         #endregion
 
-        public MainElement(AppConfiguration configuration, IReadOnlyList<string> intellisenseVersionItems, AppFileService appFileService, AppGitHubService appGitHubService, ILoggerFactory loggerFactory)
+        public MainElement(AppConfiguration configuration, IList<string> intellisenseVersionItems, AppFileService appFileService, AppGitHubService appGitHubService, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
             Configuration = configuration;
@@ -50,7 +50,9 @@ namespace VsLocalizedIntellisense.Models.Element
         private AppFileService AppFileService { get; }
         private AppGitHubService AppGitHubService { get; }
 
-        private IReadOnlyList<string> IntellisenseVersionItems { get; }
+        private IList<string> IntellisenseVersionItems { get; }
+
+        public bool HasIntellisenseVersionItems => IntellisenseVersionItems.Any();
 
         public string InstallRootDirectoryPath
         {
@@ -229,10 +231,12 @@ namespace VsLocalizedIntellisense.Models.Element
         {
             switch(e.PropertyName) {
                 case nameof(InstallRootDirectoryPath):
-                    var elements = LoadIntellisenseDirectories(InstallRootDirectoryPath, Configuration.GetIntellisenseDirectories(), IntellisenseVersionItems);
-                    IntellisenseDirectoryElements.Clear();
-                    foreach(var element in elements) {
-                        IntellisenseDirectoryElements.Add(element);
+                    if(0 < IntellisenseVersionItems.Count) {
+                        var elements = LoadIntellisenseDirectories(InstallRootDirectoryPath, Configuration.GetIntellisenseDirectories(), IntellisenseVersionItems);
+                        IntellisenseDirectoryElements.Clear();
+                        foreach(var element in elements) {
+                            IntellisenseDirectoryElements.Add(element);
+                        }
                     }
                     break;
 

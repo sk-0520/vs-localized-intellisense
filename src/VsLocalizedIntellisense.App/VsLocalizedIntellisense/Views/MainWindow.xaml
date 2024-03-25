@@ -54,6 +54,20 @@
     <Grid Grid.Row="1">
       <ContentControl Focusable="False" Content="{Binding ContextContent}">
         <ContentControl.Resources>
+          <DataTemplate DataType="{x:Type app_viewmodels:RefreshViewModel}">
+            <Grid>
+              <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center">
+                <TextBlock Text="{x:Static p:Resources.UI_Main_Refresh_Notices}"/>
+                
+                <Button
+                  Margin="20"
+                  Padding="20"
+                  Command="{Binding RefreshCommand}"
+                  Content="{x:Static p:Resources.UI_Main_Refresh_Execute_A}"
+                />
+              </StackPanel>
+            </Grid>
+          </DataTemplate>
           <DataTemplate DataType="{x:Type app_viewmodels:DownloadViewModel}">
             <Grid Grid.IsSharedSizeScope="True">
               <Grid.RowDefinitions>
@@ -224,6 +238,7 @@
                   Grid.Column="1"
                   ScrollViewer.VerticalScrollBarVisibility="Auto"
                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                  Padding="4"
                   VerticalAlignment="Stretch"
                   HorizontalAlignment="Stretch"
                   IsReadOnly="True"

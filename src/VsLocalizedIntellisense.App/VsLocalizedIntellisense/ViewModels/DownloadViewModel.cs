@@ -109,6 +109,8 @@ namespace VsLocalizedIntellisense.ViewModels
                         InstallItems.Add(pair.Key, pair.Value);
                     }
                     ChangeMode(ContextMode.Install);
+                } catch (Exception ex) {
+                    Logger.LogError(ex.ToString());
                 } finally {
                     IsDownloading = false;
                 }

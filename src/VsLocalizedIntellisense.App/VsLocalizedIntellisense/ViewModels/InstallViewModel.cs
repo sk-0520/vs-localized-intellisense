@@ -82,6 +82,8 @@ namespace VsLocalizedIntellisense.ViewModels
                 IsExecuting = true;
                 try {
                     await Model.ExecuteCommandShellAsync(GeneratedCommandShellEditor);
+                } catch(Exception ex) {
+                    Logger.LogError(ex.ToString());
                 } finally {
                     IsExecuting = false;
                 }

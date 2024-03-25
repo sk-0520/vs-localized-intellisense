@@ -205,6 +205,24 @@ namespace VsLocalizedIntellisense.Properties {
         }
         
         /// <summary>
+        ///   更新 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_Main_Refresh_Execute_A {
+            get {
+                return ResourceManager.GetString("UI_Main_Refresh_Execute_A", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   必要データのダウンロード・更新処理が必要です に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        public static string UI_Main_Refresh_Notices {
+            get {
+                return ResourceManager.GetString("UI_Main_Refresh_Notices", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ログレベル に類似しているローカライズされた文字列を検索します。
         /// </summary>
         public static string UI_Main_Status_LogLevel_A {

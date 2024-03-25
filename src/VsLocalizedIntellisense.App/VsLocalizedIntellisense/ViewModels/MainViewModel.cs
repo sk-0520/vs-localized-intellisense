@@ -18,6 +18,8 @@ using VsLocalizedIntellisense.Models.Mvvm.Command;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 using VsLocalizedIntellisense.ViewModels.Message;
+using VsLocalizedIntellisense.Models.Service.Application;
+using System.Windows;
 
 namespace VsLocalizedIntellisense.ViewModels
 {
@@ -26,7 +28,7 @@ namespace VsLocalizedIntellisense.ViewModels
         #region variable
 
         ViewModelBase _contextContent;
-        ContextMode _contextMode = ContextMode.Download;
+        ContextMode _contextMode;
 
         private DelegateCommand _openReleasePageCommand;
 
@@ -44,6 +46,13 @@ namespace VsLocalizedIntellisense.ViewModels
             : base(model, loggerFactory)
         {
             Configuration = configuration;
+
+            this._contextMode = Model.HasIntellisenseVersionItems
+                ? ContextMode.Download
+                : ContextMode.Refresh
+            ;
+
+
             DirectoryCollection = new ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel>(Model.IntellisenseDirectoryElements, new ModelViewModelObservableCollectionOptions<DirectoryElement, DirectoryViewModel>() {
                 ToViewModel = m => new DirectoryViewModel(m, LoggerFactory),
             });
@@ -80,6 +89,10 @@ namespace VsLocalizedIntellisense.ViewModels
                 }
 
                 switch(ContextMode) {
+                    case ContextMode.Refresh:
+                        this._contextContent = new RefreshViewModel(Model, InstallItems, m => ChangedContext(m), Messenger, Configuration, LoggerFactory);
+                        break;
+
                     case ContextMode.Download:
                         foreach(var installItem in InstallItems) {
                             installItem.Key.DownloadPercent = 0;
