@@ -25,7 +25,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
         private class TestViewModel: ViewModelBase
         {
             public TestViewModel()
-                : base(NullLoggerFactory.Instance)
+                : base()
             { }
 
             private TestModel TestModel { get; } = new TestModel();

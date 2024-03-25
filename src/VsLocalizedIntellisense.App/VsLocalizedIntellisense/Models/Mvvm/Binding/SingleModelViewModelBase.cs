@@ -11,7 +11,17 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
         where TModel : BindModelBase
     {
         protected SingleModelViewModelBase(TModel model, ILoggerFactory loggerFactory)
-            : base(model, loggerFactory)
-        { }
+            : base(model)
+        {
+            LoggerFactory = loggerFactory;
+            Logger = loggerFactory.CreateLogger(GetType());
+        }
+
+        #region property
+
+        protected ILoggerFactory LoggerFactory { get; }
+        protected ILogger Logger { get; }
+
+        #endregion
     }
 }

@@ -14,8 +14,8 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     /// <typeparam name="TModel"></typeparam>
     public class SimpleModelViewModelBase<TModel>: ViewModelBase
     {
-        protected SimpleModelViewModelBase(TModel model, ILoggerFactory loggerFactory)
-            : base(loggerFactory)
+        protected SimpleModelViewModelBase(TModel model)
+            : base()
         {
             Model = model;
         }
