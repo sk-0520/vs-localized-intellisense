@@ -38,21 +38,10 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
 
         private static (string rawDirectory, string intellisenseDirectory, string dotnetVersionClr, string dotnetVersionStandard) GetRequiredOptions(IConfiguration configuration)
         {
-            string GetConfiguration(string key)
-            {
-                var result = configuration.GetValue<string>(key);
-
-                if(string.IsNullOrWhiteSpace(result)) {
-                    throw new InvalidOperationException(key);
-                }
-
-                return result;
-            }
-
-            var rawDirectory = GetConfiguration("raw_dir");
-            var intellisenseDirectory = GetConfiguration("intellisense_dir");
-            var dotnetVersionClr = GetConfiguration("dotnet_version_clr");
-            var dotnetVersionStandard = GetConfiguration("dotnet_version_standard");
+            var rawDirectory = configuration.GetRequiredString("raw_dir");
+            var intellisenseDirectory = configuration.GetRequiredString("intellisense_dir");
+            var dotnetVersionClr = configuration.GetRequiredString("dotnet_version_clr");
+            var dotnetVersionStandard = configuration.GetRequiredString("dotnet_version_standard");
 
             return (
                 rawDirectory: rawDirectory,
@@ -66,14 +55,8 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
         {
             var librarySection = configuration.GetRequiredSection("libraries");
 
-            string[] GetConfiguration(string key)
-            {
-                var result = librarySection.GetRequiredSection(key).Get<string[]>() ?? throw new InvalidOperationException(key);
-                return result;
-            }
-
-            var clr = GetConfiguration("clr");
-            var standard = GetConfiguration("standard");
+            var clr = librarySection.GetSectionValues<string>("clr");
+            var standard = librarySection.GetSectionValues<string>("standard");
 
             return (
                 clr: clr,
@@ -127,9 +110,10 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
         private void UpdateItem(IntellisenseItem item)
         {
             var xmlSection = Configuration.GetRequiredSection("xml");
+
             var xml = new {
-                Namespase = xmlSection.GetValue<string>("namespace")!,
-                Schema = xmlSection.GetValue<string>("schema")!,
+                Namespase = xmlSection.GetSectionValue<string>("namespace"),
+                Schema = xmlSection.GetSectionValue<string>("schema"),
             };
             
             foreach(var rawFile in item.RawFiles) {
