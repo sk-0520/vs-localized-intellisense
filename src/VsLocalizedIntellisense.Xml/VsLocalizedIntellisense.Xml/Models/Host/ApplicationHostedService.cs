@@ -83,22 +83,31 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             return item;
         }
 
-        private bool UpdateElement(XElement rawElement, XElement langElement, XNamespace intellisenseNamespace)
+        private bool UpdateAttribute(XAttribute rawAttribute, XNamespace intellisenseNamespace, XElement intellisenseElement)
+        {
+            return false;
+        }
+
+        private bool UpdateElement(XElement rawElement, XNamespace intellisenseNamespace, XElement intellisenseElement)
         {
             var isChanged = false;
 
-            //var rawValue = new XmlName rawElement.Value
+            foreach(var attr in rawElement.Attributes()) {
+                if(UpdateAttribute(attr, intellisenseNamespace, intellisenseElement)) {
+                    isChanged = true;
+                }
+            }
 
             return isChanged;
         }
 
-        private bool UpdateElements(IReadOnlyDictionary<string, XElement> rawMemberMap, IReadOnlyDictionary<string, XElement> langMemberMap, XNamespace intellisenseNamespace)
+        private bool UpdateElements(IReadOnlyDictionary<string, XElement> rawMemberMap, XNamespace intellisenseNamespace, IReadOnlyDictionary<string, XElement> intellisenseMemberMap)
         {
             var isChanged = false;
 
             foreach(var (rawName, rawElement) in rawMemberMap) {
-                if(langMemberMap.TryGetValue(rawName, out var langElement)) {
-                    if(UpdateElement(rawElement, langElement, intellisenseNamespace)) {
+                if(intellisenseMemberMap.TryGetValue(rawName, out var langElement)) {
+                    if(UpdateElement(rawElement, intellisenseNamespace, langElement)) {
                         isChanged = true;
                     }
                 }
@@ -122,13 +131,13 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
 
                 XNamespace intellisenseNamespace = xml.Namespase;
 
-                foreach(var (language, files) in item.LanguageFiles) {
+                foreach(var (_, files) in item.LanguageFiles) {
                     foreach(var langFile in files) {
                         if(rawFile.Name == langFile.Name) {
                             var langXml = XDocument.Load(langFile.FullName);
-                            var langMemberMap = langXml.GetMembers().GetMemberMap();
+                            var intellisenseMemberMap = langXml.GetMembers().GetMemberMap();
 
-                            if(UpdateElements(rawMemberMap, langMemberMap, intellisenseNamespace)) {
+                            if(UpdateElements(rawMemberMap, intellisenseNamespace, intellisenseMemberMap)) {
                                 Logger.LogWarning("WRITE!");
                                 langXml.Root!.Add(new XAttribute(XNamespace.Xmlns + intellisenseNamespace.NamespaceName, xml.Schema));
                                 //langXml.Save(langFile.FullName + ".xml");
