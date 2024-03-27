@@ -1,3 +1,6 @@
+#if DEBUG
+//#   define SHOW_DEBUG_ITEMS
+#endif
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,9 +9,11 @@ using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.Win32.SafeHandles;
 
 namespace VsLocalizedIntellisense.Xml.Models.Host
 {
@@ -93,9 +98,26 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             return item;
         }
 
+        private void UpdateItem(IntellisenseItem item)
+        {
+            foreach(var rawFile in item.RawFiles) {
+                var rawXml = XDocument.Load(rawFile.FullName);
+
+                foreach(var (language, files) in item.LanguageFiles) {
+                    foreach(var langFile in files) {
+                        if(rawFile.Name == langFile.Name) {
+                            var langXml = XDocument.Load(langFile.FullName);
+                        }
+                    }
+                }
+            }
+        }
+
         private void UpdateItems(IReadOnlyList<IntellisenseItem> items)
         {
-
+            foreach(var item in items) {
+                UpdateItem(item);
+            }
         }
 
         #endregion
@@ -118,14 +140,14 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             var items = new List<IntellisenseItem>();
             foreach(var library in libraryOptions.standard) {
                 var item = GetIntellisenseItem(requiredOptions.rawDirectory, library, intellisenseStandardDirectoryPath);
-                items.Add(item);
+                // items.Add(item);
             }
             foreach(var library in libraryOptions.clr) {
                 var item = GetIntellisenseItem(requiredOptions.rawDirectory, library, intellisenseClrDirectoryPath);
                 items.Add(item);
             }
 
-#if DEBUG
+#if SHOW_DEBUG_ITEMS
             foreach(var item in items) {
                 Logger.LogInformation(item.LibraryName);
                 foreach(var pair in item.LanguageFiles) {
@@ -143,6 +165,7 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
 
         public Task StopAsync(CancellationToken cancellationToken)
         {
+            Logger.LogInformation("bye bye!");
             return Task.CompletedTask;
         }
 
