@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -53,6 +54,25 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             );
         }
 
+        private (string[] clr, string[] standard) GetLibraryOptions(IConfiguration configuration)
+        {
+            var librarySection = configuration.GetRequiredSection("libraries");
+
+            string[] GetConfiguration(string key)
+            {
+                var result = librarySection.GetRequiredSection(key).Get<string[]>() ?? throw new InvalidOperationException(key);
+                return result;
+            }
+
+            var clr = GetConfiguration("clr");
+            var standard = GetConfiguration("standard");
+
+            return (
+                clr: clr,
+                standard: standard
+            );
+        }
+
         #endregion
 
         #region IHostedService
@@ -61,7 +81,16 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
         {
             Logger.LogInformation("hello world!");
 
-            var options = GetRequiredOptions(Configuration);
+            var requiredOptions = GetRequiredOptions(Configuration);
+            var libraryOptions = GetLibraryOptions(Configuration);
+
+            Logger.LogTrace("{requiredOptions}", requiredOptions);
+            Logger.LogTrace("{libraryOptions}", libraryOptions);
+
+            var intellisenseClrDirectoryPath = Path.Join(requiredOptions.intellisenseDirectory, requiredOptions.dotnetVersionClr);
+            var intellisenseStandardDirectoryPath = Path.Join(requiredOptions.intellisenseDirectory, requiredOptions.dotnetVersionStandard);
+
+
 
             return Task.CompletedTask;
         }
