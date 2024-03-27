@@ -93,6 +93,11 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             return item;
         }
 
+        private void UpdateItems(IReadOnlyList<IntellisenseItem> items)
+        {
+
+        }
+
         #endregion
 
         #region IHostedService
@@ -131,6 +136,7 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
                 }
             }
 #endif
+            UpdateItems(items);
 
             return Task.CompletedTask;
         }
