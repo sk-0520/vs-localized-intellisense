@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -73,6 +74,25 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             );
         }
 
+        private IntellisenseItem GetIntellisenseItem(string rawDirectoryPath, string libraryName, string intellisenseBaseDirectoryPath)
+        {
+            var rawDir = new DirectoryInfo(Path.Combine(rawDirectoryPath, libraryName));
+            var item = new IntellisenseItem() {
+                LibraryName = rawDirectoryPath,
+                RawDirectory = rawDir,
+                RawFiles = rawDir.GetFiles()
+            };
+
+            var libraryDir = new DirectoryInfo(Path.Combine(intellisenseBaseDirectoryPath, libraryName));
+            var dirs = libraryDir.EnumerateDirectories("*", SearchOption.TopDirectoryOnly);
+            foreach(var dir in dirs) {
+                var files = dir.EnumerateFiles("*.xml", SearchOption.TopDirectoryOnly).ToArray();
+                item.LanguageFiles.Add(dir.Name, files);
+            }
+
+            return item;
+        }
+
         #endregion
 
         #region IHostedService
@@ -87,10 +107,30 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             Logger.LogTrace("{requiredOptions}", requiredOptions);
             Logger.LogTrace("{libraryOptions}", libraryOptions);
 
-            var intellisenseClrDirectoryPath = Path.Join(requiredOptions.intellisenseDirectory, requiredOptions.dotnetVersionClr);
             var intellisenseStandardDirectoryPath = Path.Join(requiredOptions.intellisenseDirectory, requiredOptions.dotnetVersionStandard);
+            var intellisenseClrDirectoryPath = Path.Join(requiredOptions.intellisenseDirectory, requiredOptions.dotnetVersionClr);
 
+            var items = new List<IntellisenseItem>();
+            foreach(var library in libraryOptions.standard) {
+                var item = GetIntellisenseItem(requiredOptions.rawDirectory, library, intellisenseStandardDirectoryPath);
+                items.Add(item);
+            }
+            foreach(var library in libraryOptions.clr) {
+                var item = GetIntellisenseItem(requiredOptions.rawDirectory, library, intellisenseClrDirectoryPath);
+                items.Add(item);
+            }
 
+#if DEBUG
+            foreach(var item in items) {
+                Logger.LogInformation(item.LibraryName);
+                foreach(var pair in item.LanguageFiles) {
+                    Logger.LogInformation("[{}]", pair.Key);
+                    foreach(var file in pair.Value) {
+                        Logger.LogInformation("{}", file.Name);
+                    }
+                }
+            }
+#endif
 
             return Task.CompletedTask;
         }
