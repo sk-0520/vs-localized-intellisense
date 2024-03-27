@@ -2,10 +2,12 @@
 //#   define SHOW_DEBUG_ITEMS
 #endif
 using System;
+using System.Collections.Frozen;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
+using System.Security.AccessControl;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -98,15 +100,55 @@ namespace VsLocalizedIntellisense.Xml.Models.Host
             return item;
         }
 
+        private bool UpdateElement(XElement rawElement, XElement langElement, XNamespace intellisenseNamespace)
+        {
+            var isChanged = false;
+
+            //var rawValue = new XmlName rawElement.Value
+
+            return isChanged;
+        }
+
+        private bool UpdateElements(IReadOnlyDictionary<string, XElement> rawMemberMap, IReadOnlyDictionary<string, XElement> langMemberMap, XNamespace intellisenseNamespace)
+        {
+            var isChanged = false;
+
+            foreach(var (rawName, rawElement) in rawMemberMap) {
+                if(langMemberMap.TryGetValue(rawName, out var langElement)) {
+                    if(UpdateElement(rawElement, langElement, intellisenseNamespace)) {
+                        isChanged = true;
+                    }
+                }
+            }
+
+            return isChanged;
+        }
+
         private void UpdateItem(IntellisenseItem item)
         {
+            var xmlSection = Configuration.GetRequiredSection("xml");
+            var xml = new {
+                Namespase = xmlSection.GetValue<string>("namespace")!,
+                Schema = xmlSection.GetValue<string>("schema")!,
+            };
+            
             foreach(var rawFile in item.RawFiles) {
                 var rawXml = XDocument.Load(rawFile.FullName);
+                var rawMemberMap = rawXml.GetMembers().GetMemberMap().ToFrozenDictionary();
+
+                XNamespace intellisenseNamespace = xml.Namespase;
 
                 foreach(var (language, files) in item.LanguageFiles) {
                     foreach(var langFile in files) {
                         if(rawFile.Name == langFile.Name) {
                             var langXml = XDocument.Load(langFile.FullName);
+                            var langMemberMap = langXml.GetMembers().GetMemberMap();
+
+                            if(UpdateElements(rawMemberMap, langMemberMap, intellisenseNamespace)) {
+                                Logger.LogWarning("WRITE!");
+                                langXml.Root!.Add(new XAttribute(XNamespace.Xmlns + intellisenseNamespace.NamespaceName, xml.Schema));
+                                //langXml.Save(langFile.FullName + ".xml");
+                            }
                         }
                     }
                 }
