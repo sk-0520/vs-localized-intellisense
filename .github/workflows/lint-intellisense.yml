@@ -3,15 +3,17 @@ name: Lint Intellisense
 on:
   push:
     paths:
-      - 'intellisense/**/'
-      - '.github/workflows/build-intellisense.yml'
+      - 'raw-intellisense/**/*'
+      - 'intellisense/**/*'
+      - '.github/workflows/lint-intellisense.yml'
   pull_request:
     paths:
-      - 'intellisensep/**/'
-      - '.github/workflows/build-intellisense.yml'
+      - 'intellisense/**/*'
+      - 'raw-intellisense/**/*'
+      - '.github/workflows/lint-intellisense.yml'
 
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -27,9 +29,16 @@ jobs:
       - name: <Install> xmllint
         run: sudo apt-get install -y libxml2-utils
 
-      - name: <Lint> XML
+      - name: <Lint> XML (intellisense)
         run: |
           for XML in `find intellisense -type f -name '*.xml'`; do
+            echo "${XML}"
+            xmllint --noout "${XML}"
+          done
+
+      - name: <Lint> XML (raw-intellisense)
+        run: |
+          for XML in `find raw-intellisense -type f -name '*.xml'`; do
             echo "${XML}"
             xmllint --noout "${XML}"
           done

@@ -27,3 +27,8 @@
   * Microsoft.WindowsDesktop.App.Ref
 * 取得した XML を生データとしてリポジトリに突っ込む
   * 手動前提
+  * XML 壊れてる
+
+## VsLocalizedIntellisense.Xml
+
+* 作成中
