@@ -1,0 +1,949 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Diagnostics.Tracing</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.Tracing.DiagnosticCounter">
+      <summary vsli:raw="&lt;see cref=&quot;T:System.Diagnostics.Tracing.DiagnosticCounter&quot; /&gt; is an abstract class that serves as the parent class for various Counter* classes, namely &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt;, and &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.DiagnosticCounter" /> 是一個抽象類別，作為各種 Counter* 類別的父系類別，即 <see cref="T:System.Diagnostics.Tracing.EventCounter" />、<see cref="T:System.Diagnostics.Tracing.PollingCounter" />、<see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 和 <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" />。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.AddMetadata(System.String,System.String)">
+      <summary vsli:raw="Adds key-value metadata to the counter that will be included as a part of the payload.">將索引鍵/值中繼資料新增至將作為承載一部分的計數器</summary>
+      <param name="key" vsli:raw="The metadata key.">中繼資料金鑰。</param>
+      <param name="value" vsli:raw="The metadata value.">中繼資料值。</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayName">
+      <summary vsli:raw="Gets or sets the display name of the counter.">取得或設定計數器的顯示名稱。</summary>
+      <returns vsli:raw="The display name of the counter.">計數器的顯示名稱。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayUnits">
+      <summary vsli:raw="Gets or sets the display units of the counter.">取得或設定計數器的顯示單位。</summary>
+      <returns vsli:raw="The display units of the counter.">計數器的顯示單位。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.Dispose">
+      <summary vsli:raw="Removes the counter from the set that the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; will report on.">從 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 報告的集合中移除計數器。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.EventSource">
+      <summary vsli:raw="Gets the EventSource that this counter is attached to.">取得此計數器所附加的 EventSource。</summary>
+      <returns vsli:raw="The EventSource that this counter is attached to.">這個計數器所附加的 EventSource。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.Name">
+      <summary vsli:raw="Gets the name of this counter.">取得此計數器的名稱。</summary>
+      <returns vsli:raw="The name of this counter.">這個計數器的名稱。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventActivityOptions">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events.">指定活動開始和停止事件的追蹤。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Detachable">
+      <summary vsli:raw="Allow overlapping activities. By default, activity starts and stops must be property nested. That is, a sequence of Start A, Start B, Stop A, Stop B is not allowed will result in B stopping at the same time as A.">允許重疊的活動。 根據預設，活動開始和停止必須加以適當巢狀。 換句話說，不允許「開始 A」、「開始 B」、「停止 A」、「停止 B」的序列，這會導致 B 與 A 同時停止。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Disable">
+      <summary vsli:raw="Turn off start and stop tracking.">關閉開始和停止追蹤。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.None">
+      <summary vsli:raw="Use the default behavior for start and stop tracking.">使用開始和停止追蹤的預設行為。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Recursive">
+      <summary vsli:raw="Allow recursive activity starts. By default, an activity cannot be recursive. That is, a sequence of Start A, Start A, Stop A, Stop A is not allowed. Unintentional recursive activities can occur if the app executes and for some the stop is not reached before another start is called.">允許遞迴活動開始。 根據預設，活動不可為遞迴。 換句話說，不允許「開始 A」、「開始 A」、「停止 A」、「停止 A」的序列。 如果應用程式執行，而且某些停止未達到就呼叫另一個開始，可能會發生意外的遞迴活動。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventAttribute">
+      <summary vsli:raw="Specifies additional event schema information for an event.">指定事件的其他事件結構描述資訊。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventAttribute.#ctor(System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; class with the specified event identifier.">使用指定的事件識別項，初始化 <see cref="T:System.Diagnostics.Tracing.EventAttribute" /> 類別的新執行個體。</summary>
+      <param name="eventId" vsli:raw="The event identifier for the event.">事件的事件識別項。</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.ActivityOptions">
+      <summary vsli:raw="Specifies the behavior of the start and stop events of an activity. An activity is the region of time in an app between the start and the stop.">指定活動之開始和停止事件的行為。 活動是應用程式中從開始到停止之間的時間區域。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">傳回 <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Channel">
+      <summary vsli:raw="Gets or sets an additional event log where the event should be written.">取得或設定應該寫入事件的其他事件記錄檔。</summary>
+      <returns vsli:raw="An additional event log where the event should be written.">應該寫入事件的其他事件記錄檔。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.EventId">
+      <summary vsli:raw="Gets or sets the identifier for the event.">取得或設定事件的識別項。</summary>
+      <returns vsli:raw="The event identifier. This value should be between 0 and 65535.">事件識別項。 這個值必須介於 0 到 65535 之間。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Keywords">
+      <summary vsli:raw="Gets or sets the keywords for the event.">取得或設定事件的關鍵字。</summary>
+      <returns vsli:raw="A bitwise combination of the enumeration values.">列舉值的位元組合。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Level">
+      <summary vsli:raw="Gets or sets the level for the event.">取得或設定事件的層級。</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the level for the event.">其中一個列舉值，這個值指定事件的層級。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Message">
+      <summary vsli:raw="Gets or sets the message for the event.">取得或設定事件的訊息。</summary>
+      <returns vsli:raw="The message for the event.">事件的訊息。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Opcode">
+      <summary vsli:raw="Gets or sets the operation code for the event.">取得或設定事件的作業程式碼。</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the operation code.">其中一個列舉值，這個值指定作業碼。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Tags">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">取得或設定此 <see cref="T:System.Diagnostics.Tracing.EventAttribute" /> 物件的 <see cref="T:System.Diagnostics.Tracing.EventTags" /> 值。 事件標記是記錄事件時所傳遞的使用者定義值。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">
+        <see cref="T:System.Diagnostics.Tracing.EventTags" /> 這個<see cref="T:System.Diagnostics.Tracing.EventAttribute" />物件的值。 事件標記是記錄事件時所傳遞的使用者定義值。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Task">
+      <summary vsli:raw="Gets or sets the task for the event.">取得或設定事件的工作。</summary>
+      <returns vsli:raw="The task for the event.">事件的工作。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Version">
+      <summary vsli:raw="Gets or sets the version of the event.">取得或設定事件的版本。</summary>
+      <returns vsli:raw="The version of the event.">事件的版本。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventChannel">
+      <summary vsli:raw="Specifies the event log channel for the event.">指定事件的事件記錄檔通道。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Admin">
+      <summary vsli:raw="The administrator log channel.">系統管理員記錄檔通道。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Analytic">
+      <summary vsli:raw="The analytic channel.">分析通道。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Debug">
+      <summary vsli:raw="The debug channel.">偵錯通道。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.None">
+      <summary vsli:raw="No channel specified.">未指定通道。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Operational">
+      <summary vsli:raw="The operational channel.">作業通道。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommand">
+      <summary vsli:raw="Describes the command (&lt;see cref=&quot;P:System.Diagnostics.Tracing.EventCommandEventArgs.Command&quot; /&gt; property) that is passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">描述傳遞至 <see cref="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command" /> 回呼的命令 (<see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" /> 屬性)。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Disable">
+      <summary vsli:raw="Disable the event.">停用事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Enable">
+      <summary vsli:raw="Enable the event.">啟用事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.SendManifest">
+      <summary vsli:raw="Send the manifest.">傳送資訊清單。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Update">
+      <summary vsli:raw="Update the event.">更新事件。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommandEventArgs">
+      <summary vsli:raw="Provides the arguments for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">提供 <see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" /> 回呼的引數。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Arguments">
+      <summary vsli:raw="Gets the array of arguments for the callback.">取得回呼的引數陣列。</summary>
+      <returns vsli:raw="An array of callback arguments.">回呼引數的陣列。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command">
+      <summary vsli:raw="Gets the command for the callback.">取得回呼的命令。</summary>
+      <returns vsli:raw="The callback command.">回呼命令。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.DisableEvent(System.Int32)">
+      <summary vsli:raw="Disables the event that have the specified identifier.">停用具有指定識別項的事件。</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to disable.">要停用的事件的識別項。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <paramref name="eventId" /> 位於範圍中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.EnableEvent(System.Int32)">
+      <summary vsli:raw="Enables the event that has the specified identifier.">啟用具有指定識別項的事件。</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to enable.">要啟用的事件的識別項。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <paramref name="eventId" /> 位於範圍中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCounter">
+      <summary vsli:raw="Provides the ability to collect statistics for very frequent events through the  &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">讓您透過 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別收集極度頻繁事件的統計資料。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 類別的新執行個體。</summary>
+      <param name="name" vsli:raw="The event counter name.">事件計數器名稱。</param>
+      <param name="eventSource" vsli:raw="The event source.">事件的來源。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;eventSource&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> 為 <see langword="null" />。  
+-或- 
+ <paramref name="eventSource" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current event counter instance.">傳回目前事件計數器執行個體的字串表示。</summary>
+      <returns vsli:raw="The name, count and mean of the current event counter.">目前事件計數器的名稱、計數和平均值。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">如果效能計數器開啟，會寫入計量。</summary>
+      <param name="value" vsli:raw="The value to be written.">要寫入的值。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Single)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">如果效能計數器開啟，會寫入計量。</summary>
+      <param name="value" vsli:raw="The value to be written.">要寫入的值。</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventDataAttribute">
+      <summary vsli:raw="Specifies a type to be passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method.">指定要傳遞給 <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" /> 方法的類型。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventDataAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventDataAttribute.Name">
+      <summary vsli:raw="Gets or sets the name to apply to an event if the event type or property is not explicitly named.">取得或設定名稱，如果未明確命名事件類型或屬性，則會將這個名稱套用至事件。</summary>
+      <returns vsli:raw="The name to apply to the event or property.">要套用至事件或屬性的名稱。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldAttribute">
+      <summary vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads.">
+        <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" /> 位於作為 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 承載傳遞之使用者定義型別的欄位。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventFieldAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Format">
+      <summary vsli:raw="Gets or sets the value that specifies how to format the value of a user-defined type.">取得或設定值，指定如何格式化使用者定義型別的值。</summary>
+      <returns vsli:raw="The value that specifies how to format the value of a user-defined type.">值, 指定如何格式化使用者定義型別的值。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Tags">
+      <summary vsli:raw="Gets or sets the user-defined &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt; value that is required for fields that contain data that isn't one of the supported types.">取得或設定使用者定義 <see cref="T:System.Diagnostics.Tracing.EventFieldTags" /> 的值，當欄位包含非其中一個支援類型的資料時，便需要此值。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt;.">傳回 <see cref="T:System.Diagnostics.Tracing.EventFieldTags" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldFormat">
+      <summary vsli:raw="Specifies how to format the value of a user-defined type and can be used to override the default formatting for a field.">指定如何格式化使用者定義類型的值，而且可用來覆寫欄位的預設格式化。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Boolean">
+      <summary vsli:raw="Boolean.">Boolean</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Default">
+      <summary vsli:raw="Default.">預設值：</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Hexadecimal">
+      <summary vsli:raw="Hexadecimal.">十六進位。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.HResult">
+      <summary vsli:raw="HResult.">HResult。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Json">
+      <summary vsli:raw="JSON.">JSON。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.String">
+      <summary vsli:raw="String.">字串。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Xml">
+      <summary vsli:raw="XML.">XML。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldTags">
+      <summary vsli:raw="Specifies the user-defined tag that is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads through the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt;.">指定使用者定義的標記，其位於藉由 <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" /> 作為 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 承載傳遞之使用者定義型別的欄位。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">指定沒有標記，而且等於零。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventIgnoreAttribute">
+      <summary vsli:raw="Specifies a property should be ignored when writing an event type with the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)&quot; /&gt; method.">指定當使用 <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)" /> 方法寫入事件類型時，應該忽略某個屬性。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventIgnoreAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventIgnoreAttribute&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventIgnoreAttribute" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventKeywords">
+      <summary vsli:raw="Defines the standard keywords that apply to events.">定義套用至事件的標準關鍵字。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.All">
+      <summary vsli:raw="All the bits are set to 1, representing every possible group of events.">所有位元已設定為 1，表示事件的每種可能群組。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditFailure">
+      <summary vsli:raw="Attached to all failed security audit events. Use this keyword only  for events in the security log.">已附加至所有失敗的安全性稽核事件。 使用這個僅適用於安全性記錄檔中的事件的關鍵字。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditSuccess">
+      <summary vsli:raw="Attached to all successful security audit events. Use this keyword only for events in the security log.">已附加至所有成功的安全性稽核事件。 使用這個僅適用於安全性記錄檔中的事件的關鍵字。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.CorrelationHint">
+      <summary vsli:raw="Attached to transfer events where the related activity ID (correlation ID) is a computed value and is not guaranteed to be unique (that is, it is not a real GUID).">已附加至傳輸事件，其中相關活動 ID (相互關聯 ID) 是經過計算的值，而且不保證是唯一 (也就是說，不是真正的 GUID) 的值。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.EventLogClassic">
+      <summary vsli:raw="Attached to events that are raised by using the &lt;see langword=&quot;RaiseEvent&quot; /&gt; function.">已附加至使用 <see langword="RaiseEvent" /> 函式引發的事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.MicrosoftTelemetry">
+      <summary vsli:raw="Attached to all Microsoft telemetry events.">已附加至所有 Microsoft 遙測事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.None">
+      <summary vsli:raw="No filtering on keywords is performed when the event is published.">發行事件時未執行關鍵字篩選。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.Sqm">
+      <summary vsli:raw="Attached to all Service Quality Mechanism (SQM) events.">已附加至所有服務品質機制 (SQM) 事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiContext">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) context events.">附加至所有 Windows 診斷基礎結構 (WDI) 內容事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiDiagnostic">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) diagnostic events.">附加至所有 Windows 診斷基礎結構 (WDI) 診斷事件。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventLevel">
+      <summary vsli:raw="Identifies the level of an event.">識別事件的層級。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Critical">
+      <summary vsli:raw="This level corresponds to a critical error, which is a serious error that has caused a major failure.">這個等級會對應至嚴重錯誤，也就是造成重大失敗的嚴重錯誤。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Error">
+      <summary vsli:raw="This level adds standard errors that signify a problem.">這個層級新增表示問題的標準錯誤。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Informational">
+      <summary vsli:raw="This level adds informational events or messages that are not errors. These events can help trace the progress or state of an application.">這個等級會加入非錯誤的告知性事件或訊息。 這些事件有助於追蹤應用程式的進度或狀態。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.LogAlways">
+      <summary vsli:raw="No level filtering is done on the event. When used as a level filter for enabling events, for example in EventListener.EnableEvents(), events of all levels will be included.">未對事件進行任何層級篩選。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Verbose">
+      <summary vsli:raw="This level adds lengthy events or messages. It causes all events to be logged.">這個等級會加入冗長的事件或訊息。 它會讓所有事件記錄下來。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Warning">
+      <summary vsli:raw="This level adds warning events (for example, events that are published because a disk is nearing full capacity).">這個等級會加入警告事件 (例如，磁碟容量快不夠時，所發行的事件)。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventListener">
+      <summary vsli:raw="Provides methods for enabling and disabling events from event sources.">提供方法來啟用及停用來自事件來源的事件。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">建立 <see cref="T:System.Diagnostics.Tracing.EventListener" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.DisableEvents(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Disables all events for the specified event source.">停用指定之事件來源的所有事件。</summary>
+      <param name="eventSource" vsli:raw="The event source to disable events for.">要為其停用事件的事件來源。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.Dispose">
+      <summary vsli:raw="Releases the resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">將 <see cref="T:System.Diagnostics.Tracing.EventListener" /> 類別的目前執行個體所使用的資源釋出。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower.">啟用具有指定詳細等級或更低之指定事件來源的事件。</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">要為其啟用事件的事件來源。</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">要啟用的事件的層級。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, and matching keyword flags.">啟用具有指定詳細等級或更低且符合關鍵字旗標之指定事件來源的事件。</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">要為其啟用事件的事件來源。</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">要啟用的事件的層級。</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">啟用事件所需的關鍵字旗標。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, matching event keyword flag, and matching arguments.">啟用具有指定詳細等級或更低且符合關鍵字旗標及引數之指定事件來源的事件。</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">要為其啟用事件的事件來源。</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">要啟用的事件的層級。</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">啟用事件所需的關鍵字旗標。</param>
+      <param name="arguments" vsli:raw="The arguments to be matched to enable the events.">要啟用事件所比對的引數。</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated">
+      <summary vsli:raw="Occurs when an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) is attached to the dispatcher.">發生於將事件來源 (<see cref="T:System.Diagnostics.Tracing.EventSource" /> 物件) 附加至發送器時。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EventSourceIndex(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Gets a small non-negative number that represents the specified event source.">取得小的非負數，其代表指定的事件來源。</summary>
+      <param name="eventSource" vsli:raw="The event source to find the index for.">要尋找其索引的事件來源。</param>
+      <returns vsli:raw="A small non-negative number that represents the specified event source.">表示指定之事件來源的小的非負數。</returns>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventWritten">
+      <summary vsli:raw="Occurs when an event has been written by an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) for which the event listener has enabled events.">發生於事件已由事件接聽程式已啟用事件的事件來源 (<see cref="T:System.Diagnostics.Tracing.EventSource" /> 物件) 寫入時。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Called for all existing event sources when the event listener is created and when a new event source is attached to the listener.">當事件接聽程式已建立且新事件來源已附加至接聽程式時，針對所有現有的事件來源來呼叫。</summary>
+      <param name="eventSource" vsli:raw="The event source.">事件的來源。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)">
+      <summary vsli:raw="Called whenever an event has been written by an event source for which the event listener has enabled events.">每當事件由事件接聽程式已啟用事件的事件來源寫入時呼叫。</summary>
+      <param name="eventData" vsli:raw="The event arguments that describe the event.">描述這個事件的事件引數。</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventManifestOptions">
+      <summary vsli:raw="Specifies how the ETW manifest for the event source is generated.">指定如何產生事件來源的 ETW 資訊清單。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllCultures">
+      <summary vsli:raw="Generates a resources node under the localization folder for every satellite assembly provided.">針對每一個提供的附屬組件，在當地語系化資料夾下產生資源節點。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllowEventSourceOverride">
+      <summary vsli:raw="Overrides the default behavior that the current &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; must be the base class of the user-defined type passed to the write method. This enables the validation of .NET event sources.">覆寫預設行為，也就是目前的 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 必須是傳遞給寫入方法之使用者定義型別的基底類別。 這會啟用 .NET 事件來源的驗證。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.None">
+      <summary vsli:raw="No options are specified.">未指定任何選項。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.OnlyIfNeededForRegistration">
+      <summary vsli:raw="A manifest is generated only the event source must be registered on the host computer.">只有必須在主機電腦上註冊事件來源時，才會產生資訊清單。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.Strict">
+      <summary vsli:raw="Causes an exception to be raised if any inconsistencies occur when writing the manifest file.">如果寫入資訊清單檔案時發生任何不一致的情況，則會引發例外狀況。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventOpcode">
+      <summary vsli:raw="Defines the standard operation codes that the event source attaches to events.">定義由事件來源附加至事件的標準作業程式碼。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStart">
+      <summary vsli:raw="A trace collection start event.">追蹤集合起始事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStop">
+      <summary vsli:raw="A trace collection stop event.">追蹤集合停止事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Extension">
+      <summary vsli:raw="An extension event.">擴充事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Info">
+      <summary vsli:raw="An informational event.">資訊事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Receive">
+      <summary vsli:raw="An event that is published when one activity in an application receives data.">在應用程式中的一個活動接收資料時發行的事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Reply">
+      <summary vsli:raw="An event that is published after an activity in an application replies to an event.">在應用程式中的活動回覆事件之後發行的事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Resume">
+      <summary vsli:raw="An event that is published after an activity in an application resumes from a suspended state. The event should follow an event that has the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Suspend&quot; /&gt; operation code.">在應用程式中的活動從暫停狀態繼續之後發行的事件。 此事件應該跟在具有<see cref="F:System.Diagnostics.Tracing.EventOpcode.Suspend" />作業程式碼的事件後面。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Send">
+      <summary vsli:raw="An event that is published when one activity in an application transfers data or system resources to another activity.">在應用程式中的一個活動將資料或系統資源傳送至另一個活動時發行的事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Start">
+      <summary vsli:raw="An event that is published when an application starts a new transaction or activity. This operation code can be embedded within another transaction or activity when multiple events that have the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; code follow each other without an intervening event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Stop&quot; /&gt; code.">應用程式開始新的交易或活動時發行的事件。 當多個具有 <see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" /> 程式碼的事件相互跟隨，且沒有具有 <see cref="F:System.Diagnostics.Tracing.EventOpcode.Stop" /> 程式碼的干擾事件時，此作業程式碼可以它內嵌在另一個交易或活動中。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Stop">
+      <summary vsli:raw="An event that is published when an activity or a transaction in an application ends. The event corresponds to the last unpaired event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; operation code.">在應用程式中的活動或交易結束時發行的事件。 相對應於最後一個未成對事件（具有<see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" />作業程式碼）的事件。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Suspend">
+      <summary vsli:raw="An event that is published when an activity in an application is suspended.">在應用程式中的活動暫停時發行的事件。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource">
+      <summary vsli:raw="Provides the ability to create events for event tracing across platforms.">提供建立 Windows 事件追蹤 (ETW) 事件的能力。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Boolean)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and specifies whether to throw an exception when an error occurs in the underlying Windows code.">建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體，並指定當基礎 Windows 程式碼發生錯誤時是否擲回例外狀況。</summary>
+      <param name="throwOnEventWriteErrors" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to throw an exception when an error occurs in the underlying Windows code; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> 表示要在基礎 Windows 程式碼發生錯誤時擲回例外狀況，否則為 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">使用指定的組態設定，建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體。</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">列舉值的位元組合，可指定要套用至事件來源的組態設定。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; to be used with non-contract events that contains the specified settings and traits.">初始化要與非合約事件搭配使用之 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 的新執行個體，這些事件包含指定的設定和特性。</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">列舉值的位元組合，可指定要套用至事件來源的組態設定。</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">指定事件來源特性的機碼值組。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">索引鍵/值組中未指定 <paramref name="traits" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name.">使用指定的名稱，建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體。</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">要套用至事件來源的名稱。 必須不是 <see langword="null" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name and settings.">使用指定的名稱和設定，建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體。</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">要套用至事件來源的名稱。 必須不是 <see langword="null" />。</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">列舉值的位元組合，可指定要套用至事件來源的組態設定。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">使用指定的組態設定，建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別的新執行個體。</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">要套用至事件來源的名稱。 必須不是 <see langword="null" />。</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">列舉值的位元組合，可指定要套用至事件來源的組態設定。</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">指定事件來源特性的機碼值組。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">索引鍵/值組中未指定 <paramref name="traits" />。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.ConstructionException">
+      <summary vsli:raw="Gets any exception that was thrown during the construction of the event source.">取得事件來源建構期間擲回的任何例外狀況。</summary>
+      <returns vsli:raw="The exception that was thrown during the construction of the event source, or &lt;see langword=&quot;null&quot; /&gt; if no exception was thrown.">在事件來源建構期間擲回的例外狀況；如果沒有擲回任何例外狀況，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId">
+      <summary vsli:raw="Gets the activity ID of the current thread.">取得目前執行緒的活動識別碼。</summary>
+      <returns vsli:raw="The activity ID of the current thread.">目前執行緒的活動識別碼。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose">
+      <summary vsli:raw="Releases all resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">釋放 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別目前的執行個體所使用的全部資源。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose(System.Boolean)">
+      <summary vsli:raw="Releases the unmanaged resources used by the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and optionally releases the managed resources.">釋放 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 類別所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventSource.EventCommandExecuted">
+      <summary vsli:raw="Occurs when a command comes from an event listener.">發生於命令來自事件接聽程式時。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource.EventData">
+      <summary vsli:raw="Provides the event data for creating fast &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overloads by using the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)&quot; /&gt; method.">藉由使用 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 方法，為快速建立 <see cref="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)" /> 多載提供事件資料。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.DataPointer">
+      <summary vsli:raw="Gets or sets the pointer to the data for the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">取得或設定新 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 多載的資料指標。</summary>
+      <returns vsli:raw="The pointer to the data.">資料的指標。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.Size">
+      <summary vsli:raw="Gets or sets the number of payload items in the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">取得或設定新的 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 多載中的承載項目數目。</summary>
+      <returns vsli:raw="The number of payload items in the new overload.">新多載中的裝載項目數目。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Finalize">
+      <summary vsli:raw="Allows the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object to attempt to free resources and perform other cleanup operations before the object is reclaimed by garbage collection.">允許 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 物件嘗試釋放資源，並執行其他清除作業，不必等到記憶體回收回收物件。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">傳回 XML 資訊清單的字串，與目前的事件來源相關。</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">事件來源的類型。</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) to include in the provider element of the manifest.">要包含在資訊清單之 provider 項目的組件檔 (.dll) 路徑。</param>
+      <returns vsli:raw="The XML data string.">XML 資料字串。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String,System.Diagnostics.Tracing.EventManifestOptions)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">傳回 XML 資訊清單的字串，與目前的事件來源相關。</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">事件來源的類型。</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) file to include in the provider element of the manifest.">要包含在資訊清單之 provider 項目的組件檔 (.dll) 路徑。</param>
+      <param name="flags" vsli:raw="A bitwise combination of the enumeration values that specify how the manifest is generated.">列舉值的位元組合，指定產生資訊清單的方式。</param>
+      <returns vsli:raw="The XML data string or &lt;see langword=&quot;null&quot; /&gt;.">XML 資料字串或 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetGuid(System.Type)">
+      <summary vsli:raw="Gets the unique identifier for this implementation of the event source.">取得這項事件來源實作的唯一識別項。</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">事件來源的類型。</param>
+      <returns vsli:raw="A unique identifier for this event source type.">這個事件來源類型的唯一識別項。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetName(System.Type)">
+      <summary vsli:raw="Gets the friendly name of the event source.">取得事件來源的易記名稱。</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">事件來源的類型。</param>
+      <returns vsli:raw="The friendly name of the event source. The default is the simple name of the class.">事件來源的易記名稱。 預設為類別的簡單名稱。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetSources">
+      <summary vsli:raw="Gets a snapshot of all the event sources for the application domain.">取得應用程式定義域中所有事件來源的快照。</summary>
+      <returns vsli:raw="An enumeration of all the event sources in the application domain.">應用程式定義域中所有事件來源的列舉。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetTrait(System.String)">
+      <summary vsli:raw="Gets the trait value associated with the specified key.">取得與指定索引鍵關聯的特性值。</summary>
+      <param name="key" vsli:raw="The key of the trait to get.">要取得之特性的索引鍵。</param>
+      <returns vsli:raw="The trait value associated with the specified key. If the key is not found, returns &lt;see langword=&quot;null&quot; /&gt;.">與指定之索引鍵關聯的特性值。 如果找不到索引鍵，會傳回 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Guid">
+      <summary vsli:raw="The unique identifier for the event source.">事件來源的唯一識別項。</summary>
+      <returns vsli:raw="A unique identifier for the event source.">事件來源的唯一識別項。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled">
+      <summary vsli:raw="Determines whether the current event source is enabled.">判斷是否已啟用目前的事件來源。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the current event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果已啟用目前的事件來源，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Determines whether the current event source that has the specified level and keyword is enabled.">判斷是否已啟用具有指定之層級和關鍵字的目前事件來源。</summary>
+      <param name="level" vsli:raw="The level of the event source.">事件來源的層級。</param>
+      <param name="keywords" vsli:raw="The keyword of the event source.">事件來源的關鍵字。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果已啟用事件來源，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Diagnostics.Tracing.EventChannel)">
+      <summary vsli:raw="Determines whether the current event source is enabled for events with the specified level, keywords and channel.">判斷具有指定的層級、關鍵字和通道的事件是否已啟用目前的事件來源。</summary>
+      <param name="level" vsli:raw="The event level to check. An event source will be considered enabled when its level is greater than or equal to &lt;paramref name=&quot;level&quot; /&gt;.">要檢查的事件層級。 當事件層級大於或等於 <paramref name="level" /> 時，事件來源會視為已啟用。</param>
+      <param name="keywords" vsli:raw="The event keywords to check.">要檢查的事件關鍵字。</param>
+      <param name="channel" vsli:raw="The event channel to check.">要檢查的事件通道。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled for the specified event level, keywords and channel; otherwise, &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA; The result of this method is only an approximation of whether a particular event is active.  Use it to avoid expensive computation for logging when logging is disabled. Event sources may have additional filtering that determines their activity.">如果已啟用指定事件層級、關鍵字和通道的事件來源，則為 <see langword="true" />否則為 <see langword="false" />。  
+這個方法的結果只可約略估算特定事件是否為作用中。  可用來避免記錄的昂貴計算成本 (停用記錄時)。 事件來源可能具有可判斷其活動的其他篩選。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Name">
+      <summary vsli:raw="The friendly name of the class that is derived from the event source.">衍生自事件來源的類別的好記名稱。</summary>
+      <returns vsli:raw="The friendly name of the derived class.  The default is the simple name of the class.">衍生類別的易記名稱。  預設為類別的簡單名稱。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)">
+      <summary vsli:raw="Called when the current event source is updated by the controller.">當控制器更新目前事件來源時呼叫。</summary>
+      <param name="command" vsli:raw="The arguments for the event.">事件的引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SendCommand(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventCommand,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Sends a command to a specified event source.">傳送命令到指定的事件來源。</summary>
+      <param name="eventSource" vsli:raw="The event source to send the command to.">要傳送命令的目的地事件來源。</param>
+      <param name="command" vsli:raw="The event command to send.">要傳送的事件命令。</param>
+      <param name="commandArguments" vsli:raw="The arguments for the event command.">事件命令的引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid)">
+      <summary vsli:raw="Sets the activity ID on the current thread.">設定目前執行緒的活動識別碼。</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">目前執行緒的新活動識別碼，若要表示目前執行緒上的工作未與任何活動相關聯，則為 <see cref="F:System.Guid.Empty" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid,System.Guid@)">
+      <summary vsli:raw="Sets the activity ID on the current thread, and returns the previous activity ID.">設定目前執行緒的活動識別碼，並傳回上一個活動識別碼。</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">目前執行緒的新活動識別碼，若要表示目前執行緒上的工作未與任何活動相關聯，則為 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="oldActivityThatWillContinue" vsli:raw="When this method returns, contains the previous activity ID on the current thread.">當這個方法傳回時，會包含目前執行緒的上一個活動識別碼。</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Settings">
+      <summary vsli:raw="Gets the settings applied to this event source.">取得套用至這個事件來源的設定。</summary>
+      <returns vsli:raw="The settings applied to this event source.">套用至這個事件來源的設定。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.ToString">
+      <summary vsli:raw="Obtains a string representation of the current event source instance.">取得目前事件來源執行個體的字串表示。</summary>
+      <returns vsli:raw="The name and unique identifier that identify the current event source.">識別目前事件來源的名稱和唯一識別項。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and default options.">寫入不含欄位，但具有指定名稱和預設選項的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">要寫入的事件名稱。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and options.">寫入不含欄位，但具有指定名稱和選項的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">要寫入的事件名稱。</param>
+      <param name="options" vsli:raw="The options such as level, keywords and operation code for the event.">事件的層級、關鍵字和作業程式碼等選項。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,``0)">
+      <summary vsli:raw="Writes an event with the specified name and data.">寫入具有指定名稱和資料的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event.">事件的名稱。</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">事件資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 屬性標記。</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">定義事件的類型及其相關聯的資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 屬性標記。</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)">
+      <summary vsli:raw="Writes an event with the specified name, event data and options.">寫入具有指定名稱、事件資料和選項的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event.">事件的名稱。</param>
+      <param name="options" vsli:raw="The event options.">事件選項。</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">事件資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 屬性標記。</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">定義事件的類型及其相關聯的資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 屬性標記。</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options and event data.">寫入具有指定名稱、選項和事件資料的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event.">事件的名稱。</param>
+      <param name="options" vsli:raw="The event options.">事件選項。</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">事件資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 屬性標記。</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">定義事件的類型及其相關聯的資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 屬性標記。</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,System.Guid@,System.Guid@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options, related activity and event data.">寫入具有指定名稱、選項、相關活動和事件資料的事件。</summary>
+      <param name="eventName" vsli:raw="The name of the event.">事件的名稱。</param>
+      <param name="options" vsli:raw="The event options.">事件選項。</param>
+      <param name="activityId" vsli:raw="The ID of the activity associated with the event.">與事件關聯的活動識別碼。</param>
+      <param name="relatedActivityId" vsli:raw="The ID of an associated activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no associated activity.">關聯的活動識別碼；如果沒有關聯的活動，則為 <see cref="F:System.Guid.Empty" />。</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">事件資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 屬性標記。</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">定義事件的類型及其相關聯的資料。 此類型必須為匿名類型，或必須具有 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 屬性標記。</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier.">使用所提供的事件識別元，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">事件識別項。 這個值必須介於 0 到 65535 之間。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Byte[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and byte array argument.">使用所提供的事件識別項和位元組陣列引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A byte array argument.">位元組陣列引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer argument.">使用所提供的事件識別元和 32 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="An integer argument.">整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">使用所提供的事件識別元和 32 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="An integer argument.">整數引數。</param>
+      <param name="arg2" vsli:raw="An integer argument.">整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">使用所提供的事件識別元和 32 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="An integer argument.">整數引數。</param>
+      <param name="arg2" vsli:raw="An integer argument.">整數引數。</param>
+      <param name="arg3" vsli:raw="An integer argument.">整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer and string arguments.">使用所提供的事件識別項、32 位元整數和字串引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">事件識別項。 這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 32-bit integer argument.">32 位元整數引數。</param>
+      <param name="arg2" vsli:raw="A string argument.">字串引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer argument.">使用所提供的事件識別元和 64 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Byte[])">
+      <summary vsli:raw="Writes the event data using the specified identifier and 64-bit integer and byte array arguments.">使用指定的識別項、64 位元整數和位元組陣列引數，寫入事件資料。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">64 位元整數引數。</param>
+      <param name="arg2" vsli:raw="A byte array argument.">位元組陣列引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">使用所提供的事件識別元和 64 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">使用所提供的事件識別元和 64 位元整數引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+      <param name="arg3" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer, and string arguments.">使用所提供的事件識別項、64 位元整數和字串引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">64 位元整數引數。</param>
+      <param name="arg2" vsli:raw="A string argument.">字串引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Object[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and array of arguments.">使用所提供的事件識別元和引數陣列，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="args" vsli:raw="An array of objects.">物件的陣列。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string argument.">使用所提供的事件識別元和字串引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">使用所提供的事件識別元和引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">32 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">使用所提供的事件識別元和引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">32 位元整數引數。</param>
+      <param name="arg3" vsli:raw="A 32 bit integer argument.">32 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">使用所提供的事件識別元和引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64 位元整數引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">使用所提供的事件識別元和字串引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg2" vsli:raw="A string argument.">字串引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">使用所提供的事件識別元和字串引數，寫入事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">事件識別項。  這個值必須介於 0 到 65535 之間。</param>
+      <param name="arg1" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg2" vsli:raw="A string argument.">字串引數。</param>
+      <param name="arg3" vsli:raw="A string argument.">字串引數。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload by using the provided event identifier and event data.">使用所提供的事件識別項和事件資料，建立新的 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 多載。</summary>
+      <param name="eventId" vsli:raw="The event identifier.">事件識別項。</param>
+      <param name="eventDataCount" vsli:raw="The number of event data items.">事件資料項目的數目。</param>
+      <param name="data" vsli:raw="The structure that contains the event data.">包含事件資料的結構。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityId(System.Int32,System.Guid,System.Object[])">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">寫入表示目前活動與另一個活動有關的事件。</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">可在 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 中唯一識別這個事件的識別項。</param>
+      <param name="relatedActivityId" vsli:raw="The related activity identifier.">相關的活動識別項。</param>
+      <param name="args" vsli:raw="An array of objects that contain data about the event.">包含事件相關資料的物件陣列。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityIdCore(System.Int32,System.Guid*,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">寫入表示目前活動與另一個活動有關的事件。</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">可在 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 中唯一識別這個事件的識別項。</param>
+      <param name="relatedActivityId" vsli:raw="A pointer to the GUID of the related activity ID.">相關活動識別碼之 GUID 的指標。</param>
+      <param name="eventDataCount" vsli:raw="The number of items in the &lt;paramref name=&quot;data&quot; /&gt; field.">
+        <paramref name="data" /> 欄位中的項目數。</param>
+      <param name="data" vsli:raw="A pointer to the first item in the event data field.">事件資料欄位中第一個項目的指標。</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceAttribute">
+      <summary vsli:raw="Allows the event tracing for Windows (ETW) name to be defined independently of the name of the event source class.">可讓 Windows (ETW) 名稱的事件追蹤定義獨立於事件來源類別名稱。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Guid">
+      <summary vsli:raw="Gets or sets the event source identifier.">取得或設定事件來源識別項。</summary>
+      <returns vsli:raw="The event source identifier.">事件的來源識別項。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.LocalizationResources">
+      <summary vsli:raw="Gets or sets the name of the localization resource file.">取得或設定當地語系化資源檔的名稱。</summary>
+      <returns vsli:raw="The name of the localization resource file, or &lt;see langword=&quot;null&quot; /&gt; if the localization resource file does not exist.">當地語系化資源檔的名稱，或為<see langword="null" />（如果當地語系化資源檔不存在）。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Name">
+      <summary vsli:raw="Gets or sets the name of the event source.">取得或設定事件來源的名稱。</summary>
+      <returns vsli:raw="The name of the event source.">事件來源的名稱。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Diagnostics.Tracing.EventListener.EventSourceCreated&quot; /&gt; event.">提供 <see cref="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated" /> 事件的資料。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.EventSource">
+      <summary vsli:raw="Get the event source that is attaching to the listener.">取得附加至接聽程式的事件來源。</summary>
+      <returns vsli:raw="The event source that is attaching to the listener.">附加至接聽程式的事件來源。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceException">
+      <summary vsli:raw="The exception that is thrown when an error occurs during event tracing for Windows (ETW).">在 Windows (ETW) 事件追蹤期間發生錯誤時，所擲回的例外狀況。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with serialized data.">使用序列化資料，初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 類別的新執行個體。</summary>
+      <param name="info" vsli:raw="The object that holds the serialized object data.">存放序列物件資料的物件。</param>
+      <param name="context" vsli:raw="The contextual information about the source or destination.">關於來源或目的端的內容資訊。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message.">使用指定的錯誤訊息，初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 類別的新執行個體。</summary>
+      <param name="message" vsli:raw="The message that describes the error.">描述錯誤的訊息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message and a reference to the inner exception that is the cause of this exception.">使用指定的錯誤訊息以及造成此例外狀況的內部例外狀況的參考，初始化 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 類別的新執行個體。</summary>
+      <param name="message" vsli:raw="The error message that explains the reason for the exception.">解釋例外狀況原因的錯誤訊息。</param>
+      <param name="innerException" vsli:raw="The exception that is the cause of the current exception, or &lt;see langword=&quot;null&quot; /&gt; if no inner exception is specified.">導致目前例外狀況發生的例外狀況；如果沒有指定任何的內部例外狀況，則為 <see langword="null" />。</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceOptions">
+      <summary vsli:raw="Specifies overrides of default event settings such as the log level, keywords and operation code when the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method is called.">呼叫 <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" /> 方法時，指定預設事件設定 (例如記錄層級、關鍵字和作業碼) 的覆寫。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.ActivityOptions">
+      <summary vsli:raw="The activity options defined for this event source.">為此事件來源定義的活動選項。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">傳回 <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Keywords">
+      <summary vsli:raw="Gets or sets the keywords applied to the event. If this property is not set, the event's keywords will be &lt;see langword=&quot;None&quot; /&gt;.">取得或設定套用至事件的關鍵字。 如果沒有設定這個屬性，事件的關鍵字會是 <see langword="None" />。</summary>
+      <returns vsli:raw="The keywords applied to the event, or &lt;see langword=&quot;None&quot; /&gt; if no keywords are set.">套用至事件的關鍵字；如果沒有設定任何關鍵字，則為 <see langword="None" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Level">
+      <summary vsli:raw="Gets or sets the event level applied to the event.">取得或設定套用至事件的事件等級。</summary>
+      <returns vsli:raw="The event level for the event. If not set, the default is Verbose (5).">事件的事件等級。 如果沒有設定，預設為 Verbose (5)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Opcode">
+      <summary vsli:raw="Gets or sets the operation code to use for the specified event.">取得或設定要用於指定事件的作業碼。</summary>
+      <returns vsli:raw="The operation code to use for the specified event. If not set, the default is &lt;see langword=&quot;Info&quot; /&gt; (0).">用於指定事件的作業程式碼。 如果沒有設定，預設為 <see langword="Info" /> (0)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Tags">
+      <summary vsli:raw="The event tags defined for this event source.">為此事件來源定義的事件標記。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">傳回 <see cref="T:System.Diagnostics.Tracing.EventTags" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceSettings">
+      <summary vsli:raw="Specifies configuration options for an event source.">指定事件來源的組態選項。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.Default">
+      <summary vsli:raw="None of the special configuration options are enabled.">未啟用任何特殊組態選項。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwManifestEventFormat">
+      <summary vsli:raw="The ETW listener should use a manifest-based format when raising events. Setting this option is a directive to the ETW listener should use manifest-based format when raising events. This is the default option when defining a type derived from &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the protected &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">引發事件時，ETW 接聽程式應該使用以資訊清單為主的格式。 設定這個選項可指示在引發事件時，ETW 接聽程式應該使用以資訊清單為主的格式。 使用受保護的 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 建構函式之一來定義衍生自 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 的類型時，這是預設選項。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwSelfDescribingEventFormat">
+      <summary vsli:raw="The ETW listener should use self-describing event format. This is the default option when creating a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the public &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">ETW 接聽程式應該使用自我描述的事件格式。 使用公用 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 建構函式之一來建立 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 的新執行個體時，這是預設選項。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.ThrowOnEventWriteErrors">
+      <summary vsli:raw="The event source throws an exception when an error occurs.">發生錯誤時，這個事件來源會執回例外狀況。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTags">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events. You should only use the lower 24 bits. For more information, see &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceOptions&quot; /&gt; and &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt;.">指定活動開始和停止事件的追蹤。 您應該只使用較低的 24 位元。 如需詳細資訊，請參閱 <see cref="T:System.Diagnostics.Tracing.EventSourceOptions" /> 與 <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" />。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">指定沒有標記，而且等於零。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTask">
+      <summary vsli:raw="Defines the tasks that apply to events.">定義套用至事件的工作。</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTask.None">
+      <summary vsli:raw="Undefined task.">未定義的工作。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventWrittenEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)&quot; /&gt; callback.">提供 <see cref="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)" /> 回呼的資料。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.ActivityId">
+      <summary vsli:raw="Gets the activity ID on the thread that the event was written to.">取得將事件寫入之執行緒上的活動識別碼。</summary>
+      <returns vsli:raw="The activity ID on the thread that the event was written to.">將事件寫入之執行緒上的活動識別碼。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Channel">
+      <summary vsli:raw="Gets the channel for the event.">取得事件的通道。</summary>
+      <returns vsli:raw="The channel for the event.">事件的通道。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventId">
+      <summary vsli:raw="Gets the event identifier.">取得事件識別項。</summary>
+      <returns vsli:raw="The event identifier.">事件識別項。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventName">
+      <summary vsli:raw="Gets the name of the event.">取得事件的名稱。</summary>
+      <returns vsli:raw="The name of the event.">事件的名稱。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventSource">
+      <summary vsli:raw="Gets the event source object.">取得事件來源物件。</summary>
+      <returns vsli:raw="The event source object.">事件來源物件。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Keywords">
+      <summary vsli:raw="Gets the keywords for the event.">取得事件的關鍵字。</summary>
+      <returns vsli:raw="The keywords for the event.">事件的關鍵字。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Level">
+      <summary vsli:raw="Gets the level of the event.">取得事件的等級。</summary>
+      <returns vsli:raw="The level of the event.">事件的層級。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Message">
+      <summary vsli:raw="Gets the message for the event.">取得事件的訊息。</summary>
+      <returns vsli:raw="The message for the event.">事件的訊息。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Opcode">
+      <summary vsli:raw="Gets the operation code for the event.">取得事件的作業程式碼。</summary>
+      <returns vsli:raw="The operation code for the event.">事件的作業程式碼。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.OSThreadId">
+      <summary vsli:raw="Gets the thread identifier for the OS thread that wrote the event. (.NET Core 2.2 and later only.)">針對寫入事件的 OS 執行緒取得執行緒識別碼。 (僅限 .NET Core 2.2 及更新版本。)</summary>
+      <returns vsli:raw="The thread identifier for the OS thread that wrote the event.">撰寫事件 OS 執行緒的執行緒識別項。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Payload">
+      <summary vsli:raw="Gets the payload for the event.">取得事件的裝載。</summary>
+      <returns vsli:raw="The payload for the event.">事件的承載。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.PayloadNames">
+      <summary vsli:raw="Returns a list of strings that represent the property names of the event.">傳回代表事件之屬性名稱的字串清單。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyCollection`1&quot; /&gt;.">傳回 <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.RelatedActivityId">
+      <summary vsli:raw="Gets the identifier of an activity that is related to the activity represented by the current instance.">取得與目前執行個體所代表之活動相關的活動識別項。</summary>
+      <returns vsli:raw="The identifier of the related activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no related activity.">相關活動的識別項；如果沒有相關活動，則為 <see cref="F:System.Guid.Empty" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Tags">
+      <summary vsli:raw="Returns the tags specified in the call to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt; method.">傳回在對 <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" /> 方法之呼叫中指定的標記。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">傳回 <see cref="T:System.Diagnostics.Tracing.EventTags" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Task">
+      <summary vsli:raw="Gets the task for the event.">取得事件的工作。</summary>
+      <returns vsli:raw="The task for the event.">事件的工作。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.TimeStamp">
+      <summary vsli:raw="Gets the time that the event was originally generated as a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; timestamp. (.NET Core 2.2 and later only.)">以 <see cref="T:System.DateTime" /> 時間戳記形式取得事件原先產生的時間。 (僅限 .NET Core 2.2 及更新版本。)</summary>
+      <returns vsli:raw="The date and time when the event was logged. The system tries to be as precise as possible.">日期和時間時記錄事件。 系統會嘗試盡可能精確。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Version">
+      <summary vsli:raw="Gets the version of the event.">取得事件的版本。</summary>
+      <returns vsli:raw="The version of the event.">事件的版本。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingEventCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">為不斷增加之變數 (例如執行階段中的例外狀況數) 提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的變化。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 類別的新執行個體。</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; instance.">此 <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 執行個體的名稱。</param>
+      <param name="eventSource" vsli:raw="The event source.">事件的來源。</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingEventCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets the rate at which this metric should be displayed as.">取得或設定應顯示此計量的速率。</summary>
+      <returns vsli:raw="Gets or sets the rate at which this metric should be displayed.">取得或設定應該顯示此度量的速率</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.Increment(System.Double)">
+      <summary vsli:raw="Adds a value to a running total that will be published by the counter at the next timer interval.">將值新增到計數器在下一次計時器間隔期間將發佈的總數。</summary>
+      <param name="increment" vsli:raw="The value to increment the running total by.">要遞增到總數的值。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing event counter instance.">傳回目前遞增事件計數器執行個體的字串表示。</summary>
+      <returns vsli:raw="The name and increment of the current incrementing event counter.">目前遞增事件計數器的名稱和遞增量。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingPollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">為不斷增加之變數 (例如執行階段中的例外狀況數) 提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的變化。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" /> 類別的新執行個體。</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; instance.">此 <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" /> 執行個體的名稱。</param>
+      <param name="eventSource" vsli:raw="The event source this instance is a part of.">此執行個體所屬的事件來源。</param>
+      <param name="totalValueProvider" vsli:raw="A method that will be used to poll the value.">將會用來輪詢值的方法。</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingPollingCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets rate at which this metric should be displayed as.">取得或設定應顯示此計量的速率。</summary>
+      <returns vsli:raw="The rate at which this metric should be displayed.">應顯示此度量的速率。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing polling counter instance.">傳回目前遞增輪詢計數器執行個體的字串表示。</summary>
+      <returns vsli:raw="The name and increment of the current incrementing polling counter.">目前遞增輪詢計數器的名稱和遞增量。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.NonEventAttribute">
+      <summary vsli:raw="Identifies a method that is not generating an event.">識別不產生事件的方法。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.NonEventAttribute.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.NonEventAttribute&quot; /&gt; class.">建立 <see cref="T:System.Diagnostics.Tracing.NonEventAttribute" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.PollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; that collects and calculates similar statistics as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;.">提供 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 的變化，其收集和計算與 <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 相似的統計資料。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 類別的新執行個體。</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; instance.">此 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 執行個體的名稱。</param>
+      <param name="eventSource" vsli:raw="The event source.">事件的來源。</param>
+      <param name="metricProvider" vsli:raw="A method that will be used to poll the value.">將會用來輪詢值的方法。</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current polling counter instance.">傳回目前輪詢計數器執行個體的字串表示。</summary>
+      <returns vsli:raw="The name and mean of the current polling counter.">目前輪詢計數器的名稱和平均值。</returns>
+    </member>
+  </members>
+</doc>

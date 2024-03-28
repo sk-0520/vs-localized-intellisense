@@ -1,0 +1,692 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>UIAutomationProvider</name>
+  </assembly>
+  <members>
+    <member name="T:System.Windows.Automation.Provider.AutomationInteropProvider">
+      <summary vsli:raw="Provides support for communication between UI Automation providers and UI Automation client applications.">提供使用者介面自動化提供者和使用者介面自動化用戶端應用程式之間的通訊支援。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.AppendRuntimeId">
+      <summary vsli:raw="Contains a value that, when returned as the first element of the array passed by the UI Automation provider to &lt;see cref=&quot;M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId&quot; /&gt;, indicates that the ID is partial and should be appended to the ID provided by the base provider.">包含值 (傳回為使用者介面自動化提供者傳遞給 <see cref="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId" /> 之陣列的第一個項目時)，這個值表示識別碼是局部，並應該附加至基底提供者所提供的識別碼。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.InvalidateLimit">
+      <summary vsli:raw="Specifies the maximum number of events to send before batching.">指定在批次處理之前要傳送之事件的最大數目。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.ItemsInvalidateLimit">
+      <summary vsli:raw="The maximum number of events to send before batching for items in containers.">在容器中批次處理項目之前要傳送之事件的最大數目。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.RootObjectId">
+      <summary vsli:raw="Contains a value used in the &lt;see langword=&quot;lParam&quot; /&gt; member of a &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message, indicating that the server should return a reference to the root raw element provider.">包含在 <see langword="lParam" /> 訊息的 <see langword="WM_GETOBJECT" /> 成員中使用的值，表示伺服器應該傳回根原始項目提供者的參考。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.HostProviderFromHandle(System.IntPtr)">
+      <summary vsli:raw="Returns a UI Automation provider that represents the specified window.">傳回代表所指定視窗的 UI 自動化提供者。</summary>
+      <param name="hwnd" vsli:raw="The handle of the window.">視窗控制代碼。</param>
+      <returns vsli:raw="The raw element provider for the specified window.">所指定視窗的原始項目提供者。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseAutomationEvent(System.Windows.Automation.AutomationEvent,System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.AutomationEventArgs)">
+      <summary vsli:raw="Raises a pattern event or a custom event.">引發模式事件或自訂事件。</summary>
+      <param name="eventId" vsli:raw="The event identifier.">事件識別項。</param>
+      <param name="provider" vsli:raw="The element associated with the event.">與事件相關聯的項目。</param>
+      <param name="e" vsli:raw="Information about the event.">事件相關資訊。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseAutomationPropertyChangedEvent(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.AutomationPropertyChangedEventArgs)">
+      <summary vsli:raw="Raises an event when a UI Automation property has changed.">UI 自動化 屬性變更後，即會引發事件。</summary>
+      <param name="element" vsli:raw="The element associated with the event.">與事件相關聯的項目。</param>
+      <param name="e" vsli:raw="Information about the event.">事件相關資訊。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.StructureChangedEventArgs)">
+      <summary vsli:raw="Raises an event when the UI Automation tree has changed.">UI 自動化 樹狀結構變更後，即會引發事件。</summary>
+      <param name="provider" vsli:raw="The element associated with the event.">與事件相關聯的項目。</param>
+      <param name="e" vsli:raw="Information about the event.">事件相關資訊。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.ReturnRawElementProvider(System.IntPtr,System.IntPtr,System.IntPtr,System.Windows.Automation.Provider.IRawElementProviderSimple)">
+      <summary vsli:raw="Returns the UI automation provider for an element in response to a &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">傳回項目的使用者介面自動化提供者，以回應 <see langword="WM_GETOBJECT" /> 訊息。</summary>
+      <param name="hwnd" vsli:raw="Handle of the element's window.">項目視窗的控制代碼。</param>
+      <param name="wParam" vsli:raw="The &lt;see langword=&quot;wParam&quot; /&gt; member of the &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">
+        <see langword="WM_GETOBJECT" /> 訊息的 <see langword="wParam" /> 成員。</param>
+      <param name="lParam" vsli:raw="The &lt;see langword=&quot;lParam&quot; /&gt; member of the &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">
+        <see langword="WM_GETOBJECT" /> 訊息的 <see langword="lParam" /> 成員。</param>
+      <param name="el" vsli:raw="The UI Automation provider for the element.">項目的使用者介面自動化提供者。</param>
+      <returns vsli:raw="A pointer to data that should be assigned to &lt;see cref=&quot;P:System.Windows.Forms.Message.Result&quot; /&gt; before passing the message to the base window procedure.">應該指派給 <see cref="P:System.Windows.Forms.Message.Result" />，再將訊息傳遞至基底視窗程序的資料指標。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.AutomationInteropProvider.ClientsAreListening">
+      <summary vsli:raw="Gets a value that specifies whether any UI Automation client application is subscribed to UI Automation events.">取得值，指定是否有任何使用者介面自動化用戶端應用程式訂閱 UI 自動化 事件。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if a client is subscribed to events; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果有用戶端訂閱事件，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IDockProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that expose their dock properties within a docking container.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項可以在停駐容器內公開其停駐屬性。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)">
+      <summary vsli:raw="Docks the control within a docking container.">將控制項停駐於停駐容器內。</summary>
+      <param name="dockPosition" vsli:raw="The dock position, relative to the boundaries of the docking container and other elements within the container.">相對於停駐容器界限及容器內其他項目的停駐位置。</param>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IDockProvider.DockPosition">
+      <summary vsli:raw="Gets the current &lt;see cref=&quot;T:System.Windows.Automation.DockPosition&quot; /&gt; of the control within a docking container.">取得控制項在停駐容器內的目前 <see cref="T:System.Windows.Automation.DockPosition" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.DockPosition&quot; /&gt; of the control, relative to the boundaries of the docking container and other elements within the container.">控制項的 <see cref="T:System.Windows.Automation.DockPosition" />，相對於停駐容器的界限及容器內其他項目。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that visually expand to display content and collapse to hide content.">公開方法與屬性，以支援使用者介面自動化用戶端存取控制項，這些控制項在視覺上可展開以顯示內容，也可摺疊以隱藏內容。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse">
+      <summary vsli:raw="Hides all nodes, controls, or content that are descendants of the control.">隱藏屬於控制項子系的所有節點、控制項或內容。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand">
+      <summary vsli:raw="Displays all child nodes, controls, or content of the control.">顯示控制項的所有子節點、控制項或內容。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState">
+      <summary vsli:raw="Gets the state, expanded or collapsed, of the control.">取得控制項的狀態，可能為展開或摺疊。</summary>
+      <returns vsli:raw="The state, expanded or collapsed, of the control.">控制項的狀態，可能為展開或摺疊。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IGridItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridProvider&quot; /&gt;.">公開方法和屬性，以支援使用者介面自動化用戶端存取可實作 <see cref="T:System.Windows.Automation.Provider.IGridProvider" /> 之容器的個別子控制項。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.Column">
+      <summary vsli:raw="Gets the ordinal number of the column that contains the cell or item.">取得包含儲存格或項目之資料行的序號 (Ordinal Number)。</summary>
+      <returns vsli:raw="A zero-based ordinal number that identifies the column containing the cell or item.">以零起始的序號，識別包含儲存格或項目的資料行。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan">
+      <summary vsli:raw="Gets the number of columns spanned by a cell or item.">取得儲存格或項目合併的資料行數目。</summary>
+      <returns vsli:raw="The number of columns spanned.">合併的資料行數目。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid">
+      <summary vsli:raw="Gets a UI Automation provider that implements &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridProvider&quot; /&gt; and represents the container of the cell or item.">取得實作 <see cref="T:System.Windows.Automation.Provider.IGridProvider" /> 且表示儲存格或項目容器的使用者介面自動化提供者。</summary>
+      <returns vsli:raw="A UI Automation provider that implements the &lt;see cref=&quot;T:System.Windows.Automation.GridPattern&quot; /&gt; and represents the cell or item container.">實作 <see cref="T:System.Windows.Automation.GridPattern" /> 且表示儲存格或項目容器的使用者介面自動化提供者。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.Row">
+      <summary vsli:raw="Gets the ordinal number of the row that contains the cell or item.">取得包含儲存格或項目之資料列的序號。</summary>
+      <returns vsli:raw="A zero-based ordinal number that identifies the row containing the cell or item.">以零起始的序號，識別包含儲存格或項目的資料列。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan">
+      <summary vsli:raw="Gets the number of rows spanned by a cell or item.">取得儲存格或項目合併的資料列數目。</summary>
+      <returns vsli:raw="The number of rows spanned.">合併的資料列數目。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IGridProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of child elements. The children of this element must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridItemProvider&quot; /&gt; and be organized in a two-dimensional logical coordinate system that can be traversed (that is, a UI Automation client can move to adjacent controls) by using the keyboard.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項的作用如同子項目集合的容器。 此項目的子系必須實作 <see cref="T:System.Windows.Automation.Provider.IGridItemProvider" />，並組織成可使用鍵盤周遊的二維邏輯座標系統 (也就是使用者介面自動化用戶端可以移至相鄰的控制項)。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)">
+      <summary vsli:raw="Retrieves the UI Automation provider for the specified cell.">擷取指定儲存格的使用者介面自動化提供者。</summary>
+      <param name="row" vsli:raw="The ordinal number of the row of interest.">重要的資料列序號。</param>
+      <param name="column" vsli:raw="The ordinal number of the column of interest.">重要的資料行序號。</param>
+      <returns vsli:raw="The UI Automation provider for the specified cell.">指定儲存格的使用者介面自動化提供者。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount">
+      <summary vsli:raw="Gets the total number of columns in a grid.">取得方格中的資料行總數。</summary>
+      <returns vsli:raw="The total number of columns in a grid.">方格中的資料行總數。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridProvider.RowCount">
+      <summary vsli:raw="Gets the total number of rows in a grid.">取得方格的資料列總數。</summary>
+      <returns vsli:raw="The total number of rows in a grid.">方格的資料列總數。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IInvokeProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that initiate or perform a single, unambiguous action and do not maintain state when activated.">公開方法與屬性，以支援使用者介面自動化用戶端存取起始或執行單一明確動作的控制項，且啟動時不會維護狀態。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IInvokeProvider.Invoke">
+      <summary vsli:raw="Sends a request to activate a control and initiate its single, unambiguous action.">傳送要求以啟動控制項，並啟始其單一明確的動作。</summary>
+      <exception cref="T:System.Windows.Automation.ElementNotEnabledException" vsli:raw="If the control is not enabled.">如果未啟用此控制項。</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IItemContainerProvider">
+      <summary vsli:raw="Exposes a method to enable applications to find an element in a container, such as a virtualized list.">將方法公開，讓應用程式可尋找容器中的項目，例如，虛擬清單。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IItemContainerProvider.FindItemByProperty(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Int32,System.Object)">
+      <summary vsli:raw="Retrieves an element by the specified property value.">依指定的屬性值擷取項目。</summary>
+      <param name="startAfter" vsli:raw="The item in the container after which to begin the search.">容器中的項目，從這個項目之後要開始搜尋。</param>
+      <param name="propertyId" vsli:raw="The property that contains the value to retrieve.">包含要擷取之值的屬性。</param>
+      <param name="value" vsli:raw="The value to retrieve.">要擷取的值。</param>
+      <returns vsli:raw="The first item that matches the search criterion; otherwise, &lt;see langword=&quot;null&quot; /&gt; if no items match.">符合搜尋準則的第一個項目，如果沒有符合的項目則為 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that provide, and are able to switch between, multiple representations of the same set of information or child controls.">公開方法與屬性，以支援使用者介面自動化用戶端存取控制項，這些控制項提供同一組資訊或子控制項的多種表示法，並且能夠在這些表示法之間切換。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews">
+      <summary vsli:raw="Retrieves a collection of control-specific view identifiers.">擷取控制項特定檢視識別項的集合。</summary>
+      <returns vsli:raw="A collection of values that identifies the views available for a UI Automation element.">識別可供使用者介面自動化項目使用之檢視的值集合。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)">
+      <summary vsli:raw="Retrieves the name of a control-specific view.">擷取控制項特定檢視的名稱。</summary>
+      <param name="viewId" vsli:raw="The view identifier.">檢視識別項。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;viewId&quot; /&gt; is not a member of the supported views collection.">
+        <paramref name="viewId" /> 不是支援的檢視集合成員。</exception>
+      <returns vsli:raw="A localized name for the view.">檢視的當地語系化名稱。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)">
+      <summary vsli:raw="Sets the current control-specific view.">設定目前的控制項專屬檢視。</summary>
+      <param name="viewId" vsli:raw="A view identifier.">檢視識別項。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;viewId&quot; /&gt; is not a member of the supported views collection.">
+        <paramref name="viewId" /> 不是支援的檢視集合成員。</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView">
+      <summary vsli:raw="Gets the current control-specific view.">取得目前的控制項專屬檢視。</summary>
+      <returns vsli:raw="The value for the current view of the UI Automation element.">使用者介面自動化項目之目前檢視的值。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can be set to a value within a range.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項可以設定為某範圍內的值。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRangeValueProvider.SetValue(System.Double)">
+      <summary vsli:raw="Sets the value of the control.">設定控制項的值。</summary>
+      <param name="value" vsli:raw="The value to set.">要設定的值。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="When &lt;paramref name=&quot;value&quot; /&gt; is less than the minimum or greater than the maximum value of the control.">當 <paramref name="value" /> 小於控制項的最小值或大於控制項的最大值。</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.IsReadOnly">
+      <summary vsli:raw="Gets a value that specifies whether the value of a control is read-only.">取得值，指定控制項的值是否為唯讀。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value is read-only; &lt;see langword=&quot;false&quot; /&gt; if it can be modified.">如果此值為唯讀，則為 <see langword="true" />；如果可以修改，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange">
+      <summary vsli:raw="Gets the value that is added to or subtracted from the &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt; property when a large change is made, such as with the PAGE DOWN key.">取得當進行大幅變更 (例如使用 PAGE DOWN 鍵) 時，會在 <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /> 屬性上加入或減去的值。</summary>
+      <returns vsli:raw="The large-change value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange&quot; /&gt;.">如果控制項不支援，控制項所支援的大變更值或 <see langword="Nothing" /> Visual Basic) 中的 null (<see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange" /> 。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum">
+      <summary vsli:raw="Gets the maximum range value supported by the control.">取得控制項支援的最大範圍值。</summary>
+      <returns vsli:raw="The maximum value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum&quot; /&gt;.">控制項所支援的最大值，如果控制項不支援，則為 <see langword="Nothing" /> Visual Basic) 中的 null (<see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum" /> 。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum">
+      <summary vsli:raw="Gets the minimum range value supported by the control.">取得控制項支援的最小範圍值。</summary>
+      <returns vsli:raw="The minimum value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum&quot; /&gt;.">控制項支援的最小值，如果控制項不支援，則為 <see langword="Nothing" /> Visual Basic) 中的 null (<see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum" /> 。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange">
+      <summary vsli:raw="Gets the value that is added to or subtracted from the &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt; property when a small change is made, such as with an arrow key.">取得當進行小幅變更 (例如使用方向鍵) 時，會在 <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /> 屬性上加入或減去的值。</summary>
+      <returns vsli:raw="The small-change value or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange&quot; /&gt;.">
+        <see langword="Nothing" />如果控制項不支援，則 Visual Basic) 中的小變更值或 null (<see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange" /> 。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Value">
+      <summary vsli:raw="Gets the value of the control.">取得控制項的值。</summary>
+      <returns vsli:raw="The value of the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt;.">如果控制項不支援，則為 Visual Basic) 中控制項的值或 null (<see langword="Nothing" /><see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /> 。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents">
+      <summary vsli:raw="Exposes methods that are called to notify the root element of a fragment when a UI Automation client application begins or ends listening for events.">公開方法，當使用者介面自動化用戶端應用程式開始或結束接聽事件時，可呼叫這些方法來通知片段的根項目。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents.AdviseEventAdded(System.Int32,System.Int32[])">
+      <summary vsli:raw="Notifies the UI Automation provider when a UI Automation client begins listening for a specific event, including a property-changed event.">使用者介面自動化用戶端開始接聽特定事件 (包括屬性變更的事件) 時，通知使用者介面自動化提供者。</summary>
+      <param name="eventId" vsli:raw="The identifier of the event being added.">要加入之事件的識別項。</param>
+      <param name="properties" vsli:raw="The identifiers of the properties being added, or &lt;see langword=&quot;null&quot; /&gt; if the event listener being added is not listening for property events.">要加入之屬性的識別項，或者，如果要加入的事件接聽程式目前未接聽屬性事件，則為 <see langword="null" />。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents.AdviseEventRemoved(System.Int32,System.Int32[])">
+      <summary vsli:raw="Notifies the UI Automation provider when a UI Automation client stops listening for a specific event, including a property-changed event.">使用者介面自動化用戶端停止接聽特定的事件時，包括屬性變更的事件，通知使用者介面自動化提供者。</summary>
+      <param name="eventId" vsli:raw="The identifier of the event being removed.">要移除事件的識別項</param>
+      <param name="properties" vsli:raw="The identifiers of the properties being removed, or &lt;see langword=&quot;null&quot; /&gt; if the event listener being removed is not listening for property events.">要移除屬性的識別項，或 <see langword="null" />，如果要移除的事件接聽程式目前不接聽屬性事件。</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderFragment">
+      <summary vsli:raw="Exposes methods and properties on user interface (UI) elements that are part of a structure more than one level deep, such as a list box or a list item. Implemented by UI Automation providers.">公開使用者介面 (UI) 項目上的方法與屬性，這些項目屬於多於一個層級深度的結構，例如清單方塊或清單項目。 由 UI 自動化提供者實作。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetEmbeddedFragmentRoots">
+      <summary vsli:raw="Retrieves an array of fragment roots that are embedded in the UI Automation element tree rooted at the current element.">擷取片段根目錄的陣列，這些根目錄內嵌於以目前項目為根目錄的 UI 自動化項目樹狀目錄中。</summary>
+      <returns vsli:raw="An array of root fragments, or &lt;see langword=&quot;null&quot; /&gt;.">根目錄片段的陣列或 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId">
+      <summary vsli:raw="Retrieves the runtime identifier of an element.">擷取項目的執行階段識別項。</summary>
+      <returns vsli:raw="The unique run-time identifier of the element.">項目的唯一執行階段識別項。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.Navigate(System.Windows.Automation.Provider.NavigateDirection)">
+      <summary vsli:raw="Retrieves the UI Automation element in a specified direction within the tree.">擷取樹狀結構中指定方向的 UI 自動化 項目。</summary>
+      <param name="direction" vsli:raw="The direction in which to navigate.">在其中要瀏覽的方向。</param>
+      <returns vsli:raw="The element in the specified direction, or &lt;see langword=&quot;null&quot; /&gt; if there is no element in that direction.">指定方向中的項目，或如果沒有在該方向的項目，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.SetFocus">
+      <summary vsli:raw="Sets the focus to this element.">將焦點設定為這個項目。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderFragment.BoundingRectangle">
+      <summary vsli:raw="Gets the bounding rectangle of this element.">取得此項目的週框。</summary>
+      <returns vsli:raw="The bounding rectangle, in screen coordinates.">螢幕座標中的週框。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderFragment.FragmentRoot">
+      <summary vsli:raw="Retrieves the root node of the fragment.">擷取片段的根節點。</summary>
+      <returns vsli:raw="The root node.">根節點。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot">
+      <summary vsli:raw="Exposes methods and properties on the root element in a fragment.">公開在片段中根項目的方法與屬性。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot.ElementProviderFromPoint(System.Double,System.Double)">
+      <summary vsli:raw="Retrieves the element in this fragment that is at the specified point.">擷取位於指定點之這個片段中的項目。</summary>
+      <param name="x" vsli:raw="The X coordinate.">X 座標。</param>
+      <param name="y" vsli:raw="The Y coordinate.">Y 座標。</param>
+      <returns vsli:raw="The provider for the child element at the specified point, if one exists, or the root provider if the point is on this element but not on any child element. Otherwise returns &lt;see langword=&quot;null&quot; /&gt;.">在指定點上子項目的提供者 (如果有的話)，或如果該點在此項目上，而不是在任何子項目上，則為根提供者。 否則傳回 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot.GetFocus">
+      <summary vsli:raw="Retrieves the element in this fragment that has the input focus.">擷取這個片段中具有輸入焦點的項目。</summary>
+      <returns vsli:raw="The provider for the element in this fragment that has the input focus, if any; otherwise, a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic).">這個片段中具有輸入焦點之項目的提供者 (如果有)；否則為 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderHwndOverride">
+      <summary vsli:raw="Exposes a method that enables repositioning of window-based elements within the UI Automation tree of the fragment.">公開方法，這種方法可在片段的使用者介面自動化樹狀目錄內重新定位以視窗為基礎的項目。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderHwndOverride.GetOverrideProviderForHwnd(System.IntPtr)">
+      <summary vsli:raw="Retrieves a UI automation provider for the specified element.">擷取指定項目的使用者介面自動化提供者。</summary>
+      <param name="hwnd" vsli:raw="The window handle of the element.">項目的視窗控制代碼。</param>
+      <returns vsli:raw="The provider for the specified element, or a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the element's default provider is not being overridden.">指定項目的提供者，或 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)，如果不是正在被覆寫的項目預設提供者。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderSimple">
+      <summary>提供公開 UI 項目相關基本資訊的方法和屬性。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderSimple.GetPatternProvider(System.Int32)">
+      <summary>擷取可在 UI 自動化 項目上支援控制項模式的物件。</summary>
+      <param name="patternId">模式的識別項。</param>
+      <returns>實作模式介面的物件；如果不支援此模式，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderSimple.GetPropertyValue(System.Int32)">
+      <summary>擷取使用者介面自動化提供者支援的屬性值。</summary>
+      <param name="propertyId">屬性識別項。</param>
+      <returns>屬性值，如果此提供者不支援此屬性則為 <see langword="null" />，如果完全不受支援則為 <see cref="F:System.Windows.Automation.AutomationElementIdentifiers.NotSupported" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderSimple.HostRawElementProvider">
+      <summary>取得這個項目的基底提供者。</summary>
+      <returns>基底提供者或 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderSimple.ProviderOptions">
+      <summary>取得指定使用者介面自動化提供者特性的值，例如，它是用戶端或伺服器端提供者。</summary>
+      <returns>
+        <see cref="F:System.Windows.Automation.Provider.ProviderOptions.ClientSideProvider" /> 或 <see cref="F:System.Windows.Automation.Provider.ProviderOptions.ServerSideProvider" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IScrollItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IScrollProvider&quot; /&gt;.">公開方法和屬性，以支援使用者介面自動化用戶端存取可實作 <see cref="T:System.Windows.Automation.Provider.IScrollProvider" /> 之容器的個別子控制項。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollItemProvider.ScrollIntoView">
+      <summary vsli:raw="Scrolls the content area of a container object in order to display the control within the visible region (viewport) of the container.">捲動容器物件的內容區域以顯示容器可見區域 (檢視區) 內的控制項。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The item cannot be scrolled into view.">無法將項目捲動到檢視中。</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IScrollProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to a control that acts as a scrollable container for a collection of child objects. The children of this control must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IScrollItemProvider&quot; /&gt;.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，此控制項的作用如同子物件集合的可捲動容器。 這個控制項的子系必須實作 <see cref="T:System.Windows.Automation.Provider.IScrollItemProvider" />。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollProvider.Scroll(System.Windows.Automation.ScrollAmount,System.Windows.Automation.ScrollAmount)">
+      <summary vsli:raw="Scrolls the visible region of the content area horizontally and vertically.">水平和垂直捲動內容區域的可見區域。</summary>
+      <param name="horizontalAmount" vsli:raw="The horizontal increment specific to the control. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">控制項特定的水平增量。 如果無法以這個方向捲動控制項，則應傳入<see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> 。</param>
+      <param name="verticalAmount" vsli:raw="The vertical increment specific to the control. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">控制項特定的垂直增量。 如果無法以這個方向捲動控制項，則應傳入<see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> 。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a control supports &lt;see cref=&quot;F:System.Windows.Automation.ScrollAmount.SmallIncrement&quot; /&gt; values exclusively for horizontal or vertical scrolling but a &lt;see cref=&quot;F:System.Windows.Automation.ScrollAmount.LargeIncrement&quot; /&gt; value is passed in.">如果控制項支援水平或垂直捲動專有的 <see cref="F:System.Windows.Automation.ScrollAmount.SmallIncrement" /> 值，但傳入 <see cref="F:System.Windows.Automation.ScrollAmount.LargeIncrement" /> 值。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt is made to scroll in an unsupported direction.">嘗試以不支援的方向捲動。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollProvider.SetScrollPercent(System.Double,System.Double)">
+      <summary vsli:raw="Sets the horizontal and vertical scroll position as a percentage of the total content area within the control.">設定水平和垂直捲動位置，此值以其在控制項內總內容區域的百分比來表示。</summary>
+      <param name="horizontalPercent" vsli:raw="The horizontal position as a percentage of the content area's total range. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">以總內容區域範圍的百分比表示的水平位置。 如果無法以這個方向捲動控制項，則應傳入<see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> 。</param>
+      <param name="verticalPercent" vsli:raw="The vertical position as a percentage of the content area's total range. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">以總內容區域範圍的百分比表示的垂直位置。 如果無法以這個方向捲動控制項，則應傳入<see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> 。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="A value that cannot be converted to a double is passed in.">傳入的值無法轉換成雙精度浮點數。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="A value greater than 100 or less than 0 is passed in (except -1, which is equivalent to &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt;). The &lt;see cref=&quot;P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent&quot; /&gt; and &lt;see cref=&quot;P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent&quot; /&gt; values are normalized to either 100 percent or 0 percent.">傳入的值大於 100 或小於 0 (-1 例外，因為它相當於 <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" />)。 <see cref="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent" /> 和 <see cref="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent" /> 值正規化為 100% 或 0%。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt is made to scroll in an unsupported direction.">嘗試以不支援的方向捲動。</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontallyScrollable">
+      <summary vsli:raw="Gets a value that indicates whether the control can scroll horizontally.">取得的值表示控制項是否可水平捲動。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the control can scroll horizontally; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果控制項可水平捲動，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent">
+      <summary vsli:raw="Gets the current horizontal scroll position.">取得目前的水平捲軸位置。</summary>
+      <returns vsli:raw="The horizontal scroll position as a percentage of the total content area within the control.">水平捲動位置，以整個內容區域在控制項內的百分比表示。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalViewSize">
+      <summary vsli:raw="Gets the current horizontal view size.">取得目前的水平檢視大小。</summary>
+      <returns vsli:raw="The horizontal size of the viewable region as a percentage of the total content area within the control.">可檢視區域的水平大小，以整個內容區域在控制項內的百分比表示。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticallyScrollable">
+      <summary vsli:raw="Gets a value that indicates whether the control can scroll vertically.">取得的值表示控制項是否可垂直捲動。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the control can scroll vertically; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果控制項可垂直捲動，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent">
+      <summary vsli:raw="Gets the current vertical scroll position.">取得目前的垂直捲動位置。</summary>
+      <returns vsli:raw="The vertical scroll position as a percentage of the total content area within the control.">垂直捲動位置，以整個內容區域在控制項內的百分比表示。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticalViewSize">
+      <summary vsli:raw="Gets the vertical view size.">取得垂直檢視大小。</summary>
+      <returns vsli:raw="The vertical size of the viewable region as a percentage of the total content area within the control.">可檢視區域的垂直大小，以整個內容區域在控制項內的百分比表示。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual, selectable child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt;.">公開方法和屬性，以支援使用者介面自動化用戶端存取可實作 <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" /> 之容器的個別可選取子控制項。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection">
+      <summary vsli:raw="Adds the current element to the collection of selected items.">將目前的項目加入至選取項目的集合。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection">
+      <summary vsli:raw="Removes the current element from the collection of selected items.">從選取項目的集合移除目前的項目。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.Select">
+      <summary vsli:raw="Deselects any selected items and then selects the current element.">取消選取任何已選取的項目，然後選取目前的項目。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected">
+      <summary vsli:raw="Gets a value that indicates whether an item is selected.">取得值，表示是否已選取項目。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element is selected; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果已選取項目，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer">
+      <summary vsli:raw="Gets the UI Automation provider that implements &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt; and acts as the container for the calling object.">取得實作 <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" /> 並作為呼叫物件容器的使用者介面自動化提供者。</summary>
+      <returns vsli:raw="The provider that supports &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt;.">支援 <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" /> 的提供者。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISelectionProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of individual, selectable child items. The children of this control must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionItemProvider&quot; /&gt;.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項的作用如同個別的、可選取的子系項目集合的容器。 這個控制項的子系必須實作 <see cref="T:System.Windows.Automation.Provider.ISelectionItemProvider" />。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionProvider.GetSelection">
+      <summary vsli:raw="Retrieves a UI Automation provider for each child element that is selected.">擷取每個子項目所選取的 UI 自動化提供者。</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">UI 自動化提供者的集合。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation provider allows more than one child element to be selected concurrently.">取得值，指定使用者介面自動化提供者是否允許同時選取一個以上的子項目。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if multiple selection is allowed; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果允許多重選取，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation provider requires at least one child element to be selected.">取得值，指定使用者介面自動化提供者是否需要至少選取一個子項目。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if selection is required; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果需要選取，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISynchronizedInputProvider">
+      <summary vsli:raw="Exposes methods to facilitate UI Automation client access to controls that support synchronized input.">將方法公開，以利使用者介面自動化用戶端存取可支援同步化輸入的控制項。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISynchronizedInputProvider.Cancel">
+      <summary vsli:raw="Stops listening for input.">停止接聽輸入。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISynchronizedInputProvider.StartListening(System.Windows.Automation.SynchronizedInputType)">
+      <summary vsli:raw="Designates that the provider start listening for input of the specified type.">指定提供者開始接聽指定之型別的輸入。</summary>
+      <param name="inputType" vsli:raw="The type of input to listen for.">要聆聽的輸入類型。</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITableItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ITableProvider&quot; /&gt;.">公開方法和屬性，以支援使用者介面自動化用戶端存取可實作 <see cref="T:System.Windows.Automation.Provider.ITableProvider" /> 之容器的子控制項。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableItemProvider.GetColumnHeaderItems">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers representing all the column headers associated with a table item or cell.">擷取使用者介面自動化提供者集合，這個集合代表與資料表項目或儲存格相關聯的所有資料行標頭。</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">UI 自動化提供者的集合。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableItemProvider.GetRowHeaderItems">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers representing all the row headers associated with a table item or cell.">擷取使用者介面自動化提供者集合，這個集合代表與資料表項目或儲存格相關聯的所有資料列標頭。</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">UI 自動化提供者的集合。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITableProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of child elements. The children of this element must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ITableItemProvider&quot; /&gt; and be organized in a two-dimensional logical coordinate system that can be traversed (that is, a UI Automation client can move to adjacent controls) by using the keyboard.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項的作用如同子項目集合的容器。 此項目的子系必須實作 <see cref="T:System.Windows.Automation.Provider.ITableItemProvider" />，並組織成可使用鍵盤周遊的二維邏輯座標系統 (也就是使用者介面自動化用戶端可以移至相鄰的控制項)。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders">
+      <summary vsli:raw="Gets a collection of UI Automation providers that represents all the column headers in a table.">取得使用者介面自動化提供者集合，該集合代表資料表中所有的資料行標頭。</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">UI 自動化提供者的集合。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableProvider.GetRowHeaders">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers that represents all row headers in the table.">擷取使用者介面自動化提供者集合，該集合表示資料表中所有的資料列標頭。</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">UI 自動化提供者的集合。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor">
+      <summary vsli:raw="Retrieves the primary direction of traversal for the table.">擷取表格的主要周遊方向。</summary>
+      <returns vsli:raw="The primary direction of traversal.">主要周遊方向。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITextProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that contain text.">公開方法和屬性，以支援包含文字之控制項的使用者介面自動化用戶端存取。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.GetSelection">
+      <summary vsli:raw="Retrieves a collection of disjoint text ranges associated with the current text selection or selections.">擷取與目前文字選取範圍關聯之斷續文字範圍的集合。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the UI Automation provider does not support text selection.">如果使用者介面自動化提供者不支援文字選取範圍。</exception>
+      <returns vsli:raw="A collection of disjoint text ranges.">斷續文字範圍的集合。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.GetVisibleRanges">
+      <summary vsli:raw="Retrieves an array of disjoint text ranges from a text container where each text range begins with the first partially visible line through to the end of the last partially visible line.">從文字容器擷取斷續文字範圍的陣列，其中每一個文字範圍都以第一個局部可見行開頭，一直到最後一個局部可見行的尾端為止。</summary>
+      <returns vsli:raw="The collection of visible text ranges within the container or an empty array. A null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) is never returned.">容器內可見文字範圍的集合或空陣列。 從未傳回 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.RangeFromChild(System.Windows.Automation.Provider.IRawElementProviderSimple)">
+      <summary vsli:raw="Retrieves a text range enclosing a child element such as an image, hyperlink, or other embedded object.">擷取包含子項目 (例如影像、超連結或其他內嵌物件) 的文字範圍。</summary>
+      <param name="childElement" vsli:raw="The enclosed object.">包含的物件。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If the child element is a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic).">如果子項目是 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)。</exception>
+      <returns vsli:raw="A range that spans the child element.">跨越子項目的範圍。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.RangeFromPoint(System.Windows.Point)">
+      <summary vsli:raw="Returns the degenerate (empty) text range nearest to the specified screen coordinates.">傳回最接近指定之螢幕座標的變質 (空) 文字範圍。</summary>
+      <param name="screenLocation" vsli:raw="The location in screen coordinates.">螢幕座標中的位置。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a given point is outside the UI Automation element associated with the text pattern.">如果給定點超出與文字模式關聯的UI 自動化 項目之外。</exception>
+      <returns vsli:raw="A degenerate range nearest the specified location. A null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) is never returned.">最接近指定位置的變質範圍。 從未傳回 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange">
+      <summary vsli:raw="Gets a text range that encloses the main text of a document.">取得包含文件主要文字的文字範圍。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection">
+      <summary vsli:raw="Gets a value that specifies whether a text provider supports selection and, if so, the type of selection supported.">取得值，可指定文字提供者是否支援選取範圍；如果支援，則指定支援的選取範圍類型。</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Windows.Automation.SupportedTextSelection&quot; /&gt; values.">其中一個 <see cref="T:System.Windows.Automation.SupportedTextSelection" /> 值。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITextRangeProvider">
+      <summary>公開方法與屬性，以支援使用者介面自動化用戶端在實作 <see cref="T:System.Windows.Automation.Provider.ITextProvider" /> 的文字容器中存取一段連續的文字。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.AddToSelection">
+      <summary>加入至文字容器中反白的文字集合，此容器支援多次斷續選取。</summary>
+      <exception cref="T:System.InvalidOperationException">如果文字提供者不支援多次斷續選取 (也就是說，<see cref="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" /> 的值必須為 <see langword="Multiple" />)。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Clone">
+      <summary>傳回新的 <see cref="T:System.Windows.Automation.Provider.ITextRangeProvider" />，與原始 <see cref="T:System.Windows.Automation.Provider.ITextRangeProvider" /> 相同且繼承其所有屬性。</summary>
+      <returns>新的文字範圍。 從未傳回 Null 參考 (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Compare(System.Windows.Automation.Provider.ITextRangeProvider)">
+      <summary>傳回的值表示文字範圍的擴展 (<see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 端點至 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端點) 與另一個文字範圍是否相同。</summary>
+      <param name="range">要比較的文字範圍</param>
+      <exception cref="T:System.ArgumentException">如果要比較的範圍不是來自相同的文字提供者。</exception>
+      <returns>如果兩個文字範圍的跨幅相同，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.CompareEndpoints(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <summary>傳回的值指定兩個文字範圍是否有相同的端點。</summary>
+      <param name="endpoint">呼叫端的 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 或 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端點。</param>
+      <param name="targetRange">比較的目標範圍。</param>
+      <param name="targetEndpoint">目標的 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 或 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端點。</param>
+      <exception cref="T:System.ArgumentException">如果 <paramref name="targetRange" /> 來自不同的文字提供者。</exception>
+      <returns>如果呼叫端的端點在文字中比目標端點更早出現，則傳回負值。  
+  
+ 如果呼叫端的端點與目標端點在相同位置，則傳回零。  
+  
+ 如果呼叫端的端點在文字中比目標端點更晚出現，則傳回正值。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit(System.Windows.Automation.Text.TextUnit)">
+      <summary>將文字範圍擴展至指定的文字單元。</summary>
+      <param name="unit">文字單元。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.FindAttribute(System.Int32,System.Object,System.Boolean)">
+      <summary>傳回具有指定之屬性值的文字範圍子集。</summary>
+      <param name="attribute">要搜尋的屬性。</param>
+      <param name="value">要搜尋的屬性值。 這個值必須符合屬性的型別。</param>
+      <param name="backward">如果傳回的是最後產生的文字範圍，而不是第一個文字範圍，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <returns>具有相符屬性和屬性值的文字範圍；否則為 Null (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.FindText(System.String,System.Boolean,System.Boolean)">
+      <summary>傳回包含指定文字的文字範圍子集。</summary>
+      <param name="text">要搜尋的文字字串。</param>
+      <param name="backward">如果傳回的是最後產生的文字範圍，而不是第一個文字範圍，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <param name="ignoreCase">如果要忽略大小寫，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <returns>符合指定之文字的文字範圍；否則為 Null (在 Visual Basic 中為 <see langword="Nothing" />)。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetAttributeValue(System.Int32)">
+      <summary>從整個文字範圍中擷取指定屬性的值。</summary>
+      <param name="attribute">文字屬性。</param>
+      <exception cref="T:System.ArgumentException">如果指定的屬性無效。</exception>
+      <returns>擷取物件，代表指定之屬性的值。 例如，<c>GetAttributeValue(TextPattern.FontNameAttribute)</c> 會傳回代表文字範圍之字型名稱的字串，而 <c>GetAttributeValue(TextPattern.IsItalicAttribute)</c> 會傳回 <see cref="T:System.Boolean" /> 類型的值。  
+  
+如果指定之屬性的值在文字範圍內會變動，則傳回 <see cref="F:System.Windows.Automation.TextPattern.MixedAttributeValue" />。  
+  
+如果提供者或控制項不支援指定的屬性，則傳回 <see cref="F:System.Windows.Automation.AutomationElement.NotSupported" />。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetBoundingRectangles">
+      <summary>對文字範圍中每一個完整或部分可見的文字行，擷取週框的集合。</summary>
+      <returns>由文字範圍中每一個完整或部分可見的文字行所構成的週框陣列。  
+  
+ 變質範圍的空陣列。  
+  
+ 具有螢幕座標之文字範圍的空陣列，這些座標讓文字範圍完全放在螢幕之外、捲動到檢視之外，或被重疊的視窗遮蔽。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetChildren">
+      <summary>擷取文字範圍內所有內嵌物件的集合。</summary>
+      <returns>範圍內子物件的集合。 如果子系與文字範圍重疊，但未被範圍完全圍住，則也會包含在集合中。  
+  
+ 如果沒有子物件，則傳回空集合。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetEnclosingElement">
+      <summary>傳回圍住文字範圍的最內層控制項。</summary>
+      <returns>封入控制項，通常是提供文字範圍的文字提供者。 但是，如果文字提供者支援子項目，例如表格或超連結，則封入項目可以為文字提供者的子代。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetText(System.Int32)">
+      <summary>擷取範圍的純文字。</summary>
+      <param name="maxLength">傳回之字串的最大長度。 如果不需要限制，請使用 <c>-1</c>。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">如果 <paramref name="maxLength" /> 小於 -1。</exception>
+      <returns>文字範圍的純文字，可能會依指定的 <paramref name="maxLength" /> 截斷。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Move(System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <summary>將文字範圍移動指定的文字單元數。</summary>
+      <param name="unit">文字單元界限。</param>
+      <param name="count">要移動的文字單元數。  
+  
+ 正值會將文字範圍向前移動，負值會將文字範圍向後移動，0 沒有作用。</param>
+      <returns>實際移動的單元數。 如果新的文字範圍端點大於或小於 <see cref="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange" /> 端點，則此值會小於要求的數目。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByRange(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <summary>將文字範圍的一個端點移至第二個文字範圍上指定的端點。</summary>
+      <param name="endpoint">要移動的端點。</param>
+      <param name="targetRange">來自相同文字提供者的另一個範圍。</param>
+      <param name="targetEndpoint">另一個範圍上的端點。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <summary>在文件範圍內，將文字範圍的一個端點移動指定的文字單元數。</summary>
+      <param name="endpoint">要移動的端點。</param>
+      <param name="unit">要移動的文字單元。</param>
+      <param name="count">要移動的單位數。 正值會將端點向前移動。 負值會向後移動。 值為 0 沒有作用。</param>
+      <returns>實際移動的單元數，如果移動端點會碰到文件的開頭或結尾，則會小於要求的數目。</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.RemoveFromSelection">
+      <summary>從支援多次斷續選取的文字容器中反白的文字集合，移除反白的文字區段，此區段對應至呼叫端的 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 和 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端點。</summary>
+      <exception cref="T:System.InvalidOperationException">如果文字提供者不支援 Multiple，則為斷續的選取範圍 (例如，<see cref="P:System.Windows.Automation.TextPattern.SupportedTextSelection" /> 必須擁有 <see langword="Multiple" /> 這個值)。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView(System.Boolean)">
+      <summary>導致文字控制項垂直捲動，直到在檢視區看到文字範圍為止。</summary>
+      <param name="alignToTop">如果應該捲動文字控制項，讓文字範圍與檢視區的頂端齊平，則為 <see langword="true" />；如果應該與檢視區的底端齊平，則為 <see langword="false" />。</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Select">
+      <summary>反白文字控制項的文字，此文字對應至文字範圍的 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> 和 <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> 端點。</summary>
+      <exception cref="T:System.InvalidOperationException">發生於文字控制項不支援文字選取範圍時。</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IToggleProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can cycle through a set of states and maintain a state once set.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項可以循環一組狀態並維護設定的狀態。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IToggleProvider.Toggle">
+      <summary vsli:raw="Cycles through the toggle states of a control.">透過控制項狀態的切換循環。</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IToggleProvider.ToggleState">
+      <summary vsli:raw="Gets the toggle state of the control.">取得控制項的切換狀態。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.ToggleState&quot; /&gt; of the control.">控制項的 <see cref="T:System.Windows.Automation.ToggleState" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITransformProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can be moved, resized, or rotated within a two-dimensional space.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項可以在二維空間內移動、調整大小或旋轉。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Move(System.Double,System.Double)">
+      <summary vsli:raw="Moves the control.">移動控制項。</summary>
+      <param name="x" vsli:raw="Absolute screen coordinates of the left side of the control.">控制項左側的絕對螢幕座標。</param>
+      <param name="y" vsli:raw="Absolute screen coordinates of the top of the control.">控制項上方的絕對螢幕座標。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanMove&quot; /&gt; property is false.">如果 <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanMove" /> 屬性為 false。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Resize(System.Double,System.Double)">
+      <summary vsli:raw="Resizes the control.">重新調整控制項大小。</summary>
+      <param name="width" vsli:raw="The new width of the window, in pixels.">視窗的新寬度 (以像素為單位)。</param>
+      <param name="height" vsli:raw="The new height of the window, in pixels.">視窗的新高度 (以像素為單位)。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanResize&quot; /&gt; property is false.">如果 <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanResize" /> 屬性為 false。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Rotate(System.Double)">
+      <summary vsli:raw="Rotates the control.">旋轉控制項。</summary>
+      <param name="degrees" vsli:raw="The number of degrees to rotate the control. A positive number rotates clockwise; a negative number rotates counterclockwise.">控制項的旋轉度數。 正數會順時針旋轉，負數會逆時針旋轉。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanRotate&quot; /&gt; property is false.">如果 <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate" /> 屬性為 false。</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanMove">
+      <summary vsli:raw="Gets a value that specifies whether the control can be moved.">取得的值指定是否可移動控制項。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be moved; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果項目可以移動，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanResize">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation element can be resized.">取得的值指定 UI 自動化項目是否可調整大小。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be resized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果項目可以調整大小，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate">
+      <summary vsli:raw="Gets a value that specifies whether the control can be rotated.">取得的值指定是否可旋轉控制項。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be rotated; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果項目可以旋轉，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IValueProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls having an intrinsic value that does not span a range and that can be represented as a string.">公開方法與屬性，以支援控制項的使用者介面自動化用戶端存取，這些控制項具有未擴展範圍且可表示為字串的內建值。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IValueProvider.SetValue(System.String)">
+      <summary vsli:raw="Sets the value of a control.">設定控制項的值。</summary>
+      <param name="value" vsli:raw="The value to set. The provider is responsible for converting the value to the appropriate data type.">要設定的值。 提供者會負責將值轉換成適當的資料類型。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If locale-specific information is passed to a control in an incorrect format such as an incorrectly formatted date.">如果地區設定特有的資訊以不正確的格式傳遞至控制項，例如日期格式不正確。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a new value cannot be converted from a string to a format the control recognizes.">如果新的值不能從字串轉換成控制項可辨識的格式。</exception>
+      <exception cref="T:System.Windows.Automation.ElementNotEnabledException" vsli:raw="When an attempt is made to manipulate a control that is not enabled.">嘗試對未啟用的控制項進行操作。</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IValueProvider.IsReadOnly">
+      <summary vsli:raw="Gets a value that specifies whether the value of a control is read-only.">取得值，指定控制項的值是否為唯讀。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value is read-only; &lt;see langword=&quot;false&quot; /&gt; if it can be modified.">如果此值為唯讀，則為 <see langword="true" />；如果可以修改，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IValueProvider.Value">
+      <summary vsli:raw="Gets the value of the control.">取得控制項的值。</summary>
+      <returns vsli:raw="The value of the control as a string.">控制項的值，以字串表示。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IVirtualizedItemProvider">
+      <summary vsli:raw="Exposes a method to support the virtualized item control pattern.">將方法公開，以支援虛擬項目的控制項模式。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IVirtualizedItemProvider.Realize">
+      <summary vsli:raw="Makes the virtual item fully accessible as a UI Automation element.">允許將虛擬項目當做使用者介面自動化項目完整存取。</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IWindowProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that provide fundamental window-based functionality within a traditional graphical user interface (GUI).">公開方法與屬性，以支援使用者介面自動化用戶端存取控制項，這些控制項在傳統圖形化使用者介面 (GUI) 中提供基本的視窗功能。</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.Close">
+      <summary vsli:raw="Attempts to close the window.">嘗試關閉視窗。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="When the control is unable to perform the requested action.">控制項無法執行要求的動作時。</exception>
+      <exception cref="T:System.Windows.Automation.ElementNotAvailableException" vsli:raw="When the target element is no longer available (for example, the window has closed).">目標項目無法再使用時 (例如視窗已關閉)。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.SetVisualState(System.Windows.Automation.WindowVisualState)">
+      <summary vsli:raw="Changes the visual state of the window. For example, minimizes or maximizes it.">變更視窗的可見狀態。 例如，最小化或最大化。</summary>
+      <param name="state" vsli:raw="The requested visual state of the window.">要求的視窗可見狀態。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="When the control does not support the requested behavior.">當控制項不支援要求的行為。</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.WaitForInputIdle(System.Int32)">
+      <summary vsli:raw="Causes the calling code to block for the specified time or until the associated process enters an idle state, whichever completes first.">導致將呼叫程式碼封鎖指定的時間，或直到相關聯的處理序進入閒置狀態 (就看何者先完成)。</summary>
+      <param name="milliseconds" vsli:raw="The amount of time, in milliseconds, to wait for the associated process to become idle. The maximum is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">等候相關聯處理序變成閒置的時間量 (以毫秒為單位)。 最大值是 <see cref="F:System.Int32.MaxValue" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="When the parameter passed in is not a valid number.">當傳入的參數不是有效數字時。</exception>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window has entered the idle state; &lt;see langword=&quot;false&quot; /&gt; if the timeout occurred.">如果視窗已進入閒置狀態，則為 <see langword="true" />；如果逾時，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.InteractionState">
+      <summary vsli:raw="Gets the interaction state of the window.">取得視窗的互動狀態。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.WindowInteractionState&quot; /&gt; of the control.">控制項的 <see cref="T:System.Windows.Automation.WindowInteractionState" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.IsModal">
+      <summary vsli:raw="Gets a value that specifies whether the window is modal.">取得的值指定視窗是否為強制回應。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window is modal; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果為強制回應的視窗，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.IsTopmost">
+      <summary vsli:raw="Gets a value that specifies whether the window is the topmost element in the z-order.">取得值，這個值指定視窗是否是圖層順序的最上層項目。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window is topmost; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果視窗是最上層，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.Maximizable">
+      <summary vsli:raw="Gets a value that specifies whether the window can be maximized.">取得的值指定視窗是否可最大化。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window can be maximized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果視窗可最大化，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.Minimizable">
+      <summary vsli:raw="Gets a value that specifies whether the window can be minimized.">取得的值指定視窗是否可最小化。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window can be minimized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">如果視窗可最小化，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.VisualState">
+      <summary vsli:raw="Gets the visual state of the window.">取得視窗的可見狀態。</summary>
+      <returns vsli:raw="The visual state of the window.">視窗的可見狀態。</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.NavigateDirection">
+      <summary vsli:raw="Contains values used to specify the direction of navigation within the UI Automation tree.">包含值，這些值是用來指定使用者介面自動化樹狀目錄內的瀏覽方向。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.FirstChild">
+      <summary vsli:raw="The navigation direction is to the first child.">巡覽方向往第一個子系。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.LastChild">
+      <summary vsli:raw="The navigation direction is to the last child.">巡覽方向往最後一個子系。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.NextSibling">
+      <summary vsli:raw="The navigation direction is to the next sibling.">巡覽方向朝往下一個同層級。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.Parent">
+      <summary vsli:raw="The navigation direction is toward the parent.">巡覽方向朝向父代。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.PreviousSibling">
+      <summary vsli:raw="The navigation direction is to the previous sibling.">巡覽方向朝往上一個同層級。</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ProviderOptions">
+      <summary>包含指定使用者介面自動化提供者類型的值。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ClientSideProvider">
+      <summary>使用者介面自動化提供者是用戶端提供者。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.NonClientAreaProvider">
+      <summary>使用者介面自動化提供者是非用戶端區域提供者。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.OverrideProvider">
+      <summary>使用者介面自動化提供者會覆寫另一個提供者。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ProviderOwnsSetFocus">
+      <summary>使用者介面自動化提供者會處理自己的焦點，而不想要 UI 自動化 在呼叫 <see cref="M:System.Windows.Automation.AutomationElement.SetFocus" /> 時，代替它將焦點設定至最接近的視窗。 這個選項通常由似乎取得焦點的視窗提供者使用，這些視窗不會實際收到 Win32 焦點，例如功能表和下拉式功能表。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ServerSideProvider">
+      <summary>使用者介面自動化提供者是伺服器端提供者。</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.UseComThreading">
+      <summary>使用者介面自動化提供者預期會根據 COM 執行緒規則而被呼叫。 如果提供者在單一執行緒 Apartment 中，將只會在 Apartment 執行緒上呼叫它。 只有伺服器端提供者可以使用此選項。</summary>
+    </member>
+  </members>
+</doc>

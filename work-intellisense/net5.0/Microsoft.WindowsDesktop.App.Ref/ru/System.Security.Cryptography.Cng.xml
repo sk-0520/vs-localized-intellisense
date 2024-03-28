@@ -1,0 +1,1607 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Cng</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <summary>Предоставляет безопасный дескриптор для использования объектами криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>Создает новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</summary>
+      <param name="handle">Ранее существующий дескриптор для использования. Используя <see cref="F:System.IntPtr.Zero" />, возвращает недопустимый дескриптор.</param>
+      <param name="parentHandle">Родительский дескриптор для <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> закрыт.  
+  
+-или- 
+ <paramref name="parentHandle" /> недопустим.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle">
+      <summary>Освобождает дескриптор, используемый объектом криптографии следующего поколения (Cryptography Next Generation, CNG).</summary>
+      <returns>Значение <see langword="true" />, если дескриптор успешно освобожден; в противном случае — <see langword="false" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle">
+      <summary>Освобождает собственный дескриптор, используемый объектом криптографии следующего поколения (Cryptography Next Generation, CNG).</summary>
+      <returns>Значение <see langword="true" />, если дескриптор успешно освобожден; в противном случае — <see langword="false" />.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeNCryptHandle.IsInvalid">
+      <summary>Получает значение, указывающее, является ли дескриптор недействительным.</summary>
+      <returns>Значение <see langword="true" />, если дескриптор недействителен, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <summary>Предоставляет безопасный дескриптор, представляющий ключ (NCRYPT_KEY_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>Создает новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</summary>
+      <param name="handle">Ранее существующий дескриптор для использования. Используя <see cref="F:System.IntPtr.Zero" />, возвращает недопустимый дескриптор.</param>
+      <param name="parentHandle">Родительский дескриптор для <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> закрыт.  
+  
+-или- 
+ <paramref name="parentHandle" /> недопустим.</exception>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <summary>Предоставляет безопасный дескриптор, представляющий поставщика хранилища ключей (NCRYPT_PROV_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <summary>Предоставляет безопасный дескриптор, представляющий значение секретного соглашения (NCRYPT_SECRET_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.AesCng">
+      <summary>Предоставляет реализацию алгоритма AES на платформе криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.AesCng" /> с использованием временного ключа.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.AesCng" /> с указанным именем ключа, который представляет существующий сохраненный ключ AES.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.AesCng" /> с указанным именем ключа (представляет существующий сохраненный ключ AES) и указанным поставщиком хранилища ключей (KSP).</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.AesCng" /> с указанным именем ключа, который представляет существующий сохраненный ключ AES, указанного поставщика хранилища ключей (KSP) и параметры открытия ключа.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <param name="openOptions">Побитовое сочетание значений перечисления, которые определяют параметры открытия ключа, например, расположение, из которого открывается ключ (компьютер или пользовательское хранилище), или отключение запросов пользовательского интерфейса.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor">
+      <summary>Создает симметричный объект-дешифратор АES с текущим ключом и вектором инициализации (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Симметричный объект-дешифратор AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Создает симметричный объект-дешифратор AES с указанным ключом и вектором инициализации (IV).</summary>
+      <param name="rgbKey">Секретный ключ, который нужно использовать для алгоритма AES. Размер ключа должен составлять 128, 192 или 256 битов.</param>
+      <param name="rgbIV">Вектор инициализации, который нужно использовать для алгоритма AES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Размер элемента <paramref name="rgbKey" /> недопустимый для этого алгоритма.  
+  
+-или- 
+ Размер элемента <paramref name="rgbIV" /> не соответствует размеру блоков для этого алгоритма.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Элемент <paramref name="rgbKey" /> — это слабый ключ для этого алгоритма, поэтому он не может использоваться.  
+  
+-или- 
+ <paramref name="rgbIV" /> имеет значение <see langword="null" />.</exception>
+      <returns>Симметричный объект-дешифратор AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor">
+      <summary>Создает симметричный объект-шифратор AES с помощью текущего ключа и вектора инициализации (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Симметричный объект-шифратор AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Создает симметричный объект-шифратор AES с помощью указанного ключа и вектора инициализации (IV).</summary>
+      <param name="rgbKey">Секретный ключ, который нужно использовать для алгоритма AES. Размер ключа должен составлять 128, 192 или 256 битов.</param>
+      <param name="rgbIV">Вектор инициализации, который нужно использовать для алгоритма AES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Размер элемента <paramref name="rgbKey" /> недопустимый для этого алгоритма.  
+  
+-или- 
+ Размер элемента <paramref name="rgbIV" /> не соответствует размеру блоков для этого алгоритма.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Элемент <paramref name="rgbKey" /> — это слабый ключ для этого алгоритма, поэтому он не может использоваться.  
+  
+-или- 
+ <paramref name="rgbIV" /> имеет значение <see langword="null" />.</exception>
+      <returns>Симметричный объект-шифратор AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateIV">
+      <summary>Создает случайный вектор инициализации (IV), который нужно использовать для алгоритма AES.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateKey">
+      <summary>Создает случайный ключ для использования алгоритма AES.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.Key">
+      <summary>Возвращает или задает ключ для алгоритма <see cref="T:System.Security.Cryptography.AesCng" />.</summary>
+      <returns>Ключ для алгоритма <see cref="T:System.Security.Cryptography.AesCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.KeySize">
+      <summary>Возвращает или задает размер (в битах) секретного ключа, который используется алгоритмом <see cref="T:System.Security.Cryptography.AesCng" />.</summary>
+      <returns>Размер (в битах) секретного ключа, который используется алгоритмом <see cref="T:System.Security.Cryptography.AesCng" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithm">
+      <summary>Инкапсулирует имя алгоритма шифрования.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <param name="algorithm">Имя алгоритма для инициализации.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="algorithm" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Длина значения параметра <paramref name="algorithm" /> равна 0.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Object)">
+      <summary>Сравнивает заданный объект с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="obj" /> является объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающим тот же самый алгоритм, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Security.Cryptography.CngAlgorithm)">
+      <summary>Сравнивает заданный объект <see cref="T:System.Security.Cryptography.CngAlgorithm" /> с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <param name="other">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="other" /> задает тот же самый алгоритм, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.GetHashCode">
+      <summary>Формирует хэш-значение имени алгоритма, которое внедрено в текущий объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <returns>Хэш-значение внедренного имени алгоритма.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Equality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngAlgorithm" /> одно и то же имя алгоритма.</summary>
+      <param name="left">Объект, задающий имя алгоритма.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают один и тот же алгоритм, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Inequality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngAlgorithm" /> разные алгоритмы.</summary>
+      <param name="left">Объект, задающий имя алгоритма.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают разные алгоритмы, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.ToString">
+      <summary>Возвращает имя алгоритма, заданного текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <returns>Внедренное имя алгоритма.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Algorithm">
+      <summary>Возвращает имя алгоритма, заданного текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <returns>Внедренное имя алгоритма.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellman">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм обмена ключами эллиптической кривой Диффи-Хелмана (ECDH), кривая которого описывается с помощью свойства ключа.</summary>
+      <returns>Объект, задающий алгоритм обмена ключами ECDH, кривая которого описывается с помощью свойства ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP256">
+      <summary>Возвращает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм обмена ключами Диффи-Хеллмана на эллиптических кривых (ECDH), в котором используется кривая P-256.</summary>
+      <returns>Объект, задающий алгоритм ECDH, в котором используется кривая P-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP384">
+      <summary>Возвращает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм обмена ключами Диффи-Хеллмана на эллиптических кривых (ECDH), в котором используется кривая P-384.</summary>
+      <returns>Объект, задающий алгоритм ECDH, в котором используется кривая P-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP521">
+      <summary>Возвращает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм обмена ключами Диффи-Хеллмана на эллиптических кривых (ECDH), в котором используется кривая P-521.</summary>
+      <returns>Объект, задающий алгоритм ECDH, в котором используется кривая P-521.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsa">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм цифровых подписей на основе эллиптических кривых (ECDSA), кривая которого описывается с помощью свойства ключа.</summary>
+      <returns>Объект, задающий алгоритм ECDSA, кривая которого описывается с помощью свойства ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP256">
+      <summary>Возвращает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм цифровых подписей на основе эллиптических кривых (ECDSA), в котором используется кривая P-256.</summary>
+      <returns>Объект, задающий алгоритм ECDSA, в котором используется кривая P-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP384">
+      <summary>Возвращает объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм цифровых подписей на основе эллиптических кривых (ECDSA), в котором используется кривая P-384.</summary>
+      <returns>Объект, задающий алгоритм ECDSA, в котором используется кривая P-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP521">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм цифровых подписей на основе эллиптических кривых (ECDSA), в котором используется кривая P-521.</summary>
+      <returns>Объект, задающий алгоритм ECDSA, в котором используется кривая P-521.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.MD5">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий хэш-алгоритм MD5.</summary>
+      <returns>Объект, задающий алгоритм MD5.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Rsa">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий хэш-алгоритм RSA.</summary>
+      <returns>Объект, задающий алгоритм RSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha1">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм SHA-1.</summary>
+      <returns>Объект, задающий алгоритм SHA-1.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha256">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм SHA-256.</summary>
+      <returns>Объект, задающий алгоритм SHA-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha384">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм SHA-384.</summary>
+      <returns>Объект, задающий алгоритм SHA-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha512">
+      <summary>Возвращает новый объект <see cref="T:System.Security.Cryptography.CngAlgorithm" />, задающий алгоритм SHA-512.</summary>
+      <returns>Объект, задающий алгоритм SHA-512.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithmGroup">
+      <summary>Инкапсулирует имя группы алгоритмов шифрования.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</summary>
+      <param name="algorithmGroup">Имя группы алгоритмов для инициализации.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="algorithmGroup" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Длина значения параметра <paramref name="algorithmGroup" /> равна 0.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Object)">
+      <summary>Сравнивает заданный объект с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</summary>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="obj" /> является объектом <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающим ту же самую группу алгоритмов, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Сравнивает заданный объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</summary>
+      <param name="other">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="other" /> задает ту же самую группу алгоритмов, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.GetHashCode">
+      <summary>Формирует хэш-значение имени группы алгоритмов, внедренного в текущий объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</summary>
+      <returns>Хэш-значение внедренного имени группы алгоритмов.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Equality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> одну и ту же группу алгоритмов.</summary>
+      <param name="left">Объект, задающий группу алгоритмов.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают одну и ту же группу алгоритмов, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Inequality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> разные группы алгоритмов.</summary>
+      <param name="left">Объект, задающий группу алгоритмов.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают разные группы алгоритмов, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.ToString">
+      <summary>Получает имя группы алгоритмов, заданной текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <returns>Внедренное имя группы алгоритмов.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.AlgorithmGroup">
+      <summary>Получает имя группы алгоритмов, заданной текущим объектом <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <returns>Внедренное имя группы алгоритмов.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.DiffieHellman">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающий семейство алгоритмов, основанных на алгоритме Диффи-Хеллмана.</summary>
+      <returns>Объект, задающий семейство алгоритмов, основанных на алгоритме Диффи-Хеллмана.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Dsa">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающий семейство алгоритмов, основанных на алгоритме цифровой подписи DSA.</summary>
+      <returns>Объект, задающий семейство алгоритмов, основанных на алгоритме DSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающий семейство алгоритмов, основанных на алгоритме Диффи-Хеллмана на эллиптических кривых (Elliptic Curve Diffie-Hellman, ECDH).</summary>
+      <returns>Объект, задающий семейство алгоритмов, основанных на алгоритме ECDH.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDsa">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающий семейство алгоритмов, основанных на алгоритме цифровой подписи DSA на эллиптических кривых (Elliptic Curve Digital Signature Algorithm, ECDSA).</summary>
+      <returns>Объект, задающий семейство алгоритмов, основанных на алгоритме ECDSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Rsa">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />, задающий семейство алгоритмов, основанных на алгоритме RSA.</summary>
+      <returns>Объект, задающий семейство алгоритмов, основанных на алгоритме RSA.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngExportPolicies">
+      <summary>Задает политики экспорта для ключа.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowArchiving">
+      <summary>Закрытый ключ может быть экспортирован один раз в целях архивирования.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowExport">
+      <summary>Закрытый ключ может быть экспортирован несколько раз.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextArchiving">
+      <summary>Закрытый ключ может быть экспортирован один раз в виде открытого текста.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextExport">
+      <summary>Закрытый ключ может быть экспортирован несколько раз в виде открытого текста.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.None">
+      <summary>Политики экспорта не заданы. Экспорт ключа разрешен без ограничений.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKey">
+      <summary>Определяет базовую функциональность для ключей, используемых объектами криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm)">
+      <summary>Создает объект <see cref="T:System.Security.Cryptography.CngKey" />, который может использоваться в заданном алгоритме.</summary>
+      <param name="algorithm">Алгоритм, в котором будет использоваться ключ.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Эфемерный ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String)">
+      <summary>Создает именованный объект <see cref="T:System.Security.Cryptography.CngKey" />, обеспечивающий работу заданного алгоритма.</summary>
+      <param name="algorithm">Алгоритм, в котором будет использоваться ключ.</param>
+      <param name="keyName">Имя ключа. Если имя не задано, ключ не будет сохранен.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Постоянный или эфемерный ключ, обеспечивающий работу заданного алгоритма.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String,System.Security.Cryptography.CngKeyCreationParameters)">
+      <summary>Создает именованный объект <see cref="T:System.Security.Cryptography.CngKey" />, обеспечивающий работу заданного алгоритма, используя предоставленные параметры создания ключа.</summary>
+      <param name="algorithm">Алгоритм, в котором будет использоваться ключ.</param>
+      <param name="keyName">Имя ключа. Если имя не задано, ключ не будет сохранен.</param>
+      <param name="creationParameters">Объект, задающий дополнительные параметры для данного метода, включая <see cref="T:System.Security.Cryptography.CngProvider" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Постоянный или эфемерный ключ, обеспечивающий работу заданного алгоритма.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Delete">
+      <summary>Удаляет ключ, связанный с объектом.</summary>
+      <exception cref="T:System.ObjectDisposedException">Предпринята попытка доступа к ключу, который был удален.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Dispose">
+      <summary>Освобождает все ресурсы, используемые текущим экземпляром класса <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String)">
+      <summary>Проверяет наличие именованного ключа в поставщике хранилища ключей (KSP) по умолчанию.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Значение <see langword="true" />, если именованный ключ существует в KSP по умолчанию; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Проверяет наличие именованного ключа в заданном поставщике хранилища ключей (KSP).</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">KSP, проверяемый на наличие ключа.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="keyName" /> или <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Значение <see langword="true" />, если именованный ключ существует в заданном поставщике хранилища ключей; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Проверяет наличие именованного ключа в заданном поставщике хранилища ключей (KSP) в соответствии с заданными параметрами.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">KSP, проверяемый на наличие ключа.</param>
+      <param name="options">Битовая комбинация значений перечисления, определяющих параметры открытия ключа.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="keyName" /> или <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Значение <see langword="true" />, если именованный ключ существует в заданном поставщике хранилища ключей; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Export(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Экспортирует ключевой материал в большой двоичный объект в заданном формате.</summary>
+      <param name="format">Объект, задающий формат большого двоичного объекта ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки. Как правило, <see cref="P:System.Security.Cryptography.CngKey.ExportPolicy" /> не позволяет экспортировать ключ.</exception>
+      <returns>Большой двоичный объект, в котором содержится ключевой материал в заданном формате.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Получает свойство по заданному имени и набору параметров.</summary>
+      <param name="name">Имя требуемого свойства.</param>
+      <param name="options">Битовая комбинация значений перечисления, определяющих параметры именованного свойства.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Объект, в котором содержится необработанное значение заданного свойства.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.HasProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Проверяет наличие заданного свойства для ключа.</summary>
+      <param name="name">Имя свойства, наличие которого необходимо проверить.</param>
+      <param name="options">Битовая комбинация значений перечисления, определяющих параметры именованного свойства.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если заданное свойство найдено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Создает новый ключ путем импорта заданного ключевого материала в KSP по умолчанию, используя заданный формат.</summary>
+      <param name="keyBlob">Массив, содержащий сведения о ключе.</param>
+      <param name="format">Объект, который указывает формат массива <paramref name="keyBlob" />.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="keyBlob" /> или <paramref name="format" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Новый ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngProvider)">
+      <summary>Создает ключ путем импорта заданных сведений о ключе в указанный поставщик хранилища ключей (KSP), используя указанный формат.</summary>
+      <param name="keyBlob">Массив, содержащий сведения о ключе.</param>
+      <param name="format">Объект, который указывает формат массива <paramref name="keyBlob" />.</param>
+      <param name="provider">KSP.</param>
+      <exception cref="T:System.ArgumentNullException">Значение параметра <paramref name="keyBlob" />, <paramref name="format" /> или <paramref name="provider" /> равно <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Новый ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle,System.Security.Cryptography.CngKeyHandleOpenOptions)">
+      <summary>Создает экземпляр класса <see cref="T:System.Security.Cryptography.CngKey" />, используя дескриптор существующего ключа.</summary>
+      <param name="keyHandle">Дескриптор существующего ключа.</param>
+      <param name="keyHandleOpenOptions">Одно из значений перечисления, определяющее, представляет ли <paramref name="keyHandle" /> эфемерный или именованный ключ.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyHandle" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyHandle" /> является недопустимым или имеет неверный формат либо уже закрыт. Это исключение также возникает в том случае, если ключ является эфемерным ключом, созданным средой CLR, но не задано значение <see cref="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Существующий ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String)">
+      <summary>Создает экземпляр класса <see cref="T:System.Security.Cryptography.CngKey" />, который представляет существующий именованный ключ.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Существующий ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Создает экземпляр класса <see cref="T:System.Security.Cryptography.CngKey" />, который представляет существующий именованный ключ, используя заданного поставщика хранилища ключей (KSP).</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="keyName" /> или <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Существующий ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Создает экземпляр класса <see cref="T:System.Security.Cryptography.CngKey" />, который представляет существующий именованный ключ, используя заданного поставщика хранилища ключей (KSP) и параметры открытия ключа.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <param name="openOptions">Побитовое сочетание значений перечисления, которые определяют параметры открытия ключа, например, расположение, из которого открывается ключ (компьютер или пользовательское хранилище), или отключение запросов пользовательского интерфейса.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="keyName" /> или <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Существующий ключ.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.SetProperty(System.Security.Cryptography.CngProperty)">
+      <summary>Задает именованное свойство для ключа.</summary>
+      <param name="property">Свойство ключа, которое необходимо задать.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Algorithm">
+      <summary>Получает алгоритм, используемый ключом.</summary>
+      <returns>Объект, определяющий имя алгоритма шифрования.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.AlgorithmGroup">
+      <summary>Получает группу алгоритмов, используемую ключом.</summary>
+      <returns>Объект, определяющий имя группы алгоритмов шифрования.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ExportPolicy">
+      <summary>Получает политику экспорта, используемую ключом.</summary>
+      <returns>Объект, задающий политику экспорта для ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Handle">
+      <summary>Получает безопасный дескриптор, представляющий собственный ключ (NCRYPT_KEY_HANDLE).</summary>
+      <returns>Безопасный дескриптор, представляющий ключ.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsEphemeral">
+      <summary>Получает сведения о постоянстве ключа.</summary>
+      <returns>Значение <see langword="true" />, если ключ является эфемерным; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsMachineKey">
+      <summary>Получает область видимости ключа (для всех пользователей компьютера или только для текущего пользователя).</summary>
+      <returns>Значение <see langword="true" />, если ключ доступен для всех пользователей компьютера; значение <see langword="false" />, если ключ доступен только для текущего пользователя.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyName">
+      <summary>Получает имя ключа.</summary>
+      <returns>Имя ключа. Если ключ является эфемерным, параметру присваивается значение <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeySize">
+      <summary>Получает размер ключа в битах.</summary>
+      <returns>Размер ключа в битах.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyUsage">
+      <summary>Получает криптографические операции, заданные ключом.</summary>
+      <returns>Битовая комбинация значений перечисления, определяющих разрешенные варианты использования ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ParentWindowHandle">
+      <summary>Получает или задает дескриптор окна (HWND), который необходимо использовать для запросов пользовательского интерфейса, отображаемых при доступе к ключу.</summary>
+      <returns>Дескриптор родительского окна для ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Provider">
+      <summary>Получает поставщика хранилища ключей (KSP), управляющего ключом.</summary>
+      <returns>KSP, управляющий ключом.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ProviderHandle">
+      <summary>Получает собственный дескриптор (NCRYPT_PROV_HANDLE) поставщика хранилища ключей (KSP).</summary>
+      <returns>Дескриптор KSP.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UIPolicy">
+      <summary>Получает параметры, управляющие пользовательским интерфейсом для доступа к ключу.</summary>
+      <returns>Объект, в котором содержатся параметры конфигурации для отображения пользовательского интерфейса.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UniqueName">
+      <summary>Получает уникальное имя ключа.</summary>
+      <returns>Альтернативное имя ключа. Если ключ является эфемерным, параметру присваивается значение <see langword="null" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyBlobFormat">
+      <summary>Задает формат BLOB-объекта ключа для использования с объектами криптографии следующего поколения (CNG) Майкрософт.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, используя заданный формат.</summary>
+      <param name="format">Формат большого двоичного объекта ключа, подлежащий инициализации.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="format" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Длина значения параметра <paramref name="format" /> равна 0.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Object)">
+      <summary>Сравнивает заданный объект с текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</summary>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="obj" /> представляет объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, который задает тот же самый формат большого двоичного объекта ключа, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Сравнивает заданный объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> с текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</summary>
+      <param name="other">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="other" /> задает тот же самый формат большого двоичного объекта ключа, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.GetHashCode">
+      <summary>Формирует хэш-значение имени формата большого двоичного объекта ключа, внедренного в текущий объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</summary>
+      <returns>Хэш-значение внедренного формата большого двоичного объекта ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Equality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> один и тот же формат большого двоичного объекта ключа.</summary>
+      <param name="left">Объект, задающий большой двоичный объект ключа.</param>
+      <param name="right">Второй объект, подлежащий сравнению с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают один и тот же формат большого двоичного объекта ключа; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Inequality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> разные форматы большого двоичного объекта ключа.</summary>
+      <param name="left">Объект, задающий большой двоичный объект ключа.</param>
+      <param name="right">Второй объект, подлежащий сравнению с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают разные форматы большого двоичного объекта ключа; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.ToString">
+      <summary>Получает имя формата большого двоичного объекта ключа, заданного текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</summary>
+      <returns>Внедренное имя формата большого двоичного объекта ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPrivateBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, указывающий BLOB-объект закрытого ключа для ключа шифрования на основе эллиптических кривых (ECC), содержащий параметры явной кривой.</summary>
+      <returns>Объект, описывающий BLOB-объект закрытого ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPublicBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, указывающий BLOB-объект открытого ключа для ключа шифрования на основе эллиптических кривых (ECC), содержащий параметры явной кривой.</summary>
+      <returns>Объект, описывающий BLOB-объект открытого ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPrivateBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий большой двоичный объект закрытого ключа криптосистемы на эллиптических кривых (ECC).</summary>
+      <returns>Объект, задающий большой двоичный объект закрытого ключа ECC.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPublicBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий большой двоичный объект открытого ключа криптосистемы на эллиптических кривых (ECC).</summary>
+      <returns>Объект, задающий большой двоичный объект открытого ключа ECC.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Format">
+      <summary>Получает имя формата большого двоичного объекта ключа, заданного текущим объектом <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />.</summary>
+      <returns>Внедренное имя формата большого двоичного объекта ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPrivateBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий универсальный большой двоичный объект закрытого ключа.</summary>
+      <returns>Объект, задающий универсальный большой двоичный объект закрытого ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPublicBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий универсальный большой двоичный объект открытого ключа.</summary>
+      <returns>Объект, задающий универсальный большой двоичный объект открытого ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.OpaqueTransportBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий большой двоичный объект ключа непрозрачной передачи.</summary>
+      <returns>Объект, задающий большой двоичный объект ключа непрозрачной передачи.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Pkcs8PrivateBlob">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" />, задающий большой двоичный объект ключа в соответствии со стандартом синтаксиса закрытых ключей (PKCS 8).</summary>
+      <returns>Объект, задающий большой двоичный объект закрытого ключа PKCS 8.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationOptions">
+      <summary>Указывает параметры, используемые для создания ключа.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.MachineKey">
+      <summary>Создается ключ для всех пользователей компьютера.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.None">
+      <summary>Параметры создания ключа не заданы.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.OverwriteExistingKey">
+      <summary>При создании нового ключа существующий ключ перезаписывается.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationParameters">
+      <summary>Содержит дополнительные свойства для создания ключа.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyCreationParameters.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngKeyCreationParameters" />.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ExportPolicy">
+      <summary>Получает или задает политику экспорта ключа.</summary>
+      <returns>Объект, задающий политику экспорта ключа. Значение по умолчанию равно <see langword="null" /> и показывает, что задана политика KSP по умолчанию для экспорта ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyCreationOptions">
+      <summary>Получает или задает параметры создания ключа.</summary>
+      <returns>Объект, задающий параметры создания ключа. Значение по умолчанию равно <see langword="null" /> и показывает, что заданы параметры KSP по умолчанию для создания ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyUsage">
+      <summary>Получает или задает криптографические операции, применяемые к текущему ключу.</summary>
+      <returns>Битовая комбинация значений перечисления, задающих параметры использования ключа. Значение по умолчанию равно <see langword="null" /> и показывает, что заданы параметры KSP по умолчанию для использования ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Parameters">
+      <summary>Позволяет создать объект <see cref="T:System.Security.Cryptography.CngKey" /> с дополнительными свойствами, которые устанавливаются до окончания создания ключа.</summary>
+      <returns>Объект коллекции, содержащий любые дополнительные параметры, которые необходимо задать для объекта <see cref="T:System.Security.Cryptography.CngKey" /> во время создания ключа.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ParentWindowHandle">
+      <summary>Получает или задает дескриптор окна, которое необходимо использовать в качестве родительского окна для диалоговых окон, создаваемых классами CNG.</summary>
+      <returns>Дескриптор HWND родительского окна, используемый для диалоговых окон CNG.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Provider">
+      <summary>Получает или задает поставщика хранилища ключей (KSP), в котором необходимо создать ключ.</summary>
+      <exception cref="T:System.ArgumentNullException">Для свойства <see cref="P:System.Security.Cryptography.CngKeyCreationParameters.Provider" /> задано значение <see langword="null" />.</exception>
+      <returns>Объект, задающий поставщика хранилища ключей, в котором будет создан новый ключ.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.UIPolicy">
+      <summary>Получает или задает информацию о пользовательском интерфейсе, отображаемую при создании ключа или доступе к ключу.</summary>
+      <returns>Объект, в котором содержатся сведения о пользовательском интерфейсе, отображаемом классами CNG при создании ключа или доступе к ключу. Значение <see langword="null" /> показывает, что задана политика KSP по умолчанию для пользовательского интерфейса.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyHandleOpenOptions">
+      <summary>Задает параметры открытия дескрипторов ключа.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey">
+      <summary>Открываемый дескриптор ключа определяет эфемерный ключ.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.None">
+      <summary>Открываемый дескриптор ключа не определяет эфемерный ключ.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyOpenOptions">
+      <summary>Задает параметры открытия ключа.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey">
+      <summary>Открывается ключ для всех пользователей компьютера.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.None">
+      <summary>Параметры открытия ключа не заданы.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.Silent">
+      <summary>Запросы пользовательского интерфейса подавляются.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.UserKey">
+      <summary>Если не задано значение <see cref="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey" />, открывается ключ для текущего пользователя.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyUsages">
+      <summary>Задает криптографические операции, которые могут использовать ключ криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.AllUsages">
+      <summary>Ключ может использоваться в любых операциях.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Decryption">
+      <summary>Ключ может использоваться для зашифрования и расшифрования.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.KeyAgreement">
+      <summary>Ключ может использоваться для формирования секретного соглашения и обмена ключами.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.None">
+      <summary>Ключу не назначены значения использования.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Signing">
+      <summary>Ключ может использоваться для создания и проверки подписи.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProperty">
+      <summary>Инкапсулирует свойство ключа или поставщика криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.#ctor(System.String,System.Byte[],System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <param name="name">Имя свойства, которое необходимо инициализировать.</param>
+      <param name="value">Значение свойства, которое необходимо инициализировать.</param>
+      <param name="options">Битовая комбинация значений перечисления, определяющая способ сохранения свойства.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Object)">
+      <summary>Сравнивает заданный объект с текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="obj" /> является объектом <see cref="T:System.Security.Cryptography.CngProperty" />, задающим то же самое свойство, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Security.Cryptography.CngProperty)">
+      <summary>Сравнивает заданный объект <see cref="T:System.Security.Cryptography.CngProperty" /> с текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <param name="other">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="other" /> представляет то же самое свойство, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetHashCode">
+      <summary>Формирует хэш-значение для текущего объекта <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <returns>Хэш-значение текущего объекта <see cref="T:System.Security.Cryptography.CngProperty" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetValue">
+      <summary>Получает значение свойства, заданное текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <returns>Массив, представляющий сохраненное в свойстве значение.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Equality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngProperty" /> одинаковые имена, значения и параметры свойств.</summary>
+      <param name="left">Объект, задающий свойство ключа или поставщика CNG.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают одно и то же свойство, в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Inequality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngProperty" /> разные имена, значения и параметры свойств.</summary>
+      <param name="left">Объект, задающий свойство ключа или поставщика CNG.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта задают разные свойства; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Name">
+      <summary>Получает имя свойства, заданное текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <returns>Имя свойства, заданное в текущем объекте <see cref="T:System.Security.Cryptography.CngProperty" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Options">
+      <summary>Получает параметры свойства, заданные текущим объектом <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <returns>Объект, определяющий параметры, заданные в текущем объекте <see cref="T:System.Security.Cryptography.CngProperty" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyCollection">
+      <summary>Предоставляет строго типизированную коллекцию свойств криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngPropertyCollection.#ctor">
+      <summary>Инициализирует новый объект <see cref="T:System.Security.Cryptography.CngPropertyCollection" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyOptions">
+      <summary>Указывает параметры свойства ключа криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.CustomProperty">
+      <summary>Это свойство не задано в CNG. Используйте этот параметр для предотвращения конфликтов имен свойств CNG в будущем.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.None">
+      <summary>Для указанного свойства не заданы параметры.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.Persist">
+      <summary>Это свойство должно быть сохранено.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProvider">
+      <summary>Инкапсулирует имя поставщика хранилища ключей (KSP) для работы с объектами криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <param name="provider">Имя поставщика хранилища ключей (KSP) для инициализации.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Длина значения параметра <paramref name="provider" /> равна 0.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Object)">
+      <summary>Сравнивает заданный объект с текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <param name="obj">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="obj" /> является объектом <see cref="T:System.Security.Cryptography.CngProvider" />, задающим того же поставщика хранилищ ключей, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Security.Cryptography.CngProvider)">
+      <summary>Сравнивает заданный объект <see cref="T:System.Security.Cryptography.CngProvider" /> с текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <param name="other">Объект, который требуется сравнить с текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</param>
+      <returns>Значение <see langword="true" />, если параметр <paramref name="other" /> задает того же поставщика хранилищ ключей, что и текущий объект; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.GetHashCode">
+      <summary>Формирует значение хэша имени поставщика хранилищ ключей, внедренного в текущий объект <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <returns>Значение хэша внедренного имени поставщика хранилища ключей.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Equality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngProvider" /> одного и того же поставщика хранилищ ключей.</summary>
+      <param name="left">Объект, задающий поставщика хранилищ ключей.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта представляют одинаковых поставщиков хранилищ ключей; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Inequality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>Определяет, задают ли два объекта <see cref="T:System.Security.Cryptography.CngProvider" /> различных поставщиков хранилищ ключей.</summary>
+      <param name="left">Объект, задающий поставщика хранилищ ключей.</param>
+      <param name="right">Второй объект, который требуется сравнить с объектом, идентифицируемым параметром <paramref name="left" />.</param>
+      <returns>Значение <see langword="true" />, если два объекта представляют различных поставщиков хранилищ ключей; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.ToString">
+      <summary>Получает имя поставщика хранилищ ключей, задаваемого текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <returns>Внедренное имя поставщика хранилищ ключей.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSmartCardKeyStorageProvider">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngProvider" />, задающий поставщика хранилищ ключей на базе смарт-карт (Microsoft).</summary>
+      <returns>Объект, задающий поставщика хранилищ ключей на базе смарт-карт (Microsoft).</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSoftwareKeyStorageProvider">
+      <summary>Получает объект <see cref="T:System.Security.Cryptography.CngProvider" />, задающий программного поставщика хранилищ ключей (Microsoft).</summary>
+      <returns>Объект , задающий программного поставщика хранилищ ключей (Microsoft).</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.Provider">
+      <summary>Получает имя поставщика хранилищ ключей, задаваемого текущим объектом <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <returns>Внедренное имя поставщика хранилищ ключей.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIPolicy">
+      <summary>Инкапсулирует дополнительные параметры конфигурации для пользовательского интерфейса (UI), отображаемого криптографией следующего поколения (CNG) при доступе к защищенному ключу.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngUIPolicy" />, используя заданный уровень защиты.</summary>
+      <param name="protectionLevel">Битовая комбинация значений перечисления, задающих уровень защиты.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngUIPolicy" />, используя заданный уровень защиты и понятное имя.</summary>
+      <param name="protectionLevel">Битовая комбинация значений перечисления, задающих уровень защиты.</param>
+      <param name="friendlyName">Понятное имя ключа, используемое в запросе пользовательского интерфейса. Чтобы использовать имя по умолчанию, укажите строку null.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngUIPolicy" />, используя заданный уровень защиты, понятное имя и описание.</summary>
+      <param name="protectionLevel">Битовая комбинация значений перечисления, задающих уровень защиты.</param>
+      <param name="friendlyName">Понятное имя ключа, используемое в запросе пользовательского интерфейса. Чтобы использовать имя по умолчанию, укажите строку null.</param>
+      <param name="description">Полнотекстовое описание ключа. Чтобы использовать описание по умолчанию, укажите строку null.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngUIPolicy" />, используя заданный уровень защиты, понятное имя, строку описания и контекст использования.</summary>
+      <param name="protectionLevel">Битовая комбинация значений перечисления, задающих уровень защиты.</param>
+      <param name="friendlyName">Понятное имя ключа, используемое в запросе пользовательского интерфейса. Чтобы использовать имя по умолчанию, укажите строку null.</param>
+      <param name="description">Полнотекстовое описание ключа. Чтобы использовать описание по умолчанию, укажите строку null.</param>
+      <param name="useContext">Описание способа использования ключа. Чтобы использовать описание по умолчанию, укажите строку null.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String,System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.CngUIPolicy" />, используя заданный уровень защиты, понятное имя, строку описания, контекст использования и заголовок.</summary>
+      <param name="protectionLevel">Битовая комбинация значений перечисления, задающих уровень защиты.</param>
+      <param name="friendlyName">Понятное имя ключа, используемое в запросе пользовательского интерфейса. Чтобы использовать имя по умолчанию, укажите строку null.</param>
+      <param name="description">Полнотекстовое описание ключа. Чтобы использовать описание по умолчанию, укажите строку null.</param>
+      <param name="useContext">Описание способа использования ключа. Чтобы использовать описание по умолчанию, укажите строку null.</param>
+      <param name="creationTitle">Заголовок диалогового окна, в котором отображается запрос пользовательского интерфейса. Чтобы использовать заголовок по умолчанию, укажите строку null.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.CreationTitle">
+      <summary>Получает заголовок диалогового окна, отображаемого при запросе пользовательского интерфейса.</summary>
+      <returns>Заголовок диалогового окна, отображаемого при доступе к ключу.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.Description">
+      <summary>Получает строку описания, отображаемую в запросе пользовательского интерфейса.</summary>
+      <returns>Текст описания для диалогового окна, отображаемого при доступе к ключу.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.FriendlyName">
+      <summary>Получает понятное имя, отображаемое в запросе пользовательского интерфейса.</summary>
+      <returns>Понятное имя, которое используется для описания ключа в диалоговом окне, отображаемом при доступе к ключу.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.ProtectionLevel">
+      <summary>Получает уровень защиты пользовательского интерфейса для ключа.</summary>
+      <returns>Объект, описывающий уровень защиты пользовательского интерфейса, который необходимо применить к ключу.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.UseContext">
+      <summary>Получает описание способа использования ключа.</summary>
+      <returns>Описание способа использования ключа.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIProtectionLevels">
+      <summary>Задает уровень защиты ключа в сценариях запроса пользовательского интерфейса (UI).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ForceHighProtection">
+      <summary>Запрос пользовательского интерфейса отображается каждый раз при доступе к ключу.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.None">
+      <summary>Запрос пользовательского интерфейса не отображается при доступе к ключу.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ProtectKey">
+      <summary>Запрос пользовательского интерфейса отображается при первом доступе к ключу в процессе.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACng">
+      <summary>Предоставляет реализацию алгоритма цифровых подписей (DSA) на платформе криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.DSACng" /> с парой случайных 2048-битных ключей.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Int32)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.DSACng" /> с созданным случайным образом ключом указанного размера.</summary>
+      <param name="keySize">Размер создаваемого ключа в битах.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Недопустимый параметр <paramref name="keySize" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.DSACng" /> с заданным ключом.</summary>
+      <param name="key">Ключ, используемый для операций DSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> не является допустимым ключом DSA.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.CreateSignature(System.Byte[])">
+      <summary>Создает подпись <see cref="T:System.Security.Cryptography.DSA" /> для указанных данных.</summary>
+      <param name="rgbHash">Подписываемое хэш-значение.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Этот экземпляр представляет только открытый ключ.
+
+-или-
+
+При создании подписи возникла ошибка.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Значение <paramref name="rgbHash" /> короче значения Q ключа DSA.</exception>
+      <returns>Цифровая подпись для указанных данных.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ExportParameters(System.Boolean)">
+      <summary>Экспортирует параметры алгоритма DSA.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Ключ DSA не является допустимым открытым или закрытым ключом.</exception>
+      <returns>Параметры алгоритма DSA.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>Заменяет существующий ключ, с которым работает текущий экземпляр, создавая новый объект <see cref="T:System.Security.Cryptography.CngKey" /> для структуры параметров.</summary>
+      <param name="parameters">Параметры DSA.</param>
+      <exception cref="T:System.ArgumentException">Указаны недопустимые параметры DSA.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>Проверяет, совпадает ли указанная цифровая подпись с указанным хэшем.</summary>
+      <param name="rgbHash">Подписанный хэш.</param>
+      <param name="rgbSignature">Проверяемая цифровая подпись.</param>
+      <exception cref="T:System.ArgumentNullException">Параметры <paramref name="rgbHash" /> или <paramref name="rgbSignature" /> имеют значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если <paramref name="rgbSignature" /> совпадает с подписью, вычисленной с помощью указанного хэша. В противном случае значение <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.Key">
+      <summary>Получает ключ, который будет использоваться объектом <see cref="T:System.Security.Cryptography.DSACng" /> для любой выполняемой им криптографической операции.</summary>
+      <returns>Ключ, используемый объектом <see cref="T:System.Security.Cryptography.DSACng" /> для выполнения криптографических операций.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.KeyExchangeAlgorithm">
+      <summary>Получает имя алгоритма обмена ключами.</summary>
+      <returns>Всегда <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.LegalKeySizes">
+      <summary>Возвращает размеры ключа (в битах), которые поддерживаются алгоритмом DSA.</summary>
+      <returns>Массив, содержащий размеры ключа, поддерживаемые алгоритмом.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.SignatureAlgorithm">
+      <summary>Получает имя алгоритма подписи.</summary>
+      <returns>Строка DSA.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCng">
+      <summary>Предоставляет реализацию CNG алгоритма Диффи-Хеллмана на эллиптических кривых (ECDH). Этот класс используется для выполнения криптографических операций.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> с парой случайных пар ключей.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Int32)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> с созданной случайным образом парой ключей указанного размера.</summary>
+      <param name="keySize">Размер ключа. Допустимые размеры ключей: 256, 384 и 521 бит.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keySize" /> задает недопустимую длину.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Классы криптографии следующего поколения (CNG) не поддерживаются в этой системе.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />, используя указанный объект <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+      <param name="key">Ключ, который будет использоваться в качестве входных данных для криптографических операций, выполняемых текущим объектом.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="key" /> не указывает группу алгоритмов, основанных на алгоритме Диффи-Хеллмана на эллиптических кривых (ECDH).</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Классы криптографии следующего поколения (CNG) не поддерживаются в этой системе.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>Создает новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />, пара открытого и закрытого ключей которого создается на основе указанной кривой.</summary>
+      <param name="curve">Кривая, используемая для создания пары открытого и закрытого ключей.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> не выполняет проверку.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[])">
+      <summary>Выполняет формирование ключа с использованием указанного хэш-алгоритма с дополнительными данными, добавленными в начале или конце.</summary>
+      <param name="otherPartyPublicKey">Открытый ключ другой стороны.</param>
+      <param name="hashAlgorithm">Хэш-алгоритм, используемый для получения материала ключа.</param>
+      <param name="secretPrepend">Значение, добавляемое к производному секрету (в начало) перед хэшированием.</param>
+      <param name="secretAppend">Значение, добавляемое к производному секрету перед хэшированием.</param>
+      <exception cref="T:System.NotImplementedException">Производный класс должен переопределять этот метод.</exception>
+      <exception cref="T:System.ArgumentException">Размер кривой, используемой параметром <paramref name="otherPartyPublicKey" />, отличается от размера кривой из этого ключа.
+
+-или-
+
+В параметре <paramref name="hashAlgorithm" /> не указан хэш.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Кривая, используемая параметром <paramref name="otherPartyPublicKey" />, отличается от кривой из этого ключа.
+
+-или-
+
+Этот экземпляр представляет только открытый ключ.</exception>
+      <returns>Хэш общего секрета после добавления данных по запросу в начале или конце.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[],System.Byte[])">
+      <summary>Выполняет формирование ключа с использованием указанного алгоритма HMAC с дополнительными данными, добавленными в начале или конце.</summary>
+      <param name="otherPartyPublicKey">Открытый ключ другой стороны.</param>
+      <param name="hashAlgorithm">Хэш-алгоритм, используемый для получения материала ключа.</param>
+      <param name="hmacKey">Ключ HMAC.</param>
+      <param name="secretPrepend">Значение, добавляемое к производному секрету (в начало) перед хэшированием.</param>
+      <param name="secretAppend">Значение, добавляемое к производному секрету перед хэшированием.</param>
+      <exception cref="T:System.ArgumentException">Размер кривой, используемой параметром <paramref name="otherPartyPublicKey" />, отличается от размера кривой из этого ключа.
+
+-или-
+
+В параметре <paramref name="hashAlgorithm" /> не указан хэш.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Кривая, используемая параметром <paramref name="otherPartyPublicKey" />, отличается от кривой из этого ключа.
+
+-или-
+
+Этот экземпляр представляет только открытый ключ.</exception>
+      <returns>Код HMAC общего секрета после добавления данных по запросу в начале или конце.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.CngKey)">
+      <summary>Формирует ключевой материал из секретного соглашения, заключенного между двумя сторонами, используя заданный объект <see cref="T:System.Security.Cryptography.CngKey" />, в котором содержится открытый ключ второй стороны.</summary>
+      <param name="otherPartyPublicKey">Получает объект, в котором содержится открытая часть ключа алгоритма Диффи-Хеллмана на эллиптических кривых (Elliptic Curve Diffie-Hellman, ECDH), переданная другой стороной в процессе обмена ключами.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> недопустим. Значение его свойства <see cref="P:System.Security.Cryptography.CngKey.AlgorithmGroup" /> отлично от <see cref="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman" /> или его размер ключа не соответствует размеру ключа данного экземпляра.</exception>
+      <exception cref="T:System.InvalidOperationException">Свойство <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction" /> данного объекта задает функцию формирования ключа <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />, но значение <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> или <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> равно <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Массив байтов, в котором содержится ключевой материал. Эта информация формируется из секретного соглашения, вычисляемого на основе закрытого ключа текущего объекта и указанного открытого ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>Формирует ключевой материал из секретного соглашения, заключенного между двумя сторонами, используя заданный объект <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" />, в котором содержится открытый ключ второй стороны.</summary>
+      <param name="otherPartyPublicKey">Открытый ключ другой стороны, участвующей в обмене ключами.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Значение параметра <paramref name="otherPartyPublicKey" /> не является ключом <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</exception>
+      <returns>Массив байтов, в котором содержится ключевой материал. Эта информация формируется из секретного соглашения, вычисляемого на основе закрытого ключа текущего объекта и указанного открытого ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Byte[],System.Byte[])">
+      <summary>Выполняет формирование ключа с использованием псевдослучайной функции (PRF) протокола TLS 1.1.</summary>
+      <param name="otherPartyPublicKey">Открытый ключ другой стороны.</param>
+      <param name="prfLabel">Метка PRF с использованием кодировки ASCII.</param>
+      <param name="prfSeed">Начальное значение PRF (64-байтовое).</param>
+      <exception cref="T:System.NotImplementedException">Производный класс должен переопределять этот метод.</exception>
+      <exception cref="T:System.ArgumentException">Размер кривой, используемой параметром <paramref name="otherPartyPublicKey" />, отличается от размера кривой из этого ключа.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="otherPartyPublicKey" />, <paramref name="prfLabel" /> или <paramref name="prfSeed" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="prfSeed" /> — длина не соответствует 64 байтам.
+
+-или-
+
+Кривая, используемая параметром <paramref name="otherPartyPublicKey" />, отличается от кривой из этого ключа.
+
+-или-
+
+Этот экземпляр представляет только открытый ключ.</exception>
+      <returns>Первые 48 байт, полученные из функции PRF TLS 1.1 с использованием общего секрета в качестве ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.CngKey)">
+      <summary>Получает дескриптор секретного соглашения, заключенного между двумя сторонами, используя заданный объект <see cref="T:System.Security.Cryptography.CngKey" />, в котором содержится открытый ключ второй стороны.</summary>
+      <param name="otherPartyPublicKey">Получает объект, в котором содержится открытая часть ключа алгоритма Диффи-Хеллмана на эллиптических кривых (Elliptic Curve Diffie-Hellman, ECDH), переданная другой стороной в процессе обмена ключами.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> — не является ключом ECDH или имеет недопустимый размер.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Дескриптор секретного соглашения. Эта информация вычисляется на основе закрытого ключа текущего объекта и указанного открытого ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>Получает дескриптор секретного соглашения, согласованного между двумя сторонами, используя заданный объект <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" />, в котором содержится открытый ключ второй стороны.</summary>
+      <param name="otherPartyPublicKey">Открытый ключ другой стороны, участвующей в обмене ключами.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Значение параметра <paramref name="otherPartyPublicKey" /> не является ключом <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" />.</exception>
+      <returns>Дескриптор секретного соглашения. Эта информация вычисляется на основе закрытого ключа текущего объекта и указанного открытого ключа.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportExplicitParameters(System.Boolean)">
+      <summary>Экспортирует ключ и параметры явной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />, в объект <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Метод не может получить значения кривой.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Явный экспорт не поддерживается этой платформой. Требуется Windows 10 или более поздней версии.</exception>
+      <returns>Ключ и параметры явной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportParameters(System.Boolean)">
+      <summary>Экспортирует ключ, используемый объектом <see cref="T:System.Security.Cryptography.ECCurve" />, в объект <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Метод не может получить значения кривой.</exception>
+      <returns>Ключ и параметры именованной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Выполняет десериализацию данных ключа из XML-строки, используя указанный формат.</summary>
+      <param name="xml">Данные ключа в формате XML, подлежащие десериализации.</param>
+      <param name="format">Одно из значений перечисления, задающее формат XML-строки. В настоящее время поддерживается только формат <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Неверный формат параметра <paramref name="xml" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Недопустимое значение параметра <paramref name="format" />. Единственным допустимым значением является <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>Создает новую пару открытого и закрытого эфемерных ключей для указанной кривой.</summary>
+      <param name="curve">Кривая, используемая для создания пары открытого и закрытого эфемерных ключей.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> не выполняет проверку.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>Импортирует заданные параметры для объекта <see cref="T:System.Security.Cryptography.ECCurve" /> как ключ в текущий экземпляр.</summary>
+      <param name="parameters">Параметры кривой для импорта.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> не выполняет проверку.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> ссылается на кривую, которую нельзя импортировать.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> ссылается на кривую, которая не поддерживается этой платформой.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Выполняет сериализацию данных ключа в XML-строку, используя указанный формат.</summary>
+      <param name="format">Одно из значений перечисления, задающее формат XML-строки. В настоящее время поддерживается только формат <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Недопустимое значение параметра <paramref name="format" />. Единственным допустимым значением является <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <returns>Объект типа string, в котором содержатся данные ключа, сериализованные в XML-строку в соответствии с требуемым форматом.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm">
+      <summary>Получает или задает хэш-алгоритм, используемый при генерации ключевого материала.</summary>
+      <exception cref="T:System.ArgumentNullException">Значение — <see langword="null" />.</exception>
+      <returns>Объект, задающий хэш-алгоритм.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey">
+      <summary>Получает или задает ключ HMAC, используемый при формировании ключевого материала.</summary>
+      <returns>Ключ HMAC, используемый при формировании ключевого материала.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Key">
+      <summary>Задает объект <see cref="T:System.Security.Cryptography.CngKey" />, который будет использоваться текущим объектом для выполнения криптографических операций.</summary>
+      <returns>Пара ключей, используемая текущим объектом для выполнения криптографических операций.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction">
+      <summary>Получает или задает функцию формирования ключа для класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">Значение перечисления вне диапазона.</exception>
+      <returns>Одно из значений перечисления <see cref="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction" />: <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />, <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" /> или <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />. Значение по умолчанию — <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeySize">
+      <summary>Получает или задает размер модуля ключа (в битах), используемого алгоритмом асимметричного шифрования.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="value" /> не разрешено в <see cref="P:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizes" />.</exception>
+      <returns>Размер модуля ключа (в битах), используемого алгоритмом асимметричного шифрования.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Label">
+      <summary>Получает или задает значение метки, используемое для формирования ключа.</summary>
+      <returns>Значение метки.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.PublicKey">
+      <summary>Получает открытый ключ, который может использоваться другим объектом <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> для генерации секретного соглашения.</summary>
+      <returns>Открытый ключ, связанный с этим экземпляром класса <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend">
+      <summary>Получает или задает значение, добавляемое к концу секретного соглашения при генерации ключевого материала.</summary>
+      <returns>Значение, добавляемое к концу секретного соглашения.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend">
+      <summary>Получает или задает значение, добавляемое к началу секретного соглашения при формировании ключевого материала.</summary>
+      <returns>Значение, добавляемое к началу секретного соглашения при формировании ключевого материала.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed">
+      <summary>Получает или задает начальное значение, используемое при формировании ключевого материала.</summary>
+      <returns>Начальное значение.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey">
+      <summary>Получает значение, которое определяет, используется ли секретное соглашение в качестве ключа HMAC для формирования ключевого материала.</summary>
+      <returns>Значение <see langword="true" />, если секретное соглашение используется в качестве ключа HMAC для формирования ключевого материала; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey">
+      <summary>Задает открытый ключ алгоритма Диффи-Хеллмана на эллиптических кривых (ECDH) для использования с классом <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportExplicitParameters">
+      <summary>Экспортирует ключ и параметры явной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />, в объект <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Метод не может получить значения кривой.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Явный экспорт не поддерживается этой платформой. Требуется Windows 10 или более поздней версии.</exception>
+      <returns>Ключ и параметры явной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportParameters">
+      <summary>Экспортирует ключ, используемый объектом <see cref="T:System.Security.Cryptography.ECCurve" />, в объект <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Метод не может получить значения кривой.</exception>
+      <returns>Ключ и параметры именованной кривой, используемые объектом <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromByteArray(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Преобразует массив байтов, в котором содержится открытый ключ, в объект <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> в соответствии с заданным форматом.</summary>
+      <param name="publicKeyBlob">Массив байтов, в котором содержится открытый ключ алгоритма Диффи-Хеллмана на эллиптических кривых (ECDH).</param>
+      <param name="format">Объект, задающий формат большого двоичного объекта ключа.</param>
+      <exception cref="T:System.ArgumentNullException">Значение параметра <paramref name="publicKeyBlob" /> или параметра <paramref name="format" /> — <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Для параметра <paramref name="publicKeyBlob" /> не задан ключ <see cref="T:System.Security.Cryptography.ECDiffieHellman" />.</exception>
+      <returns>Объект, в котором содержится открытый ключ ECDH, сериализованный в массив байтов.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromXmlString(System.String)">
+      <summary>Преобразует XML-строку в объект <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</summary>
+      <param name="xml">XML-строка, в которой содержится ключ алгоритма Диффи-Хеллмана на эллиптических кривых (ECDH).</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="xml" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Для параметра <paramref name="xml" /> не задан ключ <see cref="T:System.Security.Cryptography.ECDiffieHellman" />.</exception>
+      <returns>Объект, в котором содержится открытый ключ ECDH, заданный указанной XML-строкой.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.Import">
+      <summary>Преобразует объект <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> в объект <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+      <returns>Объект, в котором содержится ключ, представленный объектом <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ToXmlString">
+      <summary>Выполняет сериализацию открытого ключа <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> в XML-строку формата RFC 4050.</summary>
+      <returns>XML-строка, в которой содержится сериализованный открытый ключ <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.BlobFormat">
+      <summary>Получает формат большого двоичного объекта ключа для объекта <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</summary>
+      <returns>Формат, в котором представляется большой двоичный объект ключа.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction">
+      <summary>Задает функцию формирования ключа, используемую классом <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> для преобразования секретного соглашения в ключевой материал.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash">
+      <summary>Хэш-алгоритм, используемый для формирования ключевого материала. Свойство <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm" /> задает имя алгоритма, который необходимо использовать. Если имя алгоритма не задано, используется алгоритм по умолчанию <see cref="T:System.Security.Cryptography.SHA256" />. Кроме того, вы можете указать свойства <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> и <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" />, но они не являются обязательными. Объем созданного материала ключа эквивалентен размеру хэш-значения для указанного алгоритма.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac">
+      <summary>Для формирования ключевого материала используется алгоритм HMAC. Свойство <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey" /> задает ключ, который необходимо использовать. Необходимо задать это свойство или задать для свойства <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey" /> значение <see langword="true" />; в противном случае при использовании <see cref="T:System.Security.Cryptography.CryptographicException" /> возникнет исключение <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" />. Если заданы оба свойства, секретное соглашение используется в качестве ключа HMAC. Кроме того, вы можете указать свойства <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> и <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" />, но они не являются обязательными. Объем созданного материала ключа эквивалентен размеру значения HMAC.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls">
+      <summary>Для формирования ключевого материала используется протокол TLS. Необходимо задать свойства <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> и <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" />; в противном случае при использовании <see cref="T:System.Security.Cryptography.CryptographicException" /> возникнет исключение <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />. Это значение формирует 160 бит материала ключа.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDsaCng">
+      <summary>Предоставляет реализацию алгоритма цифровых подписей на основе эллиптических кривых (ECDSA) на платформе криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDsaCng" /> с парой случайных пар ключей.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Классы криптографии следующего поколения (CNG) не поддерживаются в этой системе.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Int32)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDsaCng" /> с указанным размером целевого ключа.</summary>
+      <param name="keySize">Размер ключа. Допустимые размеры ключей: 256, 384 и 521 бит.</param>
+      <exception cref="T:System.PlatformNotSupportedException">Классы криптографии следующего поколения (CNG) не поддерживаются в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> задает недопустимую длину.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDsaCng" />, используя указанный объект <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+      <param name="key">Ключ, который будет использоваться в качестве входных данных для криптографических операций, выполняемых текущим объектом.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> не указывает группу алгоритмов цифровых подписей на основе эллиптических кривых (ECDSA).</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Классы криптографии следующего поколения (CNG) не поддерживаются в этой системе.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.ECDsaCng" />, пара открытого и закрытого ключей которого создается на основе указанной кривой.</summary>
+      <param name="curve">Кривая, используемая для создания пары открытого и закрытого ключей.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> не выполняет проверку.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="curve" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Если <paramref name="curve" /> не содержит OID с FriendlyName.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportExplicitParameters(System.Boolean)">
+      <summary>Экспортирует ключ и параметры явной кривой, используемые объектом шифрования на основе эллиптических кривых (ECC), в объект <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При получении значений кривой произошла ошибка.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Явный экспорт не поддерживается этой платформой. Требуется Windows 10 или более поздней версии.</exception>
+      <returns>Ключ и параметры явной кривой, используемые объектом ECC.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportParameters(System.Boolean)">
+      <summary>Экспортирует ключ, используемый объектом шифрования на основе эллиптических кривых (ECC), в объект <see cref="T:System.Security.Cryptography.ECParameters" />. Если ключ был создан как именованная кривая, поле <see cref="F:System.Security.Cryptography.ECParameters.Curve" /> содержит параметры именованной кривой; в противном случае оно содержит параметры явной кривой.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">При получении значений кривой произошла ошибка.</exception>
+      <returns>Ключ и параметры именованной кривой, используемые объектом ECC.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Выполняет десериализацию данных ключа из XML-строки, используя указанный формат.</summary>
+      <param name="xml">Данные ключа в формате XML, подлежащие десериализации.</param>
+      <param name="format">Одно из значений перечисления, задающее формат XML-строки. В настоящее время поддерживается только формат <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Недопустимое значение параметра <paramref name="format" />. Единственным допустимым значением является <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>Создает новую пару открытого и закрытого эфемерных ключей для указанной кривой, заменяя текущий ключ.</summary>
+      <param name="curve">Кривая, используемая для создания ключа.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> не выполняет проверку.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>Заменяет существующий ключ, с которым работает текущий экземпляр, создавая новый объект <see cref="T:System.Security.Cryptography.CngKey" /> для структуры параметров.</summary>
+      <param name="parameters">Параметры кривой.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> не содержит допустимых значений.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> ссылается на кривую, которую нельзя импортировать.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> ссылается на кривую, которая не поддерживается этой платформой.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[])">
+      <summary>Создает подпись для указанных данных.</summary>
+      <param name="data">Сообщение, которое необходимо подписать.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Информация ключа, связанного с экземпляром, который не имеет закрытого ключа.</exception>
+      <returns>Цифровая подпись для указанных данных.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>Создает цифровую подпись для фрагмента данных указанной длины, начиная с указанной позиции.</summary>
+      <param name="data">Сообщение, которое необходимо подписать.</param>
+      <param name="offset">Позиция в строке, с которой следует начать подписывание.</param>
+      <param name="count">Длина строки в знаках, подлежащая подписыванию и отсчитываемая от позиции <paramref name="offset" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Значения параметров <paramref name="count" /> или <paramref name="offset" /> вызвали выход за границы строки данных при чтении.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Информация ключа, связанного с экземпляром, который не имеет закрытого ключа.</exception>
+      <returns>Цифровая подпись для указанного фрагмента данных.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.IO.Stream)">
+      <summary>Создает подпись для указанного потока данных, перемещая позицию чтения в конец потока.</summary>
+      <param name="data">Поток данных, которые необходимо подписать.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Информация ключа, связанного с экземпляром, который не имеет закрытого ключа.</exception>
+      <returns>Цифровая подпись для указанного потока данных.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignHash(System.Byte[])">
+      <summary>Создает подпись для указанного хэш-значения.</summary>
+      <param name="hash">Хэш-значение подписываемых данных.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Информация ключа, связанного с экземпляром, который не имеет закрытого ключа.</exception>
+      <returns>Цифровая подпись для указанного хэш-значения.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Выполняет сериализацию данных ключа в XML-строку, используя указанный формат.</summary>
+      <param name="format">Одно из значений перечисления, задающее формат XML-строки. В настоящее время поддерживается только формат <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Недопустимое значение параметра <paramref name="format" />. Единственным допустимым значением является <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+      <returns>Объект типа string, в котором содержатся данные ключа, сериализованные в XML-строку в соответствии с требуемым форматом.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Byte[])">
+      <summary>Проверяет цифровую подпись указанных данных.</summary>
+      <param name="data">подписанные данные;</param>
+      <param name="signature">Подпись для проверки.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="data" /> или <paramref name="signature" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если подпись является допустимой; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[])">
+      <summary>Проверяет подпись для фрагмента данных указанной длины, начиная с указанной позиции.</summary>
+      <param name="data">подписанные данные;</param>
+      <param name="offset">Позиция, с которой начинаются подписанные данные.</param>
+      <param name="count">Длина подписанного фрагмента данных в знаках, отсчитываемая от позиции <paramref name="offset" />.</param>
+      <param name="signature">Подпись для проверки.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Значение параметра <paramref name="offset" /> или <paramref name="count" /> меньше нуля.  
+  
+-или- 
+ Значение параметра <paramref name="offset" /> или <paramref name="count" /> превышает длину массива байтов, задаваемого параметром <paramref name="data" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="data" /> или <paramref name="signature" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если подпись является допустимой; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream,System.Byte[])">
+      <summary>Проверяет цифровую подпись для указанного потока данных, перемещая позицию чтения в конец потока.</summary>
+      <param name="data">Подписанный поток данных.</param>
+      <param name="signature">Подпись для проверки.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="data" /> или <paramref name="signature" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если подпись является допустимой; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>Проверяет, подходит ли цифровая подпись для используемого ключа и заданного хэша данных.</summary>
+      <param name="hash">Хэш-значение проверяемых данных.</param>
+      <param name="signature">Цифровая подпись данных, которую требуется проверить с использованием хэш-значения.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="hash" /> или <paramref name="signature" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если подпись является допустимой; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.HashAlgorithm">
+      <summary>Получает или задает хэш-алгоритм, используемый при подписывании и проверке данных.</summary>
+      <exception cref="T:System.ArgumentNullException">Значение — <see langword="null" />.</exception>
+      <returns>Объект, задающий хэш-алгоритм.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.Key">
+      <summary>Возвращает или задает ключ, используемый при подписании и проверке данных.</summary>
+      <returns>Объект, задающий ключ.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.KeySize">
+      <summary>Получает или задает размер модуля ключа (в битах), используемого алгоритмом асимметричного шифрования.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="value" /> не разрешено в <see cref="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes" />.</exception>
+      <returns>Размер модуля ключа (в битах), используемого алгоритмом асимметричного шифрования.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes">
+      <summary>Возвращает размеры ключа (в битах), которые поддерживаются методом задания свойства <see cref="P:System.Security.Cryptography.ECDsaCng.KeySize" />.</summary>
+      <returns>Массив, содержащий размеры ключей, поддерживаемые методом <see cref="P:System.Security.Cryptography.ECDsaCng.KeySize" /> задания свойств.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECKeyXmlFormat">
+      <summary>Определяет форматы сериализации ключей на эллиптических кривых в XML.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050">
+      <summary>Формат сериализации в XML описывается в документе RFC 4050 "Using the Elliptic Curve Signature Algorithm (ECDSA) for XML Digital Signatures" ("Использование алгоритма цифровой подписи DSA на эллиптических кривых [ECDSA] для создания цифровых подписей XML").</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACng">
+      <summary>Предоставляет реализацию алгоритма SHA на платформе криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.RSACng" /> с парой случайных 2048-битных ключей.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Int32)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.RSACng" /> с созданным случайным образом ключом указанного размера.</summary>
+      <param name="keySize">Размер создаваемого ключа в битах.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Недопустимый параметр <paramref name="keySize" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.RSACng" /> с заданным ключом.</summary>
+      <param name="key">Ключ, используемый для операций RSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> не является допустимым ключом RSA.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Расшифровывает входные данные с использованием указанного режима заполнения.</summary>
+      <param name="data">Расшифровываемые данные.</param>
+      <param name="padding">Режим заполнения.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> имеет значение <see langword="null" />.
+  
+-или- 
+ <paramref name="padding" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" />.<see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> не равно <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Pkcs1" /> или <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" /> .</exception>
+      <returns>Расшифрованные данные.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Шифрует входные данные с использованием указанного заполнения.</summary>
+      <param name="data">Данные, которые необходимо зашифровать.</param>
+      <param name="padding">Режим заполнения.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> имеет значение <see langword="null" />.
+  
+-или- 
+ <paramref name="padding" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" />.<see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> не равно <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Pkcs1" /> или <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" /> .</exception>
+      <returns>Зашифрованные данные.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ExportParameters(System.Boolean)">
+      <summary>Экспортирует ключ, используемый объектом RSA, в объект <see cref="T:System.Security.Cryptography.RSAParameters" />.</summary>
+      <param name="includePrivateParameters">Значение <see langword="true" /> для включения закрытых параметров; в противном случае — значение <see langword="false" />.</param>
+      <returns>Ключ, используемый объектом RSA.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>Заменяет существующий ключ, с которым работает текущий экземпляр, создавая новый объект <see cref="T:System.Security.Cryptography.CngKey" /> для структуры параметров.</summary>
+      <param name="parameters">Параметры RSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameters" /> не содержит ни модуль, ни показатель степени.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> не является допустимым ключом RSA.  
+  
+-или- 
+ <paramref name="parameters" /> — это полная пара ключей, и используется KSP по умолчанию.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Подписывает данные, хэшированные с помощью указанного алгоритма хэширования и заполнения.</summary>
+      <param name="hash">Подписываемый хэш.</param>
+      <param name="hashAlgorithm">Имя хэш-алгоритма.</param>
+      <param name="padding">Режим заполнения.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="padding" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Свойство <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> алгоритма <paramref name="hashAlgorithm" /> имеет значение <see langword="null" /> или <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Значение <paramref name="padding" /> не равно <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> или <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />.</exception>
+      <returns>Подписанные данные.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Проверяет данные, подписанные и уже хэшированные с помощью указанного алгоритма и режима заполнения.</summary>
+      <param name="hash">Проверяемый хэш.</param>
+      <param name="signature">Подпись данных.</param>
+      <param name="hashAlgorithm">Имя хэш-алгоритма.</param>
+      <param name="padding">Режим заполнения.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="signature" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="padding" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Свойство <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> алгоритма <paramref name="hashAlgorithm" /> имеет значение <see langword="null" /> или <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Значение <paramref name="padding" /> не равно <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> или <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />.  
+  
+-или- 
+Подпись имеет недопустимый формат. (Только в .NET Framework 4.6 и 4.6.1. Начиная с .NET Framework 4.6.2 метод возвращает значение <see langword="false" />, если подпись имеет неправильный формат.)</exception>
+      <returns>Значение <see langword="true" />, если подпись хэша верна; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.Key">
+      <summary>Получает ключ, который будет использоваться объектом <see cref="T:System.Security.Cryptography.RSACng" /> для любой выполняемой им криптографической операции.</summary>
+      <returns>Ключ, используемый объектом <see cref="T:System.Security.Cryptography.RSACng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.LegalKeySizes">
+      <summary>Возвращает размеры ключа (в битах), которые поддерживаются этой реализацией RSA.</summary>
+      <returns>Массив, содержащий размеры ключа, поддерживаемые алгоритмом.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCng">
+      <summary>Предоставляет реализацию алгоритма 3DES на платформе криптографии следующего поколения (CNG).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.TripleDESCng" /> с использованием временного ключа.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.TripleDESCng" /> с указанным именем ключа, который представляет существующий сохраненный ключ 3DES.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.TripleDESCng" /> с указанным именем ключа, который представляет существующий сохраненный ключ 3DES, и заданным поставщиком хранилища ключей (KSP).</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.Cryptography.TripleDESCng" /> с указанным именем ключа, который представляет существующий сохраненный ключ 3DES, указанного поставщика хранилища ключей (KSP) и параметры открытия ключа.</summary>
+      <param name="keyName">Имя ключа.</param>
+      <param name="provider">Поставщик KSP, который содержит ключ.</param>
+      <param name="openOptions">Побитовое сочетание значений перечисления, которые определяют параметры открытия ключа, например, расположение, из которого открывается ключ (компьютер или пользовательское хранилище), или отключение запросов пользовательского интерфейса.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="provider" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Криптография следующего поколения (CNG) не поддерживается в этой системе.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Все остальные ошибки.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor">
+      <summary>Создает симметричный объект-дешифратор 3DES с текущим ключом и вектором инициализации (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Симметричный объект-дешифратор 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Создает симметричный объект-дешифратор 3DES с указанным ключом и вектором инициализации (IV).</summary>
+      <param name="rgbKey">Секретный ключ, используемый для алгоритма 3DES. Размер ключа должен составлять 192 бита.</param>
+      <param name="rgbIV">Вектор инициализации, используемый для алгоритма 3DES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Размер элемента <paramref name="rgbKey" /> недопустимый для этого алгоритма.  
+  
+-или- 
+ Размер элемента <paramref name="rgbIV" /> не соответствует размеру блоков для этого алгоритма.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Элемент <paramref name="rgbKey" /> — это слабый ключ для этого алгоритма, поэтому он не может использоваться.  
+  
+-или- 
+ <paramref name="rgbIV" /> имеет значение <see langword="null" />.</exception>
+      <returns>Симметричный объект-дешифратор 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor">
+      <summary>Создает симметричный объект-шифратор 3DES с помощью текущего ключа и вектора инициализации (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Симметричный объект-шифратор 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Создает симметричный объект-шифратор 3DES с указанным ключом и вектором инициализации (IV).</summary>
+      <param name="rgbKey">Секретный ключ, используемый для алгоритма 3DES. Размер ключа должен составлять 192 бита.</param>
+      <param name="rgbIV">Вектор инициализации, используемый для алгоритма 3DES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Размер элемента <paramref name="rgbKey" /> недопустимый для этого алгоритма.  
+  
+-или- 
+ Размер элемента <paramref name="rgbIV" /> не соответствует размеру блоков для этого алгоритма.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Элемент <paramref name="rgbKey" /> — это слабый ключ для этого алгоритма, поэтому он не может использоваться.  
+  
+-или- 
+ <paramref name="rgbIV" /> имеет значение <see langword="null" />.</exception>
+      <returns>Симметричный объект-шифратор 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateIV">
+      <summary>Создает случайный вектор инициализации (IV), который нужно использовать для алгоритма 3DES.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateKey">
+      <summary>Создает случайный ключ для использования алгоритма 3DES.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.Key">
+      <summary>Возвращает или задает ключ для алгоритма <see cref="T:System.Security.Cryptography.TripleDESCng" />.</summary>
+      <returns>Ключ для алгоритма <see cref="T:System.Security.Cryptography.TripleDESCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.KeySize">
+      <summary>Возвращает или задает размер (в битах) секретного ключа, который используется алгоритмом <see cref="T:System.Security.Cryptography.TripleDESCng" />.</summary>
+      <returns>Размер (в битах) секретного ключа, который используется алгоритмом <see cref="T:System.Security.Cryptography.TripleDESCng" />.</returns>
+    </member>
+  </members>
+</doc>

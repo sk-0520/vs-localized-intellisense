@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.Pipes.AccessControl</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Pipes.AnonymousPipeServerStreamAcl" />
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStreamAcl.Create(System.IO.Pipes.PipeDirection,System.IO.HandleInheritability,System.Int32,System.IO.Pipes.PipeSecurity)">
+      <summary>Cria uma instância da classe <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> com a direção do pipe, o modo de herdabilidade, o tamanho do buffer e a segurança do pipe especificados.</summary>
+      <param name="direction">Um dos valores de enumeração que determinam a direção do pipe. Pipes anônimos são unidirecionais, então a direção não pode ser definida como <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="inheritability">Um dos valores de enumeração que determina se o identificador subjacente pode ser herdado por processos filhos.</param>
+      <param name="bufferSize">O tamanho do buffer. Esse valor deve ser maior ou igual a 0.</param>
+      <param name="pipeSecurity">Um objeto que determina o controle de acesso e a segurança de auditoria para o pipe.</param>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="direction" /> é <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inheritability" /> não está definido como um valor de enumeração de <see cref="T:System.IO.HandleInheritability" /> válido.
+
+- ou - 
+<paramref name="bufferSize" /> é menor que 0.</exception>
+      <returns>Uma nova instância anônima do fluxo de servidor de pipe.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.NamedPipeServerStreamAcl" />
+    <member name="M:System.IO.Pipes.NamedPipeServerStreamAcl.Create(System.String,System.IO.Pipes.PipeDirection,System.Int32,System.IO.Pipes.PipeTransmissionMode,System.IO.Pipes.PipeOptions,System.Int32,System.Int32,System.IO.Pipes.PipeSecurity,System.IO.HandleInheritability,System.IO.Pipes.PipeAccessRights)">
+      <summary>Cria uma instância da classe <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> com o nome e a direção do pipe, o número máximo de instâncias do servidor, o modo de transmissão, as opções de pipe, os tamanhos do buffer de entrada e saída recomendados, a segurança do pipe, o modo de herdabilidade e os direitos de acesso do pipe especificados.</summary>
+      <param name="pipeName">O nome do pipe.</param>
+      <param name="direction">Um dos valores de enumeração que determinam a direção do pipe.</param>
+      <param name="maxNumberOfServerInstances">O número máximo de instâncias de servidor que compartilham o mesmo nome. Você pode passar <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" /> para esse valor.</param>
+      <param name="transmissionMode">Um dos valores de enumeração que determina o modo de transmissão do pipe.</param>
+      <param name="options">Um dos valores de enumeração que determina como abrir ou criar o pipe.</param>
+      <param name="inBufferSize">O tamanho do buffer de entrada.</param>
+      <param name="outBufferSize">O tamanho do buffer de saída.</param>
+      <param name="pipeSecurity">Um objeto que determina o controle de acesso e a segurança de auditoria para o pipe.</param>
+      <param name="inheritability">Um dos valores de enumeração que determina se o identificador subjacente pode ser herdado por processos filhos.</param>
+      <param name="additionalAccessRights">Um dos valores de enumeração que especifica os direitos de acesso do pipe.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="pipeName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="pipeName" /> está vazio.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="options" /> é <see cref="F:System.IO.Pipes.PipeOptions.None" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="options" /> contém um sinalizador inválido.
+
+- ou -
+
+<paramref name="inBufferSize" /> ou <paramref name="outBufferSize" /> é menor que zero.
+
+- ou -
+
+<paramref name="maxNumberOfServerInstances" /> não é um número válido: deve ser maior ou igual a 1 e menor ou igual a 254 ou deve ser definido como o valor de <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />.
+
+- ou -
+
+<paramref name="inheritability" /> contém um valor de enumeração inválido.
+
+- ou -
+
+<paramref name="pipeName" /> é "anônimo", o que é reservado.</exception>
+      <returns>Uma nova instância nomeada do fluxo de servidor de pipe.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.PipeAccessRights">
+      <summary>Define os direitos de acesso a serem usados ao criar regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.AccessSystemSecurity">
+      <summary>Especifica o direito de fazer alterações à SACL (lista de controle de acesso do sistema).</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ChangePermissions">
+      <summary>Especifica o direito de alterar as regras de segurança e auditoria associadas a um pipe.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.CreateNewInstance">
+      <summary>Especifica o direito de criar um novo pipe. A configuração correta dessa opção também define o direito <see cref="F:System.IO.Pipes.PipeAccessRights.Synchronize" />.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.Delete">
+      <summary>Especifica o direito de excluir um pipe.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.FullControl">
+      <summary>Especifica o direito de exercer controle total sobre um pipe e modificar o controle de acesso e as regras de auditoria. Esse valor representa a combinação de todos os direitos dessa enumeração.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.Read">
+      <summary>Especifica o direito de ler do pipe. Esse direito inclui os direitos <see cref="F:System.IO.Pipes.PipeAccessRights.ReadAttributes" />, <see cref="F:System.IO.Pipes.PipeAccessRights.ReadData" />, <see cref="F:System.IO.Pipes.PipeAccessRights.ReadExtendedAttributes" /> e <see cref="F:System.IO.Pipes.PipeAccessRights.ReadPermissions" />.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ReadAttributes">
+      <summary>Especifica o direito de ler atributos do sistema de arquivos de um pipe. Isso não inclui o direito de ler dados, atributos estendidos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ReadData">
+      <summary>Especifica o direito de ler dados do pipe. Isso não inclui o direito de ler atributos do sistema de arquivos, atributos estendidos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ReadExtendedAttributes">
+      <summary>Especifica o direito de ler atributos estendidos do sistema de arquivos de um pipe. Isso não inclui o direito de ler dados, atributos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ReadPermissions">
+      <summary>Especifica o direito de ler as regras de acesso de leitura e auditoria do pipe. Isso não inclui o direito de ler dados, atributos do sistema de arquivos ou atributos estendidos do sistema de arquivos.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.ReadWrite">
+      <summary>Especifica o direito de ler e gravar do pipe. Esse direito inclui os direitos <see cref="F:System.IO.Pipes.PipeAccessRights.ReadAttributes" />, <see cref="F:System.IO.Pipes.PipeAccessRights.ReadData" />, <see cref="F:System.IO.Pipes.PipeAccessRights.ReadExtendedAttributes" />, <see cref="F:System.IO.Pipes.PipeAccessRights.ReadPermissions" />, <see cref="F:System.IO.Pipes.PipeAccessRights.WriteAttributes" />, <see cref="F:System.IO.Pipes.PipeAccessRights.WriteData" /> e <see cref="F:System.IO.Pipes.PipeAccessRights.WriteExtendedAttributes" />.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.Synchronize">
+      <summary>Especifica se o aplicativo pode aguardar um identificador de pipe sincronizar com a conclusão de uma operação de E/S. Esse valor é definido automaticamente ao permitir o acesso ao pipe e excluído automaticamente ao negar o acesso ao pipe. O direito de criar um pipe requer esse valor. Se você não definir explicitamente esse valor ao criar um pipe, ele será definido automaticamente para você.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.TakeOwnership">
+      <summary>Especifica o direito de alterar o proprietário de um pipe. Observe que os proprietários de um pipe têm acesso completo a esse recurso.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.Write">
+      <summary>Especifica o direito de gravar no pipe. Esse direito inclui os direitos <see cref="F:System.IO.Pipes.PipeAccessRights.WriteAttributes" />, <see cref="F:System.IO.Pipes.PipeAccessRights.WriteData" /> e <see cref="F:System.IO.Pipes.PipeAccessRights.WriteExtendedAttributes" />.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.WriteAttributes">
+      <summary>Especifica o direito de gravar atributos do sistema de arquivos em um pipe. Isso não inclui o direito de gravar dados ou atributos estendidos do sistema de arquivos.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.WriteData">
+      <summary>Especifica o direito de gravar dados em um pipe. Isso não inclui o direito de gravar atributos do sistema de arquivos ou atributos estendidos do sistema de arquivos.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeAccessRights.WriteExtendedAttributes">
+      <summary>Especifica o direito de gravar atributos estendidos do sistema de arquivos em um pipe. Isso não inclui o direito de gravar dados ou atributos de arquivo.</summary>
+    </member>
+    <member name="T:System.IO.Pipes.PipeAccessRule">
+      <summary>Representa uma abstração de uma entrada de controle de acesso (ACE) que define uma regra de acesso para um pipe.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeAccessRule.#ctor(System.Security.Principal.IdentityReference,System.IO.Pipes.PipeAccessRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.IO.Pipes.PipeAccessRule" /> com a identidade especificada, direitos de acesso do pipe e tipo de controle de acesso.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="rights">Um dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeAccessRule.#ctor(System.String,System.IO.Pipes.PipeAccessRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.IO.Pipes.PipeAccessRule" /> com a identidade especificada, direitos de acesso do pipe e tipo de controle de acesso.</summary>
+      <param name="identity">O nome da conta de usuário.</param>
+      <param name="rights">Um dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+    </member>
+    <member name="P:System.IO.Pipes.PipeAccessRule.PipeAccessRights">
+      <summary>Obtém os sinalizadores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que estão associados ao objeto <see cref="T:System.IO.Pipes.PipeAccessRule" /> atual.</summary>
+      <returns>Uma combinação bit a bit dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" />.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.PipeAuditRule">
+      <summary>Representa uma abstração de uma ACE (entrada de controle de acesso) que define uma regra de auditoria para um pipe.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeAuditRule.#ctor(System.Security.Principal.IdentityReference,System.IO.Pipes.PipeAccessRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.IO.Pipes.PipeAuditRule" /> para uma conta de usuário especificada em um objeto <see cref="T:System.Security.Principal.IdentityReference" />.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="rights">Um dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeAuditRule.#ctor(System.String,System.IO.Pipes.PipeAccessRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.IO.Pipes.PipeAuditRule" /> para uma conta de usuário nomeada.</summary>
+      <param name="identity">O nome da conta de usuário.</param>
+      <param name="rights">Um dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+    </member>
+    <member name="P:System.IO.Pipes.PipeAuditRule.PipeAccessRights">
+      <summary>Obtém os sinalizadores <see cref="T:System.IO.Pipes.PipeAccessRights" /> que estão associados ao objeto <see cref="T:System.IO.Pipes.PipeAuditRule" /> atual.</summary>
+      <returns>Uma combinação bit a bit dos valores <see cref="T:System.IO.Pipes.PipeAccessRights" />.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.PipesAclExtensions">
+      <summary>Fornece métodos de extensão estáticos específicos do Windows para manipular atributos de segurança da ACL (lista de controle de acesso) para fluxos de pipe.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipesAclExtensions.GetAccessControl(System.IO.Pipes.PipeStream)">
+      <summary>Retorna as informações de segurança de um fluxo de pipe.</summary>
+      <param name="stream">O fluxo de pipe existente do qual as informações de segurança serão obtidas.</param>
+      <returns>Os descritores de segurança de todas as seções de controle de acesso do fluxo de pipe.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipesAclExtensions.SetAccessControl(System.IO.Pipes.PipeStream,System.IO.Pipes.PipeSecurity)">
+      <summary>Altera os atributos de segurança de um fluxo de pipe existente.</summary>
+      <param name="stream">Um fluxo de pipe existente.</param>
+      <param name="pipeSecurity">As informações de segurança a serem aplicadas ao fluxo de pipe.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="pipeSecurity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="stream" /> é uma instância de <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> desconectada.</exception>
+    </member>
+    <member name="T:System.IO.Pipes.PipeSecurity">
+      <summary>Representa o controle de acesso e a segurança de auditoria de um pipe.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.IO.Pipes.PipeSecurity" />.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.AccessRule" /> com os valores especificados.</summary>
+      <param name="identityReference">A identidade à qual a regra de acesso se aplica. Ele deve ser um objeto que possa ser convertido como um objeto <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">A máscara de acesso dessa regra. A máscara de acesso é uma coleção de 32 bits de bits anônimos, cujo significado é definido pelos integradores individuais</param>
+      <param name="isInherited">
+        <see langword="true" /> se essa regra for herdada de um contêiner pai; caso contrário, <see langword="false" />.</param>
+      <param name="inheritanceFlags">Uma dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especifica as propriedades de herança da regra de acesso.</param>
+      <param name="propagationFlags">Uma dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especifica se as regras de acesso herdadas são propagadas automaticamente. Os sinalizadores de propagação serão ignorados se <paramref name="inheritanceFlags" /> estiver definido como <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="type">Especifica o tipo de controle de acesso válido.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> ou <paramref name="type" /> especifica um valor inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identityReference" /> é <see langword="null" />.  
+  
+- ou - 
+ <paramref name="accessMask" /> é zero.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identityReference" /> não é do tipo <see cref="T:System.Security.Principal.SecurityIdentifier" /> nem de um tipo, como <see cref="T:System.Security.Principal.NTAccount" />, que pode ser convertido para o tipo <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>O objeto <see cref="T:System.Security.AccessControl.AccessRule" /> criado por esse método.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.AddAccessRule(System.IO.Pipes.PipeAccessRule)">
+      <summary>Adiciona uma regra de acesso à DACL (lista de controle de acesso discricionário) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de acesso a adicionar.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.AddAuditRule(System.IO.Pipes.PipeAuditRule)">
+      <summary>Adiciona uma regra de auditoria à SACL (lista de controle de acesso do sistema) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de auditoria a adicionar.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.AuditRule" /> com os valores especificados.</summary>
+      <param name="identityReference">A identidade à qual a regra de acesso se aplica. Ele deve ser um objeto que possa ser convertido como um objeto <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">A máscara de acesso dessa regra. A máscara de acesso é uma coleção de 32 bits de bits anônimos, cujo significado é definido pelos integradores individuais</param>
+      <param name="isInherited">
+        <see langword="true" /> se essa regra for herdada de um contêiner pai; caso contrário, false.</param>
+      <param name="inheritanceFlags">Uma dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especifica as propriedades de herança da regra de acesso.</param>
+      <param name="propagationFlags">Uma dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especifica se as regras de acesso herdadas são propagadas automaticamente. Os sinalizadores de propagação serão ignorados se <paramref name="inheritanceFlags" /> estiver definido como <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="flags">Um dos valores de <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica o tipo de controle de acesso válido.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">As propriedades <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> ou <paramref name="flags" /> especificam um valor inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">A propriedade <paramref name="identityReference" /> é <see langword="null" />.  
+  
+- ou - 
+A propriedade <paramref name="accessMask" /> é zero.</exception>
+      <exception cref="T:System.ArgumentException">A propriedade <paramref name="identityReference" /> não é nem do tipo <see cref="T:System.Security.Principal.SecurityIdentifier" /> nem de um tipo, como <see cref="T:System.Security.Principal.NTAccount" />, que pode ser convertido no tipo <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>O objeto <see cref="T:System.Security.AccessControl.AuditRule" /> criado por esse método.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.Persist(System.Runtime.InteropServices.SafeHandle)">
+      <summary>Salva as seções especificadas do descritor de segurança associado ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual no armazenamento permanente.</summary>
+      <param name="handle">O identificador do objeto protegível ao qual o objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual está associado.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.Persist(System.String)">
+      <summary>Salva as seções especificadas do descritor de segurança associado ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual no armazenamento permanente.</summary>
+      <param name="name">O nome do objeto protegível ao qual o objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual está associado.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.RemoveAccessRule(System.IO.Pipes.PipeAccessRule)">
+      <summary>Remove uma regra de acesso da DACL (lista de controle de acesso discricionário) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de acesso a ser removida.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> se a operação for bem-sucedida; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.RemoveAccessRuleSpecific(System.IO.Pipes.PipeAccessRule)">
+      <summary>Remove uma regra de acesso especificada da DACL (lista de controle de acesso discricionário) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de acesso a ser removida.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.RemoveAuditRule(System.IO.Pipes.PipeAuditRule)">
+      <summary>Remove uma regra de auditoria da SACL (lista de controle de acesso do sistema) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> se a regra de auditoria tiver sido removida; caso contrário,<see langword="false" /></returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.RemoveAuditRuleAll(System.IO.Pipes.PipeAuditRule)">
+      <summary>Remove todas as regras de auditoria que têm o mesmo identificador de segurança que a regra de auditoria especificada da SACL (lista de controle de acesso do sistema) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.RemoveAuditRuleSpecific(System.IO.Pipes.PipeAuditRule)">
+      <summary>Remove uma regra de auditoria especificada da SACL (lista de controle de acesso do sistema) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.ResetAccessRule(System.IO.Pipes.PipeAccessRule)">
+      <summary>Remove todas as regras de acesso na DACL (lista de controle de acesso discricionário) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual e, em seguida, adiciona a regra de acesso especificada.</summary>
+      <param name="rule">A regra de acesso a adicionar.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.SetAccessRule(System.IO.Pipes.PipeAccessRule)">
+      <summary>Define uma regra de acesso na DACL (lista de controle de acesso discricionário) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra a definir.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeSecurity.SetAuditRule(System.IO.Pipes.PipeAuditRule)">
+      <summary>Define uma regra de auditoria na SACL (lista de controle de acesso do sistema) associada ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <param name="rule">A regra a definir.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.IO.Pipes.PipeSecurity.AccessRightType">
+      <summary>Obtém o <see cref="T:System.Type" /> do objeto protegível que está associado ao objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <returns>O tipo do objeto protegível que está associado ao <see cref="T:System.IO.Pipes.PipeSecurity" /> objeto atual.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeSecurity.AccessRuleType">
+      <summary>Obtém o <see cref="T:System.Type" /> do objeto associado às regras de acesso do objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <returns>O tipo do objeto que está associado às regras de acesso do <see cref="T:System.IO.Pipes.PipeSecurity" /> objeto atual.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeSecurity.AuditRuleType">
+      <summary>Obtém o objeto <see cref="T:System.Type" /> associado às regras de auditoria do objeto <see cref="T:System.IO.Pipes.PipeSecurity" /> atual.</summary>
+      <returns>O tipo do objeto que está associado às regras de auditoria do <see cref="T:System.IO.Pipes.PipeSecurity" /> objeto atual.</returns>
+    </member>
+  </members>
+</doc>

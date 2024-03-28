@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.IO.Compression.ZipFile</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Compression.ZipFile">
+      <summary vsli:raw="Provides static methods for creating, extracting, and opening zip archives.">提供建立、解壓縮及開啟 zip 封存的靜態方法。</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory.">建立包含指定目錄中檔案及目錄的 zip 封存。</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要封存的目錄路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要建立的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> 已經存在。  
+-或- 
+無法開啟指定之目錄中的檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有必要的權限，無法存取 <paramref name="sourceDirectoryName" /> 中指定的目錄或 <paramref name="destinationArchiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 包含無效的格式。  
+-或- 
+Zip 封存不支援寫入。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory, uses the specified compression level, and optionally includes the base directory.">建立 zip 封存，這個封存包含指定之目錄中的檔案及目錄，使用指定的壓縮等級，並選擇性包含基底目錄。</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要封存的目錄路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要建立的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">其中一個列舉值，指出當建立項目時是否要強調速度或壓縮的效益。</param>
+      <param name="includeBaseDirectory" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to include the directory name from &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; at the root of the archive; &lt;see langword=&quot;false&quot; /&gt; to include only the contents of the directory.">
+        <see langword="true" /> 表示從 <paramref name="sourceDirectoryName" /> (位於封存根目錄中) 包含目錄名稱，<see langword="false" /> 表示只包含目錄的內容。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> 已經存在。  
+-或- 
+無法開啟指定之目錄中的檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有必要的權限，無法存取 <paramref name="sourceDirectoryName" /> 中指定的目錄或 <paramref name="destinationArchiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 包含無效的格式。  
+-或- 
+Zip 封存不支援寫入。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory, uses the specified compression level and character encoding for entry names, and optionally includes the base directory.">建立 zip 封存，這個封存包含指定之目錄中的檔案及目錄，針對項目名稱使用指定的壓縮等級和字元編碼方式，並選擇性包含基底目錄。</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要封存的目錄路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要建立的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">其中一個列舉值，指出當建立項目時是否要強調速度或壓縮的效益。</param>
+      <param name="includeBaseDirectory" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to include the directory name from &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; at the root of the archive; &lt;see langword=&quot;false&quot; /&gt; to include only the contents of the directory.">
+        <see langword="true" /> 表示從 <paramref name="sourceDirectoryName" /> (位於封存根目錄中) 包含目錄名稱，<see langword="false" /> 表示只包含目錄的內容。</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">在此封存中讀取或寫入項目名稱時要使用的編碼方式。 只有當需要編碼以與 Zip 封存工具和程式庫互通，且這類工具和程式庫不支援項目名稱使用 UTF-8 編碼時，指定此參數的值。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。  
+-或- 
+ <paramref name="entryNameEncoding" /> 會設定為 UTF-8 以外的 Unicode 編碼方式。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> 已經存在。  
+-或- 
+無法開啟指定之目錄中的檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有必要的權限，無法存取 <paramref name="sourceDirectoryName" /> 中指定的目錄或 <paramref name="destinationArchiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> 或 <paramref name="destinationArchiveFileName" /> 包含無效的格式。  
+-或- 
+Zip 封存不支援寫入。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)">
+      <summary vsli:raw="Extracts all the files in the specified zip archive to a directory on the file system.">將指定之 zip 封存中的所有檔案解壓縮到檔案系統上的目錄。</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path to the archive that is to be extracted.">要擷取之封存的路徑。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory in which to place the extracted files, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要在其中放置解壓縮檔案的目錄路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; exceeds the system-defined maximum length.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 中指定的路徑超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an archive entry would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry to extract has the same name as an entry that has already been extracted or that exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> 指定的目錄已存在。  
+-或- 
+封存檔中的項目名稱是<see cref="F:System.String.Empty" />，只包含空白字元，或包含至少一個無效的字元。  
+-或- 
+解壓縮封存項目會建立 <paramref name="destinationDirectoryName" /> 所指定目錄外的檔案。 (例如，如果項目名稱包含父目錄存取子，這就可能發生)。 
+-或- 
+要解壓縮的封存項目與已經從相同封存解壓縮的項目具有相同的名稱。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to access the archive or the destination directory.">呼叫端不具有存取封存或目的地目錄的權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">找不到 <paramref name="sourceArchiveFileName" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was not found or was corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">由 <paramref name="sourceArchiveFileName" /> 指定的封存不是有效的 zip 封存。  
+-或- 
+找不到封存項目，或是其已損毀。  
+-或- 
+封存項目使用不支援的壓縮方法加以壓縮。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the specified archive to a directory on the file system.">將指定封存中的所有檔案解壓縮到檔案系統上的目錄。</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path on the file system to the archive that is to be extracted.">檔案系統上要解壓縮的封存路徑。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system.">檔案系統上目的地目錄的路徑。 指定的目錄不得存在，但包含它的目錄必須存在。</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">若要覆寫檔案，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is a zero-length string, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 為零長度字串、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; specifies a path, a file name, or both that exceed the system-defined maximum length.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 所指定路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The path specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;overwriteFiles&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt; and &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; already contains a file with the same name as a file that's being extracted.&#xA;&#xA;-or-&#xA;&#xA;An I/O error has occurred.&#xA;&#xA;-or-&#xA;&#xA;The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would result in a file destination that is outside the destination directory (for example, because of parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an entry from the same archive that's already been extracted.">
+        <paramref name="destinationDirectoryName" /> 指定的目錄已存在。
+-或-
+發生 I/O 錯誤。
+-或-
+<see cref="T:System.IO.Compression.ZipArchiveEntry" /> 名稱為零長度、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+解壓縮 <see cref="T:System.IO.Compression.ZipArchiveEntry" /> 會導致檔案目的地位於目的地目錄外部 (例如，因為上層目錄存取子所致)。
+-或-
+<see cref="T:System.IO.Compression.ZipArchiveEntry" /> 與相同封存中已解壓縮的項目同名。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is in an invalid format.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 格式無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">找不到 <paramref name="sourceArchiveFileName" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has been compressed using a compression method that is not supported.">由 <paramref name="sourceArchiveFileName" /> 指定的封存不是有效 <see cref="T:System.IO.Compression.ZipArchive" />。
+-或-
+找不到 <see cref="T:System.IO.Compression.ZipArchiveEntry" />，或是其已損毀。
+-或-
+您使用不支援的壓縮方法來壓縮 <see cref="T:System.IO.Compression.ZipArchiveEntry" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)">
+      <summary vsli:raw="Extracts all the files in the specified zip archive to a directory on the file system and uses the specified character encoding for entry names.">將指定之 zip 封存中的所有檔案解壓縮到檔案系統上的目錄，並對項目名稱使用指定的字元編碼方式。</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path to the archive that is to be extracted.">要擷取之封存的路徑。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory in which to place the extracted files, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要在其中放置解壓縮檔案的目錄路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">在此封存中讀取或寫入項目名稱時要使用的編碼方式。 只有當需要編碼以與 Zip 封存工具和程式庫互通，且這類工具和程式庫不支援項目名稱使用 UTF-8 編碼時，指定此參數的值。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。  
+-或- 
+ <paramref name="entryNameEncoding" /> 會設定為 UTF-8 以外的 Unicode 編碼方式。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; exceeds the system-defined maximum length.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 中指定的路徑超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an archive entry would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry to extract has the same name as an entry that has already been extracted or that exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> 指定的目錄已存在。  
+-或- 
+封存檔中的項目名稱是<see cref="F:System.String.Empty" />，只包含空白字元，或包含至少一個無效的字元。  
+-或- 
+解壓縮封存項目會建立 <paramref name="destinationDirectoryName" /> 所指定目錄外的檔案。 (例如，如果項目名稱包含父目錄存取子，這就可能發生)。 
+-或- 
+要解壓縮的封存項目與已經從相同封存解壓縮的項目具有相同的名稱。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to access the archive or the destination directory.">呼叫端不具有存取封存或目的地目錄的權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> 或 <paramref name="sourceArchiveFileName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">找不到 <paramref name="sourceArchiveFileName" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was not found or was corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">由 <paramref name="sourceArchiveFileName" /> 指定的封存不是有效的 zip 封存。  
+-或- 
+找不到封存項目，或是其已損毀。  
+-或- 
+封存項目使用不支援的壓縮方法加以壓縮。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the specified archive to a directory on the file system.">將指定封存中的所有檔案解壓縮到檔案系統上的目錄。</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path on the file system to the archive that is to be extracted.">檔案系統上要解壓縮的封存路徑。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system.">檔案系統上目的地目錄的路徑。 指定的目錄不得存在，但包含它的目錄必須存在。</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading entry names in this &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.">在此 <see cref="T:System.IO.Compression.ZipArchive" />中讀取項目名稱時要使用的編碼方式。</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">若要覆寫檔案，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is a zero-length string, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA; &#xA; -or- &#xA; &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 為零長度字串、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或- 
+ <paramref name="entryNameEncoding" /> 會設定為 UTF-8 以外的 Unicode 編碼方式。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; specifies a path, a file name, or both that exceed the system-defined maximum length.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 所指定路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The path specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;overwriteFiles&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt; and an archive entry to extract has the same name as a file that already exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;An I/O error has occurred.&#xA;&#xA;-or-&#xA;&#xA;The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would result in a file destination that is outside the destination directory (for example, because of parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an already extracted entry from the same archive.">
+        <paramref name="destinationDirectoryName" /> 指定的目錄已存在。
+-或-
+發生 I/O 錯誤。
+-或-
+<see cref="T:System.IO.Compression.ZipArchiveEntry" /> 名稱為零長度、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+解壓縮 <see cref="T:System.IO.Compression.ZipArchiveEntry" /> 會導致檔案目的地位於目的地目錄外部 (例如，因為上層目錄存取子所致)。
+-或-
+<see cref="T:System.IO.Compression.ZipArchiveEntry" /> 與相同封存中已解壓縮的項目同名。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is in an invalid format.">
+        <paramref name="sourceArchiveFileName" /> 或 <paramref name="destinationDirectoryName" /> 格式無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">找不到 <paramref name="sourceArchiveFileName" />。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;An archive entry was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;An archive entry has been compressed using a compression method that is not supported.">由 <paramref name="sourceArchiveFileName" /> 指定的封存不是有效 <see cref="T:System.IO.Compression.ZipArchive" />。
+-或-
+找不到封存項目，或是其已損毀。
+-或-
+您使用不受支援的壓縮方法壓縮封存項目。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)">
+      <summary vsli:raw="Opens a zip archive at the specified path and in the specified mode.">在指定路徑上以指定的模式開啟 zip 封存。</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要開啟的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="mode" vsli:raw="One of the enumeration values that specifies the actions which are allowed on the entries in the opened archive.">其中一個列舉值，指定在開啟封存檔中的項目上所允許的動作。</param>
+      <returns vsli:raw="The opened zip archive.">已開啟的 zip 封存。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="archiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="archiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; already exists.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">無法開啟 <paramref name="archiveFileName" />。  
+-或- 
+ <paramref name="mode" /> 設定為 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />，而且 <paramref name="archiveFileName" /> 中指定的檔案已經存在。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有所需的使用權限來存取 <paramref name="archiveFileName" /> 中所指定的檔案。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; specifies an invalid value.">
+        <paramref name="mode" /> 指定了無效的值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Read&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">
+        <paramref name="mode" /> 設定為 <see cref="F:System.IO.Compression.ZipArchiveMode.Read" />，而且找不到 <paramref name="archiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is missing or corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is too large to fit into memory.">
+        <paramref name="archiveFileName" /> 無法解譯為 zip 封存。  
+-或- 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但是項目從封存中遺失，或已損毀且無法讀取。  
+-或- 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但是項目太大，無法放入記憶體。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)">
+      <summary vsli:raw="Opens a zip archive at the specified path, in the specified mode, and by using the specified character encoding for entry names.">以指定的模式，並將指定的字元編碼方式使用於項目名稱，開啟位於指定路徑的 zip 封存。</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要開啟的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="mode" vsli:raw="One of the enumeration values that specifies the actions that are allowed on the entries in the opened archive.">其中一個列舉值，指定在開啟封存檔中的項目上所允許的動作。</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">在此封存中讀取或寫入項目名稱時要使用的編碼方式。 只有當需要編碼以與 Zip 封存工具和程式庫互通，且這類工具和程式庫不支援項目名稱使用 UTF-8 編碼時，指定此參數的值。</param>
+      <returns vsli:raw="The opened zip archive.">已開啟的 zip 封存。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="archiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。  
+-或- 
+ <paramref name="entryNameEncoding" /> 會設定為 UTF-8 以外的 Unicode 編碼方式。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="archiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; already exists.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">無法開啟 <paramref name="archiveFileName" />。  
+-或- 
+ <paramref name="mode" /> 設定為 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />，而且 <paramref name="archiveFileName" /> 中指定的檔案已經存在。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有所需的使用權限來存取 <paramref name="archiveFileName" /> 中所指定的檔案。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; specifies an invalid value.">
+        <paramref name="mode" /> 指定了無效的值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Read&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">
+        <paramref name="mode" /> 設定為 <see cref="F:System.IO.Compression.ZipArchiveMode.Read" />，而且找不到 <paramref name="archiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is missing or corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is too large to fit into memory.">
+        <paramref name="archiveFileName" /> 無法解譯為 zip 封存。  
+-或- 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但是項目從封存中遺失，或已損毀且無法讀取。  
+-或- 
+ <paramref name="mode" /> 是 <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />，但是項目太大，無法放入記憶體。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.OpenRead(System.String)">
+      <summary vsli:raw="Opens a zip archive for reading at the specified path.">開啟位於指定路徑的 zip 封存以讀取。</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">要開啟的封存的路徑（指定為相對或絕對路徑）。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <returns vsli:raw="The opened zip archive.">已開啟的 zip 封存。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="archiveFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="archiveFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> 無效或不存在 (例如，位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">無法開啟 <paramref name="archiveFileName" />。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有所需的使用權限來存取 <paramref name="archiveFileName" /> 中所指定的檔案。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">找不到在 <paramref name="archiveFileName" /> 中指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.">
+        <paramref name="archiveFileName" /> 無法解譯為 zip 封存。</exception>
+    </member>
+    <member name="T:System.IO.Compression.ZipFileExtensions">
+      <summary vsli:raw="Provides extension methods for the &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt; and &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; classes.">提供 <see cref="T:System.IO.Compression.ZipArchive" /> 和 <see cref="T:System.IO.Compression.ZipArchiveEntry" /> 類別的擴充方法。</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)">
+      <summary vsli:raw="Archives a file by compressing it and adding it to the zip archive.">透過將檔案壓縮並加入至 zip 封存的方式進行封存。</summary>
+      <param name="destination" vsli:raw="The zip archive to add the file to.">要將檔案加入至其中的 Zip 封存。</param>
+      <param name="sourceFileName" vsli:raw="The path to the file to be archived. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">要封存的檔案之路徑。 您可以指定相對或相對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="entryName" vsli:raw="The name of the entry to create in the zip archive.">要在 Zip 封存中建立之項目的名稱。</param>
+      <returns vsli:raw="A wrapper for the new entry in the zip archive.">zip 封存中之新項目的包裝函式。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。  
+-或- 
+ <paramref name="entryName" /> 為 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; or &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 或 <paramref name="entryName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="sourceFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceFileName" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; cannot be opened, or is too large to be updated (current limit is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;).">
+        <paramref name="sourceFileName" /> 指定的檔案無法開啟，或者太大而無法更新 (目前的限制是 Int32.MaxValue)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有所需的使用權限來存取 <paramref name="sourceFileName" /> 指定的檔案。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; is not found.">找不到 <paramref name="sourceFileName" /> 所指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;sourceFileName&quot; /&gt; parameter is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceFileName" /> 參數的格式無效。  
+-或- 
+Zip 封存不支援寫入。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive has been disposed.">Zip 封存已經處置。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)">
+      <summary vsli:raw="Archives a file by compressing it using the specified compression level and adding it to the zip archive.">透過將檔案以指定之壓縮等級壓縮並加入至 zip 封存的方式進行封存。</summary>
+      <param name="destination" vsli:raw="The zip archive to add the file to.">要將檔案加入至其中的 Zip 封存。</param>
+      <param name="sourceFileName" vsli:raw="The path to the file to be archived. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">要封存的檔案之路徑。 您可以指定相對或相對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="entryName" vsli:raw="The name of the entry to create in the zip archive.">要在 Zip 封存中建立之項目的名稱。</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">其中一個列舉值，指出當建立項目時是否要強調速度或壓縮的效益。</param>
+      <returns vsli:raw="A wrapper for the new entry in the zip archive.">zip 封存中之新項目的包裝函式。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。  
+-或- 
+ <paramref name="entryName" /> 為 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; or &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 或 <paramref name="entryName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceFileName" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">在 <paramref name="sourceFileName" /> 中，指定的路徑、檔案名稱或兩者都超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; cannot be opened, or is too large to be updated (current limit is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;).">
+        <paramref name="sourceFileName" /> 指定的檔案無法開啟，或者太大而無法更新 (目前的限制是 Int32.MaxValue)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt;.">
+        <paramref name="sourceFileName" /> 指定目錄。  
+-或- 
+呼叫端沒有所需的使用權限來存取 <paramref name="sourceFileName" /> 指定的檔案。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; is not found.">找不到 <paramref name="sourceFileName" /> 所指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;sourceFileName&quot; /&gt; parameter is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceFileName" /> 參數的格式無效。  
+-或- 
+Zip 封存不支援寫入。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive has been disposed.">Zip 封存已經處置。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String)">
+      <summary vsli:raw="Extracts all the files in the zip archive to a directory on the file system.">將 zip 封存中的所有檔案解壓縮到檔案系統上的目錄。</summary>
+      <param name="source" vsli:raw="The zip archive to extract files from.">做為檔案解壓縮來源的 zip 封存。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory to place the extracted files in. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">要在其中放置解壓縮檔案的目錄路徑。 您可以指定相對或相對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="destinationDirectoryName" /> 為 <see cref="F:System.String.Empty" />，只含有空白字元，或者含有至少一個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path exceeds the system-defined maximum length.">指定的路徑超過系統定義的最大長度。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an entry from the archive would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; Two or more entries in the archive have the same name.">
+        <paramref name="destinationDirectoryName" /> 指定的目錄已存在。  
+-或- 
+封存檔中的項目名稱是<see cref="F:System.String.Empty" />，只包含空白字元，或包含至少一個無效的字元。  
+-或- 
+從封存解壓縮封存項目會建立 <paramref name="destinationDirectoryName" /> 所指定目錄外的檔案。 (例如，如果項目名稱包含父目錄存取子，這就可能發生)。 
+-或- 
+在封存中兩個或多個項目具有相同的名稱。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to write to the destination directory.">呼叫端不具有寫入目的地目錄的必要權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> 包含無效的格式。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="An archive entry cannot be found or is corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">找不到封存項目，或是其已損毀。  
+ -或-  
+ 封存項目使用不支援的壓縮方法加以壓縮。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the archive to a directory on the file system.">將封存中的所有檔案解壓縮到檔案系統上目錄。</summary>
+      <param name="source" vsli:raw="The &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt; to extract.">要解壓縮的 <see cref="T:System.IO.Compression.ZipArchive" />。</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system. The path can be relative or absolute. A relative path is interpreted as relative to the current working directory.">檔案系統上目的地目錄的路徑。 路徑可為相對路徑或絕對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite existing files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">
+        <see langword="true" /> 表示要覆寫現有的檔案；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is a zero-length string, contains only whitespace,&#xA;            or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> 為零長度字串、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would have resulted in a destination file that is outside &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; (for example, if the entry name contains parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an already extracted entry from the same archive.">
+        <see cref="T:System.IO.Compression.ZipArchiveEntry" /> 名稱為零長度、只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+解壓縮 <paramref name="destinationArchiveFileName" /> 會導致目的地檔案位於 <see cref="T:System.IO.Compression.ZipArchiveEntry" /> 外部 (例如，在項目名稱包含上層目錄存取子的情況下)。
+-或-
+<see cref="T:System.IO.Compression.ZipArchiveEntry" /> 與相同封存中已解壓縮的項目同名。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is in an invalid format.">
+        <paramref name="destinationArchiveFileName" /> 格式無效。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has been compressed using a compression method that is not supported.">找不到 <see cref="T:System.IO.Compression.ZipArchiveEntry" />，或是其已損毀。
+-或-
+您使用不支援的壓縮方法來壓縮 <see cref="T:System.IO.Compression.ZipArchiveEntry" />。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)">
+      <summary vsli:raw="Extracts an entry in the zip archive to a file.">將 zip 封存中的項目解壓縮至檔案。</summary>
+      <param name="source" vsli:raw="The zip archive entry to extract a file from.">做為檔案解壓縮來源的 zip 封存項目。</param>
+      <param name="destinationFileName" vsli:raw="The path of the file to create from the contents of the entry. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">要從項目內容建立的檔案的路徑。 您可以指定相對或絕對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is a zero-length string, contains only white space, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;destinationFileName&quot; /&gt; specifies a directory.">
+        <paramref name="destinationFileName" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。  
+-或- 
+ <paramref name="destinationFileName" /> 指定目錄。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; An I/O error occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry is currently open for writing.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been deleted from the archive.">
+        <paramref name="destinationFileName" /> 所指定的目錄已經存在。  
+-或- 
+發生 I/O 錯誤。  
+-或- 
+項目目前已開啟以進行寫入。  
+-或- 
+項目已經從封存中刪除。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to create the new file.">呼叫端沒有所需的使用權限來建立新檔。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The entry is missing from the archive, or is corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been compressed by using a compression method that is not supported.">此項目可能是從封存中遺失，或已損毀且無法讀取。  
+ -或-  
+ 藉由使用不支援的壓縮方法壓縮了項目。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive that this entry belongs to has been disposed.">這個項目所屬的 Zip 封存已經過處置。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive for this entry was opened in &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt; mode, which does not permit the retrieval of entries.">
+        <paramref name="destinationFileName" /> 的格式無效。  
+-或- 
+這個項目的 Zip 封存的開啟模式是 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />，該模式不允許擷取項目。</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts an entry in the zip archive to a file, and optionally overwrites an existing file that has the same name.">將 zip 封存中的項目解壓縮至檔案，並選擇性覆寫名稱相同的現有檔案。</summary>
+      <param name="source" vsli:raw="The zip archive entry to extract a file from.">做為檔案解壓縮來源的 zip 封存項目。</param>
+      <param name="destinationFileName" vsli:raw="The path of the file to create from the contents of the entry. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">要從項目內容建立的檔案的路徑。 您可以指定相對或相對路徑。 相對路徑會解譯為與目前的工作目錄相對。</param>
+      <param name="overwrite" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite an existing file that has the same name as the destination file; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> 表示要覆寫與目的檔案同名的現有檔案，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is a zero-length string, contains only white space, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;destinationFileName&quot; /&gt; specifies a directory.">
+        <paramref name="destinationFileName" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。  
+-或- 
+ <paramref name="destinationFileName" /> 指定目錄。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; already exists and &lt;paramref name=&quot;overwrite&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; An I/O error occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry is currently open for writing.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been deleted from the archive.">
+        <paramref name="destinationFileName" /> 已存在且 <paramref name="overwrite" /> 為 <see langword="false" />。  
+-或- 
+發生 I/O 錯誤。  
+-或- 
+項目目前已開啟以進行寫入。  
+-或- 
+項目已經從封存中刪除。</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to create the new file.">呼叫端沒有所需的使用權限來建立新檔。</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The entry is missing from the archive or is corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been compressed by using a compression method that is not supported.">此項目可能是從封存中遺失，或已損毀且無法讀取。  
+ -或-  
+ 藉由使用不支援的壓縮方法壓縮了項目。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive that this entry belongs to has been disposed.">這個項目所屬的 Zip 封存已經過處置。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive for this entry was opened in &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt; mode, which does not permit the retrieval of entries.">
+        <paramref name="destinationFileName" /> 的格式無效。  
+-或- 
+這個項目的 Zip 封存的開啟模式是 <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />，該模式不允許擷取項目。</exception>
+    </member>
+  </members>
+</doc>

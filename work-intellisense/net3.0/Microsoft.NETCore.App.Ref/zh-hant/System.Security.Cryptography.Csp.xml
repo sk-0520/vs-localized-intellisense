@@ -1,0 +1,966 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Csp</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AesCryptoServiceProvider">
+      <summary>使用先進加密標準 (AES) 演算法的加密應用程式開發介面 (CAPI) 實作，執行對稱加密和解密。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.AesCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">目前平台沒有支援的金鑰大小。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.BlockSize" />
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor">
+      <summary>建立對稱的 AES 解密子物件，使用目前的金鑰和初始化向量 (IV)。</summary>
+      <returns>對稱 AES 解密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">目前的金鑰無效或遺失。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>建立對稱的 AES 解密子物件，使用指定的金鑰和初始化向量 (IV)。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 AES 解密子物件。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 或 <paramref name="iv" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 無效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor">
+      <summary>建立對稱的 AES 加密子物件，使用目前的金鑰和初始化向量 (IV)。</summary>
+      <returns>對稱 AES 加密子物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>建立對稱的加密子物件，使用指定的金鑰和初始化向量 (IV)。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 AES 加密子物件。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 或 <paramref name="iv" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 無效。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.FeedbackSize" />
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateIV">
+      <summary>產生要用於演算法的隨機初始化向量 (IV)。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法產生初始化向量 (IV)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateKey">
+      <summary>產生用於演算法的隨機金鑰。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法產生金鑰。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.IV" />
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Key">
+      <summary>取得或設定對稱金鑰，用於加密和解密。</summary>
+      <returns>用於加密和解密的對稱金鑰。</returns>
+      <exception cref="T:System.ArgumentNullException">金鑰值為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">金鑰的大小無效。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.KeySize">
+      <summary>取得或設定秘密金鑰的大小 (以位元為單位)。</summary>
+      <returns>金鑰的大小 (以位元為單位)。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalBlockSizes" />
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalKeySizes" />
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Mode" />
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Padding" />
+    <member name="T:System.Security.Cryptography.CspKeyContainerInfo">
+      <summary>提供與密碼編譯金鑰組相關的額外資訊。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspKeyContainerInfo.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的參數，初始化 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 類別的新執行個體。</summary>
+      <param name="parameters">
+        <see cref="T:System.Security.Cryptography.CspParameters" /> 物件，可以提供有關金鑰的資訊。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Accessible">
+      <summary>取得值，指出金鑰容器中某個金鑰是否可以存取。</summary>
+      <returns>如果該金鑰可以存取則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.NotSupportedException">不支援金鑰類型。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Exportable">
+      <summary>取得值，指出金鑰是否可以從金鑰容器中匯出。</summary>
+      <returns>如果該金鑰可以匯出則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.NotSupportedException">不支援金鑰類型。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">找不到密碼編譯服務提供者。  
+ -或-  
+ 找不到金鑰容器。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.HardwareDevice">
+      <summary>取得值，指出金鑰是否為硬體金鑰。</summary>
+      <returns>如果該金鑰是硬體金鑰則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">找不到密碼編譯服務提供者。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyContainerName">
+      <summary>取得金鑰容器名稱。</summary>
+      <returns>金鑰容器名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyNumber">
+      <summary>取得值，描述非對稱金鑰是建立為簽章金鑰或交換金鑰。</summary>
+      <returns>其中一個 <see cref="T:System.Security.Cryptography.KeyNumber" /> 值，描述對稱金鑰是建立為簽章金鑰或交換金鑰。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.MachineKeyStore">
+      <summary>取得值，指出金鑰是否來自機器金鑰組。</summary>
+      <returns>如果該金鑰來自機器金鑰組則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Protected">
+      <summary>取得值，指出金鑰組是否受到保護。</summary>
+      <returns>如果該金鑰組受到保護則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.NotSupportedException">不支援金鑰類型。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">找不到密碼編譯服務提供者。  
+ -或-  
+ 找不到金鑰容器。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderName">
+      <summary>取得金鑰提供者名稱。</summary>
+      <returns>提供者名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderType">
+      <summary>取得金鑰提供者類型。</summary>
+      <returns>提供者類型。 預設為 1。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.RandomlyGenerated">
+      <summary>取得值，指出金鑰容器是否由 Managed 密碼編譯類別隨機產生。</summary>
+      <returns>如果金鑰容器是隨機產生則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Removable">
+      <summary>取得值，指出金鑰是否可以從金鑰容器中移除。</summary>
+      <returns>如果該金鑰可以移除則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">找不到密碼編譯服務提供者 (CSP)。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.UniqueKeyContainerName">
+      <summary>取得唯一的金鑰容器名稱。</summary>
+      <returns>唯一的金鑰容器名稱。</returns>
+      <exception cref="T:System.NotSupportedException">不支援金鑰類型。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">找不到密碼編譯服務提供者。  
+ -或-  
+ 找不到金鑰容器。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.CspParameters">
+      <summary>包含傳遞至執行密碼編譯計算之密碼編譯服務供應者 (CSP) 的參數。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32)">
+      <summary>使用指定的提供者類型代碼，初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 類別的新執行個體。</summary>
+      <param name="dwTypeIn">提供者類型程式碼，指定要建立之提供者的種類。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String)">
+      <summary>使用指定的提供者類型代碼和名稱，初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 類別的新執行個體。</summary>
+      <param name="dwTypeIn">提供者類型程式碼，指定要建立之提供者的種類。</param>
+      <param name="strProviderNameIn">提供者名稱。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String,System.String)">
+      <summary>使用指定的提供者類型代碼和名稱以及指定的容器名稱，初始化 <see cref="T:System.Security.Cryptography.CspParameters" /> 類別的新執行個體。</summary>
+      <param name="dwTypeIn">提供者類型程式碼，指定要建立之提供者的種類。</param>
+      <param name="strProviderNameIn">提供者名稱。</param>
+      <param name="strContainerNameIn">容器名稱。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.Flags">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的旗標，它會修改密碼編譯服務提供者 (CSP) 的行為。</summary>
+      <returns>列舉值，或列舉值的位元組合。</returns>
+      <exception cref="T:System.ArgumentException">值不是有效的列舉值。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyContainerName">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的金鑰容器名稱。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyNumber">
+      <summary>指定將非對稱金鑰建立為簽章金鑰或交換金鑰。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.KeyPassword">
+      <summary>取得或設定與智慧卡金鑰關聯的密碼。</summary>
+      <returns>與智慧卡金鑰關聯的密碼。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.ParentWindowHandle">
+      <summary>取得或設定智慧卡密碼對話方塊之 Unmanaged 父視窗的控制代碼。</summary>
+      <returns>智慧卡密碼對話方塊父視窗的控制代碼。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderName">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的提供者名稱。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderType">
+      <summary>表示 <see cref="T:System.Security.Cryptography.CspParameters" /> 的提供者類型代碼。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CspProviderFlags">
+      <summary>指定修改密碼編譯服務提供者 (CSP) 行為的旗標。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.CreateEphemeralKey">
+      <summary>建立相關聯的 Rivest-Shamir-Adleman (RSA) 物件關閉時釋出的暫時金鑰。 如果您希望金鑰與 RSA 物件無關，請勿使用此旗標。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoFlags">
+      <summary>請勿指定任何設定。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoPrompt">
+      <summary>避免 CSP 顯示此內容的任何使用者介面 (UI)。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseArchivableKey">
+      <summary>允許匯出金鑰以供保存或復原。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseDefaultKeyContainer">
+      <summary>使用來自預設金鑰容器的金鑰資訊。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseExistingKey">
+      <summary>使用來自目前金鑰的金鑰資訊。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseMachineKeyStore">
+      <summary>使用來自電腦金鑰存放區的金鑰資訊。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseNonExportableKey">
+      <summary>使用無法匯出的金鑰資訊。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseUserProtectedKey">
+      <summary>當某些動作嘗試使用金鑰時，透過對話方塊或另一個方法告知使用者。  這個旗標與 <see cref="F:System.Security.Cryptography.CspProviderFlags.NoPrompt" /> 旗標不相容。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DESCryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取資料加密標準 (<see cref="T:System.Security.Cryptography.DES" />) 演算法的密碼編譯服務供應者 (CSP) 版本。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.DESCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">資料加密標準 (<see cref="T:System.Security.Cryptography.DES" />) 密碼編譯服務供應者無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor" />
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="T:System.Security.Cryptography.DES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)，建立對稱資料加密標準 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 解密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.DES" /> 解密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+-或- 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 屬性的值不是 8。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor" />
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="T:System.Security.Cryptography.DES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)，建立對稱資料加密標準 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 加密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.DES" /> 加密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+-或- 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 屬性的值不是 8。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateIV">
+      <summary>產生要使用於該演算法的隨機初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateKey">
+      <summary>產生要使用於該演算法的隨機金鑰 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.DSA" /> 演算法的密碼編譯服務供應者 (CSP) 實作。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>使用指定的金鑰大小，初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="dwKeySize">非對稱演算法的金鑰大小，以位元為單位。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的密碼編譯服務提供者的金鑰大小和參數，初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="dwKeySize">密碼編譯演算法的金鑰的大小，以位元為單位。</param>
+      <param name="parameters">CSP 的參數。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得 CSP。  
+ -或-  
+ 無法建立金鑰。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="dwKeySize" /> 超出範圍。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的密碼編譯服務提供者 (CSP) 參數，初始化 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="parameters">CSP 的參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>建立指定資料的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</summary>
+      <param name="rgbHash">要簽署的資料。</param>
+      <returns>指定資料的數位簽章。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>取得描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</summary>
+      <returns>描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>匯出 BLOB，其中含有與 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 物件相關的金鑰資訊。</summary>
+      <param name="includePrivateParameters">如果要包含私密金鑰，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <returns>位元組陣列，其中含有與 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 物件相關的金鑰資訊。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>匯出 <see cref="T:System.Security.Cryptography.DSAParameters" />。</summary>
+      <param name="includePrivateParameters">如果要包含私用參數，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.DSA" /> 的參數。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>匯入代表 DSA 金鑰資訊的 BLOB。</summary>
+      <param name="keyBlob">代表 DSA 金鑰 BLOB 的位元組陣列。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>匯入指定的 <see cref="T:System.Security.Cryptography.DSAParameters" />。</summary>
+      <param name="parameters">
+        <see cref="T:System.Security.Cryptography.DSA" /> 的參數。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+-或- 
+<paramref name="parameters" /> 參數具有遺漏的欄位。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>取得金鑰交換演算法的名稱。</summary>
+      <returns>金鑰交換演算法的名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeySize">
+      <summary>取得非對稱演算法使用的金鑰大小，以位元為單位。</summary>
+      <returns>非對稱演算法使用的金鑰大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.LegalKeySizes">
+      <summary>取得非對稱演算法所支援的金鑰大小。</summary>
+      <returns>符合這個陣列中某一項目的金鑰大小，才受非對稱演算法支援。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>取得或設定值，指出金鑰是否應保存在密碼編譯服務供應者 (CSP) 中。</summary>
+      <returns>如果金鑰應保存於 CSP 中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PublicOnly">
+      <summary>取得值，指出 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 物件是否只包含公開金鑰。</summary>
+      <returns>如果 <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> 物件只包含公開金鑰，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>取得簽章演算法的名稱。</summary>
+      <returns>簽章演算法的名稱。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[])">
+      <summary>計算指定位元組陣列的雜湊值 (Hash Value)，並簽名產生的雜湊值。</summary>
+      <param name="buffer">用來計算雜湊值的輸入資料。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>從指定的起始點到指定的端點簽署位元組陣列。</summary>
+      <param name="buffer">要簽署的輸入資料。</param>
+      <param name="offset">陣列中的座標，從此處開始使用資料。</param>
+      <param name="count">陣列中要用作資料的位元組數目。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.IO.Stream)">
+      <summary>計算指定輸入資料流的雜湊值，並簽名產生的雜湊值。</summary>
+      <param name="inputStream">用來計算雜湊值的輸入資料。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>計算指定雜湊值的簽章，方法是使用私密金鑰將它加密。</summary>
+      <param name="rgbHash">要簽署之資料的雜湊值。</param>
+      <param name="str">用來建立資料雜湊值的雜湊演算法的名稱。</param>
+      <returns>所指定雜湊值的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+ -或-  
+ 沒有私密金鑰。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>取得或設定值，指出金鑰是否應保存在電腦的金鑰存放區中，而非使用者設定檔存放區中。</summary>
+      <returns>如果金鑰應保存於電腦金鑰存放區中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyData(System.Byte[],System.Byte[])">
+      <summary>驗證指定的簽章資料，方法是用它與指定資料計算出來的簽章進行比對。</summary>
+      <param name="rgbData">已簽署的資料。</param>
+      <param name="rgbSignature">要驗證的簽章資料。</param>
+      <returns>如果簽章驗證為有效，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>驗證指定的簽章資料，方法是用它與指定雜湊值計算出來的簽章進行比對。</summary>
+      <param name="rgbHash">要簽署之資料的雜湊值。</param>
+      <param name="str">用來建立資料雜湊值的雜湊演算法的名稱。</param>
+      <param name="rgbSignature">要驗證的簽章資料。</param>
+      <returns>如果簽章驗證為有效，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 參數為 <see langword="null" />。  
+-或- 
+<paramref name="rgbSignature" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+ -或-  
+ 無法驗證簽章。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>驗證指定之資料的 <see cref="T:System.Security.Cryptography.DSA" /> 簽章。</summary>
+      <param name="rgbHash">以 <paramref name="rgbSignature" /> 簽章的資料。</param>
+      <param name="rgbSignature">要驗證其 <paramref name="rgbData" /> 的簽章。</param>
+      <returns>如果 <paramref name="rgbSignature" /> 與使用所指定之雜湊演算法計算出來的簽章以及 <paramref name="rgbHash" /> 上的金鑰相符，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ICspAsymmetricAlgorithm">
+      <summary>定義方法，讓 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 類別得以列舉金鑰容器資訊，並匯入和匯出與 Microsoft 密碼編譯 API (CAPI) 相容的金鑰 Blob。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.ICspAsymmetricAlgorithm.CspKeyContainerInfo">
+      <summary>取得描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</summary>
+      <returns>描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ExportCspBlob(System.Boolean)">
+      <summary>匯出 BLOB，其中含有與 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件相關的金鑰資訊。</summary>
+      <param name="includePrivateParameters">如果要包含私密金鑰，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <returns>位元組陣列，其中含有與 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件相關的金鑰資訊。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ImportCspBlob(System.Byte[])">
+      <summary>匯入代表非對稱金鑰資訊的 BLOB。</summary>
+      <param name="rawData">代表非對稱金鑰 BLOB 的位元組陣列。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyNumber">
+      <summary>指定要建立非對稱簽章金鑰或非對稱交換金鑰。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Exchange">
+      <summary>對工作階段金鑰進行加密所使用的交換金鑰組，可保障工作階段金鑰存放時以及與其他使用者交換時的安全。 此值對應到非受控 Microsoft Cryptographic API (CAPI) 中使用的 AT_KEYEXCHANGE 值。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Signature">
+      <summary>用來驗證有數位簽章的訊息或檔案的簽章金鑰組。 此值對應到非受控 Microsoft Cryptographic API (CAPI) 中使用的 AT_SIGNATURE 值。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.MD5CryptoServiceProvider">
+      <summary>使用密碼編譯服務提供者 (CSP) 所提供之實作，計算輸入資料的 <see cref="T:System.Security.Cryptography.MD5" /> 雜湊值。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.InvalidOperationException">目前未使用與 FIPS 相容的演算法原則。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> 的執行個體。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PasswordDeriveBytes">
+      <summary>使用 PBKDF1 演算法的擴充功能，從密碼衍生金鑰。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[])">
+      <summary>指定用來衍生金鑰的密碼和金鑰 Salt，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="password">用來衍生金鑰的密碼。</param>
+      <param name="salt">用來衍生金鑰的金鑰 Salt。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>指定用來衍生金鑰的密碼、金鑰 Salt 和密碼編譯服務提供者 (CSP)，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="password">用來衍生金鑰的密碼。</param>
+      <param name="salt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="cspParams">作業的密碼編譯服務提供者 (CSP) 參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32)">
+      <summary>指定用來衍生金鑰的密碼、金鑰 Salt、雜湊名稱和反覆運算，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="password">用來衍生金鑰的密碼。</param>
+      <param name="salt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="hashName">要用來衍生金鑰的雜湊演算法。</param>
+      <param name="iterations">用來衍生金鑰的反覆計數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>指定用來衍生金鑰的密碼、金鑰 Salt、雜湊名稱、反覆運算和密碼編譯服務提供者 (CSP)，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="password">用來衍生金鑰的密碼。</param>
+      <param name="salt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="hashName">要用來衍生金鑰的雜湊演算法。</param>
+      <param name="iterations">用來衍生金鑰的反覆計數。</param>
+      <param name="cspParams">作業的密碼編譯服務提供者 (CSP) 參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[])">
+      <summary>使用用來衍生金鑰的密碼和金鑰 Salt，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="strPassword">用來衍生金鑰的密碼。</param>
+      <param name="rgbSalt">用來衍生金鑰的金鑰 Salt。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>使用用來衍生金鑰的密碼、金鑰 Salt 和密碼編譯服務提供者 (CSP)，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="strPassword">用來衍生金鑰的密碼。</param>
+      <param name="rgbSalt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="cspParams">用於操作的 CSP 參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32)">
+      <summary>使用用來衍生金鑰的密碼、金鑰 Salt、雜湊名稱和重複次數，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="strPassword">用來衍生金鑰的密碼。</param>
+      <param name="rgbSalt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="strHashName">用於操作的雜湊演算法名稱。</param>
+      <param name="iterations">操作的重複次數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>使用用來衍生金鑰的密碼、金鑰 Salt、雜湊名稱、重複次數和密碼編譯服務提供者 (CSP)，初始化 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別的新執行個體。</summary>
+      <param name="strPassword">用來衍生金鑰的密碼。</param>
+      <param name="rgbSalt">用來衍生金鑰的金鑰 Salt。</param>
+      <param name="strHashName">用於操作的雜湊演算法名稱。</param>
+      <param name="iterations">操作的重複次數。</param>
+      <param name="cspParams">用於操作的 CSP 參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.CryptDeriveKey(System.String,System.String,System.Int32,System.Byte[])">
+      <summary>從 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 物件衍生密碼編譯金鑰。</summary>
+      <param name="algname">用來衍生金鑰的演算法名稱。</param>
+      <param name="alghashname">要用來衍生金鑰的雜湊演算法名稱。</param>
+      <param name="keySize">要衍生的金鑰大小，以位元為單位。</param>
+      <param name="rgbIV">用來衍生金鑰的初始化向量 (IV)。</param>
+      <returns>所衍生金鑰。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> 參數不正確。  
+-或- 
+無法取得密碼編譯服務提供者 (CSP)。  
+-或- 
+<paramref name="algname" /> 參數不是有效的演算法名稱。  
+-或- 
+<paramref name="alghashname" /> 參數不是有效的雜湊演算法名稱。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> 類別所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.GetBytes(System.Int32)">
+      <summary>傳回虛擬隨機金鑰位元組。</summary>
+      <param name="cb">要產生的虛擬隨機金鑰位元組數量。</param>
+      <returns>位元組陣列，以虛擬隨機金鑰位元組填入。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.HashName">
+      <summary>取得或設定用於操作的雜湊演算法名稱。</summary>
+      <returns>用於操作的雜湊演算法名稱。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">雜湊值 (Hash Value) 的名稱是固定的，並且會嘗試變更這個值。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.IterationCount">
+      <summary>取得或設定操作的重複次數。</summary>
+      <returns>操作的重複次數。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">重複次數是固定的，並且會嘗試變更這個值。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">無法設定此屬性，因為它的值超出範圍。 這個屬性需要非負數的數字。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Reset">
+      <summary>重設作業的狀態。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.Salt">
+      <summary>取得或設定用於操作的金鑰 Salt 值。</summary>
+      <returns>用於操作的金鑰 Salt 值。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">金鑰 Salt 值是固定的，並且會嘗試變更這個值。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.RC2CryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.RC2" /> 演算法的密碼編譯服務供應者 (CSP) 實作。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RC2CryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。</exception>
+      <exception cref="T:System.InvalidOperationException">找到不符合 FIPS 標準的演算法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)，建立對稱 <see cref="T:System.Security.Cryptography.RC2" /> 解密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.RC2" /> 解密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">使用的 <see cref="F:System.Security.Cryptography.CipherMode.OFB" /> Cipher 模式。  
+-或- 
+使用回饋大小不是 8 位元的 <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> Cipher 模式。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="T:System.Security.Cryptography.RC2" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)，建立對稱 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" /> 加密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.RC2" /> 加密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">使用的 <see cref="F:System.Security.Cryptography.CipherMode.OFB" /> Cipher 模式。  
+-或- 
+使用回饋大小不是 8 位元的 <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> Cipher 模式。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize">
+      <summary>取得或設定 <see cref="T:System.Security.Cryptography.RC2" /> 演算法使用之秘密金鑰的有效大小，以位元為單位。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RC2" /> 演算法使用的有效金鑰大小，以位元為單位。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+        <see cref="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize" /> 屬性設定為 <see cref="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue" /> 屬性以外的值。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateIV">
+      <summary>產生要使用於該演算法的隨機初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateKey">
+      <summary>產生要使用於該演算法的隨機金鑰 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt">
+      <summary>取得或設定一個值，此值決定了是否要建立 11 位元組長、零值 Salt 的金鑰。</summary>
+      <returns>若要建立 11 位元組長、零值 Salt 的金鑰即為 <see langword="true" />，否則為 <see langword="false" />。 預設為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.RNGCryptoServiceProvider">
+      <summary>使用由密碼編譯服務供應者 (CSP) 提供的實作 (implementation)，實作密碼編譯亂數產生器 (RNG)。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Byte[])">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="rgb">位元組陣列。 這個值會被忽略。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的參數，初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="cspParams">要傳遞給密碼編譯服務提供者 (CSP) 的參數。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="str">字串輸入。 這個參數已忽略。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[])">
+      <summary>在位元組陣列中填入在密碼編譯方面強式的隨機值序列。</summary>
+      <param name="data">要填入在密碼編譯方面強式的隨機值序列之陣列。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[],System.Int32,System.Int32)">
+      <summary>以密碼編譯強式隨機值序列填入指定位元組陣列，從指定位元組數目的指定索引開始。</summary>
+      <param name="data">要將在密碼編譯方面強式的隨機位元組填入的陣列。</param>
+      <param name="offset">要開始填入作業的陣列索引。</param>
+      <param name="count">要填入的位元組數目。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小於 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 加上 <paramref name="count" /> 超過 <paramref name="data" /> 的長度。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Span{System.Byte})">
+      <summary>填入密碼編譯強式隨機位元組的範圍。</summary>
+      <param name="data">要填入密碼編譯強式隨機位元組的範圍。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Byte[])">
+      <summary>在位元組陣列中填入在密碼編譯方面強式的隨機非零值序列。</summary>
+      <param name="data">要填入在密碼編譯方面強式的隨機非零值序列之陣列。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Span{System.Byte})">
+      <summary>填入密碼編譯強式隨機非零值序列位元組的範圍。</summary>
+      <param name="data">要填入密碼編譯強式隨機非零位元組的範圍。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACryptoServiceProvider">
+      <summary>使用由密碼編譯服務供應者 (CSP) 提供之 <see cref="T:System.Security.Cryptography.RSA" /> 演算法的實作，執行非對稱加密和解密。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor">
+      <summary>使用預設的金鑰，初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>使用指定的金鑰大小，初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="dwKeySize">要使用的金鑰大小，以位元為單位。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的金鑰大小和參數，初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="dwKeySize">要使用的金鑰大小，以位元為單位。</param>
+      <param name="parameters">要傳遞給密碼編譯服務供應者 (CSP) 的參數。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得 CSP。  
+ -或-  
+ 無法建立金鑰。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>使用指定的參數，初始化 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <param name="parameters">要傳遞給密碼編譯服務供應者 (CSP) 的參數。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得 CSP。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>取得描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</summary>
+      <returns>描述密碼編譯金鑰組其他相關資訊的 <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> 物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Boolean)">
+      <summary>使用 <see cref="T:System.Security.Cryptography.RSA" /> 演算法解密資料。</summary>
+      <param name="rgb">要解密的資料。</param>
+      <param name="fOAEP">如果使用 OAEP 填補 (只適用於執行 Microsoft Windows XP 或者更新版本的電腦) 執行直接 <see cref="T:System.Security.Cryptography.RSA" /> 解密，則為 <see langword="true" />，否則，如果使用 PKCS#1 v1.5 填補，則為 <see langword="false" />。</param>
+      <returns>解密的資料，也就是加密前的原始純文字。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+-或- 
+<paramref name="fOAEP" /> 參數為 <see langword="true" /> 且 <paramref name="rgb" /> 參數的長度大於 <see cref="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize" />。  
+-或- 
+<paramref name="fOAEP" /> 參數是 <see langword="true" />，而且不支援 OAEP。  
+-或- 
+金鑰與加密資料不相符。 不過，例外狀況文字可能不精確。 例如，它可能指出「儲存空間不足以執行此命令」<c></c>。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>解密先前使用指定填補以 <see cref="T:System.Security.Cryptography.RSA" /> 演算法加密的資料。</summary>
+      <param name="data">要解密的資料。</param>
+      <param name="padding">填補。</param>
+      <returns>已解密的資料。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 為 <see langword="null" />。  
+-或- 
+ <paramref name="padding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">不支援填補模式。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.DecryptValue(System.Byte[])">
+      <summary>目前的版本不支援這個方法。</summary>
+      <param name="rgb">要解密的資料。</param>
+      <returns>解密的資料，也就是加密前的原始純文字。</returns>
+      <exception cref="T:System.NotSupportedException">目前的版本不支援這個方法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Boolean)">
+      <summary>以 <see cref="T:System.Security.Cryptography.RSA" /> 演算法加密資料。</summary>
+      <param name="rgb">要加密的資料。</param>
+      <param name="fOAEP">
+        <see langword="true" /> 表示要使用 OAEP 填補執行直接 <see cref="T:System.Security.Cryptography.RSA" /> 加密 (僅適用於執行 Windows XP 或更新版本的電腦)；否則，<see langword="false" /> 表示要使用 PKCS#1 v1.5 填補。</param>
+      <returns>已加密的資料。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+-或- 
+<paramref name="rgb" /> 參數長度大於最大容許長度。  
+-或- 
+<paramref name="fOAEP" /> 參數為 <see langword="true" />，而且不支援 OAEP 填補。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> 為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>使用 <see cref="T:System.Security.Cryptography.RSA" /> 演算法搭配指定的填補來加密資料。</summary>
+      <param name="data">要加密的資料。</param>
+      <param name="padding">填補。</param>
+      <returns>已加密的資料。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 為 <see langword="null" />。  
+-或- 
+ <paramref name="padding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">不支援填補模式。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.EncryptValue(System.Byte[])">
+      <summary>目前的版本不支援這個方法。</summary>
+      <param name="rgb">要加密的資料。</param>
+      <returns>已加密的資料。</returns>
+      <exception cref="T:System.NotSupportedException">目前的版本不支援這個方法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>匯出 BLOB，其中含有與 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 物件相關的金鑰資訊。</summary>
+      <param name="includePrivateParameters">如果要包含私密金鑰，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <returns>位元組陣列，其中含有與 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 物件相關的金鑰資訊。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>匯出 <see cref="T:System.Security.Cryptography.RSAParameters" />。</summary>
+      <param name="includePrivateParameters">如果要包含私用參數，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RSA" /> 的參數。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>匯入代表 RSA 金鑰資訊的 BLOB。</summary>
+      <param name="keyBlob">代表 RSA 金鑰 BLOB 的位元組陣列。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>匯入指定的 <see cref="T:System.Security.Cryptography.RSAParameters" />。</summary>
+      <param name="parameters">
+        <see cref="T:System.Security.Cryptography.RSA" /> 的參數。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+-或- 
+<paramref name="parameters" /> 參數具有遺漏的欄位。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>取得可透過這個 <see cref="T:System.Security.Cryptography.RSA" /> 實作所提供之金鑰交換演算法的名稱。</summary>
+      <returns>如果存在，則為金鑰交換演算法的名稱，否則為 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize">
+      <summary>取得目前金鑰的大小。</summary>
+      <returns>金鑰的大小，以位元為單位。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.LegalKeySizes" />
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>取得或設定值，指出金鑰是否應保存在密碼編譯服務供應者 (CSP) 中。</summary>
+      <returns>如果金鑰應保存於 CSP 中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PublicOnly">
+      <summary>取得值，指出 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 物件是否只包含公開金鑰。</summary>
+      <returns>如果 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 物件只包含公開金鑰，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>取得可透過這個 <see cref="T:System.Security.Cryptography.RSA" /> 實作所提供之簽章演算法的名稱。</summary>
+      <returns>簽章演算法的名稱。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>使用指定的雜湊演算法計算指定位元組陣列之子集的雜湊值，並且簽署所產生的雜湊值。</summary>
+      <param name="buffer">用來計算雜湊值的輸入資料。</param>
+      <param name="offset">陣列中的座標，從此處開始使用資料。</param>
+      <param name="count">陣列中要用作資料的位元組數目。</param>
+      <param name="halg">要用來建立雜湊值的雜湊演算法。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.RSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 參數不是有效的類型。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>使用指定的雜湊演算法計算指定位元組陣列的雜湊值，並且簽署所產生的雜湊值。</summary>
+      <param name="buffer">用來計算雜湊值的輸入資料。</param>
+      <param name="halg">要用來建立雜湊值的雜湊演算法。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.RSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 參數不是有效的類型。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>使用指定的雜湊演算法計算指定輸入資料流的雜湊值，並且簽署所產生的雜湊值。</summary>
+      <param name="inputStream">用來計算雜湊值的輸入資料。</param>
+      <param name="halg">要用來建立雜湊值的雜湊演算法。</param>
+      <returns>所指定資料的 <see cref="T:System.Security.Cryptography.RSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 參數不是有效的類型。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>使用指定的填補，並經過私密金鑰的加密，來為指定的雜湊值計算出簽章。</summary>
+      <param name="hash">要簽署之資料的雜湊值。</param>
+      <param name="hashAlgorithm">用來建立該資料雜湊值的雜湊演算法名稱。</param>
+      <param name="padding">填補。</param>
+      <returns>所指定雜湊值的 <see cref="T:System.Security.Cryptography.RSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 為 <see langword="null" />。  
+-或- 
+ <paramref name="padding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等於 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>計算指定雜湊值的簽章，方法是使用私密金鑰將它加密。</summary>
+      <param name="rgbHash">要簽署之資料的雜湊值。</param>
+      <param name="str">雜湊演算法識別項 (OID)，用於建立資料的雜湊值。</param>
+      <returns>所指定雜湊值的 <see cref="T:System.Security.Cryptography.RSA" /> 簽章。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+ -或-  
+ 沒有私密金鑰。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>取得或設定值，指出金鑰是否應保存在電腦的金鑰存放區中，而非使用者設定檔存放區中。</summary>
+      <returns>如果金鑰應保存於電腦金鑰存放區中，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>驗證數位簽章是否有效，方式是使用所提供的公開金鑰來判斷簽章中的雜湊值，並比較該值與所提供之資料的雜湊值。</summary>
+      <param name="buffer">已簽署的資料。</param>
+      <param name="halg">用來建立資料雜湊值的雜湊演算法的名稱。</param>
+      <param name="signature">要驗證的簽章資料。</param>
+      <returns>如果簽章有效則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="halg" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="halg" /> 參數不是有效的類型。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>使用指定的雜湊演算法和填補，並和提供的雜湊值比較，來為簽章判斷雜湊值，藉此驗證數位簽章是否有效。</summary>
+      <param name="hash">已簽署資料的雜湊值。</param>
+      <param name="signature">要驗證的簽章資料。</param>
+      <param name="hashAlgorithm">用來建立該雜湊值的雜湊演算法名稱。</param>
+      <param name="padding">填補。</param>
+      <returns>如果簽章有效則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 是 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 為 <see langword="null" />。  
+-或- 
+ <paramref name="padding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等於 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>驗證數位簽章是否有效，方式是使用所提供的公開金鑰來判斷簽章中的雜湊值，並比較該值與所提供的雜湊值。</summary>
+      <param name="rgbHash">已簽署資料的雜湊值。</param>
+      <param name="str">雜湊演算法識別項 (OID)，用於建立資料的雜湊值。</param>
+      <param name="rgbSignature">要驗證的簽章資料。</param>
+      <returns>如果簽章有效則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 參數為 <see langword="null" />。  
+-或- 
+<paramref name="rgbSignature" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法取得密碼編譯服務提供者 (CSP)。  
+ -或-  
+ 無法驗證簽章。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA1CryptoServiceProvider">
+      <summary>使用密碼編譯服務提供者 (CSP) 所提供之實作，計算輸入資料的 <see cref="T:System.Security.Cryptography.SHA1" /> 雜湊值。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 的執行個體。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA256CryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.SHA256" /> 演算法的密碼編譯服務供應者 (CSP) 實作。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA256CryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化雜湊演算法的執行個體。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA384CryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.SHA384" /> 演算法的密碼編譯服務供應者 (CSP) 實作。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA384CryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化雜湊演算法的執行個體。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA512CryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.SHA512" /> 演算法的密碼編譯服務供應者 (CSP) 實作。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SHA512CryptoServiceProvider" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.Initialize">
+      <summary>初始化或重新初始化雜湊演算法的執行個體。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCryptoServiceProvider">
+      <summary>定義包裝函式物件，以存取 <see cref="T:System.Security.Cryptography.TripleDES" /> 演算法的密碼編譯服務供應者 (CSP) 版本。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.TripleDESCryptoServiceProvider" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="T:System.Security.Cryptography.TripleDES" /> 密碼編譯服務供應者無法使用。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.BlockSize" />
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor" />
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)，建立對稱 <see cref="T:System.Security.Cryptography.TripleDES" /> 解密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.TripleDES" /> 解密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+-或- 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 屬性的值不是 8。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor" />
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>使用指定的金鑰 (<see cref="T:System.Security.Cryptography.TripleDES" />) 和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)，建立對稱 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" /> 加密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。  
+   
+ 初始化向量的長度必須是 8 個位元組。 如果其長度超過 8 個位元組，則會遭截斷，但不會擲回例外狀況。 在呼叫 <see cref="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])" /> 之前，請檢查初始化向量的長度，如果它太長應擲回例外狀況。</param>
+      <returns>對稱 <see cref="T:System.Security.Cryptography.TripleDES" /> 加密子物件。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.OFB" />。  
+-或- 
+<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> 屬性的值是 <see cref="F:System.Security.Cryptography.CipherMode.CFB" />，而 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 屬性的值不是 8。  
+-或- 
+所使用的金鑰大小無效。  
+-或- 
+演算法的金鑰大小無法使用。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.FeedbackSize" />
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateIV">
+      <summary>產生要使用於該演算法的隨機初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateKey">
+      <summary>產生要使用於該演算法的隨機 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.IV" />
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Key" />
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.KeySize" />
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.LegalKeySizes" />
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Mode" />
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Padding" />
+  </members>
+</doc>

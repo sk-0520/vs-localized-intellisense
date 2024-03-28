@@ -1,0 +1,1696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Cng</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <summary>CNG (Cryptography Next Generation) オブジェクトで使用できるセーフ ハンドルを提供します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> クラスの新しいインスタンスを生成します。</summary>
+      <param name="handle">使用する既存のハンドル。 <see cref="F:System.IntPtr.Zero" /> を使用して無効なハンドルを返します。</param>
+      <param name="parentHandle">この <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> の親ハンドル。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> は閉じています。  
+
+または - 
+<paramref name="parentHandle" /> が無効です。</exception>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeNCryptHandle.IsInvalid" />
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle">
+      <summary>CNG (Cryptography Next Generation) オブジェクトで使用されるハンドルを解放します。</summary>
+      <returns>ハンドルが正常に解放された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle">
+      <summary>CNG (Cryptography Next Generation) オブジェクトで使用されるネイティブ ハンドルを解放します。</summary>
+      <returns>ハンドルが正常に解放された場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <summary>キー (NCRYPT_KEY_HANDLE) を表すセーフ ハンドルを提供します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> クラスの新しいインスタンスを生成します。</summary>
+      <param name="handle">使用する既存のハンドル。 <see cref="F:System.IntPtr.Zero" /> を使用して無効なハンドルを返します。</param>
+      <param name="parentHandle">この <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> の親ハンドル。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> は閉じています。  
+
+または - 
+<paramref name="parentHandle" /> が無効です。</exception>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <summary>キー記憶域プロバイダー (NCRYPT_PROV_HANDLE) を表すセーフ ハンドルを提供します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <summary>秘密協定値 (NCRYPT_SECRET_HANDLE) を表すセーフ ハンドルを提供します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor">
+      <summary>
+        <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.AesCng">
+      <summary>Advanced Encryption Standard (AES) アルゴリズムの Cryptography Next Generation (CNG) 実装を提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> クラスの新しいインスタンスを一時的なキーで初期化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 AES キーを表す) で初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 AES キーを表す)、および指定したキー格納プロバイダー (KSP) で初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 AES キーを表す)、指定したキー格納プロバイダー (KSP)、およびキー オープン オプションで初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <param name="openOptions">キーを開くためのオプションを示す列挙値のビットごとの組み合わせ。これには、キーが開かれる場所 (コンピューターまたはユーザー ストレージ) や、UI プロンプトを非表示にするかどうかなどが含まれます。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="provider" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor">
+      <summary>現在のキーおよび初期化ベクター (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) を使用して、対称 AES 復号化オブジェクトを作成します。</summary>
+      <returns>対称 AES 復号化オブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>指定したキーおよび初期化ベクター (IV) を使用して、対称 AES 復号化オブジェクトを作成します。</summary>
+      <param name="rgbKey">AES アルゴリズムに使用する秘密キー。 キー サイズは、128、192、または 256 ビットにする必要があります。</param>
+      <param name="rgbIV">AES アルゴリズムに使用する初期化ベクター。</param>
+      <returns>対称 AES 復号化オブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> は、このアルゴリズムで有効なサイズではありません。  
+
+または - 
+<paramref name="rgbIV" /> のサイズは、このアルゴリズムのブロック サイズと一致しません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> は、このアルゴリズムの既知の弱いキーであるため使用できません。  
+または 
+ <paramref name="rgbIV" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor">
+      <summary>現在のキーおよび初期化ベクター (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) を使用して、AES 対称暗号化オブジェクトを作成します。</summary>
+      <returns>AES 対称暗号化オブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>指定したキーおよび初期化ベクター (IV) を使用して、AES 対称暗号化オブジェクトを作成します。</summary>
+      <param name="rgbKey">AES アルゴリズムに使用する秘密キー。 キー サイズは、128、192、または 256 ビットにする必要があります。</param>
+      <param name="rgbIV">AES アルゴリズムに使用する初期化ベクター。</param>
+      <returns>AES 対称暗号化オブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> は、このアルゴリズムで有効なサイズではありません。  
+または 
+ <paramref name="rgbIV" /> のサイズは、このアルゴリズムのブロック サイズと一致しません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> は、このアルゴリズムの既知の弱いキーであるため使用できません。  
+
+または - 
+<paramref name="rgbIV" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateIV">
+      <summary>ランダムな初期化ベクター (IV) を生成し、AES アルゴリズムを使用します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateKey">
+      <summary>AES アルゴリズムに使用するランダム キーを生成します。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.Key">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> アルゴリズムのキーを取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.AesCng" /> アルゴリズムのキー。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.KeySize">
+      <summary>
+        <see cref="T:System.Security.Cryptography.AesCng" /> アルゴリズムで使用される秘密キーのサイズ (ビット単位) 取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.AesCng" /> アルゴリズムで使用される秘密キーのサイズ (ビット単位)。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithm">
+      <summary>暗号化アルゴリズムの名前をカプセル化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngAlgorithm" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="algorithm">初期化するアルゴリズムの名前。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="algorithm" /> パラメーターの長さが 0 (ゼロ) です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Algorithm">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが指定するアルゴリズム名を取得します。</summary>
+      <returns>埋め込まれているアルゴリズム名。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellman">
+      <summary>キー プロパティを介して記述された曲線の ECDH (Elliptic Curve Diffie-Hellman) キー交換アルゴリズムを指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>キー プロパティを介して記述された曲線の ECDH キー交換アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP256">
+      <summary>P-256 曲線を使用する ECDH (Elliptic Curve Diffie-Hellman) キー交換アルゴリズムを指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-256 曲線を使用する ECDH アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP384">
+      <summary>P-384 曲線を使用する ECDH (Elliptic Curve Diffie-Hellman) キー交換アルゴリズムを指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-384 曲線を使用する ECDH アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP521">
+      <summary>P-521 曲線を使用する ECDH (Elliptic Curve Diffie-Hellman) キー交換アルゴリズムを指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-521 曲線を使用する ECDH アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsa">
+      <summary>キー プロパティを介して記述された曲線の ECDSA (Elliptic Curve Digital Signature Algorithm) を指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>キー プロパティを介して記述された曲線の ECDSA を指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP256">
+      <summary>P-256 曲線を使用する ECDSA (Elliptic Curve Digital Signature Algorithm) を指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-256 曲線を使用する ECDSA アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP384">
+      <summary>P-384 曲線を使用する ECDSA (Elliptic Curve Digital Signature Algorithm) を指定する <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-384 曲線を使用する ECDSA アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP521">
+      <summary>P-521 曲線を使用する ECDSA (Elliptic Curve Digital Signature Algorithm) を指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>P-521 曲線を使用する ECDSA アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Object)">
+      <summary>指定したオブジェクトと現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを比較します。</summary>
+      <param name="obj">現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="obj" /> パラメーターが、現在のオブジェクトと同じアルゴリズムを指定している <see cref="T:System.Security.Cryptography.CngAlgorithm" /> の場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Security.Cryptography.CngAlgorithm)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトと現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを比較します。</summary>
+      <param name="other">現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="other" /> パラメーターが現在のオブジェクトと同じアルゴリズムを指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.GetHashCode">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトに埋め込まれているアルゴリズム名のハッシュ値を生成します。</summary>
+      <returns>埋め込まれているアルゴリズム名のハッシュ値。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.MD5">
+      <summary>メッセージ ダイジェスト 5 (MD5: Message Digest 5) ハッシュ アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>MD5 アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Equality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが同じアルゴリズム名を指定しているかどうか判定します。</summary>
+      <param name="left">アルゴリズム名を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じアルゴリズム名を指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Inequality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが同じアルゴリズムを指定していないかどうか判定します。</summary>
+      <param name="left">アルゴリズム名を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じアルゴリズム名を指定していない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Rsa">
+      <summary>RSA ハッシュ アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>RSA アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha1">
+      <summary>SHA-1 (Secure Hash Algorithm 1) アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>SHA-1 アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha256">
+      <summary>SHA-256 (Secure Hash Algorithm 256) アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>SHA-256 アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha384">
+      <summary>SHA-384 (Secure Hash Algorithm 384) アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>SHA-384 アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha512">
+      <summary>SHA-512 (Secure Hash Algorithm 512) アルゴリズムを指定する新しい <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトを取得します。</summary>
+      <returns>SHA-512 アルゴリズムを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.ToString">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが指定するアルゴリズムの名前を取得します。</summary>
+      <returns>埋め込まれているアルゴリズム名。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithmGroup">
+      <summary>暗号化アルゴリズム グループの名前をカプセル化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="algorithmGroup">初期化するアルゴリズム グループの名前。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithmGroup" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="algorithmGroup" /> パラメーターの長さが 0 (ゼロ) です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.AlgorithmGroup">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが指定するアルゴリズム グループの名前を取得します。</summary>
+      <returns>埋め込まれているアルゴリズム グループ名。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.DiffieHellman">
+      <summary>アルゴリズムの Diffie-Hellman ファミリを指定する <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを取得します。</summary>
+      <returns>アルゴリズムの Diffie-Hellman ファミリを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Dsa">
+      <summary>アルゴリズムのデジタル署名アルゴリズム (DSA: Digital Signature Algorithm) ファミリを指定する <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを取得します。</summary>
+      <returns>アルゴリズムの DSA ファミリを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman">
+      <summary>アルゴリズムの ECDH (Elliptic Curve Diffie-Hellman) ファミリを指定する <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを取得します。</summary>
+      <returns>アルゴリズムの ECDH ファミリを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDsa">
+      <summary>アルゴリズムの ECDSA (Elliptic Curve Digital Signature Algorithm) ファミリを指定する <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを取得します。</summary>
+      <returns>アルゴリズムの ECDSA ファミリを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Object)">
+      <summary>指定したオブジェクトと現在の <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを比較します。</summary>
+      <param name="obj">現在の <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="obj" /> パラメーターが、現在のオブジェクトと同じアルゴリズム グループを指定している <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> の場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトと現在の <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを比較します。</summary>
+      <param name="other">現在の <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="other" /> パラメーターが現在のオブジェクトと同じアルゴリズム グループを指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.GetHashCode">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトに埋め込まれているアルゴリズム グループ名のハッシュ値を生成します。</summary>
+      <returns>埋め込まれているアルゴリズム グループ名のハッシュ値。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Equality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトが同じアルゴリズム グループを指定しているかどうか判定します。</summary>
+      <param name="left">アルゴリズム グループを指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じアルゴリズム グループを指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Inequality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトが同じアルゴリズム グループを指定していないかどうか判定します。</summary>
+      <param name="left">アルゴリズム グループを指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じアルゴリズム グループを指定していない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Rsa">
+      <summary>アルゴリズムの RSA (Rivest-Shamir-Adleman) ファミリを指定する <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> オブジェクトを取得します。</summary>
+      <returns>アルゴリズムの RSA ファミリを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.ToString">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngAlgorithm" /> オブジェクトが指定するアルゴリズム グループの名前を取得します。</summary>
+      <returns>埋め込まれているアルゴリズム グループ名。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngExportPolicies">
+      <summary>キーのキー エクスポート ポリシーを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowArchiving">
+      <summary>秘密キーをアーカイブするために一度エクスポートできます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowExport">
+      <summary>秘密キーを複数回エクスポートできます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextArchiving">
+      <summary>秘密キーをプレーンテキストとして一度エクスポートできます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextExport">
+      <summary>秘密キーをプレーンテキストとして複数回エクスポートできます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.None">
+      <summary>エクスポート ポリシーは確立されません。 キーのエクスポートは制限なしで許可されます。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKey">
+      <summary>CNG (Cryptography Next Generation) オブジェクトで使用するキーのコア機能を定義します。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Algorithm">
+      <summary>キーで使用されるアルゴリズムを取得します。</summary>
+      <returns>暗号化アルゴリズムの名前を指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.AlgorithmGroup">
+      <summary>キーで使用されるアルゴリズム グループを取得します。</summary>
+      <returns>暗号化アルゴリズム グループの名前を指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm)">
+      <summary>指定したアルゴリズムで使用できる <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを作成します。</summary>
+      <param name="algorithm">キーが使用されるアルゴリズム。</param>
+      <returns>短期キー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String)">
+      <summary>指定したアルゴリズムを提供する名前付きの <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを作成します。</summary>
+      <param name="algorithm">キーが使用されるアルゴリズム。</param>
+      <param name="keyName">キーの名前。 名前を指定しない場合は、キーが永続化されません。</param>
+      <returns>指定したアルゴリズムを提供する永続化されたキーまたは短期キー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String,System.Security.Cryptography.CngKeyCreationParameters)">
+      <summary>提供されたキー作成パラメーターを使用して、指定したアルゴリズムを提供する名前付きの <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを作成します。</summary>
+      <param name="algorithm">キーが使用されるアルゴリズム。</param>
+      <param name="keyName">キーの名前。 名前を指定しない場合は、キーが永続化されません。</param>
+      <param name="creationParameters">メソッドの詳細パラメーター (<see cref="T:System.Security.Cryptography.CngProvider" /> など) を指定するオブジェクト。</param>
+      <returns>指定したアルゴリズムを提供する永続化されたキーまたは短期キー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Delete">
+      <summary>オブジェクトに関連付けられているキーを削除します。</summary>
+      <exception cref="T:System.ObjectDisposedException">削除されたキーにアクセスしようとしました。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Dispose">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngKey" /> クラスの現在のインスタンスによって使用されているすべてのリソースを解放します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String)">
+      <summary>既定の KSP に名前付きキーが存在するかどうかを確認します。</summary>
+      <param name="keyName">キーの名前。</param>
+      <returns>既定の KSP に名前付きキーが存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>指定した KSP に名前付きキーが存在するかどうかを確認します。</summary>
+      <param name="keyName">キーの名前。</param>
+      <param name="provider">キーの存在を確認する KSP。</param>
+      <returns>指定したプロバイダーに名前付きキーが存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> または <paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>指定のオプションに従って、指定した KSP に名前付きキーが存在するかどうかを確認します。</summary>
+      <param name="keyName">キーの名前。</param>
+      <param name="provider">キーを検索する KSP。</param>
+      <param name="options">キーを開くためのオプションを示す列挙値のビットごとの組み合わせ。</param>
+      <returns>指定したプロバイダーに名前付きキーが存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> または <paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Export(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>キー マテリアルを指定した形式で BLOB にエクスポートします。</summary>
+      <param name="format">キー BLOB の形式を指定するオブジェクト。</param>
+      <returns>キー マテリアルを指定された形式で格納する BLOB。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。 通常、<see cref="P:System.Security.Cryptography.CngKey.ExportPolicy" /> はキーのエクスポートを許可していません。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ExportPolicy">
+      <summary>キーで使用されるエクスポート ポリシーを取得します。</summary>
+      <returns>キーのエクスポート ポリシーを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>名前および一連のプロパティ オプションを指定してプロパティを取得します。</summary>
+      <param name="name">目的のプロパティの名前。</param>
+      <param name="options">名前付きプロパティのオプションを示す列挙値のビットごとの組み合わせ。</param>
+      <returns>指定したプロパティの未処理の値を格納しているオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Handle">
+      <summary>ネイティブ キーを表すセーフ ハンドル (NCRYPT_KEY_HANDLE) を取得します。</summary>
+      <returns>キーを表すセーフ ハンドル。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.HasProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>指定したプロパティがキーに存在するかどうかを確認します。</summary>
+      <param name="name">確認するプロパティ名。</param>
+      <param name="options">名前付きプロパティのオプションを示す列挙値のビットごとの組み合わせ。</param>
+      <returns>指定したプロパティが見つかった場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>指定したキー マテリアルを、指定した形式を使用して既定の KSP にインポートすることで、新しいキーを作成します。</summary>
+      <param name="keyBlob">キー情報を格納する配列。</param>
+      <param name="format">
+        <paramref name="keyBlob" /> 配列の形式を指定するオブジェクト。</param>
+      <returns>新しいキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" /> または <paramref name="format" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngProvider)">
+      <summary>指定したキー マテリアルを、指定した形式を使用して指定のキー記憶域プロバイダー (KSP) にインポートすることで、新しいキーを作成します。</summary>
+      <param name="keyBlob">キー情報を格納する配列。</param>
+      <param name="format">
+        <paramref name="keyBlob" /> 配列の形式を指定するオブジェクト。</param>
+      <param name="provider">KSP。</param>
+      <returns>新しいキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" />、<paramref name="format" />、または <paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsEphemeral">
+      <summary>キーの永続性の状態を取得します。</summary>
+      <returns>短期キーの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsMachineKey">
+      <summary>キーのスコープ (コンピューターまたはユーザー) を取得します。</summary>
+      <returns>キーがコンピューター全体で利用できる場合は <see langword="true" />。キーが現在のユーザー専用である場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyName">
+      <summary>キーの名前を取得します。</summary>
+      <returns>キー名。 短期キーの場合、この値は <see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeySize">
+      <summary>キーのサイズ (ビット単位) を取得します。</summary>
+      <returns>キーのサイズ (ビット単位)。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyUsage">
+      <summary>キーで指定される暗号化操作を取得します。</summary>
+      <returns>キーに許可されている使用法を示す列挙値のビットごとの組み合わせ。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle,System.Security.Cryptography.CngKeyHandleOpenOptions)">
+      <summary>既存のキーを識別するハンドルを使用して、<see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトのインスタンスを作成します。</summary>
+      <param name="keyHandle">既存のキーを識別するハンドル。</param>
+      <param name="keyHandleOpenOptions">
+        <paramref name="keyHandle" /> が短期キーを表しているのか、名前付きキーを表しているのかを示す列挙値の 1 つ。</param>
+      <returns>既存のキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyHandle" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyHandle" /> が無効か、形式が正しくないか、または既に閉じられています。 この例外は、キーが CLR で作成された短期キーであり、<see cref="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey" /> 値が指定されていない場合にもスローされます。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String)">
+      <summary>既存の名前付きキーを表す <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトのインスタンスを作成します。</summary>
+      <param name="keyName">キー名。</param>
+      <returns>既存のキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>既存の名前付きキーを表す <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトのインスタンスを、指定した KSP を使用して作成します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <returns>既存のキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> または <paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>既存の名前付きキーを表す <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトのインスタンスを、指定した KSP およびキーを開くオプションを使用して作成します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <param name="openOptions">キーを開くためのオプションを示す列挙値のビットごとの組み合わせ。これには、キーが開かれる場所 (コンピューターまたはユーザー ストレージ) や、UI プロンプトを非表示にするかどうかなどが含まれます。</param>
+      <returns>既存のキー。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> または <paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ParentWindowHandle">
+      <summary>キーにアクセスすることで発生するユーザー インターフェイス (UI) プロンプトに使用するウィンドウ ハンドル (HWND) を取得または設定します。</summary>
+      <returns>キーの親ウィンドウ ハンドル。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Provider">
+      <summary>キーを管理するキー記憶域プロバイダー (KSP: Key Storage Provider) を取得します。</summary>
+      <returns>キーを管理する KSP。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ProviderHandle">
+      <summary>KSP を識別するネイティブ ハンドル (NCRYPT_PROV_HANDLE) を取得します。</summary>
+      <returns>KSP を識別するハンドル。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.SetProperty(System.Security.Cryptography.CngProperty)">
+      <summary>キーで名前付きプロパティを設定します。</summary>
+      <param name="property">設定するキー プロパティ。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UIPolicy">
+      <summary>キーにアクセスするための UI を制御するパラメーターを取得します。</summary>
+      <returns>UI を表示するための構成パラメーターを格納しているオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UniqueName">
+      <summary>キーの一意の名前を取得します。</summary>
+      <returns>キーの代替名。 短期キーの場合、この値は <see langword="null" /> です。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyBlobFormat">
+      <summary>Microsoft CNG (Cryptography Next Generation) オブジェクトで使用するキー BLOB 形式を指定します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.#ctor(System.String)">
+      <summary>指定した形式を使用して <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="format">初期化するキー BLOB 形式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="format" /> パラメーターの長さが 0 (ゼロ) です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPrivateBlob">
+      <summary>明示的な曲線パラメーターを含む楕円曲線暗号 (ECC) キーの秘密キー BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>秘密キー BLOB を示すオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPublicBlob">
+      <summary>明示的な曲線パラメーターを含む楕円曲線暗号 (ECC) キーの公開キー BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>公開キー BLOB を示すオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPrivateBlob">
+      <summary>楕円曲線暗号 (ECC: Elliptic Curve Cryptography) キーの秘密キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>ECC 秘密キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPublicBlob">
+      <summary>ECC キーの公開キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>ECC 公開キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Object)">
+      <summary>指定したオブジェクトと現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを比較します。</summary>
+      <param name="obj">現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="obj" /> パラメーターが、現在のオブジェクトと同じキー BLOB 形式を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトと現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを比較します。</summary>
+      <param name="other">現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="other" /> パラメーターが現在のオブジェクトと同じキー BLOB 形式を指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Format">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトが指定するキー BLOB 形式の名前を取得します。</summary>
+      <returns>埋め込まれているキー BLOB 形式の名前。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPrivateBlob">
+      <summary>ジェネリック秘密キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>ジェネリック秘密キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPublicBlob">
+      <summary>ジェネリック公開キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>ジェネリック公開キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.GetHashCode">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトに埋め込まれているキー BLOB 形式のハッシュ値を生成します。</summary>
+      <returns>埋め込まれているキー BLOB 形式のハッシュ値。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Equality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトが同じキー BLOB 形式を指定しているかどうか判定します。</summary>
+      <param name="left">キーの BLOB 形式を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで指定したオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じキー BLOB 形式を指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Inequality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトが同じキー BLOB 形式を指定していないかどうか判定します。</summary>
+      <param name="left">キーの BLOB 形式を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで指定したオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じキー BLOB 形式を指定していない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.OpaqueTransportBlob">
+      <summary>非透過トランスポート キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>非透過トランスポート キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Pkcs8PrivateBlob">
+      <summary>PKCS #8 (Private Key Information Syntax Standard) キーの BLOB を指定する <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトを取得します。</summary>
+      <returns>PKCS #8 秘密キーの BLOB を指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.ToString">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> オブジェクトが指定するキー BLOB 形式の名前を取得します。</summary>
+      <returns>埋め込まれているキー BLOB 形式の名前。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationOptions">
+      <summary>キー作成で使用するオプションを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.MachineKey">
+      <summary>コンピューター レベルのキーが作成されます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.None">
+      <summary>キー作成のオプションは使用されません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.OverwriteExistingKey">
+      <summary>キーの作成時に既存のキーが上書きされます。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationParameters">
+      <summary>キー作成の詳細プロパティが含まれます。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyCreationParameters.#ctor">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngKeyCreationParameters" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ExportPolicy">
+      <summary>キー エクスポート ポリシーを取得または設定します。</summary>
+      <returns>キー エクスポート ポリシーを指定するオブジェクト。 既定値は <see langword="null" /> です。この場合、KSP の既定のエクスポート ポリシーが設定されます。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyCreationOptions">
+      <summary>キー作成オプションを取得または設定します。</summary>
+      <returns>キーを作成するためのオプションを指定するオブジェクト。 既定値は <see langword="null" /> です。この場合、KSP の既定のキー作成オプションが設定されます。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyUsage">
+      <summary>現在のキーに適用される暗号化操作を取得または設定します。</summary>
+      <returns>キー使用法を示す 1 つ以上の列挙値のビットごとの組み合わせ。 既定値は <see langword="null" /> です。この場合、KSP の既定のキー使用法が設定されます。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Parameters">
+      <summary>キーの終了処理の前に設定される追加のプロパティで作成される <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを有効にします。</summary>
+      <returns>キー作成時に <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトで設定する必要がある追加のパラメーターを格納しているコレクション オブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ParentWindowHandle">
+      <summary>CNG (Cryptography Next Generation) クラスによって作成されるダイアログ ボックスの親ウィンドウとして使用するウィンドウ ハンドルを取得または設定します。</summary>
+      <returns>CNG ダイアログ ボックスに使用される親ウィンドウの HWND。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Provider">
+      <summary>キーを作成する KSP を取得または設定します。</summary>
+      <returns>新しいキーが作成される KSP を指定するオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="P:System.Security.Cryptography.CngKeyCreationParameters.Provider" /> プロパティが <see langword="null" /> 値に設定されています。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.UIPolicy">
+      <summary>キーが作成またはアクセスされるときに表示する UI に関する情報を取得または設定します。</summary>
+      <returns>キーが作成またはアクセスされるときに CNG クラスによって表示される UI に関する詳細を格納しているオブジェクト。 <see langword="null" /> 値の場合は、KSP の既定の UI ポリシーが設定されます。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyHandleOpenOptions">
+      <summary>キー ハンドルを開くためのオプションを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey">
+      <summary>開かれているキー ハンドルは短期キーを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.None">
+      <summary>開かれているキー ハンドルは短期キーを指定しません。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyOpenOptions">
+      <summary>キーを開くためのオプションを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey">
+      <summary>コンピューター レベルのキーが開かれます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.None">
+      <summary>キーを開くためのオプションが指定されません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.Silent">
+      <summary>UI プロンプトは表示されません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.UserKey">
+      <summary>
+        <see cref="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey" /> 値が指定されていない場合、代わりにユーザー キーが開かれます。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyUsages">
+      <summary>CNG (Cryptography Next Generation) キーと共に使用される場合がある暗号化操作を指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.AllUsages">
+      <summary>このキーはどのような目的にも使用できます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Decryption">
+      <summary>このキーは暗号化と復号化に使用できます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.KeyAgreement">
+      <summary>このキーは秘密協定の生成とキーの交換に使用できます。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.None">
+      <summary>usage 値はこのキーには割り当てられません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Signing">
+      <summary>このキーは署名と検査に使用できます。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProperty">
+      <summary>CNG (Cryptography Next Generation) キーまたはプロバイダーのプロパティをカプセル化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.#ctor(System.String,System.Byte[],System.Security.Cryptography.CngPropertyOptions)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngProperty" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="name">初期化するプロパティ名。</param>
+      <param name="value">初期化するプロパティ値。</param>
+      <param name="options">プロパティの格納方法を示す列挙値のビットごとの組み合わせ。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Object)">
+      <summary>指定したオブジェクトと現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトを比較します。</summary>
+      <param name="obj">現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="obj" /> パラメーターが、現在のオブジェクトと同じプロパティを指定している <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトの場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Security.Cryptography.CngProperty)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトと現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトを比較します。</summary>
+      <param name="other">現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="other" /> パラメーターが現在のオブジェクトと同じプロパティを表している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetHashCode">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトのハッシュ値を生成します。</summary>
+      <returns>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトのハッシュ値。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetValue">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトが指定しているプロパティ値を取得します。</summary>
+      <returns>プロパティに格納されている値を表す配列。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Name">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトが指定しているプロパティ名を取得します。</summary>
+      <returns>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトに設定されているプロパティ名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Equality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトが指定するプロパティの名前、値、およびオプションが同じかどうかを判断します。</summary>
+      <param name="left">CNG キーまたはプロバイダーのプロパティを指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じプロパティを指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Inequality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトが指定するプロパティの名前、値、およびオプションが同じでないかどうかを判断します。</summary>
+      <param name="left">CNG キーまたはプロバイダーのプロパティを指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じプロパティを指定していない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Options">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトが指定しているプロパティ オプションを取得します。</summary>
+      <returns>現在の <see cref="T:System.Security.Cryptography.CngProperty" /> オブジェクトに設定されているオプションを指定しているオブジェクト。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyCollection">
+      <summary>Cryptography Next Generation (CNG) プロパティの厳密に型指定されたコレクションを提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngPropertyCollection.#ctor">
+      <summary>新しい <see cref="T:System.Security.Cryptography.CngPropertyCollection" /> オブジェクトを初期化します。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyOptions">
+      <summary>CNG (Cryptography Next Generation) キーのプロパティ オプションを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.CustomProperty">
+      <summary>プロパティは CNG によって指定されません。 この先使用する名前が CNG プロパティと競合しないようにするには、このオプションを使用します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.None">
+      <summary>参照先のプロパティにオプションはありません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.Persist">
+      <summary>プロパティを永続化する必要があります。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProvider">
+      <summary>CNG (Cryptography Next Generation) オブジェクトで使用するキー記憶域プロバイダー (KSP: Key Storage Provider) の名前をカプセル化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.CngProvider" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="provider">初期化する KSP の名前。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="provider" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="provider" /> パラメーターの長さが 0 (ゼロ) です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Object)">
+      <summary>指定したオブジェクトと現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトを比較します。</summary>
+      <param name="obj">現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="obj" /> パラメーターが、現在のオブジェクトと同じ KSP を指定している <see cref="T:System.Security.Cryptography.CngProvider" /> である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Security.Cryptography.CngProvider)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトと現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトを比較します。</summary>
+      <param name="other">現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトと比較するオブジェクト。</param>
+      <returns>
+        <paramref name="other" /> パラメーターが現在のオブジェクトと同じ KSP を指定している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.GetHashCode">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトに埋め込まれている KSP の名前のハッシュ値を生成します。</summary>
+      <returns>埋め込まれている KSP 名のハッシュ値。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSmartCardKeyStorageProvider">
+      <summary>Microsoft スマート カード キー記憶域プロバイダーを指定する <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトを取得します。</summary>
+      <returns>Microsoft スマート カード キー記憶域プロバイダーを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSoftwareKeyStorageProvider">
+      <summary>Microsoft ソフトウェア キー記憶域プロバイダーを指定する <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトを取得します。</summary>
+      <returns>Microsoft スマート カード キー記憶域プロバイダーを指定するオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Equality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトが同じ KSP を指定しているかどうかを判別します。</summary>
+      <param name="left">KSP を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じ KSP を表している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Inequality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>2 つの <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトが同じ KSP を表していないかどうかを判別します。</summary>
+      <param name="left">KSP を指定するオブジェクト。</param>
+      <param name="right">
+        <paramref name="left" /> パラメーターで識別されるオブジェクトと比較する 2 番目のオブジェクト。</param>
+      <returns>2 つのオブジェクトが同じ KSP を表していない場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.Provider">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトが指定する KSP の名前を取得します。</summary>
+      <returns>埋め込まれている KSP 名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.ToString">
+      <summary>現在の <see cref="T:System.Security.Cryptography.CngProvider" /> オブジェクトが指定する KSP の名前を取得します。</summary>
+      <returns>埋め込まれている KSP 名。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIPolicy">
+      <summary>保護されたキーへのアクセス時に CNG(Cryptography Next Generation) が表示するユーザー インターフェイス (UI) のオプションの構成パラメーターをカプセル化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels)">
+      <summary>指定した保護レベルを使用して、<see cref="T:System.Security.Cryptography.CngUIPolicy" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="protectionLevel">保護レベルを示す列挙値のビットごとの組み合わせ。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String)">
+      <summary>指定した保護レベルと表示名を使用して、<see cref="T:System.Security.Cryptography.CngUIPolicy" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="protectionLevel">保護レベルを示す列挙値のビットごとの組み合わせ。</param>
+      <param name="friendlyName">UI プロンプトで使用するキーの表示名。 既定の名前を使用する場合は、null 文字列を指定します。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String)">
+      <summary>指定した保護レベル、表示名、および説明を使用して、<see cref="T:System.Security.Cryptography.CngUIPolicy" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="protectionLevel">保護レベルを示す列挙値のビットごとの組み合わせ。</param>
+      <param name="friendlyName">UI プロンプトで使用するキーの表示名。 既定の名前を使用する場合は、null 文字列を指定します。</param>
+      <param name="description">キーのすべてテキストによる説明。 既定の説明を使用する場合は、null 文字列を指定します。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String)">
+      <summary>指定した保護レベル、表示名、説明文字列、および使用コンテキストを使用して、<see cref="T:System.Security.Cryptography.CngUIPolicy" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="protectionLevel">保護レベルを示す列挙値のビットごとの組み合わせ。</param>
+      <param name="friendlyName">UI プロンプトで使用するキーの表示名。 既定の名前を使用する場合は、null 文字列を指定します。</param>
+      <param name="description">キーのすべてテキストによる説明。 既定の説明を使用する場合は、null 文字列を指定します。</param>
+      <param name="useContext">キーの使用方法についての説明。 既定の説明を使用する場合は、null 文字列を指定します。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String,System.String)">
+      <summary>指定した保護レベル、表示名、説明文字列、使用コンテキスト、およびタイトルを使用して、<see cref="T:System.Security.Cryptography.CngUIPolicy" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="protectionLevel">保護レベルを示す列挙値のビットごとの組み合わせ。</param>
+      <param name="friendlyName">UI プロンプトで使用するキーの表示名。 既定の名前を使用する場合は、null 文字列を指定します。</param>
+      <param name="description">キーのすべてテキストによる説明。 既定の説明を使用する場合は、null 文字列を指定します。</param>
+      <param name="useContext">キーの使用方法についての説明。 既定の説明を使用する場合は、null 文字列を指定します。</param>
+      <param name="creationTitle">UI プロンプトを提供するダイアログ ボックスのタイトル。 既定のタイトルを使用する場合は、null 文字列を指定します。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.CreationTitle">
+      <summary>UI プロンプトにより表示されるタイトルを取得します。</summary>
+      <returns>キーへのアクセス時に表示されるダイアログ ボックスのタイトル。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.Description">
+      <summary>UI プロンプトにより表示される説明文字列を取得します。</summary>
+      <returns>キーへのアクセス時に表示されるダイアログ ボックスを説明するテキスト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.FriendlyName">
+      <summary>UI プロンプトにより表示される表示名を取得します。</summary>
+      <returns>キーへのアクセス時に表示されるダイアログ ボックスにおいて、キーの説明に使用される表示名。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.ProtectionLevel">
+      <summary>キーの UI 保護レベルを取得します。</summary>
+      <returns>キーに適用される UI 保護のレベルを示すオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.UseContext">
+      <summary>キーの使用方法についての説明を取得します。</summary>
+      <returns>キーの使用方法についての説明。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIProtectionLevels">
+      <summary>ユーザー インターフェイス (UI: User Interface) プロンプトを表示するシナリオで、キーの保護レベルを指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ForceHighProtection">
+      <summary>キーがアクセスされるたびに UI プロンプトを表示します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.None">
+      <summary>キーがアクセスされても UI プロンプトを表示しません。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ProtectKey">
+      <summary>プロセスで最初にキーがアクセスされたときに UI プロンプトを表示します。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACng">
+      <summary>デジタル署名アルゴリズム (DSA) の Cryptography Next Generation (CNG) 実装を提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor">
+      <summary>ランダムな 2,048 ビット キーのペアで、<see cref="T:System.Security.Cryptography.DSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Int32)">
+      <summary>指定のサイズでランダムに生成されたキーで、<see cref="T:System.Security.Cryptography.DSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="keySize">生成するキーのサイズ (ビット単位)。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> が無効です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>指定したキーで、<see cref="T:System.Security.Cryptography.DSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="key">DSA 操作に使用するキー。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> は有効な DSA キーではありません。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.CreateSignature(System.Byte[])">
+      <summary>指定されたデータのデジタル署名を作成します。</summary>
+      <param name="rgbHash">署名するデータ。</param>
+      <returns>指定したデータに対するデジタル署名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="rgbHash" /> は、DSA キーの Q 値の長さよりも短くなります。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ExportParameters(System.Boolean)">
+      <summary>DSA アルゴリズム パラメーターをエクスポートします。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>DSA アルゴリズム パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">DSA キーが有効な公開キーまたは秘密キーではありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>パラメーター構造体に新しい <see cref="T:System.Security.Cryptography.CngKey" /> を作成し、現在のインスタンスが扱っている既存のキーを置き換えます。</summary>
+      <param name="parameters">DSA パラメーター。</param>
+      <exception cref="T:System.ArgumentException">指定した DSA パラメーターは有効ではありません。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.Key">
+      <summary>
+        <see cref="T:System.Security.Cryptography.DSACng" /> オブジェクトが任意の暗号化操作を行うときに使用するキーを取得します。</summary>
+      <returns>暗号化操作を実行するために <see cref="T:System.Security.Cryptography.DSACng" /> オブジェクトが使用するキー。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.KeyExchangeAlgorithm">
+      <summary>キー交換アルゴリズムの名前を取得します。</summary>
+      <returns>常に <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.LegalKeySizes">
+      <summary>DSA アルゴリズムでサポートされているキー サイズ (ビット単位) を取得します。</summary>
+      <returns>アルゴリズムでサポートされているキー サイズを格納している配列。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.SignatureAlgorithm">
+      <summary>署名アルゴリズムの名前を取得します。</summary>
+      <returns>文字列 "DSA"。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>特定のデジタル署名が特定のデータに一致するか、検証します。</summary>
+      <param name="rgbHash">署名されたデータ。</param>
+      <param name="rgbSignature">検証対象のデジタル署名。</param>
+      <returns>
+        <paramref name="rgbSignature" /> が指定したデータを使用して計算された署名と一致する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> パラメーターが <see langword="null" /> です。  
+
+または - 
+<paramref name="rgbSignature" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="rgbHash" /> は、DSA キーの Q 値の長さよりも短くなります。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCng">
+      <summary>ECDH (Elliptic Curve Diffie-Hellman) アルゴリズムの CNG (Cryptography Next Generation) 実装を提供します。 このクラスは、暗号化操作の実行に使用されます。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor">
+      <summary>ランダムなキーのペアで、<see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Int32)">
+      <summary>指定されたキー サイズを使用して、ランダムなキー ペアで、<see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="keySize">キーのサイズです。 有効なキーのサイズは、256、384、および 521 ビットです。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keySize" /> に指定された長さが無効です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Cryptography Next Generation (CNG) クラスは、このシステムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを使用して、<see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="key">現在のオブジェクトが実行する暗号化操作への入力として使用するキー。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> に、ECDH アルゴリズム グループが指定されていません。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Cryptography Next Generation (CNG) クラスは、このシステムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>指定した曲線に対して生成された公開/秘密キー ペアの <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスの新しいインスタンスを作成します。</summary>
+      <param name="curve">公開/秘密キー ペアを生成するために使用される曲線。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> は検証されません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[])">
+      <summary>別のパーティの公開キー、ハッシュ アルゴリズムの名前、先頭の値、および追加の値を指定し、ハッシュ関数を使用するキーとして使用できるバイトを派生させます。</summary>
+      <param name="otherPartyPublicKey">もう一方のパーティの公開キー。</param>
+      <param name="hashAlgorithm">キー マテリアルを派生させるために使用するハッシュ アルゴリズム。</param>
+      <param name="secretPrepend">ハッシュ前に派生の機密情報の先頭に追加する値。</param>
+      <param name="secretAppend">ハッシュ前に派生の機密情報に追加する値。</param>
+      <returns>他のパーティの公開キーとのキー交換からのキー マテリアル。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が ECDH キーではありません。または正しいサイズではありません。  
+または 
+ <paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> は <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[],System.Byte[])">
+      <summary>ハッシュ ベース メッセージ認証コード (HMAC) を使用して、キーとして使用できるバイト数を派生しています。</summary>
+      <param name="otherPartyPublicKey">もう一方のパーティの公開キー。</param>
+      <param name="hashAlgorithm">キー マテリアルを派生させるために使用するハッシュ アルゴリズム。</param>
+      <param name="hmacKey">HMAC のキー。</param>
+      <param name="secretPrepend">ハッシュ前に派生の機密情報の先頭に追加する値。</param>
+      <param name="secretAppend">ハッシュ前に派生の機密情報に追加する値。</param>
+      <returns>他のパーティの公開キーとのキー交換からのキー マテリアル。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が ECDH キーではありません。または正しいサイズではありません。  
+または 
+ <paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> は <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.CngKey)">
+      <summary>相手の公開キーを格納した <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを指定した場合に、二者の間の秘密協定から生成されたキー マテリアルを派生させます。</summary>
+      <param name="otherPartyPublicKey">キー交換で相手から取得した ECDH (Elliptic Curve Diffie-Hellman) キーの公開部分を格納したオブジェクト。</param>
+      <returns>キー マテリアルを格納したバイト配列。 現在のオブジェクトの秘密キーと指定した公開キーから計算された秘密協定から、この情報は生成されます。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が無効です。 <see cref="P:System.Security.Cryptography.CngKey.AlgorithmGroup" /> プロパティで <see cref="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman" /> が指定されていないか、キー サイズが現在のインスタンスのキー サイズと一致していません。</exception>
+      <exception cref="T:System.InvalidOperationException">このオブジェクトの <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction" /> プロパティでは <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" /> キー派生関数を指定しますが、<see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> または <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> のどちらか一方は <see langword="null" /> にします。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>相手の公開キーを格納した <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> オブジェクトを指定した場合に、二者の間の秘密協定から生成されたキー マテリアルを派生させます。</summary>
+      <param name="otherPartyPublicKey">キー交換で相手から取得した公開キー。</param>
+      <returns>キー マテリアルを格納したバイト配列。 現在のオブジェクトの秘密キーと指定した公開キーから計算された秘密協定から、この情報は生成されます。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> キーではありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Byte[],System.Byte[])">
+      <summary>トランスポート層セキュリティ (TLS) 擬似ランダム関数 (PRF) 派生アルゴリズムを使用してキーとして使用できるバイトを派生します。</summary>
+      <param name="otherPartyPublicKey">もう一方のパーティの公開キー。</param>
+      <param name="prfLabel">ASCII エンコードされた PRF ラベル。</param>
+      <param name="prfSeed">64 バイト PRF シード。</param>
+      <returns>他のパーティの公開キーとのキー交換からのキー マテリアル。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="prfLabel" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="prfSeed" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が ECDH キーではありません。または正しいサイズではありません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="prfSeed" /> は 64 バイト長に完全には一致しません。  
+または 
+すべてのその他の暗号化エラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.CngKey)">
+      <summary>相手の公開キーを格納した <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを指定した場合に、二者の間で生成された秘密協定のハンドルを取得します。</summary>
+      <param name="otherPartyPublicKey">キー交換で相手から取得した ECDH (Elliptic Curve Diffie-Hellman) キーの公開部分を格納したオブジェクト。</param>
+      <returns>秘密協定を識別するハンドル。 現在のオブジェクトの秘密キーと指定した公開キーから、この情報は計算されます。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が ECDH キーではありません。または正しいサイズではありません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>相手の公開キーを格納した <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> オブジェクトを指定した場合に、二者の間で生成された秘密協定のハンドルを取得します。</summary>
+      <param name="otherPartyPublicKey">キー交換で相手から取得した公開キー。</param>
+      <returns>秘密協定を識別するハンドル。 現在のオブジェクトの秘密キーと指定した公開キーから、この情報は計算されます。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> が <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> キーではありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportExplicitParameters(System.Boolean)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと明示的な曲線パラメーターを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと明示的な曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">メソッドは曲線の値を取得できません。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">明示的なエクスポートは、このプラットフォームではサポートされていません。 Windows 10 以降が必要です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportParameters(System.Boolean)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトが使用するキーを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと名前付き曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">メソッドは曲線の値を取得できません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>指定した形式を使用して、XML 文字列からキー情報を逆シリアル化します。</summary>
+      <param name="xml">逆シリアル化する XML ベースのキー情報。</param>
+      <param name="format">XML 文字列の形式を指定する列挙値の 1 つ。 現在使用できる唯一の形式は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="xml" /> の形式が正しくありません。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> が無効な形式を指定しています。 使用できる唯一の値は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>指定した曲線の新しい一時的な公開/秘密キー ペアを生成します。</summary>
+      <param name="curve">一時的な公開/秘密キー ペアを生成するために使用される曲線。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> は検証されません。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm">
+      <summary>キー マテリアルの生成時に使用するハッシュ アルゴリズムを取得または設定します。</summary>
+      <returns>ハッシュ アルゴリズムを指定するオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">値が <see langword="null." /> です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey">
+      <summary>キー マテリアル派生時に使用するハッシュ メッセージ認証コード (HMAC: Hash-based Message Authentication Code) キーを取得または設定します。</summary>
+      <returns>キー マテリアルの派生時に使用するハッシュ メッセージ認証コード (HMAC) キー。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>キーとして <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトに指定したパラメーターを現在のインスタンスにインポートします。</summary>
+      <param name="parameters">インポートする曲線のパラメーター。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> は検証されません。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> はインポートできない曲線を参照します。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> はこのプラットフォームでサポートされていない曲線を参照します。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Key">
+      <summary>現在のオブジェクトが暗号化操作のために使用する <see cref="T:System.Security.Cryptography.CngKey" /> を指定します。</summary>
+      <returns>このオブジェクトが暗号化操作を実行するために使用するキー ペア。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスのキー派生関数を取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction" /> 列挙値である <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />、<see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" />、<see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" /> のうちのいずれか。 既定値は <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" /> です。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">列挙値が範囲外です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeySize" />
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Label">
+      <summary>キー派生で使用されるラベル値を取得または設定します。</summary>
+      <returns>ラベル値。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.PublicKey">
+      <summary>別の <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> オブジェクトが共有秘密協定を生成するために使用できる公開キーを取得します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> オブジェクトの現在のインスタンスに関連付けられている公開キー。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend">
+      <summary>キー マテリアル生成時に秘密協定に追加される値を取得または設定します。</summary>
+      <returns>秘密協定に追加される値。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend">
+      <summary>キー マテリアル派生時に秘密協定の開始部分に追加される値を取得または設定します。</summary>
+      <returns>キー派生時に秘密協定の開始部分に追加される値。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed">
+      <summary>キー マテリアル派生時に使用されるシード値を取得または設定します。</summary>
+      <returns>シード値。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>指定した形式を使用して、キー情報を XML 文字列にシリアル化します。</summary>
+      <param name="format">XML 文字列の形式を指定する列挙値の 1 つ。 現在使用できる唯一の形式は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</param>
+      <returns>要求された形式に従って XML 文字列にシリアル化されたキー情報を格納している文字列オブジェクト。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> が無効な形式を指定しています。 使用できる唯一の値は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey">
+      <summary>キー マテリアルを派生させるハッシュ メッセージ認証コード (HMAC) キーとして秘密協定が使用されるかどうかを示す値を取得します。</summary>
+      <returns>キー マテリアルを派生させる HMAC キーとして秘密協定が使用される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスで使用する、ECDH (Elliptic Curve Diffie-Hellman) の公開キーを指定します。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.BlobFormat">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> オブジェクトのキー BLOB 形式を取得します。</summary>
+      <returns>キーの BLOB を表す形式。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportExplicitParameters">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと明示的な曲線パラメーターを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと明示的な曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">メソッドは曲線の値を取得できません。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">明示的なエクスポートは、このプラットフォームではサポートされていません。 Windows 10 以降が必要です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportParameters">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトが使用するキーを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> オブジェクトによって使用されているキーと名前付き曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">メソッドは曲線の値を取得できません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromByteArray(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>公開キーを格納したバイト配列を、指定した形式に従い、<see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> オブジェクトに変換します。</summary>
+      <param name="publicKeyBlob">ECDH 公開キーを格納したバイト配列。</param>
+      <param name="format">キー BLOB の形式を指定するオブジェクト。</param>
+      <returns>バイト配列内にシリアル化された ECDH 公開キーを格納しているオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="publicKeyBlob" /> パラメーターまたは <paramref name="format" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="publicKeyBlob" /> パラメーターに、<see cref="T:System.Security.Cryptography.ECDiffieHellman" /> キーが格納されていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromXmlString(System.String)">
+      <summary>XML 文字列を <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> オブジェクトに変換します。</summary>
+      <param name="xml">ECDH キーを格納した XML 文字列。</param>
+      <returns>指定した XML により指定される ECDH 公開キーを格納したオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="xml" /> パラメーターに <see cref="T:System.Security.Cryptography.ECDiffieHellman" /> キーが指定されていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.Import">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> オブジェクトを <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトに変換します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> オブジェクトで表されるキーを格納したオブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ToXmlString">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 公開キーを RFC 4050 形式の XML 文字列にシリアル化します。</summary>
+      <returns>シリアル化された <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 公開キーを格納している XML 文字列。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction">
+      <summary>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> クラスが秘密協定をキー マテリアルに変換する際に使用するキー派生関数を指定します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash">
+      <summary>キー マテリアルの生成にハッシュ アルゴリズムが使用されます。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm" /> プロパティは、使用するアルゴリズムの名前を指定します。 アルゴリズム名を指定しない場合は、<see cref="T:System.Security.Cryptography.SHA256" /> が既定のアルゴリズムとして使用されます。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> および <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> プロパティを指定することもできますが、必須ではありません。 生成されるキー マテリアルの量は、指定したアルゴリズムのハッシュ値のサイズと同じです。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac">
+      <summary>キー マテリアルの生成に、ハッシュ メッセージ認証コード (HMAC: Hash-based Message Authentication Code) アルゴリズムが使用されます。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey" /> プロパティは、使用するキーを指定します。 このプロパティを設定するか、または <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey" /> プロパティを <see langword="true" /> に設定する必要があります。それ以外の値が設定されていると、<see cref="T:System.Security.Cryptography.CryptographicException" /> を使用したときに <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" /> がスローされます。 両方のプロパティを設定すると、秘密協定が HMAC キーとして使用されます。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> および <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> プロパティを指定することもできますが、必須ではありません。 生成されるキー マテリアルの量は、HMAC 値のサイズと同じです。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls">
+      <summary>キー マテリアルの生成に、トランスポート層セキュリティ (TLS: Transport Layer Security) プロトコルが使用されます。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> プロパティと <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> プロパティを設定する必要があります。それ以外の値が設定されていると、<see cref="T:System.Security.Cryptography.CryptographicException" /> を使用したときに <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" /> がスローされます。 この値では、160 ビットのキー マテリアルが生成されます。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDsaCng">
+      <summary>楕円曲線デジタル署名アルゴリズム (ECDSA) の Cryptography Next Generation (CNG) 実装を提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor">
+      <summary>ランダムなキーのペアで、<see cref="T:System.Security.Cryptography.ECDsaCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Cryptography Next Generation (CNG) クラスは、このシステムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Int32)">
+      <summary>指定されたキー サイズを使用して、ランダムなキー ペアで、<see cref="T:System.Security.Cryptography.ECDsaCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="keySize">キーのサイズです。 有効なキーのサイズは、256、384、および 521 ビットです。</param>
+      <exception cref="T:System.PlatformNotSupportedException">Cryptography Next Generation (CNG) クラスは、このシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> に指定された長さが無効です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>指定した <see cref="T:System.Security.Cryptography.CngKey" /> オブジェクトを使用して、<see cref="T:System.Security.Cryptography.ECDsaCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="key">現在のオブジェクトが実行する暗号化操作への入力として使用するキー。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> に、ECDSA (Elliptic Curve Digital Signature Algorithm) グループが指定されていません。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Cryptography Next Generation (CNG) クラスは、このシステムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>指定した曲線に対して生成された公開/秘密キー ペアの <see cref="T:System.Security.Cryptography.ECDsaCng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="curve">公開/秘密キー ペアを生成するために使用される曲線。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> は検証されません。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="curve" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="curve" /> に FriendlyName を持つ Oid が含まれない場合。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportExplicitParameters(System.Boolean)">
+      <summary>楕円曲線暗号 (ECC) オブジェクトによって使用されているキーと明示的な曲線パラメーターを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>ECC オブジェクトによって使用されているキーと明示的な曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">曲線の値の取得中にエラーが発生しました。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">明示的なエクスポートは、このプラットフォームではサポートされていません。 Windows 10 以降が必要です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportParameters(System.Boolean)">
+      <summary>楕円曲線暗号 (ECC) オブジェクトによって使用されているキーを <see cref="T:System.Security.Cryptography.ECParameters" /> オブジェクトにエクスポートします。 名前付き曲線としてキーが作成された場合は、<see cref="F:System.Security.Cryptography.ECParameters.Curve" /> フィールドには名前付き曲線パラメーターが含まれます。それ以外の場合は、明示的なパラメーターが含まれます。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>ECC オブジェクトによって使用されているキーと名前付き曲線パラメーター。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">曲線の値の取得中にエラーが発生しました。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>指定した形式を使用して、XML 文字列からキー情報を逆シリアル化します。</summary>
+      <param name="xml">逆シリアル化する XML ベースのキー情報。</param>
+      <param name="format">XML 文字列の形式を指定する列挙値の 1 つ。 現在使用できる唯一の形式は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> が無効な形式を指定しています。 使用できる唯一の値は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>ECDsaCng アルゴリズムに使用するキーを生成します。</summary>
+      <param name="curve">キーの生成に使用する曲線。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> は検証されません。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.HashAlgorithm">
+      <summary>データの署名および検証を行う際に使用するハッシュ アルゴリズムを取得または設定します。</summary>
+      <returns>ハッシュ アルゴリズムを指定するオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">値が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>パラメーター構造体に新しい <see cref="T:System.Security.Cryptography.CngKey" /> を作成し、現在のインスタンスが扱っている既存のキーを置き換えます。</summary>
+      <param name="parameters">曲線パラメーター。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> には有効な値が含まれません。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> はインポートできない曲線を参照します。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> はこのプラットフォームでサポートされていない曲線を参照します。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.Key">
+      <summary>データの署名および検証を行うときに使用するキーを取得または設定します。</summary>
+      <returns>キーを指定するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.KeySize" />
+    <member name="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes" />
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[])">
+      <summary>指定したデータの署名を生成します。</summary>
+      <param name="data">署名するメッセージ データ。</param>
+      <returns>指定したデータに対するデジタル署名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">インスタンスに関連付けられているキーの情報に秘密キーはありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>指定したオフセットを始点とする指定した長さのデータに対するデジタル署名を生成します。</summary>
+      <param name="data">署名するメッセージ データ。</param>
+      <param name="offset">署名を開始する文字列内の場所。</param>
+      <param name="count">署名の対象となる <paramref name="offset" /> 以降の文字列の長さ (文字単位)。</param>
+      <returns>指定した長さのデータに対するデジタル署名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> または <paramref name="offset" /> が原因で、データ文字列の境界外で読み取りが行われました。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">インスタンスに関連付けられているキーの情報に秘密キーはありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.IO.Stream)">
+      <summary>指定したデータ ストリームを最後まで読み取って、そのストリームの署名を生成します。</summary>
+      <param name="data">署名するデータ ストリーム。</param>
+      <returns>指定したデータ ストリームに対するデジタル署名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">インスタンスに関連付けられているキーの情報に秘密キーはありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignHash(System.Byte[])">
+      <summary>指定したハッシュ値の署名を生成します。</summary>
+      <param name="hash">署名されたデータのハッシュ値。</param>
+      <returns>指定したハッシュ値に対するデジタル署名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">インスタンスに関連付けられているキーの情報に秘密キーはありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>指定した形式を使用して、キー情報を XML 文字列にシリアル化します。</summary>
+      <param name="format">XML 文字列の形式を指定する列挙値の 1 つ。 現在使用できる唯一の形式は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</param>
+      <returns>要求された形式に従って XML 文字列にシリアル化されたキー情報を格納している文字列オブジェクト。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> が無効な形式を指定しています。 使用できる唯一の値は、<see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Byte[])">
+      <summary>指定したデータのデジタル署名を検証します。</summary>
+      <param name="data">署名されたデータ。</param>
+      <param name="signature">検証される署名。</param>
+      <returns>署名が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> または <paramref name="signature" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[])">
+      <summary>指定したオフセットを始点とする指定した長さのデータに対する署名を検証します。</summary>
+      <param name="data">署名されたデータ。</param>
+      <param name="offset">署名されたデータの開始位置であるデータ内の場所。</param>
+      <param name="count">署名の対象となる <paramref name="offset" /> 以降のデータの長さ (文字単位)。</param>
+      <param name="signature">検証される署名。</param>
+      <returns>署名が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> または <paramref name="count" /> が 0 未満です。  
+
+または - 
+<paramref name="offset" /> または <paramref name="count" /> が、<paramref name="data" /> パラメーターで渡されたバイト配列の長さを超えています。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> または <paramref name="signature" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream,System.Byte[])">
+      <summary>指定したデータ ストリームを最後まで読み取って、そのストリームのデジタル署名を検証します。</summary>
+      <param name="data">署名されたデータ ストリーム。</param>
+      <param name="signature">検証される署名。</param>
+      <returns>署名が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> または <paramref name="signature" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>特定のデジタル署名を、特定のハッシュ値に対して検証します。</summary>
+      <param name="hash">検証されるデータのハッシュ値。</param>
+      <param name="signature">ハッシュ値に対して検証するデータのデジタル署名。</param>
+      <returns>署名が有効な場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> または <paramref name="signature" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.ECKeyXmlFormat">
+      <summary>楕円曲線キーの XML シリアル化形式を定義します。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050">
+      <summary>RFC 4050「Using the Elliptic Curve Signature Algorithm (ECDSA) for XML Digital Signatures」で説明されている XML シリアル化形式。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACng">
+      <summary>RSA アルゴリズムの Cryptography Next Generation (CNG) 実装を提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor">
+      <summary>ランダムな 2,048 ビット キーのペアで、<see cref="T:System.Security.Cryptography.RSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Int32)">
+      <summary>指定のサイズでランダムに生成されたキーで、<see cref="T:System.Security.Cryptography.RSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="keySize">生成するキーのサイズ (ビット単位)。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> が無効です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>指定したキーで、<see cref="T:System.Security.Cryptography.RSACng" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="key">RSA 操作に使用するキー。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> は有効な RSA 値ではありません。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>指定されたパディング モードを使用して入力データを復号化します。</summary>
+      <param name="data">復号化するデータ。</param>
+      <param name="padding">パディング モード。</param>
+      <returns>復号化されるデータ。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> が <see langword="null" /> です。  
+
+または - 
+<paramref name="padding" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> が <see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Pkcs1" /> と等しくありません。さもなければ、<paramref name="padding" /> の <see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> は <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" /> と等しくありません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>指定されたパディングを使用して入力データを暗号化します。</summary>
+      <param name="data">暗号化するデータ。</param>
+      <param name="padding">パディング モード。</param>
+      <returns>暗号化するデータ。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="padding" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> は <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> または <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" /> と一致しません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ExportParameters(System.Boolean)">
+      <summary>RSA オブジェクトが使用するキーを <see cref="T:System.Security.Cryptography.RSAParameters" /> オブジェクトにエクスポートします。</summary>
+      <param name="includePrivateParameters">プライベート パラメーターを含める場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <returns>RSA オブジェクトが使用するキー。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>パラメーター構造体に新しい <see cref="T:System.Security.Cryptography.CngKey" /> を作成し、現在のインスタンスが扱っている既存のキーを置き換えます。</summary>
+      <param name="parameters">RSA パラメーター。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameters" /> には指数も剰余も含まれていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> は有効な RSA 値ではありません。  
+
+または - 
+<paramref name="parameters" /> は完全なキーのペアであり、既定値の KSP が使用されています。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.Key">
+      <summary>
+        <see cref="T:System.Security.Cryptography.RSACng" /> オブジェクトが任意の暗号化操作を行うときに使用するキーを取得します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RSACng" /> オブジェクトが使用するキー。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.LegalKeySizes" />
+    <member name="M:System.Security.Cryptography.RSACng.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>指定されたハッシュ アルゴリズムとパディング モードを使用してハッシュされたデータに署名します。</summary>
+      <param name="hash">署名するハッシュ。</param>
+      <param name="hashAlgorithm">ハッシュ アルゴリズム名。</param>
+      <param name="padding">パディング モード。</param>
+      <returns>署名されるデータ。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="padding" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> の <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> プロパティの値が <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> は <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> または <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" /> と一致しません。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>署名され、指定されたアルゴリズムとパディング モードで既にハッシュされているデータを検証します。</summary>
+      <param name="hash">検証するハッシュ。</param>
+      <param name="signature">データの署名。</param>
+      <param name="hashAlgorithm">ハッシュ アルゴリズム名。</param>
+      <param name="padding">パディング モード。</param>
+      <returns>ハッシュに関して署名の検証を行う場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="signature" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="padding" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> の <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> プロパティの値が <see langword="null" /> または <see cref="F:System.String.Empty" /> です。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> は <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> または <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" /> と一致しません。  
+または 
+署名の形式が正しくありません。 (.NET Framework 4.6 と 4.6.1 のみ。.NET Framework 4.6.2 以降で、署名の形式が正しくない場合、メソッドは <see langword="false" /> を返します。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCng">
+      <summary>Triple Data Encryption Standard (3DES) アルゴリズムの Cryptography Next Generation (CNG) 実装を提供します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> クラスの新しいインスタンスを一時的なキーで初期化します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 3DES キーを表す) で初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 3DES キーを表す)、および指定したキー格納プロバイダー (KSP) で初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="provider" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> クラスの新しいインスタンスを、指定したキー名 (既存の永続化 3DES キーを表す)、指定したキー格納プロバイダー (KSP)、およびキー オープン オプションで初期化します。</summary>
+      <param name="keyName">キー名。</param>
+      <param name="provider">キーを格納している KSP。</param>
+      <param name="openOptions">キーを開くためのオプションを示す列挙値のビットごとの組み合わせ。これには、キーが開かれる場所 (コンピューターまたはユーザー ストレージ) や、UI プロンプトを非表示にするかどうかなどが含まれます。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> は <see langword="null" />です。  
+
+または - 
+<paramref name="provider" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG はこのシステムではサポートされていません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">上記以外のすべてのエラー。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor">
+      <summary>現在のキーおよび初期化ベクター (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) を使用して、対称 3DES 復号化オブジェクトを作成します。</summary>
+      <returns>対称 3DES 復号化オブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>指定したキーおよび初期化ベクター (IV) を使用して、対称 3DES 復号化オブジェクトを作成します。</summary>
+      <param name="rgbKey">3DES アルゴリズムに使用する秘密キー。 キーのサイズは 192 ビットにする必要があります。</param>
+      <param name="rgbIV">3DES アルゴリズムに使用する初期化ベクター。</param>
+      <returns>対称 3DES 復号化オブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> は、このアルゴリズムで有効なサイズではありません。  
+
+または - 
+<paramref name="rgbIV" /> のサイズは、このアルゴリズムのブロック サイズと一致しません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> は、このアルゴリズムの既知の弱いキーであるため使用できません。  
+
+または - 
+<paramref name="rgbIV" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor">
+      <summary>現在のキーおよび初期化ベクター (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) を使用して、対称 3DES 暗号化オブジェクトを作成します。</summary>
+      <returns>3DES 対称暗号化オブジェクト。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>指定したキーおよび初期化ベクター (IV) を使用して、3DES 対称暗号化オブジェクトを作成します。</summary>
+      <param name="rgbKey">3DES アルゴリズムに使用する秘密キー。 キーのサイズは 192 ビットにする必要があります。</param>
+      <param name="rgbIV">3DES アルゴリズムに使用する初期化ベクター。</param>
+      <returns>3DES 対称暗号化オブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> は、このアルゴリズムで有効なサイズではありません。  
+または 
+ <paramref name="rgbIV" /> のサイズは、このアルゴリズムのブロック サイズと一致しません。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> は、このアルゴリズムの既知の弱いキーであるため使用できません。  
+または 
+ <paramref name="rgbIV" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateIV">
+      <summary>ランダムな初期化ベクター (IV) を生成し、3DES アルゴリズムを使用します。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateKey">
+      <summary>3DES アルゴリズムに使用するランダム キーを生成します。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.Key">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> アルゴリズムのキーを取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> アルゴリズムのキー。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.KeySize">
+      <summary>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> アルゴリズムで使用される秘密キーのサイズ (ビット単位) 取得または設定します。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> アルゴリズムで使用される秘密キーのサイズ (ビット単位)。</returns>
+    </member>
+  </members>
+</doc>

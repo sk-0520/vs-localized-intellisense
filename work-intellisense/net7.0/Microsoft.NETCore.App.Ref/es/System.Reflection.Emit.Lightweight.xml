@@ -1,0 +1,436 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Reflection.Emit.Lightweight</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.Emit.DynamicILInfo">
+      <summary vsli:raw="Provides support for alternative ways to generate the Microsoft intermediate language (MSIL) and metadata for a dynamic method, including methods for creating tokens and for inserting the code, exception handling, and local variable signature blobs.">Proporciona compatibilidad con relación a las diferentes formas existentes a la hora de generar el lenguaje intermedio de Microsoft (MSIL) y metadatos para un método dinámico, incluidos métodos para la creación de símbolos (token) y para la inserción de código, control de excepciones y objetos binarios (BLOB) para la firma de variables locales.</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.Byte[])">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing the signature for the associated dynamic method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa la firma para el método dinámico asociado.</summary>
+      <param name="signature" vsli:raw="An array that contains the signature.">Matriz que contiene la firma.</param>
+      <returns vsli:raw="A token that can be embedded in the metadata and the MSIL stream for the associated dynamic method.">Símbolo (token) que se puede incrustar en los metadatos y en la secuencia de MSIL para el método dinámico asociado.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.Reflection.Emit.DynamicMethod)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a dynamic method to be called from the associated method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un método dinámico al que llamar desde el método asociado.</summary>
+      <param name="method" vsli:raw="The dynamic method to call.">Método dinámico al que se va a llamar.</param>
+      <returns vsli:raw="A token that can be embedded in the MSIL stream for the associated dynamic method, as the target of an MSIL instruction.">Símbolo (token) que se puede incrustar en la secuencia de MSIL para el método dinámico asociado, como el destino de una instrucción de MSIL.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeFieldHandle)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a field to be accessed from the associated dynamic method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un campo al que se puede obtener acceso desde el método dinámico asociado.</summary>
+      <param name="field" vsli:raw="The field to be accessed.">Campo al que se va a obtener acceso.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that accesses fields, in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Símbolo (token) que se puede utilizar como el operando de una instrucción MSIL con acceso a campos, en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeFieldHandle,System.RuntimeTypeHandle)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a field to be accessed from the associated dynamic method; the field is on the specified generic type.">Obtiene un token, válido en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un campo al que se puede obtener acceso desde el método dinámico asociado; el campo es del tipo genérico especificado.</summary>
+      <param name="field" vsli:raw="The field to be accessed.">Campo al que se va a obtener acceso.</param>
+      <param name="contextType" vsli:raw="The generic type the field belongs to.">Tipo genérico al que pertenece el campo.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that accesses fields in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Token que puede utilizarse como operando de una instrucción MSIL que obtiene acceso a campos en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeMethodHandle)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a method to be accessed from the associated dynamic method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un método al que se puede obtener acceso desde el método dinámico asociado.</summary>
+      <param name="method" vsli:raw="The method to be accessed.">Método al que se va a obtener acceso.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that accesses methods, such as &lt;see cref=&quot;F:System.Reflection.Emit.OpCodes.Call&quot; /&gt; or &lt;see cref=&quot;F:System.Reflection.Emit.OpCodes.Ldtoken&quot; /&gt;, in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Símbolo (token) que se puede utilizar como el operando de una instrucción MSIL con acceso a métodos, como <see cref="F:System.Reflection.Emit.OpCodes.Call" /> o <see cref="F:System.Reflection.Emit.OpCodes.Ldtoken" />, en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeMethodHandle,System.RuntimeTypeHandle)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a method on a generic type.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un método en un tipo genérico.</summary>
+      <param name="method" vsli:raw="The method.">Método.</param>
+      <param name="contextType" vsli:raw="The generic type the method belongs to.">Tipo genérico al que pertenece el método.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that accesses methods, such as &lt;see cref=&quot;F:System.Reflection.Emit.OpCodes.Call&quot; /&gt; or &lt;see cref=&quot;F:System.Reflection.Emit.OpCodes.Ldtoken&quot; /&gt;, in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Símbolo (token) que se puede utilizar como el operando de una instrucción MSIL con acceso a métodos, como <see cref="F:System.Reflection.Emit.OpCodes.Call" /> o <see cref="F:System.Reflection.Emit.OpCodes.Ldtoken" />, en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.RuntimeTypeHandle)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a type to be used in the associated dynamic method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un tipo que se puede utilizar en el método dinámico asociado.</summary>
+      <param name="type" vsli:raw="The type to be used.">Tipo que se va a utilizar.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that requires a type, in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Símbolo (token) que se puede utilizar como el operando de una instrucción MSIL que necesita un tipo, en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.GetTokenFor(System.String)">
+      <summary vsli:raw="Gets a token, valid in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt;, representing a string literal to be used in the associated dynamic method.">Obtiene un símbolo (token), válido en el ámbito del <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual, que representa un literal de cadena que se puede utilizar en el método dinámico asociado.</summary>
+      <param name="literal" vsli:raw="The string to be used.">La cadena que que se va a utilizar.</param>
+      <returns vsli:raw="A token that can be used as the operand of an MSIL instruction that requires a string, in the scope of the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object.">Símbolo (token) que se puede utilizar como el operando de una instrucción MSIL que necesita una cadena, en el ámbito del objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetCode(System.Byte*,System.Int32,System.Int32)">
+      <summary vsli:raw="Sets the code body of the associated dynamic method.">Establece el cuerpo de código del método dinámico asociado.</summary>
+      <param name="code" vsli:raw="A pointer to a byte array containing the MSIL stream.">Puntero a una matriz de bytes que contiene la secuencia de MSIL.</param>
+      <param name="codeSize" vsli:raw="The number of bytes in the MSIL stream.">Número de bytes de la secuencia de MSIL.</param>
+      <param name="maxStackSize" vsli:raw="The maximum number of items on the operand stack when the method is executing.">Número máximo de elementos en la pila de operandos cuando se está ejecutando el método.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;code&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; and &lt;paramref name=&quot;codeSize&quot; /&gt; is greater than 0.">
+        <paramref name="code" /> es <see langword="null" /> y <paramref name="codeSize" /> es mayor que 0.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;codeSize&quot; /&gt; is less than 0.">
+        <paramref name="codeSize" /> es menor que 0.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetCode(System.Byte[],System.Int32)">
+      <summary vsli:raw="Sets the code body of the associated dynamic method.">Establece el cuerpo de código del método dinámico asociado.</summary>
+      <param name="code" vsli:raw="An array that contains the MSIL stream.">Matriz que contiene la secuencia de MSIL.</param>
+      <param name="maxStackSize" vsli:raw="The maximum number of items on the operand stack when the method is executing.">Número máximo de elementos en la pila de operandos cuando se está ejecutando el método.</param>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetExceptions(System.Byte*,System.Int32)">
+      <summary vsli:raw="Sets the exception metadata for the associated dynamic method.">Establece los metadatos de excepción del método dinámico asociado.</summary>
+      <param name="exceptions" vsli:raw="A pointer to a byte array containing the exception metadata.">Puntero a una matriz de bytes que contiene los metadatos de excepción.</param>
+      <param name="exceptionsSize" vsli:raw="The number of bytes of exception metadata.">Número de bytes de los metadatos de excepción.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;exceptions&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; and &lt;paramref name=&quot;exceptionSize&quot; /&gt; is greater than 0.">
+        <paramref name="exceptions" /> es <see langword="null" /> y <paramref name="exceptionSize" /> es mayor que 0.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;exceptionSize&quot; /&gt; is less than 0.">
+        <paramref name="exceptionSize" /> es menor que 0.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetExceptions(System.Byte[])">
+      <summary vsli:raw="Sets the exception metadata for the associated dynamic method.">Establece los metadatos de excepción del método dinámico asociado.</summary>
+      <param name="exceptions" vsli:raw="An array that contains the exception metadata.">Matriz que contiene los metadatos de excepción.</param>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetLocalSignature(System.Byte*,System.Int32)">
+      <summary vsli:raw="Sets the local variable signature that describes the layout of local variables for the associated dynamic method.">Establece la firma de variable local que describe el diseño de las variables locales para el método dinámico asociado.</summary>
+      <param name="localSignature" vsli:raw="An array that contains the layout of local variables for the associated &lt;see cref=&quot;T:System.Reflection.Emit.DynamicMethod&quot; /&gt;.">Matriz que contiene el diseño de las variables locales para el objeto <see cref="T:System.Reflection.Emit.DynamicMethod" /> asociado.</param>
+      <param name="signatureSize" vsli:raw="The number of bytes in the signature.">Número de bytes de la firma.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;localSignature&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; and &lt;paramref name=&quot;signatureSize&quot; /&gt; is greater than 0.">
+        <paramref name="localSignature" /> es <see langword="null" /> y <paramref name="signatureSize" /> es mayor que 0.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;signatureSize&quot; /&gt; is less than 0.">
+        <paramref name="signatureSize" /> es menor que 0.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicILInfo.SetLocalSignature(System.Byte[])">
+      <summary vsli:raw="Sets the local variable signature that describes the layout of local variables for the associated dynamic method.">Establece la firma de variable local que describe el diseño de las variables locales para el método dinámico asociado.</summary>
+      <param name="localSignature" vsli:raw="An array that contains the layout of local variables for the associated &lt;see cref=&quot;T:System.Reflection.Emit.DynamicMethod&quot; /&gt;.">Matriz que contiene el diseño de las variables locales para el objeto <see cref="T:System.Reflection.Emit.DynamicMethod" /> asociado.</param>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicILInfo.DynamicMethod">
+      <summary vsli:raw="Gets the dynamic method whose body is generated by the current instance.">Obtiene el método dinámico cuyo cuerpo viene generado por la instancia actual.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Emit.DynamicMethod&quot; /&gt; object representing the dynamic method for which the current &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object is generating code.">Objeto <see cref="T:System.Reflection.Emit.DynamicMethod" /> que representa el método dinámico para el cual está generando código el objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> actual.</returns>
+    </member>
+    <member name="T:System.Reflection.Emit.DynamicMethod">
+      <summary vsli:raw="Defines and represents a dynamic method that can be compiled, executed, and discarded. Discarded methods are available for garbage collection.">Define y representa un método dinámico que se puede compilar, ejecutar y descartar. Los métodos descartados están disponibles para la recolección de elementos no utilizados.</summary>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Reflection.MethodAttributes,System.Reflection.CallingConventions,System.Type,System.Type[],System.Reflection.Module,System.Boolean)">
+      <summary vsli:raw="Creates a dynamic method that is global to a module, specifying the method name, attributes, calling convention, return type, parameter types, module, and whether just-in-time (JIT) visibility checks should be skipped for types and members accessed by the Microsoft intermediate language (MSIL) of the dynamic method.">Crea un método dinámico que es global para un módulo, especificando el nombre del método, los atributos, la convención de nomenclatura, el tipo de valor devuelto, los tipos de parámetros, el módulo y si se deben omitir comprobaciones de visibilidad Just-In-Time (JIT) para tipos y miembros a los que se tiene acceso por el lenguaje intermedio de Microsoft (MSIL) del método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="attributes" vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Reflection.MethodAttributes&quot; /&gt; values that specifies the attributes of the dynamic method. The only combination allowed is &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Public&quot; /&gt; and &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Static&quot; /&gt;.">Combinación bit a bit de valores <see cref="T:System.Reflection.MethodAttributes" /> que especifica los atributos del método dinámico. La única combinación permitida es <see cref="F:System.Reflection.MethodAttributes.Public" /> y <see cref="F:System.Reflection.MethodAttributes.Static" />.</param>
+      <param name="callingConvention" vsli:raw="The calling convention for the dynamic method. Must be &lt;see cref=&quot;F:System.Reflection.CallingConventions.Standard&quot; /&gt;.">La convención de llamada para el método dinámico. Debe ser <see cref="F:System.Reflection.CallingConventions.Standard" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="m" vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Module&quot; /&gt; representing the module with which the dynamic method is to be logically associated.">
+        <see cref="T:System.Reflection.Module" /> que representa el módulo con el que se va a asociar de manera lógica al método dinámico.</param>
+      <param name="skipVisibility" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to skip JIT visibility checks on types and members accessed by the MSIL of the dynamic method; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para omitir las comprobaciones de visibilidad JIT en tipos y miembros a los que obtiene acceso el MSIL del método dinámico; en otro caso, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is a module that provides anonymous hosting for dynamic methods.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="m" /> es un módulo que proporciona hospedaje anónimo para los métodos dinámicos.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="m" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;attributes&quot; /&gt; is a combination of flags other than &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Public&quot; /&gt; and &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Static&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;callingConvention&quot; /&gt; is not &lt;see cref=&quot;F:System.Reflection.CallingConventions.Standard&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="attributes" /> es una combinación de indicadores distinta de <see cref="F:System.Reflection.MethodAttributes.Public" /> y <see cref="F:System.Reflection.MethodAttributes.Static" />.  
+  
+o bien 
+ <paramref name="callingConvention" /> no es <see cref="F:System.Reflection.CallingConventions.Standard" />.  
+  
+o bien 
+ <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Reflection.MethodAttributes,System.Reflection.CallingConventions,System.Type,System.Type[],System.Type,System.Boolean)">
+      <summary vsli:raw="Creates a dynamic method, specifying the method name, attributes, calling convention, return type, parameter types, the type with which the dynamic method is logically associated, and whether just-in-time (JIT) visibility checks should be skipped for types and members accessed by the Microsoft intermediate language (MSIL) of the dynamic method.">Crea un método dinámico que especifica el nombre del método, los atributos, la convención de llamada, el tipo de valor de devolución, los tipos de parámetros, el tipo con el que está asociado lógicamente el método dinámico y si se deben omitir comprobaciones de visibilidad Just-In-Time (JIT) para los tipos y miembros a los que se tiene acceso mediante el lenguaje intermedio de Microsoft (MSIL) del método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="attributes" vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Reflection.MethodAttributes&quot; /&gt; values that specifies the attributes of the dynamic method. The only combination allowed is &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Public&quot; /&gt; and &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Static&quot; /&gt;.">Combinación bit a bit de valores <see cref="T:System.Reflection.MethodAttributes" /> que especifica los atributos del método dinámico. La única combinación permitida es <see cref="F:System.Reflection.MethodAttributes.Public" /> y <see cref="F:System.Reflection.MethodAttributes.Static" />.</param>
+      <param name="callingConvention" vsli:raw="The calling convention for the dynamic method. Must be &lt;see cref=&quot;F:System.Reflection.CallingConventions.Standard&quot; /&gt;.">La convención de llamada para el método dinámico. Debe ser <see cref="F:System.Reflection.CallingConventions.Standard" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="owner" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; with which the dynamic method is logically associated. The dynamic method has access to all members of the type.">
+        <see cref="T:System.Type" /> con el que está asociado lógicamente el método dinámico. El método dinámico tiene acceso a todos los miembros del tipo.</param>
+      <param name="skipVisibility" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to skip JIT visibility checks on types and members accessed by the MSIL of the dynamic method; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para omitir las comprobaciones de visibilidad JIT en tipos y miembros a los que obtiene acceso el MSIL del método dinámico; en otro caso, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is an interface, an array, an open generic type, or a type parameter of a generic type or method.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="owner" /> es una interfaz, una matriz, un tipo genérico abierto o un parámetro de tipo de un tipo o método genérico.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="owner" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;attributes&quot; /&gt; is a combination of flags other than &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Public&quot; /&gt; and &lt;see cref=&quot;F:System.Reflection.MethodAttributes.Static&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;callingConvention&quot; /&gt; is not &lt;see cref=&quot;F:System.Reflection.CallingConventions.Standard&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="attributes" /> es una combinación de indicadores distinta de <see cref="F:System.Reflection.MethodAttributes.Public" /> y <see cref="F:System.Reflection.MethodAttributes.Static" />.  
+  
+o bien 
+ <paramref name="callingConvention" /> no es <see cref="F:System.Reflection.CallingConventions.Standard" />.  
+  
+o bien 
+ <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[])">
+      <summary vsli:raw="Initializes an anonymously hosted dynamic method, specifying the method name, return type, and parameter types.">Inicializa un método dinámico hospedado de forma anónima, especificando el nombre del método, el tipo de valor devuelto y los tipos de parámetros.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Boolean)">
+      <summary vsli:raw="Initializes an anonymously hosted dynamic method, specifying the method name, return type, parameter types, and whether just-in-time (JIT) visibility checks should be skipped for types and members accessed by the Microsoft intermediate language (MSIL) of the dynamic method.">Inicializa un método dinámico hospedado de forma anónima, especificando el nombre del método, el tipo de valor devuelto, los tipos de parámetros y si se deben omitir comprobaciones de visibilidad Just-In-Time (JIT) para tipos y miembros a los que se tiene acceso por el lenguaje intermedio de Microsoft (MSIL) del método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="restrictedSkipVisibility" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to skip JIT visibility checks on types and members accessed by the MSIL of the dynamic method, with this restriction: the trust level of the assemblies that contain those types and members must be equal to or less than the trust level of the call stack that emits the dynamic method; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para omitir las comprobaciones de visibilidad de JIT en tipos y miembros a los que se tiene acceso por el MSIL del método dinámico, con esta restricción: el nivel de confianza de los ensamblados que contienen esos tipos y miembros debe ser igual o menor que el nivel de confianza de la pila de llamadas que emite el método dinámico; de lo contrario, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Reflection.Module)">
+      <summary vsli:raw="Creates a dynamic method that is global to a module, specifying the method name, return type, parameter types, and module.">Crea un método dinámico que es global para un módulo, especificando el nombre del método, el tipo de devolución, los tipos de parámetros y el módulo.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="m" vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Module&quot; /&gt; representing the module with which the dynamic method is to be logically associated.">
+        <see cref="T:System.Reflection.Module" /> que representa el módulo con el que se va a asociar de manera lógica al método dinámico.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is a module that provides anonymous hosting for dynamic methods.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="m" /> es un módulo que proporciona hospedaje anónimo para los métodos dinámicos.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="m" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Reflection.Module,System.Boolean)">
+      <summary vsli:raw="Creates a dynamic method that is global to a module, specifying the method name, return type, parameter types, module, and whether just-in-time (JIT) visibility checks should be skipped for types and members accessed by the Microsoft intermediate language (MSIL) of the dynamic method.">Crea un método dinámico que es global para un módulo, especificando el nombre del método, el tipo de valor devuelto, los tipos de parámetros, el módulo y si se deben omitir comprobaciones de visibilidad Just-In-Time (JIT) para tipos y miembros a los que se tiene acceso por el lenguaje intermedio de Microsoft (MSIL) del método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="m" vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Module&quot; /&gt; representing the module with which the dynamic method is to be logically associated.">
+        <see cref="T:System.Reflection.Module" /> que representa el módulo con el que se va a asociar de manera lógica al método dinámico.</param>
+      <param name="skipVisibility" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to skip JIT visibility checks on types and members accessed by the MSIL of the dynamic method.">
+        <see langword="true" /> para omitir las comprobaciones de visibilidad JIT en tipos y miembros a los que accede el MSIL del método dinámico.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is a module that provides anonymous hosting for dynamic methods.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="m" /> es un módulo que proporciona hospedaje anónimo para los métodos dinámicos.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;m&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="m" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Type)">
+      <summary vsli:raw="Creates a dynamic method, specifying the method name, return type, parameter types, and the type with which the dynamic method is logically associated.">Crea un método dinámico, especificando el nombre del método, tipo de valor devuelto, los tipos de parámetro y el tipo al que está asociado lógicamente el método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="owner" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; with which the dynamic method is logically associated. The dynamic method has access to all members of the type.">
+        <see cref="T:System.Type" /> con el que está asociado lógicamente el método dinámico. El método dinámico tiene acceso a todos los miembros del tipo.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is an interface, an array, an open generic type, or a type parameter of a generic type or method.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="owner" /> es una interfaz, una matriz, un tipo genérico abierto o un parámetro de tipo de un tipo o método genérico.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="owner" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;, or is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es <see langword="null" /> o es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.#ctor(System.String,System.Type,System.Type[],System.Type,System.Boolean)">
+      <summary vsli:raw="Creates a dynamic method, specifying the method name, return type, parameter types, the type with which the dynamic method is logically associated, and whether just-in-time (JIT) visibility checks should be skipped for types and members accessed by the Microsoft intermediate language (MSIL) of the dynamic method.">Crea un método dinámico que especifica el nombre del método, el tipo de valor de devolución, los tipos de parámetros, el tipo con el que está asociado lógicamente el método dinámico y si se deben omitir comprobaciones de visibilidad Just-In-Time (JIT) para los tipos y miembros a los que se tiene acceso mediante el lenguaje intermedio de Microsoft (MSIL) del método dinámico.</summary>
+      <param name="name" vsli:raw="The name of the dynamic method. This can be a zero-length string, but it cannot be &lt;see langword=&quot;null&quot; /&gt;.">Nombre del método dinámico. Esto puede ser una cadena de longitud cero, pero no puede ser <see langword="null" />.</param>
+      <param name="returnType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; object that specifies the return type of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no return type.">Un objeto <see cref="T:System.Type" /> que especifica el tipo de valor devuelto del método dinámico o <see langword="null" /> si el método no tiene ningún tipo de valor devuelto.</param>
+      <param name="parameterTypes" vsli:raw="An array of &lt;see cref=&quot;T:System.Type&quot; /&gt; objects specifying the types of the parameters of the dynamic method, or &lt;see langword=&quot;null&quot; /&gt; if the method has no parameters.">Matriz de objetos <see cref="T:System.Type" /> que especifican los tipos de los parámetros del método dinámico, o <see langword="null" /> si el método no tiene parámetros.</param>
+      <param name="owner" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; with which the dynamic method is logically associated. The dynamic method has access to all members of the type.">
+        <see cref="T:System.Type" /> con el que está asociado lógicamente el método dinámico. El método dinámico tiene acceso a todos los miembros del tipo.</param>
+      <param name="skipVisibility" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to skip JIT visibility checks on types and members accessed by the MSIL of the dynamic method; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para omitir las comprobaciones de visibilidad JIT en tipos y miembros a los que obtiene acceso el MSIL del método dinámico; en otro caso, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="An element of &lt;paramref name=&quot;parameterTypes&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;T:System.Void&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is an interface, an array, an open generic type, or a type parameter of a generic type or method.">Un elemento de <paramref name="parameterTypes" /> es <see langword="null" /> o <see cref="T:System.Void" />.  
+  
+o bien 
+ <paramref name="owner" /> es una interfaz, una matriz, un tipo genérico abierto o un parámetro de tipo de un tipo o método genérico.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;owner&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> es <see langword="null" />.  
+  
+o bien 
+ <paramref name="owner" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;returnType&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;, or is a type for which &lt;see cref=&quot;P:System.Type.IsByRef&quot; /&gt; returns &lt;see langword=&quot;true&quot; /&gt;.">
+        <paramref name="returnType" /> es <see langword="null" /> o es un tipo para el que <see cref="P:System.Type.IsByRef" /> devuelve <see langword="true" />.</exception>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.CreateDelegate(System.Type)">
+      <summary vsli:raw="Completes the dynamic method and creates a delegate that can be used to execute it.">Finaliza el método dinámico y crea a un delegado que se puede usar para ejecutarlo.</summary>
+      <param name="delegateType" vsli:raw="A delegate type whose signature matches that of the dynamic method.">Tipo de delegado cuya firma coincide con la del método dinámico.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The dynamic method has no method body.">El método dinámico no tiene ningún cuerpo de método.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;delegateType&quot; /&gt; has the wrong number of parameters or the wrong parameter types.">
+        <paramref name="delegateType" /> tiene el número incorrecto de parámetros o los tipos de parámetro incorrectos.</exception>
+      <returns vsli:raw="A delegate of the specified type, which can be used to execute the dynamic method.">Un delegado del tipo especificado, que se puede usar para ejecutar el método dinámico.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.CreateDelegate(System.Type,System.Object)">
+      <summary vsli:raw="Completes the dynamic method and creates a delegate that can be used to execute it, specifying the delegate type and an object the delegate is bound to.">Completa el método dinámico y crea un delegado que puede utilizarse para ejecutarlo, especificando el tipo de delegado y un objeto que se enlaza al delegado.</summary>
+      <param name="delegateType" vsli:raw="A delegate type whose signature matches that of the dynamic method, minus the first parameter.">Tipo de delegado cuya firma coincide con la del método dinámico menos el primer parámetro.</param>
+      <param name="target" vsli:raw="An object the delegate is bound to. Must be of the same type as the first parameter of the dynamic method.">Objeto al que está enlazado el delegado. Debe ser del mismo tipo que el primer parámetro del método dinámico.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The dynamic method has no method body.">El método dinámico no tiene ningún cuerpo de método.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;target&quot; /&gt; is not the same type as the first parameter of the dynamic method, and is not assignable to that type.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;delegateType&quot; /&gt; has the wrong number of parameters or the wrong parameter types.">
+        <paramref name="target" /> no es del mismo tipo que el primer parámetro del método dinámico y no se puede asignar a ese tipo.  
+  
+o bien 
+ <paramref name="delegateType" /> tiene el número incorrecto de parámetros o los tipos de parámetro incorrectos.</exception>
+      <returns vsli:raw="A delegate of the specified type, which can be used to execute the dynamic method with the specified target object.">Delegado del tipo especificado, que se puede usar para ejecutar el método dinámico con el objeto de destino especificado.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.DefineParameter(System.Int32,System.Reflection.ParameterAttributes,System.String)">
+      <summary vsli:raw="Defines a parameter of the dynamic method.">Define un parámetro del método dinámico.</summary>
+      <param name="position" vsli:raw="The position of the parameter in the parameter list. Parameters are indexed beginning with the number 1 for the first parameter.">Posición del parámetro en la lista de parámetros. Los parámetros se indizan empezando por el número 1 para el primer parámetro.</param>
+      <param name="attributes" vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Reflection.ParameterAttributes&quot; /&gt; values that specifies the attributes of the parameter.">Combinación bit a bit de valores <see cref="T:System.Reflection.ParameterAttributes" /> que especifica los atributos del parámetro.</param>
+      <param name="parameterName" vsli:raw="The name of the parameter. The name can be a zero-length string.">El nombre del parámetro. El nombre puede ser una cadena de longitud cero.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The method has no parameters.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;position&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;position&quot; /&gt; is greater than the number of the method's parameters.">El método no tiene parámetros.  
+  
+o bien 
+ <paramref name="position" /> es menor que 0.  
+  
+o bien 
+ <paramref name="position" /> es mayor que el número de los parámetros del método.</exception>
+      <returns vsli:raw="Always returns &lt;see langword=&quot;null&quot; /&gt;.">Siempre devuelve <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetBaseDefinition">
+      <summary vsli:raw="Returns the base implementation for the method.">Devuelve la implementación para el método.</summary>
+      <returns vsli:raw="The base implementation of the method.">La implementación base del método.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetCustomAttributes(System.Boolean)">
+      <summary vsli:raw="Returns all the custom attributes defined for the method.">Devuelve todos los atributos personalizados definidos para el método.</summary>
+      <param name="inherit" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to search the method's inheritance chain to find the custom attributes; &lt;see langword=&quot;false&quot; /&gt; to check only the current method.">
+        <see langword="true" /> para buscar en la cadena de herencia del método los atributos personalizados; <see langword="false" /> para comprobar solo el método actual.</param>
+      <returns vsli:raw="An array of objects representing all the custom attributes of the method.">Matriz de objetos que representa todos los atributos personalizados del método.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetCustomAttributes(System.Type,System.Boolean)">
+      <summary vsli:raw="Returns the custom attributes of the specified type that have been applied to the method.">Devuelve los atributos personalizados del tipo especificado que se han aplicado al método.</summary>
+      <param name="attributeType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; representing the type of custom attribute to return.">
+        <see cref="T:System.Type" /> que representa el tipo de atributo personalizado que se va a devolver.</param>
+      <param name="inherit" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to search the method's inheritance chain to find the custom attributes; &lt;see langword=&quot;false&quot; /&gt; to check only the current method.">
+        <see langword="true" /> para buscar en la cadena de herencia del método los atributos personalizados; <see langword="false" /> para comprobar solo el método actual.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;attributeType&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="attributeType" /> es <see langword="null" />.</exception>
+      <returns vsli:raw="An array of objects representing the attributes of the method that are of type &lt;paramref name=&quot;attributeType&quot; /&gt; or derive from type &lt;paramref name=&quot;attributeType&quot; /&gt;.">Matriz de objetos que representan los atributos que son de tipo <paramref name="attributeType" /> o derivan del tipo <paramref name="attributeType" />.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetDynamicILInfo">
+      <summary vsli:raw="Returns a &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object that can be used to generate a method body from metadata tokens, scopes, and Microsoft intermediate language (MSIL) streams.">Devuelve un objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> que se puede usar para generar un cuerpo de método a partir de los tokens de metadatos, los ámbitos y las secuencias del lenguaje intermedio de Microsoft (MSIL).</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Emit.DynamicILInfo&quot; /&gt; object that can be used to generate a method body from metadata tokens, scopes, and MSIL streams.">Objeto <see cref="T:System.Reflection.Emit.DynamicILInfo" /> que se puede usar para generar un cuerpo de método a partir de los tokens de metadatos, los ámbitos y las secuencias de MSIL.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetILGenerator">
+      <summary vsli:raw="Returns a Microsoft intermediate language (MSIL) generator for the method with a default MSIL stream size of 64 bytes.">Devuelve un generador de Lenguaje Intermedio de Microsoft (MSIL) para el método con un tamaño de secuencia de MSIL predeterminado de 64 bytes.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Reflection.Emit.ILGenerator&quot; /&gt; object for the method.">Objeto <see cref="T:System.Reflection.Emit.ILGenerator" /> para el método.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetILGenerator(System.Int32)">
+      <summary vsli:raw="Returns a Microsoft intermediate language (MSIL) generator for the method with the specified MSIL stream size.">Devuelve un generador de Lenguaje intermedio (MSIL) de Microsoft para el método con el tamaño de la secuencia MSIL especificado.</summary>
+      <param name="streamSize" vsli:raw="The size of the MSIL stream, in bytes.">El tamaño de la secuencia MSIL, en bytes.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Reflection.Emit.ILGenerator&quot; /&gt; object for the method, with the specified MSIL stream size.">Objeto <see cref="T:System.Reflection.Emit.ILGenerator" /> para el método con el tamaño de la secuencia MSIL especificado.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetMethodImplementationFlags">
+      <summary vsli:raw="Returns the implementation flags for the method.">Devuelve las marcas de implementación para el método.</summary>
+      <returns vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Reflection.MethodImplAttributes&quot; /&gt; values representing the implementation flags for the method.">Una combinación bit a bit de los valores <see cref="T:System.Reflection.MethodImplAttributes" /> que representan las marcas de implementación del método.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.GetParameters">
+      <summary vsli:raw="Returns the parameters of the dynamic method.">Devuelve los parámetros del método dinámico.</summary>
+      <returns vsli:raw="An array of &lt;see cref=&quot;T:System.Reflection.ParameterInfo&quot; /&gt; objects that represent the parameters of the dynamic method.">Matriz de objetos <see cref="T:System.Reflection.ParameterInfo" /> que representan los parámetros del método dinámico.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.Invoke(System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)">
+      <summary vsli:raw="Invokes the dynamic method using the specified parameters, under the constraints of the specified binder, with the specified culture information.">Invoca el método dinámico usando los parámetros especificados, bajo las restricciones del enlazador especificado, con la información de la referencia cultural especificada.</summary>
+      <param name="obj" vsli:raw="This parameter is ignored for dynamic methods, because they are static. Specify &lt;see langword=&quot;null&quot; /&gt;.">Este parámetro se omite para los métodos dinámicos porque son estáticos. Especifique <see langword="null" />.</param>
+      <param name="invokeAttr" vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Reflection.BindingFlags&quot; /&gt; values.">Combinación bit a bit de valores <see cref="T:System.Reflection.BindingFlags" />.</param>
+      <param name="binder" vsli:raw="A &lt;see cref=&quot;T:System.Reflection.Binder&quot; /&gt; object that enables the binding, coercion of argument types, invocation of members, and retrieval of &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; objects through reflection. If &lt;paramref name=&quot;binder&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;, the default binder is used. For more details, see &lt;see cref=&quot;T:System.Reflection.Binder&quot; /&gt;.">Objeto <see cref="T:System.Reflection.Binder" /> que permite el enlace, la conversión de tipos de argumentos, la llamada de miembros y la recuperación de objetos <see cref="T:System.Reflection.MemberInfo" /> mediante reflexión. Si <paramref name="binder" /> es <see langword="null" />, se usa el enlazador predeterminado. Para obtener más información, vea <see cref="T:System.Reflection.Binder" />.</param>
+      <param name="parameters" vsli:raw="An argument list. This is an array of arguments with the same number, order, and type as the parameters of the method to be invoked. If there are no parameters this parameter should be &lt;see langword=&quot;null&quot; /&gt;.">Lista de argumentos. Esta es una matriz de argumentos con el mismo número, orden y tipo que los parámetros del método al que se va a invocar. Si no hay parámetros, este parámetro debe ser <see langword="null" />.</param>
+      <param name="culture" vsli:raw="An instance of &lt;see cref=&quot;T:System.Globalization.CultureInfo&quot; /&gt; used to govern the coercion of types. If this is &lt;see langword=&quot;null&quot; /&gt;, the &lt;see cref=&quot;T:System.Globalization.CultureInfo&quot; /&gt; for the current thread is used. For example, this information is needed to correctly convert a &lt;see cref=&quot;T:System.String&quot; /&gt; that represents 1000 to a &lt;see cref=&quot;T:System.Double&quot; /&gt; value, because 1000 is represented differently by different cultures.">Instancia de <see cref="T:System.Globalization.CultureInfo" /> usada para regir la conversión de tipos. Si es <see langword="null" />, se utiliza <see cref="T:System.Globalization.CultureInfo" /> para el subproceso actual. Por ejemplo, esta información es necesaria para convertir un tipo <see cref="T:System.String" /> que representa 1000 en un valor <see cref="T:System.Double" />, porque 1000 se representa de maneras diferentes según la referencia cultural.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;see cref=&quot;F:System.Reflection.CallingConventions.VarArgs&quot; /&gt; calling convention is not supported.">No se admite la convención de llamada <see cref="F:System.Reflection.CallingConventions.VarArgs" />.</exception>
+      <exception cref="T:System.Reflection.TargetParameterCountException" vsli:raw="The number of elements in &lt;paramref name=&quot;parameters&quot; /&gt; does not match the number of parameters in the dynamic method.">El número de parámetros de <paramref name="parameters" /> no coincide con el número de parámetros del método dinámico.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The type of one or more elements of &lt;paramref name=&quot;parameters&quot; /&gt; does not match the type of the corresponding parameter of the dynamic method.">El tipo de uno o varios elementos de <paramref name="parameters" /> no coincide con el tipo del parámetro correspondiente del método dinámico.</exception>
+      <exception cref="T:System.Reflection.TargetInvocationException" vsli:raw="The dynamic method is associated with a module, is not anonymously hosted, and was constructed with &lt;paramref name=&quot;skipVisibility&quot; /&gt; set to &lt;see langword=&quot;false&quot; /&gt;, but the dynamic method accesses members that are not &lt;see langword=&quot;public&quot; /&gt; or &lt;see langword=&quot;internal&quot; /&gt; (&lt;see langword=&quot;Friend&quot; /&gt; in Visual Basic).  &#xA;  &#xA; -or-  &#xA;  &#xA; The dynamic method is anonymously hosted and was constructed with &lt;paramref name=&quot;skipVisibility&quot; /&gt; set to &lt;see langword=&quot;false&quot; /&gt;, but it accesses members that are not &lt;see langword=&quot;public&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; The dynamic method contains unverifiable code. See the &quot;Verification&quot; section in Remarks for &lt;see cref=&quot;T:System.Reflection.Emit.DynamicMethod&quot; /&gt;.">El método dinámico está asociado a un módulo, no está hospedado de forma anónima y se construyó con <paramref name="skipVisibility" /> establecido en <see langword="false" />, pero el método dinámico tiene acceso a miembros que no son <see langword="public" /> o <see langword="internal" /> (<see langword="Friend" /> en Visual Basic).  
+  
+o bien 
+El método dinámico se hospeda de forma anónima y se construyó con <paramref name="skipVisibility" /> establecido en <see langword="false" />, pero tiene acceso a miembros que no son <see langword="public" />.  
+  
+o bien 
+El método dinámico contiene código no comprobable. Vea la sección "Comprobación" en Comentarios para <see cref="T:System.Reflection.Emit.DynamicMethod" />.</exception>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Object&quot; /&gt; containing the return value of the invoked method.">
+        <see cref="T:System.Object" /> que contiene el valor devuelto por el método invocado.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.IsDefined(System.Type,System.Boolean)">
+      <summary vsli:raw="Indicates whether the specified custom attribute type is defined.">Indica si se ha definido el tipo de atributo personalizado especificado.</summary>
+      <param name="attributeType" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; representing the type of custom attribute to search for.">Un <see cref="T:System.Type" /> que representa el tipo de atributo personalizado que se va a buscar.</param>
+      <param name="inherit" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to search the method's inheritance chain to find the custom attributes; &lt;see langword=&quot;false&quot; /&gt; to check only the current method.">
+        <see langword="true" /> para buscar en la cadena de herencia del método los atributos personalizados; <see langword="false" /> para comprobar solo el método actual.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the specified custom attribute type is defined; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se define el tipo de atributo personalizado especificado; si no, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Reflection.Emit.DynamicMethod.ToString">
+      <summary vsli:raw="Returns the signature of the method, represented as a string.">Devuelve la firma del método, representada como una cadena.</summary>
+      <returns vsli:raw="A string representing the method signature.">Cadena que representa la firma del método.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Attributes">
+      <summary vsli:raw="Gets the attributes specified when the dynamic method was created.">Obtiene los atributos especificados cuando se creó el método dinámico.</summary>
+      <returns vsli:raw="A bitwise combination of the &lt;see cref=&quot;T:System.Reflection.MethodAttributes&quot; /&gt; values representing the attributes for the method.">Una combinación bit a bit de los valores <see cref="T:System.Reflection.MethodAttributes" /> que representan los atributos del método.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.CallingConvention">
+      <summary vsli:raw="Gets the calling convention specified when the dynamic method was created.">Obtiene la convención de llamada especificada cuando se creó el método dinámico.</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Reflection.CallingConventions&quot; /&gt; values that indicates the calling convention of the method.">Uno de los valores de <see cref="T:System.Reflection.CallingConventions" /> que indica la convención de llamada del método.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.DeclaringType">
+      <summary vsli:raw="Gets the type that declares the method, which is always &lt;see langword=&quot;null&quot; /&gt; for dynamic methods.">Obtiene el tipo que declara el método, que es siempre <see langword="null" /> para los métodos dinámicos.</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;null&quot; /&gt;.">Siempre es <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.InitLocals">
+      <summary vsli:raw="Gets or sets a value indicating whether the local variables in the method are zero-initialized.">Obtiene o establece un valor que indica si las variables locales del método se inicializan a cero.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the local variables in the method are zero-initialized; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;true&quot; /&gt;.">
+        <see langword="true" /> si las variables locales del método se inicializan a cero; de lo contrario, <see langword="false" />. De manera predeterminada, es <see langword="true" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecurityCritical">
+      <summary vsli:raw="Gets a value that indicates whether the current dynamic method is security-critical or security-safe-critical, and therefore can perform critical operations.">Obtiene un valor que indica si el método dinámico actual es crítico para la seguridad o crítico para la seguridad y disponible desde código transparente y, por tanto, puede realizar operaciones críticas.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The dynamic method doesn't have a method body.">El método dinámico no tiene un cuerpo de método.</exception>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the current dynamic method is security-critical or security-safe-critical; &lt;see langword=&quot;false&quot; /&gt; if it is transparent.">
+        <see langword="true" /> si el método dinámico actual es crítico para la seguridad o crítico para la seguridad y disponible desde código transparente; <see langword="false" /> si es transparente.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecuritySafeCritical">
+      <summary vsli:raw="Gets a value that indicates whether the current dynamic method is security-safe-critical at the current trust level; that is, whether it can perform critical operations and can be accessed by transparent code.">Obtiene un valor que indica si el método dinámico actual es crítico para la seguridad y disponible desde código transparente en el nivel de confianza actual; es decir, si puede realizar operaciones críticas y está disponible desde código transparente.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The dynamic method doesn't have a method body.">El método dinámico no tiene un cuerpo de método.</exception>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the dynamic method is security-safe-critical at the current trust level; &lt;see langword=&quot;false&quot; /&gt; if it is security-critical or transparent.">
+        <see langword="true" /> si el método dinámico es crítico para la seguridad y disponible desde código transparente en el nivel de confianza actual; <see langword="false" /> si es crítico para la seguridad o transparente.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.IsSecurityTransparent">
+      <summary vsli:raw="Gets a value that indicates whether the current dynamic method is transparent at the current trust level, and therefore cannot perform critical operations.">Obtiene un valor que indica si el método dinámico actual es transparente en el nivel de confianza actual y, por tanto, no puede realizar operaciones críticas.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The dynamic method doesn't have a method body.">El método dinámico no tiene un cuerpo de método.</exception>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the dynamic method is security-transparent at the current trust level; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el método dinámico es transparente en seguridad en el nivel de confianza actual; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.MethodHandle">
+      <summary vsli:raw="Not supported for dynamic methods.">No se admite para los métodos dinámicos.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="Not allowed for dynamic methods.">No se permite para los métodos dinámicos.</exception>
+      <returns vsli:raw="Not supported for dynamic methods.">No se admite para los métodos dinámicos.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Module">
+      <summary vsli:raw="Gets the module with which the dynamic method is logically associated.">Obtiene el módulo con el que está asociado lógicamente el método dinámico.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Reflection.Module&quot; /&gt; with which the current dynamic method is associated.">Elemento <see cref="T:System.Reflection.Module" /> con el que está asociado el método dinámico actual.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.Name">
+      <summary vsli:raw="Gets the name of the dynamic method.">Obtiene el nombre del método dinámico.</summary>
+      <returns vsli:raw="The simple name of the method.">Nombre simple del método.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReflectedType">
+      <summary vsli:raw="Gets the class that was used in reflection to obtain the method.">Obtiene la clase que se usó en la reflexión para obtener el método.</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;null&quot; /&gt;.">Siempre es <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnParameter">
+      <summary vsli:raw="Gets the return parameter of the dynamic method.">Obtiene el parámetro devuelto del método dinámico.</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;null&quot; /&gt;.">Siempre es <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnType">
+      <summary vsli:raw="Gets the type of return value for the dynamic method.">Obtiene el tipo de valor devuelto para el método dinámico.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; representing the type of the return value of the current method; &lt;see cref=&quot;T:System.Void&quot; /&gt; if the method has no return type.">
+        <see cref="T:System.Type" /> que representa el tipo del valor devuelto del método actual; <see cref="T:System.Void" /> si el método no tiene ningún tipo de valor devuelto.</returns>
+    </member>
+    <member name="P:System.Reflection.Emit.DynamicMethod.ReturnTypeCustomAttributes">
+      <summary vsli:raw="Gets the custom attributes of the return type for the dynamic method.">Obtiene los atributos personalizados del tipo de valor devuelto para el método dinámico.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Reflection.ICustomAttributeProvider&quot; /&gt; representing the custom attributes of the return type for the dynamic method.">
+        <see cref="T:System.Reflection.ICustomAttributeProvider" /> que representa los atributos personalizados del tipo de valor devuelto para el método dinámico.</returns>
+    </member>
+  </members>
+</doc>

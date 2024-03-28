@@ -1,0 +1,1164 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Diagnostics.Process</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeProcessHandle">
+      <summary vsli:raw="Provides a managed wrapper for a process handle.">プロセス ハンドルのためのマネージド ラッパーを提供します。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeProcessHandle.#ctor(System.IntPtr,System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafeProcessHandle&quot; /&gt; class from the specified handle, indicating whether to release the handle during the finalization phase.">最終処理中にハンドルを解放するかどうかを示すために、<see cref="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" /> クラスの新しいインスタンスを指定のハンドルから初期化します。</summary>
+      <param name="existingHandle" vsli:raw="The handle to be wrapped.">ラップされるハンドル。</param>
+      <param name="ownsHandle" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to reliably let &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafeProcessHandle&quot; /&gt; release the handle during the finalization phase; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">終了処理中 <see langword="true" /> にハンドルを確実に解放させる場合は <see cref="T:Microsoft.Win32.SafeHandles.SafeProcessHandle" />。それ以外の場合は <see langword="false" />。</param>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeProcessHandle.IsInvalid" />
+    <member name="T:System.Diagnostics.DataReceivedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Diagnostics.Process.OutputDataReceived&quot; /&gt; and &lt;see cref=&quot;E:System.Diagnostics.Process.ErrorDataReceived&quot; /&gt; events.">
+        <see cref="E:System.Diagnostics.Process.OutputDataReceived" /> イベントおよび <see cref="E:System.Diagnostics.Process.ErrorDataReceived" /> イベントのデータを提供します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.DataReceivedEventArgs.Data">
+      <summary vsli:raw="Gets the line of characters that was written to a redirected &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; output stream.">リダイレクトされた <see cref="T:System.Diagnostics.Process" /> 出力ストリームに書き込まれた文字の行を取得します。</summary>
+      <returns vsli:raw="The line that was written by an associated &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; to its redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; or &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream.">関連する <see cref="T:System.Diagnostics.Process" /> によって、リダイレクトされた <see cref="P:System.Diagnostics.Process.StandardOutput" /> または <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームに書き込まれた行。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DataReceivedEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.Diagnostics.Process.OutputDataReceived&quot; /&gt; event or &lt;see cref=&quot;E:System.Diagnostics.Process.ErrorDataReceived&quot; /&gt; event of a &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt;.">
+        <see cref="E:System.Diagnostics.Process.OutputDataReceived" /> の <see cref="E:System.Diagnostics.Process.ErrorDataReceived" /> イベントまたは <see cref="T:System.Diagnostics.Process" /> イベントを処理するメソッドを表します。</summary>
+      <param name="sender" vsli:raw="The source of the event.">イベントのソース。</param>
+      <param name="e" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.DataReceivedEventArgs&quot; /&gt; that contains the event data.">イベント データを格納している <see cref="T:System.Diagnostics.DataReceivedEventArgs" />。</param>
+    </member>
+    <member name="T:System.Diagnostics.MonitoringDescriptionAttribute">
+      <summary vsli:raw="Specifies a description for a property or event.">プロパティまたはイベントの説明文を指定します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.MonitoringDescriptionAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.MonitoringDescriptionAttribute&quot; /&gt; class, using the specified description.">説明を指定して、<see cref="T:System.Diagnostics.MonitoringDescriptionAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="description" vsli:raw="The application-defined description text.">アプリケーション定義の説明テキスト。</param>
+    </member>
+    <member name="P:System.Diagnostics.MonitoringDescriptionAttribute.Description">
+      <summary vsli:raw="Gets description text associated with the item monitored.">監視する項目に関連付けられている説明テキストを取得します。</summary>
+      <returns vsli:raw="An application-defined description.">アプリケーション定義の説明。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Process">
+      <summary vsli:raw="Provides access to local and remote processes and enables you to start and stop local system processes.">ローカル プロセスやリモート プロセスへのアクセスを提供し、ローカル システム プロセスの起動と停止ができるようにします。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Process.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Process" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.BasePriority">
+      <summary vsli:raw="Gets the base priority of the associated process.">関連付けられたプロセスの基本優先順位を取得します。</summary>
+      <returns vsli:raw="The base priority, which is computed from the &lt;see cref=&quot;P:System.Diagnostics.Process.PriorityClass&quot; /&gt; of the associated process.">関連付けられたプロセスの <see cref="P:System.Diagnostics.Process.PriorityClass" /> から算出される基本優先順位。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process has exited.&#xA;&#xA; -or-&#xA;&#xA; The process has not started, so there is no process ID.">プロセスが終了しています。
+
+または -
+
+プロセスが開始されていないため、プロセス ID はありません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.BeginErrorReadLine">
+      <summary vsli:raw="Begins asynchronous read operations on the redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream of the application.">アプリケーションのリダイレクトされた <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームで、非同期読み取り操作を開始します。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardError&quot; /&gt; property is &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA; An asynchronous read operation is already in progress on the &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream.&#xA;&#xA;-or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream has been used by a synchronous read operation.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> プロパティが <see langword="false" /> です。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardError" /> ストリームで非同期読み取り操作は既に実行されています。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardError" /> ストリームは、同期読み取り操作によって使用されています。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.BeginOutputReadLine">
+      <summary vsli:raw="Begins asynchronous read operations on the redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream of the application.">アプリケーションのリダイレクトされた <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームで、非同期読み取り操作を開始します。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput&quot; /&gt; property is &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA; An asynchronous read operation is already in progress on the &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream.&#xA;&#xA;-or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream has been used by a synchronous read operation.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> プロパティが <see langword="false" /> です。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームで非同期読み取り操作は既に実行されています。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームは、同期読み取り操作によって使用されています。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.CancelErrorRead">
+      <summary vsli:raw="Cancels the asynchronous read operation on the redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream of an application.">アプリケーションのリダイレクトされた <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームで、非同期読み取り操作をキャンセルします。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream is not enabled for asynchronous read operations.">
+        <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームは、非同期読み取り操作では有効になっていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.CancelOutputRead">
+      <summary vsli:raw="Cancels the asynchronous read operation on the redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream of an application.">アプリケーションのリダイレクトされた <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームで、非同期読み取り操作をキャンセルします。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream is not enabled for asynchronous read operations.">
+        <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームは、非同期読み取り操作では有効になっていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Close">
+      <summary vsli:raw="Frees all the resources that are associated with this component.">このコンポーネントに関連付けられているすべてのリソースを解放します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Process.CloseMainWindow">
+      <summary vsli:raw="Closes a process that has a user interface by sending a close message to its main window.">メイン ウィンドウにクローズ メッセージを送信して、ユーザー インターフェイスがあるプロセスを終了します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the close message was successfully sent; &lt;see langword=&quot;false&quot; /&gt; if the associated process does not have a main window or if the main window is disabled (for example if a modal dialog is being shown).">クローズ メッセージが正常に送信された場合は <see langword="true" />。関連付けられたプロセスにメイン ウィンドウがない場合、またはメイン ウィンドウが使用できない場合 (モーダル ダイアログ ボックスが表示されているときなど) は <see langword="false" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process has already exited.&#xA;&#xA; -or-&#xA;&#xA; No process is associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">プロセスは既に終了しています。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Dispose(System.Boolean)">
+      <summary vsli:raw="Release all resources used by this process.">このプロセスによって使用されているすべてのリソースを解放します。</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">マネージド リソースとアンマネージド リソースの両方を解放する場合は <see langword="true" />。アンマネージド リソースだけを解放する場合は <see langword="false" />。</param>
+    </member>
+    <member name="P:System.Diagnostics.Process.EnableRaisingEvents">
+      <summary vsli:raw="Gets or sets whether the &lt;see cref=&quot;E:System.Diagnostics.Process.Exited&quot; /&gt; event should be raised when the process terminates.">プロセスが終了したときに、<see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させるかどうかを取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;E:System.Diagnostics.Process.Exited&quot; /&gt; event should be raised when the associated process is terminated (through either an exit or a call to &lt;see cref=&quot;M:System.Diagnostics.Process.Kill&quot; /&gt;); otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;. Note that even if the value of &lt;see cref=&quot;P:System.Diagnostics.Process.EnableRaisingEvents&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt;, the &lt;see cref=&quot;E:System.Diagnostics.Process.Exited&quot; /&gt; event will be raised by the &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property accessor, if it determines that the process has exited.">正常終了または <see cref="M:System.Diagnostics.Process.Kill" /> の呼び出しによって関連付けられたプロセスが終了したときに <see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。 <see cref="E:System.Diagnostics.Process.Exited" /> イベントは、ユーザーが <see cref="P:System.Diagnostics.Process.HasExited" /> チェックを実行する前にプロセスが終了したときに <see cref="P:System.Diagnostics.Process.EnableRaisingEvents" /> の値が <see langword="false" /> 場合にも発生します。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.EnterDebugMode">
+      <summary vsli:raw="Puts a &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component in state to interact with operating system processes that run in a special mode by enabling the native property &lt;see langword=&quot;SeDebugPrivilege&quot; /&gt; on the current thread.">現在のスレッドのネイティブ プロパティ <see langword="SeDebugPrivilege" /> を有効にすることにより、<see cref="T:System.Diagnostics.Process" /> コンポーネントを、特殊なモードで実行されているオペレーティング システム プロセスと対話する状態にします。</summary>
+    </member>
+    <member name="E:System.Diagnostics.Process.ErrorDataReceived">
+      <summary vsli:raw="Occurs when an application writes to its redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream.">アプリケーションがリダイレクトされた <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームに書き込む場合に発生します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.ExitCode">
+      <summary vsli:raw="Gets the value that the associated process specified when it terminated.">関連付けられたプロセスが終了したときにプロセスによって指定された値を取得します。</summary>
+      <returns vsli:raw="The code that the associated process specified when it terminated.">関連付けられたプロセスが終了したときにプロセスによって指定されたコード。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process has not exited.&#xA;&#xA; -or-&#xA;&#xA; The process &lt;see cref=&quot;P:System.Diagnostics.Process.Handle&quot; /&gt; is not valid.">プロセスは終了していません。
+
+または -
+プロセス <see cref="P:System.Diagnostics.Process.Handle" /> は終了していません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.ExitCode&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.ExitCode" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="E:System.Diagnostics.Process.Exited">
+      <summary vsli:raw="Occurs when a process exits.">プロセスが終了したときに発生します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.ExitTime">
+      <summary vsli:raw="Gets the time that the associated process exited.">関連付けられたプロセスが終了した時刻を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.DateTime&quot; /&gt; that indicates when the associated process was terminated.">関連付けられたプロセスが終了した時刻を示す <see cref="T:System.DateTime" />。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.ExitTime&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.ExitTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetCurrentProcess">
+      <summary vsli:raw="Gets a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component and associates it with the currently active process.">新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントを取得し、現在アクティブなプロセスに関連付けます。</summary>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component associated with the process resource that is running the calling application.">呼び出し元のアプリケーションを実行しているプロセス リソースに関連付けられた新しい <see cref="T:System.Diagnostics.Process" /> コンポーネント。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32)">
+      <summary vsli:raw="Returns a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component, given the identifier of a process on the local computer.">ローカル コンピューター上のプロセス ID が指定された新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントを返します。</summary>
+      <param name="processId" vsli:raw="The system-unique identifier of a process resource.">システムで一意なプロセス リソースの識別子。</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component that is associated with the local process resource identified by the &lt;paramref name=&quot;processId&quot; /&gt; parameter.">
+        <paramref name="processId" /> パラメーターで識別されるローカル プロセス リソースに関連付けられた <see cref="T:System.Diagnostics.Process" /> コンポーネント。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The process specified by the &lt;paramref name=&quot;processId&quot; /&gt; parameter is not running. The identifier might be expired.">
+        <paramref name="processId" /> パラメーターで指定されたプロセスは実行されていません。 識別子の有効期限が切れている可能性があります。</exception>
+      <exception cref="T:System.InvalidOperationException">このオブジェクトによってプロセスは開始されませんでした。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcessById(System.Int32,System.String)">
+      <summary vsli:raw="Returns a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component, given a process identifier and the name of a computer on the network.">プロセス ID とネットワーク上のコンピューターの名前が指定された新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントを返します。</summary>
+      <param name="processId" vsli:raw="The system-unique identifier of a process resource.">システムで一意なプロセス リソースの識別子。</param>
+      <param name="machineName" vsli:raw="The name of a computer on the network.">ネットワーク上のコンピューターの名前。</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component that is associated with a remote process resource identified by the &lt;paramref name=&quot;processId&quot; /&gt; parameter.">
+        <paramref name="processId" /> パラメーターで識別されるリモート プロセス リソースに関連付けられた <see cref="T:System.Diagnostics.Process" /> コンポーネント。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The process specified by the &lt;paramref name=&quot;processId&quot; /&gt; parameter is not running. The identifier might be expired.&#xA;&#xA; -or-&#xA;&#xA; The &lt;paramref name=&quot;machineName&quot; /&gt; parameter syntax is invalid. The name might have length zero (0).">
+        <paramref name="processId" /> パラメーターで指定されたプロセスは実行されていません。 識別子の有効期限が切れている可能性があります。
+
+または -
+<paramref name="machineName" /> パラメーターの構文が正しくありません。 名前の長さがゼロ (0) の可能性があります。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;machineName&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="machineName" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.InvalidOperationException">このオブジェクトによってプロセスは開始されませんでした。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcesses">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component for each process resource on the local computer.">ローカル コンピューター上の各プロセス リソースごとに新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントを作成します。</summary>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that represents all the process resources running on the local computer.">ローカル コンピューター上で実行されているすべてのプロセス リソースを表す <see cref="T:System.Diagnostics.Process" /> 型の配列。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcesses(System.String)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component for each process resource on the specified computer.">指定したコンピューター上の各プロセス リソースごとに新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントを作成します。</summary>
+      <param name="machineName" vsli:raw="The computer from which to read the list of processes.">プロセスの一覧を読み取る対象のコンピューター。</param>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that represents all the process resources running on the specified computer.">指定したコンピューター上で実行されているすべてのプロセス リソースを表す <see cref="T:System.Diagnostics.Process" /> 型の配列。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;machineName&quot; /&gt; parameter syntax is invalid. It might have length zero (0).">
+        <paramref name="machineName" /> パラメーターの構文が正しくありません。 長さがゼロ (0) の可能性があります。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;machineName&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="machineName" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="The operating system platform does not support this operation on remote computers.">リモート コンピューターに対してこの操作を実行することは、オペレーティング システム プラットフォームでサポートされていません。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.">プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="A problem occurred accessing an underlying system API.">基になるシステム API にアクセスしようとして、問題が発生しました。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String)">
+      <summary vsli:raw="Creates an array of new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; components and associates them with all the process resources on the local computer that share the specified process name.">新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントの配列を作成し、指定したプロセス名を共有するローカル コンピューター上のすべてのプロセス リソースに関連付けます。</summary>
+      <param name="processName" vsli:raw="The friendly name of the process.">プロセスのフレンドリ名。</param>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that represents the process resources running the specified application or file.">指定したアプリケーションまたはファイルを実行しているプロセス リソースを表す <see cref="T:System.Diagnostics.Process" /> 型の配列。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.">プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.GetProcessesByName(System.String,System.String)">
+      <summary vsli:raw="Creates an array of new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; components and associates them with all the process resources on a remote computer that share the specified process name.">新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントの配列を作成し、指定したプロセス名を共有するリモート コンピューター上のすべてのプロセス リソースに関連付けます。</summary>
+      <param name="processName" vsli:raw="The friendly name of the process.">プロセスのフレンドリ名。</param>
+      <param name="machineName" vsli:raw="The name of a computer on the network.">ネットワーク上のコンピューターの名前。</param>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that represents the process resources running the specified application or file.">指定したアプリケーションまたはファイルを実行しているプロセス リソースを表す <see cref="T:System.Diagnostics.Process" /> 型の配列。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;machineName&quot; /&gt; parameter syntax is invalid. It might have length zero (0).">
+        <paramref name="machineName" /> パラメーターの構文が正しくありません。 長さがゼロ (0) の可能性があります。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;machineName&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="machineName" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="The operating system platform does not support this operation on remote computers.">リモート コンピューターに対してこの操作を実行することは、オペレーティング システム プラットフォームでサポートされていません。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The attempt to connect to &lt;paramref name=&quot;machineName&quot; /&gt; has failed.&#xA;&#xA; -or-&#xA;&#xA;There are problems accessing the performance counter APIs used to get process information. This exception is specific to Windows NT, Windows 2000, and Windows XP.">
+        <paramref name="machineName" /> に接続する試みが失敗しました。
+
+または -
+プロセス情報を取得するために使用するパフォーマンス カウンター API へのアクセスに問題があります。 この例外は、Windows NT、Windows 2000、および Windows XP に固有のものです。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="A problem occurred accessing an underlying system API.">基になるシステム API にアクセスしようとして、問題が発生しました。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.Handle">
+      <summary vsli:raw="Gets the native handle of the associated process.">関連付けられたプロセスのネイティブ ハンドルを取得します。</summary>
+      <returns vsli:raw="The handle that the operating system assigned to the associated process when the process was started. The system uses this handle to keep track of process attributes.">関連付けられたプロセスを起動したときに、オペレーティング システムがプロセスに割り当てたハンドル。 システムはこのハンドルを使用して、プロセス属性の追跡を続けます。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process has not been started or has exited. The &lt;see cref=&quot;P:System.Diagnostics.Process.Handle&quot; /&gt; property cannot be read because there is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; instance.&#xA;&#xA; -or-&#xA;&#xA; The &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; instance has been attached to a running process but you do not have the necessary permissions to get a handle with full access rights.">プロセスが開始されていないか、終了しました。 この <see cref="T:System.Diagnostics.Process" /> インスタンスにプロセスが関連付けられていないので、<see cref="P:System.Diagnostics.Process.Handle" /> プロパティを読み取ることができません。
+
+または -
+<see cref="T:System.Diagnostics.Process" /> インスタンスは実行中のプロセスにアタッチされていますが、フル アクセス権を持つハンドルを取得するために必要なアクセス許可がありません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.Handle&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.Handle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.HandleCount">
+      <summary vsli:raw="Gets the number of handles opened by the process.">プロセスが開いたハンドルの数を取得します。</summary>
+      <returns vsli:raw="The number of operating system handles the process has opened.">プロセスが開いたオペレーティング システム ハンドルの数。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.HasExited">
+      <summary vsli:raw="Gets a value indicating whether the associated process has been terminated.">関連付けられているプロセスが終了したかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the operating system process referenced by the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component has terminated; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Process" /> コンポーネントが参照するオペレーティング システム プロセスが終了している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There is no process associated with the object.">オブジェクトに関連付けられているプロセスはありません。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The exit code for the process could not be retrieved.">プロセスの終了コードを取得できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.HasExited" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.Id">
+      <summary vsli:raw="Gets the unique identifier for the associated process.">関連付けられたプロセスの一意の識別子を取得します。</summary>
+      <returns vsli:raw="The system-generated unique identifier of the process that is referenced by this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; instance.">この <see cref="T:System.Diagnostics.Process" /> インスタンスが参照する、システムが生成したプロセスの一意の識別子。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process's &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; property has not been set.&#xA;&#xA; -or-&#xA;&#xA; There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">プロセスの <see cref="P:System.Diagnostics.Process.Id" /> プロパティが設定されていません。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Kill">
+      <summary vsli:raw="Immediately stops the associated process.">関連付けられたプロセスを即時中断します。</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The associated process could not be terminated.">関連付けられたプロセスを終了できませんでした。
+
+または -
+
+プロセスを終了しています。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to call &lt;see cref=&quot;M:System.Diagnostics.Process.Kill&quot; /&gt; for a process that is running on a remote computer. The method is available only for processes running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.Kill" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">プロセスは既に終了しています。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Kill(System.Boolean)">
+      <summary vsli:raw="Immediately stops the associated process, and optionally its child/descendent processes.">関連付けられているプロセスと、任意で、その子/子孫プロセスを直ちに停止します。</summary>
+      <param name="entireProcessTree" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to kill the associated process and its descendants; &lt;see langword=&quot;false&quot; /&gt; to kill only the associated process.">
+        <see langword="true" /> の場合、関連付けられているプロセスとその子孫が中止されます。<see langword="false" /> の場合、関連付けられているプロセスのみが中止されます。</param>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The associated process could not be terminated.&#xA;&#xA; -or-&#xA;&#xA; The process is terminating.">関連付けられたプロセスを終了できませんでした。
+
+または -
+
+プロセスを終了しています。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to call &lt;see cref=&quot;M:System.Diagnostics.Process.Kill&quot; /&gt; for a process that is running on a remote computer. The method is available only for processes running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.Kill" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw=".NET Framework and .NET Core 3.0 and earlier versions only: The process has already exited.&#xA;&#xA;-or-&#xA;&#xA;There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.&#xA;&#xA;-or-&#xA;&#xA;The calling process is a member of the associated process's descendant tree.">プロセスは既に終了しています。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。
+
+または -
+
+
+呼び出しプロセスは、関連付けられているプロセスの子孫ツリーのメンバーです。</exception>
+      <exception cref="T:System.AggregateException" vsli:raw="Not all processes in the associated process's descendant tree could be terminated.">関連付けられているプロセスの子孫ツリーの一部のプロセスを強制終了できませんでした。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.LeaveDebugMode">
+      <summary vsli:raw="Takes a &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component out of the state that lets it interact with operating system processes that run in a special mode.">
+        <see cref="T:System.Diagnostics.Process" /> コンポーネントを、特殊なモードで実行されているオペレーティング システム プロセスと対話する状態から解放します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.MachineName">
+      <summary vsli:raw="Gets the name of the computer the associated process is running on.">関連付けられたプロセスを実行しているコンピューターの名前を取得します。</summary>
+      <returns vsli:raw="The name of the computer that the associated process is running on.">関連付けられたプロセスを実行しているコンピューターの名前。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.MainModule">
+      <summary vsli:raw="Gets the main module for the associated process.">関連付けられたプロセスのメイン モジュールを取得します。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; that was used to start the process.">プロセスを開始する際に使用した <see cref="T:System.Diagnostics.ProcessModule" />。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.MainModule&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MainModule" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="A 32-bit process is trying to access the modules of a 64-bit process.">32 ビット プロセスが 64 ビット プロセスのモジュールにアクセスしようとしています。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.&#xA;&#xA; -or-&#xA;&#xA; The process has exited.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。
+
+または -
+プロセスが終了しています。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.MainWindowHandle">
+      <summary vsli:raw="Gets the window handle of the main window of the associated process.">関連付けられたプロセスのメイン ウィンドウで使用するウィンドウ ハンドルを取得します。</summary>
+      <returns vsli:raw="The system-generated window handle of the main window of the associated process.">関連付けられたプロセスのメイン ウィンドウで使用する、システムが生成したウィンドウ ハンドル。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.MainWindowHandle&quot; /&gt; is not defined because the process has exited.">プロセスが終了したため、<see cref="P:System.Diagnostics.Process.MainWindowHandle" /> が定義されていません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.MainWindowHandle&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MainWindowHandle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.MainWindowTitle">
+      <summary vsli:raw="Gets the caption of the main window of the process.">プロセスのメイン ウィンドウのキャプションを取得します。</summary>
+      <returns vsli:raw="The main window title of the process.">プロセスのメイン ウィンドウのタイトル。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.MainWindowTitle&quot; /&gt; property is not defined because the process has exited.">プロセスが終了したため、<see cref="P:System.Diagnostics.Process.MainWindowTitle" /> プロパティが定義されていません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.MainWindowTitle&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MainWindowTitle" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.MaxWorkingSet">
+      <summary vsli:raw="Gets or sets the maximum allowable working set size, in bytes, for the associated process.">関連付けられたプロセスに許可されるワーキング セットの最大サイズ (バイト単位) を取得または設定します。</summary>
+      <returns vsli:raw="The maximum working set size that is allowed in memory for the process, in bytes.">プロセスに許可されるメモリ上のワーキング セットの最大サイズ (バイト単位)。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The maximum working set size is invalid. It must be greater than or equal to the minimum working set size.">ワーキング セットの最大サイズが正しくありません。 この値は、ワーキング セットの最小サイズ以上である必要があります。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="Working set information cannot be retrieved from the associated process resource.&#xA;&#xA; -or-&#xA;&#xA; The process identifier or process handle is zero because the process has not been started.">関連付けられているプロセス リソースからワーキング セット情報を取得できません。
+
+または -
+
+プロセスが開始されていないので、プロセス識別子またはプロセス ハンドルが 0 です。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.MaxWorkingSet&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MaxWorkingSet" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.&#xA;&#xA; -or-&#xA;&#xA; The process has exited.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。
+
+または -
+プロセスが終了しています。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.MinWorkingSet">
+      <summary vsli:raw="Gets or sets the minimum allowable working set size, in bytes, for the associated process.">関連付けられたプロセスに許可されるワーキング セットの最小サイズ (バイト単位) を取得または設定します。</summary>
+      <returns vsli:raw="The minimum working set size that is required in memory for the process, in bytes.">プロセスに必要なメモリ上のワーキング セットの最小サイズ (バイト単位)。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The minimum working set size is invalid. It must be less than or equal to the maximum working set size.">ワーキング セットの最小サイズが正しくありません。 この値は、ワーキング セットの最大サイズ以下にする必要があります。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="Working set information cannot be retrieved from the associated process resource.&#xA;&#xA; -or-&#xA;&#xA; The process identifier or process handle is zero because the process has not been started.">関連付けられているプロセス リソースからワーキング セット情報を取得できません。
+
+または -
+
+プロセスが開始されていないので、プロセス識別子またはプロセス ハンドルが 0 です。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are trying to access the &lt;see cref=&quot;P:System.Diagnostics.Process.MinWorkingSet&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行中のプロセスの <see cref="P:System.Diagnostics.Process.MinWorkingSet" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.&#xA;&#xA; -or-&#xA;&#xA; The process has exited.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。
+
+または -
+プロセスが終了しています。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.Modules">
+      <summary vsli:raw="Gets the modules that have been loaded by the associated process.">関連付けられたプロセスに読み込まれたモジュールを取得します。</summary>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; that represents the modules that have been loaded by the associated process.">関連付けられたプロセスに読み込まれたモジュールを表す <see cref="T:System.Diagnostics.ProcessModule" /> 型の配列。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.Modules&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.Modules" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.Modules&quot; /&gt; property for either the system process or the idle process. These processes do not have modules.">システム プロセスまたはアイドル状態のプロセスのいずれかの <see cref="P:System.Diagnostics.Process.Modules" /> プロパティにアクセスしようとしています。 これらのプロセスには、モジュールが存在しません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.NonpagedSystemMemorySize">
+      <summary vsli:raw="Gets the amount of nonpaged system memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページングされないシステム メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of memory, in bytes, the system has allocated for the associated process that cannot be written to the virtual memory paging file.">システムによって関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができないメモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.NonpagedSystemMemorySize64">
+      <summary vsli:raw="Gets the amount of nonpaged system memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページングされないシステム メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of system memory, in bytes, allocated for the associated process that cannot be written to the virtual memory paging file.">関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができないシステム メモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.OnExited">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Diagnostics.Process.Exited&quot; /&gt; event.">
+        <see cref="E:System.Diagnostics.Process.Exited" /> イベントを発生させます。</summary>
+    </member>
+    <member name="E:System.Diagnostics.Process.OutputDataReceived">
+      <summary vsli:raw="Occurs each time an application writes a line to its redirected &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream.">アプリケーションが、リダイレクトされた <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームに行を書き込む度に発生します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.PagedMemorySize">
+      <summary vsli:raw="Gets the amount of paged memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページ メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of memory, in bytes, allocated by the associated process that can be written to the virtual memory paging file.">仮想メモリ ページング ファイルに書き込むことができる関連付けられたプロセスによって割り当てられたメモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PagedMemorySize64">
+      <summary vsli:raw="Gets the amount of paged memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページ メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of memory, in bytes, allocated in the virtual memory paging file for the associated process.">関連付けられたプロセスの仮想メモリ ページング ファイル内で割り当てられたメモリの量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PagedSystemMemorySize">
+      <summary vsli:raw="Gets the amount of pageable system memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページング可能なシステム メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of memory, in bytes, the system has allocated for the associated process that can be written to the virtual memory paging file.">システムによって関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができるメモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PagedSystemMemorySize64">
+      <summary vsli:raw="Gets the amount of pageable system memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたページング可能なシステム メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of system memory, in bytes, allocated for the associated process that can be written to the virtual memory paging file.">関連付けられたプロセスに割り当てられた、仮想メモリ ページング ファイルに書き込むことができるシステム メモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakPagedMemorySize">
+      <summary vsli:raw="Gets the maximum amount of memory in the virtual memory paging file, in bytes, used by the associated process.">関連付けられたプロセスによって使用される、仮想メモリ ページング ファイル内のメモリの最大量を取得します (バイト単位)。</summary>
+      <returns vsli:raw="The maximum amount of memory, in bytes, allocated by the associated process that could be written to the virtual memory paging file.">関連付けられたプロセスによって割り当てられた、仮想メモリ ページング ファイルに書き込むことができたメモリの最大容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakPagedMemorySize64">
+      <summary vsli:raw="Gets the maximum amount of memory in the virtual memory paging file, in bytes, used by the associated process.">関連付けられたプロセスによって使用される、仮想メモリ ページング ファイル内のメモリの最大量を取得します (バイト単位)。</summary>
+      <returns vsli:raw="The maximum amount of memory, in bytes, allocated in the virtual memory paging file for the associated process since it was started.">プロセスの開始以降、関連付けられたプロセスの仮想メモリ ページング ファイル内で割り当てられたメモリの最大量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakVirtualMemorySize">
+      <summary vsli:raw="Gets the maximum amount of virtual memory, in bytes, used by the associated process.">関連付けられたプロセスによって使用される仮想メモリの最大量を取得します (バイト単位)。</summary>
+      <returns vsli:raw="The maximum amount of virtual memory, in bytes, that the associated process has requested.">関連付けられたプロセスが要求した仮想メモリの最大容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakVirtualMemorySize64">
+      <summary vsli:raw="Gets the maximum amount of virtual memory, in bytes, used by the associated process.">関連付けられたプロセスによって使用される仮想メモリの最大量を取得します (バイト単位)。</summary>
+      <returns vsli:raw="The maximum amount of virtual memory, in bytes, allocated for the associated process since it was started.">プロセスの開始以降、関連付けられたプロセスに割り当てられた仮想メモリの最大量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakWorkingSet">
+      <summary vsli:raw="Gets the peak working set size for the associated process, in bytes.">関連付けられたプロセスのピーク ワーキング セット サイズをバイト単位で取得します。</summary>
+      <returns vsli:raw="The maximum amount of physical memory that the associated process has required all at once, in bytes.">関連づけられたプロセスが一度に要求した物理メモリのバイト単位での最大容量。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PeakWorkingSet64">
+      <summary vsli:raw="Gets the maximum amount of physical memory, in bytes, used by the associated process.">関連付けられたプロセスによって使用される物理メモリの最大量をバイト数として取得します。</summary>
+      <returns vsli:raw="The maximum amount of physical memory, in bytes, allocated for the associated process since it was started.">プロセスの開始以降、関連付けられたプロセスに割り当てられた物理メモリの最大量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PriorityBoostEnabled">
+      <summary vsli:raw="Gets or sets a value indicating whether the associated process priority should temporarily be boosted by the operating system when the main window has the focus.">メイン ウィンドウのフォーカス時に、オペレーティング システムによって関連付けられたプロセスの優先順位を一時的に上げるかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if dynamic boosting of the process priority should take place for a process when it is taken out of the wait state; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">待機状態から抜けたときにプロセスの優先順位を動的に上げる場合は<see langword="true" /> 。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="Priority boost information could not be retrieved from the associated process resource.">関連付けられているプロセス リソースから priority boost 情報を取得できませんでした。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="The process identifier or process handle is zero. (The process has not been started.)">プロセス識別子またはプロセス ハンドルが 0 です。 (プロセスは開始されていません。)</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.PriorityBoostEnabled&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PriorityBoostEnabled" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.PriorityClass">
+      <summary vsli:raw="Gets or sets the overall priority category for the associated process.">関連付けられたプロセスの全体的な優先順位カテゴリを取得または設定します。</summary>
+      <returns vsli:raw="The priority category for the associated process, from which the &lt;see cref=&quot;P:System.Diagnostics.Process.BasePriority&quot; /&gt; of the process is calculated.">プロセスの <see cref="P:System.Diagnostics.Process.BasePriority" /> を計算するときに使用する、関連付けられたプロセスの優先順位カテゴリ。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="Process priority information could not be set or retrieved from the associated process resource.&#xA;&#xA; -or-&#xA;&#xA; The process identifier or process handle is zero. (The process has not been started.)">関連付けられているプロセスのリソースからプロセス優先度情報を設定できないか、取得できませんでした。
+
+または -
+
+プロセス識別子またはプロセス ハンドルが 0 です。 (プロセスは開始されていません。)</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.PriorityClass&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PriorityClass" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; is not available.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できません。</exception>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException" vsli:raw="Priority class cannot be set because it does not use a valid value, as defined in the &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt; enumeration.">
+        <see cref="T:System.Diagnostics.ProcessPriorityClass" /> 列挙体で定義されている有効な値が使用されていないため、優先度クラスを設定できません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.PrivateMemorySize">
+      <summary vsli:raw="Gets the amount of private memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたプライベート メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The number of bytes allocated by the associated process that cannot be shared with other processes.">関連付けられたプロセスに割り当てられ、他のプロセスと共有できないバイト数。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PrivateMemorySize64">
+      <summary vsli:raw="Gets the amount of private memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられたプライベート メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of memory, in bytes, allocated for the associated process that cannot be shared with other processes.">関連付けられたプロセスに割り当てられ、他のプロセスと共有できないメモリの量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.PrivilegedProcessorTime">
+      <summary vsli:raw="Gets the privileged processor time for this process.">このプロセスの特権プロセッサ時間を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; that indicates the amount of time that the process has spent running code inside the operating system core.">プロセスが、オペレーティング システム コア内でコードを実行した合計時間を示す <see cref="T:System.TimeSpan" />。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.PrivilegedProcessorTime&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.ProcessName">
+      <summary vsli:raw="Gets the name of the process.">プロセスの名前を取得します。</summary>
+      <returns vsli:raw="The name that the system uses to identify the process to the user.">システムで使用する、ユーザーがプロセスを識別するための名前。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process does not have an identifier, or no process is associated with the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt;.&#xA;&#xA; -or-&#xA;&#xA; The associated process has exited.">プロセスに ID がないか、<see cref="T:System.Diagnostics.Process" /> に関連付けられているプロセスがありません。
+
+または -
+関連付けられたプロセスが終了しました。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is not on this computer.">プロセスはこのコンピューター上のものではありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.ProcessorAffinity">
+      <summary vsli:raw="Gets or sets the processors on which the threads in this process can be scheduled to run.">このプロセスでのスレッドの実行をスケジュールできるプロセッサを取得または設定します。</summary>
+      <returns vsli:raw="A bitmask representing the processors that the threads in the associated process can run on. The default depends on the number of processors on the computer. The default value is 2 n -1, where n is the number of processors.">関連付けられたプロセスのスレッドを実行できるプロセッサを示すビットマスク。 既定値は、コンピューターのプロセッサ数によって異なります。 既定値は 2 n -1 です。ここで、n はプロセッサ数です。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.Process.ProcessorAffinity&quot; /&gt; information could not be set or retrieved from the associated process resource.&#xA;&#xA; -or-&#xA;&#xA; The process identifier or process handle is zero. (The process has not been started.)">関連付けられているプロセスのリソースから <see cref="P:System.Diagnostics.Process.ProcessorAffinity" /> 情報を設定できないか、取得できませんでした。
+
+または -
+プロセス識別子またはプロセス ハンドルが 0 です。 (プロセスは開始されていません。)</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.ProcessorAffinity&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.ProcessorAffinity" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; was not available.&#xA;&#xA; -or-&#xA;&#xA; The process has exited.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が使用できませんでした。
+
+または -
+プロセスが終了しています。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Refresh">
+      <summary vsli:raw="Discards any information about the associated process that has been cached inside the process component.">プロセス コンポーネントにキャッシュされている関連付けられたプロセスに関するすべての情報を破棄します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Process.Responding">
+      <summary vsli:raw="Gets a value indicating whether the user interface of the process is responding.">プロセスのユーザー インターフェイスが応答するかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the user interface of the associated process is responding to the system; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">関連付けられたプロセスのユーザー インターフェイスがシステムに応答する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.Responding&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.Responding" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.SafeHandle">
+      <summary vsli:raw="Gets the native handle to this process.">このプロセスへのネイティブ ハンドルを取得します。</summary>
+      <returns vsli:raw="The native handle to this process.">このプロセスへのネイティブ ハンドル。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.SessionId">
+      <summary vsli:raw="Gets the Terminal Services session identifier for the associated process.">関連付けられたプロセスのターミナル サービス セッション識別子を取得します。</summary>
+      <returns vsli:raw="The Terminal Services session identifier for the associated process.">関連付けられたプロセスのターミナル サービス セッション識別子。</returns>
+      <exception cref="T:System.NullReferenceException" vsli:raw="There is no session associated with this process.">このプロセスに関連付けられているセッションはありません。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="There is no process associated with this session identifier.&#xA;&#xA; -or-&#xA;&#xA; The associated process is not on this machine.">このセッション識別子に関連付けられているプロセスはありません。
+
+または -
+
+関連付けられたプロセスが、このコンピューター上にありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.StandardError">
+      <summary vsli:raw="Gets a stream used to read the error output of the application.">アプリケーションのエラー出力の読み取りに使用されるストリームを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.IO.StreamReader&quot; /&gt; that can be used to read the standard error stream of the application.">アプリケーションの標準エラー ストリームの読み取りに使用できる <see cref="T:System.IO.StreamReader" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream has not been defined for redirection; ensure &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardError&quot; /&gt; is set to &lt;see langword=&quot;true&quot; /&gt; and &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; is set to &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream has been opened for asynchronous read operations with &lt;see cref=&quot;M:System.Diagnostics.Process.BeginErrorReadLine&quot; /&gt;.">
+        <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームがリダイレクト用に定義されていません。<see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> が <see langword="true" /> に設定されており、<see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> が <see langword="false" /> に設定されていることを確認してください。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardError" /> ストリームが、<see cref="M:System.Diagnostics.Process.BeginErrorReadLine" /> を使用した非同期読み取り操作のために開いています。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.StandardInput">
+      <summary vsli:raw="Gets a stream used to write the input of the application.">アプリケーションの入力の書き込みに使用されるストリームを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.IO.StreamWriter&quot; /&gt; that can be used to write the standard input stream of the application.">アプリケーションの標準入力ストリームの書き込みに使用できる <see cref="T:System.IO.StreamWriter" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardInput&quot; /&gt; stream has not been defined because &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput&quot; /&gt; is set to &lt;see langword=&quot;false&quot; /&gt;.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" /> が <see langword="false" /> に設定されているため、<see cref="P:System.Diagnostics.Process.StandardInput" /> ストリームが定義されませんでした。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.StandardOutput">
+      <summary vsli:raw="Gets a stream used to read the textual output of the application.">アプリケーションのテキスト出力の読み取りに使用されるストリームを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.IO.StreamReader&quot; /&gt; that can be used to read the standard output stream of the application.">アプリケーションの標準出力ストリームの読み取りに使用できる <see cref="T:System.IO.StreamReader" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream has not been defined for redirection; ensure &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput&quot; /&gt; is set to &lt;see langword=&quot;true&quot; /&gt; and &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; is set to &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream has been opened for asynchronous read operations with &lt;see cref=&quot;M:System.Diagnostics.Process.BeginOutputReadLine&quot; /&gt;.">
+        <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームがリダイレクト用に定義されていません。<see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" /> が <see langword="true" /> に設定されており、<see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> が <see langword="false" /> に設定されていることを確認してください。
+
+または -
+<see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームが、<see cref="M:System.Diagnostics.Process.BeginOutputReadLine" /> を使用した非同期読み取り操作のために開いています。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start">
+      <summary vsli:raw="Starts (or reuses) the process resource that is specified by the &lt;see cref=&quot;P:System.Diagnostics.Process.StartInfo&quot; /&gt; property of this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component and associates it with the component.">この <see cref="T:System.Diagnostics.Process" /> コンポーネントの <see cref="P:System.Diagnostics.Process.StartInfo" /> プロパティで指定されたプロセス リソースを起動 (または再利用) し、コンポーネントに関連付けます。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if a process resource is started; &lt;see langword=&quot;false&quot; /&gt; if no new process resource is started (for example, if an existing process is reused).">プロセス リソースが起動された場合は <see langword="true" />。新しいプロセス リソースが起動されなかった場合は <see langword="false" /> (既存のプロセスを再利用した場合など)。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No file name was specified in the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component's &lt;see cref=&quot;P:System.Diagnostics.Process.StartInfo&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;The &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; member of the &lt;see cref=&quot;P:System.Diagnostics.Process.StartInfo&quot; /&gt; property is &lt;see langword=&quot;true&quot; /&gt; while &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput&quot; /&gt;, &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput&quot; /&gt;, or &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardError&quot; /&gt; is &lt;see langword=&quot;true&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Process" /> コンポーネントの <see cref="P:System.Diagnostics.Process.StartInfo" /> にファイル名が指定されませんでした。
+
+または -
+
+<see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティの <see cref="P:System.Diagnostics.Process.StartInfo" /> メンバーは <see langword="true" /> ですが、 <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />、 <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />、または <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> は <see langword="true" />です。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="There was an error in opening the associated file.">関連付けられているファイルを開いているときにエラーが発生しました。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="Method not supported on operating systems without shell support such as Nano Server (.NET Core only).">メソッドはシェルがサポートされていない Nano Server (.NET Core のみ) などのオペレーティング システムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.Diagnostics.ProcessStartInfo)">
+      <summary vsli:raw="Starts the process resource that is specified by the parameter containing process start information (for example, the file name of the process to start) and associates the resource with a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component.">プロセス起動情報 (起動するプロセスのファイル名など) が格納されているパラメーターで指定されたプロセス リソースを起動し、リソースを新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントに関連付けます。</summary>
+      <param name="startInfo" vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.ProcessStartInfo&quot; /&gt; that contains the information that is used to start the process, including the file name and any command-line arguments.">ファイル名やコマンド ライン引数など、プロセスの起動に使用する情報が格納されている <see cref="T:System.Diagnostics.ProcessStartInfo" />。</param>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that is associated with the process resource, or &lt;see langword=&quot;null&quot; /&gt; if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property already set to &lt;see langword=&quot;true&quot; /&gt;. In this case, the started process may have activated an existing instance of itself and then exited.">プロセス リソースに関連付けられている新しい <see cref="T:System.Diagnostics.Process" />。プロセス リソースが起動されていない場合は <see langword="null" />。 同じプロセスのインスタンスが既に実行されているときに起動された新しいプロセスは、他のインスタンスから独立します。 また、Start では、<see cref="P:System.Diagnostics.Process.HasExited" /> プロパティが既に <see langword="true" /> に設定されている null 以外の Process が返される場合があります。 その場合、起動されたプロセス自体の既存のインスタンスがアクティブ化され、その後に終了されることがあります。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No file name was specified in the &lt;paramref name=&quot;startInfo&quot; /&gt; parameter's &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property.&#xA;&#xA; -or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; property of the &lt;paramref name=&quot;startInfo&quot; /&gt; parameter is &lt;see langword=&quot;true&quot; /&gt; and the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput&quot; /&gt;, &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput&quot; /&gt;, or &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.RedirectStandardError&quot; /&gt; property is also &lt;see langword=&quot;true&quot; /&gt;.&#xA;&#xA; -or-&#xA;&#xA; The &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; property of the &lt;paramref name=&quot;startInfo&quot; /&gt; parameter is &lt;see langword=&quot;true&quot; /&gt; and the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UserName&quot; /&gt; property is not &lt;see langword=&quot;null&quot; /&gt; or empty or the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.Password&quot; /&gt; property is not &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="startInfo" /> パラメーターの <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティにファイル名が指定されませんでした。
+
+または -
+<paramref name="startInfo" /> パラメーターの <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティは <see langword="true" /> であり、<see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput" />、<see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput" />、または <see cref="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError" /> プロパティも <see langword="true" /> です。
+
+または -
+<paramref name="startInfo" /> パラメーターの <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティは <see langword="true" /> であり、<see cref="P:System.Diagnostics.ProcessStartInfo.UserName" /> プロパティは <see langword="null" /> でも空でもないか、または <see cref="P:System.Diagnostics.ProcessStartInfo.Password" /> プロパティは <see langword="null" /> ではありません。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;startInfo&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="startInfo" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="An error occurred when opening the associated file.&#xA;&#xA; -or-&#xA;&#xA; The file specified in the &lt;paramref name=&quot;startInfo&quot; /&gt; parameter's &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property could not be found.&#xA;&#xA; -or-&#xA;&#xA; The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: &quot;The data area passed to a system call is too small.&quot; or &quot;Access is denied.&quot;">関連付けられているファイルを開いているときにエラーが発生しました。
+
+または -
+<paramref name="startInfo" /> パラメーターの <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティに指定されたファイルを見つけることができませんでした。
+
+または -
+引数の長さとプロセスへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="Method not supported on operating systems without shell support such as Nano Server (.NET Core only).">メソッドはシェルがサポートされていない Nano Server (.NET Core のみ) などのオペレーティング システムではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String)">
+      <summary vsli:raw="Starts a process resource by specifying the name of a document or application file and associates the resource with a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component.">文書またはアプリケーション ファイルの名前を指定してプロセス リソースを起動し、リソースを新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントに関連付けます。</summary>
+      <param name="fileName" vsli:raw="The name of a document or application file to run in the process.">プロセスで実行する文書またはアプリケーション ファイルの名前。</param>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that is associated with the process resource, or &lt;see langword=&quot;null&quot; /&gt; if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property already set to &lt;see langword=&quot;true&quot; /&gt;. In this case, the started process may have activated an existing instance of itself and then exited.">プロセス リソースに関連付けられている新しい <see cref="T:System.Diagnostics.Process" />。プロセス リソースが起動されていない場合は <see langword="null" />。 同じプロセスのインスタンスが既に実行されているときに起動された新しいプロセスは、他のインスタンスから独立します。 また、Start では、<see cref="P:System.Diagnostics.Process.HasExited" /> プロパティが既に <see langword="true" /> に設定されている null 以外の Process が返される場合があります。 その場合、起動されたプロセス自体の既存のインスタンスがアクティブ化され、その後に終了されることがあります。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="An error occurred when opening the associated file.&#xA;&#xA;-or-&#xA;&#xA;The file specified in the &lt;paramref name=&quot;fileName&quot; /&gt; could not be found.">関連付けられているファイルを開いているときにエラーが発生しました。
+
+または -
+
+<paramref name="fileName" /> で指定したファイルが見つかりませんでした。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The PATH environment variable has a string containing quotes.">PATH 環境変数に、引用符を含む文字列があります。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String)">
+      <summary vsli:raw="Starts a process resource by specifying the name of an application and a set of command-line arguments, and associates the resource with a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component.">アプリケーションの名前とコマンド ライン引数のセットを指定してプロセス リソースを起動し、リソースを新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントに関連付けます。</summary>
+      <param name="fileName" vsli:raw="The name of an application file to run in the process.">プロセスで実行するアプリケーション ファイルの名前。</param>
+      <param name="arguments" vsli:raw="Command-line arguments to pass when starting the process.">プロセスを起動するときに渡すコマンド ライン引数。</param>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that is associated with the process resource, or &lt;see langword=&quot;null&quot; /&gt; if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property already set to &lt;see langword=&quot;true&quot; /&gt;. In this case, the started process may have activated an existing instance of itself and then exited.">プロセス リソースに関連付けられている新しい <see cref="T:System.Diagnostics.Process" />。プロセス リソースが起動されていない場合は <see langword="null" />。 同じプロセスのインスタンスが既に実行されているときに起動された新しいプロセスは、他のインスタンスから独立します。 また、Start では、<see cref="P:System.Diagnostics.Process.HasExited" /> プロパティが既に <see langword="true" /> に設定されている null 以外の Process が返される場合があります。 その場合、起動されたプロセス自体の既存のインスタンスがアクティブ化され、その後に終了されることがあります。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;paramref name=&quot;fileName&quot; /&gt; or &lt;paramref name=&quot;arguments&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="fileName" /> パラメーターまたは <paramref name="arguments" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="An error occurred when opening the associated file.&#xA;&#xA;-or-&#xA;&#xA;The file specified in the &lt;paramref name=&quot;fileName&quot; /&gt; could not be found.&#xA;&#xA; -or-&#xA;&#xA; The sum of the length of the arguments and the length of the full path to the process exceeds 2080. The error message associated with this exception can be one of the following: &quot;The data area passed to a system call is too small.&quot; or &quot;Access is denied.&quot;">関連付けられているファイルを開いているときにエラーが発生しました。
+
+または -
+
+<paramref name="fileName" /> で指定したファイルが見つかりませんでした。
+
+または -
+引数の長さとプロセスへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The PATH environment variable has a string containing quotes.">PATH 環境変数に、引用符を含む文字列があります。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.Security.SecureString,System.String)">
+      <summary vsli:raw="Starts a process resource by specifying the name of an application, a user name, a password, and a domain and associates the resource with a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component.">アプリケーションの名前、ユーザー名、パスワード、ドメインを指定してプロセス リソースを起動し、リソースを新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントに関連付けます。</summary>
+      <param name="fileName" vsli:raw="The name of an application file to run in the process.">プロセスで実行するアプリケーション ファイルの名前。</param>
+      <param name="userName" vsli:raw="The user name to use when starting the process.">プロセスの開始時に使用するユーザー名。</param>
+      <param name="password" vsli:raw="A &lt;see cref=&quot;T:System.Security.SecureString&quot; /&gt; that contains the password to use when starting the process.">プロセスを開始するときに使用するパスワードを含む <see cref="T:System.Security.SecureString" />。</param>
+      <param name="domain" vsli:raw="The domain to use when starting the process.">プロセスの開始時に使用するドメイン。</param>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that is associated with the process resource, or &lt;see langword=&quot;null&quot; /&gt; if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property already set to &lt;see langword=&quot;true&quot; /&gt;. In this case, the started process may have activated an existing instance of itself and then exited.">プロセス リソースに関連付けられている新しい <see cref="T:System.Diagnostics.Process" />。プロセス リソースが起動されていない場合は <see langword="null" />。 同じプロセスのインスタンスが既に実行されているときに起動された新しいプロセスは、他のインスタンスから独立します。 また、Start では、<see cref="P:System.Diagnostics.Process.HasExited" /> プロパティが既に <see langword="true" /> に設定されている null 以外の Process が返される場合があります。 その場合、起動されたプロセス自体の既存のインスタンスがアクティブ化され、その後に終了されることがあります。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No file name was specified.">ファイル名が指定されませんでした。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="There was an error in opening the associated file.&#xA;&#xA;-or-&#xA;&#xA;The file specified in the &lt;paramref name=&quot;fileName&quot; /&gt; could not be found.">関連付けられているファイルを開いているときにエラーが発生しました。
+
+または -
+
+<paramref name="fileName" /> で指定したファイルが見つかりませんでした。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="This member is not supported on Linux or macOS (.NET Core only).">このメンバーは Linux または macOS (.NET Core のみ) ではサポートされていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.Start(System.String,System.String,System.String,System.Security.SecureString,System.String)">
+      <summary vsli:raw="Starts a process resource by specifying the name of an application, a set of command-line arguments, a user name, a password, and a domain and associates the resource with a new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component.">アプリケーションの名前、コマンド ライン引数のセット、ユーザー名、パスワード、およびドメインを指定してプロセス リソースを起動し、リソースを新しい <see cref="T:System.Diagnostics.Process" /> コンポーネントに関連付けます。</summary>
+      <param name="fileName" vsli:raw="The name of an application file to run in the process.">プロセスで実行するアプリケーション ファイルの名前。</param>
+      <param name="arguments" vsli:raw="Command-line arguments to pass when starting the process.">プロセスを起動するときに渡すコマンド ライン引数。</param>
+      <param name="userName" vsli:raw="The user name to use when starting the process.">プロセスの開始時に使用するユーザー名。</param>
+      <param name="password" vsli:raw="A &lt;see cref=&quot;T:System.Security.SecureString&quot; /&gt; that contains the password to use when starting the process.">プロセスを開始するときに使用するパスワードを含む <see cref="T:System.Security.SecureString" />。</param>
+      <param name="domain" vsli:raw="The domain to use when starting the process.">プロセスの開始時に使用するドメイン。</param>
+      <returns vsli:raw="A new &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; that is associated with the process resource, or &lt;see langword=&quot;null&quot; /&gt; if no process resource is started. Note that a new process that's started alongside already running instances of the same process will be independent from the others. In addition, Start may return a non-null Process with its &lt;see cref=&quot;P:System.Diagnostics.Process.HasExited&quot; /&gt; property already set to &lt;see langword=&quot;true&quot; /&gt;. In this case, the started process may have activated an existing instance of itself and then exited.">プロセス リソースに関連付けられている新しい <see cref="T:System.Diagnostics.Process" />。プロセス リソースが起動されていない場合は <see langword="null" />。 同じプロセスのインスタンスが既に実行されているときに起動された新しいプロセスは、他のインスタンスから独立します。 また、Start では、<see cref="P:System.Diagnostics.Process.HasExited" /> プロパティが既に <see langword="true" /> に設定されている null 以外の Process が返される場合があります。 その場合、起動されたプロセス自体の既存のインスタンスがアクティブ化され、その後に終了されることがあります。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No file name was specified.">ファイル名が指定されませんでした。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="An error occurred when opening the associated file.&#xA;&#xA;-or-&#xA;&#xA;The file specified in the &lt;paramref name=&quot;fileName&quot; /&gt; could not be found.&#xA;&#xA; -or-&#xA;&#xA; The sum of the length of the arguments and the length of the full path to the associated file exceeds 2080. The error message associated with this exception can be one of the following: &quot;The data area passed to a system call is too small.&quot; or &quot;Access is denied.&quot;">関連付けられているファイルを開いているときにエラーが発生しました。
+
+または -
+
+<paramref name="fileName" /> で指定したファイルが見つかりませんでした。
+
+または -
+引数の長さと関連ファイルへの完全パスの長さの合計が、2080 文字を超えています。 この例外に関連付けられたエラー メッセージは、次のいずれかになります。"システム コールに渡されるデータ領域が小さすぎます" または「アクセスが拒否されました。」</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The process object has already been disposed.">プロセス オブジェクトは既には破棄されています。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="This member is not supported on Linux or macOS (.NET Core only).">このメンバーは Linux または macOS (.NET Core のみ) ではサポートされていません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.StartInfo">
+      <summary vsli:raw="Gets or sets the properties to pass to the &lt;see cref=&quot;M:System.Diagnostics.Process.Start&quot; /&gt; method of the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Process" /> の <see cref="M:System.Diagnostics.Process.Start" /> メソッドに渡すプロパティを取得または設定します。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.ProcessStartInfo&quot; /&gt; that represents the data with which to start the process. These arguments include the name of the executable file or document used to start the process.">プロセスを起動するときに使用するデータを表す <see cref="T:System.Diagnostics.ProcessStartInfo" />。 これらの引数には、プロセスの起動時に使用する実行可能ファイルまたは文書の名前があります。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value that specifies the &lt;see cref=&quot;P:System.Diagnostics.Process.StartInfo&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="P:System.Diagnostics.Process.StartInfo" /> を指定する値は <see langword="null" /> です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw=".NET Core and .NET 5+ only: The &lt;see cref=&quot;M:System.Diagnostics.Process.Start&quot; /&gt; method was not used to start the process.">
+        <see cref="M:System.Diagnostics.Process.Start" /> メソッドはプロセスを開始するために使用されませんでした。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.StartTime">
+      <summary vsli:raw="Gets the time that the associated process was started.">関連付けられたプロセスが起動された時刻を取得します。</summary>
+      <returns vsli:raw="An object  that indicates when the process started. An exception is thrown if the process is not running.">プロセスが起動された時刻を示すオブジェクト。 プロセスが実行中でない場合は、例外がスローされます。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.StartTime&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.StartTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process has exited.&#xA;&#xA; -or-&#xA;&#xA; The process has not been started.">プロセスが終了しています。
+
+または -
+
+プロセスは開始されていません。</exception>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="An error occurred in the call to the Windows function.">Windows 関数の呼び出しでエラーが発生しました。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.SynchronizingObject">
+      <summary vsli:raw="Gets or sets the object used to marshal the event handler calls that are issued as a result of a process exit event.">プロセス終了イベントの結果として発行されるイベント ハンドラー呼び出しをマーシャリングするために使用するオブジェクトを取得または設定します。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.ComponentModel.ISynchronizeInvoke&quot; /&gt; used to marshal event handler calls that are issued as a result of an &lt;see cref=&quot;E:System.Diagnostics.Process.Exited&quot; /&gt; event on the process.">プロセスの <see cref="E:System.Diagnostics.Process.Exited" /> イベントの結果として発行されるイベント ハンドラー呼び出しをマーシャリングするために使用する <see cref="T:System.ComponentModel.ISynchronizeInvoke" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.Threads">
+      <summary vsli:raw="Gets the set of threads that are running in the associated process.">関連付けられたプロセスで実行されているスレッドのセットを取得します。</summary>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; representing the operating system threads currently running in the associated process.">関連付けられたプロセスで現在実行中のオペレーティング システム スレッドを表す <see cref="T:System.Diagnostics.ProcessThread" /> 型の配列。</returns>
+      <exception cref="T:System.SystemException" vsli:raw="The process does not have an &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt;, or no process is associated with the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; instance.&#xA;&#xA; -or-&#xA;&#xA; The associated process has exited.">プロセスに <see cref="P:System.Diagnostics.Process.Id" /> がないか、<see cref="T:System.Diagnostics.Process" /> インスタンスに関連付けられているプロセスがありません。
+
+または -
+関連付けられたプロセスが終了しました。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.ToString">
+      <summary vsli:raw="Formats the process's name as a string, combined with the parent component type, if applicable.">プロセス名の書式指定は文字列にします。親コンポーネント型があれば、この型と組み合わせます。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.Process.ProcessName&quot; /&gt;, combined with the base component's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; return value.">ベース コンポーネントの <see cref="M:System.Object.ToString" /> の戻り値と組み合わせた <see cref="P:System.Diagnostics.Process.ProcessName" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.TotalProcessorTime">
+      <summary vsli:raw="Gets the total processor time for this process.">このプロセスの合計プロセッサ時間を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; that indicates the amount of time that the associated process has spent utilizing the CPU. This value is the sum of the &lt;see cref=&quot;P:System.Diagnostics.Process.UserProcessorTime&quot; /&gt; and the &lt;see cref=&quot;P:System.Diagnostics.Process.PrivilegedProcessorTime&quot; /&gt;.">関連付けられたプロセスが CPU を使用した合計時間を示す <see cref="T:System.TimeSpan" />。 この値は、<see cref="P:System.Diagnostics.Process.UserProcessorTime" /> と <see cref="P:System.Diagnostics.Process.PrivilegedProcessorTime" /> の合計です。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.TotalProcessorTime&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.TotalProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.UserProcessorTime">
+      <summary vsli:raw="Gets the user processor time for this process.">このプロセスのユーザー プロセッサ時間を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; that indicates the amount of time that the associated process has spent running code inside the application portion of the process (not inside the operating system core).">関連付けられたプロセスが、プロセスのアプリケーション部分の内部 (オペレーティング システム コアの外部) でコードを実行した合計時間を示す <see cref="T:System.TimeSpan" />。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="You are attempting to access the &lt;see cref=&quot;P:System.Diagnostics.Process.UserProcessorTime&quot; /&gt; property for a process that is running on a remote computer. This property is available only for processes that are running on the local computer.">リモート コンピューターで実行されているプロセスの <see cref="P:System.Diagnostics.Process.UserProcessorTime" /> プロパティにアクセスしようとしています。 このプロパティはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.VirtualMemorySize">
+      <summary vsli:raw="Gets the size of the process's virtual memory, in bytes.">プロセスの仮想メモリのサイズ (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of virtual memory, in bytes, that the associated process has requested.">関連付けられたプロセスが要求した仮想メモリの容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.VirtualMemorySize64">
+      <summary vsli:raw="Gets the amount of the virtual memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられた仮想メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of virtual memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられた仮想メモリの量 (バイト単位)。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForExit">
+      <summary vsli:raw="Instructs the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component to wait indefinitely for the associated process to exit.">関連付けられたプロセスが終了するまで無期限に待機するように <see cref="T:System.Diagnostics.Process" /> コンポーネントに指示します。</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The wait setting could not be accessed.">待機の設定にアクセスできませんでした。</exception>
+      <exception cref="T:System.SystemException" vsli:raw="No process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; has been set, and a &lt;see cref=&quot;P:System.Diagnostics.Process.Handle&quot; /&gt; from which the &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; property can be determined does not exist.&#xA;&#xA; -or-&#xA;&#xA; There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.&#xA;&#xA; -or-&#xA;&#xA; You are attempting to call &lt;see cref=&quot;M:System.Diagnostics.Process.WaitForExit&quot; /&gt; for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が設定されておらず、<see cref="P:System.Diagnostics.Process.Id" /> プロパティを判別する元となる <see cref="P:System.Diagnostics.Process.Handle" /> が存在しません。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。
+
+または -
+リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.WaitForExit" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForExit(System.Int32)">
+      <summary vsli:raw="Instructs the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component to wait the specified number of milliseconds for the associated process to exit.">関連付けられたプロセスが終了するまで、最大で指定したミリ秒間待機するように <see cref="T:System.Diagnostics.Process" /> コンポーネントに指示します。</summary>
+      <param name="milliseconds" vsli:raw="The amount of time, in milliseconds, to wait for the associated process to exit. A value of 0 specifies an immediate return, and a value of -1 specifies an infinite wait.">関連付けられたプロセスが終了するまで待機する時間。単位はミリ秒です。 最大値は、32 ビット整数で表現できる最大値で、オペレーティング システムに対して無限大で表現される値です。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the associated process has exited; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">関連付けられたプロセスが終了した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The wait setting could not be accessed.">待機の設定にアクセスできませんでした。</exception>
+      <exception cref="T:System.SystemException" vsli:raw="No process &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; has been set, and a &lt;see cref=&quot;P:System.Diagnostics.Process.Handle&quot; /&gt; from which the &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; property can be determined does not exist.&#xA;&#xA; -or-&#xA;&#xA; There is no process associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.&#xA;&#xA; -or-&#xA;&#xA; You are attempting to call &lt;see cref=&quot;M:System.Diagnostics.Process.WaitForExit(System.Int32)&quot; /&gt; for a process that is running on a remote computer. This method is available only for processes that are running on the local computer.">プロセス <see cref="P:System.Diagnostics.Process.Id" /> が設定されておらず、<see cref="P:System.Diagnostics.Process.Id" /> プロパティを判別する元となる <see cref="P:System.Diagnostics.Process.Handle" /> が存在しません。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。
+
+または -
+リモート コンピューターで実行されているプロセスの <see cref="M:System.Diagnostics.Process.WaitForExit(System.Int32)" /> を呼び出そうとしています。 このメソッドはローカル コンピューターで実行中のプロセスに対してのみ使用可能です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;milliseconds&quot; /&gt; is a negative number other than -1, which represents an infinite time-out.">
+        <paramref name="milliseconds" /> は無限のタイムアウトを表す -1 以外の負の数です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForInputIdle">
+      <summary vsli:raw="Causes the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component to wait indefinitely for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.">関連付けられたプロセスがアイドル状態になるまで、<see cref="T:System.Diagnostics.Process" /> コンポーネントを無期限に待機させます。 このオーバーロードは、ユーザー インターフェイスとメッセージ ループを持つプロセスにだけ適用されます。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the associated process has reached an idle state.">関連付けられたプロセスがアイドル状態になった場合は <see langword="true" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process does not have a graphical interface.&#xA;&#xA; -or-&#xA;&#xA; An unknown error occurred. The process failed to enter an idle state.&#xA;&#xA; -or-&#xA;&#xA; The process has already exited.&#xA;&#xA; -or-&#xA;&#xA; No process is associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">プロセスにグラフィカル インターフェイスがありません。
+
+または -
+不明なエラーが発生しました。 プロセスがアイドル状態になることができませんでした。
+
+または -
+プロセスは既に終了しています。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Process.WaitForInputIdle(System.Int32)">
+      <summary vsli:raw="Causes the &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; component to wait the specified number of milliseconds for the associated process to enter an idle state. This overload applies only to processes with a user interface and, therefore, a message loop.">関連付けられたプロセスがアイドル状態になるまで、最大で指定したミリ秒間、<see cref="T:System.Diagnostics.Process" /> コンポーネントを待機させます。 このオーバーロードは、ユーザー インターフェイスとメッセージ ループを持つプロセスにだけ適用されます。</summary>
+      <param name="milliseconds" vsli:raw="A value of 1 to &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt; that specifies the amount of time, in milliseconds, to wait for the associated process to become idle. A value of 0 specifies an immediate return, and a value of -1 specifies an infinite wait.">関連付けられたプロセスがアイドル状態になるまでの待機時間をミリ秒単位で指定する、1 ～ <see cref="F:System.Int32.MaxValue" /> の値。 値 0 の場合はすぐに制御が戻され、値 -1 の場合は無期限に待機することを示します。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the associated process has reached an idle state; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">関連付けられたプロセスがアイドル状態になった場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The process does not have a graphical interface.&#xA;&#xA; -or-&#xA;&#xA; An unknown error occurred. The process failed to enter an idle state.&#xA;&#xA; -or-&#xA;&#xA; The process has already exited.&#xA;&#xA; -or-&#xA;&#xA; No process is associated with this &lt;see cref=&quot;T:System.Diagnostics.Process&quot; /&gt; object.">プロセスにグラフィカル インターフェイスがありません。
+
+または -
+不明なエラーが発生しました。 プロセスがアイドル状態になることができませんでした。
+
+または -
+プロセスは既に終了しています。
+
+または -
+この <see cref="T:System.Diagnostics.Process" /> オブジェクトに関連付けられているプロセスはありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.Process.WorkingSet">
+      <summary vsli:raw="Gets the associated process's physical memory usage, in bytes.">関連付けられたプロセスの物理メモリ使用量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The total amount of physical memory the associated process is using, in bytes.">関連付けられたプロセスが使用している物理メモリの合計容量 (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Process.WorkingSet64">
+      <summary vsli:raw="Gets the amount of physical memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられた物理メモリの量 (バイト単位) を取得します。</summary>
+      <returns vsli:raw="The amount of physical memory, in bytes, allocated for the associated process.">関連付けられたプロセスに割り当てられた物理メモリの量 (バイト単位)。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ProcessModule">
+      <summary vsli:raw="Represents a .dll or .exe file that is loaded into a particular process.">特定のプロセスに読み込まれる .dll ファイルまたは .exe ファイルを表します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.BaseAddress">
+      <summary vsli:raw="Gets the memory address where the module was loaded.">モジュールが読み込まれたメモリ アドレスを取得します。</summary>
+      <returns vsli:raw="The load address of the module.">モジュールの読み込みアドレス。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.EntryPointAddress">
+      <summary vsli:raw="Gets the memory address for the function that runs when the system loads and runs the module.">システムがモジュールを読み込んで実行するときの関数のメモリ アドレスを取得します。</summary>
+      <returns vsli:raw="The entry point of the module.">このモジュールのエントリ ポイント。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.FileName">
+      <summary vsli:raw="Gets the full path to the module.">モジュールの完全なパスを取得します。</summary>
+      <returns vsli:raw="The fully qualified path that defines the location of the module.">モジュールの場所を定義する完全修飾パス。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.FileVersionInfo">
+      <summary vsli:raw="Gets version information about the module.">モジュールに関するバージョン情報を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.FileVersionInfo&quot; /&gt; that contains the module's version information.">モジュールのバージョン情報を格納している <see cref="T:System.Diagnostics.FileVersionInfo" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.ModuleMemorySize">
+      <summary vsli:raw="Gets the amount of memory that is required to load the module.">モジュールを読み込むために必要なメモリの量を取得します。</summary>
+      <returns vsli:raw="The size, in bytes, of the memory that the module occupies.">モジュールが占有するメモリのサイズ (バイト単位)。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModule.ModuleName">
+      <summary vsli:raw="Gets the name of the process module.">プロセスのモジュール名を取得します。</summary>
+      <returns vsli:raw="The name of the module.">モジュールの名前です。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModule.ToString">
+      <summary vsli:raw="Converts the name of the module to a string.">モジュールの名前を文字列に変換します。</summary>
+      <returns vsli:raw="The value of the &lt;see cref=&quot;P:System.Diagnostics.ProcessModule.ModuleName&quot; /&gt; property.">
+        <see cref="P:System.Diagnostics.ProcessModule.ModuleName" /> プロパティの値。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ProcessModuleCollection">
+      <summary vsli:raw="Provides a strongly typed collection of &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; objects.">厳密に型指定された <see cref="T:System.Diagnostics.ProcessModule" /> オブジェクトのコレクションを提供します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModuleCollection.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessModuleCollection&quot; /&gt; class, with no associated &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instances.">関連する <see cref="T:System.Diagnostics.ProcessModuleCollection" /> インスタンスを指定せずに <see cref="T:System.Diagnostics.ProcessModule" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModuleCollection.#ctor(System.Diagnostics.ProcessModule[])">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessModuleCollection&quot; /&gt; class, using the specified array of &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instances.">指定した <see cref="T:System.Diagnostics.ProcessModuleCollection" /> インスタンスの配列を使用して、<see cref="T:System.Diagnostics.ProcessModule" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="processModules" vsli:raw="An array of &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instances with which to initialize this &lt;see cref=&quot;T:System.Diagnostics.ProcessModuleCollection&quot; /&gt; instance.">この <see cref="T:System.Diagnostics.ProcessModule" /> インスタンスを初期化するための <see cref="T:System.Diagnostics.ProcessModuleCollection" /> インスタンスの配列。</param>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModuleCollection.Contains(System.Diagnostics.ProcessModule)">
+      <summary vsli:raw="Determines whether the specified process module exists in the collection.">指定されたプロセス モジュールがコレクションに存在するかどうかを決定します。</summary>
+      <param name="module" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instance that indicates the module to find in this collection.">このコレクション内で検索するモジュールを示す <see cref="T:System.Diagnostics.ProcessModule" /> インスタンス。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the module exists in the collection; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">モジュールがコレクション内に存在する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModuleCollection.CopyTo(System.Diagnostics.ProcessModule[],System.Int32)">
+      <summary vsli:raw="Copies an array of &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instances to the collection, at the specified index.">
+        <see cref="T:System.Diagnostics.ProcessModule" /> インスタンスの配列を、コレクションの指定したインデックスにコピーします。</summary>
+      <param name="array" vsli:raw="An array of &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; instances to add to the collection.">コレクションに追加する <see cref="T:System.Diagnostics.ProcessModule" /> インスタンスの配列。</param>
+      <param name="index" vsli:raw="The location at which to add the new instances.">新しいインスタンスを追加する位置。</param>
+    </member>
+    <member name="M:System.Diagnostics.ProcessModuleCollection.IndexOf(System.Diagnostics.ProcessModule)">
+      <summary vsli:raw="Provides the location of a specified module within the collection.">コレクション内の指定されたモジュールの場所を提供します。</summary>
+      <param name="module" vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; whose index is retrieved.">インデックスを取得する <see cref="T:System.Diagnostics.ProcessModule" />。</param>
+      <returns vsli:raw="The zero-based index that defines the location of the module within the &lt;see cref=&quot;T:System.Diagnostics.ProcessModuleCollection&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.ProcessModuleCollection" /> 内のモジュールの場所を定義する、0 から始まるインデックス。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessModuleCollection.Item(System.Int32)">
+      <summary vsli:raw="Gets an index for iterating over the set of process modules.">プロセス モジュールのセットを反復処理するためにインデックスを取得します。</summary>
+      <param name="index" vsli:raw="The zero-based index value of the module in the collection.">コレクション内のモジュールの 0 から始まるインデックス値。</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ProcessModule&quot; /&gt; that indexes the modules in the collection.">コレクション内のモジュールにインデックスを付ける <see cref="T:System.Diagnostics.ProcessModule" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ProcessPriorityClass">
+      <summary vsli:raw="Indicates the priority that the system associates with a process. This value, together with the priority value of each thread of the process, determines each thread's base priority level.">システムがプロセスに関連付ける優先順位を示します。 この値は、プロセスの各スレッドの優先順位値と組み合わされ、各スレッドの基本優先順位を決定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.AboveNormal">
+      <summary vsli:raw="Specifies that the process has priority higher than &lt;see langword=&quot;Normal&quot; /&gt; but lower than &lt;see langword=&quot;High&quot; /&gt;.">プロセスの優先順位を <see langword="Normal" /> より高く、<see langword="High" /> より低く指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.BelowNormal">
+      <summary vsli:raw="Specifies that the process has priority above &lt;see langword=&quot;Idle&quot; /&gt; but below &lt;see langword=&quot;Normal&quot; /&gt;.">プロセスの優先順位を <see langword="Idle" /> より高く <see langword="Normal" /> より低く指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.High">
+      <summary vsli:raw="Specifies that the process performs time-critical tasks that must be executed immediately, such as the &lt;see langword=&quot;Task List&quot; /&gt; dialog, which must respond quickly when called by the user, regardless of the load on the operating system. The threads of the process preempt the threads of normal or idle priority class processes. &lt;br /&gt;Use extreme care when specifying &lt;see langword=&quot;High&quot; /&gt; for the process's priority class, because a high priority class application can use nearly all available processor time.">
+        <see langword="Task List" /> ダイアログ ボックスなどの、ユーザーから呼び出されたらオペレーティング システムの負荷にかかわらずすぐに応答する必要のある、即時実行を要求される重要なタスクに対して、プロセス実行時間を指定します。 このプロセスのスレッドは、Normal または Idle 優先順位クラスのプロセスのスレッドよりも優先します。 プロセスの優先順位クラスに <see langword="High" /> を指定するときには細心の注意が必要です。High 優先順位クラスのアプリケーションは、使用可能なプロセッサ時間をほぼすべて使用する可能性があるためです。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.Idle">
+      <summary vsli:raw="Specifies that the threads of this process run only when the system is idle, such as a screen saver. The threads of the process are preempted by the threads of any process running in a higher priority class. This priority class is inherited by child processes.">このプロセスのスレッドが、スクリーン セーバーなど、システムがアイドル状態のときにだけ実行されるよう指定します。 このプロセスのスレッドよりも、より高い優先順位クラスで実行されているあらゆるプロセスのスレッドの方が優先します。 この優先順位クラスは子プロセスに継承されます。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.Normal">
+      <summary vsli:raw="Specifies that the process has no special scheduling needs.">プロセスが特別なスケジューリングを必要としないよう指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessPriorityClass.RealTime">
+      <summary vsli:raw="Specifies that the process has the highest possible priority. &lt;br /&gt;The threads of a process with &lt;see langword=&quot;RealTime&quot; /&gt; priority preempt the threads of all other processes, including operating system processes performing important tasks. Thus, a &lt;see langword=&quot;RealTime&quot; /&gt; priority process that executes for more than a very brief interval can cause disk caches not to flush or cause the mouse to be unresponsive.">プロセスの優先順位をできるだけ高く指定します。 優先順位が <see langword="RealTime" /> のプロセスのスレッドは、重要なタスクを実行するオペレーティング システム プロセスも含め、他のすべてのプロセスのスレッドよりも優先されます。 そのため、優先順位が <see langword="RealTime" /> のプロセスが非常に短い間隔で実行されると、ディスク キャッシュがフラッシュされなくなったり、マウスが応答しなくなったりする可能性があります。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ProcessStartInfo">
+      <summary vsli:raw="Specifies a set of values that are used when you start a process.">プロセスを起動するときに使用する値のセットを指定します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessStartInfo.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessStartInfo&quot; /&gt; class without specifying a file name with which to start the process.">プロセスを起動するときに使用するファイル名を指定せずに、<see cref="T:System.Diagnostics.ProcessStartInfo" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessStartInfo.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessStartInfo&quot; /&gt; class and specifies a file name such as an application or document with which to start the process.">
+        <see cref="T:System.Diagnostics.ProcessStartInfo" /> クラスの新しいインスタンスを初期化し、アプリケーションやドキュメントなど、プロセスを起動するときに使用するファイル名を指定します。</summary>
+      <param name="fileName" vsli:raw="An application or document with which to start a process.">プロセスを起動するときに使用するアプリケーションまたはドキュメント。</param>
+    </member>
+    <member name="M:System.Diagnostics.ProcessStartInfo.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessStartInfo&quot; /&gt; class, specifies an application file name with which to start the process, and specifies a set of command-line arguments to pass to the application.">プロセスを起動するときに使用するアプリケーション ファイル名およびアプリケーションに渡すコマンド ライン引数のセットを指定して、<see cref="T:System.Diagnostics.ProcessStartInfo" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="fileName" vsli:raw="An application with which to start a process.">プロセスを起動するときに使用するアプリケーション。</param>
+      <param name="arguments" vsli:raw="Command-line arguments to pass to the application when the process starts.">プロセスを起動するときにアプリケーションに渡すコマンド ライン引数。</param>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.ArgumentList">
+      <summary vsli:raw="Gets a collection of command-line arguments to use when starting the application. Strings added to the list don't need to be previously escaped.">アプリケーションを起動するときに使用するコマンド ライン引数のコレクションを取得します。</summary>
+      <returns vsli:raw="A collection of command-line arguments.">コマンドライン引数のコレクション。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Arguments">
+      <summary vsli:raw="Gets or sets the set of command-line arguments to use when starting the application.">アプリケーションを起動するときに使用するコマンド ライン引数のセットを取得または設定します。</summary>
+      <returns vsli:raw="A single string containing the arguments to pass to the target application specified in the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property. The default is an empty string (&quot;&quot;).">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティで指定したターゲット アプリケーションに渡す引数を格納した単一の文字列。 既定値は、空の文字列 ("") です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.CreateNoWindow">
+      <summary vsli:raw="Gets or sets a value indicating whether to start the process in a new window.">プロセスを新しいウィンドウで起動するかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the process should be started without creating a new window to contain it; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">プロセス用の新しいウィンドウを作成せずにプロセスを起動する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Domain">
+      <summary vsli:raw="Gets or sets a value that identifies the domain to use when starting the process. If this value is &lt;see langword=&quot;null&quot; /&gt;, the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UserName&quot; /&gt; property must be specified in UPN format.">プロセスを開始するときに使用されるドメインを指定する値を取得または設定します。 この値が <see langword="null" /> の場合は、<see cref="P:System.Diagnostics.ProcessStartInfo.UserName" /> プロパティを UPN 形式で指定する必要があります。</summary>
+      <returns vsli:raw="The Active Directory domain to use when starting the process. If this value is &lt;see langword=&quot;null&quot; /&gt;, the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UserName&quot; /&gt; property must be specified in UPN format.">プロセスを開始するときに使用する Active Directory ドメイン。 この値が <see langword="null" /> の場合は、<see cref="P:System.Diagnostics.ProcessStartInfo.UserName" /> プロパティを UPN 形式で指定する必要があります。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Environment">
+      <summary vsli:raw="Gets the environment variables that apply to this process and its child processes.">このプロセスとその子プロセスに適用される環境変数を取得します。</summary>
+      <returns vsli:raw="A generic dictionary containing the environment variables that apply to this process and its child processes. The default is &lt;see langword=&quot;null&quot; /&gt;.">このプロセスと子のプロセスに適用される環境変数を格納している汎用ディクショナリ。 既定値は、<see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.EnvironmentVariables">
+      <summary vsli:raw="Gets search paths for files, directories for temporary files, application-specific options, and other similar information.">ファイルの検索パス、一時ファイルのディレクトリ、アプリケーション固有のオプションなどの情報を取得します。</summary>
+      <returns vsli:raw="A string dictionary that provides environment variables that apply to this process and child processes. The default is &lt;see langword=&quot;null&quot; /&gt;.">このプロセスおよび子プロセスに適用される環境変数を提供する文字列ディクショナリ。 既定値は、<see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.ErrorDialog">
+      <summary vsli:raw="Gets or sets a value indicating whether an error dialog box is displayed to the user if the process cannot be started.">プロセスを起動できなかったときにエラー ダイアログ ボックスを表示するかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if an error dialog box should be displayed on the screen if the process cannot be started; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">プロセスを起動できなかったときにエラー ダイアログ ボックスを画面に表示する場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.ErrorDialogParentHandle">
+      <summary vsli:raw="Gets or sets the window handle to use when an error dialog box is shown for a process that cannot be started.">プロセスを起動できないときにエラー ダイアログ ボックスを表示するのに使用するウィンドウ ハンドルを取得または設定します。</summary>
+      <returns vsli:raw="A pointer to the handle of the error dialog box that results from a process start failure.">プロセスの起動失敗によって生成されるエラー ダイアログ ボックスのハンドルへのポインター。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.FileName">
+      <summary vsli:raw="Gets or sets the application or document to start.">起動するアプリケーションまたはドキュメントを取得または設定します。</summary>
+      <returns vsli:raw="The name of the application to start, or the name of a document of a file type that is associated with an application and that has a default open action available to it. The default is an empty string (&quot;&quot;).">起動するアプリケーション名。または、アプリケーションに関連付けられていて、既定の "open" アクションが利用できるファイル タイプのドキュメント名。 既定値は、空の文字列 ("") です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.LoadUserProfile">
+      <summary vsli:raw="Gets or sets a value that indicates whether the Windows user profile is to be loaded from the registry.">Windows ユーザー プロファイルをレジストリから読み込むかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the Windows user profile should be loaded; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">Windows ユーザー プロファイルを読み込む必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Password">
+      <summary vsli:raw="Gets or sets a secure string that contains the user password to use when starting the process.">プロセスを開始するときに使用するユーザー パスワードを格納するセキュリティ文字列を取得または設定します。</summary>
+      <returns vsli:raw="The user password to use when starting the process.">プロセスの開始時に使用するユーザー パスワード。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.PasswordInClearText">
+      <summary vsli:raw="Gets or sets the user password in clear text to use when starting the process.">プロセスの開始時に使用する、クリア テキストのユーザーのパスワードを取得または設定します。</summary>
+      <returns vsli:raw="The user password in clear text.">クリア テキストのユーザー パスワード。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.RedirectStandardError">
+      <summary vsli:raw="Gets or sets a value that indicates whether the error output of an application is written to the &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt; stream.">アプリケーションのエラー出力を <see cref="P:System.Diagnostics.Process.StandardError" /> ストリームに書き込むかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if error output should be written to &lt;see cref=&quot;P:System.Diagnostics.Process.StandardError&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">エラー出力を <see langword="true" /> に書き込む場合は <see cref="P:System.Diagnostics.Process.StandardError" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.RedirectStandardInput">
+      <summary vsli:raw="Gets or sets a value indicating whether the input for an application is read from the &lt;see cref=&quot;P:System.Diagnostics.Process.StandardInput&quot; /&gt; stream.">アプリケーションの入力を <see cref="P:System.Diagnostics.Process.StandardInput" /> ストリームから読み取るかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if input should be read from &lt;see cref=&quot;P:System.Diagnostics.Process.StandardInput&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> から入力を読み取る場合は <see cref="P:System.Diagnostics.Process.StandardInput" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.RedirectStandardOutput">
+      <summary vsli:raw="Gets or sets a value that indicates whether the textual output of an application is written to the &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt; stream.">アプリケーションのテキスト出力を <see cref="P:System.Diagnostics.Process.StandardOutput" /> ストリームに書き込むかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if output should be written to &lt;see cref=&quot;P:System.Diagnostics.Process.StandardOutput&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">出力を <see langword="true" /> に書き込む場合は <see cref="P:System.Diagnostics.Process.StandardOutput" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.StandardErrorEncoding">
+      <summary vsli:raw="Gets or sets the preferred encoding for error output.">エラー出力に最適なエンコーディングを取得または設定します。</summary>
+      <returns vsli:raw="An object that represents the preferred encoding for error output. The default is &lt;see langword=&quot;null&quot; /&gt;.">エラー出力に最適なエンコーディングを表すオブジェクト。 既定値は、<see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.StandardInputEncoding">
+      <summary vsli:raw="Gets or sets the preferred encoding for standard input.">標準入力に最適なエンコードを取得または設定します。</summary>
+      <returns vsli:raw="An object that represents the preferred encoding for standard input. The default is &lt;see langword=&quot;null&quot; /&gt;.">標準入力の優先エンコーディングを表すオブジェクト。 既定値は、<see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.StandardOutputEncoding">
+      <summary vsli:raw="Gets or sets the preferred encoding for standard output.">標準出力に最適なエンコーディングを取得または設定します。</summary>
+      <returns vsli:raw="An object that represents the preferred encoding for standard output. The default is &lt;see langword=&quot;null&quot; /&gt;.">標準出力に最適なエンコーディングを表すオブジェクト。 既定値は、<see langword="null" /> です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.UserName">
+      <summary vsli:raw="Gets or sets the user name to use when starting the process. If you use the UPN format, &lt;paramref name=&quot;user&quot; /&gt;@&lt;paramref name=&quot;DNS_domain_name&quot; /&gt;, the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.Domain&quot; /&gt; property must be &lt;see langword=&quot;null&quot; /&gt;.">プロセスを開始するときに使用するユーザー名を取得または設定します。 UPN 形式 (<paramref name="user" />@<paramref name="DNS_domain_name" />) を使用する場合は、<see cref="P:System.Diagnostics.ProcessStartInfo.Domain" /> プロパティを <see langword="null" /> に設定する必要があります。</summary>
+      <returns vsli:raw="The user name to use when starting the process. If you use the UPN format, &lt;paramref name=&quot;user&quot; /&gt;@&lt;paramref name=&quot;DNS_domain_name&quot; /&gt;, the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.Domain&quot; /&gt; property must be &lt;see langword=&quot;null&quot; /&gt;.">プロセスの開始時に使用するユーザー名。 UPN 形式 (<paramref name="user" />@<paramref name="DNS_domain_name" />) を使用する場合は、<see cref="P:System.Diagnostics.ProcessStartInfo.Domain" /> プロパティを <see langword="null" /> に設定する必要があります。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.UseShellExecute">
+      <summary vsli:raw="Gets or sets a value indicating whether to use the operating system shell to start the process.">プロセスの起動にオペレーティング システムのシェルを使用するかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the shell should be used when starting the process; &lt;see langword=&quot;false&quot; /&gt; if the process should be created directly from the executable file. The default is &lt;see langword=&quot;true&quot; /&gt; on .NET Framework apps and &lt;see langword=&quot;false&quot; /&gt; on .NET Core apps.">プロセスを起動するときにシェルを使用する場合は <see langword="true" />。プロセスを実行可能ファイルから直接作成する場合は <see langword="false" />。 既定では、.NET Core アプリで .NET Framework アプリと <see langword="false" /> に <see langword="true" /> ます。</returns>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="An attempt to set the value to &lt;see langword=&quot;true&quot; /&gt; on Universal Windows Platform (UWP) apps occurs.">ユニバーサル Windows プラットフォーム (UWP) アプリで値を <see langword="true" /> に設定することが試みられます。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Verb">
+      <summary vsli:raw="Gets or sets the verb to use when opening the application or document specified by the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティで指定したアプリケーションまたはドキュメントを開くときに使用する動詞を取得または設定します。</summary>
+      <returns vsli:raw="The action to take with the file that the process opens. The default is an empty string (&quot;&quot;), which signifies no action.">プロセスが開くファイルを使用して実行するアクション。 既定では、処理が行われないことを示す、空の文字列 ("") です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.Verbs">
+      <summary vsli:raw="Gets the set of verbs associated with the type of file specified by the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティで指定したファイルの種類に関連付けられている動詞のセットを取得します。</summary>
+      <returns vsli:raw="The actions that the system can apply to the file indicated by the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.FileName&quot; /&gt; property.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.FileName" /> プロパティで示されたファイルにシステムが適用できるアクション。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.WindowStyle">
+      <summary vsli:raw="Gets or sets the window state to use when the process is started.">プロセスを起動するときに使用するウィンドウの状態を取得または設定します。</summary>
+      <returns vsli:raw="One of the enumeration values that indicates whether the process is started in a window that is maximized, minimized, normal (neither maximized nor minimized), or not visible. The default is &lt;see langword=&quot;Normal&quot; /&gt;.">プロセスの起動時のウィンドウを、最大化、最小化、通常 (最大化も最小化もしていない状態)、または非表示のどの状態にするかを示す列挙値のいずれか。 既定値は、<see langword="Normal" /> です。</returns>
+      <exception cref="T:System.ComponentModel.InvalidEnumArgumentException" vsli:raw="The window style is not one of the &lt;see cref=&quot;T:System.Diagnostics.ProcessWindowStyle&quot; /&gt; enumeration members.">ウィンドウ スタイルが <see cref="T:System.Diagnostics.ProcessWindowStyle" /> 列挙メンバーではありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessStartInfo.WorkingDirectory">
+      <summary vsli:raw="When the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; property is &lt;see langword=&quot;false&quot; /&gt;, gets or sets the working directory for the process to be started. When &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; is &lt;see langword=&quot;true&quot; /&gt;, gets or sets the directory that contains the process to be started.">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティが <see langword="false" /> の場合に、開始するプロセスの作業ディレクトリを取得または設定します。 <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> が <see langword="true" /> の場合に、開始するプロセスを含むディレクトリを取得または設定します。</summary>
+      <returns vsli:raw="When &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; is &lt;see langword=&quot;true&quot; /&gt;, the fully qualified name of the directory that contains the process to be started. When the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; property is &lt;see langword=&quot;false&quot; /&gt;, the working directory for the process to be started. The default is an empty string (&quot;&quot;).">
+        <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> が <see langword="true" /> の場合、起動するプロセスがあるディレクトリの完全修飾名。 <see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティが <see langword="false" /> の場合、開始するプロセスの作業ディレクトリ。 既定値は、空の文字列 ("") です。</returns>
+    </member>
+    <member name="T:System.Diagnostics.ProcessThread">
+      <summary vsli:raw="Represents an operating system process thread.">オペレーティング システムのプロセス スレッドを表します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.BasePriority">
+      <summary vsli:raw="Gets the base priority of the thread.">スレッドの基本優先順位を取得します。</summary>
+      <returns vsli:raw="The base priority of the thread, which the operating system computes by combining the process priority class with the priority level of the associated thread.">プロセスの優先順位クラスと関連付けられたスレッドの優先順位との組み合わせからオペレーティング システムが算出した、スレッドの基本優先順位。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.CurrentPriority">
+      <summary vsli:raw="Gets the current priority of the thread.">スレッドの現在の優先順位を取得します。</summary>
+      <returns vsli:raw="The current priority of the thread, which may deviate from the base priority based on how the operating system is scheduling the thread. The priority may be temporarily boosted for an active thread.">オペレーティング システムがスレッドをスケジュールする方法によっては、スレッドの現在の優先順位が基本優先順位と異なることがあります。 アクティブなスレッドの優先順位を一時的に上げることもできます。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.Id">
+      <summary vsli:raw="Gets the unique identifier of the thread.">スレッドの一意な識別子を取得します。</summary>
+      <returns vsli:raw="The unique identifier associated with a specific thread.">特定のスレッドに関連付けられた一意な識別子。</returns>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.IdealProcessor">
+      <summary vsli:raw="Sets the preferred processor for this thread to run on.">このスレッドを実行する優先プロセッサを設定します。</summary>
+      <returns vsli:raw="The preferred processor for the thread, used when the system schedules threads, to determine which processor to run the thread on.">スレッドの優先プロセッサは、システムがスレッドをスケジュールするときに、スレッドを実行するプロセッサを決定するために使用します。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The system could not set the thread to start on the specified processor.">指定したプロセッサでスレッドを起動するよう設定できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.PriorityBoostEnabled">
+      <summary vsli:raw="Gets or sets a value indicating whether the operating system should temporarily boost the priority of the associated thread whenever the main window of the thread's process receives the focus.">スレッドのプロセスのメイン ウィンドウがフォーカスを受け取るたびに、関連付けられたスレッドの優先順位をオペレーティング システムが一時的に上げるかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to boost the thread's priority when the user interacts with the process's interface; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">ユーザーがプロセスのインターフェイスと対話しているときにスレッドの優先順位を上げる場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The priority boost information could not be retrieved.  &#xA;  &#xA; -or-  &#xA;  &#xA; The priority boost information could not be set.">優先順位上昇情報を取得できませんでした。
+
+または -
+
+優先順位上昇情報を設定できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.PriorityLevel">
+      <summary vsli:raw="Gets or sets the priority level of the thread.">スレッドの優先順位を取得または設定します。</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.ThreadPriorityLevel&quot; /&gt; values, specifying a range that bounds the thread's priority.">スレッドの優先順位の範囲を指定する <see cref="T:System.Diagnostics.ThreadPriorityLevel" /> 値のいずれか。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The thread priority level information could not be retrieved.  &#xA;  &#xA; -or-  &#xA;  &#xA; The thread priority level could not be set.">スレッドの優先順位情報を取得できませんでした。
+または
+スレッドの優先順位を設定できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.PrivilegedProcessorTime">
+      <summary vsli:raw="Gets the amount of time that the thread has spent running code inside the operating system core.">スレッドが、オペレーティング システム コアでコードを実行した時間を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; indicating the amount of time that the thread has spent running code inside the operating system core.">スレッドが、オペレーティング システム コアでコードを実行した時間を示す <see cref="T:System.TimeSpan" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The thread time could not be retrieved.">スレッド時間を取得できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.ProcessorAffinity">
+      <summary vsli:raw="Sets the processors on which the associated thread can run.">関連付けられたスレッドを実行できるプロセッサを設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IntPtr&quot; /&gt; that points to a set of bits, each of which represents a processor that the thread can run on.">スレッドを実行できるプロセッサを表すビットのセットを指す <see cref="T:System.IntPtr" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The processor affinity could not be set.">プロセッサ アフィニティを設定できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThread.ResetIdealProcessor">
+      <summary vsli:raw="Resets the ideal processor for this thread to indicate that there is no single ideal processor. In other words, so that any processor is ideal.">このスレッドに最も適したプロセッサをリセットして、単一の最も適したプロセッサがないことを示します。 つまり、どのプロセッサも適しています。</summary>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The ideal processor could not be reset.">最適なプロセッサをリセットできませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.StartAddress">
+      <summary vsli:raw="Gets the memory address of the function that the operating system called that started this thread.">このスレッドを起動するときにオペレーティング システムが呼び出した関数のメモリ アドレスを取得します。</summary>
+      <returns vsli:raw="The thread's starting address, which points to the application-defined function that the thread executes.">スレッドを実行するアプリケーション定義の関数を指すスレッドの起動アドレス。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.StartTime">
+      <summary vsli:raw="Gets the time that the operating system started the thread.">オペレーティング システムによってスレッドを起動した時刻を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.DateTime&quot; /&gt; representing the time that was on the system when the operating system started the thread.">オペレーティング システムがスレッドを起動したときのシステム上の時刻を表す <see cref="T:System.DateTime" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The thread time could not be retrieved.">スレッド時間を取得できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.ThreadState">
+      <summary vsli:raw="Gets the current state of this thread.">このスレッドの現在の状態を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ThreadState&quot; /&gt; that indicates the thread's execution, for example, running, waiting, or terminated.">実行中、待機中、終了など、スレッドの実行状態を示す <see cref="T:System.Diagnostics.ThreadState" />。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.TotalProcessorTime">
+      <summary vsli:raw="Gets the total amount of time that this thread has spent using the processor.">このスレッドがプロセッサを使用した時間の合計を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; that indicates the amount of time that the thread has had control of the processor.">スレッドがプロセッサの制御を取得していた時間の合計を示す <see cref="T:System.TimeSpan" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The thread time could not be retrieved.">スレッド時間を取得できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.UserProcessorTime">
+      <summary vsli:raw="Gets the amount of time that the associated thread has spent running code inside the application.">関連付けられたスレッドが、アプリケーションでコードを実行した時間を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; indicating the amount of time that the thread has spent running code inside the application, as opposed to inside the operating system core.">スレッドによるコード実行がオペレーティング システム コアではなくアプリケーションで行われた時間を示す <see cref="T:System.TimeSpan" />。</returns>
+      <exception cref="T:System.ComponentModel.Win32Exception" vsli:raw="The thread time could not be retrieved.">スレッド時間を取得できませんでした。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThread.WaitReason">
+      <summary vsli:raw="Gets the reason that the thread is waiting.">スレッドが待機している理由を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ThreadWaitReason&quot; /&gt; representing the reason that the thread is in the wait state.">スレッドが待機状態にある理由を表す <see cref="T:System.Diagnostics.ThreadWaitReason" />。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The thread is not in the wait state.">スレッドが待機状態にありません。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The process is on a remote computer.">プロセスは、リモート コンピューター上にあります。</exception>
+    </member>
+    <member name="T:System.Diagnostics.ProcessThreadCollection">
+      <summary vsli:raw="Provides a strongly typed collection of &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; objects.">
+        <see cref="T:System.Diagnostics.ProcessThread" /> オブジェクトの厳密に型指定されたコレクションを提供します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessThreadCollection&quot; /&gt; class, with no associated &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instances.">
+        <see cref="T:System.Diagnostics.ProcessThreadCollection" /> インスタンスに関連付けずに、<see cref="T:System.Diagnostics.ProcessThread" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.#ctor(System.Diagnostics.ProcessThread[])">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.ProcessThreadCollection&quot; /&gt; class, using the specified array of &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instances.">
+        <see cref="T:System.Diagnostics.ProcessThreadCollection" /> インスタンスの配列を指定して、<see cref="T:System.Diagnostics.ProcessThread" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="processThreads" vsli:raw="An array of &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instances with which to initialize this &lt;see cref=&quot;T:System.Diagnostics.ProcessThreadCollection&quot; /&gt; instance.">この <see cref="T:System.Diagnostics.ProcessThread" /> インスタンスを初期化するために使用する <see cref="T:System.Diagnostics.ProcessThreadCollection" /> インスタンスの配列。</param>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.Add(System.Diagnostics.ProcessThread)">
+      <summary vsli:raw="Appends a process thread to the collection.">プロセス スレッドをコレクションに追加します。</summary>
+      <param name="thread" vsli:raw="The thread to add to the collection.">コレクションに追加するスレッド。</param>
+      <returns vsli:raw="The zero-based index of the thread in the collection.">コレクション内のスレッドの 0 から始まるインデックス番号。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.Contains(System.Diagnostics.ProcessThread)">
+      <summary vsli:raw="Determines whether the specified process thread exists in the collection.">指定したプロセス スレッドがコレクション内にあるかどうかを調べます。</summary>
+      <param name="thread" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instance that indicates the thread to find in this collection.">コレクション内にあるかどうかを調べるスレッドを示す <see cref="T:System.Diagnostics.ProcessThread" /> インスタンス。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the thread exists in the collection; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">スレッドがコレクション内にある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.CopyTo(System.Diagnostics.ProcessThread[],System.Int32)">
+      <summary vsli:raw="Copies an array of &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instances to the collection, at the specified index.">コレクションの指定したインデックスに <see cref="T:System.Diagnostics.ProcessThread" /> インスタンスの配列をコピーします。</summary>
+      <param name="array" vsli:raw="An array of &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; instances to add to the collection.">コレクションに追加する <see cref="T:System.Diagnostics.ProcessThread" /> インスタンスの配列。</param>
+      <param name="index" vsli:raw="The location at which to add the new instances.">新しいインスタンスを追加する位置。</param>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.IndexOf(System.Diagnostics.ProcessThread)">
+      <summary vsli:raw="Provides the location of a specified thread within the collection.">コレクション内の指定したスレッドの位置を提供します。</summary>
+      <param name="thread" vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; whose index is retrieved.">インデックスを取得する <see cref="T:System.Diagnostics.ProcessThread" />。</param>
+      <returns vsli:raw="The zero-based index that defines the location of the thread within the &lt;see cref=&quot;T:System.Diagnostics.ProcessThreadCollection&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.ProcessThreadCollection" /> 内のスレッドの位置を定義する 0 から始まるインデックス番号。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.Insert(System.Int32,System.Diagnostics.ProcessThread)">
+      <summary vsli:raw="Inserts a process thread at the specified location in the collection.">コレクション内の指定した位置にプロセス スレッドを挿入します。</summary>
+      <param name="index" vsli:raw="The zero-based index indicating the location at which to insert the thread.">スレッドを挿入する位置を示す 0 から始まるインデックス番号。</param>
+      <param name="thread" vsli:raw="The thread to insert into the collection.">コレクションに挿入するスレッド。</param>
+    </member>
+    <member name="P:System.Diagnostics.ProcessThreadCollection.Item(System.Int32)">
+      <summary vsli:raw="Gets an index for iterating over the set of process threads.">一連のプロセス スレッドを反復処理するためのインデックスを取得します。</summary>
+      <param name="index" vsli:raw="The zero-based index value of the thread in the collection.">コレクション内のスレッドの 0 から始まるインデックス値。</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.ProcessThread&quot; /&gt; that indexes the threads in the collection.">コレクション内のスレッドにインデックスを作成する <see cref="T:System.Diagnostics.ProcessThread" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.ProcessThreadCollection.Remove(System.Diagnostics.ProcessThread)">
+      <summary vsli:raw="Deletes a process thread from the collection.">コレクションからプロセス スレッドを削除します。</summary>
+      <param name="thread" vsli:raw="The thread to remove from the collection.">コレクションから削除するスレッド。</param>
+    </member>
+    <member name="T:System.Diagnostics.ProcessWindowStyle">
+      <summary vsli:raw="Specified how a new window should appear when the system starts a process.">プロセスを起動するときに新しいウィンドウを表示する方法を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessWindowStyle.Hidden">
+      <summary vsli:raw="The hidden window style. A window can be either visible or hidden. The system displays a hidden window by not drawing it. If a window is hidden, it is effectively disabled. A hidden window can process messages from the system or from other windows, but it cannot process input from the user or display output. Frequently, an application may keep a new window hidden while it customizes the window's appearance, and then make the window style &lt;see cref=&quot;F:System.Diagnostics.ProcessWindowStyle.Normal&quot; /&gt;. To use &lt;see cref=&quot;F:System.Diagnostics.ProcessWindowStyle.Hidden&quot; /&gt;, the &lt;see cref=&quot;P:System.Diagnostics.ProcessStartInfo.UseShellExecute&quot; /&gt; property must be &lt;see langword=&quot;true&quot; /&gt;.">非表示のウィンドウ スタイル。 ウィンドウは表示または非表示のいずれかにできます。 システムは、ウィンドウが非表示であることを示す場合は、そのウィンドウを描画しません。 ウィンドウが非表示の場合、そのウィンドウは無効になります。 非表示のウィンドウは、システムまたはその他のウィンドウからのメッセージを処理できますが、ユーザーからの入力を処理したり、出力を表示することはできません。 アプリケーションは、新しいウィンドウを非表示にして、そのウィンドウの外観をカスタマイズしてから、ウィンドウ スタイルを <see cref="F:System.Diagnostics.ProcessWindowStyle.Normal" /> にすることがよくあります。 <see cref="F:System.Diagnostics.ProcessWindowStyle.Hidden" /> を使用するには、<see cref="P:System.Diagnostics.ProcessStartInfo.UseShellExecute" /> プロパティが <see langword="true" /> に設定されている必要があります。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessWindowStyle.Maximized">
+      <summary vsli:raw="The maximized window style. By default, the system enlarges a maximized window so that it fills the screen or, in the case of a child window, the parent window's client area. If the window has a title bar, the system automatically moves it to the top of the screen or to the top of the parent window's client area. Also, the system disables the window's sizing border and the window-positioning capability of the title bar so that the user cannot move the window by dragging the title bar.">最大化されたウィンドウ スタイル。 既定では、最大化されたウィンドウは画面全体に拡大されます。子ウィンドウの場合は、親ウィンドウのクライアント領域全体に拡大されます。 ウィンドウにタイトル バーがある場合、システムは画面の最上部または親ウィンドウのクライアント領域の最上部にタイトル バーを自動的に移動します。 さらに、システムは、タイトル バーのドラッグによるウィンドウの移動をできなくするために、ウィンドウのサイズ変更境界と、タイトル バーのウィンドウ位置変更機能を無効にします。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessWindowStyle.Minimized">
+      <summary vsli:raw="The minimized window style. By default, the system reduces a minimized window to the size of its taskbar button and moves the minimized window to the taskbar.">最小化されたウィンドウ スタイル。 既定では、最小化されたウィンドウはタスクバー ボタンのサイズに縮小され、タスクバーに移動します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ProcessWindowStyle.Normal">
+      <summary vsli:raw="The normal, visible window style. The system displays a window with &lt;see cref=&quot;F:System.Diagnostics.ProcessWindowStyle.Normal&quot; /&gt; style on the screen, in a default location. If a window is visible, the user can supply input to the window and view the window's output. Frequently, an application may initialize a new window to the &lt;see cref=&quot;F:System.Diagnostics.ProcessWindowStyle.Hidden&quot; /&gt; style while it customizes the window's appearance, and then make the window style &lt;see cref=&quot;F:System.Diagnostics.ProcessWindowStyle.Normal&quot; /&gt;.">通常の表示ウィンドウ スタイル。 ウィンドウは、画面上の既定の場所に、<see cref="F:System.Diagnostics.ProcessWindowStyle.Normal" /> スタイルで表示されます。 ウィンドウが表示されている場合は、そのウィンドウに入力したり、そのウィンドウの出力を確認できます。 アプリケーションは、新しいウィンドウを <see cref="F:System.Diagnostics.ProcessWindowStyle.Hidden" /> スタイルに初期化し、ウィンドウの外観をカスタマイズしてから、そのウィンドウ スタイルを <see cref="F:System.Diagnostics.ProcessWindowStyle.Normal" /> にすることがよくあります。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ThreadPriorityLevel">
+      <summary vsli:raw="Specifies the priority level of a thread.">スレッドの優先順位を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.AboveNormal">
+      <summary vsli:raw="Specifies one step above the normal priority for the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の通常の優先順位を基準に 1 段階上を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.BelowNormal">
+      <summary vsli:raw="Specifies one step below the normal priority for the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の通常の優先順位を基準に 1 段階下を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.Highest">
+      <summary vsli:raw="Specifies highest priority. This is two steps above the normal priority for the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">最も高い優先順位を指定します。 関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の通常の優先順位から 2 段階上です。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.Idle">
+      <summary vsli:raw="Specifies idle priority. This is the lowest possible priority value of all threads, independent of the value of the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">アイドル優先順位を指定します。 関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の値とは関係なく、すべてのスレッドの優先順位値の中で最も低い優先順位です。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.Lowest">
+      <summary vsli:raw="Specifies lowest priority. This is two steps below the normal priority for the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">最も低い優先順位を指定します。 関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の通常の優先順位から 2 段階下です。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.Normal">
+      <summary vsli:raw="Specifies normal priority for the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の通常の優先順位を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadPriorityLevel.TimeCritical">
+      <summary vsli:raw="Specifies time-critical priority. This is the highest priority of all threads, independent of the value of the associated &lt;see cref=&quot;T:System.Diagnostics.ProcessPriorityClass&quot; /&gt;.">時間が重要な優先順位を指定します。 関連付けられた <see cref="T:System.Diagnostics.ProcessPriorityClass" /> の値とは無関係に、すべてのスレッドの中で最も高い優先順位です。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ThreadState">
+      <summary vsli:raw="Specifies the current execution state of the thread.">スレッドの現在の実行状態を指定します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Initialized">
+      <summary vsli:raw="A state that indicates the thread has been initialized, but has not yet started.">スレッドは初期化されたが、まだ開始していないことを示す状態。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Ready">
+      <summary vsli:raw="A state that indicates the thread is waiting to use a processor because no processor is free. The thread is prepared to run on the next available processor.">解放されているプロセッサがないため、スレッドがプロセッサの使用を待機していることを示す状態。 スレッドは、次に利用可能になるプロセッサで実行する準備が整っています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Running">
+      <summary vsli:raw="A state that indicates the thread is currently using a processor.">スレッドが現在プロセッサを使用していることを示す状態。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Standby">
+      <summary vsli:raw="A state that indicates the thread is about to use a processor. Only one thread can be in this state at a time.">スレッドがすぐにプロセッサを使用することを示す状態。 一度に 1 つのスレッドだけが、この状態になることができます。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Terminated">
+      <summary vsli:raw="A state that indicates the thread has finished executing and has exited.">スレッドが実行を終了しスレッド自身も終了したことを示す状態。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Transition">
+      <summary vsli:raw="A state that indicates the thread is waiting for a resource, other than the processor, before it can execute. For example, it might be waiting for its execution stack to be paged in from disk.">スレッドが、実行前にプロセッサ以外のリソースを待機していることを示す状態。 たとえば、ディスクから実行スタックのページングを待機している場合があります。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Unknown">
+      <summary vsli:raw="The state of the thread is unknown.">スレッドの状態が不明です。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadState.Wait">
+      <summary vsli:raw="A state that indicates the thread is not ready to use the processor because it is waiting for a peripheral operation to complete or a resource to become free. When the thread is ready, it will be rescheduled.">スレッドが、周辺操作の完了またはリソースの解放を待機しているために、プロセッサを使用する準備が整っていないことを示す状態。 スレッドの準備が整うと、スケジュールが再設定されます。</summary>
+    </member>
+    <member name="T:System.Diagnostics.ThreadWaitReason">
+      <summary vsli:raw="Specifies the reason a thread is waiting.">スレッドが待機している理由を示します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.EventPairHigh">
+      <summary vsli:raw="The thread is waiting for event pair high.">スレッドは、イベント ペア High を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.EventPairLow">
+      <summary vsli:raw="The thread is waiting for event pair low.">スレッドは、イベント ペア Low を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.ExecutionDelay">
+      <summary vsli:raw="Thread execution is delayed.">スレッドの実行が遅延しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.Executive">
+      <summary vsli:raw="The thread is waiting for the scheduler.">スレッドは、スケジューラを待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.FreePage">
+      <summary vsli:raw="The thread is waiting for a free virtual memory page.">スレッドは、空き仮想メモリ ページを待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.LpcReceive">
+      <summary vsli:raw="The thread is waiting for a local procedure call to arrive.">スレッドは、ローカル プロシージャ呼び出しの到達を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.LpcReply">
+      <summary vsli:raw="The thread is waiting for reply to a local procedure call to arrive.">スレッドは、ローカル プロシージャ呼び出しへの応答の到達を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.PageIn">
+      <summary vsli:raw="The thread is waiting for a virtual memory page to arrive in memory.">スレッドは、仮想メモリ ページのメモリへの到達を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.PageOut">
+      <summary vsli:raw="The thread is waiting for a virtual memory page to be written to disk.">スレッドは、仮想メモリ ページのディスクへの書き込みを待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.Suspended">
+      <summary vsli:raw="Thread execution is suspended.">スレッドの実行は中断しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.SystemAllocation">
+      <summary vsli:raw="The thread is waiting for system allocation.">スレッドは、システムによる割り当てを待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.Unknown">
+      <summary vsli:raw="The thread is waiting for an unknown reason.">スレッドは、不明な理由のために待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.UserRequest">
+      <summary vsli:raw="The thread is waiting for a user request.">スレッドは、ユーザー要求を待機しています。</summary>
+    </member>
+    <member name="F:System.Diagnostics.ThreadWaitReason.VirtualMemory">
+      <summary vsli:raw="The thread is waiting for the system to allocate virtual memory.">スレッドは、仮想メモリの割り当てを待機しています。</summary>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,1033 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.IO.Pipes</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafePipeHandle">
+      <summary vsli:raw="Represents a wrapper class for a pipe handle.">Representa una clase contenedora para un identificador de canalización.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafePipeHandle.#ctor(System.IntPtr,System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafePipeHandle&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:Microsoft.Win32.SafeHandles.SafePipeHandle" />.</summary>
+      <param name="preexistingHandle" vsli:raw="An &lt;see cref=&quot;T:System.IntPtr&quot; /&gt; object that represents the pre-existing handle to use.">Objeto <see cref="T:System.IntPtr" /> que representa el controlador preexistente que se va a usar.</param>
+      <param name="ownsHandle" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to reliably release the handle during the finalization phase; &lt;see langword=&quot;false&quot; /&gt; to prevent reliable release (not recommended).">
+        <see langword="true" /> para liberar de manera fiable el identificador durante la fase de finalización; <see langword="false" /> para impedir que se libere de manera fiable (no se recomienda).</param>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafePipeHandle.IsInvalid">
+      <summary vsli:raw="Gets a value that indicates whether the handle is invalid.">Obtiene un valor que indica si el identificador no es válido.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the handle is not valid; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el identificador no es válido; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.AnonymousPipeClientStream">
+      <summary vsli:raw="Exposes the client side of an anonymous pipe stream, which supports both synchronous and asynchronous read and write operations (without cancellation support on Windows platforms).">Expone la parte cliente de una secuencia de canalización anónima, que admite operaciones sincrónicas y asincrónicas de escritura y lectura.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeClientStream.#ctor(System.IO.Pipes.PipeDirection,Microsoft.Win32.SafeHandles.SafePipeHandle)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; class from the specified handle.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> a partir del identificador especificado.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="safePipeHandle" vsli:raw="A safe handle for the pipe that this &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object will encapsulate.">Controlador seguro para la canalización que este objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> encapsulará.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is not a valid handle.">
+        <paramref name="safePipeHandle" /> no es un controlador válido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="safePipeHandle" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="An I/O error, such as a disk error, has occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The stream has been closed.">Se ha producido un error de E/S, como un error de disco.  
+  
+ o bien  
+  
+ Se ha cerrado la secuencia.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeClientStream.#ctor(System.IO.Pipes.PipeDirection,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; class with the specified pipe direction and a string representation of the pipe handle.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> con la dirección de canalización especificada y una representación de cadena del identificador de canalización.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="pipeHandleAsString" vsli:raw="A string that represents the pipe handle.">Una cadena que representa el identificador de canalización.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeHandleAsString&quot; /&gt; is an invalid handle.">
+        <paramref name="pipeHandleAsString" /> es un controlador no válido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeHandleAsString&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeHandleAsString" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeClientStream.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; class with the specified string representation of the pipe handle.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> con la representación de cadena especificada para el identificador de canalización.</summary>
+      <param name="pipeHandleAsString" vsli:raw="A string that represents the pipe handle.">Una cadena que representa el identificador de canalización.</param>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;pipeHandleAsString&quot; /&gt; is not a valid pipe handle.">El valor de <paramref name="pipeHandleAsString" /> no es un identificador de canalización válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeClientStream.Finalize">
+      <summary vsli:raw="Releases unmanaged resources and performs other cleanup operations before the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; instance is reclaimed by garbage collection.">Libera recursos no administrados y realiza otras operaciones de limpieza antes de que la recolección de elementos no utilizados reclame la instancia de <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" />.</summary>
+    </member>
+    <member name="P:System.IO.Pipes.AnonymousPipeClientStream.ReadMode">
+      <summary vsli:raw="Sets the reading mode for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object.">Establece el modo de lectura para el objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The transmission mode is not valid. For anonymous pipes, only &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Byte&quot; /&gt; is supported.">El modo de transmisión no es válido. Solo se admite <see cref="F:System.IO.Pipes.PipeTransmissionMode.Byte" /> para canalizaciones anónimas.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The transmission mode is &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Message&quot; /&gt;.">El modo de transmisión es <see cref="F:System.IO.Pipes.PipeTransmissionMode.Message" />.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The connection is broken or another I/O error occurs.">La conexión se ha roto o se produce otro error de E/S.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object.">Del <see cref="T:System.IO.Pipes.PipeTransmissionMode" /><see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> objeto.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.AnonymousPipeClientStream.TransmissionMode">
+      <summary vsli:raw="Gets the pipe transmission mode supported by the current pipe.">Obtiene el modo de transmisión de canalización compatible con la canalización actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; supported by the current pipe.">El <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> que admite la canalización actual.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.AnonymousPipeServerStream">
+      <summary vsli:raw="Exposes a stream around an anonymous pipe, which supports both synchronous and asynchronous read and write operations.">Expone una secuencia alrededor de una canalización anónima, que admite operaciones de lectura y escritura tanto sincrónicas como asincrónicas.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.#ctor(System.IO.Pipes.PipeDirection)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; class with the specified pipe direction.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> con la dirección de canalización especificada.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.#ctor(System.IO.Pipes.PipeDirection,Microsoft.Win32.SafeHandles.SafePipeHandle,Microsoft.Win32.SafeHandles.SafePipeHandle)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; class from the specified pipe handles.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> a partir de los identificadores de canalización especificados.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="serverSafePipeHandle" vsli:raw="A safe handle for the pipe that this &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; object will encapsulate.">Controlador seguro para la canalización que este objeto <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> encapsulará.</param>
+      <param name="clientSafePipeHandle" vsli:raw="A safe handle for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object.">Controlador seguro para el objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;serverSafePipeHandle&quot; /&gt; or &lt;paramref name=&quot;clientSafePipeHandle&quot; /&gt; is an invalid handle.">
+        <paramref name="serverSafePipeHandle" /> o <paramref name="clientSafePipeHandle" /> es un controlador no válido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;serverSafePipeHandle&quot; /&gt; or &lt;paramref name=&quot;clientSafePipeHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="serverSafePipeHandle" /> o <paramref name="clientSafePipeHandle" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="An I/O error, such as a disk error, has occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The stream has been closed.">Se ha producido un error de E/S, como un error de disco.  
+  
+ o bien  
+  
+ Se ha cerrado la secuencia.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.#ctor(System.IO.Pipes.PipeDirection,System.IO.HandleInheritability)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; class with the specified pipe direction and inheritability mode.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> con las características dirección de canalización y modo de herencia especificadas.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="inheritability" vsli:raw="One of the enumeration values that determines whether the underlying handle can be inherited by child processes. Must be set to either &lt;see cref=&quot;F:System.IO.HandleInheritability.None&quot; /&gt; or &lt;see cref=&quot;F:System.IO.HandleInheritability.Inheritable&quot; /&gt;.">Uno de los valores de enumeración que determina si los procesos secundarios pueden heredar el identificador subyacente. Se debe establecer en <see cref="F:System.IO.HandleInheritability.None" /> o en <see cref="F:System.IO.HandleInheritability.Inheritable" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;inheritability&quot; /&gt; is not set to either &lt;see cref=&quot;F:System.IO.HandleInheritability.None&quot; /&gt; or &lt;see cref=&quot;F:System.IO.HandleInheritability.Inheritable&quot; /&gt;.">
+        <paramref name="inheritability" /> no está establecido en <see cref="F:System.IO.HandleInheritability.None" /> o <see cref="F:System.IO.HandleInheritability.Inheritable" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.#ctor(System.IO.Pipes.PipeDirection,System.IO.HandleInheritability,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; class with the specified pipe direction, inheritability mode, and buffer size.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" /> con las características dirección de canalización, modo de herencia y tamaño de búfer especificadas.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.  &#xA;  &#xA; Anonymous pipes can only be in one direction, so &lt;paramref name=&quot;direction&quot; /&gt; cannot be set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">Uno de los valores de enumeración que determina la dirección de la canalización.  
+  
+Las canalizaciones anónimas solo pueden ser en una dirección, por lo que <paramref name="direction" /> no se puede establecer en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</param>
+      <param name="inheritability" vsli:raw="One of the enumeration values that determines whether the underlying handle can be inherited by child processes. Must be set to either &lt;see cref=&quot;F:System.IO.HandleInheritability.None&quot; /&gt; or &lt;see cref=&quot;F:System.IO.HandleInheritability.Inheritable&quot; /&gt;.">Uno de los valores de enumeración que determina si los procesos secundarios pueden heredar el identificador subyacente. Se debe establecer en <see cref="F:System.IO.HandleInheritability.None" /> o en <see cref="F:System.IO.HandleInheritability.Inheritable" />.</param>
+      <param name="bufferSize" vsli:raw="The size of the buffer. This value must be greater than or equal to 0.">Tamaño del búfer. Este valor debe ser mayor o igual que 0.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;inheritability&quot; /&gt; is not set to either &lt;see cref=&quot;F:System.IO.HandleInheritability.None&quot; /&gt; or &lt;see cref=&quot;F:System.IO.HandleInheritability.Inheritable&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;bufferSize&quot; /&gt; is less than 0.">
+        <paramref name="inheritability" /> no está establecido en <see cref="F:System.IO.HandleInheritability.None" /> o <see cref="F:System.IO.HandleInheritability.Inheritable" />.  
+  
+o bien 
+ <paramref name="bufferSize" /> es menor que 0.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeDirection.InOut&quot; /&gt;.">El valor de <paramref name="direction" /> está establecido en <see cref="F:System.IO.Pipes.PipeDirection.InOut" />.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.DisposeLocalCopyOfClientHandle">
+      <summary vsli:raw="Closes the local copy of the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object's handle.">Cierra la copia local del identificador del objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" />.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.Finalize">
+      <summary vsli:raw="Releases unmanaged resources and performs other cleanup operations before the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; instance is reclaimed by garbage collection.">Libera recursos no administrados y realiza otras operaciones de limpieza antes de que la recolección de elementos no utilizados reclame la instancia de <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.AnonymousPipeServerStream.GetClientHandleAsString">
+      <summary vsli:raw="Gets the connected &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object's handle as a string.">Obtiene el identificador del objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> conectado como una cadena.</summary>
+      <returns vsli:raw="A string that represents the connected &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object's handle.">Cadena que representa el identificador del objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> conectado.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.AnonymousPipeServerStream.ClientSafePipeHandle">
+      <summary vsli:raw="Gets the safe handle for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object that is currently connected to the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; object.">Obtiene el identificador seguro del objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> que está conectado actualmente al objeto <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />.</summary>
+      <returns vsli:raw="A handle for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeClientStream&quot; /&gt; object that is currently connected to the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; object.">Controlador para el objeto <see cref="T:System.IO.Pipes.AnonymousPipeClientStream" /> que está conectado actualmente al objeto <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.AnonymousPipeServerStream.ReadMode">
+      <summary vsli:raw="Sets the reading mode for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; object. For anonymous pipes, transmission mode must be &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Byte&quot; /&gt;.">Establece el modo de lectura para el objeto <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />. Para las canalizaciones anónimas, el modo de transmisión debe ser <see cref="F:System.IO.Pipes.PipeTransmissionMode.Byte" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The transmission mode is not valid. For anonymous pipes, only &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Byte&quot; /&gt; is supported.">El modo de transmisión no es válido. Solo se admite <see cref="F:System.IO.Pipes.PipeTransmissionMode.Byte" /> para canalizaciones anónimas.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The property is set to &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Message&quot; /&gt;, which is not supported for anonymous pipes.">La propiedad se establece en <see cref="F:System.IO.Pipes.PipeTransmissionMode.Message" />, que no se admite para canalizaciones anónimas.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The connection is broken or another I/O error occurs.">La conexión se ha roto o se produce otro error de E/S.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <returns vsli:raw="The reading mode for the &lt;see cref=&quot;T:System.IO.Pipes.AnonymousPipeServerStream&quot; /&gt; object.">El modo de lectura para el objeto <see cref="T:System.IO.Pipes.AnonymousPipeServerStream" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.AnonymousPipeServerStream.TransmissionMode">
+      <summary vsli:raw="Gets the pipe transmission mode that is supported by the current pipe.">Obtiene el modo de transmisión de canalización compatible con la canalización actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; that is supported by the current pipe.">
+        <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> compatible con la canalización actual.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.NamedPipeClientStream">
+      <summary vsli:raw="Exposes a &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; around a named pipe, which supports both synchronous and asynchronous read and write operations.">Expone un <see cref="T:System.IO.Stream" /> alrededor de una canalización con nombre, que admite operaciones de lectura y escritura sincrónica y asincrónica.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.IO.Pipes.PipeDirection,System.Boolean,System.Boolean,Microsoft.Win32.SafeHandles.SafePipeHandle)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class for the specified pipe handle with the specified pipe direction.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> para el identificador de canalización especificado con la dirección de canalización especificada.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="isAsync" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the handle was opened asynchronously; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para indicar que se abrió el identificador de forma asincrónica; en caso contrario, es <see langword="false" />.</param>
+      <param name="isConnected" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the pipe is connected; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para indicar que la canalización está conectada; de lo contrario, es <see langword="false" />.</param>
+      <param name="safePipeHandle" vsli:raw="A safe handle for the pipe that this &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; object will encapsulate.">Controlador seguro para la canalización que este objeto <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> encapsulará.</param>
+      <exception cref="T:System.IO.IOException" vsli:raw="The stream has been closed.">Se ha cerrado la secuencia.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is not a valid handle.">
+        <paramref name="safePipeHandle" /> no es un controlador válido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="safePipeHandle" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.">
+        <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe name.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con el nombre de canalización especificado.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.">
+        <paramref name="pipeName" /> se establece en "anónimo".</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe and server names.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con los nombres de canalización y servidor especificados.</summary>
+      <param name="serverName" vsli:raw="The name of the remote computer to connect to, or &quot;.&quot; to specify the local computer.">Nombre del equipo remoto al que se va a conectar; o bien, "." para especificar el equipo local.</param>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es una cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.">
+        <paramref name="pipeName" /> se establece en "anónimo".</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String,System.String,System.IO.Pipes.PipeDirection)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe and server names, and the specified pipe direction.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con los nombres de canalización y servidor especificados y la dirección de canalización especificada.</summary>
+      <param name="serverName" vsli:raw="The name of the remote computer to connect to, or &quot;.&quot; to specify the local computer.">Nombre del equipo remoto al que se va a conectar; o bien, "." para especificar el equipo local.</param>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es una cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String,System.String,System.IO.Pipes.PipeDirection,System.IO.Pipes.PipeOptions)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe and server names, and the specified pipe direction and pipe options.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con los nombres de canalización y servidor especificados, y la dirección y opciones de canalización especificadas.</summary>
+      <param name="serverName" vsli:raw="The name of the remote computer to connect to, or &quot;.&quot; to specify the local computer.">Nombre del equipo remoto al que se va a conectar; o bien, "." para especificar el equipo local.</param>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="options" vsli:raw="One of the enumeration values that determines how to open or create the pipe.">Uno de los valores de enumeración que determina cómo abrir o crear la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es una cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;options&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeOptions&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ <paramref name="options" /> no es un valor <see cref="T:System.IO.Pipes.PipeOptions" /> válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String,System.String,System.IO.Pipes.PipeDirection,System.IO.Pipes.PipeOptions,System.Security.Principal.TokenImpersonationLevel)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe and server names, and the specified pipe direction, pipe options, and security impersonation level.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con los nombres de canalización y servidor especificados, y las características dirección de canalización, opciones de canalización y nivel de suplantación de seguridad especificadas.</summary>
+      <param name="serverName" vsli:raw="The name of the remote computer to connect to, or &quot;.&quot; to specify the local computer.">Nombre del equipo remoto al que se va a conectar; o bien, "." para especificar el equipo local.</param>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="options" vsli:raw="One of the enumeration values that determines how to open or create the pipe.">Uno de los valores de enumeración que determina cómo abrir o crear la canalización.</param>
+      <param name="impersonationLevel" vsli:raw="One of the enumeration values that determines the security impersonation level.">Uno de los valores de enumeración que determina el nivel de suplantación de seguridad.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es una cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;options&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeOptions&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;impersonationLevel&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.Security.Principal.TokenImpersonationLevel&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ <paramref name="options" /> no es un valor <see cref="T:System.IO.Pipes.PipeOptions" /> válido.  
+  
+o bien 
+ <paramref name="impersonationLevel" /> no es un valor <see cref="T:System.Security.Principal.TokenImpersonationLevel" /> válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.#ctor(System.String,System.String,System.IO.Pipes.PipeDirection,System.IO.Pipes.PipeOptions,System.Security.Principal.TokenImpersonationLevel,System.IO.HandleInheritability)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; class with the specified pipe and server names, and the specified pipe direction, pipe options, security impersonation level, and inheritability mode.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> con los nombres de canalización y servidor especificados, y las características dirección de canalización, opciones de canalización, nivel de suplantación de seguridad y modo de herencia especificadas.</summary>
+      <param name="serverName" vsli:raw="The name of the remote computer to connect to, or &quot;.&quot; to specify the local computer.">Nombre del equipo remoto al que se va a conectar; o bien, "." para especificar el equipo local.</param>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="options" vsli:raw="One of the enumeration values that determines how to open or create the pipe.">Uno de los valores de enumeración que determina cómo abrir o crear la canalización.</param>
+      <param name="impersonationLevel" vsli:raw="One of the enumeration values that determines the security impersonation level.">Uno de los valores de enumeración que determina el nivel de suplantación de seguridad.</param>
+      <param name="inheritability" vsli:raw="One of the enumeration values that determines whether the underlying handle will be inheritable by child processes.">Uno de los valores de enumeración que determina si los procesos secundarios van a poder heredar el identificador subyacente.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; or &lt;paramref name=&quot;serverName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> o <paramref name="serverName" /> es una cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;options&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeOptions&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;impersonationLevel&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.Security.Principal.TokenImpersonationLevel&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;inheritability&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.HandleInheritability&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ <paramref name="options" /> no es un valor <see cref="T:System.IO.Pipes.PipeOptions" /> válido.  
+  
+o bien 
+ <paramref name="impersonationLevel" /> no es un valor <see cref="T:System.Security.Principal.TokenImpersonationLevel" /> válido.  
+  
+o bien 
+ <paramref name="inheritability" /> no es un valor <see cref="T:System.IO.HandleInheritability" /> válido.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.Connect">
+      <summary vsli:raw="Connects to a waiting server with an infinite time-out value.">Conecta a un servidor de espera con un valor de tiempo de espera infinito.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The client is already connected.">El cliente ya está conectado.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.Connect(System.Int32)">
+      <summary vsli:raw="Connects to a waiting server within the specified time-out period.">Conecta con un servidor de espera dentro del período de tiempo de espera especificado.</summary>
+      <param name="timeout" vsli:raw="The number of milliseconds to wait for the server to respond before the connection times out.">El número de milisegundos a la espera de que el servidor responda antes de que se supere el tiempo de espera de la conexión.</param>
+      <exception cref="T:System.TimeoutException" vsli:raw="Could not connect to the server within the specified &lt;paramref name=&quot;timeout&quot; /&gt; period.">No se ha podido conectar al servidor en el tiempo de espera especificado por el período <paramref name="timeout" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;timeout&quot; /&gt; is less than 0 and not set to &lt;see cref=&quot;F:System.Threading.Timeout.Infinite&quot; /&gt;.">
+        <paramref name="timeout" /> es menor que 0 y no se establece en <see cref="F:System.Threading.Timeout.Infinite" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The client is already connected.">El cliente ya está conectado.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The server is connected to another client and the time-out period has expired.">El servidor se conecta a otro cliente y el tiempo de espera ha expirado.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.ConnectAsync">
+      <summary vsli:raw="Asynchronously connects to a waiting server with an infinite timeout period.">Se conecta de manera asincrónica a un servidor en espera con un período de tiempo de espera infinito.</summary>
+      <returns vsli:raw="A task that represents the asynchronous connect operation.">Tarea que representa la operación de conexión asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.ConnectAsync(System.Int32)">
+      <summary vsli:raw="Asynchronously connects to a waiting server within the specified timeout period.">Se conecta de manera asincrónica a un servidor en espera dentro del período de tiempo de espera especificado.</summary>
+      <param name="timeout" vsli:raw="The number of milliseconds to wait for the server to respond before the connection times out.">El número de milisegundos a la espera de que el servidor responda antes de que se supere el tiempo de espera de la conexión.</param>
+      <returns vsli:raw="A task that represents the asynchronous connect operation.">Tarea que representa la operación de conexión asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.ConnectAsync(System.Int32,System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously connects to a waiting server within the specified timeout period and monitors cancellation requests.">Se conecta de manera asincrónica a un servidor en espera dentro del período de tiempo de espera especificado y supervisa las solicitudes de cancelación.</summary>
+      <param name="timeout" vsli:raw="The number of milliseconds to wait for the server to respond before the connection times out.">El número de milisegundos a la espera de que el servidor responda antes de que se supere el tiempo de espera de la conexión.</param>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <returns vsli:raw="A task that represents the asynchronous connect operation.">Tarea que representa la operación de conexión asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.ConnectAsync(System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously connects to a waiting server and monitors cancellation requests.">Se conecta de manera asincrónica a un servidor en espera y supervisa las solicitudes de cancelación.</summary>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <returns vsli:raw="A task that represents the asynchronous connect operation.">Tarea que representa la operación de conexión asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeClientStream.Finalize">
+      <summary vsli:raw="Releases unmanaged resources and performs other cleanup operations before the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; instance is reclaimed by garbage collection.">Libera recursos no administrados y realiza otras operaciones de limpieza antes de que la recolección de elementos no utilizados reclame la instancia de <see cref="T:System.IO.Pipes.NamedPipeClientStream" />.</summary>
+    </member>
+    <member name="P:System.IO.Pipes.NamedPipeClientStream.NumberOfServerInstances">
+      <summary vsli:raw="Gets the number of server instances that share the same pipe name.">Obtiene el número máximo de instancias de servidor que comparten el mismo nombre de canalización.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe handle has not been set.  &#xA;  &#xA; -or-  &#xA;  &#xA; The current &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; object has not yet connected to a &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object.">La canalización no se estableció.  
+  
+o bien 
+El objeto <see cref="T:System.IO.Pipes.NamedPipeClientStream" /> actual no se ha conectado todavía a un objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" />.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or an I/O error occurred.">La canalización se ha roto o se ha producido un error de E/S.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The underlying pipe handle is closed.">El controlador de la canalización subyacente está cerrado.</exception>
+      <returns vsli:raw="The number of server instances that share the same pipe name.">El número máximo de instancias de servidor que comparten el mismo nombre de canalización.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.NamedPipeServerStream">
+      <summary vsli:raw="Exposes a &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; around a named pipe, supporting both synchronous and asynchronous read and write operations.">Expone un <see cref="T:System.IO.Stream" /> alrededor de una canalización con nombre, lo que permite operaciones de lectura y escritura sincrónica y asincrónica.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances">
+      <summary vsli:raw="Represents the maximum number of server instances that the system resources allow.">Representa el número máximo de instancias de servidor que los recursos del sistema permiten.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.IO.Pipes.PipeDirection,System.Boolean,System.Boolean,Microsoft.Win32.SafeHandles.SafePipeHandle)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class from the specified pipe handle.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> a partir del identificador de canalización especificado.</summary>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="isAsync" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the handle was opened asynchronously; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para indicar que se abrió el identificador de forma asincrónica; en caso contrario, es <see langword="false" />.</param>
+      <param name="isConnected" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the pipe is connected; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para indicar que la canalización está conectada; de lo contrario, es <see langword="false" />.</param>
+      <param name="safePipeHandle" vsli:raw="A safe handle for the pipe that this &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object will encapsulate.">Controlador seguro para la canalización que este objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> encapsulará.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.">
+        <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="safePipeHandle" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is an invalid handle.">
+        <paramref name="safePipeHandle" /> es un controlador no válido.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;safePipeHandle&quot; /&gt; is not a valid pipe handle.  &#xA;  &#xA; -or-  &#xA;  &#xA; The maximum number of server instances has been exceeded.">El valor de <paramref name="safePipeHandle" /> no es un identificador de canalización válido.  
+  
+O bien 
+Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con el nombre de canalización especificado.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.">
+        <paramref name="pipeName" /> se establece en "anónimo".</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String,System.IO.Pipes.PipeDirection)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name and pipe direction.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con el nombre y dirección de canalización especificados.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String,System.IO.Pipes.PipeDirection,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name, pipe direction, and maximum number of server instances.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con las características nombre de canalización, dirección de canalización y número máximo de instancias de servidor especificadas.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="maxNumberOfServerInstances" vsli:raw="The maximum number of server instances that share the same name. You can pass &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt; for this value.">Número máximo de instancias de servidor que comparten el mismo nombre. Se puede pasar <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" /> para este valor.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; A non-negative number is required.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;maxNumberofServerInstances&quot; /&gt; is less than -1 or greater than 254 (-1 indicates &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt;)  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;see cref=&quot;F:System.IO.HandleInheritability.None&quot; /&gt; or &lt;see cref=&quot;F:System.IO.HandleInheritability.Inheritable&quot; /&gt; is required.  &#xA;  &#xA; -or-  &#xA;  &#xA; Access rights is limited to the &lt;see cref=&quot;F:System.IO.Pipes.PipeAccessRights.ChangePermissions&quot; /&gt; , &lt;see cref=&quot;F:System.IO.Pipes.PipeAccessRights.TakeOwnership&quot; /&gt; , and &lt;see cref=&quot;F:System.IO.Pipes.PipeAccessRights.AccessSystemSecurity&quot; /&gt; flags.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+Se requiere un número no negativo.  
+  
+o bien 
+ El valor de <paramref name="maxNumberofServerInstances" /> es menor que -1 o mayor que 254 (-1 indica <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />) 
+O bien 
+ Es necesario <see cref="F:System.IO.HandleInheritability.None" /> o <see cref="F:System.IO.HandleInheritability.Inheritable" />.  
+  
+O bien 
+Los derechos de acceso se limitan a las marcas <see cref="F:System.IO.Pipes.PipeAccessRights.ChangePermissions" />, <see cref="F:System.IO.Pipes.PipeAccessRights.TakeOwnership" /> y <see cref="F:System.IO.Pipes.PipeAccessRights.AccessSystemSecurity" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String,System.IO.Pipes.PipeDirection,System.Int32,System.IO.Pipes.PipeTransmissionMode)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name, pipe direction, maximum number of server instances, and transmission mode.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con las características nombre de canalización, dirección de canalización, número máximo de instancias de servidor y modo de transmisión especificadas.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="maxNumberOfServerInstances" vsli:raw="The maximum number of server instances that share the same name. You can pass &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt; for this value.">Número máximo de instancias de servidor que comparten el mismo nombre. Se puede pasar <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" /> para este valor.</param>
+      <param name="transmissionMode" vsli:raw="One of the enumeration values that determines the transmission mode of the pipe.">Uno de los valores de enumeración que determina el modo de transmisión de la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;maxNumberofServerInstances&quot; /&gt; is less than -1 or greater than 254 (-1 indicates &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt;)">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ El valor de <paramref name="maxNumberofServerInstances" /> es menor que -1 o mayor que 254 (-1 indica <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />)</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String,System.IO.Pipes.PipeDirection,System.Int32,System.IO.Pipes.PipeTransmissionMode,System.IO.Pipes.PipeOptions)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name, pipe direction, maximum number of server instances, transmission mode, and pipe options.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con las características nombre de canalización, dirección de canalización, número máximo de instancias de servidor, modo de transmisión y opciones de canalización especificadas.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="maxNumberOfServerInstances" vsli:raw="The maximum number of server instances that share the same name. You can pass &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt; for this value.">Número máximo de instancias de servidor que comparten el mismo nombre. Se puede pasar <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" /> para este valor.</param>
+      <param name="transmissionMode" vsli:raw="One of the enumeration values that determines the transmission mode of the pipe.">Uno de los valores de enumeración que determina el modo de transmisión de la canalización.</param>
+      <param name="options" vsli:raw="One of the enumeration values that determines how to open or create the pipe.">Uno de los valores de enumeración que determina cómo abrir o crear la canalización.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;maxNumberofServerInstances&quot; /&gt; is less than -1 or greater than 254 (-1 indicates &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt;)  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;options&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeOptions&quot; /&gt; value.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ El valor de <paramref name="maxNumberofServerInstances" /> es menor que -1 o mayor que 254 (-1 indica <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />) 
+o bien 
+ <paramref name="options" /> no es un valor <see cref="T:System.IO.Pipes.PipeOptions" /> válido.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.#ctor(System.String,System.IO.Pipes.PipeDirection,System.Int32,System.IO.Pipes.PipeTransmissionMode,System.IO.Pipes.PipeOptions,System.Int32,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; class with the specified pipe name, pipe direction, maximum number of server instances, transmission mode, pipe options, and recommended in and out buffer sizes.">Inicializa una nueva instancia de la clase <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> con las características nombre de canalización, dirección de canalización, número máximo de instancias de servidor, modo de transmisión y opciones de canalización especificadas, y los tamaños de búfer de entrada y salida recomendados.</summary>
+      <param name="pipeName" vsli:raw="The name of the pipe.">Nombre de la canalización.</param>
+      <param name="direction" vsli:raw="One of the enumeration values that determines the direction of the pipe.">Uno de los valores de enumeración que determina la dirección de la canalización.</param>
+      <param name="maxNumberOfServerInstances" vsli:raw="The maximum number of server instances that share the same name. You can pass &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt; for this value.">Número máximo de instancias de servidor que comparten el mismo nombre. Se puede pasar <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" /> para este valor.</param>
+      <param name="transmissionMode" vsli:raw="One of the enumeration values that determines the transmission mode of the pipe.">Uno de los valores de enumeración que determina el modo de transmisión de la canalización.</param>
+      <param name="options" vsli:raw="One of the enumeration values that determines how to open or create the pipe.">Uno de los valores de enumeración que determina cómo abrir o crear la canalización.</param>
+      <param name="inBufferSize" vsli:raw="A positive value greater than 0 that indicates the input buffer size.">Valor positivo mayor que 0 que indica el tamaño del búfer de entrada.</param>
+      <param name="outBufferSize" vsli:raw="A positive value greater than 0 that indicates the output buffer size.">Valor positivo mayor que 0 que indica el tamaño del búfer de salida.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="pipeName" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is a zero-length string.">
+        <paramref name="pipeName" /> es cadena de longitud cero.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; is set to &quot;anonymous&quot;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;maxNumberofServerInstances&quot; /&gt; is less than -1 or greater than 254 (-1 indicates &lt;see cref=&quot;F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances&quot; /&gt;)  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;options&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeOptions&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;inBufferSize&quot; /&gt; is negative.">
+        <paramref name="pipeName" /> se establece en "anónimo".  
+  
+o bien 
+ <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ El valor de <paramref name="maxNumberofServerInstances" /> es menor que -1 o mayor que 254 (-1 indica <see cref="F:System.IO.Pipes.NamedPipeServerStream.MaxAllowedServerInstances" />) 
+o bien 
+ <paramref name="options" /> no es un valor <see cref="T:System.IO.Pipes.PipeOptions" /> válido.  
+  
+o bien 
+ <paramref name="inBufferSize" /> es negativo.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;pipeName&quot; /&gt; contains a colon (&quot;:&quot;).">
+        <paramref name="pipeName" /> contiene un carácter de dos puntos (":").</exception>
+      <exception cref="T:System.PlatformNotSupportedException">El sistema operativo no es Windows Millennium Edition, Windows 98 o Windows 95, los cuales no se admiten.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The maximum number of server instances has been exceeded.">Se ha superado el número máximo instancias de servidor.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.BeginWaitForConnection(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an asynchronous operation to wait for a client to connect.">Comienza una operación asincrónica en la que se espera a que un cliente se conecte.</summary>
+      <param name="callback" vsli:raw="The method to call when a client connects to the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object.">Método al que se va a llamar cuando un cliente conecta con el objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" />.</param>
+      <param name="state" vsli:raw="A user-provided object that distinguishes this particular asynchronous request from other requests.">Objeto proporcionado por el usuario que distingue esta solicitud asincrónica determinada de otras.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe was not opened asynchronously.  &#xA;  &#xA; -or-  &#xA;  &#xA; A pipe connection has already been established.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">No se abrió la canalización de forma asincrónica.  
+  
+ O bien  
+  
+ Ya se ha establecido una conexión de canalización.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe connection has been broken.">Se ha interrumpido la conexión de canalización.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <returns vsli:raw="An object that references the asynchronous request.">Un objeto que hace referencia a la solicitud asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.Disconnect">
+      <summary vsli:raw="Disconnects the current connection.">Desconecta la conexión actual.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No pipe connections have been made yet.  &#xA;  &#xA; -or-  &#xA;  &#xA; The connected pipe has already disconnected.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">No se ha realizado aún ninguna conexión de canalización.  
+  
+ O bien  
+  
+ La canalización conectada ya se ha desconectado.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.EndWaitForConnection(System.IAsyncResult)">
+      <summary vsli:raw="Ends an asynchronous operation to wait for a client to connect.">Finaliza una operación asincrónica en la que se espera a que un cliente se conecte.</summary>
+      <param name="asyncResult" vsli:raw="The pending asynchronous request.">Solicitud asincrónica pendiente.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe was not opened asynchronously.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">No se abrió la canalización de forma asincrónica.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe connection has been broken.">Se ha interrumpido la conexión de canalización.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.Finalize">
+      <summary vsli:raw="Releases unmanaged resources and performs other cleanup operations before the &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; instance is reclaimed by garbage collection.">Libera recursos no administrados y realiza otras operaciones de limpieza antes de que la recolección de elementos no utilizados reclame la instancia de <see cref="T:System.IO.Pipes.NamedPipeServerStream" />.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.GetImpersonationUserName">
+      <summary vsli:raw="Gets the user name of the client on the other end of the pipe.">Obtiene el nombre de usuario del cliente en el otro punto de conexión de la canalización.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No pipe connections have been made yet.  &#xA;  &#xA; -or-  &#xA;  &#xA; The connected pipe has already disconnected.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">No se ha realizado aún ninguna conexión de canalización.  
+  
+ O bien  
+  
+ La canalización conectada ya se ha desconectado.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe connection has been broken.  &#xA;  &#xA; -or-  &#xA;  &#xA; The user name of the client is longer than 19 characters.">Se ha interrumpido la conexión de canalización.  
+  
+ O bien  
+  
+ El nombre de usuario del cliente es más largo de 19 caracteres.</exception>
+      <returns vsli:raw="The user name of the client on the other end of the pipe.">Nombre de usuario del cliente en el otro extremo de la canalización.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.RunAsClient(System.IO.Pipes.PipeStreamImpersonationWorker)">
+      <summary vsli:raw="Calls a delegate while impersonating the client.">Llama a un delegado cuando suplanta al cliente.</summary>
+      <param name="impersonationWorker" vsli:raw="The delegate that specifies a method to call.">Delegado que especifica un método al que se va a llamar.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="No pipe connections have been made yet.  &#xA;  &#xA; -or-  &#xA;  &#xA; The connected pipe has already disconnected.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">No se ha realizado aún ninguna conexión de canalización.  
+  
+ O bien  
+  
+ La canalización conectada ya se ha desconectado.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe connection has been broken.  &#xA;  &#xA; -or-  &#xA;  &#xA; An I/O error occurred.">Se ha interrumpido la conexión de canalización.  
+  
+ o bien  
+  
+ Error de E/S.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.WaitForConnection">
+      <summary vsli:raw="Waits for a client to connect to this &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object.">Espera a que un cliente conecte con este objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" />.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="A pipe connection has already been established.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.">Ya se ha establecido una conexión de canalización.  
+  
+ O bien  
+  
+ La canalización no se estableció.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe connection has been broken.">Se ha interrumpido la conexión de canalización.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.WaitForConnectionAsync">
+      <summary vsli:raw="Asynchronously waits for a client to connect to this &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object.">Espera de forma asincrónica a que un cliente conecte con este objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" />.</summary>
+      <returns vsli:raw="A task that represents the asynchronous wait operation.">Tarea que representa la operación de espera asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.NamedPipeServerStream.WaitForConnectionAsync(System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously waits for a client to connect to this &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; object and monitors cancellation requests.">Espera de forma asincrónica a que un cliente se conecte a este objeto <see cref="T:System.IO.Pipes.NamedPipeServerStream" /> y supervisa las solicitudes de cancelación.</summary>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests.">Token para supervisar solicitudes de cancelación.</param>
+      <returns vsli:raw="A task that represents the asynchronous wait operation.">Tarea que representa la operación de espera asincrónica.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.PipeDirection">
+      <summary vsli:raw="Specifies the direction of the pipe.">Especifica la dirección de la canalización.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeDirection.In">
+      <summary vsli:raw="Specifies that the pipe direction is in.">Especifica que la dirección de la canalización es de entrada.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeDirection.InOut">
+      <summary vsli:raw="Specifies that the pipe direction is two-way.">Especifica que la dirección de la canalización es bidireccional.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeDirection.Out">
+      <summary vsli:raw="Specifies that the pipe direction is out.">Especifica que la dirección de la canalización es de salida.</summary>
+    </member>
+    <member name="T:System.IO.Pipes.PipeOptions">
+      <summary vsli:raw="Provides options for creating a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object. This enumeration has a &lt;see cref=&quot;T:System.FlagsAttribute&quot; /&gt; attribute that allows a bitwise combination of its member values.">Proporciona opciones para crear un objeto <see cref="T:System.IO.Pipes.PipeStream" />. Esta enumeración tiene un atributo <see cref="T:System.FlagsAttribute" /> que permite una combinación bit a bit de sus valores miembro.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeOptions.Asynchronous">
+      <summary vsli:raw="Indicates that the pipe can be used for asynchronous reading and writing.">Indica que la canalización puede utilizarse en operaciones de lectura y escritura asincrónicas.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeOptions.CurrentUserOnly">
+      <summary vsli:raw="When used to create a &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeServerStream&quot; /&gt; instance, indicates that the pipe can only be connected to a client created by the same user. When used to create a &lt;see cref=&quot;T:System.IO.Pipes.NamedPipeClientStream&quot; /&gt; instance, indicates that the pipe can only connect to a server created by the same user. On Windows, it verifies both the user account and elevation level.">Cuando se usa para crear una instancia de <see cref="T:System.IO.Pipes.NamedPipeServerStream" />, indica que la canalización solo se puede conectar a un cliente creado por el mismo usuario. Cuando se usa para crear una instancia de <see cref="T:System.IO.Pipes.NamedPipeClientStream" />, indica que la canalización solo se puede conectar a un servidor creado por el mismo usuario. En Windows, comprueba la cuenta de usuario y el nivel de elevación.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeOptions.None">
+      <summary vsli:raw="Indicates that there are no additional parameters.">Indica que no hay ningún parámetro adicional.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeOptions.WriteThrough">
+      <summary vsli:raw="Indicates that the system should write through any intermediate cache and go directly to the pipe.">Indica que el sistema debe escribir en una caché intermedia e ir directamente a la canalización.</summary>
+    </member>
+    <member name="T:System.IO.Pipes.PipeStream">
+      <summary vsli:raw="Exposes a &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object around a pipe, which supports both anonymous and named pipes.">Expone un objeto <see cref="T:System.IO.Stream" /> alrededor de una canalización, que admite tanto canalizaciones anónimas como canalizaciones con nombre.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.#ctor(System.IO.Pipes.PipeDirection,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; class using the specified &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value and buffer size.">Inicializa una instancia nueva de la clase <see cref="T:System.IO.Pipes.PipeStream" /> con el valor de <see cref="T:System.IO.Pipes.PipeDirection" /> y el tamaño de búfer especificados.</summary>
+      <param name="direction" vsli:raw="One of the &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; values that indicates the direction of the pipe object.">Uno de los valores de <see cref="T:System.IO.Pipes.PipeDirection" /> que indica la dirección del objeto de canalización.</param>
+      <param name="bufferSize" vsli:raw="A positive &lt;see cref=&quot;T:System.Int32&quot; /&gt; value greater than or equal to 0 that indicates the buffer size.">Valor <see cref="T:System.Int32" /> positivo mayor o igual que 0 que indica el tamaño del búfer.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;bufferSize&quot; /&gt; is less than 0.">
+        <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ <paramref name="bufferSize" /> es menor que 0.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.#ctor(System.IO.Pipes.PipeDirection,System.IO.Pipes.PipeTransmissionMode,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; class using the specified &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt;, &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt;, and buffer size.">Inicializa una instancia nueva de la clase <see cref="T:System.IO.Pipes.PipeStream" /> con el valor de <see cref="T:System.IO.Pipes.PipeDirection" />, <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> y el tamaño de búfer especificados.</summary>
+      <param name="direction" vsli:raw="One of the &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; values that indicates the direction of the pipe object.">Uno de los valores de <see cref="T:System.IO.Pipes.PipeDirection" /> que indica la dirección del objeto de canalización.</param>
+      <param name="transmissionMode" vsli:raw="One of the &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; values that indicates the transmission mode of the pipe object.">Uno de los valores de <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> que indica el modo de transmisión del objeto de canalización.</param>
+      <param name="outBufferSize" vsli:raw="A positive &lt;see cref=&quot;T:System.Int32&quot; /&gt; value greater than or equal to 0 that indicates the buffer size.">Valor <see cref="T:System.Int32" /> positivo mayor o igual que 0 que indica el tamaño del búfer.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;direction&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeDirection&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;transmissionMode&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; value.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;bufferSize&quot; /&gt; is less than 0.">
+        <paramref name="direction" /> no es un valor <see cref="T:System.IO.Pipes.PipeDirection" /> válido.  
+  
+o bien 
+ <paramref name="transmissionMode" /> no es un valor <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> válido.  
+  
+o bien 
+ <paramref name="bufferSize" /> es menor que 0.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an asynchronous read operation.">Comienza una operación de lectura asincrónica.</summary>
+      <param name="buffer" vsli:raw="The buffer to read data into.">Búfer en el que se leen los datos.</param>
+      <param name="offset" vsli:raw="The byte offset in &lt;paramref name=&quot;buffer&quot; /&gt; at which to begin reading.">Desplazamiento de bytes en la <paramref name="buffer" /> donde va a comenzar la lectura.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to read.">Número máximo de bytes que se pueden leer.</param>
+      <param name="callback" vsli:raw="The method to call when the asynchronous read operation is completed.">Método al que se va a llamar cuando finalice la lectura asincrónica.</param>
+      <param name="state" vsli:raw="A user-provided object that distinguishes this particular asynchronous read request from other requests.">Objeto proporcionado por el usuario que distingue esta solicitud de lectura asincrónica de otras.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="buffer" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;offset&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;count&quot; /&gt; is less than 0.">
+        <paramref name="offset" /> es menor que 0.  
+  
+o bien 
+ <paramref name="count" /> es menor que 0.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;count&quot; /&gt; is greater than the number of bytes available in &lt;paramref name=&quot;buffer&quot; /&gt;.">
+        <paramref name="count" /> es mayor que el número de bytes disponible en <paramref name="buffer" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support read operations.">La canalización no admite operaciones de lectura.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is disconnected, waiting to connect, or the handle has not been set.">La canalización está desconectada, a la espera de conectarse, o bien, no se ha establecido el identificador.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that references the asynchronous read.">Objeto <see cref="T:System.IAsyncResult" /> que hace referencia a la lectura asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an asynchronous write operation.">Comienza una operación de escritura asincrónica.</summary>
+      <param name="buffer" vsli:raw="The buffer that contains the data to write to the current stream.">Búfer que contiene los datos que se van a escribir en la secuencia actual.</param>
+      <param name="offset" vsli:raw="The zero-based byte offset in &lt;paramref name=&quot;buffer&quot; /&gt; at which to begin copying bytes to the current stream.">Desplazamiento en bytes de base cero en <paramref name="buffer" /> desde donde se comienzan a copiar los bytes en la secuencia actual.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to write.">Número máximo de bytes que se pueden escribir.</param>
+      <param name="callback" vsli:raw="The method to call when the asynchronous write operation is completed.">Método al que se va a llamar cuando finalice la escritura asincrónica.</param>
+      <param name="state" vsli:raw="A user-provided object that distinguishes this particular asynchronous write request from other requests.">Objeto proporcionado por el usuario que distingue esta solicitud de escritura asincrónica de otras.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="buffer" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;offset&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;count&quot; /&gt; is less than 0.">
+        <paramref name="offset" /> es menor que 0.  
+  
+o bien 
+ <paramref name="count" /> es menor que 0.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;count&quot; /&gt; is greater than the number of bytes available in &lt;paramref name=&quot;buffer&quot; /&gt;.">
+        <paramref name="count" /> es mayor que el número de bytes disponible en <paramref name="buffer" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support write operations.">La canalización no admite operaciones de escritura.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is disconnected, waiting to connect, or the handle has not been set.">La canalización está desconectada, a la espera de conectarse, o bien, no se ha establecido el identificador.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that references the asynchronous write operation.">Objeto <see cref="T:System.IAsyncResult" /> que hace referencia a la operación de escritura asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.CheckPipePropertyOperations">
+      <summary vsli:raw="Verifies that the pipe is in a proper state for getting or setting properties.">Comprueba si la canalización está en el estado apropiado para obtener o establecer las propiedades.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.CheckReadOperations">
+      <summary vsli:raw="Verifies that the pipe is in a connected state for read operations.">Comprueba si la canalización está en estado conectado para las operaciones de lectura.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.CheckWriteOperations">
+      <summary vsli:raw="Verifies that the pipe is in a connected state for write operations.">Comprueba si la canalización está en estado conectado para las operaciones de escritura.</summary>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Dispose(System.Boolean)">
+      <summary vsli:raw="Releases the unmanaged resources used by the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; class and optionally releases the managed resources.">Libera los recursos no administrados utilizados por la clase <see cref="T:System.IO.Pipes.PipeStream" /> y, de forma opcional, libera los recursos administrados.</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">
+        <see langword="true" /> para liberar tanto recursos administrados como no administrados; <see langword="false" /> para liberar únicamente recursos no administrados.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.EndRead(System.IAsyncResult)">
+      <summary vsli:raw="Ends a pending asynchronous read request.">Finaliza una solicitud de lectura asincrónica pendiente.</summary>
+      <param name="asyncResult" vsli:raw="The reference to the pending asynchronous request.">Referencia a la solicitud asincrónica pendiente.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; did not originate from a &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)&quot; /&gt; method on the current stream.">
+        <paramref name="asyncResult" /> no se originó desde un método <see cref="M:System.IO.Pipes.PipeStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> de la secuencia actual.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The stream is closed or an internal error has occurred.">La secuencia está cerrada o se produjo un error interno.</exception>
+      <returns vsli:raw="The number of bytes that were read. A return value of 0 indicates the end of the stream (the pipe has been closed).">El número máximo de bytes leídos. Cuando se devuelve un valor igual a 0 significa que se alcanzó el final de la secuencia (se cerró la canalización).</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.EndWrite(System.IAsyncResult)">
+      <summary vsli:raw="Ends a pending asynchronous write request.">Finaliza una solicitud de escritura asincrónica pendiente.</summary>
+      <param name="asyncResult" vsli:raw="The reference to the pending asynchronous request.">Referencia a la solicitud asincrónica pendiente.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; did not originate from a &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)&quot; /&gt; method on the current stream.">
+        <paramref name="asyncResult" /> no se originó desde un método <see cref="M:System.IO.Pipes.PipeStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> de la secuencia actual.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The stream is closed or an internal error has occurred.">La secuencia está cerrada o se produjo un error interno.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Flush">
+      <summary vsli:raw="Clears the buffer for the current stream and causes any buffered data to be written to the underlying device.">Borra el búfer de la secuencia actual y hace que todos los datos almacenados en el búfer se escriban en el dispositivo subyacente.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support write operations.">La canalización no admite operaciones de escritura.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously clears the buffer for the current stream and causes any buffered data to be written to the underlying device.">Borra el búfer de la secuencia actual de manera asincrónica y hace que todos los datos almacenados en el búfer se escriban en el dispositivo subyacente.</summary>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests.">Token para supervisar solicitudes de cancelación.</param>
+      <returns vsli:raw="A task that represent the asynchronous flush operation.">Tarea que representa la operación de vaciado asincrónico.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)">
+      <summary vsli:raw="Initializes a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object from the specified &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafePipeHandle&quot; /&gt; object.">Inicializa un objeto <see cref="T:System.IO.Pipes.PipeStream" /> a partir del objeto <see cref="T:Microsoft.Win32.SafeHandles.SafePipeHandle" /> especificado.</summary>
+      <param name="handle" vsli:raw="The &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafePipeHandle&quot; /&gt; object of the pipe to initialize.">Objeto <see cref="T:Microsoft.Win32.SafeHandles.SafePipeHandle" /> de la canalización que se va a inicializar.</param>
+      <param name="isExposed" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to expose the handle; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para exponer el identificador; de lo contrario, es <see langword="false" />.</param>
+      <param name="isAsync" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the handle was opened asynchronously; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para indicar que se abrió el identificador de forma asincrónica; en caso contrario, es <see langword="false" />.</param>
+      <exception cref="T:System.IO.IOException" vsli:raw="A handle cannot be bound to the pipe.">No se puede enlazar un identificador a la canalización.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary vsli:raw="Reads a block of bytes from a stream and writes the data to a specified buffer starting at a specified position for a specified length.">Lee un bloque de bytes de una secuencia y escribe los datos en un búfer especificado, a partir de una posición especificada y con una longitud especificada.</summary>
+      <param name="buffer" vsli:raw="When this method returns, contains the specified byte array with the values between &lt;paramref name=&quot;offset&quot; /&gt; and (&lt;paramref name=&quot;offset&quot; /&gt; + &lt;paramref name=&quot;count&quot; /&gt; - 1) replaced by the bytes read from the current source.">Cuando este método devuelve un valor, contiene la matriz de bytes especificada con los valores entre <paramref name="offset" /> y (<paramref name="offset" /> + <paramref name="count" /> - 1) reemplazados por los bytes leídos desde el origen actual.</param>
+      <param name="offset" vsli:raw="The byte offset in the &lt;paramref name=&quot;buffer&quot; /&gt; array at which the bytes that are read will be placed.">Desplazamiento en bytes de la matriz de <paramref name="buffer" /> en la que se colocarán los bytes que se leen.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to read.">Número máximo de bytes que se pueden leer.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="buffer" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;offset&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;count&quot; /&gt; is less than 0.">
+        <paramref name="offset" /> es menor que 0.  
+  
+o bien 
+ <paramref name="count" /> es menor que 0.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;count&quot; /&gt; is greater than the number of bytes available in &lt;paramref name=&quot;buffer&quot; /&gt;.">
+        <paramref name="count" /> es mayor que el número de bytes disponible en <paramref name="buffer" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support read operations.">La canalización no admite operaciones de lectura.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is disconnected, waiting to connect, or the handle has not been set.">La canalización está desconectada, a la espera de conectarse, o bien, no se ha establecido el identificador.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="Any I/O error occurred.">Error de E/S.</exception>
+      <returns vsli:raw="The total number of bytes that are read into &lt;paramref name=&quot;buffer&quot; /&gt;. This might be less than the number of bytes requested if that number of bytes is not currently available, or 0 if the end of the stream is reached.">El número total de bytes leídos en <paramref name="buffer" />. Puede ser menor que el número de bytes solicitado si ese número de bytes no está disponible actualmente o puede ser 0 si se alcanzó el final de la secuencia.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Read(System.Span{System.Byte})">
+      <summary vsli:raw="Reads a sequence of bytes from the current stream, writes them to a byte array, and advances the position within the stream by the number of bytes read.">Lee una secuencia de bytes de la secuencia actual, las escribe en una matriz de bytes y avanza la posición dentro de la secuencia el número de bytes leídos.</summary>
+      <param name="buffer" vsli:raw="A region of memory. When this method returns, the contents of this region are replaced by the bytes read from the current source.">Región de memoria. Cuando este método finaliza, el contenido de esta región se reemplaza por los bytes leídos del origen actual.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The number of bytes read was longer than the buffer length.">Número de bytes leídos era mayor que la longitud del búfer.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream does not support reading.">La secuencia no admite lectura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or-&#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+      <returns vsli:raw="The total number of bytes read into the &lt;paramref name=&quot;buffer&quot; /&gt;. This can be less than the number of bytes allocated in &lt;paramref name=&quot;buffer&quot; /&gt; if that many bytes are not currently available, or zero (0) if the end of the stream has been reached.">Número total de bytes leídos en <paramref name="buffer" />. Puede ser menor que el número de bytes asignado en <paramref name="buffer" /> si esos bytes no están disponibles en ese momento, o cero (0) si se ha alcanzado el final de la secuencia.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously reads a sequence of bytes from the current stream to a byte array starting at a specified position for a specified number of bytes, advances the position within the stream by the number of bytes read, and monitors cancellation requests.">Lee de forma asincrónica una secuencia de bytes desde la secuencia actual a una matriz de bytes a partir de una posición especificada para un número de bytes especificado, avanza la posición dentro de la secuencia el número de bytes leídos y supervisa las solicitudes de cancelación.</summary>
+      <param name="buffer" vsli:raw="The buffer to write the data into.">El búfer en el que se escriben los datos.</param>
+      <param name="offset" vsli:raw="The byte offset in &lt;paramref name=&quot;buffer&quot; /&gt; at which to begin writing data from the stream.">Posición de desplazamiento en bytes de <paramref name="buffer" /> donde se comienza a escribir los datos de la secuencia.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to read.">Número máximo de bytes que se pueden leer.</param>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream does not support reading.">La secuencia no admite lectura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or-&#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+      <returns vsli:raw="A task that represents the asynchronous read operation. The value of its &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property contains the total number of bytes read into the buffer. The result value can be less than the number of bytes requested if the number of bytes currently available is less than the requested number, or it can be 0 (zero) if the end of the stream has been reached.">Tarea que representa la operación de lectura asincrónica. El valor de su propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> contiene el número total de bytes leídos en el búfer. El valor del resultado puede ser menor que el número de bytes solicitados si el número de bytes disponibles actualmente es menor que el número solicitado o puede ser 0 (cero) si se ha llegado al final de la secuencia.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.ReadAsync(System.Memory{System.Byte},System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously reads a sequence of bytes from the current stream, writes them to a byte memory range, advances the position within the stream by the number of bytes read, and monitors cancellation requests.">Lee de forma asincrónica una secuencia de bytes en la secuencia actual, los escribe en un intervalo de memoria de bytes, avanza la posición dentro de la secuencia el número de bytes leídos y supervisa las solicitudes de cancelación.</summary>
+      <param name="buffer" vsli:raw="The region of memory to write the data into.">Región de memoria en la que se van a escribir los datos.</param>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream does not support reading.">La secuencia no admite lectura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or- &#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+      <returns vsli:raw="A task that represents the asynchronous read operation. The value of its &lt;see cref=&quot;P:System.Threading.Tasks.ValueTask`1.Result&quot; /&gt; property contains the total number of bytes read into the buffer. The result value can be less than the number of bytes allocated in the buffer if that many bytes are not currently available, or it can be 0 (zero) if the end of the stream has been reached.">Tarea que representa la operación de lectura asincrónica. El valor de su propiedad <see cref="P:System.Threading.Tasks.ValueTask`1.Result" /> contiene el número total de bytes leídos en el búfer. El valor de resultado puede ser menor que el número de bytes asignado en el búfer si esos bytes no están disponibles en ese momento o 0 (cero) si se ha alcanzado el final de la secuencia.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.ReadByte">
+      <summary vsli:raw="Reads a byte from a pipe.">Lee un byte de una canalización.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support read operations.">La canalización no admite operaciones de lectura.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is disconnected, waiting to connect, or the handle has not been set.">La canalización está desconectada, a la espera de conectarse, o bien, no se ha establecido el identificador.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="Any I/O error occurred.">Error de E/S.</exception>
+      <returns vsli:raw="The byte, cast to &lt;see cref=&quot;T:System.Int32&quot; /&gt;, or -1 indicates the end of the stream (the pipe has been closed).">El byte, convertido en un valor <see cref="T:System.Int32" />, o -1 indica el final de la secuencia (se cerró la canalización).</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary vsli:raw="Sets the current position of the current stream to the specified value.">Establece la posición actual de esta secuencia en el valor especificado.</summary>
+      <param name="offset" vsli:raw="The point, relative to &lt;paramref name=&quot;origin&quot; /&gt;, to begin seeking from.">Punto respecto a <paramref name="origin" /> a partir del cual comienza la operación de búsqueda.</param>
+      <param name="origin" vsli:raw="Specifies the beginning, the end, or the current position as a reference point for &lt;paramref name=&quot;offset&quot; /&gt;, using a value of type &lt;see cref=&quot;T:System.IO.SeekOrigin&quot; /&gt;.">Especifica el comienzo, el final o la posición actual como un punto de referencia para <paramref name="offset" />, mediante el uso de un valor de tipo <see cref="T:System.IO.SeekOrigin" />.</param>
+      <returns vsli:raw="The new position in the stream.">Nueva posición en la secuencia.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.SetLength(System.Int64)">
+      <summary vsli:raw="Sets the length of the current stream to the specified value.">Establece la longitud de la secuencia actual en el valor especificado.</summary>
+      <param name="value" vsli:raw="The new length of the stream.">La nueva longitud de la secuencia.</param>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.WaitForPipeDrain">
+      <summary vsli:raw="Waits for the other end of the pipe to read all sent bytes.">Espera hasta que el otro final de la canalización lea todos los bytes enviados.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support write operations.">La canalización no admite operaciones de escritura.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary vsli:raw="Writes a block of bytes to the current stream using data from a buffer.">Escribe un bloque de bytes en la secuencia actual utilizando los datos de un búfer.</summary>
+      <param name="buffer" vsli:raw="The buffer that contains data to write to the pipe.">Búfer que contiene los datos que se van a escribir en la canalización.</param>
+      <param name="offset" vsli:raw="The zero-based byte offset in &lt;paramref name=&quot;buffer&quot; /&gt; at which to begin copying bytes to the current stream.">Desplazamiento en bytes de base cero en <paramref name="buffer" /> desde donde se comienzan a copiar los bytes en la secuencia actual.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to write to the current stream.">Número máximo de bytes que se van a escribir en la secuencia actual.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="buffer" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;offset&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;count&quot; /&gt; is less than 0.">
+        <paramref name="offset" /> es menor que 0.  
+  
+o bien 
+ <paramref name="count" /> es menor que 0.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;count&quot; /&gt; is greater than the number of bytes available in &lt;paramref name=&quot;buffer&quot; /&gt;.">
+        <paramref name="count" /> es mayor que el número de bytes disponible en <paramref name="buffer" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support write operations.">La canalización no admite operaciones de escritura.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.Write(System.ReadOnlySpan{System.Byte})">
+      <summary vsli:raw="Writes a sequence of bytes to the current stream and advances the current position within this stream by the number of bytes written.">Escribe una secuencia de bytes en la secuencia actual y avanza la posición actual en esta secuencia según el número de bytes escritos.</summary>
+      <param name="buffer" vsli:raw="A region of memory. This method copies the contents of this region to the current stream.">Región de memoria. Este método copia el contenido de esta región en la secuencia actual.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream does not support writing.">La secuencia no admite escritura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken.">La canalización está interrumpida.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or-&#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously writes a specified number of bytes from a byte array starting at a specified position, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.">Escribe de forma asincrónica un número especificado de bytes en una matriz de bytes a partir de una posición especificada, avanza la posición actual dentro de esta secuencia el número de bytes escritos y supervisa las solicitudes de cancelación.</summary>
+      <param name="buffer" vsli:raw="The buffer to write data from.">Búfer del que se van a escribir datos.</param>
+      <param name="offset" vsli:raw="The zero-based byte offset in &lt;paramref name=&quot;buffer&quot; /&gt; from which to begin copying bytes to the stream.">Desplazamiento en bytes de base cero de <paramref name="buffer" /> desde donde se comienzan a copiar los bytes en la secuencia.</param>
+      <param name="count" vsli:raw="The maximum number of bytes to write.">Número máximo de bytes que se pueden escribir.</param>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="buffer" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;offset&quot; /&gt; is negative.&#xA;&#xA;-or-&#xA;&#xA;The &lt;paramref name=&quot;count&quot; /&gt; is negative.">
+        <paramref name="offset" /> es negativo.
+
+o bien
+
+<paramref name="count" /> es negativo.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;buffer&quot; /&gt;.Length - &lt;paramref name=&quot;offset&quot; /&gt; is less than &lt;paramref name=&quot;count&quot; /&gt;.">
+        <paramref name="buffer" />. Longitud: <paramref name="offset" /> es menor que <paramref name="count" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="Stream does not support writing.">La secuencia no admite escritura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken.">La canalización está interrumpida.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or-&#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+      <returns vsli:raw="A task that represents the asynchronous write operation.">Tarea que representa la operación de escritura asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.WriteAsync(System.ReadOnlyMemory{System.Byte},System.Threading.CancellationToken)">
+      <summary vsli:raw="Asynchronously writes a sequence of bytes to the current stream, advances the current position within this stream by the number of bytes written, and monitors cancellation requests.">Escribe de forma asincrónica una secuencia de bytes en la secuencia actual, se hace avanzar la posición actual dentro de la secuencia el número de bytes escritos y controla las solicitudes de cancelación.</summary>
+      <param name="buffer" vsli:raw="The region of memory to write data from.">Región de memoria desde la que se van a escribir los datos.</param>
+      <param name="cancellationToken" vsli:raw="The token to monitor for cancellation requests. The default value is &lt;see cref=&quot;P:System.Threading.CancellationToken.None&quot; /&gt;.">Token para supervisar solicitudes de cancelación. El valor predeterminado es <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.NotSupportedException" vsli:raw="Stream does not support writing.">La secuencia no admite escritura.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="Cannot access a closed pipe.">No se puede tener acceso a una canalización cerrada.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken.">La canalización está interrumpida.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe hasn't been connected yet.&#xA;&#xA;-or-&#xA;&#xA;The pipe is in a disconnected state.&#xA;&#xA;-or-&#xA;&#xA;The pipe handle has not been set. (Did your &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; implementation call &lt;see cref=&quot;M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)&quot; /&gt;?">La canalización aún no se ha conectado.
+
+o bien
+
+La canalización está en estado desconectado.
+
+o bien
+
+La canalización no se estableció. ¿Llamó la implementación de <see cref="T:System.IO.Pipes.PipeStream" /> a <see cref="M:System.IO.Pipes.PipeStream.InitializeHandle(Microsoft.Win32.SafeHandles.SafePipeHandle,System.Boolean,System.Boolean)" />?</exception>
+      <returns vsli:raw="A task that represents the asynchronous write operation.">Tarea que representa la operación de escritura asincrónica.</returns>
+    </member>
+    <member name="M:System.IO.Pipes.PipeStream.WriteByte(System.Byte)">
+      <summary vsli:raw="Writes a byte to the current stream.">Escribe un byte en la secuencia actual.</summary>
+      <param name="value" vsli:raw="The byte to write to the stream.">Byte que se debe escribir en la secuencia.</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The pipe does not support write operations.">La canalización no admite operaciones de escritura.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is disconnected, waiting to connect, or the handle has not been set.">La canalización está desconectada, a la espera de conectarse, o bien, no se ha establecido el identificador.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.CanRead">
+      <summary vsli:raw="Gets a value indicating whether the current stream supports read operations.">Obtiene un valor que indica si la secuencia actual admite operaciones de lectura.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the stream supports read operations; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la secuencia admite operaciones de lectura; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.CanSeek">
+      <summary vsli:raw="Gets a value indicating whether the current stream supports seek operations.">Obtiene un valor que indica si la secuencia actual admite operaciones de búsqueda.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;false&quot; /&gt; in all cases.">
+        <see langword="false" /> en todos los casos.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.CanWrite">
+      <summary vsli:raw="Gets a value indicating whether the current stream supports write operations.">Obtiene un valor que indica si la secuencia actual admite operaciones de escritura.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the stream supports write operations; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la secuencia admite operaciones de escritura; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.InBufferSize">
+      <summary vsli:raw="Gets the size, in bytes, of the inbound buffer for a pipe.">Obtiene el tamaño en bytes del búfer de entrada de una canalización.</summary>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream is unreadable.">La secuencia no se puede leer.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is waiting to connect.">La canalización está a la espera de conectarse.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+      <returns vsli:raw="An integer value that represents the inbound buffer size, in bytes.">Un valor entero que representa el tamaño en bytes del búfer de entrada.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.IsAsync">
+      <summary vsli:raw="Gets a value indicating whether a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object was opened asynchronously or synchronously.">Obtiene un valor que indica si un objeto <see cref="T:System.IO.Pipes.PipeStream" /> se abrió de forma sincrónica o asincrónica.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object was opened asynchronously; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si el objeto <see cref="T:System.IO.Pipes.PipeStream" /> se abrió de forma asincrónica; de lo contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.IsConnected">
+      <summary vsli:raw="Gets or sets a value indicating whether a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object is connected.">Obtiene o establece un valor que indica si un objeto <see cref="T:System.IO.Pipes.PipeStream" /> está conectado.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object is connected; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si el objeto <see cref="T:System.IO.Pipes.PipeStream" /> está conectado; en caso contrario, es  <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.IsHandleExposed">
+      <summary vsli:raw="Gets a value indicating whether a handle to a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object is exposed.">Obtiene un valor que indica si se expone un identificador a un objeto <see cref="T:System.IO.Pipes.PipeStream" />.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if a handle to the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object is exposed; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si se expone un identificador al objeto <see cref="T:System.IO.Pipes.PipeStream" /> actual; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.IsMessageComplete">
+      <summary vsli:raw="Gets a value indicating whether there is more data in the message returned from the most recent read operation.">Obtiene un valor que indica si hay más datos en el mensaje devuelto desde la operación de lectura más reciente.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is not connected.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe handle has not been set.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe's &lt;see cref=&quot;P:System.IO.Pipes.PipeStream.ReadMode&quot; /&gt; property value is not &lt;see cref=&quot;F:System.IO.Pipes.PipeTransmissionMode.Message&quot; /&gt;.">La canalización no está conectada.  
+  
+o bien 
+La canalización no se estableció.  
+  
+o bien 
+El valor de la propiedad <see cref="P:System.IO.Pipes.PipeStream.ReadMode" /> de la canalización no es <see cref="F:System.IO.Pipes.PipeTransmissionMode.Message" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if there are no more characters to read in the message; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si no hay más caracteres que leer en el mensaje; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.Length">
+      <summary vsli:raw="Gets the length of a stream, in bytes.">Devuelve la longitud en bytes de una secuencia.</summary>
+      <exception cref="T:System.NotSupportedException" vsli:raw="Always thrown.">Siempre se produce.</exception>
+      <returns vsli:raw="0 in all cases.">0 en todos los casos.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.OutBufferSize">
+      <summary vsli:raw="Gets the size, in bytes, of the outbound buffer for a pipe.">Obtiene el tamaño en bytes del búfer de salida de una canalización.</summary>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The stream is unwriteable.">La secuencia no se puede escribir.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe is waiting to connect.">La canalización está a la espera de conectarse.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+      <returns vsli:raw="The outbound buffer size, in bytes.">Tamaño en bytes del búfer de salida.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.Position">
+      <summary vsli:raw="Gets or sets the current position of the current stream.">Obtiene o establece la posición de la secuencia actual.</summary>
+      <exception cref="T:System.NotSupportedException" vsli:raw="Always thrown.">Siempre se produce.</exception>
+      <returns vsli:raw="0 in all cases.">0 en todos los casos.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.ReadMode">
+      <summary vsli:raw="Gets or sets the reading mode for a &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object.">Obtiene o establece el modo de lectura de un objeto <see cref="T:System.IO.Pipes.PipeStream" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The supplied value is not a valid &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; value.">El valor proporcionado no es un valor <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> válido.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The supplied value is not a supported &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; value for this pipe stream.">El valor proporcionado no es un valor <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> compatible para esta secuencia de canalización.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The handle has not been set.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe is waiting to connect with a named client.">No se ha establecido el identificador.  
+  
+ o bien  
+  
+ La canalización está a la espera de conectarse con un cliente con nombre.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or an I/O error occurred with a named client.">La canalización se ha roto o se ha producido un error de E/S con un cliente con nombre.</exception>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; values that indicates how the &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object reads from the pipe.">Uno de los valores de <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> que indica de qué manera el objeto <see cref="T:System.IO.Pipes.PipeStream" /> lee de la canalización.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.SafePipeHandle">
+      <summary vsli:raw="Gets the safe handle for the local end of the pipe that the current &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object encapsulates.">Obtiene el identificador seguro del extremo local de la canalización encapsulada por el objeto <see cref="T:System.IO.Pipes.PipeStream" /> actual.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The pipe handle has not been set.">La canalización no se estableció.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <returns vsli:raw="A &lt;see cref=&quot;T:Microsoft.Win32.SafeHandles.SafePipeHandle&quot; /&gt; object for the pipe that is encapsulated by the current &lt;see cref=&quot;T:System.IO.Pipes.PipeStream&quot; /&gt; object.">Un objeto <see cref="T:Microsoft.Win32.SafeHandles.SafePipeHandle" /> de la canalización encapsulada por el objeto <see cref="T:System.IO.Pipes.PipeStream" /> actual.</returns>
+    </member>
+    <member name="P:System.IO.Pipes.PipeStream.TransmissionMode">
+      <summary vsli:raw="Gets the pipe transmission mode supported by the current pipe.">Obtiene el modo de transmisión de canalización compatible con la canalización actual.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The pipe is closed.">La canalización está cerrada.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The handle has not been set.  &#xA;  &#xA; -or-  &#xA;  &#xA; The pipe is waiting to connect in an anonymous client/server operation or with a named client.">No se ha establecido el identificador.  
+  
+ o bien  
+  
+ La canalización está a la espera de conectarse en una operación de cliente/servidor anónima o con un cliente con nombre.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The pipe is broken or another I/O error occurred.">La canalización se ha roto o se ha producido otro error de E/S.</exception>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.IO.Pipes.PipeTransmissionMode&quot; /&gt; values that indicates the transmission mode supported by the current pipe.">Uno de los valores de <see cref="T:System.IO.Pipes.PipeTransmissionMode" /> que indica el modo de transmisión admitido por la canalización actual.</returns>
+    </member>
+    <member name="T:System.IO.Pipes.PipeStreamImpersonationWorker">
+      <summary vsli:raw="Represents the method to call as the client.">Representa el método que se va a llamar como el cliente.</summary>
+    </member>
+    <member name="T:System.IO.Pipes.PipeTransmissionMode">
+      <summary vsli:raw="Specifies the transmission mode of the pipe.">Especifica el modo de transmisión de la canalización.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeTransmissionMode.Byte">
+      <summary vsli:raw="Indicates that data in the pipe is transmitted and read as a stream of bytes.">Indica que se transmiten los datos de la canalización y que se leyeron como secuencia de bytes.</summary>
+    </member>
+    <member name="F:System.IO.Pipes.PipeTransmissionMode.Message">
+      <summary vsli:raw="Indicates that data in the pipe is transmitted and read as a stream of messages.">Indica que se transmiten los datos de la canalización y que se leyeron como secuencia de mensajes.</summary>
+    </member>
+  </members>
+</doc>

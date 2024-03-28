@@ -1,0 +1,3032 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.FileSystem</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Directory">
+      <summary>公開建立、移動和全面列舉目錄和子目錄的靜態方法。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.IO.Directory.CreateDirectory(System.String)">
+      <summary>在指定的路徑建立所有目錄和子目錄 (如果這些目錄尚不存在)。</summary>
+      <param name="path">要建立的目錄。</param>
+      <returns>物件，表示指定之路徑的目錄。 不論指定之路徑的目錄是否已經存在，都會傳回這個物件。</returns>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 指定的目錄是檔案。
+-或-
+未知的網路名稱。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="path" /> 前面只具有或包含冒號字元 (:)。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 包含不是磁碟機標籤 ("C:\") 一部分的冒號字元 (:)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.Delete(System.String)">
+      <summary>從指定的路徑刪除空目錄。</summary>
+      <param name="path">要移除的空目錄名稱。 這個目錄必須為可寫入的和空的。</param>
+      <exception cref="T:System.IO.IOException">與 <paramref name="path" /> 所指定名稱和位置相同的檔案存在。
+-或-
+目錄是應用程式目前的工作目錄。
+-或-
+<paramref name="path" /> 指定的目錄不是空的。
+-或-
+目錄是唯讀的或包含唯讀檔案。
+-或-
+其他處理序正在使用此目錄。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 不存在或找不到。
+-或-
+指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.Delete(System.String,System.Boolean)">
+      <summary>刪除指定目錄，並且若有指示，則刪除目錄中的任何子目錄和檔案。</summary>
+      <param name="path">要移除的目錄名稱。</param>
+      <param name="recursive">若要移除 <paramref name="path" /> 中的目錄、子目錄和檔案，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">與 <paramref name="path" /> 所指定名稱和位置相同的檔案存在。
+-或-
+<paramref name="path" /> 所指定的目錄是唯讀，或 <paramref name="recursive" /> 是 <see langword="false" />，而 <paramref name="path" /> 不是空目錄。
+-或-
+目錄是應用程式目前的工作目錄。
+-或-
+目錄包含唯讀檔案。
+-或-
+其他處理序正在使用此目錄。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 不存在或找不到。
+-或-
+指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String)">
+      <summary>傳回指定路徑中目錄全名的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，目錄完整名稱 (包括路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String)">
+      <summary>傳回指定路徑中符合搜尋模式之目錄全名的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，符合指定搜尋模式的目錄完整名稱 (包括路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回在所指定路徑中符合搜尋模式之目錄完整名稱的可列舉集合，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>在 <paramref name="path" /> 指定的目錄中，且符合所指定搜尋模式與列舉選項之目錄完整名稱 (包含路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateDirectories(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定路徑中符合搜尋模式之目錄全名的可列舉集合，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，該值會指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>在 <paramref name="path" /> 指定的目錄中，且符合所指定搜尋模式與搜尋選項之目錄完整名稱 (包含路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String)">
+      <summary>傳回指定路徑中完整檔名的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，檔案完整名稱 (包括路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String)">
+      <summary>傳回指定路徑中符合搜尋模式之完整檔名的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，符合指定搜尋模式的檔案之完整名稱 (包括路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回在所指定路徑中符合搜尋模式與列舉選項之完整檔案名稱的可列舉集合，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>在 <paramref name="path" /> 指定的目錄中，且符合所指定搜尋模式與列舉選項之檔案完整名稱 (包含路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFiles(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定路徑中符合搜尋模式之完整檔名的可列舉集合，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，該值會指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>在 <paramref name="path" /> 指定的目錄中，且符合所指定搜尋模式與搜尋選項之檔案完整名稱 (包含路徑) 的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String)">
+      <summary>傳回指定之路徑中檔案名稱及目錄名稱的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>
+        <paramref name="path" /> 所指定目錄中檔案系統項目的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String)">
+      <summary>傳回所指定路徑中符合搜尋模式之檔案名稱及目錄名稱的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案系統項目名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，符合指定搜尋模式之檔案系統項目的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回所指定路徑中符合搜尋模式與列舉選項之檔案名稱及目錄名稱的可列舉集合。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>在 <paramref name="path" /> 指定的目錄中，符合所指定搜尋模式與指定列舉選項之檔案系統項目的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.EnumerateFileSystemEntries(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定之路徑中符合搜尋模式之檔名和目錄名稱的可列舉集合，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案系統項目的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，該值會指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>
+        <paramref name="path" /> 指定的目錄中，符合指定搜尋模式和選項之檔案系統項目的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.Exists(System.String)">
+      <summary>判斷指定路徑是否參考磁碟上的現有目錄。</summary>
+      <param name="path">要測試的路徑。</param>
+      <returns>如果 <paramref name="path" /> 會參考現有的目錄，則為 <see langword="true" />；如果目錄不存在，或嘗試判斷指定的目錄是否存在時發生錯誤，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Directory.GetCreationTime(System.String)">
+      <summary>取得目錄的建立日期和時間。</summary>
+      <param name="path">目錄的路徑。</param>
+      <returns>結構，設定為指定之目錄的建立日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetCreationTimeUtc(System.String)">
+      <summary>取得目錄的建立日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">目錄的路徑。</param>
+      <returns>結構，設定為指定之目錄的建立日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetCurrentDirectory">
+      <summary>取得應用程式的目前工作目錄。</summary>
+      <returns>包含目前工作目錄完整路徑且未以反斜線 (\) 結尾的字串。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">作業系統是 Windows CE，它沒有當前的目錄功能。
+.NET Compact Framework 提供方法，但目前不支援。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String)">
+      <summary>傳回指定之目錄中的子目錄名稱 (包括其路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>指定之路徑中的子目錄完整名稱 (包括路徑) 陣列，如果找不到任何目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String)">
+      <summary>傳回指定目錄中符合指定搜尋模式的子目錄名稱 (包括檔案的路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <returns>指定目錄中，符合搜尋模式的子目錄完整名稱 (包括路徑) 陣列，如果找不到任何目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回所指定目錄中符合所指定搜尋模式與列舉選項的子目錄名稱 (包含其路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>在所指定目錄中，符合搜尋模式與列舉選項之子目錄完整名稱 (包含路徑) 的陣列，如果找不到任何目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectories(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定目錄中符合指定搜尋模式之子目錄 (包含其路徑) 的名稱，並且選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，這個值會指定搜尋作業應該包含所有子目錄或只包含目前目錄。</param>
+      <returns>符合指定之準則的子目錄完整名稱 (包括路徑) 陣列，如果找不到任何目錄則為空陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetDirectoryRoot(System.String)">
+      <summary>傳回指定路徑的磁碟區資訊、根目錄資訊或兩者。</summary>
+      <param name="path">檔案或目錄的路徑。</param>
+      <returns>含有指定路徑的磁碟區資訊、根目錄資訊或兩者的字串。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String)">
+      <summary>傳回指定目錄中的檔案名稱 (包括路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>指定之目錄中的檔案完整名稱 (包括路徑) 陣列，如果找不到任何檔案則為空陣列。</returns>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。
+-或-
+發生網路錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑未找到或無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String)">
+      <summary>傳回指定目錄中符合指定搜尋模式的檔案名稱 (包括檔案的路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>指定目錄中，符合指定搜尋模式的檔案完整名稱 (包括路徑) 陣列，如果找不到任何檔案則為空陣列。</returns>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。
+-或-
+發生網路錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑未找到或無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回所指定目錄中符合所指定搜尋模式與列舉選項的檔案名稱 (包含其路徑)。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>在所指定目錄中，符合所指定搜尋模式與列舉選項之檔案完整名稱 (包含路徑) 的陣列，如果找不到任何檔案則為空陣列。</returns>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。
+-或-
+發生網路錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑未找到或無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFiles(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定目錄中符合指定搜尋模式的檔案名稱 (包括檔案的路徑)，並使用值判斷是否搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，這個值會指定搜尋作業應該包含所有子目錄或只包含目前目錄。</param>
+      <returns>指定目錄中，符合指定搜尋模式和選項的檔案完整名稱 (包括路徑) 陣列，如果找不到任何檔案則為空陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchpattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑未找到或無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。
+-或-
+發生網路錯誤。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String)">
+      <summary>傳回指定路徑中所有檔案和子目錄的名稱。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <returns>指定之目錄中的檔案及子目錄名稱陣列，如果找不到檔案或子目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String)">
+      <summary>傳回符合指定路徑中搜尋模式的目錄名稱，及檔案名稱的陣列。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案及目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>符合指定搜尋條件的檔案名稱及目錄名稱陣列，如果找不到檔案或目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String,System.IO.EnumerationOptions)">
+      <summary>傳回所指定路徑中符合搜尋模式與列舉選項之檔案名稱及目錄名稱的陣列。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中子目錄名稱的搜尋字串。 這個參數可以包含有效常值與萬用字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>符合所指定搜尋模式與列舉選項之檔案名稱及目錄名稱的陣列，如果找不到任何檔案或目錄則為空陣列。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+      &lt;code data-dev-comment-type="paramref"&gt;searchPattern&lt;/code&gt; 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetFileSystemEntries(System.String,System.String,System.IO.SearchOption)">
+      <summary>傳回指定之路徑中符合搜尋模式之所有檔名和目錄名稱的陣列，並選擇性地搜尋子目錄。</summary>
+      <param name="path">要搜尋之目錄的相對或絕對路徑。 這個字串不會區分大小寫。</param>
+      <param name="searchPattern">要比對 <paramref name="path" /> 中檔案及目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，該值會指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>檔案名稱及目錄名稱符合指定搜尋條件的檔案陣列，如果找不到檔案或目錄則為空陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。
+-或-
+<paramref name="searchPattern" /> 不包含有效模式。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。
+-或-
+<paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效，例如參考到未對應的磁碟機。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 為檔案名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者合計超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetLastAccessTime(System.String)">
+      <summary>傳回指定檔案或目錄上次被存取的日期和時間。</summary>
+      <param name="path">要取得其存取日期和時間資訊的檔案或目錄。</param>
+      <returns>結構，設定為指定之檔案或目錄上次被存取的日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 參數的格式無效。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetLastAccessTimeUtc(System.String)">
+      <summary>傳回上次存取指定檔案或目錄的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要取得其存取日期和時間資訊的檔案或目錄。</param>
+      <returns>結構，設定為指定之檔案或目錄上次被存取的日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 參數的格式無效。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetLastWriteTime(System.String)">
+      <summary>傳回指定檔案或目錄上次被寫入的日期和時間。</summary>
+      <param name="path">要取得其修改日期和時間資訊的檔案或目錄。</param>
+      <returns>結構，設定為指定之檔案或目錄上次被寫入的日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetLastWriteTimeUtc(System.String)">
+      <summary>傳回上次寫入指定檔案或目錄的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要取得其修改日期和時間資訊的檔案或目錄。</param>
+      <returns>結構，設定為指定之檔案或目錄上次被寫入的日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetLogicalDrives">
+      <summary>以 "&lt;磁碟機代號&gt;:\" 的形式來擷取這個電腦上邏輯磁碟機的名稱。</summary>
+      <returns>這個電腦的邏輯磁碟。</returns>
+      <exception cref="T:System.IO.IOException">發生 I/O 錯誤 (例如磁碟錯誤)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.GetParent(System.String)">
+      <summary>擷取指定路徑的父目錄，包括絕對和相對路徑兩者。</summary>
+      <param name="path">要擷取其父目錄的路徑。</param>
+      <returns>父目錄；如果 <paramref name="path" /> 是根目錄，包括 UNC 伺服器或共用名稱的根目錄，則為 <see langword="null" />。</returns>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="path" /> 指定的目錄是唯讀的。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。 如需詳細資訊，請參閱 <see cref="T:System.IO.PathTooLongException" /> 主題。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">僅限 .NET Framework：呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.IO.Directory.Move(System.String,System.String)">
+      <summary>移動檔案或目錄和其內容到新位置。</summary>
+      <param name="sourceDirName">要移動的檔案或目錄的路徑。</param>
+      <param name="destDirName">
+        <paramref name="sourceDirName" /> 的新位置路徑。 如果 <paramref name="sourceDirName" /> 是檔案，則 <paramref name="destDirName" /> 也必須是檔案名稱。</param>
+      <exception cref="T:System.IO.IOException">嘗試將目錄移至不同的磁碟區。
+-或-
+<paramref name="destDirName" /> 已經存在。 請參閱＜備註＞一節中的附註。
+-或-
+<paramref name="sourceDirName" /> 和 <paramref name="destDirName" /> 參數參考相同的檔案或目錄。
+-或-
+其他處理序正在使用此目錄或其中的檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceDirName" /> 或 <paramref name="destDirName" /> 為零長度字串，只包含空格或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceDirName" /> 或 <paramref name="destDirName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceDirName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCreationTime(System.String,System.DateTime)">
+      <summary>設定指定檔案或目錄建立的日期和時間。</summary>
+      <param name="path">要設定其日期和時間資訊的檔案或目錄。</param>
+      <param name="creationTime">上次寫入檔案或目錄的日期和時間。 這個值以本地時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCreationTimeUtc(System.String,System.DateTime)">
+      <summary>設定指定檔案或目錄的建立日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要設定其日期和時間資訊的檔案或目錄。</param>
+      <param name="creationTimeUtc">建立目錄或檔案的日期和時間。 這個值以本地時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetCurrentDirectory(System.String)">
+      <summary>將應用程式的目前工作目錄設定為指定目錄。</summary>
+      <param name="path">設定為目前工作目錄的路徑。</param>
+      <exception cref="T:System.IO.IOException">發生 I/O 錯誤。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到指定目錄。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastAccessTime(System.String,System.DateTime)">
+      <summary>設定指定檔案或目錄上次被存取的日期和時間。</summary>
+      <param name="path">要設定其存取日期和時間資訊的檔案或目錄。</param>
+      <param name="lastAccessTime">包含值以設定 <paramref name="path" /> 存取日期和時間的物件。 這個值以本地時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastAccessTimeUtc(System.String,System.DateTime)">
+      <summary>設定上次存取指定檔案或目錄的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要設定其存取日期和時間資訊的檔案或目錄。</param>
+      <param name="lastAccessTimeUtc">包含值以設定 <paramref name="path" /> 存取日期和時間的物件。 這個值以 UTC 時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTimeUtc" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastWriteTime(System.String,System.DateTime)">
+      <summary>設定目錄上次被寫入的日期和時間。</summary>
+      <param name="path">目錄的路徑。</param>
+      <param name="lastWriteTime">目錄上次被寫入的日期和時間。 這個值以本地時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找到 <paramref name="path" /> (例如，該目錄不存在或其位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找到 <paramref name="path" /> (例如，該目錄不存在或其位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.Directory.SetLastWriteTimeUtc(System.String,System.DateTime)">
+      <summary>設定上次寫入目錄的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">目錄的路徑。</param>
+      <param name="lastWriteTimeUtc">目錄上次被寫入的日期和時間。 這個值以 UTC 時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找到 <paramref name="path" /> (例如，該目錄不存在或其位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找到 <paramref name="path" /> (例如，該目錄不存在或其位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格，或包含一或多個無效字元。 您可以使用 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法查詢無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTimeUtc" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="T:System.IO.DirectoryInfo">
+      <summary>公開建立、移動和全面列舉目錄和子目錄的執行個體 (Instance) 方法。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.#ctor(System.String)">
+      <summary>在指定的路徑上，初始化 <see cref="T:System.IO.DirectoryInfo" /> 類別的新執行個體。</summary>
+      <param name="path">字串，指定用來建立 <see langword="DirectoryInfo" /> 的路徑。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 包含無效的字元，例如 "、&lt;、&gt; 或 |。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Create">
+      <summary>建立目錄。</summary>
+      <exception cref="T:System.IO.IOException">無法建立目錄。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.CreateSubdirectory(System.String)">
+      <summary>在指定路徑上建立子目錄。 指定的路徑可以相對於 <see cref="T:System.IO.DirectoryInfo" /> 類別的這個執行個體。</summary>
+      <param name="path">指定的路徑。 不能是不同的磁碟區或通用命名慣例 (UNC) 名稱。</param>
+      <returns>
+        <paramref name="path" /> 中指定的最後一個目錄。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 未指定有效的檔案路徑或包含無效的 <see langword="DirectoryInfo" /> 字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.IOException">無法建立子目錄。
+-或-
+檔案或目錄已有 <paramref name="path" /> 指定的名稱。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有程式碼存取權限，不能建立目錄。
+-或-
+呼叫端沒有程式碼存取權限，不能讀取傳回的 <see cref="T:System.IO.DirectoryInfo" /> 物件所描述的目錄。  當 <paramref name="path" /> 參數描述現有的目錄時就會發生這種情況。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 包含不是磁碟機標籤 ("C:\") 一部分的冒號字元 (:)。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Delete">
+      <summary>如果這個 <see cref="T:System.IO.DirectoryInfo" /> 是空的，則將它刪除。</summary>
+      <exception cref="T:System.UnauthorizedAccessException">目錄包含唯讀檔案。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">這個 <see cref="T:System.IO.DirectoryInfo" /> 物件描述的目錄不存在，或找不到該目錄。</exception>
+      <exception cref="T:System.IO.IOException">目錄不是空的。
+-或-
+目錄是應用程式目前的工作目錄。
+-或-
+此目錄具有開啟控制代碼，而且作業系統是 Windows XP 或先前的版本。 這個開啟控制代碼可能是列舉目錄所產生的結果。 如需詳細資訊，請參閱如何：列舉目錄與檔案。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.Delete(System.Boolean)">
+      <summary>刪除 <see cref="T:System.IO.DirectoryInfo" /> 的這個執行個體，並指定是否刪除子目錄和檔案。</summary>
+      <param name="recursive">若要刪除這個目錄、其子目錄和所有檔案，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.UnauthorizedAccessException">目錄包含唯讀檔案。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">這個 <see cref="T:System.IO.DirectoryInfo" /> 物件描述的目錄不存在，或找不到該目錄。</exception>
+      <exception cref="T:System.IO.IOException">目錄是唯讀的。
+-或-
+目錄包含一或多個檔案或子目錄，並且 <paramref name="recursive" /> 是 <see langword="false" />。
+-或-
+目錄是應用程式目前的工作目錄。
+-或-
+此目錄或其中一個檔案具有開啟控制代碼，而且作業系統是 Windows XP 或先前的版本。 這個開啟的控制代碼可能是列舉目錄和檔案所產生的結果。 如需詳細資訊，請參閱如何：列舉目錄與檔案。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories">
+      <summary>傳回目前目錄中目錄資訊的可列舉集合。</summary>
+      <returns>目前目錄中目錄的可列舉集合。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String)">
+      <summary>傳回符合指定之搜尋模式的目錄資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 的目錄的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String,System.IO.EnumerationOptions)">
+      <summary>傳回符合所所指定搜尋模式和列舉選項之目錄資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 的目錄的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateDirectories(System.String,System.IO.SearchOption)">
+      <summary>傳回符合指定之搜尋模式和搜尋子目錄選項的目錄資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 的目錄的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles">
+      <summary>傳回目前目錄中檔案資訊的可列舉集合。</summary>
+      <returns>目前目錄中檔案的可列舉集合。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String)">
+      <summary>傳回符合指定之搜尋模式的檔案資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 的檔案的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String,System.IO.EnumerationOptions)">
+      <summary>傳回符合所指定搜尋模式和列舉選項之檔案資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 的檔案的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFiles(System.String,System.IO.SearchOption)">
+      <summary>傳回符合指定之搜尋模式和搜尋子目錄選項的檔案資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>傳回符合 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 的檔案的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos">
+      <summary>傳回目前目錄中檔案系統資訊的可列舉集合。</summary>
+      <returns>目前目錄中檔案系統資訊的可列舉集合。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String)">
+      <summary>傳回符合指定之搜尋模式的檔案系統資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>符合 <paramref name="searchPattern" /> 的檔案系統資訊的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String,System.IO.EnumerationOptions)">
+      <summary>傳回符合所指定搜尋模式和列舉選項之檔案系統資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 的檔案系統資訊的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.EnumerateFileSystemInfos(System.String,System.IO.SearchOption)">
+      <summary>傳回符合指定之搜尋模式和搜尋子目錄選項的檔案系統資訊的可列舉集合。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>符合 <paramref name="searchPattern" /> 和 <paramref name="searchOption" /> 的檔案系統資訊的可列舉集合。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Exists">
+      <summary>取得值，指出目錄是否存在。</summary>
+      <returns>如果目錄存在，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories">
+      <summary>傳回目前目錄的子目錄。</summary>
+      <returns>
+        <see cref="T:System.IO.DirectoryInfo" /> 物件的陣列。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see cref="T:System.IO.DirectoryInfo" /> 物件中封裝的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String)">
+      <summary>傳回在目前 <see cref="T:System.IO.DirectoryInfo" /> 中，符合指定的搜尋準則的目錄陣列。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>
+        <see langword="DirectoryInfo" /> 類型的陣列，符合 <paramref name="searchPattern" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see langword="DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String,System.IO.EnumerationOptions)">
+      <summary>傳回目前 <see cref="T:System.IO.DirectoryInfo" /> 中符合所指定搜尋模式和列舉選項的目錄陣列。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 之 <see langword="DirectoryInfo" /> 型別的陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see langword="DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetDirectories(System.String,System.IO.SearchOption)">
+      <summary>傳回目前 <see cref="T:System.IO.DirectoryInfo" /> 中的目錄陣列，這些目錄符合指定的搜尋準則並使用值來判斷是否搜尋子目錄。</summary>
+      <param name="searchPattern">要比對目錄名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。</param>
+      <returns>
+        <see langword="DirectoryInfo" /> 類型的陣列，符合 <paramref name="searchPattern" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">在 <see langword="DirectoryInfo" /> 物件中封裝的路徑無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles">
+      <summary>從目前的目錄傳回檔案清單。</summary>
+      <returns>類型為 <see cref="T:System.IO.FileInfo" /> 的陣列。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路徑無效，例如位於未對應的磁碟機上。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String)">
+      <summary>從目前目錄傳回符合指定之搜尋模式的檔案清單。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>類型為 <see cref="T:System.IO.FileInfo" /> 的陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String,System.IO.EnumerationOptions)">
+      <summary>傳回目前目錄中符合所指定搜尋模式和列舉選項的檔案清單。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 的強型別 <see cref="T:System.IO.FileInfo" /> 物件陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFiles(System.String,System.IO.SearchOption)">
+      <summary>從目前目錄傳回符合指定搜尋模式的檔案清單，並使用值來判斷是否搜尋子目錄。</summary>
+      <param name="searchPattern">要比對檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。</param>
+      <returns>類型為 <see cref="T:System.IO.FileInfo" /> 的陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos">
+      <summary>傳回強型別 <see cref="T:System.IO.FileSystemInfo" /> 項目的陣列，表示目錄中的所有檔案和子目錄。</summary>
+      <returns>強類型 (Strongly Typed) <see cref="T:System.IO.FileSystemInfo" /> 項目的陣列。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String)">
+      <summary>擷取強型別 <see cref="T:System.IO.FileSystemInfo" /> 物件的陣列，表示符合指定之搜尋準則的檔案和子目錄。</summary>
+      <param name="searchPattern">要比對目錄及檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <returns>強類型 <see langword="FileSystemInfo" /> 物件的陣列，符合搜尋準則。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String,System.IO.EnumerationOptions)">
+      <summary>擷取代表符合所指定搜尋模式和列舉選項之檔案和子目錄的強型別 <see cref="T:System.IO.FileSystemInfo" /> 物件陣列。</summary>
+      <param name="searchPattern">要比對目錄及檔案名稱的搜尋字串。 這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="enumerationOptions">物件，描述要使用的搜尋和列舉組態。</param>
+      <returns>符合 <paramref name="searchPattern" /> 和 <paramref name="enumerationOptions" /> 的強型別 <see langword="FileSystemInfo" /> 物件陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.GetFileSystemInfos(System.String,System.IO.SearchOption)">
+      <summary>擷取 <see cref="T:System.IO.FileSystemInfo" /> 物件的陣列，表示符合指定之搜尋準則的檔案和子目錄。</summary>
+      <param name="searchPattern">要比對目錄及檔案名稱的搜尋字串。  這個參數可以包含有效常值路徑與萬用 (* 和 ?) 字元的組合，但是不支援規則運算式。</param>
+      <param name="searchOption">其中一個列舉值，指定搜尋作業應該只包含目前目錄還是包含所有子目錄。 預設值為 <see cref="F:System.IO.SearchOption.TopDirectoryOnly" />。</param>
+      <returns>陣列，包含符合搜尋準則的檔案系統項目。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="searchPattern" /> 包含一或多個 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="searchPattern" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="searchOption" /> 不是有效的 <see cref="T:System.IO.SearchOption" /> 值。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.MoveTo(System.String)">
+      <summary>移動 <see cref="T:System.IO.DirectoryInfo" /> 執行個體和其內容至新的路徑。</summary>
+      <param name="destDirName">要將這個目錄移至的目的名稱和路徑。 目的端不可以是另一個磁碟區，或者是名稱完全相同的目錄。 它可以是您要將這個目錄加入做為子目錄的現有目錄。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destDirName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destDirName" /> 為空字串 ("")。</exception>
+      <exception cref="T:System.IO.IOException">嘗試將目錄移至不同的磁碟區。
+-或-
+<paramref name="destDirName" /> 已經存在。
+-或-
+您未取得存取此路徑的授權。
+-或-
+正在移動的目錄與目的目錄具有相同名稱。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">找不到目的地目錄。</exception>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Name">
+      <summary>取得這個 <see cref="T:System.IO.DirectoryInfo" /> 執行個體的名稱。</summary>
+      <returns>目錄名稱。</returns>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Parent">
+      <summary>取得指定子目錄的父代 (Parent) 目錄。</summary>
+      <returns>父目錄，如果路徑是 null 或檔案路徑代表根目錄（例如 \、C:\或 \\server\share），則為 <see langword="null" />。</returns>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="P:System.IO.DirectoryInfo.Root">
+      <summary>取得目錄的根目錄部分。</summary>
+      <returns>表示根目錄的物件。</returns>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.DirectoryInfo.ToString">
+      <summary>傳回傳遞給 <see cref="T:System.IO.DirectoryInfo" /> 建構函式的原始路徑。 使用 <see cref="P:System.IO.DirectoryInfo.FullName" /> 或 <see cref="P:System.IO.DirectoryInfo.Name" /> 屬性作為完整路徑或檔案/目錄名稱，而不要使用這個方法。</summary>
+      <returns>使用者傳遞的原始路徑。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEntry">
+      <summary>提供 <see cref="T:System.IO.FileSystemInfo" /> 的較低層級檢視，用於協助處理與篩選尋找結果。</summary>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Attributes">
+      <summary>取得此項目的屬性。</summary>
+      <returns>此專案的屬性。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.CreationTimeUtc">
+      <summary>取得項目建立時間或最舊的可用時間戳記 (如果作業系統不支援建立時間戳記)。</summary>
+      <returns>專案的建立時間。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Directory">
+      <summary>取得此項目所在目錄的完整路徑。</summary>
+      <returns>此專案目錄的完整路徑。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.FileName">
+      <summary>取得此項目的檔案名稱。</summary>
+      <returns>這個專案的檔案名。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.IsDirectory">
+      <summary>取得值，指出此項目是否為目錄。</summary>
+      <returns>
+        <see langword="true" />如果專案是目錄，則為，否則為<see langword="true" />。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.IsHidden">
+      <summary>取得值，指出檔案是否具有隱藏的屬性。</summary>
+      <returns>
+        <see langword="true" />如果檔案具有隱藏的屬性，則為，否則為<see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.LastAccessTimeUtc">
+      <summary>取得表示上次存取時間 (UTC) 的日期時間位移。</summary>
+      <returns>上次存取時間（UTC）。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.LastWriteTimeUtc">
+      <summary>取得表示上次寫入時間 (UTC) 的日期時間位移。</summary>
+      <returns>上次寫入時間（UTC）。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.Length">
+      <summary>取得檔案的長度 (以位元組為單位)。</summary>
+      <returns>檔案長度（以位元組為單位）。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.OriginalRootDirectory">
+      <summary>取得在此函式中所指定列舉的根目錄。</summary>
+      <returns>原始的根目錄。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEntry.RootDirectory">
+      <summary>取得用於列舉的根目錄完整路徑。</summary>
+      <returns>根目錄。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToFileSystemInfo">
+      <summary>將這個執行個體的值轉換為 <see cref="T:System.IO.FileSystemInfo" />。</summary>
+      <returns>此執行個體的值，作為 <see cref="T:System.IO.FileSystemInfo" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToFullPath">
+      <summary>傳回尋找結果的完整路徑。</summary>
+      <returns>表示完整路徑的字串。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEntry.ToSpecifiedFullPath">
+      <summary>根據初始提供的路徑，傳回尋找結果的完整路徑。</summary>
+      <returns>表示完整路徑的字串。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1">
+      <summary>允許利用自訂篩選述詞並轉換委派來進行列舉。</summary>
+      <typeparam name="TResult">此可列舉封裝的類型。</typeparam>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.#ctor(System.String,System.IO.Enumeration.FileSystemEnumerable{`0}.FindTransform,System.IO.EnumerationOptions)">
+      <summary>使用特定的搜尋和篩選選項，初始化 <see cref="T:System.IO.Enumeration.FileSystemEnumerable`1" /> 類別的新執行個體。</summary>
+      <param name="directory">即將執行列舉的目錄路徑。</param>
+      <param name="transform">將原始尋找資料轉換為結果的委派方法。</param>
+      <param name="options">描述列舉選項的物件。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="directory" /> 或 <paramref name="transform" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="directory" /> 路徑是空的。
+-或-
+<paramref name="directory" /> 包含 Null 字元 "\0"。</exception>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1.FindPredicate">
+      <summary>封裝用來篩選出尋找結果的方法。</summary>
+      <param name="entry">檔案系統項目的參考會以述詞條件進行評估。</param>
+      <typeparam name="TResult" />
+      <returns>如果符合述詞條件，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerable`1.FindTransform">
+      <summary>封裝方法用於將原始尋找資料轉換成結果的方法。</summary>
+      <param name="entry">檔案系統項目的參考會以述詞條件進行評估。</param>
+      <typeparam name="TResult" />
+      <returns>此委派所封裝類型的執行個體。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.GetEnumerator">
+      <summary>擷取此結果類型的列舉程式。</summary>
+      <returns>列舉值。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerable`1.ShouldIncludePredicate">
+      <summary>取得或設定可用於驗證是否應包含 TResults 的述詞。</summary>
+      <returns>Include 述詞。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerable`1.ShouldRecursePredicate">
+      <summary>取得或設定可用於驗證是否應遞迴 TResults 的述詞。</summary>
+      <returns>遞迴述詞。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+      <summary>取得可用於逐一查看的列舉程式。</summary>
+      <returns>列舉程式執行個體。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemEnumerator`1">
+      <summary>列舉所提供類型的檔案系統項目，其由 <see cref="T:System.IO.Enumeration.FileSystemEnumerable`1" /> 所搜尋和篩選。</summary>
+      <typeparam name="TResult">此檔案系統列舉值所產生的結果類型。</typeparam>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.#ctor(System.String,System.IO.EnumerationOptions)">
+      <summary>封裝尋找作業。</summary>
+      <param name="directory">要在其中搜尋的目錄。</param>
+      <param name="options">要使用的列舉選項。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ContinueOnError(System.Int32)">
+      <summary>會在衍生類別中覆寫時傳回值，指出是否要繼續執行，或擲回預設的例外狀況。</summary>
+      <param name="error">原生錯誤碼。</param>
+      <returns>
+        <see langword="true" /> 繼續，<see langword="false" /> 為指定的錯誤擲回預設例外狀況。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerator`1.Current">
+      <summary>取得目前瀏覽的元素。</summary>
+      <returns>目前造訪的元素。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Dispose">
+      <summary>將 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 類別的目前執行個體所使用的資源釋出。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Dispose(System.Boolean)">
+      <summary>在衍生類別中覆寫時，釋出 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 類別使用的 Unmanaged 資源，並選擇性釋出 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.MoveNext">
+      <summary>將列舉值前移至 <see cref="T:System.IO.Enumeration.FileSystemEnumerator`1" /> 的下一個項目。</summary>
+      <returns>如果列舉值成功前移至下一個項目，則為 <see langword="true" />；如果已傳遞列舉的結尾，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.OnDirectoryFinished(System.ReadOnlySpan{System.Char})">
+      <summary>在衍生類別中覆寫時，每當到達目錄結尾時，就會呼叫這個方法。</summary>
+      <param name="directory">作為唯讀範圍的目錄路徑。</param>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.Reset">
+      <summary>永遠擲回 <see cref="T:System.NotSupportedException" />。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ShouldIncludeEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在衍生類別中覆寫時，判斷指定的檔案系統項目是否應包含在結果中。</summary>
+      <param name="entry">檔案系統項目參考。</param>
+      <returns>如果指定的檔案系統項目應包含在結果中，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.ShouldRecurseIntoEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在衍生類別中覆寫時，判斷是否應遞迴指定的檔案系統項目。</summary>
+      <param name="entry">檔案系統項目參考。</param>
+      <returns>如果應遞迴至指定的目錄項目，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.Enumeration.FileSystemEnumerator`1.System#Collections#IEnumerator#Current">
+      <summary>取得目前瀏覽的物件。</summary>
+      <returns>目前造訪的物件。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemEnumerator`1.TransformEntry(System.IO.Enumeration.FileSystemEntry@)">
+      <summary>在衍生類別中覆寫時，從目前的項目產生結果類型。</summary>
+      <param name="entry">檔案系統項目參考。</param>
+      <returns>目前項目的結果類型。</returns>
+    </member>
+    <member name="T:System.IO.Enumeration.FileSystemName">
+      <summary>提供用於比對檔案系統名稱的方法。</summary>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.MatchesSimpleExpression(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>驗證指定的運算式是否符合指定名稱。 支援下列萬用字元：'*' 和 '?'。 反斜線字元 '' 會逸出。</summary>
+      <param name="expression">要比對的運算式。</param>
+      <param name="name">要對運算式檢查的名稱。</param>
+      <param name="ignoreCase">
+        <see langword="true" /> 忽略大小寫 (預設值)；如果比對應區分大小寫，則為 <see langword="false" />。</param>
+      <returns>如果指定的運算式符合指定名稱，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.MatchesWin32Expression(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char},System.Boolean)">
+      <summary>驗證指定的 Win32 運算式是否符合指定名稱。 支援下列萬用字元：'*'、'?'、'&lt;'、'&gt;'、'"'。 反斜線字元 '' 會逸出。</summary>
+      <param name="expression">要比對的運算式，例如 "*.foo"。</param>
+      <param name="name">要對運算式檢查的名稱。</param>
+      <param name="ignoreCase">
+        <see langword="true" /> 忽略大小寫 (預設值)；如果比對應區分大小寫，則為 <see langword="false" />。</param>
+      <returns>如果指定的運算式符合指定名稱，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.IO.Enumeration.FileSystemName.TranslateWin32Expression(System.String)">
+      <summary>轉譯指定的 Win32 運算式。 將 '*' 和 '?' 變更為'&lt;'、'&gt;' 和 '"'，以符合 Win32 行為。</summary>
+      <param name="expression">要轉譯的運算式。</param>
+      <returns>具有已轉譯 Win32 運算式的字串。</returns>
+    </member>
+    <member name="T:System.IO.EnumerationOptions">
+      <summary>提供檔案和目錄列舉選項。</summary>
+    </member>
+    <member name="M:System.IO.EnumerationOptions.#ctor">
+      <summary>使用建議的預設選項，初始化 <see cref="T:System.IO.EnumerationOptions" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.AttributesToSkip">
+      <summary>取得或設定要略過的屬性。 預設值是 <c>FileAttributes.Hidden | FileAttributes.System</c>。</summary>
+      <returns>要略過的屬性。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.BufferSize">
+      <summary>取得或設定建議的緩衝區大小 (以位元組為單位)。 預設值為 0 (無建議)。</summary>
+      <returns>緩衝區大小。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.IgnoreInaccessible">
+      <summary>取得或設定值，指出是否要在存取遭拒絕時略過檔案或目錄 (例如 <see cref="T:System.UnauthorizedAccessException" /> 或 <see cref="T:System.Security.SecurityException" />)。 預設為 <see langword="true" />。</summary>
+      <returns>
+        <see langword="true" /> 略過 innacessible 檔案或目錄;否則，<see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.MatchCasing">
+      <summary>取得或設定大小寫比對行為。</summary>
+      <returns>其中一個列舉值，表示案例符合的行為。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.MatchType">
+      <summary>取得或設定比對類型。</summary>
+      <returns>其中一個列舉值，表示符合類型。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.RecurseSubdirectories">
+      <summary>取得或設定值，指出是否要在列舉時遞迴至子目錄。 預設為 <see langword="false" />。</summary>
+      <returns>
+        <see langword="true" /> 遞迴至子目錄;否則，<see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.EnumerationOptions.ReturnSpecialDirectories">
+      <summary>取得或設定值，指出是否要傳回特殊目錄項目 "." 和 ".."。</summary>
+      <returns>
+        <see langword="true" />，以傳回特殊的目錄專案 "." 和 "：";否則，<see langword="false" />。</returns>
+    </member>
+    <member name="T:System.IO.File">
+      <summary>提供建立、複製、刪除、移動和開啟單一檔案的靜態方法，並協助 <see cref="T:System.IO.FileStream" /> 物件的建立。</summary>
+    </member>
+    <member name="M:System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>在檔案中加入幾行內容，然後關閉檔案。 如果指定的檔案不存在，則這個方法會建立檔案，將指定的程式行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要在其中加入幾行內容的檔案。 如果該檔案不存在，則會建立它。</param>
+      <param name="contents">要加入檔案的幾行內容。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 是 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如，此目錄不存在或位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 所指定的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫者沒有寫入檔案的權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 會指定唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+      <summary>使用指定編碼將指定的幾行內容加入檔案，然後關閉檔案。 如果指定的檔案不存在，則這個方法會建立檔案，將指定的程式行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要在其中加入幾行內容的檔案。 如果該檔案不存在，則會建立它。</param>
+      <param name="contents">要加入檔案的幾行內容。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" />、<paramref name="contents" /> 或 <paramref name="encoding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如，此目錄不存在或位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 所指定的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>使用指定編碼方式以非同步方式在檔案中附加幾行內容，然後關閉檔案。 如果指定的檔案不存在，則這個方法會建立檔案，將指定的程式行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要在其中加入幾行內容的檔案。 如果該檔案不存在，則會建立它。</param>
+      <param name="contents">要加入檔案的幾行內容。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步附加作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+      <summary>以非同步方式在檔案中附加幾行內容，然後關閉檔案。 如果指定的檔案不存在，則這個方法會建立檔案，將指定的程式行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要在其中加入幾行內容的檔案。 如果該檔案不存在，則會建立它。</param>
+      <param name="contents">要加入檔案的幾行內容。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步附加作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllText(System.String,System.String)">
+      <summary>開啟檔案，將指定的字串附加至檔案，然後關閉檔案。 如果檔案不存在，則這個方法會建立檔案，將指定的字串寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要將指定字串附加至其中的檔案。</param>
+      <param name="contents">要附加至檔案的字串。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，此目錄不存在或位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllText(System.String,System.String,System.Text.Encoding)">
+      <summary>使用指定編碼方式將指定字串附加至檔案，如果檔案不存在，請建立一個新檔案。</summary>
+      <param name="path">要將指定字串附加至其中的檔案。</param>
+      <param name="contents">要附加至檔案的字串。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，此目錄不存在或位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.AppendAllTextAsync(System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟檔案或建立檔案 (如果檔案不存在)，並使用指定編碼方式將指定的字串附加至檔案，然後關閉檔案。</summary>
+      <param name="path">要將指定字串附加至其中的檔案。</param>
+      <param name="contents">要附加至檔案的字串。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步附加作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendAllTextAsync(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟檔案或建立檔案 (如果檔案不存在)，並將指定的字串附加至檔案，然後關閉檔案。</summary>
+      <param name="path">要將指定字串附加至其中的檔案。</param>
+      <param name="contents">要附加至檔案的字串。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步附加作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.AppendText(System.String)">
+      <summary>建立會將 UTF-8 編碼的文字附加至現有檔案或新檔案 (如果指定的檔案不存在) 的 <see cref="T:System.IO.StreamWriter" />。</summary>
+      <param name="path">要附加至檔案的路徑。</param>
+      <returns>資料流寫入器，會附加 UTF-8 編碼的文字至指定的檔案或新檔案。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，此目錄不存在或位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Copy(System.String,System.String)">
+      <summary>複製現有的檔案到新的檔案。 不允許覆寫相同名稱的檔案。</summary>
+      <param name="sourceFileName">要複製的檔案。</param>
+      <param name="destFileName">目的檔案的名稱。 這不可以是目錄或現有檔案。</param>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+<paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 會指定目錄。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 存在。
+-或-
+發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Copy(System.String,System.String,System.Boolean)">
+      <summary>複製現有的檔案到新的檔案。 允許覆寫相同名稱的檔案。</summary>
+      <param name="sourceFileName">要複製的檔案。</param>
+      <param name="destFileName">目的檔案的名稱。 這不可以是目錄。</param>
+      <param name="overwrite">如果可以覆寫目的檔案，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="destFileName" /> 是唯讀的。
+-或-
+<paramref name="overwrite" /> 是 <see langword="true" />，<paramref name="destFileName" /> 存在且為隱藏，但 <paramref name="sourceFileName" /> 不會隱藏。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+<paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 會指定目錄。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="destFileName" /> 存在，且 <paramref name="overwrite" /> 是 <see langword="false" />。
+-或-
+發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Create(System.String)">
+      <summary>在指定的路徑中建立或覆寫檔案。</summary>
+      <param name="path">要建立的檔案路徑和名稱。</param>
+      <returns>
+        <see cref="T:System.IO.FileStream" />，提供在 <paramref name="path" /> 中指定之檔案的讀取/寫入存取。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">建立檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Create(System.String,System.Int32)">
+      <summary>建立或覆寫指定路徑中的檔案，並指定緩衝區大小。</summary>
+      <param name="path">要建立的檔案路徑和名稱。</param>
+      <param name="bufferSize">用來緩衝檔案的讀取和寫入的位元組數。</param>
+      <returns>具有指定之緩衝區大小的 <see cref="T:System.IO.FileStream" />，提供在 <paramref name="path" /> 中指定之檔案的讀取/寫入存取。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">建立檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Create(System.String,System.Int32,System.IO.FileOptions)">
+      <summary>建立或覆寫指定路徑中的檔案，並指定緩衝區大小以及描述如何建立或覆寫檔案的選項。</summary>
+      <param name="path">要建立的檔案路徑和名稱。</param>
+      <param name="bufferSize">用來緩衝檔案的讀取和寫入的位元組數。</param>
+      <param name="options">其中一個 <see cref="T:System.IO.FileOptions" /> 值，描述如何建立或覆寫檔案。</param>
+      <returns>具有指定緩衝區大小的新檔案。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">建立檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.CreateText(System.String)">
+      <summary>建立或開啟用以寫入 UTF-8 編碼文字的檔案。 如果檔案已經存在，將覆寫其內容。</summary>
+      <param name="path">要被開啟來寫入的檔案。</param>
+      <returns>
+        <see cref="T:System.IO.StreamWriter" />，使用 UTF-8 編碼方式寫入指定檔案。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Decrypt(System.String)">
+      <summary>解密目前帳戶使用 <see cref="M:System.IO.File.Encrypt(System.String)" /> 方法加密的檔案。</summary>
+      <param name="path">路徑，描述要解密的檔案。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 參數為零長度字串，只包含空格或包含一或多個由 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。 例如，加密的檔案已經開啟。
+-或-
+這個作業在目前平台不受支援。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.NotSupportedException">檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 參數指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 參數指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.Delete(System.String)">
+      <summary>刪除指定的檔案。</summary>
+      <param name="path">要刪除的檔案的名稱。 不支援萬用字元。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">指定的檔案正在使用中。
+-或-
+檔案上有開啟的控制代碼，而且作業系統是 Windows XP 或之前的版本。 這個開啟的控制代碼可能是列舉目錄和檔案所產生的結果。 如需詳細資訊，請參閱如何：列舉目錄與檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+檔案是使用中的可執行檔。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+<paramref name="path" /> 指定唯讀檔案</exception>
+    </member>
+    <member name="M:System.IO.File.Encrypt(System.String)">
+      <summary>加密檔案，只有使用加密檔案的帳戶才能將其解密。</summary>
+      <param name="path">路徑，描述要加密的檔案。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 參數為零長度字串，只包含空格或包含一或多個由 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。
+-或-
+這個作業在目前平台不受支援。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.NotSupportedException">檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 參數指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 參數指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.Exists(System.String)">
+      <summary>判斷指定的檔案是否存在。</summary>
+      <param name="path">要檢查的檔案。</param>
+      <returns>如果呼叫端具有必要的權限，而且 <see langword="true" /> 包含現有檔案的名稱，則為 <paramref name="path" />，否則為 <see langword="false" />。 如果 <see langword="false" /> 是 <paramref name="path" />、無效路徑或長度為零的字串，這個方法也會傳回 <see langword="null" />。 如果呼叫端沒有充足權限讀取指定檔案，沒有例外狀況會擲回，並且不論 <see langword="false" /> 是否存在，方法都會傳回 <paramref name="path" />。</returns>
+    </member>
+    <member name="M:System.IO.File.GetAttributes(System.String)">
+      <summary>取得路徑上檔案的 <see cref="T:System.IO.FileAttributes" />。</summary>
+      <param name="path">檔案的路徑。</param>
+      <returns>路徑上檔案的 <see cref="T:System.IO.FileAttributes" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是空的、只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">
+        <paramref name="path" /> 代表檔案無效，例如位在未對應的磁碟機上，或找不到檔案。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 代表目錄無效，例如位在未對應的磁碟機上，或找不到目錄。</exception>
+      <exception cref="T:System.IO.IOException">其他處理序正在使用此檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.GetCreationTime(System.String)">
+      <summary>傳回指定檔案或目錄的建立日期和時間。</summary>
+      <param name="path">要取得其建立日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的建立日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.GetCreationTimeUtc(System.String)">
+      <summary>傳回指定檔案或目錄的建立日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要取得其建立日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的建立日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.GetLastAccessTime(System.String)">
+      <summary>傳回指定檔案或目錄上次被存取的日期和時間。</summary>
+      <param name="path">要取得其存取日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的上次存取日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.GetLastAccessTimeUtc(System.String)">
+      <summary>傳回指定檔案或目錄上次被存取的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要取得其存取日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的上次存取日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.GetLastWriteTime(System.String)">
+      <summary>傳回指定檔案或目錄上次被寫入的日期和時間。</summary>
+      <param name="path">要取得其寫入日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的上次寫入日期和時間。 這個值以本地時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.GetLastWriteTimeUtc(System.String)">
+      <summary>傳回指定檔案或目錄上次被寫入的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要取得其寫入日期和時間資訊的檔案或目錄。</param>
+      <returns>
+        <see cref="T:System.DateTime" /> 結構，設定為指定檔案或目錄的上次寫入日期和時間。 這個值以 UTC 時間表示。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Move(System.String,System.String)">
+      <summary>移動指定的檔案至新的位置，提供指定新檔名的選項。</summary>
+      <param name="sourceFileName">要移動的檔案名稱。 可包含相對或絕對路徑。</param>
+      <param name="destFileName">檔案的新路徑和名稱。</param>
+      <exception cref="T:System.IO.IOException">目的檔案已經存在。
+-或-
+找不到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為零長度字串 (只包含空格)，或包含如 <see cref="F:System.IO.Path.InvalidPathChars" />定義的無效字元。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Move(System.String,System.String,System.Boolean)">
+      <summary>將指定的檔案移至新位置，提供可指定新檔案名稱的選項，並覆寫目的地檔案 (如果已存在)。</summary>
+      <param name="sourceFileName">要移動的檔案名稱。 可包含相對或絕對路徑。</param>
+      <param name="destFileName">檔案的新路徑和名稱。</param>
+      <param name="overwrite">
+        <see langword="true" /> 如果目的地檔案已存在，則予以覆寫；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">找不到 <paramref name="sourceFileName" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 為零長度字串 (只包含空格)，或包含如 <see cref="F:System.IO.Path.InvalidPathChars" />定義的無效字元。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destFileName" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode)">
+      <summary>在指定路徑上開啟具有讀取/寫入權限且不共用的 <see cref="T:System.IO.FileStream" />。</summary>
+      <param name="path">要開啟的檔案。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，指定是否要建立檔案 (如果不存在的話)，以及決定要保留或覆寫現有檔案的內容。</param>
+      <returns>在指定模式和路徑中開啟的 <see cref="T:System.IO.FileStream" />，具有讀取/寫入存取而且不共用。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。
+-或-
+<paramref name="mode" /> 是 <see cref="F:System.IO.FileMode.Create" /> ，且指定的檔案是隱藏檔案。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 指定了無效的值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode,System.IO.FileAccess)">
+      <summary>在指定路徑上開啟具有指定模式和存取權且不共用的 <see cref="T:System.IO.FileStream" />。</summary>
+      <param name="path">要開啟的檔案。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，指定是否要建立檔案 (如果不存在的話)，以及決定要保留或覆寫現有檔案的內容。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值，指定可以在檔案上執行的作業。</param>
+      <returns>不共用的 <see cref="T:System.IO.FileStream" />，提供對指定檔案 (具有指定模式和存取) 的存取。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+<paramref name="access" /> 指定了 <see langword="Read" /> ，而 <paramref name="mode" /> 指定了 <see langword="Create" />、 <see langword="CreateNew" />、 <see langword="Truncate" />或 <see langword="Append" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀檔案，而 <paramref name="access" /> 不是 <see langword="Read" />。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。
+-或-
+<paramref name="mode" /> 是 <see cref="F:System.IO.FileMode.Create" />，且指定的檔案是隱藏檔案。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" /> 或 <paramref name="access" /> 指定了無效的值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.Open(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>在指定路徑上開啟 <see cref="T:System.IO.FileStream" />，假定它具有讀取、寫入或讀取/寫入存取的指定模式和指定的共用選項。</summary>
+      <param name="path">要開啟的檔案。</param>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 值，指定是否要建立檔案 (如果不存在的話)，以及決定要保留或覆寫現有檔案的內容。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 值，指定可以在檔案上執行的作業。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 值，指定其他執行緒對檔案擁有的存取類型。</param>
+      <returns>指定路徑上的 <see cref="T:System.IO.FileStream" />，假定它具有讀取、寫入或讀取/寫入存取的指定模式和指定的共用選項。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。
+-或-
+<paramref name="access" /> 指定了 <see langword="Read" /> ，而 <paramref name="mode" /> 指定了 <see langword="Create" />、 <see langword="CreateNew" />、 <see langword="Truncate" />或 <see langword="Append" />。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀檔案，而 <paramref name="access" /> 不是 <see langword="Read" />。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。
+-或-
+<paramref name="mode" /> 是 <see cref="F:System.IO.FileMode.Create" />，且指定的檔案是隱藏檔案。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="mode" />、<paramref name="access" /> 或 <paramref name="share" /> 指定了無效的值。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.OpenRead(System.String)">
+      <summary>開啟現有檔案來讀取。</summary>
+      <param name="path">要被開啟來讀取的檔案。</param>
+      <returns>指定路徑上的唯讀 <see cref="T:System.IO.FileStream" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+    </member>
+    <member name="M:System.IO.File.OpenText(System.String)">
+      <summary>開啟現有 UTF-8 編碼的文字檔來讀取。</summary>
+      <param name="path">要被開啟來讀取的檔案。</param>
+      <returns>指定路徑上的 <see cref="T:System.IO.StreamReader" />。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.OpenWrite(System.String)">
+      <summary>開啟現有檔案或建立新檔案，以進行寫入。</summary>
+      <param name="path">要被開啟來寫入的檔案。</param>
+      <returns>在指定之路徑上具有 <see cref="T:System.IO.FileStream" /> 存取權的非共用 <see cref="F:System.IO.FileAccess.Write" /> 物件。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。
+-或-
+<paramref name="path" /> 指定唯讀檔案或目錄。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllBytes(System.String)">
+      <summary>開啟二進位檔案，將檔案內容讀入位元組陣列，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <returns>包含檔案內容的位元組陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllBytesAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟二進位檔案，將檔案內容讀入位元組陣列，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作，該作業會包裝含有檔案內容的位元組陣列。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLines(System.String)">
+      <summary>開啟文字檔，讀取檔案的所有行，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <returns>包含檔案所有行的字串陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllLines(System.String,System.Text.Encoding)">
+      <summary>開啟檔案，以指定的編碼方式讀取檔案的所有行，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="encoding">套用至檔案內容的編碼方式。</param>
+      <returns>包含檔案所有行的字串陣列。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllLinesAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟文字檔，以指定的編碼方式讀取檔案所有行，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="encoding">套用至檔案內容的編碼方式。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作，該作業會包裝含有檔案所有行的字串陣列。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllLinesAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟文字檔，讀取檔案的所有行，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作，該作業會包裝含有檔案所有行的字串陣列。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllText(System.String)">
+      <summary>開啟文字檔，讀取檔案中的所有文字，然後關閉該檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <returns>包含檔案中所有文字的字串。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllText(System.String,System.Text.Encoding)">
+      <summary>開啟檔案，利用指定的編碼方式讀取檔案中的所有文字，然後關閉該檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="encoding">套用至檔案內容的編碼方式。</param>
+      <returns>包含檔案中所有文字的字串。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 指定的檔案。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadAllTextAsync(System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟文字檔，以指定的編碼方式讀取檔案所有文字，然後關閉檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="encoding">套用至檔案內容的編碼方式。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作，該作業會包裝含有檔案中所有文字的字串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadAllTextAsync(System.String,System.Threading.CancellationToken)">
+      <summary>以非同步方式開啟文字檔，讀取檔案中的所有文字，然後關閉該檔案。</summary>
+      <param name="path">要開啟用於讀取的檔案。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作，該作業會包裝含有檔案中所有文字的字串。</returns>
+    </member>
+    <member name="M:System.IO.File.ReadLines(System.String)">
+      <summary>讀取檔案的所有行。</summary>
+      <param name="path">要讀取的檔案。</param>
+      <returns>檔案的所有行，或查詢結果的各行。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的一或多個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 所指定的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.ReadLines(System.String,System.Text.Encoding)">
+      <summary>讀取具有指定編碼方式的檔案所有行。</summary>
+      <param name="path">要讀取的檔案。</param>
+      <param name="encoding">套用至檔案內容的編碼方式。</param>
+      <returns>檔案的所有行，或查詢結果的各行。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個由 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到 <paramref name="path" /> 所指定的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.Replace(System.String,System.String,System.String)">
+      <summary>用另一個檔案的內容取代指定檔案的內容，刪除原始檔案並建立已取代檔案的備份。</summary>
+      <param name="sourceFileName">取代 <paramref name="destinationFileName" /> 所指定之檔案的檔案名稱。</param>
+      <param name="destinationFileName">已取代的檔案名稱。</param>
+      <param name="destinationBackupFileName">備份檔案的名稱。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destinationFileName" /> 參數所描述的路徑格式不合法。
+-或-
+<paramref name="destinationBackupFileName" /> 參數所描述的路徑格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destinationFileName" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。
+-或-
+找不到 <paramref name="destinationBackupFileName" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。
+-或-
+<paramref name="sourceFileName" /> 和 <paramref name="destinationFileName" /> 參數指定相同的檔案。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">作業系統是 Windows 98 Second Edition 或更早版本，而且檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 參數指定了唯讀檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+來源或目的地參數指定的是目錄，不是檔案。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.Replace(System.String,System.String,System.String,System.Boolean)">
+      <summary>用另一個檔案的內容取代指定檔案的內容，刪除原始檔案，建立已取代檔案的備份，並選擇性地忽略合併錯誤。</summary>
+      <param name="sourceFileName">取代 <paramref name="destinationFileName" /> 所指定之檔案的檔案名稱。</param>
+      <param name="destinationFileName">已取代的檔案名稱。</param>
+      <param name="destinationBackupFileName">備份檔案的名稱。</param>
+      <param name="ignoreMetadataErrors">
+        <see langword="true" /> 表示忽略發生在已取代檔案和取代檔案上的合併錯誤 (例如屬性和存取控制清單 (ACL))，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destinationFileName" /> 參數所描述的路徑格式不合法。
+-或-
+<paramref name="destinationBackupFileName" /> 參數所描述的路徑格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destinationFileName" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。
+-或-
+找不到 <paramref name="destinationBackupFileName" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。
+-或-
+<paramref name="sourceFileName" /> 和 <paramref name="destinationFileName" /> 參數指定相同的檔案。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">作業系統是 Windows 98 Second Edition 或更早版本，而且檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="sourceFileName" /> 或 <paramref name="destinationFileName" /> 參數指定了唯讀檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+來源或目的地參數指定的是目錄，不是檔案。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.SetAttributes(System.String,System.IO.FileAttributes)">
+      <summary>在指定路徑上設定檔案的指定 <see cref="T:System.IO.FileAttributes" />。</summary>
+      <param name="path">檔案的路徑。</param>
+      <param name="fileAttributes">列舉值的位元組合。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是空的、只包含空格、包含無效的字元，或檔案屬性無效。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.SetCreationTime(System.String,System.DateTime)">
+      <summary>設定檔案建立的日期和時間。</summary>
+      <param name="path">要設定其建立日期和時間資訊的檔案。</param>
+      <param name="creationTime">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的建立日期和時間設定的值。 這個值以本地時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">執行此作業時發生 I/O 錯誤</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定的值超出這項作業允許的日期或時間範圍 (或兩者皆超出)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.SetCreationTimeUtc(System.String,System.DateTime)">
+      <summary>設定檔案建立的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要設定其建立日期和時間資訊的檔案。</param>
+      <param name="creationTimeUtc">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的建立日期和時間設定的值。 這個值以 UTC 時間表示。</param>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.IOException">執行此作業時發生 I/O 錯誤</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="creationTime" /> 指定的值超出這項作業允許的日期或時間範圍 (或兩者皆超出)。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastAccessTime(System.String,System.DateTime)">
+      <summary>取得指定檔案上一次被存取的日期和時間。</summary>
+      <param name="path">要設定其存取日期和時間資訊的檔案。</param>
+      <param name="lastAccessTime">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的上次存取日期和時間設定的值。 這個值以本地時間表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastAccessTimeUtc(System.String,System.DateTime)">
+      <summary>設定指定檔案上次被存取的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要設定其存取日期和時間資訊的檔案。</param>
+      <param name="lastAccessTimeUtc">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的上次存取日期和時間設定的值。 這個值以 UTC 時間表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastAccessTimeUtc" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastWriteTime(System.String,System.DateTime)">
+      <summary>設定指定檔案上次被寫入的日期和時間。</summary>
+      <param name="path">要設定其日期和時間資訊的檔案。</param>
+      <param name="lastWriteTime">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的上次寫入日期和時間設定的值。 這個值以本地時間表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTime" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.File.SetLastWriteTimeUtc(System.String,System.DateTime)">
+      <summary>設定指定檔案上次寫入的日期和時間，格式為國際標準時間 (UTC)。</summary>
+      <param name="path">要設定其日期和時間資訊的檔案。</param>
+      <param name="lastWriteTimeUtc">
+        <see cref="T:System.DateTime" />，包含要為 <paramref name="path" /> 的上次寫入日期和時間設定的值。 這個值以 UTC 時間表示。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到指定的路徑。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="lastWriteTimeUtc" /> 指定的值超出這項作業允許的日期或時間範圍。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllBytes(System.String,System.Byte[])">
+      <summary>建立新檔案，將指定的位元組陣列寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="bytes">要寫入檔案的位元組。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 是 <see langword="null" /> 或位元組陣列是空的。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllBytesAsync(System.String,System.Byte[],System.Threading.CancellationToken)">
+      <summary>以非同步方式建立新檔案，將指定的位元組陣列寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="bytes">要寫入檔案的位元組。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})">
+      <summary>建立新檔案，並於檔案中寫入字串的集合，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的幾行內容。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的一或多個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 是 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)">
+      <summary>使用指定編碼方式建立新檔案，並將字串的集合寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的幾行內容。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串、只包含空格或包含 <see cref="M:System.IO.Path.GetInvalidPathChars" /> 方法所定義的一或多個無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" />、<paramref name="contents" /> 或 <paramref name="encoding" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="path" /> 無效 (例如它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.IO.PathTooLongException">
+        <paramref name="path" /> 超過系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 是目錄。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.String[])">
+      <summary>建立新檔案，將指定的字串陣列寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串陣列。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 是 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLines(System.String,System.String[],System.Text.Encoding)">
+      <summary>建立新檔案，使用指定的編碼方式將指定的字串陣列寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串陣列。</param>
+      <param name="encoding">
+        <see cref="T:System.Text.Encoding" /> 物件，代表套用至字串陣列的字元編碼方式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 或 <paramref name="contents" /> 是 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以非同步方式建立新檔案，使用指定編碼方式將指定的行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的幾行內容。</param>
+      <param name="encoding">要使用的字元編碼。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllLinesAsync(System.String,System.Collections.Generic.IEnumerable{System.String},System.Threading.CancellationToken)">
+      <summary>以非同步方式建立新檔案，將指定的行寫入檔案，然後關閉檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的幾行內容。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllText(System.String,System.String)">
+      <summary>建立新檔案，將指定的字串寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllText(System.String,System.String,System.Text.Encoding)">
+      <summary>建立新檔案，使用指定的編碼方式將指定的字串寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串。</param>
+      <param name="encoding">要套用至字串的編碼方式。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 為零長度字串，只包含空格，或包含一或多個如 <see cref="F:System.IO.Path.InvalidPathChars" /> 所定義的無效字元。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="path" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效 (例如，它位於未對應的磁碟機上)。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 指定了唯讀的檔案。
+-或-
+<paramref name="path" /> 指定了隱藏的檔案。
+-或-
+這個作業在目前平台不受支援。
+-或-
+<paramref name="path" /> 指定了目錄。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> 格式無效。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.File.WriteAllTextAsync(System.String,System.String,System.Text.Encoding,System.Threading.CancellationToken)">
+      <summary>以非同步方式建立新檔案，使用指定編碼方式將指定的字串寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串。</param>
+      <param name="encoding">要套用至字串的編碼方式。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+    </member>
+    <member name="M:System.IO.File.WriteAllTextAsync(System.String,System.String,System.Threading.CancellationToken)">
+      <summary>以非同步方式建立新檔案，將指定的字串寫入檔案，然後關閉檔案。 如果檔案已經存在，則會覆寫該檔案。</summary>
+      <param name="path">要寫入其中的檔案。</param>
+      <param name="contents">要寫入檔案的字串。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+    </member>
+    <member name="T:System.IO.FileInfo">
+      <summary>提供建立、複製、刪除、移動和開啟檔案的屬性和執行個體方法，並協助建立 <see cref="T:System.IO.FileStream" /> 物件。 這個類別無法被繼承。</summary>
+    </member>
+    <member name="M:System.IO.FileInfo.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.IO.FileInfo" /> 類別的新執行個體，以做為檔案路徑的包裝函式。</summary>
+      <param name="fileName">新檔案的完整名稱，或者相對的檔名。 不要以目錄分隔符號字元做為路徑的結尾。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentException">此檔案名稱是空的，只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">存取 <paramref name="fileName" /> 遭拒。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="fileName" /> 在字串的中間包含一個冒號 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.AppendText">
+      <summary>建立將文字附加在 <see cref="T:System.IO.StreamWriter" /> 的這個執行個體所表示之檔案的 <see cref="T:System.IO.FileInfo" />。</summary>
+      <returns>新的 <see langword="StreamWriter" />。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.CopyTo(System.String)">
+      <summary>複製現有的檔案到新的檔案，不允許覆寫現有的檔案。</summary>
+      <param name="destFileName">要複製的目標新檔案名稱。</param>
+      <returns>有完整路徑的新檔案。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 是空的、只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.IO.IOException">發生錯誤，或者目的檔案已經存在。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">傳入了目錄路徑，或者檔案正要移至不同的磁碟機。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="destFileName" /> 中指定的目錄不存在。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">字串內的 <paramref name="destFileName" /> 包含冒號 (:)，但未指定磁碟區。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.CopyTo(System.String,System.Boolean)">
+      <summary>複製現有的檔案到新檔案，允許覆寫現有的檔案。</summary>
+      <param name="destFileName">要複製的目標新檔案名稱。</param>
+      <param name="overwrite">若允許覆寫現有檔案，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <returns>新檔案，或現有檔案的覆寫 (如果 <paramref name="overwrite" /> 為 <see langword="true" />)。 如果檔案存在而且 <paramref name="overwrite" /> 為 <see langword="false" />，則會擲回 <see cref="T:System.IO.IOException" />。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 是空的、只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.IO.IOException">發生錯誤，或者目的檔案已經存在，而且 <paramref name="overwrite" /> 為 <see langword="false" />。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">
+        <paramref name="destFileName" /> 中指定的目錄不存在。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">傳入了目錄路徑，或者檔案正要移至不同的磁碟機。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字串的中間包含一個冒號 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Create">
+      <summary>建立檔案。</summary>
+      <returns>新檔案。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.CreateText">
+      <summary>建立寫入新文字檔的 <see cref="T:System.IO.StreamWriter" />。</summary>
+      <returns>新的 <see langword="StreamWriter" />。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">檔案名稱為目錄。</exception>
+      <exception cref="T:System.IO.IOException">磁碟是唯讀的。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Decrypt">
+      <summary>解密目前帳戶使用 <see cref="M:System.IO.FileInfo.Encrypt" /> 方法加密的檔案。</summary>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Microsoft Windows NT 或更新版本。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案是唯讀的。
+-或-
+這個作業在目前平台不受支援。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Delete">
+      <summary>永遠地刪除檔案。</summary>
+      <exception cref="T:System.IO.IOException">目標檔案已開啟，或電腦上的記憶體對應正在執行 Microsoft Windows NT。
+-或-
+檔案上有開啟的控制代碼，而且作業系統是 Windows XP 或之前的版本。 這個開啟的控制代碼可能是列舉目錄和檔案所產生的結果。 如需詳細資訊，請參閱如何：列舉目錄與檔案。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">路徑為目錄。</exception>
+    </member>
+    <member name="P:System.IO.FileInfo.Directory">
+      <summary>取得父代 (Parent) 目錄的執行個體。</summary>
+      <returns>
+        <see cref="T:System.IO.DirectoryInfo" />物件，代表這個檔案的父代目錄。</returns>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="P:System.IO.FileInfo.DirectoryName">
+      <summary>取得表示目錄完整路徑的字串。</summary>
+      <returns>字串，表示目錄的完整路徑。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <see langword="null" /> 為此目錄名稱傳入。</exception>
+      <exception cref="T:System.IO.PathTooLongException">完整路徑名稱超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Encrypt">
+      <summary>加密檔案，只有使用加密檔案的帳戶才能將其解密。</summary>
+      <exception cref="T:System.IO.DriveNotFoundException">指定的磁碟機無效。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">檔案系統不是 NTFS。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Microsoft Windows NT 或更新版本。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案是唯讀的。
+-或-
+這個作業在目前平台不受支援。
+-或-
+呼叫端沒有必要的使用權限。</exception>
+    </member>
+    <member name="P:System.IO.FileInfo.Exists">
+      <summary>取得值，這個值指出檔案是否存在。</summary>
+      <returns>如果檔案存在，則為 <see langword="true" />；如果檔案不存在或者檔案是目錄，則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.FileInfo.IsReadOnly">
+      <summary>取得或設定值，判斷目前檔案是否為唯讀。</summary>
+      <returns>如果目前檔案為唯讀，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。</exception>
+      <exception cref="T:System.IO.IOException">開啟檔案時發生 I/O 錯誤。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">這個作業在目前平台不受支援。
+-或-
+呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.ArgumentException">該使用者沒有寫入權限，但嘗試將此屬性設定為 <see langword="false" />。</exception>
+    </member>
+    <member name="P:System.IO.FileInfo.Length">
+      <summary>取得目前檔案的大小，以位元組為單位。</summary>
+      <returns>目前檔案的大小，以位元組為單位。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法更新檔案或目錄的狀態。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">檔案不存在。
+-或-
+已針對目錄呼叫 <see langword="Length" /> 屬性。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.MoveTo(System.String)">
+      <summary>移動指定的檔案至新的位置，提供指定新檔名的選項。</summary>
+      <param name="destFileName">移動檔案的目標路徑，可以指定不同的檔名。</param>
+      <exception cref="T:System.IO.IOException">發生 I/O 錯誤，例如目的檔案已經存在，或目的地裝置未就緒。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 是空的、只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="destFileName" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字串的中間包含一個冒號 (:)。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.MoveTo(System.String,System.Boolean)">
+      <summary>將指定的檔案移至新位置，提供可指定新檔案名稱的選項，並覆寫目的地檔案 (如果已存在)。</summary>
+      <param name="destFileName">移動檔案的目標路徑，可以指定不同的檔名。</param>
+      <param name="overwrite">
+        <see langword="true" /> 如果目的地檔案已存在，則予以覆寫；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.IO.IOException">發生 I/O 錯誤，例如目的地裝置未就緒。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 是空的、只包含空格或包含無效字元。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="destFileName" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.PathTooLongException">指定的路徑、檔案名稱，或兩者都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="destFileName" /> 在字串的中間包含一個冒號 (:)。</exception>
+    </member>
+    <member name="P:System.IO.FileInfo.Name">
+      <summary>取得檔案的名稱。</summary>
+      <returns>檔案的檔名。</returns>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode)">
+      <summary>使用指定模式來開啟檔案。</summary>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 常數，指定用於開啟檔案的模式 (例如，<see langword="Open" /> 或 <see langword="Append" />)。</param>
+      <returns>以指定模式開啟的檔案，其使用讀取/寫入存取且為不共用。</returns>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">檔案是唯讀的或為目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.IOException">檔案已經開啟。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode,System.IO.FileAccess)">
+      <summary>使用讀取、寫入或讀取/寫入存取，並以指定模式來開啟檔案。</summary>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 常數，指定用於開啟檔案的模式 (例如，<see langword="Open" /> 或 <see langword="Append" />)。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 常數，指定是否以 <see langword="Read" />、<see langword="Write" /> 或 <see langword="ReadWrite" /> 檔案存取來開啟檔案。</param>
+      <returns>
+        <see cref="T:System.IO.FileStream" /> 物件，開啟於指定模式和存取中，且為不共用。</returns>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.IOException">檔案已經開啟。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是空的，或者只含有泛空白字元。</exception>
+      <exception cref="T:System.ArgumentNullException">一或多個引數是 Null。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Open(System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)">
+      <summary>使用讀取、寫入或讀取/寫入存取和指定的共用選項，將檔案開啟於指定模式中。</summary>
+      <param name="mode">
+        <see cref="T:System.IO.FileMode" /> 常數，指定用於開啟檔案的模式 (例如，<see langword="Open" /> 或 <see langword="Append" />)。</param>
+      <param name="access">
+        <see cref="T:System.IO.FileAccess" /> 常數，指定是否以 <see langword="Read" />、 <see langword="Write" />或 <see langword="ReadWrite" /> 檔案存取來開啟檔案。</param>
+      <param name="share">
+        <see cref="T:System.IO.FileShare" /> 常數，指定其他 <see langword="FileStream" /> 物件對這個檔案的存取類型。</param>
+      <returns>
+        <see cref="T:System.IO.FileStream" /> 物件，以指定的模式、存取和共用選項開啟。</returns>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.IOException">檔案已經開啟。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="path" /> 是空的，或者只含有泛空白字元。</exception>
+      <exception cref="T:System.ArgumentNullException">一或多個引數是 Null。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenRead">
+      <summary>建立唯讀的 <see cref="T:System.IO.FileStream" />。</summary>
+      <returns>新的唯讀 <see cref="T:System.IO.FileStream" /> 物件。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+      <exception cref="T:System.IO.IOException">檔案已經開啟。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenText">
+      <summary>建立從現有文字檔讀取的 <see cref="T:System.IO.StreamReader" /> (具有 UTF8 編碼方式)。</summary>
+      <returns>具有 UTF8 編碼方式的新 <see langword="StreamReader" />。</returns>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的使用權限。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到檔案。</exception>
+      <exception cref="T:System.UnauthorizedAccessException">
+        <paramref name="path" /> 是唯讀或為目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效，例如位於未對應的磁碟機上。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.OpenWrite">
+      <summary>建立唯寫的 <see cref="T:System.IO.FileStream" />。</summary>
+      <returns>新檔案或現有檔案的唯寫非共用 <see cref="T:System.IO.FileStream" /> 物件。</returns>
+      <exception cref="T:System.UnauthorizedAccessException">建立 <see cref="T:System.IO.FileInfo" /> 的執行個體時所指定的路徑是唯讀或是目錄。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">建立 <see cref="T:System.IO.FileInfo" /> 的執行個體時所指定的路徑無效，例如位於未對應的磁碟上。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Replace(System.String,System.String)">
+      <summary>以目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案，取代指定檔案的內容、刪除原始檔案，並建立已取代檔案的備份。</summary>
+      <param name="destinationFileName">要使用目前檔案取代之檔案的名稱。</param>
+      <param name="destinationBackupFileName">建立 <paramref name="destFileName" /> 參數所描述的檔案備份時所使用之檔案的名稱。</param>
+      <returns>
+        <see cref="T:System.IO.FileInfo" /> 物件，該物件封裝 <paramref name="destFileName" /> 參數所描述之檔案的相關資訊。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 參數所描述的路徑格式不合法。
+-或-
+<paramref name="destBackupFileName" /> 參數所描述的路徑格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。
+-或-
+找不到 <paramref name="destinationFileName" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Microsoft Windows NT 或更新版本。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.Replace(System.String,System.String,System.Boolean)">
+      <summary>以目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案，取代指定檔案的內容、刪除原始檔案，並建立已取代檔案的備份。  該方法還指定是否忽略合併錯誤。</summary>
+      <param name="destinationFileName">要使用目前檔案取代之檔案的名稱。</param>
+      <param name="destinationBackupFileName">建立 <paramref name="destFileName" /> 參數所描述的檔案備份時所使用之檔案的名稱。</param>
+      <param name="ignoreMetadataErrors">
+        <see langword="true" /> 表示忽略發生在已取代檔案和取代檔案上的合併錯誤 (例如屬性和 ACL)，否則為 <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.IO.FileInfo" /> 物件，該物件封裝 <paramref name="destFileName" /> 參數所描述之檔案的相關資訊。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="destFileName" /> 參數所描述的路徑格式不合法。
+-或-
+<paramref name="destBackupFileName" /> 參數所描述的路徑格式不合法。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="destFileName" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">找不到目前 <see cref="T:System.IO.FileInfo" /> 物件所描述的檔案。
+-或-
+找不到 <paramref name="destinationFileName" /> 參數所描述的檔案。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Microsoft Windows NT 或更新版本。</exception>
+    </member>
+    <member name="M:System.IO.FileInfo.ToString">
+      <summary>將路徑當做字串傳回。 使用 <see cref="P:System.IO.FileInfo.Name" /> 屬性作為完整路徑。</summary>
+      <returns>表示路徑的字串。</returns>
+    </member>
+    <member name="T:System.IO.FileSystemInfo">
+      <summary>為 <see cref="T:System.IO.FileInfo" /> 和 <see cref="T:System.IO.DirectoryInfo" /> 物件提供基底類別。</summary>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.#ctor">
+      <summary>初始化 <see cref="T:System.IO.FileSystemInfo" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化資料，初始化 <see cref="T:System.IO.FileSystemInfo" /> 類別的新執行個體。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含所擲回之例外狀況的相關序列化物件資料。</param>
+      <param name="context">包含有關來源或目的端內容資訊的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+      <exception cref="T:System.ArgumentNullException">指定的 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 是 null。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Attributes">
+      <summary>取得或設定目前檔案或目錄的屬性。</summary>
+      <returns>目前 <see cref="T:System.IO.FileAttributes" /> 的 <see cref="T:System.IO.FileSystemInfo" />。</returns>
+      <exception cref="T:System.IO.FileNotFoundException">指定的檔案不存在。 只在設定屬性值時擲回。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效。 例如，它位於未對應的磁碟機上。 只在設定屬性 (property) 值時擲回。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.ArgumentException">呼叫端嘗試設定無效的檔案屬性 (Attribute)。
+-或-
+使用者嘗試設定屬性 (attribute) 值，但並沒有寫入權限。</exception>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.CreationTime">
+      <summary>取得或設定目前檔案或目錄的建立時間。</summary>
+      <returns>目前的 <see cref="T:System.IO.FileSystemInfo" /> 物件的建立日期和時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效；例如，位於未對應的磁碟上。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的建立時間。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.CreationTimeUtc">
+      <summary>取得或設定目前檔案或目錄的建立時間，其格式為國際標準時間 (Coordinated Universal Time，UTC)。</summary>
+      <returns>目前 <see cref="T:System.IO.FileSystemInfo" /> 物件以 UTC 格式表示的建立日期和時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效；例如，位於未對應的磁碟上。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的存取時間。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.Delete">
+      <summary>刪除檔案或目錄。</summary>
+      <exception cref="T:System.IO.DirectoryNotFoundException">指定的路徑無效；例如，位於未對應的磁碟上。</exception>
+      <exception cref="T:System.IO.IOException">此檔案或目錄具有開啟控制代碼，而且作業系統是 Windows XP 或先前的版本。 這個開啟的控制代碼可能是列舉目錄和檔案所產生的結果。 如需詳細資訊，請參閱如何：列舉目錄與檔案。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Exists">
+      <summary>取得值，指出檔案或目錄是否存在。</summary>
+      <returns>如果檔案或目錄存在，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Extension">
+      <summary>取得字串，表示檔案的副檔名部分。</summary>
+      <returns>字串，含有 <see cref="T:System.IO.FileSystemInfo" /> 副檔名。</returns>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.FullName">
+      <summary>取得目錄或檔案的完整路徑。</summary>
+      <returns>含有完整路徑的字串。</returns>
+      <exception cref="T:System.IO.PathTooLongException">完整路徑和檔案名稱都超出系統定義的長度上限。</exception>
+      <exception cref="T:System.Security.SecurityException">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="F:System.IO.FileSystemInfo.FullPath">
+      <summary>表示目錄或檔案的完整路徑。</summary>
+      <exception cref="T:System.IO.PathTooLongException">完整路徑超出系統定義的長度上限。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>以檔案名稱和其他例外狀況資訊設定 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 物件。</summary>
+      <param name="info">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，包含所擲回之例外狀況的相關序列化物件資料。</param>
+      <param name="context">包含有關來源或目的端內容資訊的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastAccessTime">
+      <summary>取得或設定上次存取目前檔案或目錄的時間。</summary>
+      <returns>上次存取目前檔案或目錄的時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的存取時間</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastAccessTimeUtc">
+      <summary>取得或設定目前檔案或目錄上次被存取的時間，其格式為 Coordinated Universal Time (UTC)。</summary>
+      <returns>目前檔案或目錄上次被存取的 UTC 時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的存取時間。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastWriteTime">
+      <summary>取得或設定上次寫入目前檔案或目錄的時間。</summary>
+      <returns>上次寫入目前檔案的時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的寫入時間。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.LastWriteTimeUtc">
+      <summary>取得或設定目前檔案或目錄上次被寫入的時間，其格式為 Coordinated Universal Time (UTC)。</summary>
+      <returns>目前檔案上次被寫入的 UTC 時間。</returns>
+      <exception cref="T:System.IO.IOException">
+        <see cref="M:System.IO.FileSystemInfo.Refresh" /> 無法初始化資料。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">目前的作業系統不是 Windows NT 或更新版本。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">呼叫端嘗試設定無效的寫入時間。</exception>
+    </member>
+    <member name="P:System.IO.FileSystemInfo.Name">
+      <summary>對於檔案，取得檔案的名稱。 對於目錄，如果有階層架構，則是取得階層架構中最後一個目錄的名稱。 否則，<see langword="Name" /> 屬性會取得目錄的名稱。</summary>
+      <returns>字串，可以是父代 (Parent) 目錄的名稱、階層架構中最後一個目錄的名稱，或者包括副檔名在內的檔案名稱。</returns>
+    </member>
+    <member name="F:System.IO.FileSystemInfo.OriginalPath">
+      <summary>使用者指定的相對或絕對的原始路徑。</summary>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.Refresh">
+      <summary>重新整理物件的狀態。</summary>
+      <exception cref="T:System.IO.IOException">裝置 (例如，磁碟機) 未就緒。</exception>
+    </member>
+    <member name="M:System.IO.FileSystemInfo.ToString">
+      <summary>傳回原始路徑。 使用 <see cref="P:System.IO.FileSystemInfo.FullName" /> 或 <see cref="P:System.IO.FileSystemInfo.Name" /> 屬性作為完整路徑或檔案/目錄名稱。</summary>
+      <returns>具有原始路徑的字串。</returns>
+    </member>
+    <member name="T:System.IO.MatchCasing">
+      <summary>指定要比對的字元大小寫類型。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.CaseInsensitive">
+      <summary>忽略字元大小寫的比對。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.CaseSensitive">
+      <summary>與字元大小寫相符的比對。</summary>
+    </member>
+    <member name="F:System.IO.MatchCasing.PlatformDefault">
+      <summary>使用指定平台預設大小寫的比對。</summary>
+    </member>
+    <member name="T:System.IO.MatchType">
+      <summary>指定要使用的萬用字元比對類型。</summary>
+    </member>
+    <member name="F:System.IO.MatchType.Simple">
+      <summary>使用 '*' 和 '?' 萬用字元的比對。</summary>
+    </member>
+    <member name="F:System.IO.MatchType.Win32">
+      <summary>使用 Win32 DOS 樣式比對語法的比對。 '*'、'?'、'&lt;'、'&gt;' 和 '"' 全都視為萬用字元。</summary>
+    </member>
+    <member name="T:System.IO.SearchOption">
+      <summary>指定要搜尋目前目錄，還是要搜尋目前目錄和所有子目錄。</summary>
+    </member>
+    <member name="F:System.IO.SearchOption.AllDirectories">
+      <summary>在搜尋作業中包含目前目錄和所有其子目錄。 這個選項會在搜尋中包含重新剖析點 (例如掛接磁碟和符號連結)。</summary>
+    </member>
+    <member name="F:System.IO.SearchOption.TopDirectoryOnly">
+      <summary>只在搜尋作業中包含目前目錄。</summary>
+    </member>
+  </members>
+</doc>

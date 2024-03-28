@@ -1,0 +1,960 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Win32.Registry</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.Registry">
+      <summary>Stellt <see cref="T:Microsoft.Win32.RegistryKey" />-Objekte, die die Stammschlüssel in der Windows-Registrierung darstellen, sowie <see langword="static" />-Methoden für den Zugriff auf Schlüssel-/-Wert-Paare bereit.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.ClassesRoot">
+      <summary>Definiert die Typen (oder Klassen) von Dokumenten und die diesen Typen zugeordneten Eigenschaften. Dieses Feld liest den Basisschlüssel HKEY_CLASSES_ROOT der Windows-Registrierung.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.CurrentConfig">
+      <summary>Enthält benutzerunabhängige Konfigurationsinformationen über die Hardware. Dieses Feld liest den Basisschlüssel HKEY_CURRENT_CONFIG der Windows-Registrierung.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.CurrentUser">
+      <summary>Enthält Informationen über die Einstellungen des aktuellen Benutzers. Dieses Feld liest den Basisschlüssel HKEY_CURRENT_USER der Windows-Registrierung.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.GetValue(System.String,System.String,System.Object)">
+      <summary>Ruft den Wert ab, der dem angegebenen Namen im angegebenen Registrierungsschlüssel zugeordnet ist. Wenn der Name im angegebenen Schlüssel nicht gefunden wird, wird ein von Ihnen bereitgestellter Standardwert zurückgegeben, oder <see langword="null" />, wenn der angegebene Schlüssel nicht vorhanden ist.</summary>
+      <param name="keyName">Der vollständige Registrierungspfad des Schlüssels, beginnend mit einem gültigen Registrierungsstamm (z. B. "HKEY_CURRENT_USER").</param>
+      <param name="valueName">Der Name des Name-/Wert-Paars.</param>
+      <param name="defaultValue">Der zurückzugebende Wert, wenn <paramref name="valueName" /> nicht vorhanden ist.</param>
+      <returns>
+        <see langword="null" />, wenn der durch <paramref name="keyName" /> angegebene Unterschlüssel nicht vorhanden ist, andernfalls der Wert, der <paramref name="valueName" /> zugeordnet ist, oder <paramref name="defaultValue" />, wenn <paramref name="valueName" /> nicht gefunden wurde.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.IO.IOException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, wurde zum Löschen markiert.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyName" /> beginnt nicht mit einem gültigen Registrierungsstamm.</exception>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.LocalMachine">
+      <summary>Speichert die Konfigurationsinformationen für den lokalen Computer. Dieses Feld liest den Basisschlüssel HKEY_LOCAL_MACHINE der Windows-Registrierung.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.PerformanceData">
+      <summary>Enthält Informationen zur Leistung für Softwarekomponenten. Dieses Feld liest den Basisschlüssel HKEY_PERFORMANCE_DATA der Windows-Registrierung.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)">
+      <summary>Legt das angegebene Name-/Wert-Paar für den angegebenen Registrierungsschlüssel fest. Wenn der angegebene Schlüssel nicht vorhanden ist, wird er erstellt.</summary>
+      <param name="keyName">Der vollständige Registrierungspfad des Schlüssels, beginnend mit einem gültigen Registrierungsstamm (z. B. "HKEY_CURRENT_USER").</param>
+      <param name="valueName">Der Name des Name-/Wert-Paars.</param>
+      <param name="value">Der zu speichernde Wert.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyName" /> beginnt nicht mit einem gültigen Registrierungsstamm.
+
+oder -
+<paramref name="keyName" /> überschreitet die maximal zulässige Länge (255 Zeichen).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Die <see cref="T:Microsoft.Win32.RegistryKey" />-Klasse ist schreibgeschützt. Es ist kein Schreibzugriff möglich, d. h., es handelt sich z. B. um einen Knoten auf Stammebene.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Ändern von Registrierungsschlüsseln.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <summary>Legt unter Verwendung des angegebenen Registrierungsdatentyps das Name-/Wert-Paar für den angegebenen Registrierungsschlüssel fest. Wenn der angegebene Schlüssel nicht vorhanden ist, wird er erstellt.</summary>
+      <param name="keyName">Der vollständige Registrierungspfad des Schlüssels, beginnend mit einem gültigen Registrierungsstamm (z. B. "HKEY_CURRENT_USER").</param>
+      <param name="valueName">Der Name des Name-/Wert-Paars.</param>
+      <param name="value">Der zu speichernde Wert.</param>
+      <param name="valueKind">Der beim Speichern der Daten zu verwendende Registrierungsdatentyp.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyName" /> beginnt nicht mit einem gültigen Registrierungsstamm.
+- oder -
+<paramref name="keyName" /> überschreitet die maximal zulässige Länge (255 Zeichen).
+- oder -
+Der Typ von <paramref name="value" /> stimmt nicht mit dem durch <paramref name="valueKind" /> angegebenen Registrierungsdatentyp überein. Die Daten konnten daher nicht ordnungsgemäß konvertiert werden.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist schreibgeschützt. Es ist kein Schreibzugriff möglich, d. h. es handelt sich z. B. um einen Knoten auf Stammebene oder um einen Schlüssel, der nicht mit Schreibzugriff geöffnet wurde.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Ändern von Registrierungsschlüsseln.</exception>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.Users">
+      <summary>Enthält Informationen über die Standardkonfiguration des Benutzer. Dieses Feld liest den Basisschlüssel HKEY_USERS der Windows-Registrierung.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryHive">
+      <summary>Stellt die möglichen Werte für einen Knoten auf oberster Ebene auf einem fremden Computer dar.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.ClassesRoot">
+      <summary>Stellt den Basisschlüssel HKEY_CLASSES_ROOT auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.CurrentConfig">
+      <summary>Stellt den Basisschlüssel HKEY_CURRENT_CONFIG auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.CurrentUser">
+      <summary>Stellt den Basisschlüssel HKEY_CURRENT_USER auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.LocalMachine">
+      <summary>Stellt den Basisschlüssel HKEY_LOCAL_MACHINE auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.PerformanceData">
+      <summary>Stellt den Basisschlüssel HKEY_PERFORMANCE_DATA auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.Users">
+      <summary>Stellt den Basisschlüssel HKEY_USERS auf einem anderen Computer dar. Dieser Wert kann an die <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />-Methode übergeben werden, um diesen Knoten remote zu öffnen.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryKey">
+      <summary>Stellt einen Knoten auf Schlüsselebene in der Windows-Registrierung dar. Diese Klasse ist eine Kapselung der Registrierung.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Close">
+      <summary>Schließt den Schlüssel und schreibt diesen auf den Datenträger weg, sofern der Inhalt verändert wurde.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)">
+      <summary>Erstellt einen neuen Unterschlüssel oder öffnet einen vorhandenen Unterschlüssel für Schreibzugriff.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist. Wenn eine Zeichenfolge der Länge 0 (null) für <paramref name="subkey" /> angegeben ist, wird das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt zurückgegeben.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, für den die Methode aufgerufen wird, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der aktuelle <see cref="T:Microsoft.Win32.RegistryKey" /> kann nicht bearbeitet werden. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+
+oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck)">
+      <summary>Erstellt einen neuen Unterschlüssel oder öffnet einen vorhandenen Unterschlüssel für Schreibzugriff unter Verwendung der angegebenen Berechtigungsprüfungsoption.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist. Wenn eine Zeichenfolge der Länge 0 (null) für <paramref name="subkey" /> angegeben ist, wird das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt zurückgegeben.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="permissionCheck" /> enthält einen ungültigen Wert.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, für den die Methode aufgerufen wird, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der aktuelle <see cref="T:Microsoft.Win32.RegistryKey" /> kann nicht bearbeitet werden. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+
+oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,Microsoft.Win32.RegistryOptions)">
+      <summary>Erstellt oder öffnet einen Unterschlüssel für Schreibzugriff unter Verwendung der angegebenen Berechtigungsprüfungs- und Registrierungsoptionen.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <param name="registryOptions">Die zu verwendende Registrierungsoption, z. B. zum Erstellen eines temporären Schlüssels.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt, auf das zugegriffen werden soll, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt kann nicht bearbeitet werden. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+- oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,Microsoft.Win32.RegistryOptions,System.Security.AccessControl.RegistrySecurity)">
+      <summary>Erstellt oder öffnet einen Unterschlüssel für Schreibzugriff unter Verwendung der angegebenen Berechtigungsprüfungsoption, Registrierungsoption und Registrierungssicherheit.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <param name="registryOptions">Die zu verwendende Registrierungsoption.</param>
+      <param name="registrySecurity">Die Zugriffssteuerungssicherheit für den neuen Unterschlüssel.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt ist geschlossen. Auf geschlossene Schlüssel kann nicht zugegriffen werden.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt kann nicht bearbeitet werden. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+- oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,System.Security.AccessControl.RegistrySecurity)">
+      <summary>Erstellt einen neuen Unterschlüssel oder öffnet einen vorhandenen Unterschlüssel für Schreibzugriff unter Verwendung der angegebenen Berechtigungsprüfungsoption und der Registrierungssicherheit.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <param name="registrySecurity">Die Zugriffssteuerungssicherheit für den neuen Schlüssel.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist. Wenn eine Zeichenfolge der Länge 0 (null) für <paramref name="subkey" /> angegeben ist, wird das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt zurückgegeben.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="permissionCheck" /> enthält einen ungültigen Wert.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, für den die Methode aufgerufen wird, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Auf den aktuellen <see cref="T:Microsoft.Win32.RegistryKey" /> ist kein Schreibzugriff möglich. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+
+oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)">
+      <summary>Erstellt einen neuen Unterschlüssel oder öffnet einen vorhandenen Unterschlüssel mit dem angegebenen Zugriffsmodus. Verfügbar ab .NET Framework 4.6.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="writable">
+        <see langword="true" />, um anzugeben, dass der neue Unterschlüssel bearbeitet werden kann, andernfalls <see langword="false" />.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist. Wenn eine Zeichenfolge der Länge 0 (null) für <paramref name="subkey" /> angegeben ist, wird das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt zurückgegeben.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Auf den aktuellen <see cref="T:Microsoft.Win32.RegistryKey" /> ist kein Schreibzugriff möglich. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+
+oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)">
+      <summary>Erstellt einen neuen Unterschlüssel oder öffnet einen vorhandenen Unterschlüssel mit dem angegebenen Zugriffsmodus. Verfügbar ab .NET Framework 4.6.</summary>
+      <param name="subkey">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="writable">
+        <see langword="true" />, um anzugeben, dass der neue Unterschlüssel bearbeitet werden kann, andernfalls <see langword="false" />.</param>
+      <param name="options">Die zu verwendende Registrierungsoption.</param>
+      <returns>Der neu erstellte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist. Wenn eine Zeichenfolge der Länge 0 (null) für <paramref name="subkey" /> angegeben ist, wird das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt zurückgegeben.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> gibt keine gültige Option an.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Öffnen des Registrierungsschlüssels.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Auf den aktuellen <see cref="T:Microsoft.Win32.RegistryKey" /> ist kein Schreibzugriff möglich. Möglicherweise wurde der Schlüssel schreibgeschützt geöffnet, oder der Benutzer verfügt nicht über die erforderlichen Zugriffsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Die Schachtelungsebene überschreitet 510.
+
+oder -
+Ein Systemfehler ist aufgetreten. Möglicherweise wurde der Schlüssel gelöscht, oder es wurde versucht, einen Schlüssel im <see cref="F:Microsoft.Win32.Registry.LocalMachine" />-Stamm zu erstellen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)">
+      <summary>Löscht den angegebenen Unterschlüssel.</summary>
+      <param name="subkey">Der Name des zu löschenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <exception cref="T:System.InvalidOperationException">Der <paramref name="subkey" /> besitzt untergeordnete Unterschlüssel.</exception>
+      <exception cref="T:System.ArgumentException">Der <paramref name="subkey" />-Parameter gibt keinen gültigen Registrierungsschlüssel an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist gleich <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Schlüssel zu löschen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)">
+      <summary>Löscht den angegebenen Unterschlüssel und gibt an, ob eine Ausnahme ausgelöst wird, wenn der Unterschlüssel nicht gefunden wird.</summary>
+      <param name="subkey">Der Name des zu löschenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="throwOnMissingSubKey">Gibt an, ob eine Ausnahme ausgelöst werden soll, wenn der angegebene Unterschlüssel nicht gefunden werden kann. Wenn dieses Argument <see langword="true" /> und der angegebene Unterschlüssel nicht vorhanden ist, wird eine Ausnahme ausgelöst. Wenn dieses Argument <see langword="false" /> und der angegebene Unterschlüssel nicht vorhanden ist, findet keine Aktion statt.</param>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="subkey" /> hat untergeordnete Unterschlüssel.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="subkey" /> gibt keinen gültigen Registrierungsschlüssel an, und <paramref name="throwOnMissingSubKey" /> ist <see langword="true" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Schlüssel zu löschen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)">
+      <summary>Löscht einen Unterschlüssel und alle untergeordneten Unterschlüssel rekursiv.</summary>
+      <param name="subkey">Der zu löschende Unterschlüssel. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Es wird versucht, eine Stammstruktur zu löschen.
+- oder -
+<paramref name="subkey" /> gibt keinen gültigen Registrierungsunterschlüssel an.</exception>
+      <exception cref="T:System.IO.IOException">Ein E/A-Fehler ist aufgetreten.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Schlüssel zu löschen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)">
+      <summary>Löscht den angegebenen Unterschlüssel und untergeordnete Unterschlüssel rekursiv und gibt an, ob eine Ausnahme ausgelöst wird, wenn der Unterschlüssel nicht gefunden wird.</summary>
+      <param name="subkey">Der Name des zu löschenden Unterschlüssels. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="throwOnMissingSubKey">Gibt an, ob eine Ausnahme ausgelöst werden soll, wenn der angegebene Unterschlüssel nicht gefunden werden kann. Wenn dieses Argument <see langword="true" /> und der angegebene Unterschlüssel nicht vorhanden ist, wird eine Ausnahme ausgelöst. Wenn dieses Argument <see langword="false" /> und der angegebene Unterschlüssel nicht vorhanden ist, findet keine Aktion statt.</param>
+      <exception cref="T:System.ArgumentException">Es wurde versucht, den Stammhive der Struktur zu löschen.
+- oder -
+<paramref name="subkey" /> gibt keinen gültigen Registrierungsunterschlüssel an, und <paramref name="throwOnMissingSubKey" /> ist <see langword="true" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Schlüssel zu löschen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)">
+      <summary>Löscht den angegebenen Wert aus diesem Schlüssel.</summary>
+      <param name="name">Der Name des zu löschenden Werts.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> ist kein gültiger Verweis auf einen Wert.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Wert zu löschen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist schreibgeschützt.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)">
+      <summary>Löscht den angegebenen Wert aus diesem Schlüssel und gibt an, ob eine Ausnahme ausgelöst wird, wenn der Wert nicht gefunden wird.</summary>
+      <param name="name">Der Name des zu löschenden Werts.</param>
+      <param name="throwOnMissingValue">Gibt an, ob eine Ausnahme ausgelöst werden soll, wenn der angegebene Wert nicht gefunden werden kann. Wenn dieses Argument <see langword="true" /> ist und der angegebene Wert nicht vorhanden ist, wird eine Ausnahme ausgelöst. Wenn dieses Argument <see langword="false" /> ist und der angegebene Wert nicht vorhanden ist, findet keine Aktion statt.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="name" /> ist kein gültiger Verweis auf einen Wert, und <paramref name="throwOnMissingValue" /> ist <see langword="true" />.
+- oder -
+<paramref name="name" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Wert zu löschen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist schreibgeschützt.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Dispose">
+      <summary>Gibt alle von der aktuellen Instanz der <see cref="T:Microsoft.Win32.RegistryKey" />-Klasse verwendeten Ressourcen frei.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Flush">
+      <summary>Schreibt alle Attribute des angegebenen geöffneten Registrierungsschlüssels in die Registrierung.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)">
+      <summary>Erstellt einen Registrierungsschlüssel aus einem angegebenen Handle.</summary>
+      <param name="handle">Das Handle für den Registrierungsschlüssel.</param>
+      <returns>Ein Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="handle" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über ausreichende Berechtigungen zum Ausführen dieser Aktion.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)">
+      <summary>Erstellt einen Registrierungsschlüssel aus einem angegebenen Handle und einer Registrierungsansichtseinstellung.</summary>
+      <param name="handle">Das Handle für den Registrierungsschlüssel.</param>
+      <param name="view">Die zu verwendende Registrierungsansicht.</param>
+      <returns>Ein Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="view" /> ist ungültig.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="handle" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über ausreichende Berechtigungen zum Ausführen dieser Aktion.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetAccessControl">
+      <summary>Gibt die Zugriffssteuerungssicherheit für den aktuellen Registrierungsschlüssel zurück.</summary>
+      <returns>Ein Objekt, das die Zugriffssteuerungsberechtigungen für den durch den aktuellen <see cref="T:Microsoft.Win32.RegistryKey" /> dargestellten Registrierungsschlüssel beschreibt.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die notwendigen Berechtigungen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.InvalidOperationException">Der aktuelle Schlüssel wurde gelöscht.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetAccessControl(System.Security.AccessControl.AccessControlSections)">
+      <summary>Gibt die angegebenen Abschnitte der Zugriffssteuerungssicherheit für den aktuellen Registrierungsschlüssel zurück.</summary>
+      <param name="includeSections">Eine bitweise Kombination von Enumerationswerten, die den Typ der abzurufenden Sicherheitsinformationen angeben.</param>
+      <returns>Ein Objekt, das die Zugriffssteuerungsberechtigungen für den durch den aktuellen <see cref="T:Microsoft.Win32.RegistryKey" /> dargestellten Registrierungsschlüssel beschreibt.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die notwendigen Berechtigungen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.InvalidOperationException">Der aktuelle Schlüssel wurde gelöscht.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetSubKeyNames">
+      <summary>Ruft ein Array von Zeichenfolgen mit den Namen aller Unterschlüssel ab.</summary>
+      <returns>Ein Array von Zeichenfolgen, das die Namen der Unterschlüssel des aktuellen Schlüssels enthält.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Schlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Ein Systemfehler ist aufgetreten, möglicherweise wurde der aktuelle Schlüssel gelöscht.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String)">
+      <summary>Ruft den Wert ab, der dem angegebenen Namen zugeordnet ist. Gibt <see langword="null" /> zurück, wenn das Name-Wert-Paar in der Registrierung nicht vorhanden ist.</summary>
+      <param name="name">Der Name des abzurufenden Werts. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <returns>Der <paramref name="name" /> zugeordnete Wert oder <see langword="null" />, wenn <paramref name="name" /> nicht gefunden wurde.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.IO.IOException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, wurde zum Löschen markiert.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)">
+      <summary>Ruft den Wert ab, der dem angegebenen Namen zugeordnet ist. Wenn der Name nicht gefunden wird, wird der von Ihnen bereitgestellte Standardwert zurückgegeben.</summary>
+      <param name="name">Der Name des abzurufenden Werts. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="defaultValue">Der zurückzugebende Wert, wenn <paramref name="name" /> nicht vorhanden ist.</param>
+      <returns>Der <paramref name="name" /> zugeordnete Wert mit allen eingebetteten Umgebungsvariablen, die nicht erweitert wurden, oder <paramref name="defaultValue" />, wenn <paramref name="name" /> nicht gefunden wurde.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.IO.IOException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, wurde zum Löschen markiert.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)">
+      <summary>Ruft den Wert ab, der dem angegebenen Namen und den Abrufoptionen zugeordnet ist. Wenn der Name nicht gefunden wird, wird der von Ihnen bereitgestellte Standardwert zurückgegeben.</summary>
+      <param name="name">Der Name des abzurufenden Werts. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <param name="defaultValue">Der zurückzugebende Wert, wenn <paramref name="name" /> nicht vorhanden ist.</param>
+      <param name="options">Einer der Enumerationswerte, die eine optionale Verarbeitung des abgerufenen Werts angeben.</param>
+      <returns>Der <paramref name="name" /> zugeordnete Wert, der entsprechend den <paramref name="options" /> verarbeitet wurde, oder <paramref name="defaultValue" />, wenn <paramref name="name" /> nicht gefunden wird.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.IO.IOException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, wurde zum Löschen markiert.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> ist kein gültiger <see cref="T:Microsoft.Win32.RegistryValueOptions" />-Wert; ein ungültiger Wert wird z. B. in <see cref="T:Microsoft.Win32.RegistryValueOptions" /> umgewandelt.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)">
+      <summary>Ruft den Registrierungsdatentyp des Werts ab, der dem angegebenen Namen zugeordnet ist.</summary>
+      <param name="name">Der Name des Werts, dessen Registrierungsdatentyp abgerufen werden soll. Bei dieser Zeichenfolge wird die Groß-/Kleinschreibung nicht berücksichtigt.</param>
+      <returns>Der Registrierungsdatentyp des <paramref name="name" /> zugeordneten Werts.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.IO.IOException">Der Unterschlüssel, der den angegebenen Wert enthält, ist nicht vorhanden.
+- oder -
+Das von <paramref name="name" /> angegebene Name-Wert-Paar ist nicht vorhanden.
+Diese Ausnahme wird unter Windows 95, Windows 98 oder Windows Millennium Edition nicht ausgelöst.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValueNames">
+      <summary>Ruft ein Array von Zeichenfolgen ab, das die Namen aller diesem Schlüssel zugeordneten Werte enthält.</summary>
+      <returns>Ein Array von Zeichenfolgen, das die Namen der Werte für den aktuellen Schlüssel enthält.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um aus dem Registrierungsschlüssel zu lesen.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Ein Systemfehler ist aufgetreten, möglicherweise wurde der aktuelle Schlüssel gelöscht.</exception>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.Handle">
+      <summary>Ruft ein <see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />-Objekt ab, das den Registrierungsschlüssel darstellt, der vom aktuellen <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt gekapselt wird.</summary>
+      <returns>Das Handle für den Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ObjectDisposedException">Der Registrierungsschlüssel ist geschlossen. Auf geschlossene Schlüssel kann nicht zugegriffen werden.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Ein Systemfehler ist aufgetreten, z. B. Löschen des aktuellen Schlüssels.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Lesen des Schlüssels.</exception>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.Name">
+      <summary>Ruft den Namen des Schlüssels ab.</summary>
+      <returns>Der absolute (vollständige) Name des Schlüssels.</returns>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive,Microsoft.Win32.RegistryView)">
+      <summary>Öffnet einen neuen <see cref="T:Microsoft.Win32.RegistryKey" />, der den angeforderten Schlüssel auf dem lokalen Computer mit der angegebenen Ansicht darstellt.</summary>
+      <param name="hKey">Der zu öffnende HKEY.</param>
+      <param name="view">Die zu verwendende Registrierungsansicht.</param>
+      <returns>Der angeforderte Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hKey" /> oder <paramref name="view" /> ist ungültig.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über ausreichende Berechtigungen zum Ausführen dieser Aktion.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)">
+      <summary>Öffnet einen neuen <see cref="T:Microsoft.Win32.RegistryKey" />, der den angeforderten Schlüssel für einen Remotecomputer darstellt.</summary>
+      <param name="hKey">Der zu öffnende HKEY aus der <see cref="T:Microsoft.Win32.RegistryHive" />-Enumeration.</param>
+      <param name="machineName">Der Remotecomputer.</param>
+      <returns>Der angeforderte Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hKey" /> ist ungültig.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="machineName" /> wurde nicht gefunden.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="machineName" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über ausreichende Berechtigungen zum Ausführen dieser Aktion.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String,Microsoft.Win32.RegistryView)">
+      <summary>Öffnet einen neuen Registrierungsschlüssel, der den angeforderten Schlüssel auf einem Remotecomputer mit der angegebenen Ansicht darstellt.</summary>
+      <param name="hKey">Der zu öffnende HKEY aus der <see cref="T:Microsoft.Win32.RegistryHive" />-Enumeration.</param>
+      <param name="machineName">Der Remotecomputer.</param>
+      <param name="view">Die zu verwendende Registrierungsansicht.</param>
+      <returns>Der angeforderte Registrierungsschlüssel.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hKey" /> oder <paramref name="view" /> ist ungültig.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="machineName" /> wurde nicht gefunden.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="machineName" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über ausreichende Berechtigungen zum Ausführen dieser Aktion.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)">
+      <summary>Ruft einen Unterschlüssel als schreibgeschützt ab.</summary>
+      <param name="name">Der Name oder der Pfad des Unterschlüssels, der schreibgeschützt geöffnet werden soll.</param>
+      <returns>Der angeforderte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> ist gleich <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Registrierungsschlüssel zu lesen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck)">
+      <summary>Ruft den angegebenen Unterschlüssel für Lesezugriff oder Lese-/Schreibzugriff ab.</summary>
+      <param name="name">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <returns>Der angeforderte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> ist gleich <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="permissionCheck" /> enthält einen ungültigen Wert.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um den Registrierungsschlüssel zu lesen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,System.Security.AccessControl.RegistryRights)">
+      <summary>Ruft den angegebenen Unterschlüssel für Lesezugriff oder Lese-/Schreibzugriff ab, und fordert die angegebenen Zugriffsrechte an.</summary>
+      <param name="name">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels.</param>
+      <param name="permissionCheck">Einer der Enumerationswerte, der angibt, ob der Schlüssel für Lesezugriff oder für Lese-/Schreibzugriff geöffnet wird.</param>
+      <param name="rights">Eine bitweise Kombination von Enumerationswerten, die den gewünschten Sicherheitszugriff angeben.</param>
+      <returns>Der angeforderte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> ist gleich <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="permissionCheck" /> enthält einen ungültigen Wert.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.Security.SecurityException">
+        <paramref name="rights" /> enthält ungültige Werte für Registrierungsrechte.
+- oder -
+Der Benutzer verfügt nicht über die angeforderten Berechtigungen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)">
+      <summary>Ruft einen angegebenen Unterschlüssel ab und gibt an, ob Schreibzugriff auf den Schlüssel angewendet werden soll.</summary>
+      <param name="name">Name oder Pfad des zu öffnenden Unterschlüssels.</param>
+      <param name="writable">Muss für Schreibzugriff auf den Schlüssel auf <see langword="true" /> festgelegt werden.</param>
+      <returns>Der angeforderte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um auf den Registrierungsschlüssel im angegebenen Modus zuzugreifen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)">
+      <summary>Ruft einen Unterschlüssel mit dem angegebenen Namen und Zugriffsrechten ab. Verfügbar ab .NET Framework 4.6.</summary>
+      <param name="name">Name oder Pfad des zu erstellenden oder zu öffnenden Unterschlüssels.</param>
+      <param name="rights">Die Berechtigungen für den Registrierungsschlüssel.</param>
+      <returns>Der angeforderte Unterschlüssel oder <see langword="null" />, wenn bei dem Vorgang ein Fehler aufgetreten ist.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen, um auf den Registrierungsschlüssel im angegebenen Modus zuzugreifen.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetAccessControl(System.Security.AccessControl.RegistrySecurity)">
+      <summary>Übernimmt Windows-Zugriffssteuerungssicherheit für einen vorhandenen Registrierungsschlüssel.</summary>
+      <param name="registrySecurity">Die Zugriffssteuerungssicherheit, die für den aktuellen Unterschlüssel angewendet werden soll.</param>
+      <exception cref="T:System.UnauthorizedAccessException">Das aktuelle <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt stellt einen Schlüssel mit Zugriffssteuerungssicherheit dar, und der Aufrufer verfügt nicht über <see cref="F:System.Security.AccessControl.RegistryRights.ChangePermissions" />-Rechte.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registrySecurity" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)">
+      <summary>Legt das angegebene Name-Wert-Paar fest.</summary>
+      <param name="name">Der Name des zu speichernden Werts.</param>
+      <param name="value">Die zu speichernden Daten.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="value" /> ist ein nicht unterstützter Datentyp.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist schreibgeschützt, sodass das Schreiben in den Schlüssel nicht möglich ist. Möglicherweise wurde der Schlüssel ohne Schreibzugriff geöffnet.
+- oder -
+Das <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt stellt einen Knoten auf Stammebene dar, und das Betriebssystem ist Windows Millennium Edition oder Windows 98.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Ändern von Registrierungsschlüsseln.</exception>
+      <exception cref="T:System.IO.IOException">Das <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt stellt einen Knoten auf der Stammebene dar, und das Betriebssystem ist Windows 2000, Windows XP oder Windows Server 2003.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <summary>Legt mithilfe des angegebenen Registrierungsdatentyps den Wert eines Name-Wert-Paars im Registrierungsschlüssel fest.</summary>
+      <param name="name">Der Name des zu speichernden Werts.</param>
+      <param name="value">Die zu speichernden Daten.</param>
+      <param name="valueKind">Der beim Speichern der Daten zu verwendende Registrierungsdatentyp.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Der Typ von <paramref name="value" /> stimmt nicht mit dem durch <paramref name="valueKind" /> angegebenen Registrierungsdatentyp überein. Die Daten konnten daher nicht ordnungsgemäß konvertiert werden.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, der den angegebenen Wert enthält, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der <see cref="T:Microsoft.Win32.RegistryKey" /> ist schreibgeschützt, sodass das Schreiben in den Schlüssel nicht möglich ist. Möglicherweise wurde der Schlüssel ohne Schreibzugriff geöffnet.
+- oder -
+Das <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt stellt einen Knoten auf Stammebene dar, und das Betriebssystem ist Windows Millennium Edition oder Windows 98.</exception>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer verfügt nicht über die erforderlichen Berechtigungen zum Erstellen oder Ändern von Registrierungsschlüsseln.</exception>
+      <exception cref="T:System.IO.IOException">Das <see cref="T:Microsoft.Win32.RegistryKey" />-Objekt stellt einen Knoten auf der Stammebene dar, und das Betriebssystem ist Windows 2000, Windows XP oder Windows Server 2003.</exception>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.SubKeyCount">
+      <summary>Ruft die Anzahl der Unterschlüssel des aktuellen Schlüssels ab.</summary>
+      <returns>Die Anzahl der Unterschlüssel des aktuellen Schlüssels.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer besitzt keine Leseberechtigung für den Schlüssel.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Ein Systemfehler ist aufgetreten, möglicherweise wurde der aktuelle Schlüssel gelöscht.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.ToString">
+      <summary>Ruft eine Zeichenfolgenentsprechung dieses Schlüssels ab.</summary>
+      <returns>Eine Zeichenfolge, die den Schlüssel darstellt. Wenn der angegebene Schlüssel ungültig ist (nicht gefunden werden kann), wird <see langword="null" /> zurückgegeben.</returns>
+      <exception cref="T:System.ObjectDisposedException">Der <see cref="T:Microsoft.Win32.RegistryKey" />, auf den zugegriffen werden soll, ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.ValueCount">
+      <summary>Ruft die Anzahl der Werte im Schlüssel ab.</summary>
+      <returns>Die Anzahl der Name-Wert-Paare im Schlüssel.</returns>
+      <exception cref="T:System.Security.SecurityException">Der Benutzer besitzt keine Leseberechtigung für den Schlüssel.</exception>
+      <exception cref="T:System.ObjectDisposedException">Der zu bearbeitende <see cref="T:Microsoft.Win32.RegistryKey" /> ist geschlossen (auf geschlossene Schlüssel kann nicht zugegriffen werden).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Der Benutzer verfügt nicht über die notwendigen Registrierungsrechte.</exception>
+      <exception cref="T:System.IO.IOException">Ein Systemfehler ist aufgetreten, möglicherweise wurde der aktuelle Schlüssel gelöscht.</exception>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.View">
+      <summary>Ruft die Ansicht ab, mit der der Registrierungsschlüssel erstellt wurde.</summary>
+      <returns>Die Ansicht, mit der der Registrierungsschlüssel erstellt wurde.
+- oder -
+<see cref="F:Microsoft.Win32.RegistryView.Default" />, wenn keine Ansicht verwendet wurde.</returns>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryKeyPermissionCheck">
+      <summary>Gibt an, ob beim Öffnen von Registrierungsschlüsseln und beim Zugreifen auf deren Name-Wert-Paare Sicherheitsüberprüfungen durchgeführt werden.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.Default">
+      <summary>Der Registrierungsschlüssel erbt den Modus von seinem übergeordneten Element. Beim Versuch, auf Unterschlüssel oder Werte zuzugreifen, werden Sicherheitsüberprüfungen durchgeführt, sofern das übergeordnete Element nicht mit dem <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree" />-Modus oder dem <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" />-Modus geöffnet wurde.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree">
+      <summary>Sicherheitsüberprüfungen werden nicht durchgeführt, wenn auf Unterschlüssel oder Werte zugegriffen wird. Beim Versuch, den aktuellen Schlüssel zu öffnen, wird eine Sicherheitsüberprüfung durchgeführt, sofern das übergeordnete Element nicht mit <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree" /> oder <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" /> geöffnet wurde.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree">
+      <summary>Sicherheitsüberprüfungen werden nicht durchgeführt, wenn auf Unterschlüssel oder Werte zugegriffen wird. Beim Versuch, den aktuellen Schlüssel zu öffnen, wird eine Sicherheitsüberprüfung durchgeführt, sofern das übergeordnete Element nicht mit <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" /> geöffnet wurde.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryOptions">
+      <summary>Gibt Optionen an, die beim Erstellen eines Registrierungsschlüssels verwendet werden sollen.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryOptions.None">
+      <summary>Ein nicht flüchtiger Schlüssel. Dies ist die Standardeinstellung.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryOptions.Volatile">
+      <summary>Ein temporärer Schlüssel. Die Informationen werden im Arbeitsspeicher gespeichert und nicht beibehalten, wenn der entsprechende Registrierungshive entladen wird.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryValueKind">
+      <summary>Gibt die Datentypen an, die zum Speichern von Werten in der Registrierung verwendet werden, oder bestimmt den Datentyp eines Werts in der Registrierung.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.Binary">
+      <summary>Binärdaten in beliebiger Form. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_BINARY.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.DWord">
+      <summary>Eine 32-Bit-Binärzahl. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_DWORD.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.ExpandString">
+      <summary>Eine auf NULL endende Zeichenfolge, die nicht erweiterte Verweise auf Umgebungsvariablen (z. B. %PATH%) enthält, die bei Abruf des Werts erweitert werden. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_EXPAND_SZ.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.MultiString">
+      <summary>Ein Array von auf NULL endenden Zeichenfolgen, das auf zwei NULL-Zeichen endet. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_MULTI_SZ.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.None">
+      <summary>Kein Datentyp.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.QWord">
+      <summary>Eine 64-Bit-Binärzahl. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_QWORD.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.String">
+      <summary>Eine auf NULL endende Zeichenfolge. Dieser Wert entspricht dem Windows-API-Registrierungsdatentyp REG_SZ.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.Unknown">
+      <summary>Ein nicht unterstützter Registrierungsdatentyp. Zum Beispiel wird der Microsoft Windows-API-Registrierungsdatentyp REG_RESOURCE_LIST nicht unterstützt. Geben Sie mit diesem Wert an, dass die <see cref="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" />-Methode den entsprechenden Registrierungsdatentyp bei der Speicherung eines Name-/Wert-Paares bestimmen soll.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryValueOptions">
+      <summary>Gibt optionales Verhalten an, wenn Name-Wert-Paare von einem Registrierungsschlüssel abgerufen werden.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames">
+      <summary>Ein Wert des Typs <see cref="F:Microsoft.Win32.RegistryValueKind.ExpandString" /> wird abgerufen, ohne die eingebetteten Umgebungsvariablen zu erweitern.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueOptions.None">
+      <summary>Es ist kein optionales Verhalten angegeben.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryView">
+      <summary>Gibt an, welche Registrierungsansicht auf einem 64-Bit-Betriebssystem verwendet werden soll.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Default">
+      <summary>Die Standardansicht.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Registry32">
+      <summary>Die 32-Bit-Ansicht.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Registry64">
+      <summary>Die 64-Bit-Ansicht.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <summary>Stellt einen SafeHandle für die Windows-Registrierung dar.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeRegistryHandle.#ctor(System.IntPtr,System.Boolean)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />-Klasse.</summary>
+      <param name="preexistingHandle">Ein Objekt, das das zu verwendende, bereits vorhandene Handle darstellt.</param>
+      <param name="ownsHandle">
+        <see langword="true" />, um das Handle während der Abschlussphase zuverlässig freizugeben. <see langword="false" />, um eine zuverlässige Freigabe zu verhindern.</param>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeRegistryHandle.IsInvalid" />
+    <member name="T:System.Security.AccessControl.RegistryAccessRule">
+      <summary>Stellt eine Gruppe von Zugriffsrechten dar, die einem Benutzer oder einer Gruppe gewährt oder verweigert werden. Diese Klasse kann nicht vererbt werden.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Klasse und gibt den Benutzer oder die Gruppe an, für den bzw. die die Regel gilt. Außerdem werden die Zugriffsrechte angegeben und ob diese gewährt oder verweigert werden.</summary>
+      <param name="identity">Der Benutzer oder die Gruppe, für den bzw. die die Regel gilt. Muss vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> oder einem Typ wie etwa<see cref="T:System.Security.Principal.NTAccount" /> sein, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die gewährten oder verweigerten Rechte angibt.</param>
+      <param name="type">Einer der <see cref="T:System.Security.AccessControl.AccessControlType" />-Werte, der angibt, ob die Rechte gewährt oder verweigert werden.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="registryRights" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="type" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> ist <see langword="null" />.
+- oder -
+<paramref name="eventRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist weder vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> noch von einem Typ wie etwa <see cref="T:System.Security.Principal.NTAccount" />, der in den Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> konvertiert werden kann.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Klasse und gibt den Benutzer oder die Gruppe an, für den bzw. die die Regel gilt, sowie die Zugriffsrechte, die Vererbungsflags und die Weitergabeflags. Außerdem wird angegeben, ob die angegebenen Zugriffsrechte gewährt oder verweigert werden.</summary>
+      <param name="identity">Der Benutzer oder die Gruppe, für den bzw. die die Regel gilt. Muss vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> oder einem Typ wie etwa<see cref="T:System.Security.Principal.NTAccount" /> sein, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, mit denen angegeben wird, ob die Rechte gewährt oder verweigert werden.</param>
+      <param name="inheritanceFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Flags, die angibt, auf welche Weise Zugriffsrechte von anderen Objekten geerbt werden.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Flags, die angibt, wie Zugriffsrechte an andere Objekte weitergegeben werden.</param>
+      <param name="type">Einer der <see cref="T:System.Security.AccessControl.AccessControlType" />-Werte, mit denen angegeben wird, ob die Rechte gewährt oder verweigert werden.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="registryRights" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="type" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="inheritanceFlags" /> gibt einen ungültigen Wert an.
+
+
+- oder -
+<paramref name="propagationFlags" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> ist <see langword="null" />.
+- oder -
+<paramref name="registryRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist weder vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> noch von einem Typ wie etwa <see cref="T:System.Security.Principal.NTAccount" />, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Klasse und gibt den Namen des Benutzers oder der Gruppe an, für den bzw. die die Regel gilt. Außerdem werden die Zugriffsrechte angegeben und ob diese gewährt oder verweigert werden.</summary>
+      <param name="identity">Der Name des Benutzers oder der Gruppe, für den bzw. die die Regel gilt.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die gewährten oder verweigerten Rechte angibt.</param>
+      <param name="type">Einer der <see cref="T:System.Security.AccessControl.AccessControlType" />-Werte, der angibt, ob die Rechte gewährt oder verweigert werden.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="registryRights" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="type" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registryRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist <see langword="null" />.
+
+oder -
+<paramref name="identity" /> ist eine Zeichenfolge mit der Länge 0 (null).
+
+- oder -
+<paramref name="identity" /> ist länger als 512 Zeichen.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Klasse und gibt den Namen des Benutzers oder der Gruppe an, für den bzw. die die Regel gilt, sowie die Zugriffsrechte, die Vererbungsflags und die Weitergabeflags. Außerdem wird angegeben, ob die angegebenen Zugriffsrechte gewährt oder verweigert werden.</summary>
+      <param name="identity">Der Name des Benutzers oder der Gruppe, für den bzw. die die Regel gilt.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die gewährten oder verweigerten Rechte angibt.</param>
+      <param name="inheritanceFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Flags, die angibt, auf welche Weise Zugriffsrechte von anderen Objekten geerbt werden.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Flags, die angibt, wie Zugriffsrechte an andere Objekte weitergegeben werden.</param>
+      <param name="type">Einer der <see cref="T:System.Security.AccessControl.AccessControlType" />-Werte, mit denen angegeben wird, ob die Rechte gewährt oder verweigert werden.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="registryRights" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="type" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="inheritanceFlags" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="propagationFlags" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="eventRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist <see langword="null" />.
+
+oder -
+<paramref name="identity" /> ist eine Zeichenfolge mit der Länge 0 (null).
+
+- oder -
+<paramref name="identity" /> ist länger als 512 Zeichen.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistryAccessRule.RegistryRights">
+      <summary>Ruft die von der Zugriffsregel gewährten oder verweigerten Rechte ab.</summary>
+      <returns>Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, mit denen die in der Zugriffsregel gewährten oder verweigerten Rechte angegeben werden.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistryAuditRule">
+      <summary>Stellt eine Reihe von Zugriffsrechten eines Benutzers oder einer Gruppe dar, die überwacht werden soll. Diese Klasse kann nicht vererbt werden.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAuditRule" />-Klasse. Dabei wird der Benutzer bzw. die Gruppe angegeben, der bzw. die überwacht werden soll sowie die Rechte, die überwacht werden sollen. Außerdem wird angegeben, ob Vererbung berücksichtigt werden soll und ob Erfolge, Fehler oder beides überwacht werden sollen.</summary>
+      <param name="identity">Der Benutzer oder die Gruppe, für den bzw. die die Regel gilt. Muss vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> oder einem Typ wie etwa<see cref="T:System.Security.Principal.NTAccount" /> sein, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die Art der zu überwachenden Zugriffe angibt.</param>
+      <param name="inheritanceFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Werten, die angeben, ob die Überwachungsregel für Unterschlüssel des aktuellen Schlüssels gilt.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Werten, die Auswirkungen auf die Weitergabe einer geerbten Überwachungsregel an Unterschlüssel des aktuellen Schlüssels hat.</param>
+      <param name="flags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.AuditFlags" />-Werten, die angibt, ob Erfolgs- oder Fehlerüberwachung oder beides stattfinden soll.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="eventRights" /> gibt einen ungültigen Wert an.
+
+oder -
+<paramref name="flags" /> gibt einen ungültigen Wert an.
+
+- oder -
+<paramref name="inheritanceFlags" /> gibt einen ungültigen Wert an.
+- oder -
+<paramref name="propagationFlags" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> ist <see langword="null" />.
+- oder -
+<paramref name="registryRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist weder vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> noch von einem Typ wie etwa <see cref="T:System.Security.Principal.NTAccount" />, der in den Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> konvertiert werden kann.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAuditRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistryAuditRule" />-Klasse. Dabei wird der Name des Benutzers bzw. der Gruppe angegeben, der bzw. die überwacht werden soll. Außerdem wird angegeben, ob Vererbung berücksichtigt werden soll und ob Erfolge, Fehler oder beides überwacht werden sollen.</summary>
+      <param name="identity">Der Name des Benutzers oder der Gruppe, für den bzw. die die Regel gilt.</param>
+      <param name="registryRights">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die Art der zu überwachenden Zugriffe angibt.</param>
+      <param name="inheritanceFlags">Eine Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Flags, die angibt, ob die Überwachungsregel für Unterschlüssel des aktuellen Schlüssels gilt.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Flags, die angibt, ob die Überwachungsregel an Unterschlüssel des aktuellen Schlüssels weitergegeben wird.</param>
+      <param name="flags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.AuditFlags" />-Werten, die angibt, ob Erfolgs- oder Fehlerüberwachung oder beides stattfinden soll.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="eventRights" /> gibt einen ungültigen Wert an.
+- oder -
+<paramref name="flags" /> gibt einen ungültigen Wert an.
+- oder -
+<paramref name="inheritanceFlags" /> gibt einen ungültigen Wert an.
+- oder -
+<paramref name="propagationFlags" /> gibt einen ungültigen Wert an.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registryRights" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> ist <see langword="null" />.
+- oder -
+<paramref name="identity" /> ist eine Zeichenfolge mit der Länge 0 (null).
+
+oder -
+<paramref name="identity" /> ist länger als 512 Zeichen.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistryAuditRule.RegistryRights">
+      <summary>Ruft die von der Überwachungsregel betroffenen Zugriffsrechte ab.</summary>
+      <returns>Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die von der Überwachungsregel betroffenen Rechte angibt.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistryRights">
+      <summary>Gibt die Zugriffssteuerungsrechte an, die auf Registrierungsobjekte angewendet werden können.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ChangePermissions">
+      <summary>Das Recht, die einem Registrierungsschlüssel zugeordneten Zugriffsregeln und die Überwachungsregeln zu ändern.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.CreateLink">
+      <summary>Für Verwendung durch das System vorgesehen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.CreateSubKey">
+      <summary>Das Recht, Unterschlüssel von einem Registrierungsschlüssel zu erstellen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.Delete">
+      <summary>Das Recht, einen Registrierungsschlüssel zu löschen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.EnumerateSubKeys">
+      <summary>Das Recht, die Unterschlüssel eines Registrierungsschlüssel aufzulisten.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ExecuteKey">
+      <summary>Wie in <see cref="F:System.Security.AccessControl.RegistryRights.ReadKey" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.FullControl">
+      <summary>Das Recht, die vollständige Kontrolle über einen Registrierungsschlüssel auszuüben und seine Zugriffsregeln und Überwachungsregeln zu ändern.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.Notify">
+      <summary>Das Recht, Benachrichtigungen über Änderungen eines Registrierungsschlüssels anzufordern.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.QueryValues">
+      <summary>Das Recht, die Name-Wert-Paare in einem Registrierungsschlüssel abzufragen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ReadKey">
+      <summary>Das Recht, die Name-Wert-Paare in einem Registrierungsschlüssel abzufragen, die Unterschlüssel zu enumerieren und die Zugriffs- und Überwachungsregeln zu lesen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ReadPermissions">
+      <summary>Das Recht, die Zugriffsregeln und die Überwachungsregeln eines Registrierungsschlüssels zu öffnen und zu kopieren.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.SetValue">
+      <summary>Das Recht, Name-Wert-Paare in einem Registrierungsschlüssel zu erstellen, zu löschen und festzulegen.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.TakeOwnership">
+      <summary>Das Recht, den Besitzer eines Registrierungsschlüssels zu ändern.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.WriteKey">
+      <summary>Das Recht, die Name-Wert-Paare in einem Registrierungsschlüssel zu erstellen, zu löschen und festzulegen, Unterschlüssel zu erstellen und zu löschen, die Unterschlüssel zu enumerieren und die Zugriffs- und Überwachungsregeln zu lesen.</summary>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistrySecurity">
+      <summary>Stellt die Windows-Zugriffssteuerungssicherheit für einen Registrierungsschlüssel dar. Diese Klasse kann nicht vererbt werden.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.#ctor">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Security.AccessControl.RegistrySecurity" />-Klasse mit Standardwerten.</summary>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AccessRightType">
+      <summary>Ruft den Enumerationstyp ab, mit dessen Hilfe die <see cref="T:System.Security.AccessControl.RegistrySecurity" />-Klasse Zugriffsrechte darstellt.</summary>
+      <returns>Ein <see cref="T:System.Type" />-Objekt, das die <see cref="T:System.Security.AccessControl.RegistryRights" />-Enumeration darstellt.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Erstellt eine neue Zugriffssteuerungsregel für den angegebenen Benutzer mit den angegebenen Zugriffsrechten und Flags sowie der angegebenen Zugriffssteuerung.</summary>
+      <param name="identityReference">Eine <see cref="T:System.Security.Principal.IdentityReference" />, mit deren Hilfe der Benutzer oder die Gruppe angegeben wird, für den bzw. die die Regel gilt.</param>
+      <param name="accessMask">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die zu verweigernden oder zu gewährenden Zugriffsrechte angibt (in eine ganze Zahl umgewandelt).</param>
+      <param name="isInherited">Ein boolescher Wert, der angibt, ob die Regel geerbt ist.</param>
+      <param name="inheritanceFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Werten, die angibt, wie die Regel von Unterschlüsseln geerbt wird.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Werten, die die Art der Vererbung der Regel für die Unterschlüssel ändert. Irrelevant, wenn der Wert von <paramref name="inheritanceFlags" /><see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> ist.</param>
+      <param name="type">Einer der <see cref="T:System.Security.AccessControl.AccessControlType" />-Werte, mit denen angegeben wird, ob die Rechte gewährt oder verweigert werden.</param>
+      <returns>Ein <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Objekt, das die angegebenen Rechte für den angegebenen Benutzer darstellt.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Für <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> oder <paramref name="type" /> ist ein ungültiger Wert angegeben.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identityReference" /> ist <see langword="null" />.
+- oder -
+<paramref name="accessMask" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identityReference" /> ist weder vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> noch von einem Typ wie etwa <see cref="T:System.Security.Principal.NTAccount" />, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AccessRuleType">
+      <summary>Ruft den Typ ab, mit dessen Hilfe die <see cref="T:System.Security.AccessControl.RegistrySecurity" />-Klasse die Zugriffsregeln darstellt.</summary>
+      <returns>Ein <see cref="T:System.Type" />-Objekt, das die <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Klasse darstellt.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AddAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Sucht nach einer übereinstimmenden Zugriffssteuerung, mit der die neue Regel zusammengeführt werden kann. Wenn keine Regel gefunden wurde, wird die neue Regel hinzugefügt.</summary>
+      <param name="rule">Die hinzuzufügende Zugriffssteuerungsregel.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AddAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Sucht nach einer Überwachungsregel, mit der die neue Regel zusammengeführt werden kann. Wenn keine Regel gefunden wurde, wird die neue Regel hinzugefügt.</summary>
+      <param name="rule">Die hinzuzufügende Überwachungsregel. Der von dieser Regel angegebene Benutzer bestimmt die Suche.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Erstellt eine neue Überwachungsregel, die den Benutzer angibt, auf den diese Regel angewendet wird, sowie die zu überwachenden Zugriffsrechte, die Vererbung und Weitergabe der Regel und das Ergebnis, das die Überwachungsregel auslöst.</summary>
+      <param name="identityReference">Eine <see cref="T:System.Security.Principal.IdentityReference" />, mit deren Hilfe der Benutzer oder die Gruppe angegeben wird, für den bzw. die die Regel gilt.</param>
+      <param name="accessMask">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.RegistryRights" />-Werten, die die zu überwachenden Zugriffsrechte angibt (in eine ganze Zahl umgewandelt).</param>
+      <param name="isInherited">Ein boolescher Wert, der angibt, ob die Regel geerbt ist.</param>
+      <param name="inheritanceFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.InheritanceFlags" />-Werten, die angibt, wie die Regel von Unterschlüsseln geerbt wird.</param>
+      <param name="propagationFlags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.PropagationFlags" />-Werten, die die Art der Vererbung der Regel für die Unterschlüssel ändert. Irrelevant, wenn der Wert von <paramref name="inheritanceFlags" /><see cref="F:System.Security.AccessControl.InheritanceFlags.None" /> ist.</param>
+      <param name="flags">Eine bitweise Kombination von <see cref="T:System.Security.AccessControl.AuditFlags" />-Werten, die angibt, ob erfolgreiche Zugriffsversuche und/oder fehlgeschlagene Zugriffsversuche überwacht werden sollen.</param>
+      <returns>Ein <see cref="T:System.Security.AccessControl.RegistryAuditRule" />-Objekt, das die angegebene Überwachungsregel für den angegebenen Benutzer mit den angegebenen Flags darstellt. Der Rückgabetyp der Methode entspricht der Basisklasse <see cref="T:System.Security.AccessControl.AuditRule" />, er kann jedoch problemlos in die abgeleitete Klasse umgewandelt werden.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Für <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> oder <paramref name="flags" /> ist ein ungültiger Wert angegeben.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identityReference" /> ist <see langword="null" />.
+
+oder -
+<paramref name="accessMask" /> ist 0 (null).</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identityReference" /> ist weder vom Typ <see cref="T:System.Security.Principal.SecurityIdentifier" /> noch von einem Typ wie etwa <see cref="T:System.Security.Principal.NTAccount" />, der in den <see cref="T:System.Security.Principal.SecurityIdentifier" />-Typ konvertiert werden kann.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AuditRuleType">
+      <summary>Ruft den Typ ab, mit dessen Hilfe die <see cref="T:System.Security.AccessControl.RegistrySecurity" />-Klasse Überwachungsregeln darstellt.</summary>
+      <returns>Ein <see cref="T:System.Type" />-Objekt, das die <see cref="T:System.Security.AccessControl.RegistryAuditRule" />-Klasse darstellt.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Sucht nach einer Zugriffssteuerungsregel mit demselben Benutzer und demselben <see cref="T:System.Security.AccessControl.AccessControlType" /> (gewähren oder verweigern) wie die angegebene Zugriffsregel sowie mit kompatiblen Vererbungs- und Weitergabeflags. Wenn eine solche Regel gefunden wird, werden die in der angegebenen Zugriffsregel enthaltenen Rechte daraus entfernt.</summary>
+      <param name="rule">Eine <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, die den Benutzer und den <see cref="T:System.Security.AccessControl.AccessControlType" /> angibt, nach denen gesucht werden soll, sowie eine Reihe von Vererbungs- und Weitergabeflags, mit denen eine übereinstimmende Regel (falls vorhanden) kompatibel sein muss. Gibt die Rechte an, die aus der kompatiblen Regel entfernt werden sollen (falls vorhanden).</param>
+      <returns>
+        <see langword="true" />, wenn eine kompatible Regel gefunden wurde, andernfalls <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Sucht nach allen Zugriffssteuerungsregeln mit demselben Benutzer und demselben <see cref="T:System.Security.AccessControl.AccessControlType" /> (gewähren oder verweigern) wie die angegebene Regel und entfernt diese (falls vorhanden).</summary>
+      <param name="rule">Eine <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, die den Benutzer und den <see cref="T:System.Security.AccessControl.AccessControlType" /> angibt, nach denen gesucht werden soll. Alle in dieser Regel angegebenen Rechte, Vererbungsflags oder Weitergabeflags werden ignoriert.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Sucht nach einer Zugriffssteuerungsregel, die genau mit der angegebenen Regel übereinstimmt, und entfernt diese (falls vorhanden).</summary>
+      <param name="rule">Das zu entfernende <see cref="T:System.Security.AccessControl.RegistryAccessRule" />-Element.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Sucht nach einer Überwachungssteuerungsregel mit demselben Benutzer wie die angegebene Regel und mit kompatiblen Vererbungs- und Weitergabeflags; wenn eine solche Regel gefunden wird, werden die in der angegebenen Regel enthaltenen Rechte daraus entfernt.</summary>
+      <param name="rule">Eine <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, die den zu suchenden Benutzer angibt, sowie eine Reihe von Vererbungs- und Weitergabeflags, mit denen eine übereinstimmende Regel (falls vorhanden) kompatibel sein muss. Gibt die Rechte an, die aus der kompatiblen Regel entfernt werden sollen (falls vorhanden).</param>
+      <returns>
+        <see langword="true" />, wenn eine kompatible Regel gefunden wurde, andernfalls <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleAll(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Sucht alle Überwachungsregeln, die denselben Benutzer wie die angegebene Regel aufweisen, und entfernt sie, sofern sie gefunden wurden.</summary>
+      <param name="rule">Eine <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, die den zu suchenden Benutzer angibt. Alle in dieser Regel angegebenen Rechte, Vererbungsflags oder Weitergabeflags werden ignoriert.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Sucht nach einer Überwachungsregel, die genau mit der angegebenen Regel übereinstimmt, und entfernt diese (falls vorhanden).</summary>
+      <param name="rule">Die <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, die entfernt werden soll.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.ResetAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Entfernt alle Zugriffssteuerungsregeln mit demselben Benutzer wie in der angegebenen Regel, unabhängig von <see cref="T:System.Security.AccessControl.AccessControlType" />, und fügt anschließend die angegebene Regel hinzu.</summary>
+      <param name="rule">Das hinzuzufügende <see cref="T:System.Security.AccessControl.RegistryAccessRule" />. Der von dieser Regel angegebene Benutzer bestimmt die Regeln, die vor dem Hinzufügen dieser Regel entfernt werden sollen.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.SetAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Entfernt alle Zugriffssteuerungsregeln mit demselben Benutzer und demselben <see cref="T:System.Security.AccessControl.AccessControlType" /> (gewähren oder verweigern) wie die angegebene Regel und fügt anschließend die angegebene Regel hinzu.</summary>
+      <param name="rule">Das hinzuzufügende <see cref="T:System.Security.AccessControl.RegistryAccessRule" />. Der Benutzer und der <see cref="T:System.Security.AccessControl.AccessControlType" /> dieser Regel bestimmen die Regeln, die vor dem Hinzufügen dieser Regel entfernt werden sollen.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.SetAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Entfernt alle Überwachungsregeln mit demselben Benutzer wie in der angegebenen Regel, unabhängig vom <see cref="T:System.Security.AccessControl.AuditFlags" />-Wert, und fügt danach die angegebene Regel hinzu.</summary>
+      <param name="rule">Das hinzuzufügende <see cref="T:System.Security.AccessControl.RegistryAuditRule" />. Der von dieser Regel angegebene Benutzer bestimmt die Regeln, die vor dem Hinzufügen dieser Regel entfernt werden sollen.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> ist <see langword="null" />.</exception>
+    </member>
+  </members>
+</doc>

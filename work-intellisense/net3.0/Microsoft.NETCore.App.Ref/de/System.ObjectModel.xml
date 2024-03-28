@@ -1,0 +1,882 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.ObjectModel</name>
+  </assembly>
+  <members>
+    <member name="T:System.Collections.ObjectModel.KeyedCollection`2">
+      <summary vsli:raw="Provides the abstract base class for a collection whose keys are embedded in the values.">Stellt die abstrakte Basisklasse für eine Auflistung bereit, deren Schlüssel in die Werte eingebettet sind.</summary>
+      <typeparam name="TKey" vsli:raw="The type of keys in the collection.">Der Typ der Schlüssel in der Auflistung.</typeparam>
+      <typeparam name="TItem" vsli:raw="The type of items in the collection.">Der Typ der Elemente in der Auflistung.</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the default equality comparer.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />-Klasse, die einen Standardgleichheitsvergleich verwendet.</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the specified equality comparer.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />-Klasse, die den angegebenen Gleichheitsvergleich verwendet.</summary>
+      <param name="comparer" vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface to use when comparing keys, or &lt;see langword=&quot;null&quot; /&gt; to use the default equality comparer for the type of the key, obtained from &lt;see cref=&quot;P:System.Collections.Generic.EqualityComparer`1.Default&quot; /&gt;.">Die Implementierung der generischen <see cref="T:System.Collections.Generic.IEqualityComparer`1" />-Schnittstelle, die beim Schlüsselvergleich verwendet werden soll, oder <see langword="null" />, damit der Standardgleichheitsvergleich für den Typ des Schlüssels verwendet wird, der aus dem <see cref="P:System.Collections.Generic.EqualityComparer`1.Default" /> abgerufen wird.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the specified equality comparer and creates a lookup dictionary when the specified threshold is exceeded.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />-Klasse, bei der der angegebene Gleichheitsvergleich verwendet und beim Überschreiten des angegebenen Schwellenwerts ein Suchwörterbuch erstellt wird.</summary>
+      <param name="comparer" vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface to use when comparing keys, or &lt;see langword=&quot;null&quot; /&gt; to use the default equality comparer for the type of the key, obtained from &lt;see cref=&quot;P:System.Collections.Generic.EqualityComparer`1.Default&quot; /&gt;.">Die Implementierung der generischen <see cref="T:System.Collections.Generic.IEqualityComparer`1" />-Schnittstelle, die beim Schlüsselvergleich verwendet werden soll, oder <see langword="null" />, damit der Standardgleichheitsvergleich für den Typ des Schlüssels verwendet wird, der aus dem <see cref="P:System.Collections.Generic.EqualityComparer`1.Default" /> abgerufen wird.</param>
+      <param name="dictionaryCreationThreshold" vsli:raw="The number of elements the collection can hold without creating a lookup dictionary (0 creates the lookup dictionary when the first item is added), or -1 to specify that a lookup dictionary is never created.">Die Anzahl von Elementen, die die Collection enthalten kann, ohne dass ein Suchwörterbuch erstellt wird (bei Angabe von 0 wird bereits beim Hinzufügen des ersten Elements ein Suchwörterbuch erstellt), oder –1, um anzugeben, dass nie ein Suchwörterbuch erstellt wird.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;dictionaryCreationThreshold&quot; /&gt; is less than -1.">
+        <paramref name="dictionaryCreationThreshold" /> ist kleiner als -1.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.ChangeItemKey(`1,`0)">
+      <summary vsli:raw="Changes the key associated with the specified element in the lookup dictionary.">Ändert den dem angegebenen Element im Suchwörterbuch zugeordneten Schlüssel.</summary>
+      <param name="item" vsli:raw="The element to change the key of.">Das Element, dessen Schlüssel geändert werden soll.</param>
+      <param name="newKey" vsli:raw="The new key for &lt;paramref name=&quot;item&quot; /&gt;.">Der neue Schlüssel für <paramref name="item" />.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;item&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="item" /> ist <see langword="null" />.  
+
+oder - 
+<paramref name="key" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;item&quot; /&gt; is not found.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;key&quot; /&gt; already exists in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">
+        <paramref name="item" /> wurde nicht gefunden.  
+
+oder - 
+<paramref name="key" /> ist bereits in der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> vorhanden.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.ClearItems">
+      <summary vsli:raw="Removes all elements from the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">Entfernt alle Elemente aus der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />.</summary>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Comparer">
+      <summary vsli:raw="Gets the generic equality comparer that is used to determine equality of keys in the collection.">Ruft den generischen Gleichheitsvergleich ab, der verwendet wird, um die Gleichheit von Schlüsseln in der Auflistung zu bestimmen.</summary>
+      <returns vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface that is used to determine equality of keys in the collection.">Die Implementierung der generischen <see cref="T:System.Collections.Generic.IEqualityComparer`1" />-Schnittstelle, die verwendet wird, um die Gleichheit von Schlüsseln in der Auflistung zu bestimmen.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.Contains(`0)">
+      <summary vsli:raw="Determines whether the collection contains an element with the specified key.">Ermittelt, ob die Auflistung ein Element mit dem angegebenen Wert enthält.</summary>
+      <param name="key" vsli:raw="The key to locate in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">Der im <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> zu suchende Schlüssel.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; contains an element with the specified key; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />, wenn das <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> ein Element mit dem angegebenen Schlüssel enthält, andernfalls <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Dictionary">
+      <summary vsli:raw="Gets the lookup dictionary of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">Ruft das Suchwörterbuch der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> ab.</summary>
+      <returns vsli:raw="The lookup dictionary of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;, if it exists; otherwise, &lt;see langword=&quot;null&quot; /&gt;.">Das Suchwörterbuch der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />, sofern vorhanden, andernfalls <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)">
+      <summary vsli:raw="When implemented in a derived class, extracts the key from the specified element.">Bei Implementierung in einer abgeleiteten Klasse wird der Schlüssel aus dem angegebenen Element extrahiert.</summary>
+      <param name="item" vsli:raw="The element from which to extract the key.">Das Element, aus dem der Schlüssel extrahiert werden soll.</param>
+      <returns vsli:raw="The key for the specified element.">Der Schlüssel für das angegebene Element.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.InsertItem(System.Int32,`1)">
+      <summary vsli:raw="Inserts an element into the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; at the specified index.">Fügt am angegebenen Index ein Element in die <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> ein.</summary>
+      <param name="index" vsli:raw="The zero-based index at which &lt;paramref name=&quot;item&quot; /&gt; should be inserted.">Der nullbasierte Index, an dem <paramref name="item" /> eingefügt werden soll.</param>
+      <param name="item" vsli:raw="The object to insert.">Das einzufügende Objekt.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;index&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;index&quot; /&gt; is greater than &lt;see cref=&quot;P:System.Collections.ObjectModel.Collection`1.Count&quot; /&gt;.">
+        <paramref name="index" /> ist kleiner als 0.  
+
+oder - 
+<paramref name="index" /> ist größer als <see cref="P:System.Collections.ObjectModel.Collection`1.Count" />.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Item(`0)">
+      <summary vsli:raw="Gets the element with the specified key.">Ruft das Element mit dem angegebenen Schlüssel ab.</summary>
+      <param name="key" vsli:raw="The key of the element to get.">Der Schlüssel des abzurufenden Elements.</param>
+      <returns vsli:raw="The element with the specified key. If an element with the specified key is not found, an exception is thrown.">Das Element mit dem angegebenen Schlüssel. Wenn kein Element mit dem angegebenen Schlüssel gefunden wird, wird eine Ausnahme ausgelöst.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException" vsli:raw="An element with the specified key does not exist in the collection.">In der Auflistung ist kein Element mit dem angegebenen Schlüssel vorhanden.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.Remove(`0)">
+      <summary vsli:raw="Removes the element with the specified key from the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">Entfernt das Element mit dem angegebenen Schlüssel aus dem <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />.</summary>
+      <param name="key" vsli:raw="The key of the element to remove.">Der Schlüssel des zu entfernenden Elements.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element is successfully removed; otherwise, &lt;see langword=&quot;false&quot; /&gt;.  This method also returns &lt;see langword=&quot;false&quot; /&gt; if &lt;paramref name=&quot;key&quot; /&gt; is not found in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">
+        <see langword="true" />, wenn das Element erfolgreich entfernt wurde, andernfalls <see langword="false" />.  Diese Methode gibt auch dann <see langword="false" /> zurück, wenn <paramref name="key" /> nicht in der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> gefunden wurde.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.RemoveItem(System.Int32)">
+      <summary vsli:raw="Removes the element at the specified index of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">Entfernt das Element am angegebenen Index aus der <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />.</summary>
+      <param name="index" vsli:raw="The index of the element to remove.">Der Index des zu entfernenden Elements.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.SetItem(System.Int32,`1)">
+      <summary vsli:raw="Replaces the item at the specified index with the specified item.">Ersetzt das Element im angegebenen Index durch ein angegebenes Element.</summary>
+      <param name="index" vsli:raw="The zero-based index of the item to be replaced.">Der nullbasierte Index des zu ersetzenden Elements.</param>
+      <param name="item" vsli:raw="The new item.">Das neue Element.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.TryGetValue(`0,`1@)">
+      <param name="key" vsli:raw="The key of the item to search in the collection." />
+      <param name="item" vsli:raw="When this method returns &lt;see langword=&quot;true&quot; /&gt;, the item from the collection that matches the provided key; when this method returns &lt;see langword=&quot;false&quot; /&gt;, the &lt;see langword=&quot;default&quot; /&gt; value for the type of the collection." />
+    </member>
+    <member name="T:System.Collections.ObjectModel.ObservableCollection`1">
+      <summary vsli:raw="Represents a dynamic data collection that provides notifications when items get added or removed, or when the whole list is refreshed.">Stellt eine dynamische Datenauflistung dar, die Benachrichtigungen bereitstellt, wenn Elemente hinzugefügt oder entfernt werden oder wenn die gesamte Liste aktualisiert wird.</summary>
+      <typeparam name="T" vsli:raw="The type of elements in the collection.">Der Typ der Elemente in der Auflistung.</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" />-Klasse.</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class that contains elements copied from the specified collection.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" />-Klasse, die aus der angegebenen Auflistung kopierte Elemente enthält.</summary>
+      <param name="collection" vsli:raw="The collection from which the elements are copied.">Die Auflistung, aus der die Elemente kopiert werden.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;collection&quot; /&gt; parameter cannot be &lt;see langword=&quot;null&quot; /&gt;.">Der <paramref name="collection" />-Parameter darf nicht <see langword="null" /> sein.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor(System.Collections.Generic.List{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class that contains elements copied from the specified list.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" />-Klasse, die aus der angegebenen Liste kopierte Elemente enthält.</summary>
+      <param name="list" vsli:raw="The list from which the elements are copied.">Die Liste, aus der die Elemente kopiert werden.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;list&quot; /&gt; parameter cannot be &lt;see langword=&quot;null&quot; /&gt;.">Der <paramref name="list" />-Parameter darf nicht <see langword="null" /> sein.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy">
+      <summary vsli:raw="Disallows reentrant attempts to change this collection.">Verweigert das Ändern dieser Auflistung durch wiedereintretende Versuche.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; object that can be used to dispose of the object.">Ein <see cref="T:System.IDisposable" />-Objekt, das zum Freigeben des Objekts verwendet werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.CheckReentrancy">
+      <summary vsli:raw="Checks for reentrant attempts to change this collection.">Sucht wiedereintretende Versuche, diese Auflistung zu ändern.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If there was a call to &lt;see cref=&quot;M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy&quot; /&gt; of which the &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; return value has not yet been disposed of. Typically, this means when there are additional attempts to change this collection during a &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged&quot; /&gt; event. However, it depends on when derived classes choose to call &lt;see cref=&quot;M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy&quot; /&gt;.">Bei einem Aufruf von <see cref="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy" />, bei dem der <see cref="T:System.IDisposable" />-Rückgabewert noch nicht verworfen wurde. In der Regel sind hiermit zusätzliche Versuche gemeint, diese Auflistung während eines <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged" />-Ereignisses zu ändern. Dies hängt jedoch davon ab, wann abgeleitete Klassen <see cref="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy" /> aufrufen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.ClearItems">
+      <summary vsli:raw="Removes all items from the collection.">Entfernt alle Elemente aus der Auflistung.</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged">
+      <summary vsli:raw="Occurs when an item is added, removed, or moved, or the entire list is refreshed.">Tritt auf, wenn ein Element hinzugefügt, entfernt, geändert, verschoben oder die gesamte Liste aktualisiert wird.</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.InsertItem(System.Int32,`0)">
+      <summary vsli:raw="Inserts an item into the collection at the specified index.">Fügt ein Element am angegebenen Index in die Auflistung ein.</summary>
+      <param name="index" vsli:raw="The zero-based index at which &lt;paramref name=&quot;item&quot; /&gt; should be inserted.">Der nullbasierte Index, an dem <paramref name="item" /> eingefügt werden soll.</param>
+      <param name="item" vsli:raw="The object to insert.">Das einzufügende Objekt.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.Move(System.Int32,System.Int32)">
+      <summary vsli:raw="Moves the item at the specified index to a new location in the collection.">Verschiebt das Element am angegebenen Index an eine neue Position in der Auflistung.</summary>
+      <param name="oldIndex" vsli:raw="The zero-based index specifying the location of the item to be moved.">Der nullbasierte Index, der die Position des zu verschiebenden Elements angibt.</param>
+      <param name="newIndex" vsli:raw="The zero-based index specifying the new location of the item.">Der nullbasierte Index, der die neue Position des Elements angibt.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.MoveItem(System.Int32,System.Int32)">
+      <summary vsli:raw="Moves the item at the specified index to a new location in the collection.">Verschiebt das Element am angegebenen Index an eine neue Position in der Auflistung.</summary>
+      <param name="oldIndex" vsli:raw="The zero-based index specifying the location of the item to be moved.">Der nullbasierte Index, der die Position des zu verschiebenden Elements angibt.</param>
+      <param name="newIndex" vsli:raw="The zero-based index specifying the new location of the item.">Der nullbasierte Index, der die neue Position des Elements angibt.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged&quot; /&gt; event with the provided arguments.">Löst das <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged" />-Ereignis mit den angegebenen Argumenten aus.</summary>
+      <param name="e" vsli:raw="Arguments of the event being raised.">Argumente des ausgelösten Ereignisses.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged&quot; /&gt; event with the provided arguments.">Löst das <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged" />-Ereignis mit den angegebenen Argumenten aus.</summary>
+      <param name="e" vsli:raw="Arguments of the event being raised.">Argumente des ausgelösten Ereignisses.</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.RemoveItem(System.Int32)">
+      <summary vsli:raw="Removes the item at the specified index of the collection.">Entfernt das Element am angegebenen Index aus der Auflistung.</summary>
+      <param name="index" vsli:raw="The zero-based index of the element to remove.">Der nullbasierte Index des zu entfernenden Elements.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.SetItem(System.Int32,`0)">
+      <summary vsli:raw="Replaces the element at the specified index.">Ersetzt das Element am angegebenen Index.</summary>
+      <param name="index" vsli:raw="The zero-based index of the element to replace.">Der nullbasierte Index des zu ersetzenden Elements.</param>
+      <param name="item" vsli:raw="The new value for the element at the specified index.">Der neue Wert für das Element am angegebenen Index.</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2">
+      <summary>Stellt eine schreibgeschützte generische Auflistung von Schlüssel-Wert-Paaren dar.</summary>
+      <typeparam name="TKey">Der Typ der Schlüssel im Wörterbuch.</typeparam>
+      <typeparam name="TValue">Der Typ der Werte im Wörterbuch.</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
+      <summary>Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Klasse, bei der es sich um einen Wrapper um das angegebene Wörterbuch handelt.</summary>
+      <param name="dictionary">Das Wörterbuch, das umschlossen werden soll.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="dictionary" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ContainsKey(`0)">
+      <summary>Bestimmt, ob das Wörterbuch ein Element enthält, das über den angegebenen Schlüssel verfügt.</summary>
+      <param name="key">Der im Wörterbuch zu suchende Schlüssel.</param>
+      <returns>
+        <see langword="true" />, wenn das Wörterbuch ein Element mit dem angegebenen Schlüssel enthält, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Count">
+      <summary>Ruft die Anzahl der Elemente im Wörterbuch ab.</summary>
+      <returns>Die Anzahl der Elemente im Wörterbuch.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Dictionary">
+      <summary>Ruft das Wörterbuch ab, das von diesem <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Objekt umschlossen wird.</summary>
+      <returns>Das Wörterbuch, das von diesem Objekt umschlossen wird.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der die <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Item(`0)">
+      <summary>Ruft das Element mit dem angegebenen Schlüssel ab.</summary>
+      <param name="key">Der Schlüssel des abzurufenden Elements.</param>
+      <returns>Das Element mit dem angegebenen Schlüssel.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">Die Eigenschaft wird abgerufen, und <paramref name="key" /> wird nicht gefunden.</exception>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection">
+      <summary>Stellt eine schreibgeschützte Sammlung der Schlüssel eines <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Objekts dar.</summary>
+      <typeparam name="TKey" />
+      <typeparam name="TValue" />
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.CopyTo(`0[],System.Int32)">
+      <summary>Kopiert die Elemente der Sammlung in ein Array, wobei an einem bestimmten Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionales Array, bei dem es sich um das Ziel der aus der Auflistung kopierten Elemente handelt. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="arrayIndex">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> ist kleiner als 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.  
+
+oder - 
+Die Anzahl der Elemente in der Quellauflistung ist größer als der verfügbare Platz von <paramref name="arrayIndex" /> bis zum Ende des Ziel-<paramref name="array" />.  
+
+oder - 
+Der Typ <paramref name="T" /> kann nicht automatisch in den Typ des Ziel-<paramref name="array" /> umgewandelt werden.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.Count">
+      <summary>Ruft die Anzahl der Elemente in der Auflistung ab.</summary>
+      <returns>Die Anzahl der Elemente in der Auflistung.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der die Auflistung durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Add(`0)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das Objekt, das der Auflistung hinzugefügt werden soll.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Clear">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Contains(`0)">
+      <summary>Ermittelt, ob die Auflistung einen bestimmten Wert enthält.</summary>
+      <param name="item">Das Objekt, das in der Auflistung gesucht werden soll.</param>
+      <returns>
+        <see langword="true" />, wenn sich <paramref name="item" /> in der Auflistung befindet, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#IsReadOnly">
+      <summary>Ruft einen Wert ab, der angibt, ob das Wörterbuch schreibgeschützt ist.</summary>
+      <returns>
+        <see langword="true" /> in allen Fällen.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Remove(`0)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das aus der Auflistung zu entfernende Objekt.</param>
+      <returns>
+        <see langword="true" />, wenn <paramref name="item" /> erfolgreich aus der Auflistung entfernt wurde, andernfalls <see langword="false" />. Diese Methode gibt <see langword="false" /> auch dann zurück, wenn <paramref name="item" /> nicht in der ursprünglichen Auflistung vorhanden ist.</returns>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>Kopiert die Elemente der Sammlung in ein Array, wobei an einem bestimmten Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionales Array, bei dem es sich um das Ziel der aus der Auflistung kopierten Elemente handelt. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="index">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> ist kleiner als 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.  
+
+oder - 
+Die Anzahl der Elemente in der Quellauflistung ist größer als der verfügbare Platz von <paramref name="index" /> bis zum Ende des Ziel-<paramref name="array" />.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#IsSynchronized">
+      <summary>Ruft einen Wert ab, der angibt, ob der Zugriff auf die Auflistung synchronisiert (threadsicher) ist.</summary>
+      <returns>
+        <see langword="true" />, wenn der Zugriff auf die Auflistung synchronisiert (threadsicher) ist, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#SyncRoot">
+      <summary>Ruft ein Objekt ab, mit dem der Zugriff auf die Auflistung synchronisiert werden kann.</summary>
+      <returns>Ein Objekt, mit dem der Zugriff auf die Auflistung synchronisiert werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der die Auflistung durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Keys">
+      <summary>Ruft eine Schlüsselauflistung ab, die die Schlüssel des Wörterbuchs enthält.</summary>
+      <returns>Eine Schlüsselauflistung, die die Schlüssel des Wörterbuchs enthält.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das Objekt, das dem Wörterbuch hinzugefügt werden soll.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Clear">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>Ermittelt, ob das Wörterbuch einen bestimmten Wert enthält.</summary>
+      <param name="item">Das Objekt, das im Wörterbuch gesucht werden soll.</param>
+      <returns>
+        <see langword="true" />, wenn sich <paramref name="item" /> im Wörterbuch befindet, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+      <summary>Kopiert die Elemente des Wörterbuchs in ein Array, wobei am angegebenen Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionale Array, welches das Ziel der aus dem Wörterbuch kopierten Elemente ist. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="arrayIndex">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> ist kleiner als 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.
+
+oder - 
+Die Anzahl der Elemente im Quellwörterbuch ist größer als der verfügbare Platz von <paramref name="arrayIndex" /> bis zum Ende des Ziel-<paramref name="array" />.
+
+oder - 
+Der Typ <paramref name="T" /> kann nicht automatisch in den Typ des Ziel-<paramref name="array" /> umgewandelt werden.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#IsReadOnly">
+      <summary>Ruft einen Wert ab, der angibt, ob das Wörterbuch schreibgeschützt ist.</summary>
+      <returns>Gibt immer <see langword="true" /> zurück, um anzugeben, dass das Wörterbuch schreibgeschützt ist.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das Objekt, das aus dem Wörterbuch entfernt werden soll.</param>
+      <returns>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</returns>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Add(`0,`1)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="key">Das Objekt, das als Schlüssel des hinzuzufügenden Elements verwendet werden soll.</param>
+      <param name="value">Das Objekt, das als Wert des hinzuzufügenden Elements verwendet werden soll.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Item(`0)">
+      <summary>Ruft das Element mit dem angegebenen Schlüssel ab.</summary>
+      <param name="key">Der Schlüssel des Elements, das abgerufen oder festgelegt werden soll.</param>
+      <returns>Das Element mit dem angegebenen Schlüssel.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">Die Eigenschaft wird abgerufen, und <paramref name="key" /> wird nicht gefunden.</exception>
+      <exception cref="T:System.NotSupportedException">Die Eigenschaft ist festgelegt.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Keys">
+      <summary>Ruft eine Auflistung ab, die die Schlüssel des Wörterbuchs enthält.</summary>
+      <returns>Eine Auflistung, die die Schlüssel des Objekts enthält, mit dem das <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Element implementiert wird.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Remove(`0)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="key">Der Schlüssel des zu entfernenden Elements.</param>
+      <returns>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</returns>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Values">
+      <summary>Ruft eine Auflistung ab, die die Werte im Wörterbuch enthält.</summary>
+      <returns>Eine Sammlung, die die Werte im Objekts enthält, mit dem das <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Element implementiert wird.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey@TValue}#Keys">
+      <summary>Ruft eine aufzählbare Auflistung ab, die die Schlüssel im schreibgeschützten Wörterbuch enthält.</summary>
+      <returns>Eine aufzählbare Sammlung, die die Schlüssel im schreibgeschützten Wörterbuch enthält.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey@TValue}#Values">
+      <summary>Ruft eine aufzählbare Auflistung ab, die die Werte im schreibgeschützten Wörterbuch enthält.</summary>
+      <returns>Eine aufzählbare Sammlung, die die Werte im schreibgeschützten Wörterbuch enthält.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>Kopiert die Elemente des Wörterbuchs in ein Array, wobei am angegebenen Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionale Array, welches das Ziel der aus dem Wörterbuch kopierten Elemente ist. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="index">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> ist kleiner als Null.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.  
+
+oder - 
+Die Anzahl der Elemente im Quellwörterbuch ist größer als der verfügbare Platz von <paramref name="index" /> bis zum Ende des Ziel-<paramref name="array" />.  
+
+oder - 
+Der Typ des Quellwörterbuchs kann nicht automatisch in den Typ des Zielarrays (<paramref name="array" />) umgewandelt werden.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#IsSynchronized">
+      <summary>Ruft einen Wert ab, der angibt, ob der Zugriff auf das Wörterbuch synchronisiert (threadsicher) ist.</summary>
+      <returns>
+        <see langword="true" />, wenn der Zugriff auf das Wörterbuch synchronisiert (threadsicher) ist, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#SyncRoot">
+      <summary>Ruft ein Objekt ab, mit dem der Zugriff auf das Wörterbuch synchronisiert werden kann.</summary>
+      <returns>Ein Objekt, mit dem der Zugriff auf das Wörterbuch synchronisiert werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Add(System.Object,System.Object)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="key">Der Schlüssel des hinzuzufügenden Elements.</param>
+      <param name="value">Der Wert des hinzuzufügenden Elements.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Clear">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Contains(System.Object)">
+      <summary>Bestimmt, ob das Wörterbuch ein Element enthält, das über den angegebenen Schlüssel verfügt.</summary>
+      <param name="key">Der im Wörterbuch zu suchende Schlüssel.</param>
+      <returns>
+        <see langword="true" />, wenn das Wörterbuch ein Element mit dem angegebenen Schlüssel enthält, andernfalls <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#GetEnumerator">
+      <summary>Gibt einen Enumerator für das Wörterbuch zurück.</summary>
+      <returns>Ein Enumerator für das Wörterbuch.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#IsFixedSize">
+      <summary>Ruft einen Wert ab, der angibt, ob das Wörterbuch eine feste Größe hat.</summary>
+      <returns>
+        <see langword="true" />, wenn das Wörterbuch eine feste Größe hat, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#IsReadOnly">
+      <summary>Ruft einen Wert ab, der angibt, ob das Wörterbuch schreibgeschützt ist.</summary>
+      <returns>
+        <see langword="true" /> in allen Fällen.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Item(System.Object)">
+      <summary>Ruft das Element mit dem angegebenen Schlüssel ab.</summary>
+      <param name="key">Der Schlüssel des Elements, das abgerufen oder festgelegt werden soll.</param>
+      <returns>Das Element mit dem angegebenen Schlüssel.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException">Die Eigenschaft ist festgelegt.  
+
+oder - 
+Die Eigenschaft wird festgelegt, <paramref name="key" /> ist in der Auflistung nicht vorhanden, und das Wörterbuch hat eine feste Größe.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Keys">
+      <summary>Ruft eine Auflistung ab, die die Schlüssel des Wörterbuchs enthält.</summary>
+      <returns>Eine Sammlung, die die Schlüssel zum Wörterbuch enthält.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Remove(System.Object)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="key">Der Schlüssel des zu entfernenden Elements.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Values">
+      <summary>Ruft eine Auflistung ab, die die Werte im Wörterbuch enthält.</summary>
+      <returns>Eine Auflistung, die die Werte im Wörterbuch enthält.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der eine Auflistung durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.TryGetValue(`0,`1@)">
+      <summary>Ruft den Wert ab, der dem angegebenen Schlüssel zugeordnet ist.</summary>
+      <param name="key">Der Schlüssel, dessen Wert abgerufen wird.</param>
+      <param name="value">Wenn diese Methode zurückgegeben wird, enthält sie den dem angegebenen Schlüssel zugeordneten Wert, wenn der Schlüssel gefunden wird, andernfalls enthält sie den Standardwert für den Typ des <paramref name="value" />-Parameters. Dieser Parameter wird nicht initialisiert übergeben.</param>
+      <returns>
+        <see langword="true" />, wenn das Objekt, das <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> implementiert, ein Element mit dem angegebenen Schlüssel enthält, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection">
+      <summary>Stellt eine schreibgeschützte Sammlung der Werte eines <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Objekts dar.</summary>
+      <typeparam name="TKey" />
+      <typeparam name="TValue" />
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.CopyTo(`1[],System.Int32)">
+      <summary>Kopiert die Elemente der Sammlung in ein Array, wobei an einem bestimmten Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionales Array, bei dem es sich um das Ziel der aus der Auflistung kopierten Elemente handelt. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="arrayIndex">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> ist kleiner als 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.  
+
+oder - 
+Die Anzahl der Elemente in der Quellauflistung ist größer als der verfügbare Platz von <paramref name="arrayIndex" /> bis zum Ende des Ziel-<paramref name="array" />.  
+
+oder - 
+Der Typ <paramref name="T" /> kann nicht automatisch in den Typ des Ziel-<paramref name="array" /> umgewandelt werden.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.Count">
+      <summary>Ruft die Anzahl der Elemente in der Auflistung ab.</summary>
+      <returns>Die Anzahl der Elemente in der Auflistung.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der die Auflistung durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Add(`1)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das Objekt, das der Auflistung hinzugefügt werden soll.</param>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Clear">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Contains(`1)">
+      <summary>Ermittelt, ob die Auflistung einen bestimmten Wert enthält.</summary>
+      <param name="item">Das Objekt, das in der Auflistung gesucht werden soll.</param>
+      <returns>
+        <see langword="true" />, wenn sich <paramref name="item" /> in der Auflistung befindet, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#IsReadOnly">
+      <summary>Ruft einen Wert ab, der angibt, ob die Auflistung schreibgeschützt ist.</summary>
+      <returns>
+        <see langword="true" /> in allen Fällen.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Remove(`1)">
+      <summary>Löst in allen Fällen eine <see cref="T:System.NotSupportedException" />-Ausnahme aus.</summary>
+      <param name="item">Das aus der Auflistung zu entfernende Objekt.</param>
+      <returns>
+        <see langword="true" />, wenn <paramref name="item" /> erfolgreich aus der Auflistung entfernt wurde, andernfalls <see langword="false" />. Diese Methode gibt auch dann <see langword="false" /> zurück, wenn das Objekt nicht in der ursprünglichen Auflistung gefunden wurde.</returns>
+      <exception cref="T:System.NotSupportedException">In allen Fällen.</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>Kopiert die Elemente der Sammlung in ein Array, wobei an einem bestimmten Arrayindex begonnen wird.</summary>
+      <param name="array">Das eindimensionales Array, bei dem es sich um das Ziel der aus der Auflistung kopierten Elemente handelt. Für das Array muss eine nullbasierte Indizierung verwendet werden.</param>
+      <param name="index">Der nullbasierte Index im <paramref name="array" />, bei dem der Kopiervorgang beginnt.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> ist <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> ist kleiner als 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> ist mehrdimensional.  
+
+oder - 
+Die Anzahl der Elemente in der Quellauflistung ist größer als der verfügbare Platz von <paramref name="index" /> bis zum Ende des Ziel-<paramref name="array" />.</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#IsSynchronized">
+      <summary>Ruft einen Wert ab, der angibt, ob der Zugriff auf die Auflistung synchronisiert (threadsicher) ist.</summary>
+      <returns>
+        <see langword="true" />, wenn der Zugriff auf die Auflistung synchronisiert (threadsicher) ist, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#SyncRoot">
+      <summary>Ruft ein Objekt ab, mit dem der Zugriff auf die Auflistung synchronisiert werden kann.</summary>
+      <returns>Ein Objekt, mit dem der Zugriff auf die Auflistung synchronisiert werden kann.</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>Gibt einen Enumerator zurück, der die Auflistung durchläuft.</summary>
+      <returns>Ein Enumerator, der zum Durchlaufen der Auflistung verwendet werden kann.</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Values">
+      <summary>Ruft eine Auflistung ab, die die Werte im Wörterbuch enthält.</summary>
+      <returns>Eine Sammlung, die die Werte im Objekts enthält, mit dem das <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" />-Element implementiert wird.</returns>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1">
+      <summary vsli:raw="Represents a read-only &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt;.">Stellt eine schreibgeschützte <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> dar.</summary>
+      <typeparam name="T" vsli:raw="The type of elements in the collection.">Der Typ der Elemente in der Auflistung.</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.#ctor(System.Collections.ObjectModel.ObservableCollection{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1&quot; /&gt; class that serves as a wrapper around the specified &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt;.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" />-Klasse, die als Wrapper um die angegebene <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> dient.</summary>
+      <param name="list" vsli:raw="The &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; with which to create this instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1&quot; /&gt; class.">Die <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" />, mit der diese Instanz der <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" />-Klasse erstellt werden soll.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;list&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="list" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged">
+      <summary vsli:raw="Occurs when an item is added or removed.">Tritt auf, wenn ein Element hinzugefügt oder entfernt wird.</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged&quot; /&gt; event using the provided arguments.">Löst das <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged" />-Ereignis unter Verwendung der angegebenen Argumente aus.</summary>
+      <param name="args" vsli:raw="Arguments of the event being raised.">Argumente des ausgelösten Ereignisses.</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged&quot; /&gt; event using the provided arguments.">Löst das <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged" />-Ereignis unter Verwendung der angegebenen Argumente aus.</summary>
+      <param name="args" vsli:raw="Arguments of the event being raised.">Argumente des ausgelösten Ereignisses.</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.System#Collections#Specialized#INotifyCollectionChanged#CollectionChanged">
+      <summary vsli:raw="Occurs when the collection changes.">Tritt auf, wenn sich die Auflistung ändert.</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.INotifyCollectionChanged">
+      <summary vsli:raw="Notifies listeners of dynamic changes, such as when an item is added and removed or the whole list is cleared.">Benachrichtigt Listener über dynamische Änderungen – beispielsweise, wenn ein Element hinzugefügt oder entfernt wird oder die gesamte Liste geleert wird.</summary>
+    </member>
+    <member name="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged">
+      <summary vsli:raw="Occurs when the collection changes.">Tritt auf, wenn sich die Auflistung ändert.</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedAction">
+      <summary vsli:raw="Describes the action that caused a &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">Beschreibt die Aktion, die ein <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />-Ereignis ausgelöst hat.</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add">
+      <summary vsli:raw="An item was added to the collection.">Ein Element wurde der Sammlung hinzugefügt.</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move">
+      <summary vsli:raw="An item was moved within the collection.">Ein Element in der Sammlung wurde verschoben.</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove">
+      <summary vsli:raw="An item was removed from the collection.">Ein Element wurde aus der Sammlung entfernt.</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace">
+      <summary vsli:raw="An item was replaced in the collection.">Ein Element wurde in der Sammlung ersetzt.</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset">
+      <summary vsli:raw="The contents of the collection changed dramatically.">Der Inhalt der Sammlung wurde gelöscht.</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">Stellt Daten für das <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />-Ereignis bereit.</summary>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />-Änderung beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This must be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Muss auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" /> festgelegt sein.</param>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine Änderung mehrerer Elemente beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Diese kann auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />, <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" />oder <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />festgelegt werden.</param>
+      <param name="changedItems" vsli:raw="The items that are affected by the change.">Die Elemente, die von der Änderung betroffen sind.</param>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-Änderung mehrerer Elemente beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Diese kann nur auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />festgelegt werden.</param>
+      <param name="newItems" vsli:raw="The new items that are replacing the original items.">Die neuen Elemente, die die ursprünglichen Elemente ersetzen.</param>
+      <param name="oldItems" vsli:raw="The original items that are replaced.">Die ursprünglichen Elemente, die ersetzt werden.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">Wenn <paramref name="action" /> nicht Replace ist.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;oldItems&quot; /&gt; or &lt;paramref name=&quot;newItems&quot; /&gt; is null.">Wenn <paramref name="oldItems" /> oder <paramref name="newItems" /> NULL ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-Änderung mehrerer Elemente beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Diese kann nur auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />festgelegt werden.</param>
+      <param name="newItems" vsli:raw="The new items that are replacing the original items.">Die neuen Elemente, die die ursprünglichen Elemente ersetzen.</param>
+      <param name="oldItems" vsli:raw="The original items that are replaced.">Die ursprünglichen Elemente, die ersetzt werden.</param>
+      <param name="startingIndex" vsli:raw="The index of the first item of the items that are being replaced.">Der Index des ersten Elements der Elemente, die ersetzt werden.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">Wenn <paramref name="action" /> nicht Replace ist.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;oldItems&quot; /&gt; or &lt;paramref name=&quot;newItems&quot; /&gt; is null.">Wenn <paramref name="oldItems" /> oder <paramref name="newItems" /> NULL ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item change or a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine Änderung an mehreren Elementen oder eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />-Änderung beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />, <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> oder <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" /> festgelegt werden.</param>
+      <param name="changedItems" vsli:raw="The items affected by the change.">Die von der Änderung betroffenen Elemente.</param>
+      <param name="startingIndex" vsli:raw="The index where the change occurred.">Der Index, an dem die Änderung aufgetreten ist.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, if &lt;paramref name=&quot;action&quot; /&gt; is Reset and either &lt;paramref name=&quot;changedItems&quot; /&gt; is not null or &lt;paramref name=&quot;startingIndex&quot; /&gt; is not -1, or if action is Add or Remove and &lt;paramref name=&quot;startingIndex&quot; /&gt; is less than -1.">Wenn <paramref name="action" /> nicht Reset, Add oder Remove ist, wenn <paramref name="action" /> Reset und entweder <paramref name="changedItems" /> nicht NULL oder <paramref name="startingIndex" /> nicht -1 ist oder wenn action Add oder Remove und <paramref name="startingIndex" /> kleiner als -1 ist.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is Add or Remove and &lt;paramref name=&quot;changedItems&quot; /&gt; is null.">Wenn <paramref name="action" /> Add oder Remove ist und <paramref name="changedItems" /> NULL ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />-Änderung mehrerer Elemente beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Diese kann nur auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />festgelegt werden.</param>
+      <param name="changedItems" vsli:raw="The items affected by the change.">Die von der Änderung betroffenen Elemente.</param>
+      <param name="index" vsli:raw="The new index for the changed items.">Der neue Index für die geänderten Elemente.</param>
+      <param name="oldIndex" vsli:raw="The old index for the changed items.">Der alte Index für die geänderten Elemente.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Move or &lt;paramref name=&quot;index&quot; /&gt; is less than 0.">Wenn <paramref name="action" /> nicht Move oder <paramref name="index" /> kleiner als 0 ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die die Änderung eines Elements beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />, <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> oder <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" /> festgelegt werden.</param>
+      <param name="changedItem" vsli:raw="The item that is affected by the change.">Das Element, das von der Änderung betroffen ist.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, or if &lt;paramref name=&quot;action&quot; /&gt; is Reset and &lt;paramref name=&quot;changedItem&quot; /&gt; is not null.">Wenn <paramref name="action" /> nicht Reset, Add oder Remove ist oder wenn <paramref name="action" /> Reset und <paramref name="changedItem" /> nicht NULL ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die die Änderung eines Elements beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />, <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> oder <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" /> festgelegt werden.</param>
+      <param name="changedItem" vsli:raw="The item that is affected by the change.">Das Element, das von der Änderung betroffen ist.</param>
+      <param name="index" vsli:raw="The index where the change occurred.">Der Index, an dem die Änderung aufgetreten ist.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, or if &lt;paramref name=&quot;action&quot; /&gt; is Reset and either &lt;paramref name=&quot;changedItems&quot; /&gt; is not null or &lt;paramref name=&quot;index&quot; /&gt; is not -1.">Wenn <paramref name="action" /> nicht Reset, Add oder Remove ist oder wenn <paramref name="action" /> Reset und entweder <paramref name="changedItems" /> nicht NULL oder <paramref name="index" /> nicht -1 ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die die <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />-Änderung eines Elements beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann nur auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" /> festgelegt werden.</param>
+      <param name="changedItem" vsli:raw="The item affected by the change.">Das von der Änderung betroffene Element.</param>
+      <param name="index" vsli:raw="The new index for the changed item.">Der neue Index für das geänderte Element.</param>
+      <param name="oldIndex" vsli:raw="The old index for the changed item.">Der alte Index für das geänderte Element.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Move or &lt;paramref name=&quot;index&quot; /&gt; is less than 0.">Wenn <paramref name="action" /> nicht Move oder <paramref name="index" /> kleiner als 0 ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die die <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-Änderung eines Elements beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann nur auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> festgelegt werden.</param>
+      <param name="newItem" vsli:raw="The new item that is replacing the original item.">Das neue Element, das das ursprüngliche Element ersetzt.</param>
+      <param name="oldItem" vsli:raw="The original item that is replaced.">Das ursprüngliche Element, das ersetzt wird.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">Wenn <paramref name="action" /> nicht Replace ist.</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">Initialisiert eine neue Instanz der <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" />-Klasse, die die <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-Änderung eines Elements beschreibt.</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">Die Aktion, die das Ereignis ausgelöst hat. Kann auf <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> festgelegt werden.</param>
+      <param name="newItem" vsli:raw="The new item that is replacing the original item.">Das neue Element, das das ursprüngliche Element ersetzt.</param>
+      <param name="oldItem" vsli:raw="The original item that is replaced.">Das ursprüngliche Element, das ersetzt wird.</param>
+      <param name="index" vsli:raw="The index of the item being replaced.">Der Index des gerade ersetzten Elements.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">Wenn <paramref name="action" /> nicht Replace ist.</exception>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.Action">
+      <summary vsli:raw="Gets the action that caused the event.">Ruft die Aktion ab, die das Ereignis verursacht hat.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedAction&quot; /&gt; value that describes the action that caused the event.">Ein <see cref="T:System.Collections.Specialized.NotifyCollectionChangedAction" />-Wert, der die Aktion beschreibt, die das Ereignis verursacht hat.</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewItems">
+      <summary vsli:raw="Gets the list of new items involved in the change.">Ruft die Liste der neuen von der Änderung betroffenen Elemente ab.</summary>
+      <returns vsli:raw="The list of new items involved in the change.">Die Liste der neuen von der Änderung betroffenen Elemente.</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewStartingIndex">
+      <summary vsli:raw="Gets the index at which the change occurred.">Ruft den Index ab, an dem die Änderung aufgetreten ist.</summary>
+      <returns vsli:raw="The zero-based index at which the change occurred.">Der nullbasierte Index, an dem die Änderung aufgetreten ist.</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldItems">
+      <summary vsli:raw="Gets the list of items affected by a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;, Remove, or Move action.">Ruft die Liste der von einer <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-, Remove- oder Move-Aktion betroffenen Elemente ab.</summary>
+      <returns vsli:raw="The list of items affected by a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;, Remove, or Move action.">Die Liste der von einer <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />-, Remove- oder Move-Aktion betroffenen Elemente.</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldStartingIndex">
+      <summary vsli:raw="Gets the index at which a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;, Remove, or Replace action occurred.">Ruft den Index ab, an dem eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />-, Remove- oder Replace-Aktion eingetreten ist.</summary>
+      <returns vsli:raw="The zero-based index at which a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;, Remove, or Replace action occurred.">Der nullbasierte Index, an dem eine <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />-, Remove- oder Replace-Aktion eingetreten ist.</returns>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedEventHandler">
+      <summary vsli:raw="Represents the method that handles the &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">Stellt die Methode dar, die das <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" />-Ereignis behandelt.</summary>
+      <param name="sender" vsli:raw="The object that raised the event.">Das Objekt, das das Ereignis ausgelöst hat.</param>
+      <param name="e" vsli:raw="Information about the event.">Informationen zum Ereignis.</param>
+    </member>
+    <member name="T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged&quot; /&gt; event.">Stellt Daten für das <see cref="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged" />-Ereignis bereit.</summary>
+    </member>
+    <member name="M:System.ComponentModel.DataErrorsChangedEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.DataErrorsChangedEventArgs&quot; /&gt; class.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.DataErrorsChangedEventArgs" />-Klasse.</summary>
+      <param name="propertyName" vsli:raw="The name of the property that has an error.  &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt; if the error is object-level.">Der Name der Eigenschaft ist fehlerhaft.  <see langword="null" /> oder <see cref="F:System.String.Empty" />, wenn der Fehler auf Objektebene ist.</param>
+    </member>
+    <member name="P:System.ComponentModel.DataErrorsChangedEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property that has an error.">Ruft den Namen der Eigenschaft ab, die fehlerhaft ist.</summary>
+      <returns vsli:raw="The name of the property that has an error. &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt; if the error is object-level.">Der Name der Eigenschaft ist fehlerhaft. <see langword="null" /> oder <see cref="F:System.String.Empty" />, wenn der Fehler auf Objektebene ist.</returns>
+    </member>
+    <member name="T:System.ComponentModel.INotifyDataErrorInfo">
+      <summary vsli:raw="Defines members that data entity classes can implement to provide custom synchronous and asynchronous validation support.">Definiert Member, die von Datenentitätsklassen implementiert werden können, um benutzerdefinierten synchronen und asynchronen Validierungssupport bereitzustellen.</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged">
+      <summary vsli:raw="Occurs when the validation errors have changed for a property or for the entire entity.">Tritt auf, wenn sich die Validierungsfehler für eine Eigenschaft oder die gesamte Entität geändert haben.</summary>
+    </member>
+    <member name="M:System.ComponentModel.INotifyDataErrorInfo.GetErrors(System.String)">
+      <summary vsli:raw="Gets the validation errors for a specified property or for the entire entity.">Ruft die Validierungsfehler für eine angegebene Eigenschaft oder für die gesamte Entität ab.</summary>
+      <param name="propertyName" vsli:raw="The name of the property to retrieve validation errors for; or &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, to retrieve entity-level errors.">Der Name der Eigenschaft, für die Validierungsfehler abgerufen werden sollen, oder <see langword="null" /> oder <see cref="F:System.String.Empty" />, um Fehler auf Entitätsebene abzurufen.</param>
+      <returns vsli:raw="The validation errors for the property or entity.">Die Validierungsfehler für die Eigenschaft oder Entität.</returns>
+    </member>
+    <member name="P:System.ComponentModel.INotifyDataErrorInfo.HasErrors">
+      <summary vsli:raw="Gets a value that indicates whether the entity has validation errors.">Ruft einen Wert ab, der angibt, ob die Entität Validierungsfehler aufweist.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the entity currently has validation errors; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />, wenn die Entität derzeit Validierungsfehler aufweist, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.ComponentModel.INotifyPropertyChanged">
+      <summary vsli:raw="Notifies clients that a property value has changed.">Benachrichtigt Clients, dass ein Eigenschaftswert geändert wurde.</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">Tritt ein, wenn sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="T:System.ComponentModel.INotifyPropertyChanging">
+      <summary vsli:raw="Notifies clients that a property value is changing.">Benachrichtigt Clients, dass sich ein Eigenschaftswert ändert.</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging">
+      <summary vsli:raw="Occurs when a property value is changing.">Tritt ein, wenn ein Eigenschaftswert geändert wird.</summary>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged&quot; /&gt; event.">Stellt Daten für das <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />-Ereignis bereit.</summary>
+    </member>
+    <member name="M:System.ComponentModel.PropertyChangedEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.PropertyChangedEventArgs&quot; /&gt; class.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.PropertyChangedEventArgs" />-Klasse.</summary>
+      <param name="propertyName" vsli:raw="The name of the property that changed.">Der Name der geänderten Eigenschaft.</param>
+    </member>
+    <member name="P:System.ComponentModel.PropertyChangedEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property that changed.">Ruft den Namen der geänderten Eigenschaft ab.</summary>
+      <returns vsli:raw="The name of the property that changed.">Der Name der geänderten Eigenschaft.</returns>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangedEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged&quot; /&gt; event raised when a property is changed on a component.">Stellt die Methode für die Behandlung des <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" />-Ereignisses dar, das beim Ändern einer Eigenschaft einer Komponente ausgelöst wird.</summary>
+      <param name="sender" vsli:raw="The source of the event.">Die Quelle des Ereignisses.</param>
+      <param name="e" vsli:raw="A &lt;see cref=&quot;T:System.ComponentModel.PropertyChangedEventArgs&quot; /&gt; that contains the event data.">Ein <see cref="T:System.ComponentModel.PropertyChangedEventArgs" />, das die Ereignisdaten enthält.</param>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangingEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging&quot; /&gt; event.">Stellt Daten für das <see cref="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging" />-Ereignis bereit.</summary>
+    </member>
+    <member name="M:System.ComponentModel.PropertyChangingEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.PropertyChangingEventArgs&quot; /&gt; class.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.PropertyChangingEventArgs" />-Klasse.</summary>
+      <param name="propertyName" vsli:raw="The name of the property whose value is changing.">Der Name der Eigenschaft, deren Wert sich ändert.</param>
+    </member>
+    <member name="P:System.ComponentModel.PropertyChangingEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property whose value is changing.">Ruft den Namen der Eigenschaft ab, deren Wert sich ändert.</summary>
+      <returns vsli:raw="The name of the property whose value is changing.">Der Name der Eigenschaft, deren Wert sich ändert.</returns>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangingEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging&quot; /&gt; event of an &lt;see cref=&quot;T:System.ComponentModel.INotifyPropertyChanging&quot; /&gt; interface.">Stellt die Methode dar, die das <see cref="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging" />-Ereignis einer <see cref="T:System.ComponentModel.INotifyPropertyChanging" />-Schnittstelle behandelt.</summary>
+      <param name="sender" vsli:raw="The source of the event.">Die Quelle des Ereignisses.</param>
+      <param name="e" vsli:raw="A &lt;see cref=&quot;T:System.ComponentModel.PropertyChangingEventArgs&quot; /&gt; that contains the event data.">Ein <see cref="T:System.ComponentModel.PropertyChangingEventArgs" />, das die Ereignisdaten enthält.</param>
+    </member>
+    <member name="T:System.ComponentModel.TypeConverterAttribute">
+      <summary vsli:raw="Specifies what type to use as a converter for the object this attribute is bound to.">Gibt an, welcher Typ als Konverter für das Objekt verwendet werden sollte, an das dieses Attribut gebunden ist.</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class with the default type converter, which is an empty string (&quot;&quot;).">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.TypeConverterAttribute" />-Klasse mit dem Standardtypkonverter. Dies ist eine leere Zeichenfolge ("").</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class, using the specified type name as the data converter for the object this attribute is bound to.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.TypeConverterAttribute" />-Klasse. Dabei wird der angegebene Typname als Datenkonverter für das Objekt verwendet, an das dieses Attribut gebunden ist.</summary>
+      <param name="typeName" vsli:raw="The fully qualified name of the class to use for data conversion for the object this attribute is bound to.">Der voll gekennzeichnete Name der Klasse, mit der die Datenkonvertierung für das Objekt erfolgt, an die dieses Attribut gebunden ist.</param>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class, using the specified type as the data converter for the object this attribute is bound to.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.TypeConverterAttribute" />-Klasse. Dabei wird der angegebene Typ als Datenkonverter für das Objekt verwendet, an das dieses Attribut gebunden ist.</summary>
+      <param name="type" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; that represents the type of the converter class to use for data conversion for the object this attribute is bound to.">Ein <see cref="T:System.Type" />, der den Typ der Konverterklasse darstellt, der zur Datenkonvertierung für das Objekt verwendet wird, an das dieses Attribut gebunden ist.</param>
+    </member>
+    <member name="P:System.ComponentModel.TypeConverterAttribute.ConverterTypeName">
+      <summary vsli:raw="Gets the fully qualified type name of the &lt;see cref=&quot;T:System.Type&quot; /&gt; to use as a converter for the object this attribute is bound to.">Ruft den voll gekennzeichneten Typnamen von <see cref="T:System.Type" /> ab, der als Konverter für das Objekt verwendet wird, an das dieses Attribut gebunden ist.</summary>
+      <returns vsli:raw="The fully qualified type name of the &lt;see cref=&quot;T:System.Type&quot; /&gt; to use as a converter for the object this attribute is bound to, or an empty string (&quot;&quot;) if none exists. The default value is an empty string (&quot;&quot;).">Der voll gekennzeichnete Typname von <see cref="T:System.Type" />, der als Konverter für das Objekt verwendet wird, an das dieses Attribut gebunden ist. Eine leere Zeichenfolge (""), wenn kein Konverter vorhanden ist. Der Standardwert ist eine leere Zeichenfolge („“).</returns>
+    </member>
+    <member name="F:System.ComponentModel.TypeConverterAttribute.Default">
+      <summary vsli:raw="Specifies the type to use as a converter for the object this attribute is bound to.">Gibt den Typ an, der als Konverter für das Objekt verwendet werden soll, an das dieses Attribut gebunden ist.</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.Equals(System.Object)">
+      <summary vsli:raw="Returns whether the value of the given object is equal to the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;.">Gibt zurück, ob der Wert des angegebenen Objekts gleich dem aktuellen <see cref="T:System.ComponentModel.TypeConverterAttribute" /> ist.</summary>
+      <param name="obj" vsli:raw="The object to test the value equality of.">Das Objekt, dessen Wert auf Gleichheit geprüft werden soll.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value of the given object is equal to that of the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />, wenn der Wert des angegebenen Objekts dem aktuellen <see cref="T:System.ComponentModel.TypeConverterAttribute" /> entspricht, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.GetHashCode">
+      <summary vsli:raw="Returns the hash code for this instance.">Gibt den Hashcode für diese Instanz zurück.</summary>
+      <returns vsli:raw="A hash code for the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;.">Ein Hashcode für die aktuelle <see cref="T:System.ComponentModel.TypeConverterAttribute" />.</returns>
+    </member>
+    <member name="T:System.ComponentModel.TypeDescriptionProviderAttribute">
+      <summary vsli:raw="Specifies the custom type description provider for a class. This class cannot be inherited.">Gibt den benutzerdefinierten Typbeschreibungsanbieter für eine Klasse an. Diese Klasse kann nicht vererbt werden.</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeDescriptionProviderAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProviderAttribute&quot; /&gt; class using the specified type name.">Initialisiert eine neue Instanz der <see cref="T:System.ComponentModel.TypeDescriptionProviderAttribute" />-Klasse mit dem angegebenen Typnamen.</summary>
+      <param name="typeName" vsli:raw="The qualified name of the type.">Der gekennzeichnete Name des Typs.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;typeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="typeName" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.ComponentModel.TypeDescriptionProviderAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProviderAttribute&quot; /&gt; class using the specified type.">Initialisiert mithilfe des angegebenen Typs eine neue Instanz der <see cref="T:System.ComponentModel.TypeDescriptionProviderAttribute" />-Klasse.</summary>
+      <param name="type" vsli:raw="The type to store in the attribute.">Der im Attributs zu speichernde Typ.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;type&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> ist <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.ComponentModel.TypeDescriptionProviderAttribute.TypeName">
+      <summary vsli:raw="Gets the type name for the type description provider.">Ruft den Typnamen für den Typbeschreibungsanbieter ab.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; containing the qualified type name for the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProvider&quot; /&gt;.">Ein <see cref="T:System.String" />, der den qualifizierten Typnamen für den <see cref="T:System.ComponentModel.TypeDescriptionProvider" /> enthält.</returns>
+    </member>
+    <member name="T:System.Reflection.ICustomTypeProvider">
+      <summary vsli:raw="Represents an object that provides a custom type.">Stellt ein Objekt dar, das einen spezifischen Typ bereitstellt.</summary>
+    </member>
+    <member name="M:System.Reflection.ICustomTypeProvider.GetCustomType">
+      <summary vsli:raw="Gets the custom type provided by this object.">Ruft den benutzerdefinierten Typ ab, der von diesem Objekt bereitgestellt wird.</summary>
+      <returns vsli:raw="The custom type.">Der benutzerdefinierte Typ</returns>
+    </member>
+    <member name="T:System.Windows.Input.ICommand">
+      <summary vsli:raw="Defines a command.">Definiert einen Befehl.</summary>
+    </member>
+    <member name="M:System.Windows.Input.ICommand.CanExecute(System.Object)">
+      <summary vsli:raw="Defines the method that determines whether the command can execute in its current state.">Definiert die Methode, die bestimmt, ob der Befehl im aktuellen Zustand ausgeführt werden kann.</summary>
+      <param name="parameter" vsli:raw="Data used by the command.  If the command does not require data to be passed, this object can be set to &lt;see langword=&quot;null&quot; /&gt;.">Vom Befehl verwendete Daten.  Wenn der Befehl keine Datenübergabe erfordert, kann das Objekt auf <see langword="null" /> festgelegt werden.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this command can be executed; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />, wenn der Befehl ausgeführt werden kann, andernfalls <see langword="false" />.</returns>
+    </member>
+    <member name="E:System.Windows.Input.ICommand.CanExecuteChanged">
+      <summary vsli:raw="Occurs when changes occur that affect whether or not the command should execute.">Tritt ein, wenn Änderungen auftreten, die sich auf die Ausführung des Befehls auswirken.</summary>
+    </member>
+    <member name="M:System.Windows.Input.ICommand.Execute(System.Object)">
+      <summary vsli:raw="Defines the method to be called when the command is invoked.">Definiert die Methode, die aufgerufen wird, wenn der Befehl aufgerufen wird.</summary>
+      <param name="parameter" vsli:raw="Data used by the command.  If the command does not require data to be passed, this object can be set to &lt;see langword=&quot;null&quot; /&gt;.">Vom Befehl verwendete Daten.  Wenn der Befehl keine Datenübergabe erfordert, kann das Objekt auf <see langword="null" /> festgelegt werden.</param>
+    </member>
+    <member name="T:System.Windows.Markup.ValueSerializerAttribute">
+      <summary vsli:raw="Identifies the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class that a type or property should use when it is serialized.">Bezeichnet die <see cref="T:System.Windows.Markup.ValueSerializer" />-Klasse, die von einem serialisierten Typ oder von einer serialisierten Eigenschaft verwendet werden soll.</summary>
+    </member>
+    <member name="M:System.Windows.Markup.ValueSerializerAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializerAttribute&quot; /&gt; class, using an assembly qualified type name string.">Initialisiert unter Verwendung der qualifizierten Zeichenfolge für den Typnamen einer Assembly eine neue Instanz der <see cref="T:System.Windows.Markup.ValueSerializerAttribute" />-Klasse.</summary>
+      <param name="valueSerializerTypeName" vsli:raw="The assembly qualified type name string for the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class to use.">Die qualifizierte Zeichenfolge für den Typnamen einer Assembly, die für die <see cref="T:System.Windows.Markup.ValueSerializer" />-Klasse verwendet werden soll.</param>
+    </member>
+    <member name="M:System.Windows.Markup.ValueSerializerAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializerAttribute&quot; /&gt; class, using the specified type.">Initialisiert eine neue Instanz der <see cref="T:System.Windows.Markup.ValueSerializerAttribute" />-Klasse unter Verwendung des angegebenen Typs.</summary>
+      <param name="valueSerializerType" vsli:raw="A type that represents the type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class.">Ein Typ, der den Typ der <see cref="T:System.Windows.Markup.ValueSerializer" />-Klasse darstellt.</param>
+    </member>
+    <member name="P:System.Windows.Markup.ValueSerializerAttribute.ValueSerializerType">
+      <summary vsli:raw="Gets the type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class reported by this attribute.">Ruft den Typ der <see cref="T:System.Windows.Markup.ValueSerializer" />-Klasse ab, die von diesem Attribut gemeldet wird.</summary>
+      <returns vsli:raw="The type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt;.">Der Typ des <see cref="T:System.Windows.Markup.ValueSerializer" />.</returns>
+    </member>
+    <member name="P:System.Windows.Markup.ValueSerializerAttribute.ValueSerializerTypeName">
+      <summary vsli:raw="Gets the assembly qualified name of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; type for this type or property.">Ruft den durch die Assembly bezeichneten Namen des <see cref="T:System.Windows.Markup.ValueSerializer" />-Typs für diesen Typ oder diese Eigenschaft ab.</summary>
+      <returns vsli:raw="The assembly qualified name of the type.">Der durch die Assembly qualifizierte Name des Typs.</returns>
+    </member>
+  </members>
+</doc>

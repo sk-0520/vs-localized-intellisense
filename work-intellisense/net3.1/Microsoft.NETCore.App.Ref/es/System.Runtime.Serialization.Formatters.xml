@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Runtime.Serialization.Formatters</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.Serialization.Formatter">
+      <summary vsli:raw="Provides base functionality for the common language runtime serialization formatters.">Proporciona funcionalidad básica para los formateadores de serialización de Common Language Runtime.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatter&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.Formatter" />.</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Binder">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; used with the current formatter.">Cuando se reemplaza en una clase derivada, obtiene o establece <see cref="T:System.Runtime.Serialization.SerializationBinder" /> que se utiliza con el formateador actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; used with the current formatter.">
+        <see cref="T:System.Runtime.Serialization.SerializationBinder" /> que se utiliza con el formateador actual.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Context">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for the current serialization.">Cuando se reemplaza en una clase derivada, obtiene o establece <see cref="T:System.Runtime.Serialization.StreamingContext" /> que se utiliza para la serialización actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for the current serialization.">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> que se utiliza para la serialización actual.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="When overridden in a derived class, deserializes the stream attached to the formatter when it was created, creating a graph of objects identical to the graph originally serialized into that stream.">Cuando se reemplaza en una clase derivada, deserializa la secuencia conectada al formateador cuando se creó, y crea un gráfico de objetos idéntico al gráfico serializado originalmente en esa secuencia.</summary>
+      <param name="serializationStream" vsli:raw="The stream to deserialize.">Secuencia que se va a deserializar.</param>
+      <returns vsli:raw="The top object of the deserialized graph of objects.">El primer objeto del gráfico de objetos deserializado.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.GetNext(System.Int64@)">
+      <summary vsli:raw="Returns the next object to serialize, from the formatter's internal work queue.">Devuelve el siguiente objeto que se va a serializar desde la cola de trabajo interna del formateador.</summary>
+      <param name="objID" vsli:raw="The ID assigned to the current object during serialization.">Identificador asignado al objeto actual durante la serialización.</param>
+      <returns vsli:raw="The next object to serialize.">Siguiente objeto que se va a serializar.</returns>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The next object retrieved from the work queue did not have an assigned ID.">El siguiente objeto recuperado de la cola de trabajo no tenía un identificador asignado.</exception>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_idGenerator">
+      <summary vsli:raw="Contains the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; used with the current formatter.">Contiene <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> que se utiliza con el formateador actual.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_objectQueue">
+      <summary vsli:raw="Contains a &lt;see cref=&quot;T:System.Collections.Queue&quot; /&gt; of the objects left to serialize.">Contiene <see cref="T:System.Collections.Queue" /> de los objetos que quedan por serializar.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Schedule(System.Object)">
+      <summary vsli:raw="Schedules an object for later serialization.">Programa un objeto para su posterior serialización.</summary>
+      <param name="obj" vsli:raw="The object to schedule for serialization.">Objeto que se debe programar para su serialización.</param>
+      <returns vsli:raw="The object ID assigned to the object.">Identificador de objeto asignado al objeto.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="When overridden in a derived class, serializes the graph of objects with the specified root to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, serializa el gráfico de objetos con la raíz especificada para la secuencia ya conectada al formateador.</summary>
+      <param name="serializationStream" vsli:raw="The stream to which the objects are serialized.">Secuencia para la que se serializan los objetos.</param>
+      <param name="graph" vsli:raw="The object at the root of the graph to serialize.">Objeto de la raíz del gráfico que se va a serializar.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.SurrogateSelector">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; used with the current formatter.">Cuando se reemplaza en una clase derivada, obtiene o establece <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que se utiliza con el formateador actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; used with the current formatter.">
+        <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que se utiliza con el formateador actual.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteArray(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes an array to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe una matriz en la secuencia ya conectada al formateador.</summary>
+      <param name="obj" vsli:raw="The array to write.">Matriz que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the array.">Nombre de la matriz.</param>
+      <param name="memberType" vsli:raw="The type of elements that the array holds.">Tipo de elementos que contiene la matriz.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteBoolean(System.Boolean,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a Boolean value to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un valor Boolean en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteByte(System.Byte,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes an 8-bit unsigned integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 8 bits sin signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteChar(System.Char,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a Unicode character to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un carácter Unicode en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDateTime(System.DateTime,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; value to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un valor <see cref="T:System.DateTime" /> en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDecimal(System.Decimal,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.Decimal&quot; /&gt; value to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un valor <see cref="T:System.Decimal" /> en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDouble(System.Double,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a double-precision floating-point number to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un número de punto flotante de doble precisión en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt16(System.Int16,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 16-bit signed integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 16 bits con signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt32(System.Int32,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 32-bit signed integer to the stream.">Cuando se reemplaza en una clase derivada, escribe un entero de 32 bits con signo en la secuencia.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt64(System.Int64,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 64-bit signed integer to the stream.">Cuando se reemplaza en una clase derivada, escribe un entero de 64 bits con signo en la secuencia.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteMember(System.String,System.Object)">
+      <summary vsli:raw="Inspects the type of data received, and calls the appropriate &lt;see langword=&quot;Write&quot; /&gt; method to perform the write to the stream already attached to the formatter.">Examina el tipo de datos recibidos y llama al método <see langword="Write" /> apropiado para realizar la escritura en la secuencia ya conectada al formateador.</summary>
+      <param name="memberName" vsli:raw="The name of the member to serialize.">Nombre del miembro que se va a serializar.</param>
+      <param name="data" vsli:raw="The object to write to the stream attached to the formatter.">Objeto que se va a escribir en la secuencia conectada al formateador.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteObjectRef(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes an object reference to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe una referencia de objeto en la secuencia ya conectada al formateador.</summary>
+      <param name="obj" vsli:raw="The object reference to write.">Referencia de objeto que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+      <param name="memberType" vsli:raw="The type of object the reference points to.">Tipo de objeto al que señala la referencia.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteSByte(System.SByte,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes an 8-bit signed integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 8 bits con signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteSingle(System.Single,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a single-precision floating-point number to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un número de punto flotante de precisión sencilla en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteTimeSpan(System.TimeSpan,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un valor <see cref="T:System.TimeSpan" /> en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt16(System.UInt16,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 16-bit unsigned integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 16 bits sin signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt32(System.UInt32,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 32-bit unsigned integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 32 bits sin signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt64(System.UInt64,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 64-bit unsigned integer to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un entero de 64 bits sin signo en la secuencia ya conectada al formateador.</summary>
+      <param name="val" vsli:raw="The value to write.">Valor que se va a escribir.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteValueType(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes a value of the given type to the stream already attached to the formatter.">Cuando se reemplaza en una clase derivada, escribe un valor del tipo dado en la secuencia ya conectada al formateador.</summary>
+      <param name="obj" vsli:raw="The object representing the value type.">Objeto que representa el tipo de valor.</param>
+      <param name="name" vsli:raw="The name of the member.">Nombre del miembro.</param>
+      <param name="memberType" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of the value type.">
+        <see cref="T:System.Type" /> del tipo de valor.</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.FormatterConverter">
+      <summary vsli:raw="Represents a base implementation of the &lt;see cref=&quot;T:System.Runtime.Serialization.IFormatterConverter&quot; /&gt; interface that uses the &lt;see cref=&quot;T:System.Convert&quot; /&gt; class and the &lt;see cref=&quot;T:System.IConvertible&quot; /&gt; interface.">Representa una implementación básica de la interfaz <see cref="T:System.Runtime.Serialization.IFormatterConverter" /> que utiliza la clase <see cref="T:System.Convert" /> y la interfaz <see cref="T:System.IConvertible" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.FormatterConverter&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.FormatterConverter" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.Convert(System.Object,System.Type)">
+      <summary vsli:raw="Converts a value to the given &lt;see cref=&quot;T:System.Type&quot; /&gt;.">Convierte un valor en el <see cref="T:System.Type" /> dado.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; into which &lt;paramref name=&quot;value&quot; /&gt; is converted.">
+        <see cref="T:System.Type" /> al que se convierte <paramref name="value" />.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.Convert(System.Object,System.TypeCode)">
+      <summary vsli:raw="Converts a value to the given &lt;see cref=&quot;T:System.TypeCode&quot; /&gt;.">Convierte un valor en el <see cref="T:System.TypeCode" /> dado.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <param name="typeCode" vsli:raw="The &lt;see cref=&quot;T:System.TypeCode&quot; /&gt; into which &lt;paramref name=&quot;value&quot; /&gt; is converted.">
+        <see cref="T:System.TypeCode" /> al que se convierte <paramref name="value" />.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt;, or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToBoolean(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.">Convierte un valor en <see cref="T:System.Boolean" />.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToByte(System.Object)">
+      <summary vsli:raw="Converts a value to an 8-bit unsigned integer.">Convierte un valor en un entero de 8 bits sin signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToChar(System.Object)">
+      <summary vsli:raw="Converts a value to a Unicode character.">Convierte un valor en un carácter Unicode.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDateTime(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.DateTime&quot; /&gt;.">Convierte un valor en <see cref="T:System.DateTime" />.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDecimal(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.Decimal&quot; /&gt;.">Convierte un valor en <see cref="T:System.Decimal" />.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDouble(System.Object)">
+      <summary vsli:raw="Converts a value to a double-precision floating-point number.">Convierte un valor en un número de punto flotante de precisión doble.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt16(System.Object)">
+      <summary vsli:raw="Converts a value to a 16-bit signed integer.">Convierte un valor en un entero de 16 bits con signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt32(System.Object)">
+      <summary vsli:raw="Converts a value to a 32-bit signed integer.">Convierte un valor en un entero de 32 bits con signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt64(System.Object)">
+      <summary vsli:raw="Converts a value to a 64-bit signed integer.">Convierte un valor en un entero de 64 bits con signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToSByte(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.SByte&quot; /&gt;.">Convierte un valor en <see cref="T:System.SByte" />.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToSingle(System.Object)">
+      <summary vsli:raw="Converts a value to a single-precision floating-point number.">Convierte un valor en un número de punto flotante de precisión sencilla.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToString(System.Object)">
+      <summary vsli:raw="Converts the specified object to a &lt;see cref=&quot;T:System.String&quot; /&gt;.">Convierte el objeto especificado en un tipo de datos <see cref="T:System.String" />.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt16(System.Object)">
+      <summary vsli:raw="Converts a value to a 16-bit unsigned integer.">Convierte un valor en un entero de 16 bits sin signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt32(System.Object)">
+      <summary vsli:raw="Converts a value to a 32-bit unsigned integer.">Convierte un valor en un entero de 32 bits sin signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt64(System.Object)">
+      <summary vsli:raw="Converts a value to a 64-bit unsigned integer.">Convierte un valor en un entero de 64 bits sin signo.</summary>
+      <param name="value" vsli:raw="The object to convert.">Objeto que se va a convertir.</param>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El valor <paramref name="value" /> convertido o <see langword="null" /> si el parámetro <paramref name="type" /> es <see langword="null" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="value" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter">
+      <summary vsli:raw="Serializes and deserializes an object, or an entire graph of connected objects, in binary format.">Serializa y deserializa un objeto, o todo un grafo de objetos conectados, en formato binario.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; class with default values.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> con valores predeterminados.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.#ctor(System.Runtime.Serialization.ISurrogateSelector,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; class with a given surrogate selector and streaming context.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> con el selector suplente y el contexto de secuencia especificados.</summary>
+      <param name="selector" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; to use. Can be &lt;see langword=&quot;null&quot; /&gt;.">Objeto <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que se va a usar. Puede ser <see langword="null" />.</param>
+      <param name="context" vsli:raw="The source and destination for the serialized data.">Origen y destino de los datos serializados.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.AssemblyFormat">
+      <summary vsli:raw="Gets or sets the behavior of the deserializer with regards to finding and loading assemblies.">Obtiene o establece el comportamiento del deserializador en lo que respecta a buscar y cargar ensamblados.</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle&quot; /&gt; values that specifies the deserializer behavior.">Uno de los valores de <see cref="T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle" /> que especifica el comportamiento del deserializador.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Binder">
+      <summary vsli:raw="(Insecure) Gets or sets an object of type &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that controls the binding of a serialized object to a type.">Obtiene o establece un objeto de tipo <see cref="T:System.Runtime.Serialization.SerializationBinder" /> que controla el enlace entre un objeto serializado y un tipo.</summary>
+      <returns vsli:raw="The serialization binder to use with this formatter.">Enlazador de serialización que se va a utilizar con este formateador.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Context">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; for this formatter.">Obtiene o establece <see cref="T:System.Runtime.Serialization.StreamingContext" /> para este formateador.</summary>
+      <returns vsli:raw="The streaming context to use with this formatter.">Contexto de secuencia que se va a utilizar con este formateador.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="Deserializes the specified stream into an object graph.">Deserializa la secuencia especificada en un gráfico de objetos.</summary>
+      <param name="serializationStream" vsli:raw="The stream from which to deserialize the object graph.">Secuencia a partir de la que se va a deserializar el gráfico de objetos.</param>
+      <returns vsli:raw="The top (root) of the object graph.">Partes superior (raíz) del gráfico de objetos.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">El valor de <paramref name="serializationStream" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; supports seeking, but its length is 0.&#xA;&#xA; -or-&#xA;&#xA;The input stream does not represent a well-formed &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; serialized payload.&#xA;&#xA;-or-&#xA;&#xA;An error occurred while deserializing an object from the input stream.&#xA;&#xA;The &lt;see langword=&quot;InnerException&quot; /&gt; property may contain more information about the root cause.">
+        <paramref name="serializationStream" /> admite operaciones de búsqueda, pero su longitud es cero.
+O bien
+El tipo de destino es <see cref="T:System.Decimal" />, pero el valor está fuera de intervalo del tipo <see cref="T:System.Decimal" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.FilterLevel">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; of automatic deserialization the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; performs.">Obtiene o establece el <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> de la deserialización automática que realiza <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" />.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; that represents the current automatic deserialization level.">El objeto <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> que representa el nivel actual de deserialización automática.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="Serializes the object, or graph of objects with the specified top (root), to the given stream.">Serializa el objeto, o gráfico de objetos con el objeto superior (raíz) especificado, en la secuencia indicada.</summary>
+      <param name="serializationStream" vsli:raw="The stream to which the graph is to be serialized.">Secuencia en la que se va a serializar el gráfico.</param>
+      <param name="graph" vsli:raw="The object at the root of the graph to serialize.">Objeto de la raíz del gráfico que se va a serializar.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.&#xA;&#xA; -or-&#xA;&#xA; The &lt;paramref name=&quot;graph&quot; /&gt; is null.">El valor de <paramref name="serializationStream" /> es <see langword="null" />.
+o bien
+El valor de <paramref name="graph" /> es null.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An error has occurred during serialization, such as if an object in the &lt;paramref name=&quot;graph&quot; /&gt; parameter is not marked as serializable.">Error durante la serialización, como sucede si un objeto del parámetro <paramref name="graph" /> no está marcado como serializable.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.SurrogateSelector">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that controls type substitution during serialization and deserialization.">Obtiene o establece un <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que controla la sustitución de tipos durante la serialización y la deserialización.</summary>
+      <returns vsli:raw="The surrogate selector to use with this formatter.">Selector suplente que se va a utilizar con este formateador.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.TypeFormat">
+      <summary vsli:raw="Gets or sets the format in which type descriptions are laid out in the serialized stream.">Obtiene o establece el formato en que se distribuyen las descripciones de tipos en la secuencia serializada.</summary>
+      <returns vsli:raw="The style of type layouts to use.">Estilo de la distribución de tipos que se va a utilizar.</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle">
+      <summary vsli:raw="Indicates the method that will be used during deserialization for locating and loading assemblies.">Indica el método que se va a utilizar durante la deserialización para buscar y cargar los ensamblados.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Full">
+      <summary vsli:raw="In full mode, the assembly used during deserialization must match exactly the assembly used during serialization. The &lt;see cref=&quot;Overload:System.Reflection.Assembly.Load&quot; /&gt; method of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; class is used to load the assembly.">En el modo completo, el ensamblado utilizado durante la deserialización debe coincidir exactamente con el ensamblado utilizado durante la serialización. El método <see cref="Overload:System.Reflection.Assembly.Load" /> de la clase <see cref="T:System.Reflection.Assembly" /> se utiliza para cargar el ensamblado.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple">
+      <summary vsli:raw="In simple mode, the assembly used during deserialization need not match exactly the assembly used during serialization. Specifically, the version numbers need not match as the &lt;see cref=&quot;Overload:System.Reflection.Assembly.LoadWithPartialName&quot; /&gt; method is used to load the assembly.">En el modo simple, no es necesario que el ensamblado utilizado durante la deserialización coincida con el ensamblado utilizado durante la serialización. De forma específica, no es necesario que los números de versión coincidan con el método <see cref="Overload:System.Reflection.Assembly.LoadWithPartialName" /> que se utiliza para cargar el ensamblado.</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.FormatterTypeStyle">
+      <summary vsli:raw="Indicates the format in which type descriptions are laid out in the serialized stream.">Indica el formato de distribución de las descripciones de tipos en la secuencia serializada.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesAlways">
+      <summary vsli:raw="Indicates that types can be given to all object members and &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; object members.">Indica que se pueden asignar tipos a todos los miembros de objetos y a todos los miembros de objetos de <see cref="T:System.Runtime.Serialization.ISerializable" />.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesWhenNeeded">
+      <summary vsli:raw="Indicates that types can be stated only for arrays of objects, object members of type &lt;see cref=&quot;T:System.Object&quot; /&gt;, and &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; non-primitive value types.">Indica que sólo pueden establecerse tipos para matrices de objetos, miembros de objetos de tipo <see cref="T:System.Object" /> y tipos de valor no primitivos de <see cref="T:System.Runtime.Serialization.ISerializable" />.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString">
+      <summary vsli:raw="Indicates that strings can be given in the XSD format rather than SOAP. No string IDs are transmitted.">Indica que las cadenas pueden especificarse en formato XSD en lugar de SOAP. No se transmiten los identificadores de cadena.</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.IFieldInfo">
+      <summary vsli:raw="Allows access to field names and field types of objects that support the &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; interface.">Permite el acceso a nombres de campo y tipos de campo de objetos que admiten la interfaz <see cref="T:System.Runtime.Serialization.ISerializable" />.</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldNames">
+      <summary vsli:raw="Gets or sets the field names of serialized objects.">Obtiene o establece los nombres de campo de los objetos serializados.</summary>
+      <returns vsli:raw="The field names of serialized objects.">Nombres de campo de los objetos serializados.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldTypes">
+      <summary vsli:raw="Gets or sets the field types of the serialized objects.">Obtiene o establece los tipos de campo de los objetos serializados.</summary>
+      <returns vsli:raw="The field types of the serialized objects.">Tipos de campo de los objetos serializados.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.TypeFilterLevel">
+      <summary vsli:raw="Specifies the level of automatic deserialization for .NET Framework remoting.">Especifica el nivel de deserialización automática para la comunicación remota de .NET Framework.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.TypeFilterLevel.Full">
+      <summary vsli:raw="The full deserialization level for .NET Framework remoting. It supports all types that remoting supports in all situations.">Nivel de deserialización Full para la comunicación remota de .NET Framework. Admite todos los tipos que la comunicación remota admite en todas las situaciones.</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.TypeFilterLevel.Low">
+      <summary vsli:raw="The low deserialization level for .NET Framework remoting. It supports types associated with basic remoting functionality.">Nivel de deserialización Low para la comunicación remota de .NET Framework. Admite tipos asociados a la funcionalidad de comunicación remota básica.</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.FormatterServices">
+      <summary vsli:raw="Provides static methods to aid with the implementation of a &lt;see cref=&quot;T:System.Runtime.Serialization.Formatter&quot; /&gt; for serialization. This class cannot be inherited.">Proporciona métodos estáticos para ayudar a la implementación de un objeto <see cref="T:System.Runtime.Serialization.Formatter" /> para la serialización. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.CheckTypeSecurity(System.Type,System.Runtime.Serialization.Formatters.TypeFilterLevel)">
+      <summary vsli:raw="Determines whether the specified &lt;see cref=&quot;T:System.Type&quot; /&gt; can be deserialized with the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property set to &lt;see langword=&quot;Low&quot; /&gt;.">Determina si el <see cref="T:System.Type" /> especificado se puede deserializar con la propiedad <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> establecida en <see langword="Low" />.</summary>
+      <param name="t" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; to check for the ability to deserialize.">
+        <see cref="T:System.Type" /> del que se va a comprobar la capacidad para deserializar.</param>
+      <param name="securityLevel" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property value.">Valor de la propiedad <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" />.</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The &lt;paramref name=&quot;t&quot; /&gt; parameter is an advanced type and cannot be deserialized when the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property is set to &lt;see langword=&quot;Low&quot; /&gt;.">El parámetro <paramref name="t" /> es un tipo avanzado y no se puede deserializar cuando la propiedad <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> está establecida en <see langword="Low" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetObjectData(System.Object,System.Reflection.MemberInfo[])">
+      <summary vsli:raw="Extracts the data from the specified object and returns it as an array of objects.">Extrae los datos del objeto especificado y los devuelve como matriz de objetos.</summary>
+      <param name="obj" vsli:raw="The object to write to the formatter.">Objeto que se va a escribir en el formateador.</param>
+      <param name="members" vsli:raw="The members to extract from the object.">Miembros que se van a extraer del objeto.</param>
+      <returns vsli:raw="An array of &lt;see cref=&quot;T:System.Object&quot; /&gt; that contains data stored in &lt;paramref name=&quot;members&quot; /&gt; and associated with &lt;paramref name=&quot;obj&quot; /&gt;.">Matriz de <see cref="T:System.Object" /> que contiene datos almacenados en <paramref name="members" /> y asociados a <paramref name="obj" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; or &lt;paramref name=&quot;members&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; An element of &lt;paramref name=&quot;members&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> o <paramref name="members" /> es <see langword="null" />.
+Un elemento de <paramref name="members" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An element of &lt;paramref name=&quot;members&quot; /&gt; does not represent a field.">Un elemento de <paramref name="members" /> no representa un campo.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(System.Type)">
+      <summary vsli:raw="Creates a new instance of the specified object type.">Crea una nueva instancia del tipo de objeto especificado.</summary>
+      <param name="type" vsli:raw="The type of object to create.">Tipo de objeto que se va a crear.</param>
+      <returns vsli:raw="A zeroed object of the specified type.">Objeto del tipo especificado inicializado en cero.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is not a valid common language runtime type.">El parámetro <paramref name="type" /> no es un tipo Common Language Runtime válido.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type)">
+      <summary vsli:raw="Gets all the serializable members for a class of the specified &lt;see cref=&quot;T:System.Type&quot; /&gt;.">Obtiene todos los miembros serializables para una clase del <see cref="T:System.Type" /> especificado.</summary>
+      <param name="type" vsli:raw="The type being serialized.">Tipo que se va a serializar.</param>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; of the non-transient, non-static members.">Matriz de tipo <see cref="T:System.Reflection.MemberInfo" /> de miembros no transitorios y no estáticos.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Gets all the serializable members for a class of the specified &lt;see cref=&quot;T:System.Type&quot; /&gt; and in the provided &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt;.">Obtiene todos los miembros serializables para una clase del <see cref="T:System.Type" /> especificado y en el <see cref="T:System.Runtime.Serialization.StreamingContext" /> proporcionado.</summary>
+      <param name="type" vsli:raw="The type being serialized or cloned.">Tipo que se va a serializar o a clonar.</param>
+      <param name="context" vsli:raw="The context where the serialization occurs.">Contexto donde se produce la serialización.</param>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; of the non-transient, non-static members.">Matriz de tipo <see cref="T:System.Reflection.MemberInfo" /> de miembros no transitorios y no estáticos.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSurrogateForCyclicalReference(System.Runtime.Serialization.ISerializationSurrogate)">
+      <summary vsli:raw="Returns a serialization surrogate for the specified &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;.">Devuelve un suplente de serialización para el <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />especificado.</summary>
+      <param name="innerSurrogate" vsli:raw="The specified surrogate.">Suplente especificado.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt; for the specified &lt;paramref name=&quot;innerSurrogate&quot; /&gt;.">Un objeto <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> para el <paramref name="innerSurrogate" /> especificado.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetTypeFromAssembly(System.Reflection.Assembly,System.String)">
+      <summary vsli:raw="Looks up the &lt;see cref=&quot;T:System.Type&quot; /&gt; of the specified object in the provided &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt;.">Busca el <see cref="T:System.Type" /> del objeto especificado en el objeto <see cref="T:System.Reflection.Assembly" /> proporcionado.</summary>
+      <param name="assem" vsli:raw="The assembly where you want to look up the object.">Ensamblado donde se desea buscar el objeto.</param>
+      <param name="name" vsli:raw="The name of the object.">El nombre del objeto.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of the named object.">
+        <see cref="T:System.Type" /> del objeto con nombre.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;assem&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="assem" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetUninitializedObject(System.Type)">
+      <summary vsli:raw="Creates a new instance of the specified object type.">Crea una nueva instancia del tipo de objeto especificado.</summary>
+      <param name="type" vsli:raw="The type of object to create.">Tipo de objeto que se va a crear.</param>
+      <returns vsli:raw="A zeroed object of the specified type.">Objeto del tipo especificado inicializado en cero.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.PopulateObjectMembers(System.Object,System.Reflection.MemberInfo[],System.Object[])">
+      <summary vsli:raw="Populates the specified object with values for each field drawn from the data array of objects.">Rellena el objeto especificado con valores para cada campo dibujado a partir de la matriz de datos de objetos.</summary>
+      <param name="obj" vsli:raw="The object to populate.">Objeto que se va a llenar.</param>
+      <param name="members" vsli:raw="An array of &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; that describes which fields and properties to populate.">Matriz de <see cref="T:System.Reflection.MemberInfo" /> que describe qué campos y propiedades se van a llenar.</param>
+      <param name="data" vsli:raw="An array of &lt;see cref=&quot;T:System.Object&quot; /&gt; that specifies the values for each field and property to populate.">Matriz de <see cref="T:System.Object" /> que especifica los valores de cada campo y propiedad que se va a llenar.</param>
+      <returns vsli:raw="The newly populated object.">Objeto que se acaba de llenar.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt;, &lt;paramref name=&quot;members&quot; /&gt;, or &lt;paramref name=&quot;data&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; An element of &lt;paramref name=&quot;members&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">El <paramref name="obj" />, <paramref name="members" /> o el parámetro <paramref name="data" /> es <see langword="null" />.
+Un elemento de <paramref name="members" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The length of &lt;paramref name=&quot;members&quot; /&gt; does not match the length of &lt;paramref name=&quot;data&quot; /&gt;.">La longitud de <paramref name="members" /> no coincide con la longitud de <paramref name="data" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An element of &lt;paramref name=&quot;members&quot; /&gt; is not an instance of &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt;.">Un elemento de <paramref name="members" /> no es una instancia de <see cref="T:System.Reflection.FieldInfo" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.IFormatter">
+      <summary vsli:raw="Provides functionality for formatting serialized objects.">Proporciona funcionalidad para aplicar formato a los objetos serializados.</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Binder">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that performs type lookups during deserialization.">Obtiene o establece el objeto <see cref="T:System.Runtime.Serialization.SerializationBinder" /> que realiza las búsquedas de tipos durante la deserialización.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that performs type lookups during deserialization.">
+        <see cref="T:System.Runtime.Serialization.SerializationBinder" /> que realiza las búsquedas de tipos durante la deserialización.</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Context">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for serialization and deserialization.">Obtiene o establece el objeto <see cref="T:System.Runtime.Serialization.StreamingContext" /> que se utiliza para la serialización y deserialización.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for serialization and deserialization.">Objeto <see cref="T:System.Runtime.Serialization.StreamingContext" /> que se utiliza para la serialización y deserialización.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="Deserializes the data on the provided stream and reconstitutes the graph of objects.">Deserializa los datos de la secuencia suministrada y reconstituye el gráfico de objetos.</summary>
+      <param name="serializationStream" vsli:raw="The stream that contains the data to deserialize.">Secuencia que contiene los datos que se van a deserializar.</param>
+      <returns vsli:raw="The top object of the deserialized graph.">El objeto superior del gráfico deserializado.</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="Serializes an object, or graph of objects with the given root to the provided stream.">Serializa en la secuencia proporcionada un objeto o un gráfico de objetos con la secuencia dada.</summary>
+      <param name="serializationStream" vsli:raw="The stream where the formatter puts the serialized data. This stream can reference a variety of backing stores (such as files, network, memory, and so on).">Secuencia en la que el formateador coloca los datos serializados. Esta secuencia puede hacer referencia a varias memorias auxiliares (como archivos, red, memoria, etc.).</param>
+      <param name="graph" vsli:raw="The object, or root of the object graph, to serialize. All child objects of this root object are automatically serialized.">Objeto, o raíz del gráfico de objetos, que se va a serializar. Todos los objetos secundarios de este objeto raíz se serializan automáticamente.</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.SurrogateSelector">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; used by the current formatter.">Obtiene o establece el objeto <see cref="T:System.Runtime.Serialization.SurrogateSelector" /> que utiliza el formateador actual.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; used by this formatter.">
+        <see cref="T:System.Runtime.Serialization.SurrogateSelector" /> que utiliza este formateador.</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ISerializationSurrogate">
+      <summary vsli:raw="Implements a serialization surrogate selector that allows one object to perform serialization and deserialization of another.">Implementa un selector de suplentes de serialización que permite que un objeto realice la serialización y deserialización de otro objeto.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogate.GetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Populates the provided &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; with the data needed to serialize the object.">Llena el objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> proporcionado con los datos necesarios para serializar el objeto.</summary>
+      <param name="obj" vsli:raw="The object to serialize.">Objeto que se va a serializar.</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; to populate with data.">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que se rellena con datos.</param>
+      <param name="context" vsli:raw="The destination (see &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt;) for this serialization.">Destino (vea <see cref="T:System.Runtime.Serialization.StreamingContext" />) de esta serialización.</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogate.SetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Populates the object using the information in the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">Llena el objeto con la información de <see cref="T:System.Runtime.Serialization.SerializationInfo" />.</summary>
+      <param name="obj" vsli:raw="The object to populate.">Objeto que se va a llenar.</param>
+      <param name="info" vsli:raw="The information to populate the object.">Información con la que se llenará el objeto.</param>
+      <param name="context" vsli:raw="The source from which the object is deserialized.">Origen desde donde se deserializa el objeto.</param>
+      <param name="selector" vsli:raw="The surrogate selector where the search for a compatible surrogate begins.">Selector de suplentes donde se inicia la búsqueda de un suplente compatible.</param>
+      <returns vsli:raw="The populated deserialized object.">Objeto deserializado que se ha llenado con información.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.ISurrogateSelector">
+      <summary vsli:raw="Indicates a serialization surrogate selector class.">Indica una clase de selectores de suplentes de serialización.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.ChainSelector(System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Specifies the next &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; for surrogates to examine if the current instance does not have a surrogate for the specified type and assembly in the specified context.">Especifica el siguiente <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que los suplentes deben examinar si la instancia actual no tiene un suplente para el tipo y el ensamblado especificados en el contexto especificado.</summary>
+      <param name="selector" vsli:raw="The next surrogate selector to examine.">El siguiente selector de suplentes que se va a examinar.</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetNextSelector">
+      <summary vsli:raw="Returns the next surrogate selector in the chain.">Devuelve el siguiente selector de suplentes de la cadena.</summary>
+      <returns vsli:raw="The next surrogate selector in the chain or &lt;see langword=&quot;null&quot; /&gt;.">Siguiente selector de suplentes de la cadena o <see langword="null" />.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
+      <summary vsli:raw="Finds the surrogate that represents the specified object's type, starting with the specified surrogate selector for the specified serialization context.">Encuentra el suplente que representa el tipo de objeto especificado, comenzando por el selector de suplentes definido para un contexto de serialización específico.</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of object (class) that needs a surrogate.">
+        <see cref="T:System.Type" /> de objeto (clase) que necesita un suplente.</param>
+      <param name="context" vsli:raw="The source or destination context for the current serialization.">Contexto de origen o de destino para la serialización actual.</param>
+      <param name="selector" vsli:raw="When this method returns, contains a &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that holds a reference to the surrogate selector where the appropriate surrogate was found. This parameter is passed uninitialized.">El resultado que devuelve este método contiene un objeto <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> que incluye una referencia al selector de suplentes donde se encontró el suplente correcto. Este parámetro se pasa sin inicializar.</param>
+      <returns vsli:raw="The appropriate surrogate for the given type in the given context.">Suplente correcto para un tipo dado en un contexto determinado.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.ObjectIDGenerator">
+      <summary vsli:raw="Generates IDs for objects.">Genera identificadores para los objetos.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.GetId(System.Object,System.Boolean@)">
+      <summary vsli:raw="Returns the ID for the specified object, generating a new ID if the specified object has not already been identified by the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;.">Devuelve el identificador del objeto especificado, y genera un identificador nuevo si el objeto especificado todavía no ha sido identificado por <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />.</summary>
+      <param name="obj" vsli:raw="The object you want an ID for.">Objeto para el que se solicita un identificador.</param>
+      <param name="firstTime" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; was not previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> no conocía previamente <paramref name="obj" />; en caso contrario, es <see langword="false" />.</param>
+      <returns vsli:raw="The object's ID is used for serialization. &lt;paramref name=&quot;firstTime&quot; /&gt; is set to &lt;see langword=&quot;true&quot; /&gt; if this is the first time the object has been identified; otherwise, it is set to &lt;see langword=&quot;false&quot; /&gt;.">El identificador del objeto se utiliza para la serialización. <paramref name="firstTime" /> se establece en <see langword="true" /> si es la primera vez que se identifica el objeto; en caso contrario, se establece en <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; has been asked to keep track of too many objects.">Se ha solicitado a <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> que realice el seguimiento de un número de objetos demasiado grande.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.HasId(System.Object,System.Boolean@)">
+      <summary vsli:raw="Determines whether an object has already been assigned an ID.">Determina si ya se ha asignado un identificador a un objeto.</summary>
+      <param name="obj" vsli:raw="The object you are asking for.">Objeto que se solicita.</param>
+      <param name="firstTime" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; was not previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> no conocía previamente <paramref name="obj" />; en caso contrario, es <see langword="false" />.</param>
+      <returns vsli:raw="The object ID of &lt;paramref name=&quot;obj&quot; /&gt; if previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, zero.">Identificador de objeto de <paramref name="obj" /> si <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> ya lo conocía; en caso contrario, es cero.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.ObjectManager">
+      <summary vsli:raw="Keeps track of objects as they are deserialized.">Realiza el seguimiento de los objetos a medida que se deserializan.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.#ctor(System.Runtime.Serialization.ISurrogateSelector,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectManager&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.ObjectManager" />.</summary>
+      <param name="selector" vsli:raw="The surrogate selector to use. The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; determines the correct surrogate to use when deserializing objects of a given type. At deserialization time, the surrogate selector creates a new instance of the object from the information transmitted on the stream.">Selector de suplentes que se va a utilizar. <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> determina el suplente que se debe utilizar al deserializar objetos de un tipo dado. En el momento de la deserialización, el selector de suplentes crea una nueva instancia del objeto a partir de la información transmitida en la secuencia.</param>
+      <param name="context" vsli:raw="The streaming context. The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; is not used by &lt;see langword=&quot;ObjectManager&quot; /&gt;, but is passed as a parameter to any objects implementing &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or having a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. These objects can take specific actions depending on the source of the information to deserialize.">Contexto de transmisión por secuencias. <see langword="ObjectManager" /> no utiliza <see cref="T:System.Runtime.Serialization.StreamingContext" />, sino que se pasa como parámetro a los objetos que implementan <see cref="T:System.Runtime.Serialization.ISerializable" /> o tienen <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />. Estos objetos pueden realizar acciones específicas dependiendo del origen de la información que se va a deserializar.</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.DoFixups">
+      <summary vsli:raw="Performs all the recorded fixups.">Realiza todas las correcciones registradas.</summary>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="A fixup was not successfully completed.">No se completó una corrección satisfactoriamente.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.GetObject(System.Int64)">
+      <summary vsli:raw="Returns the object with the specified object ID.">Devuelve el objeto que tiene el identificador de objeto especificado.</summary>
+      <param name="objectID" vsli:raw="The ID of the requested object.">Identificador del objeto solicitado.</param>
+      <returns vsli:raw="The object with the specified object ID if it has been previously stored or &lt;see langword=&quot;null&quot; /&gt; if no such object has been registered.">Objeto que tiene el identificador de objeto especificado, si se ha almacenado previamente, o <see langword="null" /> si no se ha registrado tal objeto.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectID" /> es menor o igual que cero.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RaiseDeserializationEvent">
+      <summary vsli:raw="Raises the deserialization event to any registered object that implements &lt;see cref=&quot;T:System.Runtime.Serialization.IDeserializationCallback&quot; /&gt;.">Provoca el evento de deserialización para cualquier objeto registrado que implemente <see cref="T:System.Runtime.Serialization.IDeserializationCallback" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RaiseOnDeserializingEvent(System.Object)">
+      <summary vsli:raw="Invokes the method marked with the &lt;see cref=&quot;T:System.Runtime.Serialization.OnDeserializingAttribute&quot; /&gt;.">Invoca el método marcado con <see cref="T:System.Runtime.Serialization.OnDeserializingAttribute" />.</summary>
+      <param name="obj" vsli:raw="The instance of the type that contains the method to be invoked.">Instancia del tipo que contiene el método que se va a invocar.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordArrayElementFixup(System.Int64,System.Int32,System.Int64)">
+      <summary vsli:raw="Records a fixup for one element in an array.">Registra una corrección para un elemento de una matriz.</summary>
+      <param name="arrayToBeFixed" vsli:raw="The ID of the array used to record a fixup.">Identificador de la matriz que se utiliza para registrar una corrección.</param>
+      <param name="index" vsli:raw="The index within &lt;c&gt;arrayFixup&lt;/c&gt; that a fixup is requested for.">Índice de <c>arrayFixup</c> para el que se solicita una corrección.</param>
+      <param name="objectRequired" vsli:raw="The ID of the object that the current array element will point to after fixup is completed.">Identificador del objeto al que apuntará el elemento de matriz actual una vez completada la corrección.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;arrayToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="arrayToBeFixed" /> o <paramref name="objectRequired" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;index&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="index" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordArrayElementFixup(System.Int64,System.Int32[],System.Int64)">
+      <summary vsli:raw="Records fixups for the specified elements in an array, to be executed later.">Registra correcciones para los elementos especificados de una matriz que se ejecutarán más adelante.</summary>
+      <param name="arrayToBeFixed" vsli:raw="The ID of the array used to record a fixup.">Identificador de la matriz que se utiliza para registrar una corrección.</param>
+      <param name="indices" vsli:raw="The indexes within the multidimensional array that a fixup is requested for.">Índices de la matriz multidimensional para los que se solicita una corrección.</param>
+      <param name="objectRequired" vsli:raw="The ID of the object the array elements will point to after fixup is completed.">Identificador del objeto al que apuntarán los elementos de la matriz una vez completada la corrección.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;arrayToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="arrayToBeFixed" /> o <paramref name="objectRequired" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;indices&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="indices" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordDelayedFixup(System.Int64,System.String,System.Int64)">
+      <summary vsli:raw="Records a fixup for an object member, to be executed later.">Registra una corrección para un miembro de objeto que se ejecutará más adelante.</summary>
+      <param name="objectToBeFixed" vsli:raw="The ID of the object that needs the reference to &lt;paramref name=&quot;objectRequired&quot; /&gt;.">Identificador del objeto que requiere la referencia a <paramref name="objectRequired" />.</param>
+      <param name="memberName" vsli:raw="The member name of &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; where the fixup will be performed.">Nombre de miembro de <paramref name="objectToBeFixed" /> donde se realizará la corrección.</param>
+      <param name="objectRequired" vsli:raw="The ID of the object required by &lt;paramref name=&quot;objectToBeFixed&quot; /&gt;.">Identificador del objeto requerido por <paramref name="objectToBeFixed" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;objectToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectToBeFixed" /> o <paramref name="objectRequired" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;memberName&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="memberName" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordFixup(System.Int64,System.Reflection.MemberInfo,System.Int64)">
+      <summary vsli:raw="Records a fixup for a member of an object, to be executed later.">Registra una corrección para un miembro de un objeto que se ejecutará más adelante.</summary>
+      <param name="objectToBeFixed" vsli:raw="The ID of the object that needs the reference to the &lt;paramref name=&quot;objectRequired&quot; /&gt; object.">Identificador del objeto que requiere la referencia al objeto <paramref name="objectRequired" />.</param>
+      <param name="member" vsli:raw="The member of &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; where the fixup will be performed.">Miembro de <paramref name="objectToBeFixed" /> donde se realizará la corrección.</param>
+      <param name="objectRequired" vsli:raw="The ID of the object required by &lt;paramref name=&quot;objectToBeFixed&quot; /&gt;.">Identificador del objeto requerido por <paramref name="objectToBeFixed" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectToBeFixed" /> o <paramref name="objectRequired" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;member&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="member" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64)">
+      <summary vsli:raw="Registers an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;.">Registra un objeto cuando se deserializa y lo asocia a <paramref name="objectID" />.</summary>
+      <param name="obj" vsli:raw="The object to register.">Objeto que se va a registrar.</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">Identificador del objeto que se va a registrar.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectID" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;.">
+        <paramref name="objectID" /> ya se ha registrado para un objeto distinto de <paramref name="obj" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo)">
+      <summary vsli:raw="Registers an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used with it.">Registra un objeto cuando se deserializa, lo asocia a <paramref name="objectID" /> y registra el objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que se utilizó con el mismo.</summary>
+      <param name="obj" vsli:raw="The object to register.">Objeto que se va a registrar.</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">Identificador del objeto que se va a registrar.</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">Objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> utilizado si <paramref name="obj" /> implementa <see cref="T:System.Runtime.Serialization.ISerializable" /> o tiene un objeto <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />. <paramref name="info" /> se completará con la información de corrección necesaria y, a continuación, se pasará al objeto requerido cuando ese objeto se complete.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectID" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;.">
+        <paramref name="objectID" /> ya se ha registrado para un objeto distinto de <paramref name="obj" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo,System.Int64,System.Reflection.MemberInfo)">
+      <summary vsli:raw="Registers a member of an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">Registra un miembro de un objeto cuando se deserializa, lo asocia a <paramref name="objectID" /> y registra <see cref="T:System.Runtime.Serialization.SerializationInfo" />.</summary>
+      <param name="obj" vsli:raw="The object to register.">Objeto que se va a registrar.</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">Identificador del objeto que se va a registrar.</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">Objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> utilizado si <paramref name="obj" /> implementa <see cref="T:System.Runtime.Serialization.ISerializable" /> o tiene un objeto <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />. <paramref name="info" /> se completará con la información de corrección necesaria y, a continuación, se pasará al objeto requerido cuando ese objeto se complete.</param>
+      <param name="idOfContainingObj" vsli:raw="The ID of the object that contains &lt;paramref name=&quot;obj&quot; /&gt;. This parameter is required only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">Identificador del objeto que contiene <paramref name="obj" />. Este parámetro es obligatorio sólo si <paramref name="obj" /> es un tipo de valor.</param>
+      <param name="member" vsli:raw="The field in the containing object where &lt;paramref name=&quot;obj&quot; /&gt; exists. This parameter has meaning only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">Campo del objeto contenedor donde existe <paramref name="obj" />. Este parámetro tiene significado sólo si <paramref name="obj" /> es un tipo de valor.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectID" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;, or &lt;paramref name=&quot;member&quot; /&gt; is not a &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt; and &lt;paramref name=&quot;member&quot; /&gt; is not &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="objectID" /> ya se ha registrado para un objeto distinto de <paramref name="obj" />, o <paramref name="member" /> no es <see cref="T:System.Reflection.FieldInfo" /> y <paramref name="member" /> no es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo,System.Int64,System.Reflection.MemberInfo,System.Int32[])">
+      <summary vsli:raw="Registers a member of an array contained in an object while it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">Registra un miembro de una matriz incluida en un objeto mientras se deserializa, lo asocia a <paramref name="objectID" /> y registra <see cref="T:System.Runtime.Serialization.SerializationInfo" />.</summary>
+      <param name="obj" vsli:raw="The object to register.">Objeto que se va a registrar.</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">Identificador del objeto que se va a registrar.</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">Objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> utilizado si <paramref name="obj" /> implementa <see cref="T:System.Runtime.Serialization.ISerializable" /> o tiene un objeto <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />. <paramref name="info" /> se completará con la información de corrección necesaria y, a continuación, se pasará al objeto requerido cuando ese objeto se complete.</param>
+      <param name="idOfContainingObj" vsli:raw="The ID of the object that contains &lt;paramref name=&quot;obj&quot; /&gt;. This parameter is required only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">Identificador del objeto que contiene <paramref name="obj" />. Este parámetro es obligatorio sólo si <paramref name="obj" /> es un tipo de valor.</param>
+      <param name="member" vsli:raw="The field in the containing object where &lt;paramref name=&quot;obj&quot; /&gt; exists. This parameter has meaning only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">Campo del objeto contenedor donde existe <paramref name="obj" />. Este parámetro tiene significado sólo si <paramref name="obj" /> es un tipo de valor.</param>
+      <param name="arrayIndex" vsli:raw="If &lt;paramref name=&quot;obj&quot; /&gt; is a &lt;see cref=&quot;T:System.ValueType&quot; /&gt; and a member of an array, &lt;paramref name=&quot;arrayIndex&quot; /&gt; contains the index within that array where &lt;paramref name=&quot;obj&quot; /&gt; exists. &lt;paramref name=&quot;arrayIndex&quot; /&gt; is ignored if &lt;paramref name=&quot;obj&quot; /&gt; is not both a &lt;see cref=&quot;T:System.ValueType&quot; /&gt; and a member of an array.">Si <paramref name="obj" /> es <see cref="T:System.ValueType" /> y miembro de una matriz, <paramref name="arrayIndex" /> contiene el índice de la matriz donde existe <paramref name="obj" />. <paramref name="arrayIndex" /> se pasa por alto si <paramref name="obj" /> no es a la vez <see cref="T:System.ValueType" /> y miembro de una matriz.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="obj" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">El parámetro <paramref name="objectID" /> es menor o igual que cero.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;, or &lt;paramref name=&quot;member&quot; /&gt; is not a &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt; and &lt;paramref name=&quot;member&quot; /&gt; isn't &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="objectID" /> ya se ha registrado para un objeto distinto de <paramref name="obj" />, o <paramref name="member" /> no es <see cref="T:System.Reflection.FieldInfo" /> y <paramref name="member" /> no es <see langword="null" />.</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.SerializationBinder">
+      <summary vsli:raw="Allows users to control class loading and mandate what class to load.">Permite a los usuarios controlar la carga de clases y encargar qué clase se debe cargar.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.SerializationBinder" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.BindToName(System.Type,System.String@,System.String@)">
+      <summary vsli:raw="When overridden in a derived class, controls the binding of a serialized object to a type.">Si se reemplaza en una clase derivada, controla el enlace de un objeto serializado a un tipo.</summary>
+      <param name="serializedType" vsli:raw="The type of the object the formatter creates a new instance of.">Tipo del objeto del que el formateador va a crear una nueva instancia.</param>
+      <param name="assemblyName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; name of the serialized object.">Especifica el nombre de la clase <see cref="T:System.Reflection.Assembly" /> del objeto serializado.</param>
+      <param name="typeName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Type&quot; /&gt; name of the serialized object.">Especifica el nombre de la clase <see cref="T:System.Type" /> del objeto serializado.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.BindToType(System.String,System.String)">
+      <summary vsli:raw="When overridden in a derived class, controls the binding of a serialized object to a type.">Si se reemplaza en una clase derivada, controla el enlace de un objeto serializado a un tipo.</summary>
+      <param name="assemblyName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; name of the serialized object.">Especifica el nombre de la clase <see cref="T:System.Reflection.Assembly" /> del objeto serializado.</param>
+      <param name="typeName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Type&quot; /&gt; name of the serialized object.">Especifica el nombre de la clase <see cref="T:System.Type" /> del objeto serializado.</param>
+      <returns vsli:raw="The type of the object the formatter creates a new instance of.">Tipo del objeto del que el formateador va a crear una nueva instancia.</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.SerializationObjectManager">
+      <summary vsli:raw="Manages serialization processes at run time. This class cannot be inherited.">Administra en tiempo de ejecución los procesos de serialización. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.#ctor(System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationObjectManager&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.SerializationObjectManager" />.</summary>
+      <param name="context" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; class that contains information about the current serialization operation.">Instancia de la clase <see cref="T:System.Runtime.Serialization.StreamingContext" /> que contiene información sobre la operación de serialización actual.</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.RaiseOnSerializedEvent">
+      <summary vsli:raw="Invokes the OnSerializing callback event if the type of the object has one; and registers the object for raising the OnSerialized event if the type of the object has one.">Invoca el evento de devolución de llamada OnSerializing si el tipo del objeto tiene este evento y registra el objeto para iniciar el evento OnSerialized si el tipo del objeto tiene este evento.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.RegisterObject(System.Object)">
+      <summary vsli:raw="Registers the object upon which events will be raised.">Registra el objeto en el que se provocarán los eventos.</summary>
+      <param name="obj" vsli:raw="The object to register.">Objeto que se va a registrar.</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.SurrogateSelector">
+      <summary vsli:raw="Assists formatters in selection of the serialization surrogate to delegate the serialization or deserialization process to.">Ayuda a los formateadores en la selección de los suplentes de serialización en los que se puede delegar el proceso de serialización o de deserialización.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Runtime.Serialization.SurrogateSelector" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.AddSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISerializationSurrogate)">
+      <summary vsli:raw="Adds a surrogate to the list of checked surrogates.">Agrega un suplente a la lista de suplentes comprobados.</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which the surrogate is required.">
+        <see cref="T:System.Type" /> para el que se requiere el suplente.</param>
+      <param name="context" vsli:raw="The context-specific data.">Datos específicos del contexto.</param>
+      <param name="surrogate" vsli:raw="The surrogate to call for this type.">Suplente que se va a llamar para este tipo.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; or &lt;paramref name=&quot;surrogate&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> o <paramref name="surrogate" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="A surrogate already exists for this type and context.">Ya existe un suplente para este tipo y contexto.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.ChainSelector(System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Adds the specified &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that can handle a particular object type to the list of surrogates.">Agrega a la lista de suplentes el objeto <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> especificado que puede controlar un tipo de objeto concreto.</summary>
+      <param name="selector" vsli:raw="The surrogate selector to add.">Selector de suplentes que se va a agregar.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;selector&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="selector" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The selector is already on the list of selectors.">El selector ya existe en la lista de selectores.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.GetNextSelector">
+      <summary vsli:raw="Returns the next selector on the chain of selectors.">Devuelve el siguiente selector de la cadena de selectores.</summary>
+      <returns vsli:raw="The next &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; on the chain of selectors.">Siguiente <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> de la cadena de selectores.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
+      <summary vsli:raw="Returns the surrogate for a particular type.">Devuelve el suplente de un tipo concreto.</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which the surrogate is requested.">
+        <see cref="T:System.Type" /> para el que se solicita el suplente.</param>
+      <param name="context" vsli:raw="The streaming context.">Contexto de transmisión por secuencias.</param>
+      <param name="selector" vsli:raw="The surrogate to use.">Suplente que se va a utilizar.</param>
+      <returns vsli:raw="The surrogate for a particular type.">Suplente de un tipo concreto.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">El llamador no dispone del permiso requerido.</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.RemoveSurrogate(System.Type,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Removes the surrogate associated with a given type.">Quita el suplente asociado a un tipo determinado.</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which to remove the surrogate.">
+        <see cref="T:System.Type" /> para el que se va a quitar el suplente.</param>
+      <param name="context" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; for the current surrogate.">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> para el suplente actual.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">El parámetro <paramref name="type" /> es <see langword="null" />.</exception>
+    </member>
+  </members>
+</doc>

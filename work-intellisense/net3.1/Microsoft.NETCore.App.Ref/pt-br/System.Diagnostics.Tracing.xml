@@ -1,0 +1,953 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Diagnostics.Tracing</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.Tracing.DiagnosticCounter">
+      <summary vsli:raw="&lt;see cref=&quot;T:System.Diagnostics.Tracing.DiagnosticCounter&quot; /&gt; is an abstract class that serves as the parent class for various Counter* classes, namely &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt;, and &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.DiagnosticCounter" /> é uma classe abstrata que serve como classe pai de várias classes Counter*, ou seja, <see cref="T:System.Diagnostics.Tracing.EventCounter" />, <see cref="T:System.Diagnostics.Tracing.PollingCounter" />, <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> e <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.AddMetadata(System.String,System.String)">
+      <summary vsli:raw="Adds key-value metadata to the counter that will be included as a part of the payload.">Adiciona metadados chave-valor ao contador que serão incluídos como parte do conteúdo.</summary>
+      <param name="key" vsli:raw="The metadata key.">A chave de metadados.</param>
+      <param name="value" vsli:raw="The metadata value.">O valor de metadados.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayName">
+      <summary vsli:raw="Gets or sets the display name of the counter.">Obtém ou define o nome de exibição do contador.</summary>
+      <returns vsli:raw="The display name of the counter.">O nome de exibição do contador.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayUnits">
+      <summary vsli:raw="Gets or sets the display units of the counter.">Obtém ou define as unidades de exibição do contador.</summary>
+      <returns vsli:raw="The display units of the counter.">As unidades de exibição do contador.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.Dispose">
+      <summary vsli:raw="Removes the counter from the set that the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; will report on.">Remove o contador do conjunto sobre o qual o <see cref="T:System.Diagnostics.Tracing.EventSource" /> gerará relatório.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.EventSource">
+      <summary vsli:raw="Gets the EventSource that this counter is attached to.">Obtém o EventSource a que este contador está anexado.</summary>
+      <returns vsli:raw="The EventSource that this counter is attached to.">A EventSource à qual esse contador está anexado.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.Name">
+      <summary vsli:raw="Gets the name of this counter.">Obtém o nome deste contador.</summary>
+      <returns vsli:raw="The name of this counter.">O nome deste contador.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventActivityOptions">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events.">Especifica o rastreamento de eventos de início e interrupção de atividades.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Detachable">
+      <summary vsli:raw="Allow overlapping activities. By default, activity starts and stops must be property nested. That is, a sequence of Start A, Start B, Stop A, Stop B is not allowed will result in B stopping at the same time as A.">Permitir a sobreposição de atividades. Por padrão, os inícios e paradas da atividade devem ser aninhados na propriedade. Ou seja, uma sequência Iniciar A, Iniciar B, Parar A, Parar B não é permitida e resultará em B parando ao mesmo tempo que A.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Disable">
+      <summary vsli:raw="Turn off start and stop tracking.">Desligar o acompanhamento de iniciar e parar.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.None">
+      <summary vsli:raw="Use the default behavior for start and stop tracking.">Use o comportamento padrão para o acompanhamento de início e parada.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Recursive">
+      <summary vsli:raw="Allow recursive activity starts. By default, an activity cannot be recursive. That is, a sequence of Start A, Start A, Stop A, Stop A is not allowed. Unintentional recursive activities can occur if the app executes and for some the stop is not reached before another start is called.">Permitir início de atividades recursivas. Por padrão, uma atividade não pode ser recursiva. Ou seja, uma sequência Iniciar A, Iniciar A, Parar A, Parar A não é permitida. Atividades recursivas não intencionais podem ocorrer se o aplicativo é executado e para alguns a interrupção não é atingida antes de outro início ser chamado.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventAttribute">
+      <summary vsli:raw="Specifies additional event schema information for an event.">Especifica informações de esquema de evento adicionais para um evento.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventAttribute.#ctor(System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; class with the specified event identifier.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventAttribute" /> com o identificador de eventos especificado.</summary>
+      <param name="eventId" vsli:raw="The event identifier for the event.">O identificador de evento para o evento.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.ActivityOptions">
+      <summary vsli:raw="Specifies the behavior of the start and stop events of an activity. An activity is the region of time in an app between the start and the stop.">Especifica o comportamento dos eventos de início e parada de uma atividade. Uma atividade é a região de tempo em um aplicativo entre o início e a parada.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">Retorna <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Channel">
+      <summary vsli:raw="Gets or sets an additional event log where the event should be written.">Obtém ou define um log de eventos adicional no qual o evento deve ser gravado.</summary>
+      <returns vsli:raw="An additional event log where the event should be written.">Um log de eventos adicional em que o evento deve ser gravado.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.EventId">
+      <summary vsli:raw="Gets or sets the identifier for the event.">Obtém ou define o identificador do evento.</summary>
+      <returns vsli:raw="The event identifier. This value should be between 0 and 65535.">O identificador de evento. Esse valor deve estar entre 0 e 65535.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Keywords">
+      <summary vsli:raw="Gets or sets the keywords for the event.">Obtém ou define as palavras-chave para o evento.</summary>
+      <returns vsli:raw="A bitwise combination of the enumeration values.">Um combinação bit a bit dos valores de enumeração.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Level">
+      <summary vsli:raw="Gets or sets the level for the event.">Obtém ou define o nível do evento.</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the level for the event.">Um dos valores de enumeração que especifica o nível do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Message">
+      <summary vsli:raw="Gets or sets the message for the event.">Obtém ou define a mensagem para o evento.</summary>
+      <returns vsli:raw="The message for the event.">A mensagem para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Opcode">
+      <summary vsli:raw="Gets or sets the operation code for the event.">Obtém ou define o código de operação para o evento.</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the operation code.">Um dos valores de enumeração que especifica o código de operação.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Tags">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">Obtém ou define o valor <see cref="T:System.Diagnostics.Tracing.EventTags" /> deste objeto <see cref="T:System.Diagnostics.Tracing.EventAttribute" />. Uma marca de evento é um valor definido pelo usuário que é passado quando o evento é registrado.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">O valor <see cref="T:System.Diagnostics.Tracing.EventTags" /> para este objeto <see cref="T:System.Diagnostics.Tracing.EventAttribute" />. Uma marca de evento é um valor definido pelo usuário que é passado quando o evento é registrado.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Task">
+      <summary vsli:raw="Gets or sets the task for the event.">Obtém ou define a tarefa para o evento.</summary>
+      <returns vsli:raw="The task for the event.">A tarefa para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Version">
+      <summary vsli:raw="Gets or sets the version of the event.">Obtém ou define a versão do evento.</summary>
+      <returns vsli:raw="The version of the event.">A versão do evento.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventChannel">
+      <summary vsli:raw="Specifies the event log channel for the event.">Especifica o canal de log de eventos para o evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Admin">
+      <summary vsli:raw="The administrator log channel.">O canal de log do administrador.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Analytic">
+      <summary vsli:raw="The analytic channel.">O canal analítico.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Debug">
+      <summary vsli:raw="The debug channel.">O canal de depuração.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.None">
+      <summary vsli:raw="No channel specified.">Nenhum canal especificado.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Operational">
+      <summary vsli:raw="The operational channel.">O canal operacional.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommand">
+      <summary vsli:raw="Describes the command (&lt;see cref=&quot;P:System.Diagnostics.Tracing.EventCommandEventArgs.Command&quot; /&gt; property) that is passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">Descreve o comando (propriedade <see cref="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command" />) que é passado para o retorno de chamada <see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Disable">
+      <summary vsli:raw="Disable the event.">Desabilitar o evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Enable">
+      <summary vsli:raw="Enable the event.">Habilitar o evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.SendManifest">
+      <summary vsli:raw="Send the manifest.">Enviar o manifesto.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Update">
+      <summary vsli:raw="Update the event.">Atualizar o evento.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommandEventArgs">
+      <summary vsli:raw="Provides the arguments for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">Fornece os argumentos para o retorno de chamada <see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Arguments">
+      <summary vsli:raw="Gets the array of arguments for the callback.">Obtém a matriz de argumentos para o retorno de chamada.</summary>
+      <returns vsli:raw="An array of callback arguments.">Uma matriz de argumentos de retorno de chamada.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command">
+      <summary vsli:raw="Gets the command for the callback.">Obtém o comando para o retorno de chamada.</summary>
+      <returns vsli:raw="The callback command.">O comando de retorno de chamada.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.DisableEvent(System.Int32)">
+      <summary vsli:raw="Disables the event that have the specified identifier.">Desabilita o evento que tem o identificador especificado.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to disable.">O identificador do evento a ser desabilitado.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="eventId" /> estiver no intervalo; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.EnableEvent(System.Int32)">
+      <summary vsli:raw="Enables the event that has the specified identifier.">Habilita o evento que tem o identificador especificado.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to enable.">O identificador do evento a ser habilitado.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="eventId" /> estiver no intervalo; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCounter">
+      <summary vsli:raw="Provides the ability to collect statistics for very frequent events through the  &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">Oferece a capacidade de coletar estatísticas para eventos muito frequentes por meio da classe <see cref="T:System.Diagnostics.Tracing.EventSource" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventCounter" />.</summary>
+      <param name="name" vsli:raw="The event counter name.">O nome do contador de eventos.</param>
+      <param name="eventSource" vsli:raw="The event source.">A fonte do evento.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;eventSource&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> é <see langword="null" />.
+- ou -
+<paramref name="eventSource" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current event counter instance.">Retorna uma representação de cadeia de caracteres da instância do contador de eventos atual.</summary>
+      <returns vsli:raw="The name, count and mean of the current event counter.">O nome, a contagem e a média do contador de eventos atual.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">Gravará a métrica se os contadores de desempenho estiverem ativados.</summary>
+      <param name="value" vsli:raw="The value to be written.">O valor a ser gravado.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Single)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">Gravará a métrica se os contadores de desempenho estiverem ativados.</summary>
+      <param name="value" vsli:raw="The value to be written.">O valor a ser gravado.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventDataAttribute">
+      <summary vsli:raw="Specifies a type to be passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method.">Especifica um tipo a ser passado para o método <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventDataAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventDataAttribute.Name">
+      <summary vsli:raw="Gets or sets the name to apply to an event if the event type or property is not explicitly named.">Obtém ou define o nome a ser aplicado a um evento se o tipo de evento ou propriedade não for nomeado explicitamente.</summary>
+      <returns vsli:raw="The name to apply to the event or property.">O nome a ser aplicado ao evento ou à propriedade.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldAttribute">
+      <summary vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads.">O <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" /> é colocado em campos de tipos definidos pelo usuário que são passados como payloads <see cref="T:System.Diagnostics.Tracing.EventSource" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventFieldAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Format">
+      <summary vsli:raw="Gets or sets the value that specifies how to format the value of a user-defined type.">Obtém ou define o valor que especifica como formatar o valor de um tipo definido pelo usuário.</summary>
+      <returns vsli:raw="The value that specifies how to format the value of a user-defined type.">O valor que especifica como formatar o valor de um tipo definido pelo usuário.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Tags">
+      <summary vsli:raw="Gets or sets the user-defined &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt; value that is required for fields that contain data that isn't one of the supported types.">Obtém ou define o valor <see cref="T:System.Diagnostics.Tracing.EventFieldTags" /> definido pelo usuário que é necessário para os campos que contêm dados que não são de um dos tipos compatíveis.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt;.">Retorna <see cref="T:System.Diagnostics.Tracing.EventFieldTags" />.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldFormat">
+      <summary vsli:raw="Specifies how to format the value of a user-defined type and can be used to override the default formatting for a field.">Especifica como formatar o valor de um tipo definido pelo usuário e pode ser usado para substituir a formatação padrão para um campo.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Boolean">
+      <summary vsli:raw="Boolean.">Booliano.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Default">
+      <summary vsli:raw="Default.">Padrão.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Hexadecimal">
+      <summary vsli:raw="Hexadecimal.">Hexadecimal.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.HResult">
+      <summary vsli:raw="HResult.">HResult.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Json">
+      <summary vsli:raw="JSON.">JSON.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.String">
+      <summary vsli:raw="String.">Cadeia.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Xml">
+      <summary vsli:raw="XML.">XML.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldTags">
+      <summary vsli:raw="Specifies the user-defined tag that is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads through the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt;.">Especifica a marcação definida pelo usuário que é colocada em campos de tipos definidos pelo usuário que são passados como payloads <see cref="T:System.Diagnostics.Tracing.EventSource" /> por meio do <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">Não especifica nenhuma marca e é igual a zero.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventIgnoreAttribute">
+      <summary vsli:raw="Specifies a property should be ignored when writing an event type with the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)&quot; /&gt; method.">Especifica que uma propriedade deve ser ignorada durante a gravação de um tipo de evento com o método <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventIgnoreAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventIgnoreAttribute&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventIgnoreAttribute" />.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventKeywords">
+      <summary vsli:raw="Defines the standard keywords that apply to events.">Define as palavras-chave padrão que se aplicam a eventos.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.All">
+      <summary vsli:raw="All the bits are set to 1, representing every possible group of events.">Todos os bits são definidos como 1, representando todos os grupos de eventos possíveis.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditFailure">
+      <summary vsli:raw="Attached to all failed security audit events. Use this keyword only  for events in the security log.">Anexado a todos os eventos de auditoria de segurança com falha. Use essa palavra-chave apenas para eventos no log de segurança.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditSuccess">
+      <summary vsli:raw="Attached to all successful security audit events. Use this keyword only for events in the security log.">Anexado a todos os eventos de auditoria de segurança com êxito. Use essa palavra-chave apenas para eventos no log de segurança.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.CorrelationHint">
+      <summary vsli:raw="Attached to transfer events where the related activity ID (correlation ID) is a computed value and is not guaranteed to be unique (that is, it is not a real GUID).">Anexado a eventos de transferência em que a ID da atividade relacionada (ID de correlação) é um valor computado e não tem garantia de ser exclusivo (isto é, não é um GUID real).</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.EventLogClassic">
+      <summary vsli:raw="Attached to events that are raised by using the &lt;see langword=&quot;RaiseEvent&quot; /&gt; function.">Anexado a eventos que são criados usando a função <see langword="RaiseEvent" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.MicrosoftTelemetry">
+      <summary vsli:raw="Attached to all Microsoft telemetry events.">Anexado a todos os eventos de telemetria da Microsoft.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.None">
+      <summary vsli:raw="No filtering on keywords is performed when the event is published.">Não é realizada nenhuma filtragem nas palavras-chave quando o evento é publicado.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.Sqm">
+      <summary vsli:raw="Attached to all Service Quality Mechanism (SQM) events.">Anexado a todos os eventos do SQM (Mecanismo de Qualidade de Serviço).</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiContext">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) context events.">Anexado a todos os eventos de contexto da WDI (Infraestrutura de Diagnóstico do Windows).</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiDiagnostic">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) diagnostic events.">Anexado a todos os eventos de diagnóstico da WDI (Infraestrutura de Diagnóstico do Windows).</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventLevel">
+      <summary vsli:raw="Identifies the level of an event.">Identifica o nível de um evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Critical">
+      <summary vsli:raw="This level corresponds to a critical error, which is a serious error that has caused a major failure.">Esse nível corresponde a um erro crítico, que é um erro grave que causou uma falha grave.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Error">
+      <summary vsli:raw="This level adds standard errors that signify a problem.">Esse nível adiciona erros padrão que significam um problema.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Informational">
+      <summary vsli:raw="This level adds informational events or messages that are not errors. These events can help trace the progress or state of an application.">Esse nível adiciona mensagens ou eventos informativos que não são erros. Esses eventos podem ajudar a rastrear o progresso ou o estado de um aplicativo.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.LogAlways">
+      <summary vsli:raw="No level filtering is done on the event. When used as a level filter for enabling events, for example in EventListener.EnableEvents(), events of all levels will be included.">Não é realizado nenhuma filtragem de nível.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Verbose">
+      <summary vsli:raw="This level adds lengthy events or messages. It causes all events to be logged.">Esse nível adiciona mensagens ou eventos longos. Faz com que todos os eventos sejam registrados.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Warning">
+      <summary vsli:raw="This level adds warning events (for example, events that are published because a disk is nearing full capacity).">Esse nível adiciona eventos de aviso (por exemplo, eventos publicados porque um disco está se aproximando da capacidade total).</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventListener">
+      <summary vsli:raw="Provides methods for enabling and disabling events from event sources.">Fornece métodos para habilitar e desabilitar eventos de fontes de eventos.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventListener" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.DisableEvents(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Disables all events for the specified event source.">Desabilita todos os eventos para a origem do evento especificada.</summary>
+      <param name="eventSource" vsli:raw="The event source to disable events for.">A origem do evento para a qual os eventos serão desabilitados.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.Dispose">
+      <summary vsli:raw="Releases the resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">Libera os recursos usados pela instância atual da classe <see cref="T:System.Diagnostics.Tracing.EventListener" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower.">Habilita eventos para a origem do evento especificado que têm o nível de detalhes especificado ou inferior.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">A origem do evento para a qual os eventos serão habilitados.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">O nível de eventos a ser habilitado.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, and matching keyword flags.">Habilita eventos para a origem do evento especificado que têm o nível de detalhes especificado ou inferior e os sinalizadores de palavra-chave de correspondência.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">A origem do evento para a qual os eventos serão habilitados.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">O nível de eventos a ser habilitado.</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">Os sinalizadores de palavra-chave necessários para habilitar os eventos.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, matching event keyword flag, and matching arguments.">Habilita eventos para a origem do evento especificada que têm o nível de detalhes especificado ou inferior e os sinalizadores de palavra-chave e argumentos correspondentes.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">A origem do evento para a qual os eventos serão habilitados.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">O nível de eventos a ser habilitado.</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">Os sinalizadores de palavra-chave necessários para habilitar os eventos.</param>
+      <param name="arguments" vsli:raw="The arguments to be matched to enable the events.">Os argumentos a serem correspondidos para habilitar os eventos.</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated">
+      <summary vsli:raw="Occurs when an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) is attached to the dispatcher.">Ocorre quando uma fonte do evento (objeto <see cref="T:System.Diagnostics.Tracing.EventSource" />) está anexado ao dispatcher.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EventSourceIndex(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Gets a small non-negative number that represents the specified event source.">Obtém um pequeno número não negativo que representa a origem do evento especificada.</summary>
+      <param name="eventSource" vsli:raw="The event source to find the index for.">A origem do evento para a qual o índice será localizado.</param>
+      <returns vsli:raw="A small non-negative number that represents the specified event source.">Um pequeno número não negativo que representa a origem do evento especificado.</returns>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventWritten">
+      <summary vsli:raw="Occurs when an event has been written by an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) for which the event listener has enabled events.">Ocorre quando um evento foi gravado por uma origem do evento (objeto <see cref="T:System.Diagnostics.Tracing.EventSource" />) para a qual o ouvinte de eventos habilitou eventos.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Called for all existing event sources when the event listener is created and when a new event source is attached to the listener.">Chamado para todas as origens do evento existentes quando o ouvinte do evento é criado e quando uma nova origem do evento é anexada ao ouvinte.</summary>
+      <param name="eventSource" vsli:raw="The event source.">A fonte do evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)">
+      <summary vsli:raw="Called whenever an event has been written by an event source for which the event listener has enabled events.">Chamado sempre que um evento tiver sido gravado por uma origem do evento para a qual o ouvinte de eventos tiver habilitado eventos.</summary>
+      <param name="eventData" vsli:raw="The event arguments that describe the event.">Os argumentos de evento que descrevem o evento.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventManifestOptions">
+      <summary vsli:raw="Specifies how the ETW manifest for the event source is generated.">Especifica como o manifesto ETW para a fonte do evento é gerado.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllCultures">
+      <summary vsli:raw="Generates a resources node under the localization folder for every satellite assembly provided.">Gera um nó de recursos sob a pasta de localização para cada assembly satélite fornecido.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllowEventSourceOverride">
+      <summary vsli:raw="Overrides the default behavior that the current &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; must be the base class of the user-defined type passed to the write method. This enables the validation of .NET event sources.">Substitui o comportamento padrão que o <see cref="T:System.Diagnostics.Tracing.EventSource" /> atual precisa ser da classe base do tipo definido pelo usuário passada para o método de gravação. Isso habilita a validação de origens do evento .NET.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.None">
+      <summary vsli:raw="No options are specified.">Nenhuma opção foi especificada.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.OnlyIfNeededForRegistration">
+      <summary vsli:raw="A manifest is generated only the event source must be registered on the host computer.">Um manifesto é gerado; apenas a origem do evento precisa ser registrada no computador host.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.Strict">
+      <summary vsli:raw="Causes an exception to be raised if any inconsistencies occur when writing the manifest file.">Gera uma exceção se ocorrer alguma inconsistência ao gravar o arquivo de manifesto.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventOpcode">
+      <summary vsli:raw="Defines the standard operation codes that the event source attaches to events.">Define os códigos de operação padrão que a origem do evento anexa aos eventos.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStart">
+      <summary vsli:raw="A trace collection start event.">Um evento de início da coleta do rastreamento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStop">
+      <summary vsli:raw="A trace collection stop event.">Um evento de interrupção da coleta do rastreamento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Extension">
+      <summary vsli:raw="An extension event.">Um evento de extensão.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Info">
+      <summary vsli:raw="An informational event.">Um evento informativo.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Receive">
+      <summary vsli:raw="An event that is published when one activity in an application receives data.">Um evento que é publicado quando uma atividade em um aplicativo recebe dados.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Reply">
+      <summary vsli:raw="An event that is published after an activity in an application replies to an event.">Um evento que é publicado depois que uma atividade em um aplicativo responde a um evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Resume">
+      <summary vsli:raw="An event that is published after an activity in an application resumes from a suspended state. The event should follow an event that has the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Suspend&quot; /&gt; operation code.">Um evento que é publicado depois que uma atividade em um aplicativo continua de um estado suspenso. O evento deve seguir um evento com o código de operação <see cref="F:System.Diagnostics.Tracing.EventOpcode.Suspend" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Send">
+      <summary vsli:raw="An event that is published when one activity in an application transfers data or system resources to another activity.">Um evento que é publicado quando uma atividade em um aplicativo transfere dados ou recursos do sistema para outra atividade.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Start">
+      <summary vsli:raw="An event that is published when an application starts a new transaction or activity. This operation code can be embedded within another transaction or activity when multiple events that have the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; code follow each other without an intervening event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Stop&quot; /&gt; code.">Um evento que é publicado quando um aplicativo inicia uma nova transação ou atividade. Esse código de operação pode ser inserido em outra transação ou atividade quando vários eventos que têm o código <see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" /> são sucessivos sem um evento intermediário que tem um código <see cref="F:System.Diagnostics.Tracing.EventOpcode.Stop" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Stop">
+      <summary vsli:raw="An event that is published when an activity or a transaction in an application ends. The event corresponds to the last unpaired event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; operation code.">Um evento que é publicado quando uma atividade ou transação em um aplicativo é encerrada. O evento corresponde ao último evento desemparelhado com um código de operação <see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Suspend">
+      <summary vsli:raw="An event that is published when an activity in an application is suspended.">Um evento que é publicado quando uma atividade em um aplicativo é suspensa.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource">
+      <summary vsli:raw="Provides the ability to create events for event tracing across platforms.">Oferece a capacidade de criar eventos para ETW (Rastreamento de Eventos para Windows).</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Boolean)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and specifies whether to throw an exception when an error occurs in the underlying Windows code.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> e especifica se uma exceção deve ser gerada quando ocorre um erro no código do Windows subjacente.</summary>
+      <param name="throwOnEventWriteErrors" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to throw an exception when an error occurs in the underlying Windows code; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para gerar uma exceção quando ocorre um erro no código subjacente do Windows; caso contrário, <see langword="false" />.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> com as definições de configuração especificadas.</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">Uma combinação bit a bit dos valores de enumeração que especifica as definições de configuração a serem aplicadas à origem do evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; to be used with non-contract events that contains the specified settings and traits.">Inicializa uma nova instância do <see cref="T:System.Diagnostics.Tracing.EventSource" /> a ser usada com eventos que não são de contrato que contém as configurações e características especificadas.</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">Uma combinação bit a bit dos valores de enumeração que especifica as definições de configuração a serem aplicadas à origem do evento.</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">Os pares chave-valor que especificam características para a origem do evento.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">
+        <paramref name="traits" /> não é especificado em pares chave-valor.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> com o nome especificado.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">O nome a ser aplicado à origem do evento. Não deve ser <see langword="null" />.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name and settings.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> com o nome e as configurações especificados.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">O nome a ser aplicado à origem do evento. Não deve ser <see langword="null" />.</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">Uma combinação bit a bit dos valores de enumeração que especifica as definições de configuração a serem aplicadas à origem do evento.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> com as definições de configuração especificadas.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">O nome a ser aplicado à origem do evento. Não deve ser <see langword="null" />.</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">Uma combinação bit a bit dos valores de enumeração que especifica as definições de configuração a serem aplicadas à origem do evento.</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">Os pares chave-valor que especificam características para a origem do evento.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">
+        <paramref name="traits" /> não é especificado em pares chave-valor.</exception>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.ConstructionException">
+      <summary vsli:raw="Gets any exception that was thrown during the construction of the event source.">Obtém as exceções geradas durante a construção de origem do evento.</summary>
+      <returns vsli:raw="The exception that was thrown during the construction of the event source, or &lt;see langword=&quot;null&quot; /&gt; if no exception was thrown.">A exceção que foi lançada durante a construção da origem do evento ou <see langword="null" /> se nenhuma exceção foi gerada.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId">
+      <summary vsli:raw="Gets the activity ID of the current thread.">Obtém a ID de atividade do thread atual.</summary>
+      <returns vsli:raw="The activity ID of the current thread.">A ID da atividade do thread atual.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose">
+      <summary vsli:raw="Releases all resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">Libera todos os recursos usados pela instância atual da classe <see cref="T:System.Diagnostics.Tracing.EventSource" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose(System.Boolean)">
+      <summary vsli:raw="Releases the unmanaged resources used by the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and optionally releases the managed resources.">Libera os recursos não gerenciados usados pela classe <see cref="T:System.Diagnostics.Tracing.EventSource" /> e, opcionalmente, libera os recursos gerenciados.</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventSource.EventCommandExecuted">
+      <summary vsli:raw="Occurs when a command comes from an event listener.">Ocorre quando um comando é proveniente de um ouvinte de evento.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource.EventData">
+      <summary vsli:raw="Provides the event data for creating fast &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overloads by using the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)&quot; /&gt; method.">Fornece os dados de evento para a criação de sobrecargas rápidas de <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> usando o método <see cref="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.DataPointer">
+      <summary vsli:raw="Gets or sets the pointer to the data for the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">Obtém ou define o ponteiro para os dados para a nova sobrecarga <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" />.</summary>
+      <returns vsli:raw="The pointer to the data.">O ponteiro para os dados.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.Size">
+      <summary vsli:raw="Gets or sets the number of payload items in the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">Obtém ou define o número de itens de payload na nova sobrecarga <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" />.</summary>
+      <returns vsli:raw="The number of payload items in the new overload.">O número de itens de carga na nova sobrecarga.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Finalize">
+      <summary vsli:raw="Allows the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object to attempt to free resources and perform other cleanup operations before the object is reclaimed by garbage collection.">Permite que o objeto <see cref="T:System.Diagnostics.Tracing.EventSource" /> tente liberar recursos e executar outras operações de limpeza antes que o objeto seja obtido pela coleta de lixo.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">Retorna uma cadeia de caracteres do manifesto XML que está associado à origem do evento atual.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">O tipo da origem do evento.</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) to include in the provider element of the manifest.">O caminho para o arquivo do assembly (.dll) a ser incluído no elemento provedor do manifesto.</param>
+      <returns vsli:raw="The XML data string.">A cadeia de caracteres de dados XML.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String,System.Diagnostics.Tracing.EventManifestOptions)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">Retorna uma cadeia de caracteres do manifesto XML que está associado à origem do evento atual.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">O tipo da origem do evento.</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) file to include in the provider element of the manifest.">O caminho para o arquivo (.dll) do arquivo do assembly a ser incluído no elemento provedor do manifesto.</param>
+      <param name="flags" vsli:raw="A bitwise combination of the enumeration values that specify how the manifest is generated.">Um combinação bit a bit dos valores de enumeração que especificam como o manifesto é gerado.</param>
+      <returns vsli:raw="The XML data string or &lt;see langword=&quot;null&quot; /&gt;.">A cadeia de caracteres de dados XML ou <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetGuid(System.Type)">
+      <summary vsli:raw="Gets the unique identifier for this implementation of the event source.">Obtém o identificador exclusivo para essa implementação da origem do evento.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">O tipo da origem do evento.</param>
+      <returns vsli:raw="A unique identifier for this event source type.">Um identificador exclusivo para este tipo de origem do evento.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetName(System.Type)">
+      <summary vsli:raw="Gets the friendly name of the event source.">Obtém o nome amigável da origem do evento.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">O tipo da origem do evento.</param>
+      <returns vsli:raw="The friendly name of the event source. The default is the simple name of the class.">O nome amigável da origem do evento. O padrão é o nome simples da classe.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetSources">
+      <summary vsli:raw="Gets a snapshot of all the event sources for the application domain.">Obtém um instantâneo de todas as origens do evento para o domínio do aplicativo.</summary>
+      <returns vsli:raw="An enumeration of all the event sources in the application domain.">Uma enumeração de todas as origens do evento no domínio do aplicativo.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetTrait(System.String)">
+      <summary vsli:raw="Gets the trait value associated with the specified key.">Obtém o valor de característica associado à chave especificada.</summary>
+      <param name="key" vsli:raw="The key of the trait to get.">A chave da característica a ser obtida.</param>
+      <returns vsli:raw="The trait value associated with the specified key. If the key is not found, returns &lt;see langword=&quot;null&quot; /&gt;.">O valor de característica associado à chave especificada. Se a chave não for encontrada, retornará <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Guid">
+      <summary vsli:raw="The unique identifier for the event source.">O identificador exclusivo da origem do evento.</summary>
+      <returns vsli:raw="A unique identifier for the event source.">Um identificador exclusivo para a origem do evento.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled">
+      <summary vsli:raw="Determines whether the current event source is enabled.">Determina se a origem do evento atual está habilitada.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the current event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se a origem do evento atual estiver habilitada; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Determines whether the current event source that has the specified level and keyword is enabled.">Determina se a origem do evento atual que tem o nível e a palavra-chave especificados está habilitada.</summary>
+      <param name="level" vsli:raw="The level of the event source.">O nível da origem do evento.</param>
+      <param name="keywords" vsli:raw="The keyword of the event source.">A palavra-chave da origem do evento.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se a origem do evento estiver habilitada; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Diagnostics.Tracing.EventChannel)">
+      <summary vsli:raw="Determines whether the current event source is enabled for events with the specified level, keywords and channel.">Determina se a origem do evento atual é habilitada para eventos com o nível, palavras-chave e canais específicos.</summary>
+      <param name="level" vsli:raw="The event level to check. An event source will be considered enabled when its level is greater than or equal to &lt;paramref name=&quot;level&quot; /&gt;.">O nível do evento a serem verificado. Uma origem do evento será considerada habilitada quando o respectivo nível for maior ou igual ao <paramref name="level" />.</param>
+      <param name="keywords" vsli:raw="The event keywords to check.">As palavras-chave do evento a serem verificadas.</param>
+      <param name="channel" vsli:raw="The event channel to check.">O canal de evento a ser verificado.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled for the specified event level, keywords and channel; otherwise, &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA; The result of this method is only an approximation of whether a particular event is active.  Use it to avoid expensive computation for logging when logging is disabled. Event sources may have additional filtering that determines their activity.">
+        <see langword="true" /> se a origem do evento está habilitada para o nível de evento, palavras-chaves e canal especificado; caso contrário, <see langword="false" />.
+O resultado deste método é somente uma aproximação de se determinado evento está ativo.  Use-o para evitar computação cara para registro em log quando este registro está desabilitado. Origens do evento podem ter filtragem adicional que determina as respectivas atividades.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Name">
+      <summary vsli:raw="The friendly name of the class that is derived from the event source.">O nome amigável da classe que é derivada da origem do evento.</summary>
+      <returns vsli:raw="The friendly name of the derived class.  The default is the simple name of the class.">O nome amigável da classe derivada.  O padrão é o nome simples da classe.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)">
+      <summary vsli:raw="Called when the current event source is updated by the controller.">Chamado quando a origem do evento atual é atualizada pelo controlador.</summary>
+      <param name="command" vsli:raw="The arguments for the event.">Os argumentos para o evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SendCommand(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventCommand,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Sends a command to a specified event source.">Envia um comando para uma origem do evento especificada.</summary>
+      <param name="eventSource" vsli:raw="The event source to send the command to.">A origem do evento para a qual o comando será enviado.</param>
+      <param name="command" vsli:raw="The event command to send.">O comando de evento a ser enviado.</param>
+      <param name="commandArguments" vsli:raw="The arguments for the event command.">Os argumentos para o comando do evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid)">
+      <summary vsli:raw="Sets the activity ID on the current thread.">Define a ID de atividade no thread atual.</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">A nova ID de atividade do thread atual ou <see cref="F:System.Guid.Empty" /> para indicar que o trabalho no thread atual não está associado a nenhuma atividade.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid,System.Guid@)">
+      <summary vsli:raw="Sets the activity ID on the current thread, and returns the previous activity ID.">Define a ID de atividade no thread atual e retorna a ID da atividade anterior.</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">A nova ID de atividade do thread atual ou <see cref="F:System.Guid.Empty" /> para indicar que o trabalho no thread atual não está associado a nenhuma atividade.</param>
+      <param name="oldActivityThatWillContinue" vsli:raw="When this method returns, contains the previous activity ID on the current thread.">Quando o método retorna, contém a ID de atividade anterior no thread atual.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Settings">
+      <summary vsli:raw="Gets the settings applied to this event source.">Obtém as configurações aplicadas a esta origem do evento.</summary>
+      <returns vsli:raw="The settings applied to this event source.">As configurações aplicadas a esta origem do evento.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.ToString">
+      <summary vsli:raw="Obtains a string representation of the current event source instance.">Obtém uma representação de cadeia de caracteres da instância da origem do evento atual.</summary>
+      <returns vsli:raw="The name and unique identifier that identify the current event source.">O nome e identificador exclusivo que identificam a origem do evento atual.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and default options.">Grava um evento sem campos, mas com o nome e as opções padrão especificados.</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">O nome do evento a ser gravado.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and options.">Grava um evento sem campos, mas com o nome e as opções especificadas.</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">O nome do evento a ser gravado.</param>
+      <param name="options" vsli:raw="The options such as level, keywords and operation code for the event.">As opções, como nível, palavras-chave e código de operação para o evento.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,``0)">
+      <summary vsli:raw="Writes an event with the specified name and data.">Grava um evento com o nome e os dados especificados.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">O nome do evento.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">Os dados do evento. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" />.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">O tipo que define o evento e seus dados associados. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" />.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)">
+      <summary vsli:raw="Writes an event with the specified name, event data and options.">Grava um evento com o nome, dados de evento e opções especificados.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">O nome do evento.</param>
+      <param name="options" vsli:raw="The event options.">As opções de evento.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">Os dados do evento. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" />.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">O tipo que define o evento e seus dados associados. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" />.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options and event data.">Grava um evento com o nome, opções e dados de evento especificados.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">O nome do evento.</param>
+      <param name="options" vsli:raw="The event options.">As opções de evento.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">Os dados do evento. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" />.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">O tipo que define o evento e seus dados associados. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" />.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,System.Guid@,System.Guid@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options, related activity and event data.">Grava um evento com o nome, opções, dados de atividade e de evento relacionados especificados.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">O nome do evento.</param>
+      <param name="options" vsli:raw="The event options.">As opções de evento.</param>
+      <param name="activityId" vsli:raw="The ID of the activity associated with the event.">A ID da atividade associada ao evento.</param>
+      <param name="relatedActivityId" vsli:raw="The ID of an associated activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no associated activity.">A ID de uma atividade associada ou <see cref="F:System.Guid.Empty" /> se não houver nenhuma atividade associada.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">Os dados do evento. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" />.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">O tipo que define o evento e seus dados associados. Esse tipo deve ser um tipo anônimo ou marcado com o atributo <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" />.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier.">Grava um evento usando o identificador de evento fornecido.</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">O identificador de evento. Esse valor deve estar entre 0 e 65535.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Byte[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and byte array argument.">Grava um evento usando o identificador de evento e o argumento de matriz de bytes fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A byte array argument.">Um argumento de matriz de bytes.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer argument.">Grava um evento usando o identificador de evento e o argumento inteiro de 32 bits fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">Grava um evento usando o identificador de evento e os argumentos inteiros de 32 bits fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+      <param name="arg2" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">Grava um evento usando o identificador de evento e os argumentos inteiros de 32 bits fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+      <param name="arg2" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+      <param name="arg3" vsli:raw="An integer argument.">Um argumento inteiro.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer and string arguments.">Grava um evento usando o identificador de evento fornecido e argumentos inteiros de 32 bits e cadeia de caracteres fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">O identificador de evento. Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 32-bit integer argument.">Um argumento inteiro de 32 bits.</param>
+      <param name="arg2" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer argument.">Grava um evento usando o identificador de evento e o argumento inteiro de 64 bits fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Byte[])">
+      <summary vsli:raw="Writes the event data using the specified identifier and 64-bit integer and byte array arguments.">Grava os dados de evento usando o identificador especificado e inteiro de 64 bits e argumentos da matriz de bytes.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">Um argumento inteiro de 64 bits.</param>
+      <param name="arg2" vsli:raw="A byte array argument.">Um argumento de matriz de bytes.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">Grava um evento usando o identificador de evento fornecido e os argumentos 64 bits.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">Grava um evento usando o identificador de evento fornecido e os argumentos 64 bits.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+      <param name="arg3" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer, and string arguments.">Grava um evento usando o identificador de evento fornecido e argumentos inteiros de 64 bits e cadeia de caracteres fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">Um argumento inteiro de 64 bits.</param>
+      <param name="arg2" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Object[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and array of arguments.">Grava um evento usando o identificador de evento fornecido e a matriz de argumentos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="args" vsli:raw="An array of objects.">Uma matriz de objetos.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string argument.">Grava um evento usando o identificador de evento e o argumentos de cadeia de caractere fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">Grava um evento usando o identificador de evento fornecido e os argumentos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">Um argumento inteiro de 32 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">Grava um evento usando o identificador de evento fornecido e os argumentos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">Um argumento inteiro de 32 bits.</param>
+      <param name="arg3" vsli:raw="A 32 bit integer argument.">Um argumento inteiro de 32 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">Grava um evento usando o identificador de evento fornecido e os argumentos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">Um argumento inteiro de 64 bits.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">Grava um evento usando o identificador de evento e os argumentos de cadeia de caractere fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg2" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">Grava um evento usando o identificador de evento e os argumentos de cadeia de caractere fornecidos.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">O identificador de evento.  Esse valor deve estar entre 0 e 65535.</param>
+      <param name="arg1" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg2" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+      <param name="arg3" vsli:raw="A string argument.">Um argumento de cadeia de caracteres.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload by using the provided event identifier and event data.">Cria uma nova sobrecarga <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> usando o identificador de evento fornecidos e os dados de evento.</summary>
+      <param name="eventId" vsli:raw="The event identifier.">O identificador de evento.</param>
+      <param name="eventDataCount" vsli:raw="The number of event data items.">O número de itens de dados de evento.</param>
+      <param name="data" vsli:raw="The structure that contains the event data.">A estrutura que contém os dados do evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityId(System.Int32,System.Guid,System.Object[])">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">Grava um evento que indica que a atividade atual está relacionada a outra atividade.</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">Um identificador que identifica este evento exclusivamente dentro do <see cref="T:System.Diagnostics.Tracing.EventSource" />.</param>
+      <param name="relatedActivityId" vsli:raw="The related activity identifier.">O identificador da atividade relacionada.</param>
+      <param name="args" vsli:raw="An array of objects that contain data about the event.">Obtém uma matriz de objetos que contêm dados sobre o evento.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityIdCore(System.Int32,System.Guid*,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">Grava um evento que indica que a atividade atual está relacionada a outra atividade.</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">Um identificador que identifica este evento exclusivamente dentro do <see cref="T:System.Diagnostics.Tracing.EventSource" />.</param>
+      <param name="relatedActivityId" vsli:raw="A pointer to the GUID of the related activity ID.">Um ponteiro para o GUID da ID de atividade relacionada.</param>
+      <param name="eventDataCount" vsli:raw="The number of items in the &lt;paramref name=&quot;data&quot; /&gt; field.">O número de itens no campo <paramref name="data" />.</param>
+      <param name="data" vsli:raw="A pointer to the first item in the event data field.">Um ponteiro para o primeiro item no campo de dados de evento.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceAttribute">
+      <summary vsli:raw="Allows the event tracing for Windows (ETW) name to be defined independently of the name of the event source class.">Permite que nome do ETW (Rastreamento de Eventos para Windows) seja definido independentemente do nome da classe de origem do evento.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Guid">
+      <summary vsli:raw="Gets or sets the event source identifier.">Obtém ou define o identificador de origem do evento.</summary>
+      <returns vsli:raw="The event source identifier.">O identificador de origem do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.LocalizationResources">
+      <summary vsli:raw="Gets or sets the name of the localization resource file.">Obtém ou define o nome do arquivo de recurso de localização.</summary>
+      <returns vsli:raw="The name of the localization resource file, or &lt;see langword=&quot;null&quot; /&gt; if the localization resource file does not exist.">O nome do arquivo de recurso de localização ou <see langword="null" /> se o arquivo de recurso de localização não existir.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Name">
+      <summary vsli:raw="Gets or sets the name of the event source.">Obtém ou define o nome da origem do evento.</summary>
+      <returns vsli:raw="The name of the event source.">O nome da origem do evento.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Diagnostics.Tracing.EventListener.EventSourceCreated&quot; /&gt; event.">Fornece dados para o evento de <see cref="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated" /> .</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.EventSource">
+      <summary vsli:raw="Get the event source that is attaching to the listener.">Obter a origem do evento que está sendo anexado ao ouvinte.</summary>
+      <returns vsli:raw="The event source that is attaching to the listener.">A origem do evento que está anexando ao ouvinte.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceException">
+      <summary vsli:raw="The exception that is thrown when an error occurs during event tracing for Windows (ETW).">A exceção que é gerada quando ocorre um erro durante o ETW (Rastreamento de Eventos para Windows).</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceException" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with serialized data.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> com dados serializados.</summary>
+      <param name="info" vsli:raw="The object that holds the serialized object data.">O objeto que mantém os dados de objeto serializados.</param>
+      <param name="context" vsli:raw="The contextual information about the source or destination.">As informações contextuais sobre a origem ou o destino.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> com uma mensagem de erro especificada.</summary>
+      <param name="message" vsli:raw="The message that describes the error.">A mensagem que descreve o erro.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message and a reference to the inner exception that is the cause of this exception.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> com uma mensagem de erro especificada e uma referência à exceção interna que é a causa da exceção.</summary>
+      <param name="message" vsli:raw="The error message that explains the reason for the exception.">A mensagem de erro que explica a razão da exceção.</param>
+      <param name="innerException" vsli:raw="The exception that is the cause of the current exception, or &lt;see langword=&quot;null&quot; /&gt; if no inner exception is specified.">A exceção que é a causa da exceção atual ou então <see langword="null" /> se nenhuma exceção interna é especificada.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceOptions">
+      <summary vsli:raw="Specifies overrides of default event settings such as the log level, keywords and operation code when the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method is called.">Especifica as substituições de configurações de evento padrão, como o nível de log, palavras-chave e o código de operação quando o método <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" /> é chamado.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.ActivityOptions">
+      <summary vsli:raw="The activity options defined for this event source.">As opções de atividade definidas para esta origem do evento.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">Retorna <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Keywords">
+      <summary vsli:raw="Gets or sets the keywords applied to the event. If this property is not set, the event's keywords will be &lt;see langword=&quot;None&quot; /&gt;.">Obtém ou define as palavras-chave aplicadas ao evento. Se essa propriedade não for definida, as palavras-chave do evento serão <see langword="None" />.</summary>
+      <returns vsli:raw="The keywords applied to the event, or &lt;see langword=&quot;None&quot; /&gt; if no keywords are set.">As palavras-chave aplicadas ao evento ou <see langword="None" /> se nenhuma palavra-chave estiver definida.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Level">
+      <summary vsli:raw="Gets or sets the event level applied to the event.">Obtém ou define o nível de evento aplicado ao evento.</summary>
+      <returns vsli:raw="The event level for the event. If not set, the default is Verbose (5).">O nível de evento para o evento. Se não estiver definido, o padrão será Verbose (5).</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Opcode">
+      <summary vsli:raw="Gets or sets the operation code to use for the specified event.">Obtém ou define o código de operação a ser usado para o evento especificado.</summary>
+      <returns vsli:raw="The operation code to use for the specified event. If not set, the default is &lt;see langword=&quot;Info&quot; /&gt; (0).">O código de operação a ser usado para o evento especificado. Se não estiver definido, o padrão <see langword="Info" /> será (0).</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Tags">
+      <summary vsli:raw="The event tags defined for this event source.">As marcas de eventos definidas para esta origem do evento.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">Retorna <see cref="T:System.Diagnostics.Tracing.EventTags" />.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceSettings">
+      <summary vsli:raw="Specifies configuration options for an event source.">Especifica opções de configuração para uma fonte de evento.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.Default">
+      <summary vsli:raw="None of the special configuration options are enabled.">Nenhuma das opções de configuração especiais é habilitada.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwManifestEventFormat">
+      <summary vsli:raw="The ETW listener should use a manifest-based format when raising events. Setting this option is a directive to the ETW listener should use manifest-based format when raising events. This is the default option when defining a type derived from &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the protected &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">O ouvinte ETW deve usar um formato baseado em manifesto ao gerar eventos. A configuração dessa opção é uma diretiva para o ouvinte ETW de que ele deve usar o formato baseado em manifesto ao gerar eventos. Essa é a opção padrão ao definir um tipo derivado de <see cref="T:System.Diagnostics.Tracing.EventSource" /> usando um dos construtores <see cref="T:System.Diagnostics.Tracing.EventSource" /> protegidos.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwSelfDescribingEventFormat">
+      <summary vsli:raw="The ETW listener should use self-describing event format. This is the default option when creating a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the public &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">O ouvinte ETW deve usar o formato de evento autodescritivo. Essa é a opção padrão ao criar uma nova instância do <see cref="T:System.Diagnostics.Tracing.EventSource" /> usando um dos construtores <see cref="T:System.Diagnostics.Tracing.EventSource" /> públicos.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.ThrowOnEventWriteErrors">
+      <summary vsli:raw="The event source throws an exception when an error occurs.">A origem do evento lança uma exceção quando ocorre um erro.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTags">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events. You should only use the lower 24 bits. For more information, see &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceOptions&quot; /&gt; and &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt;.">Especifica o rastreamento de eventos de início e interrupção de atividades. Você deve usar apenas os 24 bits inferiores. Para obter mais informações, consulte <see cref="T:System.Diagnostics.Tracing.EventSourceOptions" /> e <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" />.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">Não especifica nenhuma marca e é igual a zero.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTask">
+      <summary vsli:raw="Defines the tasks that apply to events.">Define as tarefas que se aplicam a eventos.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTask.None">
+      <summary vsli:raw="Undefined task.">Tarefa indefinida.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventWrittenEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)&quot; /&gt; callback.">Fornece dados para o retorno de chamada <see cref="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)" />.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.ActivityId">
+      <summary vsli:raw="Gets the activity ID on the thread that the event was written to.">Obtém a ID de atividade no thread no qual o evento foi gravado.</summary>
+      <returns vsli:raw="The activity ID on the thread that the event was written to.">A ID de atividade no thread no qual o evento foi gravado.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Channel">
+      <summary vsli:raw="Gets the channel for the event.">Obtém o canal para o evento.</summary>
+      <returns vsli:raw="The channel for the event.">O canal para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventId">
+      <summary vsli:raw="Gets the event identifier.">Obtém o identificador de evento.</summary>
+      <returns vsli:raw="The event identifier.">O identificador de evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventName">
+      <summary vsli:raw="Gets the name of the event.">Obtém o nome do evento.</summary>
+      <returns vsli:raw="The name of the event.">O nome do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventSource">
+      <summary vsli:raw="Gets the event source object.">Obtém o objeto da origem do evento.</summary>
+      <returns vsli:raw="The event source object.">O objeto de origem do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Keywords">
+      <summary vsli:raw="Gets the keywords for the event.">Obtém as palavras-chave para o evento.</summary>
+      <returns vsli:raw="The keywords for the event.">As palavras-chave para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Level">
+      <summary vsli:raw="Gets the level of the event.">Obtém o nível do evento.</summary>
+      <returns vsli:raw="The level of the event.">O nível do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Message">
+      <summary vsli:raw="Gets the message for the event.">Obtém a mensagem para o evento.</summary>
+      <returns vsli:raw="The message for the event.">A mensagem para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Opcode">
+      <summary vsli:raw="Gets the operation code for the event.">Obtém o código de operação para o evento.</summary>
+      <returns vsli:raw="The operation code for the event.">O código de operação para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.OSThreadId">
+      <summary vsli:raw="Gets the thread identifier for the OS thread that wrote the event. (.NET Core 2.2 and later only.)">Obtém o identificador de thread para o thread do SO que escreveu o evento. (somente .NET core 2.2 e posterior.)</summary>
+      <returns vsli:raw="The thread identifier for the OS thread that wrote the event.">O identificador de thread para o thread de sistema operacional que escreveu o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Payload">
+      <summary vsli:raw="Gets the payload for the event.">Obtém o payload para o evento.</summary>
+      <returns vsli:raw="The payload for the event.">A carga do evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.PayloadNames">
+      <summary vsli:raw="Returns a list of strings that represent the property names of the event.">Retorna uma lista de cadeias de caracteres que representa os nomes de propriedade do evento.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyCollection`1&quot; /&gt;.">Retorna <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.RelatedActivityId">
+      <summary vsli:raw="Gets the identifier of an activity that is related to the activity represented by the current instance.">Obtém o identificador de uma atividade que está relacionado à atividade representada pela instância atual.</summary>
+      <returns vsli:raw="The identifier of the related activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no related activity.">O identificador da atividade relacionada, ou <see cref="F:System.Guid.Empty" /> se não houver nenhuma atividade relacionada.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Tags">
+      <summary vsli:raw="Returns the tags specified in the call to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt; method.">Retorna as marcas especificadas na chamada para o método <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" />.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">Retorna <see cref="T:System.Diagnostics.Tracing.EventTags" />.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Task">
+      <summary vsli:raw="Gets the task for the event.">Obtém a tarefa para o evento.</summary>
+      <returns vsli:raw="The task for the event.">A tarefa para o evento.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.TimeStamp">
+      <summary vsli:raw="Gets the time that the event was originally generated as a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; timestamp. (.NET Core 2.2 and later only.)">Obtém a hora em que o evento foi gerado originalmente como um carimbo de data/hora <see cref="T:System.DateTime" />. (somente .NET core 2.2 e posterior.)</summary>
+      <returns vsli:raw="The date and time when the event was logged. The system tries to be as precise as possible.">A data e hora quando o evento foi registrado. O sistema tenta ser tão precisas quanto possível.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Version">
+      <summary vsli:raw="Gets the version of the event.">Obtém a versão do evento.</summary>
+      <returns vsli:raw="The version of the event.">A versão do evento.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingEventCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">Fornece uma variante de <see cref="T:System.Diagnostics.Tracing.EventCounter" /> para variáveis que são cada vez maiores, como o número de exceções no tempo de execução.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" />.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; instance.">O nome dessa instância <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" />.</param>
+      <param name="eventSource" vsli:raw="The event source.">A fonte do evento.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingEventCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets the rate at which this metric should be displayed as.">Obtém ou define a taxa na qual essa métrica deve ser exibida.</summary>
+      <returns vsli:raw="Gets or sets the rate at which this metric should be displayed.">Obtém ou define a taxa na qual essa métrica deve ser exibida</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.Increment(System.Double)">
+      <summary vsli:raw="Adds a value to a running total that will be published by the counter at the next timer interval.">Adiciona um valor a uma soma acumulada que será publicado pelo contador no próximo intervalo do timer.</summary>
+      <param name="increment" vsli:raw="The value to increment the running total by.">O valor no qual incrementar a soma acumulada.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing event counter instance.">Retorna uma representação de cadeia de caracteres da instância do contador de eventos com incremento atual.</summary>
+      <returns vsli:raw="The name and increment of the current incrementing event counter.">O nome e o incremento do contador de eventos com incremento atual.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingPollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">Fornece uma variante de <see cref="T:System.Diagnostics.Tracing.EventCounter" /> para variáveis que são cada vez maiores, como o número de exceções no tempo de execução.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" />.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; instance.">O nome dessa instância <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" />.</param>
+      <param name="eventSource" vsli:raw="The event source this instance is a part of.">A origem do evento de que essa instância faz parte.</param>
+      <param name="totalValueProvider" vsli:raw="A method that will be used to poll the value.">Um método que será usado para sondar o valor.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingPollingCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets rate at which this metric should be displayed as.">Obtém ou define a taxa na qual essa métrica deve ser exibida.</summary>
+      <returns vsli:raw="The rate at which this metric should be displayed.">A taxa na qual essa métrica deve ser exibida.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing polling counter instance.">Retorna uma representação de cadeia de caracteres da instância do contador de sondagem com incremento atual.</summary>
+      <returns vsli:raw="The name and increment of the current incrementing polling counter.">O nome e o incremento do contador de sondagem com incremento atual.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.NonEventAttribute">
+      <summary vsli:raw="Identifies a method that is not generating an event.">Identifica um método que não está gerando um evento.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.NonEventAttribute.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.NonEventAttribute&quot; /&gt; class.">Cria uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.NonEventAttribute" />.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.PollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; that collects and calculates similar statistics as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;.">Fornece uma variante de <see cref="T:System.Diagnostics.Tracing.EventCounter" /> que coleta e calcula estatísticas semelhantes como <see cref="T:System.Diagnostics.Tracing.EventCounter" />.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Diagnostics.Tracing.PollingCounter" />.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; instance.">O nome dessa instância <see cref="T:System.Diagnostics.Tracing.PollingCounter" />.</param>
+      <param name="eventSource" vsli:raw="The event source.">A fonte do evento.</param>
+      <param name="metricProvider" vsli:raw="A method that will be used to poll the value.">Um método que será usado para sondar o valor.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current polling counter instance.">Retorna uma representação de cadeia de caracteres da instância do contador de sondagem atual.</summary>
+      <returns vsli:raw="The name and mean of the current polling counter.">O nome e a média do contador de sondagem atual.</returns>
+    </member>
+  </members>
+</doc>

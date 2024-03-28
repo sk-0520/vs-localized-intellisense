@@ -1,0 +1,565 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.IO.Compression.ZipFile</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.Compression.ZipFile">
+      <summary vsli:raw="Provides static methods for creating, extracting, and opening zip archives.">Fornece métodos estáticos para criar, extrair e abrir arquivos zip.</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory.">Cria um arquivo zip que contém os arquivos e diretórios da pasta especificada.</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório a ser arquivado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho do arquivo morto a ser criado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> já existe.  
+
+ou - 
+Não foi possível abrir um arquivo no diretório especificado.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o diretório especificado em <paramref name="sourceDirectoryName" /> ou o arquivo especificado em <paramref name="destinationArchiveFileName" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> contém um formato inválido.  
+
+ou - 
+O arquivo zip não dá suporte à gravação.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory, uses the specified compression level, and optionally includes the base directory.">Cria um arquivo zip que contém os arquivos e diretórios do diretório especificado, usa o nível de compactação especificado e opcionalmente inclui o diretório base.</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório a ser arquivado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho do arquivo morto a ser criado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">Um dos valores de enumeração que indica se é necessário enfatizar a eficiência de compactação ou velocidade ao criar a entrada.</param>
+      <param name="includeBaseDirectory" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to include the directory name from &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; at the root of the archive; &lt;see langword=&quot;false&quot; /&gt; to include only the contents of the directory.">
+        <see langword="true" /> para incluir o nome do diretório de <paramref name="sourceDirectoryName" /> na raiz do arquivo morto, <see langword="false" /> para incluir somente o conteúdo do diretório.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> já existe.  
+
+ou - 
+Não foi possível abrir um arquivo no diretório especificado.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o diretório especificado em <paramref name="sourceDirectoryName" /> ou o arquivo especificado em <paramref name="destinationArchiveFileName" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> contém um formato inválido.  
+
+ou - 
+O arquivo zip não dá suporte à gravação.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.CreateFromDirectory(System.String,System.String,System.IO.Compression.CompressionLevel,System.Boolean,System.Text.Encoding)">
+      <summary vsli:raw="Creates a zip archive that contains the files and directories from the specified directory, uses the specified compression level and character encoding for entry names, and optionally includes the base directory.">Cria um arquivo zip que contém os arquivos e diretórios do diretório especificado, usa o nível de compactação especificado e codificação de caracteres para nomes de entrada e, como opção, inclui o diretório base.</summary>
+      <param name="sourceDirectoryName" vsli:raw="The path to the directory to be archived, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório a ser arquivado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="destinationArchiveFileName" vsli:raw="The path of the archive to be created, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho do arquivo morto a ser criado, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">Um dos valores de enumeração que indica se é necessário enfatizar a eficiência de compactação ou velocidade ao criar a entrada.</param>
+      <param name="includeBaseDirectory" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to include the directory name from &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; at the root of the archive; &lt;see langword=&quot;false&quot; /&gt; to include only the contents of the directory.">
+        <see langword="true" /> para incluir o nome do diretório de <paramref name="sourceDirectoryName" /> na raiz do arquivo morto, <see langword="false" /> para incluir somente o conteúdo do diretório.</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">A codificação a ser usada ao ler ou gravar nomes de entrada nesse arquivo. Especifique um valor para esse parâmetro somente quando uma codificação for necessária para a interoperabilidade com ferramentas de arquivo zip e bibliotecas que não dão suporte à codificação UTF-8 para nomes de entrada.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+<paramref name="entryNameEncoding" /> é definido com uma codificação Unicode diferente de UTF-8.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="sourceDirectoryName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; A file in the specified directory could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An I/O error occurred while opening a file to be archived.">
+        <paramref name="destinationArchiveFileName" /> já existe.  
+
+ou - 
+Não foi possível abrir um arquivo no diretório especificado.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the directory specified in &lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or the file specified in &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o diretório especificado em <paramref name="sourceDirectoryName" /> ou o arquivo especificado em <paramref name="destinationArchiveFileName" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceDirectoryName&quot; /&gt; or &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; contains an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">
+        <paramref name="sourceDirectoryName" /> ou <paramref name="destinationArchiveFileName" /> contém um formato inválido.  
+
+ou - 
+O arquivo zip não dá suporte à gravação.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String)">
+      <summary vsli:raw="Extracts all the files in the specified zip archive to a directory on the file system.">Extrai todos os arquivos no arquivo zip especificado em um diretório do sistema de arquivos.</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path to the archive that is to be extracted.">O caminho para o arquivo morto a ser extraído.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory in which to place the extracted files, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório no qual os arquivos extraídos serão colocados, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; exceeds the system-defined maximum length.">O caminho especificado no <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> excede o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an archive entry would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry to extract has the same name as an entry that has already been extracted or that exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.">O diretório especificado por <paramref name="destinationDirectoryName" /> já existe.  
+
+ou - 
+O nome de uma entrada no arquivo morto é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+A extração de uma entrada de arquivo morto criará um arquivo que está fora do diretório especificado por <paramref name="destinationDirectoryName" />. (Por exemplo, isso poderá acontecer se o nome da entrada contiver acessadores de diretório pai.) 
+
+ou - 
+Uma entrada de arquivo morto a ser extraída tem o mesmo nome que uma entrada que já foi extraída do mesmo arquivo.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to access the archive or the destination directory.">O chamador não tem a permissão necessária para acessar o arquivo morto ou o diretório de destino.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">
+        <paramref name="sourceArchiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was not found or was corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">O arquivo especificado por <paramref name="sourceArchiveFileName" /> não é um arquivo zip válido.  
+
+ou - 
+Uma entrada de arquivo morto não foi encontrada ou foi corrompida.  
+
+ou - 
+Uma entrada de arquivo morto foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the specified archive to a directory on the file system.">Extrai todos os arquivos dos arquivos especificados para um diretório do sistema de arquivos.</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path on the file system to the archive that is to be extracted.">O caminho no sistema de arquivos para os arquivos que devem ser extraídos.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system.">O caminho para o diretório de destino no sistema de arquivos. O diretório especificado não deve existir, mas o diretório no qual ele está contido precisa existir.</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">
+        <see langword="true" /> para substituir arquivos; caso contrário, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is a zero-length string, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou contém um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; specifies a path, a file name, or both that exceed the system-defined maximum length.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> especifica um caminho, um nome de arquivo ou ambos que excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The path specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">O caminho especificado por <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;overwriteFiles&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt; and &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; already contains a file with the same name as a file that's being extracted.&#xA;&#xA;-or-&#xA;&#xA;An I/O error has occurred.&#xA;&#xA;-or-&#xA;&#xA;The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would result in a file destination that is outside the destination directory (for example, because of parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an entry from the same archive that's already been extracted.">O diretório especificado por <paramref name="destinationDirectoryName" /> já existe.
+
+ou -
+
+Ocorreu um erro de E/S.
+
+ou -
+
+O nome de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou contém um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.
+
+ou -
+
+A extração de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> resulta em um destino de arquivo que está fora do diretório de destino (por exemplo, devido aos acessadores de diretório pai).
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> tem o mesmo nome de uma entrada já extraída dos mesmos arquivos.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">O chamador não tem a permissão necessária.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is in an invalid format.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> está em um formato inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">
+        <paramref name="sourceArchiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has been compressed using a compression method that is not supported.">Os arquivos especificados por <paramref name="sourceArchiveFileName" /> não são <see cref="T:System.IO.Compression.ZipArchive" /> válidos.
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> não foi encontrada ou estava corrompida.
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding)">
+      <summary vsli:raw="Extracts all the files in the specified zip archive to a directory on the file system and uses the specified character encoding for entry names.">Extrai todos os arquivos no arquivo zip especificado para um diretório no sistema de arquivos e usa a codificação de caracteres especificada para nomes de entrada.</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path to the archive that is to be extracted.">O caminho para o arquivo morto a ser extraído.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory in which to place the extracted files, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório no qual os arquivos extraídos serão colocados, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">A codificação a ser usada ao ler ou gravar nomes de entrada nesse arquivo. Especifique um valor para esse parâmetro somente quando uma codificação for necessária para a interoperabilidade com ferramentas de arquivo zip e bibliotecas que não dão suporte à codificação UTF-8 para nomes de entrada.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+<paramref name="entryNameEncoding" /> é definido com uma codificação Unicode diferente de UTF-8.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; exceeds the system-defined maximum length.">O caminho especificado no <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> excede o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an archive entry would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry to extract has the same name as an entry that has already been extracted or that exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.">O diretório especificado por <paramref name="destinationDirectoryName" /> já existe.  
+
+ou - 
+O nome de uma entrada no arquivo morto é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+A extração de uma entrada de arquivo morto criará um arquivo que está fora do diretório especificado por <paramref name="destinationDirectoryName" />. (Por exemplo, isso poderá acontecer se o nome da entrada contiver acessadores de diretório pai.) 
+
+ou - 
+Uma entrada de arquivo morto a ser extraída tem o mesmo nome que uma entrada que já foi extraída do mesmo arquivo.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to access the archive or the destination directory.">O chamador não tem a permissão necessária para acessar o arquivo morto ou o diretório de destino.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; or &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> ou <paramref name="sourceArchiveFileName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">
+        <paramref name="sourceArchiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was not found or was corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">O arquivo especificado por <paramref name="sourceArchiveFileName" /> não é um arquivo zip válido.  
+
+ou - 
+Uma entrada de arquivo morto não foi encontrada ou foi corrompida.  
+
+ou - 
+Uma entrada de arquivo morto foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.ExtractToDirectory(System.String,System.String,System.Text.Encoding,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the specified archive to a directory on the file system.">Extrai todos os arquivos dos arquivos especificados para um diretório do sistema de arquivos.</summary>
+      <param name="sourceArchiveFileName" vsli:raw="The path on the file system to the archive that is to be extracted.">O caminho no sistema de arquivos para os arquivos que devem ser extraídos.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system.">O caminho para o diretório de destino no sistema de arquivos. O diretório especificado não deve existir, mas o diretório no qual ele está contido precisa existir.</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading entry names in this &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.">A codificação a ser usada ao ler nomes de entrada neste <see cref="T:System.IO.Compression.ZipArchive" />.</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">
+        <see langword="true" /> para substituir arquivos; caso contrário, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is a zero-length string, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA; &#xA; -or- &#xA; &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou contém um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.
+
+ou - 
+<paramref name="entryNameEncoding" /> é definido com uma codificação Unicode diferente de UTF-8.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; specifies a path, a file name, or both that exceed the system-defined maximum length.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> especifica um caminho, um nome de arquivo ou ambos que excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The path specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">O caminho especificado por <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;overwriteFiles&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt; and an archive entry to extract has the same name as a file that already exists in &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;An I/O error has occurred.&#xA;&#xA;-or-&#xA;&#xA;The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would result in a file destination that is outside the destination directory (for example, because of parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an already extracted entry from the same archive.">O diretório especificado por <paramref name="destinationDirectoryName" /> já existe.
+
+ou -
+
+Ocorreu um erro de E/S.
+
+ou -
+
+O nome de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou contém um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.
+
+ou -
+
+A extração de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> resulta em um destino de arquivo que está fora do diretório de destino (por exemplo, devido aos acessadores de diretório pai).
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> tem o mesmo nome de uma entrada já extraída dos mesmos arquivos.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">O chamador não tem a permissão necessária.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; or &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is in an invalid format.">
+        <paramref name="sourceArchiveFileName" /> ou <paramref name="destinationDirectoryName" /> está em um formato inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; was not found.">
+        <paramref name="sourceArchiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The archive specified by &lt;paramref name=&quot;sourceArchiveFileName&quot; /&gt; is not a valid &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;An archive entry was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;An archive entry has been compressed using a compression method that is not supported.">Os arquivos especificados por <paramref name="sourceArchiveFileName" /> não são <see cref="T:System.IO.Compression.ZipArchive" /> válidos.
+
+ou -
+
+Uma entrada de arquivo morto não foi encontrada ou foi corrompida.
+
+ou -
+
+Uma entrada de arquivos foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode)">
+      <summary vsli:raw="Opens a zip archive at the specified path and in the specified mode.">Abre um arquivo zip no caminho e modo especificados.</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o arquivo morto a ser aberto, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="mode" vsli:raw="One of the enumeration values that specifies the actions which are allowed on the entries in the opened archive.">Um dos valores de enumeração que especifica as ações permitidas nas entradas do arquivo aberto.</param>
+      <returns vsli:raw="The opened zip archive.">O arquivo zip aberto.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="archiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="archiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; already exists.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">
+        <paramref name="archiveFileName" /> não pôde ser aberto.  
+
+ou - 
+<paramref name="mode" /> é definido como <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />, mas o arquivo especificado em <paramref name="archiveFileName" /> já existe.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o arquivo especificado em <paramref name="archiveFileName" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; specifies an invalid value.">
+        <paramref name="mode" /> especifica um valor inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Read&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">
+        <paramref name="mode" /> é definido como <see cref="F:System.IO.Compression.ZipArchiveMode.Read" />, mas o arquivo especificado em <paramref name="archiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is missing or corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is too large to fit into memory.">
+        <paramref name="archiveFileName" /> não pôde ser interpretado como um arquivo zip.  
+
+ou - 
+<paramref name="mode" /> é <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />, mas uma entrada está ausente ou corrompida e não pode ser lida.  
+
+ou - 
+<paramref name="mode" /> é <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />, mas uma entrada é muito grande para caber na memória.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.Open(System.String,System.IO.Compression.ZipArchiveMode,System.Text.Encoding)">
+      <summary vsli:raw="Opens a zip archive at the specified path, in the specified mode, and by using the specified character encoding for entry names.">Abre um arquivo zip no caminho especificado, no modo especificado e usando a codificação de caractere especificado para nomes de entrada.</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o arquivo morto a ser aberto, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="mode" vsli:raw="One of the enumeration values that specifies the actions that are allowed on the entries in the opened archive.">Um dos valores de enumeração que especifica as ações permitidas nas entradas do arquivo aberto.</param>
+      <param name="entryNameEncoding" vsli:raw="The encoding to use when reading or writing entry names in this archive. Specify a value for this parameter only when an encoding is required for interoperability with zip archive tools and libraries that do not support UTF-8 encoding for entry names.">A codificação a ser usada ao ler ou gravar nomes de entrada nesse arquivo. Especifique um valor para esse parâmetro somente quando uma codificação for necessária para a interoperabilidade com ferramentas de arquivo zip e bibliotecas que não dão suporte à codificação UTF-8 para nomes de entrada.</param>
+      <returns vsli:raw="The opened zip archive.">O arquivo zip aberto.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryNameEncoding&quot; /&gt; is set to a Unicode encoding other than UTF-8.">
+        <paramref name="archiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+<paramref name="entryNameEncoding" /> é definido com uma codificação Unicode diferente de UTF-8.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="archiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; already exists.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">
+        <paramref name="archiveFileName" /> não pôde ser aberto.  
+
+ou - 
+<paramref name="mode" /> é definido como <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />, mas o arquivo especificado em <paramref name="archiveFileName" /> já existe.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o arquivo especificado em <paramref name="archiveFileName" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; specifies an invalid value.">
+        <paramref name="mode" /> especifica um valor inválido.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;mode&quot; /&gt; is set to &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Read&quot; /&gt;, but the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">
+        <paramref name="mode" /> é definido como <see cref="F:System.IO.Compression.ZipArchiveMode.Read" />, mas o arquivo especificado em <paramref name="archiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is missing or corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;mode&quot; /&gt; is &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Update&quot; /&gt;, but an entry is too large to fit into memory.">
+        <paramref name="archiveFileName" /> não pôde ser interpretado como um arquivo zip.  
+
+ou - 
+<paramref name="mode" /> é <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />, mas uma entrada está ausente ou corrompida e não pode ser lida.  
+
+ou - 
+<paramref name="mode" /> é <see cref="F:System.IO.Compression.ZipArchiveMode.Update" />, mas uma entrada é muito grande para caber na memória.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFile.OpenRead(System.String)">
+      <summary vsli:raw="Opens a zip archive for reading at the specified path.">Abre um arquivo zip para leitura no caminho especificado.</summary>
+      <param name="archiveFileName" vsli:raw="The path to the archive to open, specified as a relative or absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o arquivo morto a ser aberto, especificado como um caminho relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <returns vsli:raw="The opened zip archive.">O arquivo zip aberto.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="archiveFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="archiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;archiveFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="archiveFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; is invalid or does not exist (for example, it is on an unmapped drive).">
+        <paramref name="archiveFileName" /> é inválido ou não existe (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be opened.&#xA;&#xA;-or-&#xA;&#xA;An unspecified I/O error occurred while opening the file.">
+        <paramref name="archiveFileName" /> não pôde ser aberto.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt;.">
+        <paramref name="archiveFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o arquivo especificado em <paramref name="archiveFileName" />.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified in &lt;paramref name=&quot;archiveFileName&quot; /&gt; is not found.">O arquivo especificado em <paramref name="archiveFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; contains an invalid format.">
+        <paramref name="archiveFileName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="&lt;paramref name=&quot;archiveFileName&quot; /&gt; could not be interpreted as a zip archive.">
+        <paramref name="archiveFileName" /> não pôde ser interpretado como um arquivo zip.</exception>
+    </member>
+    <member name="T:System.IO.Compression.ZipFileExtensions">
+      <summary vsli:raw="Provides extension methods for the &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt; and &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; classes.">Fornece métodos de extensão para as classes <see cref="T:System.IO.Compression.ZipArchive" /> e <see cref="T:System.IO.Compression.ZipArchiveEntry" />.</summary>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String)">
+      <summary vsli:raw="Archives a file by compressing it and adding it to the zip archive.">Arquiva um arquivo compactando-o e adicionando-o ao arquivo zip.</summary>
+      <param name="destination" vsli:raw="The zip archive to add the file to.">O arquivo zip ao qual o arquivo será adicionado.</param>
+      <param name="sourceFileName" vsli:raw="The path to the file to be archived. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o arquivo a ser arquivado. Você pode especificar um caminho absoluto ou relativo. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="entryName" vsli:raw="The name of the entry to create in the zip archive.">O nome da entrada a ser criada no arquivo zip.</param>
+      <returns vsli:raw="A wrapper for the new entry in the zip archive.">Um wrapper para a nova entrada no arquivo zip.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;.">
+        <paramref name="sourceFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+<paramref name="entryName" /> é <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; or &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceFileName" /> ou <paramref name="entryName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="sourceFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceFileName" /> é inválido (por exemplo, está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; cannot be opened, or is too large to be updated (current limit is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;).">O arquivo especificado por <paramref name="sourceFileName" /> não pode ser aberto ou é muito grande para ser atualizado (o limite atual é Int32.MaxValue).</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt;.">
+        <paramref name="sourceFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o arquivo especificado por <paramref name="sourceFileName" />.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; is not found.">O arquivo especificado por <paramref name="sourceFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;sourceFileName&quot; /&gt; parameter is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">O parâmetro <paramref name="sourceFileName" /> está em um formato inválido.  
+
+ou - 
+O arquivo zip não dá suporte à gravação.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive has been disposed.">O arquivo zip foi descartado.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.CreateEntryFromFile(System.IO.Compression.ZipArchive,System.String,System.String,System.IO.Compression.CompressionLevel)">
+      <summary vsli:raw="Archives a file by compressing it using the specified compression level and adding it to the zip archive.">Arquiva um arquivo, compactando-o usando o nível de compactação especificado e adicionando-o ao arquivo zip.</summary>
+      <param name="destination" vsli:raw="The zip archive to add the file to.">O arquivo zip ao qual o arquivo será adicionado.</param>
+      <param name="sourceFileName" vsli:raw="The path to the file to be archived. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o arquivo a ser arquivado. Você pode especificar um caminho absoluto ou relativo. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="entryName" vsli:raw="The name of the entry to create in the zip archive.">O nome da entrada a ser criada no arquivo zip.</param>
+      <param name="compressionLevel" vsli:raw="One of the enumeration values that indicates whether to emphasize speed or compression effectiveness when creating the entry.">Um dos valores de enumeração que indica se é necessário enfatizar a eficiência de compactação ou velocidade ao criar a entrada.</param>
+      <returns vsli:raw="A wrapper for the new entry in the zip archive.">Um wrapper para a nova entrada no arquivo zip.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;.">
+        <paramref name="sourceFileName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+<paramref name="entryName" /> é <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; or &lt;paramref name=&quot;entryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="sourceFileName" /> ou <paramref name="entryName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; is invalid (for example, it is on an unmapped drive).">
+        <paramref name="sourceFileName" /> é inválido (por exemplo, está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="In &lt;paramref name=&quot;sourceFileName&quot; /&gt;, the specified path, file name, or both exceed the system-defined maximum length.">Em <paramref name="sourceFileName" />, o caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; cannot be opened, or is too large to be updated (current limit is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;).">O arquivo especificado por <paramref name="sourceFileName" /> não pode ser aberto ou é muito grande para ser atualizado (o limite atual é Int32.MaxValue).</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="&lt;paramref name=&quot;sourceFileName&quot; /&gt; specifies a directory.  &#xA;  &#xA; -or-  &#xA;  &#xA; The caller does not have the required permission to access the file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt;.">
+        <paramref name="sourceFileName" /> especifica um diretório.  
+
+ou - 
+O chamador não tem a permissão necessária para acessar o arquivo especificado por <paramref name="sourceFileName" />.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The file specified by &lt;paramref name=&quot;sourceFileName&quot; /&gt; is not found.">O arquivo especificado por <paramref name="sourceFileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;sourceFileName&quot; /&gt; parameter is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive does not support writing.">O parâmetro <paramref name="sourceFileName" /> está em um formato inválido.  
+
+ou - 
+O arquivo zip não dá suporte à gravação.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive has been disposed.">O arquivo zip foi descartado.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String)">
+      <summary vsli:raw="Extracts all the files in the zip archive to a directory on the file system.">Extrai todos os arquivos no arquivo zip especificado para um diretório do sistema de arquivos.</summary>
+      <param name="source" vsli:raw="The zip archive to extract files from.">O arquivo zip de onde extrair os arquivos.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the directory to place the extracted files in. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório para colocar os arquivos extraídos. Você pode especificar um caminho absoluto ou relativo. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.">
+        <paramref name="destinationDirectoryName" /> é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationDirectoryName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path exceeds the system-defined maximum length.">O caminho especificado excede o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of an entry in the archive is &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, contains only white space, or contains at least one invalid character.  &#xA;  &#xA; -or-  &#xA;  &#xA; Extracting an entry from the archive would create a file that is outside the directory specified by &lt;paramref name=&quot;destinationDirectoryName&quot; /&gt;. (For example, this might happen if the entry name contains parent directory accessors.)  &#xA;  &#xA; -or-  &#xA;  &#xA; Two or more entries in the archive have the same name.">O diretório especificado por <paramref name="destinationDirectoryName" /> já existe.  
+
+ou - 
+O nome de uma entrada no arquivo morto é <see cref="F:System.String.Empty" />, contém somente espaços em branco ou, pelo menos, um caractere inválido.  
+
+ou - 
+A extração de uma entrada do arquivo criará um arquivo que está fora do diretório especificado por <paramref name="destinationDirectoryName" />. (Por exemplo, isso poderá acontecer se o nome da entrada contiver acessadores de diretório pai.) 
+
+ou - 
+Duas ou mais entradas no arquivo tem o mesmo nome.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to write to the destination directory.">O chamador não tem a permissão necessária para acessar o arquivo ou o diretório de destino.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationDirectoryName&quot; /&gt; contains an invalid format.">
+        <paramref name="destinationDirectoryName" /> contém um formato inválido.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="An archive entry cannot be found or is corrupt.  &#xA;  &#xA; -or-  &#xA;  &#xA; An archive entry was compressed by using a compression method that is not supported.">Uma entrada de arquivo não pode ser encontrada ou está corrompida.  
+
+ou -  
+
+ Uma entrada de arquivo morto foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToDirectory(System.IO.Compression.ZipArchive,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts all of the files in the archive to a directory on the file system.">Extrai todos os arquivos dos arquivos para um diretório do sistema de arquivos.</summary>
+      <param name="source" vsli:raw="The &lt;see cref=&quot;T:System.IO.Compression.ZipArchive&quot; /&gt; to extract.">O <see cref="T:System.IO.Compression.ZipArchive" /> a ser extraído.</param>
+      <param name="destinationDirectoryName" vsli:raw="The path to the destination directory on the file system. The path can be relative or absolute. A relative path is interpreted as relative to the current working directory.">O caminho para o diretório de destino no sistema de arquivos. O caminho pode ser relativo ou absoluto. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="overwriteFiles" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite existing files; &lt;see langword=&quot;false&quot; /&gt; otherwise.">
+        <see langword="true" /> para indicar que os arquivos existentes devem ser substituídos; caso contrário, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is a zero-length string, contains only whitespace,&#xA;            or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationArchiveFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">O caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="The name of a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; is zero-length, contains only whitespace, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.&#xA;&#xA;-or-&#xA;&#xA;Extracting a &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; would have resulted in a destination file that is outside &lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; (for example, if the entry name contains parent directory accessors).&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has the same name as an already extracted entry from the same archive.">O nome de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> é uma cadeia de comprimento zero, contém somente espaço em branco ou contém um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.
+
+ou -
+
+A extração de uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> resulta em um arquivo de destino que está fora de <paramref name="destinationArchiveFileName" /> (por exemplo, se o nome da entrada contém acessadores de diretório pai).
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> tem o mesmo nome de uma entrada já extraída dos mesmos arquivos.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission.">O chamador não tem a permissão necessária.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationArchiveFileName&quot; /&gt; is in an invalid format.">
+        <paramref name="destinationArchiveFileName" /> está em um formato inválido.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; was not found or was corrupt.&#xA;&#xA;-or-&#xA;&#xA;A &lt;see cref=&quot;T:System.IO.Compression.ZipArchiveEntry&quot; /&gt; has been compressed using a compression method that is not supported.">Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> não foi encontrada ou estava corrompida.
+
+ou -
+
+Uma <see cref="T:System.IO.Compression.ZipArchiveEntry" /> foi compactada usando um método de compactação sem suporte.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String)">
+      <summary vsli:raw="Extracts an entry in the zip archive to a file.">Extrai uma entrada no arquivo zip para um arquivo.</summary>
+      <param name="source" vsli:raw="The zip archive entry to extract a file from.">A entrada do arquivo zip da qual um arquivo será extraído.</param>
+      <param name="destinationFileName" vsli:raw="The path of the file to create from the contents of the entry. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">O caminho do arquivo a ser criado do conteúdo da entrada. Você pode especificar um caminho absoluto ou relativo. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is a zero-length string, contains only white space, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;destinationFileName&quot; /&gt; specifies a directory.">
+        <paramref name="destinationFileName" /> é uma cadeia de comprimento zero, contém somente espaços em branco ou um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.  
+
+ou - 
+<paramref name="destinationFileName" /> especifica um diretório.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">O caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; already exists.  &#xA;  &#xA; -or-  &#xA;  &#xA; An I/O error occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry is currently open for writing.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been deleted from the archive.">
+        <paramref name="destinationFileName" /> já existe.  
+
+ou - 
+Ocorreu um erro de E/S.  
+
+ou - 
+A entrada está aberta para gravação.  
+
+ou - 
+A entrada foi excluída do arquivo.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to create the new file.">O chamador não tem a permissão necessária para criar o novo arquivo.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The entry is missing from the archive, or is corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been compressed by using a compression method that is not supported.">A entrada está ausente do arquivo ou está corrompida e não pode ser lida.  
+
+ou -  
+
+ A entrada foi compactada usando um método de compactação sem suporte.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive that this entry belongs to has been disposed.">O arquivo zip a que esta entrada pertence foi descartado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive for this entry was opened in &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt; mode, which does not permit the retrieval of entries.">
+        <paramref name="destinationFileName" /> está em um formato inválido.  
+
+ou - 
+O arquivo zip desta entrada foi aberto no modo <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />, que não permite a recuperação de entradas.</exception>
+    </member>
+    <member name="M:System.IO.Compression.ZipFileExtensions.ExtractToFile(System.IO.Compression.ZipArchiveEntry,System.String,System.Boolean)">
+      <summary vsli:raw="Extracts an entry in the zip archive to a file, and optionally overwrites an existing file that has the same name.">Extrai uma entrada do arquivo zip para um arquivo e, opcionalmente, substitui um arquivo existente que tem o mesmo nome.</summary>
+      <param name="source" vsli:raw="The zip archive entry to extract a file from.">A entrada do arquivo zip da qual um arquivo será extraído.</param>
+      <param name="destinationFileName" vsli:raw="The path of the file to create from the contents of the entry. You can specify either a relative or an absolute path. A relative path is interpreted as relative to the current working directory.">O caminho do arquivo a ser criado do conteúdo da entrada. Você pode especificar um caminho absoluto ou relativo. Um caminho relativo é interpretado como relativo ao diretório de trabalho atual.</param>
+      <param name="overwrite" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to overwrite an existing file that has the same name as the destination file; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> para substituir um arquivo existente que tem o mesmo nome do arquivo de destino; caso contrário, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is a zero-length string, contains only white space, or contains one or more invalid characters as defined by &lt;see cref=&quot;F:System.IO.Path.InvalidPathChars&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;destinationFileName&quot; /&gt; specifies a directory.">
+        <paramref name="destinationFileName" /> é uma cadeia de comprimento zero, contém somente espaços em branco ou um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.  
+
+ou - 
+<paramref name="destinationFileName" /> especifica um diretório.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="destinationFileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.PathTooLongException" vsli:raw="The specified path, file name, or both exceed the system-defined maximum length.">O caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException" vsli:raw="The specified path is invalid (for example, it is on an unmapped drive).">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.IOException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; already exists and &lt;paramref name=&quot;overwrite&quot; /&gt; is &lt;see langword=&quot;false&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; An I/O error occurred.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry is currently open for writing.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been deleted from the archive.">
+        <paramref name="destinationFileName" /> já existe e <paramref name="overwrite" /> é <see langword="false" />.  
+
+ou - 
+Ocorreu um erro de E/S.  
+
+ou - 
+A entrada está aberta para gravação.  
+
+ou - 
+A entrada foi excluída do arquivo.</exception>
+      <exception cref="T:System.UnauthorizedAccessException" vsli:raw="The caller does not have the required permission to create the new file.">O chamador não tem a permissão necessária para criar o novo arquivo.</exception>
+      <exception cref="T:System.IO.InvalidDataException" vsli:raw="The entry is missing from the archive or is corrupt and cannot be read.  &#xA;  &#xA; -or-  &#xA;  &#xA; The entry has been compressed by using a compression method that is not supported.">A entrada está ausente do arquivo ou está corrompida e não pode ser lida.  
+
+ou -  
+
+ A entrada foi compactada usando um método de compactação sem suporte.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The zip archive that this entry belongs to has been disposed.">O arquivo zip a que esta entrada pertence foi descartado.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="&lt;paramref name=&quot;destinationFileName&quot; /&gt; is in an invalid format.  &#xA;  &#xA; -or-  &#xA;  &#xA; The zip archive for this entry was opened in &lt;see cref=&quot;F:System.IO.Compression.ZipArchiveMode.Create&quot; /&gt; mode, which does not permit the retrieval of entries.">
+        <paramref name="destinationFileName" /> está em um formato inválido.  
+
+ou - 
+O arquivo zip desta entrada foi aberto no modo <see cref="F:System.IO.Compression.ZipArchiveMode.Create" />, que não permite a recuperação de entradas.</exception>
+    </member>
+  </members>
+</doc>

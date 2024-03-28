@@ -1,0 +1,867 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.ObjectModel</name>
+  </assembly>
+  <members>
+    <member name="T:System.Collections.ObjectModel.KeyedCollection`2">
+      <summary vsli:raw="Provides the abstract base class for a collection whose keys are embedded in the values.">提供集合键嵌入在值中的集合的抽象基类。</summary>
+      <typeparam name="TKey" vsli:raw="The type of keys in the collection.">集合中的键的类型。</typeparam>
+      <typeparam name="TItem" vsli:raw="The type of items in the collection.">集合中的项的类型。</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the default equality comparer.">初始化使用默认相等比较器的 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the specified equality comparer.">初始化使用指定相等比较器的 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 类的新实例。</summary>
+      <param name="comparer" vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface to use when comparing keys, or &lt;see langword=&quot;null&quot; /&gt; to use the default equality comparer for the type of the key, obtained from &lt;see cref=&quot;P:System.Collections.Generic.EqualityComparer`1.Default&quot; /&gt;.">比较键时要使用的 <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> 泛型接口的实现，如果为 <see langword="null" />，则使用从 <see cref="P:System.Collections.Generic.EqualityComparer`1.Default" /> 获取的该类型的键的默认相等比较器。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; class that uses the specified equality comparer and creates a lookup dictionary when the specified threshold is exceeded.">初始化 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 类的新实例，该新实例使用指定的相等比较器并在超过指定阈值时创建一个查找字典。</summary>
+      <param name="comparer" vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface to use when comparing keys, or &lt;see langword=&quot;null&quot; /&gt; to use the default equality comparer for the type of the key, obtained from &lt;see cref=&quot;P:System.Collections.Generic.EqualityComparer`1.Default&quot; /&gt;.">比较键时要使用的 <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> 泛型接口的实现，如果为 <see langword="null" />，则使用从 <see cref="P:System.Collections.Generic.EqualityComparer`1.Default" /> 获取的该类型的键的默认相等比较器。</param>
+      <param name="dictionaryCreationThreshold" vsli:raw="The number of elements the collection can hold without creating a lookup dictionary (0 creates the lookup dictionary when the first item is added), or -1 to specify that a lookup dictionary is never created.">在不创建查找字典的情况下集合可容纳的元素的数目（0 表示添加第一项时创建查找字典）；或者为 -1，表示指定永远不会创建查找字典。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;dictionaryCreationThreshold&quot; /&gt; is less than -1.">
+        <paramref name="dictionaryCreationThreshold" /> 小于 -1。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.ChangeItemKey(`1,`0)">
+      <summary vsli:raw="Changes the key associated with the specified element in the lookup dictionary.">更改与查找字典中指定元素相关联的键。</summary>
+      <param name="item" vsli:raw="The element to change the key of.">要更改其键的元素。</param>
+      <param name="newKey" vsli:raw="The new key for &lt;paramref name=&quot;item&quot; /&gt;.">
+        <paramref name="item" /> 的新键。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;item&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="item" /> 为 <see langword="null" />。  
+或 
+ <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;item&quot; /&gt; is not found.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;key&quot; /&gt; already exists in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">
+        <paramref name="item" /> 未找到。  
+
+或 - 
+<paramref name="key" /> 在 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 中已存在。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.ClearItems">
+      <summary vsli:raw="Removes all elements from the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">从 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 中移除所有元素。</summary>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Comparer">
+      <summary vsli:raw="Gets the generic equality comparer that is used to determine equality of keys in the collection.">获取用于确定集合中的键是否相等的泛型相等比较器。</summary>
+      <returns vsli:raw="The implementation of the &lt;see cref=&quot;T:System.Collections.Generic.IEqualityComparer`1&quot; /&gt; generic interface that is used to determine equality of keys in the collection.">用于确定集合中的键是否相等的 <see cref="T:System.Collections.Generic.IEqualityComparer`1" /> 泛型接口的实现。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.Contains(`0)">
+      <summary vsli:raw="Determines whether the collection contains an element with the specified key.">确定集合是否包含具有指定键的元素。</summary>
+      <param name="key" vsli:raw="The key to locate in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">要在 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 中定位的键。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; contains an element with the specified key; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <see langword="true" /> 包含具有指定键的元素，则为 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Dictionary">
+      <summary vsli:raw="Gets the lookup dictionary of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">获取 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 的查找字典。</summary>
+      <returns vsli:raw="The lookup dictionary of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;, if it exists; otherwise, &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 的查找字典（如果存在），否则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)">
+      <summary vsli:raw="When implemented in a derived class, extracts the key from the specified element.">在派生类中实现时，将从指定元素提取键。</summary>
+      <param name="item" vsli:raw="The element from which to extract the key.">从中提取键的元素。</param>
+      <returns vsli:raw="The key for the specified element.">指定元素的键。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.InsertItem(System.Int32,`1)">
+      <summary vsli:raw="Inserts an element into the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt; at the specified index.">将元素插入 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 的指定索引处。</summary>
+      <param name="index" vsli:raw="The zero-based index at which &lt;paramref name=&quot;item&quot; /&gt; should be inserted.">应插入 <paramref name="item" /> 的从零开始的索引。</param>
+      <param name="item" vsli:raw="The object to insert.">要插入的对象。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;index&quot; /&gt; is less than 0.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;index&quot; /&gt; is greater than &lt;see cref=&quot;P:System.Collections.ObjectModel.Collection`1.Count&quot; /&gt;.">
+        <paramref name="index" /> 小于 0。  
+
+或 - 
+<paramref name="index" /> 大于 <see cref="P:System.Collections.ObjectModel.Collection`1.Count" />。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.KeyedCollection`2.Item(`0)">
+      <summary vsli:raw="Gets the element with the specified key.">获取具有指定键的元素。</summary>
+      <param name="key" vsli:raw="The key of the element to get.">要获取的元素的键。</param>
+      <returns vsli:raw="The element with the specified key. If an element with the specified key is not found, an exception is thrown.">带有指定键的元素。 如果未找到具有指定键的元素，则引发异常。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException" vsli:raw="An element with the specified key does not exist in the collection.">集合中不存在具有指定键的元素。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.Remove(`0)">
+      <summary vsli:raw="Removes the element with the specified key from the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">从 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 中移除包含指定键的元素。</summary>
+      <param name="key" vsli:raw="The key of the element to remove.">要移除的元素的键。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element is successfully removed; otherwise, &lt;see langword=&quot;false&quot; /&gt;.  This method also returns &lt;see langword=&quot;false&quot; /&gt; if &lt;paramref name=&quot;key&quot; /&gt; is not found in the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">如果该元素已成功移除，则为 <see langword="true" />；否则为 <see langword="false" />。  如果在 <see langword="false" /> 中没有找到 <paramref name="key" />，则此方法也会返回 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;key&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.RemoveItem(System.Int32)">
+      <summary vsli:raw="Removes the element at the specified index of the &lt;see cref=&quot;T:System.Collections.ObjectModel.KeyedCollection`2&quot; /&gt;.">移除 <see cref="T:System.Collections.ObjectModel.KeyedCollection`2" /> 的指定索引处的元素。</summary>
+      <param name="index" vsli:raw="The index of the element to remove.">要移除的元素的索引。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.SetItem(System.Int32,`1)">
+      <summary vsli:raw="Replaces the item at the specified index with the specified item.">使用指定项替换指定索引处的项。</summary>
+      <param name="index" vsli:raw="The zero-based index of the item to be replaced.">要替换的项的从零开始的索引。</param>
+      <param name="item" vsli:raw="The new item.">新项目。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.KeyedCollection`2.TryGetValue(`0,`1@)">
+      <param name="key" vsli:raw="The key of the item to search in the collection." />
+      <param name="item" vsli:raw="When this method returns &lt;see langword=&quot;true&quot; /&gt;, the item from the collection that matches the provided key; when this method returns &lt;see langword=&quot;false&quot; /&gt;, the &lt;see langword=&quot;default&quot; /&gt; value for the type of the collection." />
+    </member>
+    <member name="T:System.Collections.ObjectModel.ObservableCollection`1">
+      <summary vsli:raw="Represents a dynamic data collection that provides notifications when items get added or removed, or when the whole list is refreshed.">表示一个动态数据集合，在添加项、移除项或刷新整个列表时，此集合将提供通知。</summary>
+      <typeparam name="T" vsli:raw="The type of elements in the collection.">集合中的元素类型。</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class.">初始化 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor(System.Collections.Generic.IEnumerable{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class that contains elements copied from the specified collection.">初始化 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> 类的新实例，该类包含从指定集合中复制的元素。</summary>
+      <param name="collection" vsli:raw="The collection from which the elements are copied.">从中复制元素的集合。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;collection&quot; /&gt; parameter cannot be &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="collection" /> 参数不能为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.#ctor(System.Collections.Generic.List{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; class that contains elements copied from the specified list.">初始化 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> 类的新实例，该类包含从指定列表中复制的元素。</summary>
+      <param name="list" vsli:raw="The list from which the elements are copied.">从中复制元素的列表。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;list&quot; /&gt; parameter cannot be &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="list" /> 参数不能为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy">
+      <summary vsli:raw="Disallows reentrant attempts to change this collection.">不允许可重入的更改此集合的尝试。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; object that can be used to dispose of the object.">可用于释放对象的 <see cref="T:System.IDisposable" /> 对象。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.CheckReentrancy">
+      <summary vsli:raw="Checks for reentrant attempts to change this collection.">检查企图更改此集合的可重入尝试。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If there was a call to &lt;see cref=&quot;M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy&quot; /&gt; of which the &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; return value has not yet been disposed of. Typically, this means when there are additional attempts to change this collection during a &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged&quot; /&gt; event. However, it depends on when derived classes choose to call &lt;see cref=&quot;M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy&quot; /&gt;.">如果调用了 <see cref="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy" />，其中尚未释放 <see cref="T:System.IDisposable" /> 返回值。 通常情况下，这意味着在发生 <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged" /> 事件时更多次尝试更改此集合。 但是，这取决于派生的类何时选择调用 <see cref="M:System.Collections.ObjectModel.ObservableCollection`1.BlockReentrancy" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.ClearItems">
+      <summary vsli:raw="Removes all items from the collection.">从集合中移除所有项。</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged">
+      <summary vsli:raw="Occurs when an item is added, removed, or moved, or the entire list is refreshed.">在添加、移除、更改或移动项或者在刷新整个列表时发生。</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.InsertItem(System.Int32,`0)">
+      <summary vsli:raw="Inserts an item into the collection at the specified index.">将一项插入集合中指定索引处。</summary>
+      <param name="index" vsli:raw="The zero-based index at which &lt;paramref name=&quot;item&quot; /&gt; should be inserted.">应插入 <paramref name="item" /> 的从零开始的索引。</param>
+      <param name="item" vsli:raw="The object to insert.">要插入的对象。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.Move(System.Int32,System.Int32)">
+      <summary vsli:raw="Moves the item at the specified index to a new location in the collection.">将指定索引处的项移至集合中的新位置。</summary>
+      <param name="oldIndex" vsli:raw="The zero-based index specifying the location of the item to be moved.">从零开始的索引，用于指定要移动的项的位置。</param>
+      <param name="newIndex" vsli:raw="The zero-based index specifying the new location of the item.">从零开始的索引，用于指定项的新位置。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.MoveItem(System.Int32,System.Int32)">
+      <summary vsli:raw="Moves the item at the specified index to a new location in the collection.">将指定索引处的项移至集合中的新位置。</summary>
+      <param name="oldIndex" vsli:raw="The zero-based index specifying the location of the item to be moved.">从零开始的索引，用于指定要移动的项的位置。</param>
+      <param name="newIndex" vsli:raw="The zero-based index specifying the new location of the item.">从零开始的索引，用于指定项的新位置。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged&quot; /&gt; event with the provided arguments.">引发带有提供的参数的 <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.CollectionChanged" /> 事件。</summary>
+      <param name="e" vsli:raw="Arguments of the event being raised.">要引发事件的参数。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged&quot; /&gt; event with the provided arguments.">引发带有提供的参数的 <see cref="E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged" /> 事件。</summary>
+      <param name="e" vsli:raw="Arguments of the event being raised.">要引发事件的参数。</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">在属性值更改时发生。</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.RemoveItem(System.Int32)">
+      <summary vsli:raw="Removes the item at the specified index of the collection.">移除集合中指定索引处的项。</summary>
+      <param name="index" vsli:raw="The zero-based index of the element to remove.">要移除的元素的从零开始的索引。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ObservableCollection`1.SetItem(System.Int32,`0)">
+      <summary vsli:raw="Replaces the element at the specified index.">替换指定索引处的元素。</summary>
+      <param name="index" vsli:raw="The zero-based index of the element to replace.">待替换元素的从零开始的索引。</param>
+      <param name="item" vsli:raw="The new value for the element at the specified index.">位于指定索引处的元素的新值。</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ObservableCollection`1.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">在属性值更改时发生。</summary>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2">
+      <summary>表示键/值对的只读泛型集合。</summary>
+      <typeparam name="TKey">字典中键的类型。</typeparam>
+      <typeparam name="TValue">字典中值的类型。</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})">
+      <summary>初始化 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 类的新实例，该实例是指定字典周围的包装。</summary>
+      <param name="dictionary">要包装的字典。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="dictionary" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ContainsKey(`0)">
+      <summary>确定字典是否包含具有指定键的元素。</summary>
+      <param name="key">要在字典中查找的键。</param>
+      <returns>如果字典包含具有指定键的元素，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Count">
+      <summary>获取字典中项的数目。</summary>
+      <returns>字典中的项数。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Dictionary">
+      <summary>获取由  <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 对象包装的字典。</summary>
+      <returns>由此对象包装的字典。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.GetEnumerator">
+      <summary>返回循环访问 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 的枚举数。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Item(`0)">
+      <summary>获取具有指定键的元素。</summary>
+      <param name="key">要获取的元素的键。</param>
+      <returns>具有指定键的元素。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">检索了属性但没有找到 <paramref name="key" />。</exception>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection">
+      <summary>表示 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 对象的键的只读集合。</summary>
+      <typeparam name="TKey" />
+      <typeparam name="TValue" />
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.CopyTo(`0[],System.Int32)">
+      <summary>从特定的数组索引开始，将集合的元素复制到一个数组中。</summary>
+      <param name="array">作为集合中元素的复制目标位置的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="arrayIndex">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+或 
+源集合中的元素数大于从 <paramref name="arrayIndex" /> 到目标 <paramref name="array" /> 的末尾的可用空间。  
+或 
+无法自动将类型 <paramref name="T" /> 转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.Count">
+      <summary>获取集合中的元素数。</summary>
+      <returns>集合中的元素数。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Add(`0)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要添加到集合中的对象。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Clear">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Contains(`0)">
+      <summary>确定集合中是否包含特定值。</summary>
+      <param name="item">要在集合中定位的对象。</param>
+      <returns>如果在集合中找到 <paramref name="item" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#IsReadOnly">
+      <summary>获取一个值，该值指示字典是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#Generic#ICollection{TKey}#Remove(`0)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要从集合中移除的对象。</param>
+      <returns>如果从集合中成功移除了 <see langword="true" />，则为 <paramref name="item" />；否则为 <see langword="false" />。 如果在原始集合中找不到 <paramref name="item" />，此方法也会返回 <see langword="false" />。</returns>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>从特定的数组索引开始，将集合的元素复制到一个数组中。</summary>
+      <param name="array">作为集合中元素的复制目标位置的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="index">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+
+或 - 
+源集合中的元素数大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 的末尾的可用空间。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#IsSynchronized">
+      <summary>获取一个值，该值指示对集合的访问是否同步（线程安全）。</summary>
+      <returns>如果对该集合的访问是同步的（线程安全），则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#ICollection#SyncRoot">
+      <summary>获取可用于同步对集合的访问的对象。</summary>
+      <returns>可用于同步集合访问的对象。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Keys">
+      <summary>获取包含字典中的键的键集合。</summary>
+      <returns>包含字典中的键的键集合。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Add(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要添加到字典中的对象。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Clear">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Contains(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>确定字典是否包含特定值。</summary>
+      <param name="item">要在字典中查找的对象。</param>
+      <returns>如果在字典中找到 <paramref name="item" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#CopyTo(System.Collections.Generic.KeyValuePair{`0,`1}[],System.Int32)">
+      <summary>从指定的数组索引开始，将字典中的元素复制到一个数组中。</summary>
+      <param name="array">作为从字典复制的元素的目标的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="arrayIndex">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。
+
+或 - 
+源字典中的元素数大于从 <paramref name="arrayIndex" /> 到目标 <paramref name="array" /> 的末尾的可用空间。
+
+或 
+无法自动将类型 <paramref name="T" /> 转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#IsReadOnly">
+      <summary>获取一个值，该值指示字典是否为只读。</summary>
+      <returns>始终返回<see langword="true" />以指示字典是只读的。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#ICollection{System#Collections#Generic#KeyValuePair{TKey@TValue}}#Remove(System.Collections.Generic.KeyValuePair{`0,`1})">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要从字典中移除的对象。</param>
+      <returns>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</returns>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Add(`0,`1)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="key">用作要添加的元素的键的对象。</param>
+      <param name="value">用作要添加的元素的值的对象。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Item(`0)">
+      <summary>获取具有指定键的元素。</summary>
+      <param name="key">要获取或设置的元素的键。</param>
+      <returns>具有指定键的元素。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Collections.Generic.KeyNotFoundException">检索了属性但没有找到 <paramref name="key" />。</exception>
+      <exception cref="T:System.NotSupportedException">已设置此属性。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Keys">
+      <summary>获取包含词典中的键的集合。</summary>
+      <returns>一个集合，其中包含实现 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 的对象的键。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Remove(`0)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="key">要移除的元素的键。</param>
+      <returns>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</returns>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IDictionary{TKey@TValue}#Values">
+      <summary>获取包含词典中的值的集合。</summary>
+      <returns>一个集合，其中包含实现 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 的对象的值。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey@TValue}#Keys">
+      <summary>获取包含只读字典中的密钥的可枚举集合。</summary>
+      <returns>包含只读字典中的密钥的可枚举集合。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#Generic#IReadOnlyDictionary{TKey@TValue}#Values">
+      <summary>获取包含只读字典中的值的可枚举集合。</summary>
+      <returns>包含只读字典中的值的可枚举集合。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>从指定的数组索引开始，将字典中的元素复制到一个数组中。</summary>
+      <param name="array">作为从字典复制的元素的目标的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="index">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+或 
+源字典中的元素数大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 的末尾的可用空间。  
+
+或 - 
+无法自动将源字典的类型强制转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#IsSynchronized">
+      <summary>获取一个值，该值指示对字典的访问是否同步（线程安全）。</summary>
+      <returns>如果对该字典的访问是同步的（线程安全），则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#ICollection#SyncRoot">
+      <summary>获取可用于同步对字典的访问的对象。</summary>
+      <returns>一个可用于同步对字典的访问的对象。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Add(System.Object,System.Object)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="key">要添加的元素的键。</param>
+      <param name="value">要添加的元素的值。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Clear">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Contains(System.Object)">
+      <summary>确定字典是否包含具有指定键的元素。</summary>
+      <param name="key">要在字典中查找的键。</param>
+      <returns>如果字典包含具有指定键的元素，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#GetEnumerator">
+      <summary>返回字典的一个枚举数。</summary>
+      <returns>字典的枚举数。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#IsFixedSize">
+      <summary>获取一个值，该值指示字典是否具有固定大小。</summary>
+      <returns>如果字典具有固定大小，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#IsReadOnly">
+      <summary>获取一个值，该值指示字典是否为只读。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Item(System.Object)">
+      <summary>获取具有指定键的元素。</summary>
+      <param name="key">要获取或设置的元素的键。</param>
+      <returns>具有指定键的元素。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.NotSupportedException">已设置此属性。  
+或 
+设置该属性，集合中不存在 <paramref name="key" />，而且字典具有固定大小。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Keys">
+      <summary>获取包含词典中的键的集合。</summary>
+      <returns>一个集合，包含词典中的键。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Remove(System.Object)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="key">要移除的元素的键。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IDictionary#Values">
+      <summary>获取包含词典中的值的集合。</summary>
+      <returns>包含词典中的值的集合。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回循环访问集合的枚举数。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.TryGetValue(`0,`1@)">
+      <summary>检索与指定键关联的值。</summary>
+      <param name="key">将检索其值的键。</param>
+      <param name="value">当此方法返回时，如果找到指定键，则返回与该键相关联的值；否则，将返回 <paramref name="value" /> 参数的类型的默认值。 此参数未经初始化即被传递。</param>
+      <returns>如果实现 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 的对象包含具有指定键的元素，则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection">
+      <summary>表示 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 对象的值的只读集合。</summary>
+      <typeparam name="TKey" />
+      <typeparam name="TValue" />
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.CopyTo(`1[],System.Int32)">
+      <summary>从特定的数组索引开始，将集合的元素复制到一个数组中。</summary>
+      <param name="array">作为集合中元素的复制目标位置的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="arrayIndex">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="arrayIndex" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+或 
+源集合中的元素数大于从 <paramref name="arrayIndex" /> 到目标 <paramref name="array" /> 的末尾的可用空间。  
+或 
+无法自动将类型 <paramref name="T" /> 转换为目标 <paramref name="array" /> 的类型。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.Count">
+      <summary>获取集合中的元素数。</summary>
+      <returns>集合中的元素数。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Add(`1)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要添加到集合中的对象。</param>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Clear">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Contains(`1)">
+      <summary>确定集合中是否包含特定值。</summary>
+      <param name="item">要在集合中定位的对象。</param>
+      <returns>如果在集合中找到 <paramref name="item" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#IsReadOnly">
+      <summary>获取一个值，指示集合是否为只读集合。</summary>
+      <returns>在所有情况下均为 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#Generic#ICollection{TValue}#Remove(`1)">
+      <summary>任何情况下均引发 <see cref="T:System.NotSupportedException" /> 异常。</summary>
+      <param name="item">要从集合中移除的对象。</param>
+      <returns>如果从集合中成功移除了 <see langword="true" />，则为 <paramref name="item" />；否则为 <see langword="false" />。 如果在原始集合中找不到该项，则此方法也会返回 <see langword="false" />。</returns>
+      <exception cref="T:System.NotSupportedException">在所有情况下。</exception>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary>从特定的数组索引开始，将集合的元素复制到一个数组中。</summary>
+      <param name="array">作为集合中元素的复制目标位置的一维数组。 该数组的索引必须从零开始。</param>
+      <param name="index">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="array" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="index" /> 小于 0。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="array" /> 是多维的。  
+或 
+源集合中的元素数大于从 <paramref name="index" /> 到目标 <paramref name="array" /> 的末尾的可用空间。</exception>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#IsSynchronized">
+      <summary>获取一个值，该值指示对集合的访问是否同步（线程安全）。</summary>
+      <returns>如果对该集合的访问是同步的（线程安全），则为 <see langword="true" />；否则，为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#ICollection#SyncRoot">
+      <summary>获取可用于同步对集合的访问的对象。</summary>
+      <returns>可用于同步集合访问的对象。</returns>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary>返回一个循环访问集合的枚举器。</summary>
+      <returns>用于循环访问集合的枚举数。</returns>
+    </member>
+    <member name="P:System.Collections.ObjectModel.ReadOnlyDictionary`2.Values">
+      <summary>获取包含词典中的值的集合。</summary>
+      <returns>一个集合，其中包含实现 <see cref="T:System.Collections.ObjectModel.ReadOnlyDictionary`2" /> 的对象的值。</returns>
+    </member>
+    <member name="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1">
+      <summary vsli:raw="Represents a read-only &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt;.">表示只读 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" />。</summary>
+      <typeparam name="T" vsli:raw="The type of elements in the collection.">集合中的元素类型。</typeparam>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.#ctor(System.Collections.ObjectModel.ObservableCollection{`0})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1&quot; /&gt; class that serves as a wrapper around the specified &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt;.">初始化 <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" /> 类的新实例，该实例用作指定 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> 周围的包装。</summary>
+      <param name="list" vsli:raw="The &lt;see cref=&quot;T:System.Collections.ObjectModel.ObservableCollection`1&quot; /&gt; with which to create this instance of the &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1&quot; /&gt; class.">用于创建 <see cref="T:System.Collections.ObjectModel.ObservableCollection`1" /> 类的此实例的 <see cref="T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;list&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="list" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged">
+      <summary vsli:raw="Occurs when an item is added or removed.">添加或删除项时发生。</summary>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.OnCollectionChanged(System.Collections.Specialized.NotifyCollectionChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged&quot; /&gt; event using the provided arguments.">使用提供的参数引发 <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.CollectionChanged" /> 事件。</summary>
+      <param name="args" vsli:raw="Arguments of the event being raised.">要引发事件的参数。</param>
+    </member>
+    <member name="M:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.OnPropertyChanged(System.ComponentModel.PropertyChangedEventArgs)">
+      <summary vsli:raw="Raises the &lt;see cref=&quot;E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged&quot; /&gt; event using the provided arguments.">使用提供的参数引发 <see cref="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged" /> 事件。</summary>
+      <param name="args" vsli:raw="Arguments of the event being raised.">要引发事件的参数。</param>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">在属性值更改时发生。</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.System#Collections#Specialized#INotifyCollectionChanged#CollectionChanged">
+      <summary vsli:raw="Occurs when the collection changes.">当集合更改时发生。</summary>
+    </member>
+    <member name="E:System.Collections.ObjectModel.ReadOnlyObservableCollection`1.System#ComponentModel#INotifyPropertyChanged#PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">在属性值更改时发生。</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.INotifyCollectionChanged">
+      <summary vsli:raw="Notifies listeners of dynamic changes, such as when an item is added and removed or the whole list is cleared.">例如，当添加和删除项或清除整个列表时，向侦听器通知动态更改。</summary>
+    </member>
+    <member name="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged">
+      <summary vsli:raw="Occurs when the collection changes.">当集合更改时发生。</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedAction">
+      <summary vsli:raw="Describes the action that caused a &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">描述引起了 <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" /> 事件的操作。</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add">
+      <summary vsli:raw="An item was added to the collection.">已在集合中添加项。</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move">
+      <summary vsli:raw="An item was moved within the collection.">已在集合内移动项。</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove">
+      <summary vsli:raw="An item was removed from the collection.">已从集合中删除项。</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace">
+      <summary vsli:raw="An item was replaced in the collection.">已在集合中替换项。</summary>
+    </member>
+    <member name="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset">
+      <summary vsli:raw="The contents of the collection changed dramatically.">已清除集合的内容。</summary>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">为 <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt; change.">初始化描述 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This must be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;.">引起该事件的操作。 这必须设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />。</param>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item change.">初始化描述多项更改的 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">引起该事件的操作。 该操作可以设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />、 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" />或 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />。</param>
+      <param name="changedItems" vsli:raw="The items that are affected by the change.">受更改影响的各项。</param>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">初始化描述多项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">引起该事件的操作。 这仅可设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />。</param>
+      <param name="newItems" vsli:raw="The new items that are replacing the original items.">要替换原始项的各个新项。</param>
+      <param name="oldItems" vsli:raw="The original items that are replaced.">要替换的各原始项。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">如果 <paramref name="action" /> 不是 Replace。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;oldItems&quot; /&gt; or &lt;paramref name=&quot;newItems&quot; /&gt; is null.">如果 <paramref name="oldItems" /> 或 <paramref name="newItems" /> 不是 null。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Collections.IList,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">初始化描述多项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">引起该事件的操作。 这仅可设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />。</param>
+      <param name="newItems" vsli:raw="The new items that are replacing the original items.">要替换原始项的各个新项。</param>
+      <param name="oldItems" vsli:raw="The original items that are replaced.">要替换的各原始项。</param>
+      <param name="startingIndex" vsli:raw="The index of the first item of the items that are being replaced.">要替换的各项中第一项的索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">如果 <paramref name="action" /> 不是 Replace。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;oldItems&quot; /&gt; or &lt;paramref name=&quot;newItems&quot; /&gt; is null.">如果 <paramref name="oldItems" /> 或 <paramref name="newItems" /> 不是 null。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item change or a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt; change.">初始化 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 类的新实例，该类描述多项更改或 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" /> 更改。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">引起该事件的操作。 这可以设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />、<see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> 或 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />。</param>
+      <param name="changedItems" vsli:raw="The items affected by the change.">受更改影响的各项。</param>
+      <param name="startingIndex" vsli:raw="The index where the change occurred.">发生更改处的索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, if &lt;paramref name=&quot;action&quot; /&gt; is Reset and either &lt;paramref name=&quot;changedItems&quot; /&gt; is not null or &lt;paramref name=&quot;startingIndex&quot; /&gt; is not -1, or if action is Add or Remove and &lt;paramref name=&quot;startingIndex&quot; /&gt; is less than -1.">如果 <paramref name="action" /> 不是 Reset、Add 或 Remove；如果 <paramref name="action" /> 是 Reset，并且要么 <paramref name="changedItems" /> 不是 null，要么 <paramref name="startingIndex" /> 不是 –1；或者如果 action 是 Add 或 Remove，并且 <paramref name="startingIndex" /> 小于 –1。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is Add or Remove and &lt;paramref name=&quot;changedItems&quot; /&gt; is null.">如果 <paramref name="action" /> 是 Add 或 Remove，并且 <paramref name="changedItems" /> 是 null。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Collections.IList,System.Int32,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a multi-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt; change.">初始化描述多项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;.">引起该事件的操作。 只能设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />。</param>
+      <param name="changedItems" vsli:raw="The items affected by the change.">受更改影响的各项。</param>
+      <param name="index" vsli:raw="The new index for the changed items.">各更改项的新索引。</param>
+      <param name="oldIndex" vsli:raw="The old index for the changed items.">各更改项的旧索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Move or &lt;paramref name=&quot;index&quot; /&gt; is less than 0.">如果 <paramref name="action" /> 不是 Move 或者 <paramref name="index" /> 小于 0。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item change.">初始化描述单项更改的 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">引起该事件的操作。 这可以设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />、<see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> 或 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />。</param>
+      <param name="changedItem" vsli:raw="The item that is affected by the change.">受更改影响的项。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, or if &lt;paramref name=&quot;action&quot; /&gt; is Reset and &lt;paramref name=&quot;changedItem&quot; /&gt; is not null.">如果 <paramref name="action" /> 不是 Reset、Add 或 Remove；或者如果 <paramref name="action" /> 是 Reset 并且 <paramref name="changedItem" /> 不是 null。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item change.">初始化描述单项更改的 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset&quot; /&gt;, &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Add&quot; /&gt;, or &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove&quot; /&gt;.">引起该事件的操作。 这可以设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Reset" />、<see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Add" /> 或 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Remove" />。</param>
+      <param name="changedItem" vsli:raw="The item that is affected by the change.">受更改影响的项。</param>
+      <param name="index" vsli:raw="The index where the change occurred.">发生更改处的索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Reset, Add, or Remove, or if &lt;paramref name=&quot;action&quot; /&gt; is Reset and either &lt;paramref name=&quot;changedItems&quot; /&gt; is not null or &lt;paramref name=&quot;index&quot; /&gt; is not -1.">如果 <paramref name="action" /> 不是 Reset、Add 或 Remove；或者如果 <paramref name="action" /> 是 Reset，并且要么 <paramref name="changedItems" /> 不是 null，要么 <paramref name="index" /> 不是 -1。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Int32,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt; change.">初始化描述单项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;.">引起该事件的操作。 这仅可设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />。</param>
+      <param name="changedItem" vsli:raw="The item affected by the change.">受更改影响的项。</param>
+      <param name="index" vsli:raw="The new index for the changed item.">更改的项的新索引。</param>
+      <param name="oldIndex" vsli:raw="The old index for the changed item.">更改的项的旧索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Move or &lt;paramref name=&quot;index&quot; /&gt; is less than 0.">如果 <paramref name="action" /> 不是 Move 或者 <paramref name="index" /> 小于 0。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">初始化描述单项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can only be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">引起该事件的操作。 这仅可设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />。</param>
+      <param name="newItem" vsli:raw="The new item that is replacing the original item.">要替换原始项的新项。</param>
+      <param name="oldItem" vsli:raw="The original item that is replaced.">要替换的原始项。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">如果 <paramref name="action" /> 不是 Replace。</exception>
+    </member>
+    <member name="M:System.Collections.Specialized.NotifyCollectionChangedEventArgs.#ctor(System.Collections.Specialized.NotifyCollectionChangedAction,System.Object,System.Object,System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedEventArgs&quot; /&gt; class that describes a one-item &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt; change.">初始化描述单项 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedEventArgs" /> 更改的 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" /> 类的新实例。</summary>
+      <param name="action" vsli:raw="The action that caused the event. This can be set to &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;.">引起该事件的操作。 这可设置为 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />。</param>
+      <param name="newItem" vsli:raw="The new item that is replacing the original item.">要替换原始项的新项。</param>
+      <param name="oldItem" vsli:raw="The original item that is replaced.">要替换的原始项。</param>
+      <param name="index" vsli:raw="The index of the item being replaced.">要替换的项的索引。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If &lt;paramref name=&quot;action&quot; /&gt; is not Replace.">如果 <paramref name="action" /> 不是 Replace。</exception>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.Action">
+      <summary vsli:raw="Gets the action that caused the event.">获取引起该事件的操作。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.NotifyCollectionChangedAction&quot; /&gt; value that describes the action that caused the event.">一个 <see cref="T:System.Collections.Specialized.NotifyCollectionChangedAction" /> 值，描述引起该事件的操作。</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewItems">
+      <summary vsli:raw="Gets the list of new items involved in the change.">获取更改中涉及的新项的列表。</summary>
+      <returns vsli:raw="The list of new items involved in the change.">更改中涉及的新项的列表。</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.NewStartingIndex">
+      <summary vsli:raw="Gets the index at which the change occurred.">获取更改发生处的索引。</summary>
+      <returns vsli:raw="The zero-based index at which the change occurred.">更改发生处的从零开始的索引。</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldItems">
+      <summary vsli:raw="Gets the list of items affected by a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;, Remove, or Move action.">获取受 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />、Remove 或 Move 操作影响的各项的列表。</summary>
+      <returns vsli:raw="The list of items affected by a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace&quot; /&gt;, Remove, or Move action.">受 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Replace" />、Remove 或 Move 操作影响的各项的列表。</returns>
+    </member>
+    <member name="P:System.Collections.Specialized.NotifyCollectionChangedEventArgs.OldStartingIndex">
+      <summary vsli:raw="Gets the index at which a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;, Remove, or Replace action occurred.">获取 <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />、Remove 或 Replace 操作发生处的索引。</summary>
+      <returns vsli:raw="The zero-based index at which a &lt;see cref=&quot;F:System.Collections.Specialized.NotifyCollectionChangedAction.Move&quot; /&gt;, Remove, or Replace action occurred.">
+        <see cref="F:System.Collections.Specialized.NotifyCollectionChangedAction.Move" />、Remove 或 Replace 操作发生的从零开始的索引。</returns>
+    </member>
+    <member name="T:System.Collections.Specialized.NotifyCollectionChangedEventHandler">
+      <summary vsli:raw="Represents the method that handles the &lt;see cref=&quot;E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged&quot; /&gt; event.">表示 <see cref="E:System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged" /> 事件的处理方法。</summary>
+      <param name="sender" vsli:raw="The object that raised the event.">引发事件的对象。</param>
+      <param name="e" vsli:raw="Information about the event.">有关事件的信息。</param>
+    </member>
+    <member name="T:System.ComponentModel.DataErrorsChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged&quot; /&gt; event.">为 <see cref="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.ComponentModel.DataErrorsChangedEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.DataErrorsChangedEventArgs&quot; /&gt; class.">初始化 <see cref="T:System.ComponentModel.DataErrorsChangedEventArgs" /> 类的新实例。</summary>
+      <param name="propertyName" vsli:raw="The name of the property that has an error.  &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt; if the error is object-level.">有错误的属性的名称。  如果错误是对象级别，则 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</param>
+    </member>
+    <member name="P:System.ComponentModel.DataErrorsChangedEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property that has an error.">获取有错误的属性的名称。</summary>
+      <returns vsli:raw="The name of the property that has an error. &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt; if the error is object-level.">有错误的属性的名称。 如果错误是对象级别，则 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.INotifyDataErrorInfo">
+      <summary vsli:raw="Defines members that data entity classes can implement to provide custom synchronous and asynchronous validation support.">定义数据实体类可以实现以提供自定义同步和异步验证支持的成员。</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyDataErrorInfo.ErrorsChanged">
+      <summary vsli:raw="Occurs when the validation errors have changed for a property or for the entire entity.">当属性或整个实体的验证错误已经更改时发生。</summary>
+    </member>
+    <member name="M:System.ComponentModel.INotifyDataErrorInfo.GetErrors(System.String)">
+      <summary vsli:raw="Gets the validation errors for a specified property or for the entire entity.">获取指定属性或整个实体的验证错误。</summary>
+      <param name="propertyName" vsli:raw="The name of the property to retrieve validation errors for; or &lt;see langword=&quot;null&quot; /&gt; or &lt;see cref=&quot;F:System.String.Empty&quot; /&gt;, to retrieve entity-level errors.">要检索验证错误的属性的名称；若检索实体级别错误，则为 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</param>
+      <returns vsli:raw="The validation errors for the property or entity.">属性或实体的验证错误。</returns>
+    </member>
+    <member name="P:System.ComponentModel.INotifyDataErrorInfo.HasErrors">
+      <summary vsli:raw="Gets a value that indicates whether the entity has validation errors.">获取一个值，该值指示实体是否包含验证错误。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the entity currently has validation errors; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果实体当前具有验证错误，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.ComponentModel.INotifyPropertyChanged">
+      <summary vsli:raw="Notifies clients that a property value has changed.">向客户端发出某一属性值已更改的通知。</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged">
+      <summary vsli:raw="Occurs when a property value changes.">在属性值更改时发生。</summary>
+    </member>
+    <member name="T:System.ComponentModel.INotifyPropertyChanging">
+      <summary vsli:raw="Notifies clients that a property value is changing.">通知客户端某个属性值将更改。</summary>
+    </member>
+    <member name="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging">
+      <summary vsli:raw="Occurs when a property value is changing.">在属性值更改时发生。</summary>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged&quot; /&gt; event.">为 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.ComponentModel.PropertyChangedEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.PropertyChangedEventArgs&quot; /&gt; class.">初始化 <see cref="T:System.ComponentModel.PropertyChangedEventArgs" /> 类的新实例。</summary>
+      <param name="propertyName" vsli:raw="The name of the property that changed.">已更改属性的名称。</param>
+    </member>
+    <member name="P:System.ComponentModel.PropertyChangedEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property that changed.">获取已更改的属性名称。</summary>
+      <returns vsli:raw="The name of the property that changed.">已更改属性的名称。</returns>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangedEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged&quot; /&gt; event raised when a property is changed on a component.">表示将处理 <see cref="E:System.ComponentModel.INotifyPropertyChanged.PropertyChanged" /> 事件的方法，该事件在更改组件上的属性时引发。</summary>
+      <param name="sender" vsli:raw="The source of the event.">事件源。</param>
+      <param name="e" vsli:raw="A &lt;see cref=&quot;T:System.ComponentModel.PropertyChangedEventArgs&quot; /&gt; that contains the event data.">包含事件数据的 <see cref="T:System.ComponentModel.PropertyChangedEventArgs" />。</param>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangingEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging&quot; /&gt; event.">为 <see cref="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging" /> 事件提供数据。</summary>
+    </member>
+    <member name="M:System.ComponentModel.PropertyChangingEventArgs.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.PropertyChangingEventArgs&quot; /&gt; class.">初始化 <see cref="T:System.ComponentModel.PropertyChangingEventArgs" /> 类的新实例。</summary>
+      <param name="propertyName" vsli:raw="The name of the property whose value is changing.">其值将更改的属性的名称。</param>
+    </member>
+    <member name="P:System.ComponentModel.PropertyChangingEventArgs.PropertyName">
+      <summary vsli:raw="Gets the name of the property whose value is changing.">获取其值将更改的属性的名称。</summary>
+      <returns vsli:raw="The name of the property whose value is changing.">其值将更改的属性的名称。</returns>
+    </member>
+    <member name="T:System.ComponentModel.PropertyChangingEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging&quot; /&gt; event of an &lt;see cref=&quot;T:System.ComponentModel.INotifyPropertyChanging&quot; /&gt; interface.">表示将对 <see cref="E:System.ComponentModel.INotifyPropertyChanging.PropertyChanging" /> 接口的 <see cref="T:System.ComponentModel.INotifyPropertyChanging" /> 事件进行处理的方法。</summary>
+      <param name="sender" vsli:raw="The source of the event.">事件源。</param>
+      <param name="e" vsli:raw="A &lt;see cref=&quot;T:System.ComponentModel.PropertyChangingEventArgs&quot; /&gt; that contains the event data.">包含事件数据的 <see cref="T:System.ComponentModel.PropertyChangingEventArgs" />。</param>
+    </member>
+    <member name="T:System.ComponentModel.TypeConverterAttribute">
+      <summary vsli:raw="Specifies what type to use as a converter for the object this attribute is bound to.">指定对于此属性绑定到的对象要使用哪种类型作为转换器。</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class with the default type converter, which is an empty string (&quot;&quot;).">使用默认类型转换器，即空字符串（""）初始化 <see cref="T:System.ComponentModel.TypeConverterAttribute" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class, using the specified type name as the data converter for the object this attribute is bound to.">通过将指定类型名称用作该属性所绑定到的对象的数据转换器，初始化 <see cref="T:System.ComponentModel.TypeConverterAttribute" /> 类的新实例。</summary>
+      <param name="typeName" vsli:raw="The fully qualified name of the class to use for data conversion for the object this attribute is bound to.">类的完全限定名，该类将用于此属性所绑定到的对象的数据转换。</param>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt; class, using the specified type as the data converter for the object this attribute is bound to.">通过将指定类型用作该属性所绑定到的对象的数据转换器，初始化 <see cref="T:System.ComponentModel.TypeConverterAttribute" /> 类的新实例。</summary>
+      <param name="type" vsli:raw="A &lt;see cref=&quot;T:System.Type&quot; /&gt; that represents the type of the converter class to use for data conversion for the object this attribute is bound to.">表示转换器类的类型的 <see cref="T:System.Type" />，它将用于该特性所绑定到的对象的数据转换。</param>
+    </member>
+    <member name="P:System.ComponentModel.TypeConverterAttribute.ConverterTypeName">
+      <summary vsli:raw="Gets the fully qualified type name of the &lt;see cref=&quot;T:System.Type&quot; /&gt; to use as a converter for the object this attribute is bound to.">获取 <see cref="T:System.Type" /> 的完全限定的类型名，以将其用作此特性所绑定到的对象的转换器。</summary>
+      <returns vsli:raw="The fully qualified type name of the &lt;see cref=&quot;T:System.Type&quot; /&gt; to use as a converter for the object this attribute is bound to, or an empty string (&quot;&quot;) if none exists. The default value is an empty string (&quot;&quot;).">
+        <see cref="T:System.Type" /> 的完全限定的类型名，它将用作此特性所绑定到的对象的转换器；如果不存在，则为空字符串 ("")。 默认值为空字符串 ("")。</returns>
+    </member>
+    <member name="F:System.ComponentModel.TypeConverterAttribute.Default">
+      <summary vsli:raw="Specifies the type to use as a converter for the object this attribute is bound to.">指定用作此特性所绑定到的对象的转换器的类型。</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.Equals(System.Object)">
+      <summary vsli:raw="Returns whether the value of the given object is equal to the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;.">返回给定对象的值是否等于当前的 <see cref="T:System.ComponentModel.TypeConverterAttribute" />。</summary>
+      <param name="obj" vsli:raw="The object to test the value equality of.">要进行值的相等性测试的对象。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value of the given object is equal to that of the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果给定对象的值等于当前 <see cref="T:System.ComponentModel.TypeConverterAttribute" /> 的值，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.ComponentModel.TypeConverterAttribute.GetHashCode">
+      <summary vsli:raw="Returns the hash code for this instance.">返回此实例的哈希代码。</summary>
+      <returns vsli:raw="A hash code for the current &lt;see cref=&quot;T:System.ComponentModel.TypeConverterAttribute&quot; /&gt;.">当前 <see cref="T:System.ComponentModel.TypeConverterAttribute" /> 的哈希代码。</returns>
+    </member>
+    <member name="T:System.ComponentModel.TypeDescriptionProviderAttribute">
+      <summary vsli:raw="Specifies the custom type description provider for a class. This class cannot be inherited.">指定类的自定义类型说明提供程序。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.ComponentModel.TypeDescriptionProviderAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProviderAttribute&quot; /&gt; class using the specified type name.">使用指定的类型名称初始化 <see cref="T:System.ComponentModel.TypeDescriptionProviderAttribute" /> 类的新实例。</summary>
+      <param name="typeName" vsli:raw="The qualified name of the type.">类型的限定名。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;typeName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="typeName" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.ComponentModel.TypeDescriptionProviderAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProviderAttribute&quot; /&gt; class using the specified type.">使用指定的类型初始化 <see cref="T:System.ComponentModel.TypeDescriptionProviderAttribute" /> 类的新实例。</summary>
+      <param name="type" vsli:raw="The type to store in the attribute.">要存储在特性中的类型。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;type&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.ComponentModel.TypeDescriptionProviderAttribute.TypeName">
+      <summary vsli:raw="Gets the type name for the type description provider.">获取类型说明提供程序的类型名称。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; containing the qualified type name for the &lt;see cref=&quot;T:System.ComponentModel.TypeDescriptionProvider&quot; /&gt;.">包含 <see cref="T:System.String" /> 的限定类型名称的 <see cref="T:System.ComponentModel.TypeDescriptionProvider" />。</returns>
+    </member>
+    <member name="T:System.Reflection.ICustomTypeProvider">
+      <summary vsli:raw="Represents an object that provides a custom type.">表示提供自定义类型的对象。</summary>
+    </member>
+    <member name="M:System.Reflection.ICustomTypeProvider.GetCustomType">
+      <summary vsli:raw="Gets the custom type provided by this object.">获取由此对象提供的自定义类型。</summary>
+      <returns vsli:raw="The custom type.">自定义类型。</returns>
+    </member>
+    <member name="T:System.Windows.Input.ICommand">
+      <summary vsli:raw="Defines a command.">定义一个命令</summary>
+    </member>
+    <member name="M:System.Windows.Input.ICommand.CanExecute(System.Object)">
+      <summary vsli:raw="Defines the method that determines whether the command can execute in its current state.">定义方法，该方法确定此命令能否在其当前状态下执行。</summary>
+      <param name="parameter" vsli:raw="Data used by the command.  If the command does not require data to be passed, this object can be set to &lt;see langword=&quot;null&quot; /&gt;.">此命令使用的数据。  如果此命令不需要传递数据，则该对象可以设置为 <see langword="null" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this command can be executed; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果可以执行此命令，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="E:System.Windows.Input.ICommand.CanExecuteChanged">
+      <summary vsli:raw="Occurs when changes occur that affect whether or not the command should execute.">当出现影响是否应执行该命令的更改时发生。</summary>
+    </member>
+    <member name="M:System.Windows.Input.ICommand.Execute(System.Object)">
+      <summary vsli:raw="Defines the method to be called when the command is invoked.">定义在调用此命令时要调用的方法。</summary>
+      <param name="parameter" vsli:raw="Data used by the command.  If the command does not require data to be passed, this object can be set to &lt;see langword=&quot;null&quot; /&gt;.">此命令使用的数据。  如果此命令不需要传递数据，则该对象可以设置为 <see langword="null" />。</param>
+    </member>
+    <member name="T:System.Windows.Markup.ValueSerializerAttribute">
+      <summary vsli:raw="Identifies the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class that a type or property should use when it is serialized.">标识类型或属性在序列化时应使用的 <see cref="T:System.Windows.Markup.ValueSerializer" /> 类。</summary>
+    </member>
+    <member name="M:System.Windows.Markup.ValueSerializerAttribute.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializerAttribute&quot; /&gt; class, using an assembly qualified type name string.">使用程序集限定的类型名称字符串初始化 <see cref="T:System.Windows.Markup.ValueSerializerAttribute" /> 类的新实例。</summary>
+      <param name="valueSerializerTypeName" vsli:raw="The assembly qualified type name string for the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class to use.">要使用的 <see cref="T:System.Windows.Markup.ValueSerializer" /> 类的程序集限定的类型名称字符串。</param>
+    </member>
+    <member name="M:System.Windows.Markup.ValueSerializerAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializerAttribute&quot; /&gt; class, using the specified type.">使用指定类型初始化 <see cref="T:System.Windows.Markup.ValueSerializerAttribute" /> 类的新实例。</summary>
+      <param name="valueSerializerType" vsli:raw="A type that represents the type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class.">一个类型，它表示 <see cref="T:System.Windows.Markup.ValueSerializer" /> 类的类型。</param>
+    </member>
+    <member name="P:System.Windows.Markup.ValueSerializerAttribute.ValueSerializerType">
+      <summary vsli:raw="Gets the type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; class reported by this attribute.">获取此特性报告的 <see cref="T:System.Windows.Markup.ValueSerializer" /> 类的类型。</summary>
+      <returns vsli:raw="The type of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt;.">
+        <see cref="T:System.Windows.Markup.ValueSerializer" />的类型。</returns>
+    </member>
+    <member name="P:System.Windows.Markup.ValueSerializerAttribute.ValueSerializerTypeName">
+      <summary vsli:raw="Gets the assembly qualified name of the &lt;see cref=&quot;T:System.Windows.Markup.ValueSerializer&quot; /&gt; type for this type or property.">为此类型或属性获取 <see cref="T:System.Windows.Markup.ValueSerializer" /> 类型的程序集限定名称。</summary>
+      <returns vsli:raw="The assembly qualified name of the type.">类型的程序集限定名称。</returns>
+    </member>
+  </members>
+</doc>
