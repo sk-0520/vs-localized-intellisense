@@ -1,0 +1,554 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.FileSystem.AccessControl</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.FileSystemAclExtensions">
+      <summary>Предоставляет предназначенные для платформы Windows статические методы расширения, которые служат для работы с атрибутами безопасности списков управления доступом (ACL) для файлов и каталогов.</summary>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.Create(System.IO.DirectoryInfo,System.Security.AccessControl.DirectorySecurity)">
+      <summary>Создает каталог с указанными атрибутами безопасности. Если каталог уже существует, ничего не происходит.</summary>
+      <param name="directoryInfo">Каталог, который не существует, но будет создан методом.</param>
+      <param name="directorySecurity">Возможности управления доступом и аудита безопасности для каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="directoryInfo" /> или <paramref name="directorySecurity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">Не удалось найти часть пути.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Отказано в доступе по пути.</exception>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.Create(System.IO.FileInfo,System.IO.FileMode,System.Security.AccessControl.FileSystemRights,System.IO.FileShare,System.Int32,System.IO.FileOptions,System.Security.AccessControl.FileSecurity)">
+      <summary>Создает файловый поток с указанными свойствами и параметрами безопасности.</summary>
+      <param name="fileInfo">Файл, который не существует, но будет создан методом.</param>
+      <param name="mode">Одно из значений перечисления, определяющих способ открытия файла операционной системой.</param>
+      <param name="rights">Одно из значений перечисления, определяющих права доступа при создании правил доступа и аудита.</param>
+      <param name="share">Одно из значений перечисления для управления типом доступа других объектов файловых потоков к одному и тому же файлу.</param>
+      <param name="bufferSize">Число байтов, буферизируемых при чтении и записи в данный файл.</param>
+      <param name="options">Одно из значений перечисления, которое описывает, как создавать или перезаписывать файл.</param>
+      <param name="fileSecurity">Объект, определяющий правила управления доступом и аудита безопасности для файла.</param>
+      <exception cref="T:System.ArgumentException">Недопустимое сочетание <paramref name="rights" /> и <paramref name="mode" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="fileInfo" /> или <paramref name="fileSecurity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Значение <paramref name="mode" /> или <paramref name="share" /> выходит за пределы допустимого диапазона перечисления.
+
+-или-
+
+Значение <paramref name="bufferSize" /> не является положительным числом.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">Не удалось найти часть пути.</exception>
+      <exception cref="T:System.IO.IOException">Ошибка ввода/вывода.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Отказано в доступе по пути.</exception>
+      <returns>Файловый поток для созданного файла.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.CreateDirectory(System.Security.AccessControl.DirectorySecurity,System.String)">
+      <summary>Создает каталог и возвращает его, гарантируя, что он создается с указанными свойствами безопасности. Если каталог уже существует, возвращается существующий каталог.</summary>
+      <param name="directorySecurity">Объект, определяющий управление доступом и аудит безопасности для каталога.</param>
+      <param name="path">Путь к создаваемому каталогу.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="directorySecurity" /> или <paramref name="path" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="path" /> пуст.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">Не удалось найти часть пути.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Отказано в доступе по пути.</exception>
+      <returns>Объект сведений о каталоге, представляющий либо созданный каталог с предоставленными свойствами безопасности, либо существующий каталог.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.DirectoryInfo)">
+      <summary>Возвращает сведения о безопасности для каталога.</summary>
+      <param name="directoryInfo">Существующий каталог, из которого следует получить сведения о безопасности.</param>
+      <returns>Дескрипторы безопасности всех разделов управления доступом для каталога.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.DirectoryInfo,System.Security.AccessControl.AccessControlSections)">
+      <summary>Возвращает сведения о безопасности для каталога.</summary>
+      <param name="directoryInfo">Существующий каталог, из которого следует получить сведения о безопасности.</param>
+      <param name="includeSections">Разделы управления доступом, которые необходимо получить.</param>
+      <returns>Дескрипторы безопасности указанных разделов управления доступом для каталога.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileInfo)">
+      <summary>Возвращает сведения о безопасности для файла.</summary>
+      <param name="fileInfo">Файл, из которого следует получить сведения о безопасности.</param>
+      <returns>Дескрипторы безопасности всех разделов управления доступом для файла.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileInfo,System.Security.AccessControl.AccessControlSections)">
+      <summary>Возвращает сведения о безопасности для файла.</summary>
+      <param name="fileInfo">Существующий файл, из которого следует получить сведения о безопасности.</param>
+      <param name="includeSections">Разделы управления доступом, которые необходимо получить из файла.</param>
+      <returns>Дескрипторы безопасности указанных разделов управления доступом для файла.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileStream)">
+      <summary>Возвращает сведения о безопасности для файла.</summary>
+      <param name="fileStream">Существующий файл, из которого следует получить сведения о безопасности.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileStream" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Файловый поток закрыт.</exception>
+      <returns>Дескрипторы безопасности всех разделов управления доступом для файла.</returns>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.DirectoryInfo,System.Security.AccessControl.DirectorySecurity)">
+      <summary>Изменяет атрибуты безопасности для существующего каталога.</summary>
+      <param name="directoryInfo">Существующий каталог.</param>
+      <param name="directorySecurity">Сведения о безопасности, которые необходимо применить к каталогу.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="directorySecurity" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.FileInfo,System.Security.AccessControl.FileSecurity)">
+      <summary>Изменяет атрибуты безопасности для существующего файла.</summary>
+      <param name="fileInfo">Существующий файл.</param>
+      <param name="fileSecurity">Сведения о безопасности, которые необходимо применить к файлу.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="fileSecurity" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.FileStream,System.Security.AccessControl.FileSecurity)">
+      <summary>Изменяет атрибуты безопасности для существующего файла.</summary>
+      <param name="fileStream">Существующий файл.</param>
+      <param name="fileSecurity">Сведения о безопасности, которые необходимо применить к файлу.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="fileStream" /> или <paramref name="fileSecurity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Файловый поток закрыт.</exception>
+    </member>
+    <member name="T:System.Security.AccessControl.DirectoryObjectSecurity">
+      <summary>Обеспечивает возможность управления доступом к объектам каталога без непосредственной работы со списками управления доступом.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.#ctor(System.Security.AccessControl.CommonSecurityDescriptor)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> с использованием указанного дескриптора безопасности.</summary>
+      <param name="securityDescriptor">Дескриптор безопасности, который необходимо связать с новым объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType,System.Guid,System.Guid)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.AccessRule" /> с использованием указанных значений.</summary>
+      <param name="identityReference">Удостоверение, к которому применяется правило доступа.  Это должен быть объект, который может быть приведен как <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">Маска доступа данного правила. Маска доступа является 32-разрядной коллекцией анонимных битов, значение которой определяется отдельными интеграторами.</param>
+      <param name="isInherited">Значение true, если правило наследуется от родительского контейнера.</param>
+      <param name="inheritanceFlags">Указывает свойства наследования правила доступа.</param>
+      <param name="propagationFlags">Указывает, выполняется ли автоматическое распространение наследуемых правил доступа. Флаги распространения не учитываются, если <paramref name="inheritanceFlags" /> имеет значение <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="type">Указывает допустимый тип управления доступом.</param>
+      <param name="objectType">Идентификатор класса объектов, к которым применяется новое правило доступа.</param>
+      <param name="inheritedObjectType">Идентификатор класса дочерних объектов, которые могут наследовать новое правило доступа.</param>
+      <returns>Объект <see cref="T:System.Security.AccessControl.AccessRule" />, создаваемый с помощью данного метода.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AddAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Добавляет указанное правило доступа в список управления доступом на уровне пользователей, связанный с данным объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Добавляемое правило доступа.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AddAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Добавляет указанное правило аудита в системный список управления доступом, связанный с данным объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Добавляемое правило аудита.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags,System.Guid,System.Guid)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.AuditRule" /> с использованием указанных значений.</summary>
+      <param name="identityReference">Удостоверение, к которому применяется правило аудита.  Это должен быть объект, который может быть приведен к <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">Маска доступа данного правила. Маска доступа является 32-разрядной коллекцией анонимных битов, значение которой определяется отдельными интеграторами.</param>
+      <param name="isInherited">Значение <see langword="true" />, если правило наследуется от родительского контейнера.</param>
+      <param name="inheritanceFlags">Указывает свойства наследования правила аудита.</param>
+      <param name="propagationFlags">Указывает, выполняется ли автоматическое распространение наследуемых правил аудита. Флаги распространения не учитываются, если <paramref name="inheritanceFlags" /> имеет значение <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="flags">Указывает условия, в которых выполняется аудит правила.</param>
+      <param name="objectType">Идентификатор класса объектов, к которым применяется новое правило аудита.</param>
+      <param name="inheritedObjectType">Идентификатор класса дочерних объектов, которые могут наследовать новое правило аудита.</param>
+      <returns>Объект <see cref="T:System.Security.AccessControl.AuditRule" />, создаваемый с помощью данного метода.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.GetAccessRules(System.Boolean,System.Boolean,System.Type)">
+      <summary>Получает коллекцию правил доступа, связанных с указанным идентификатором безопасности.</summary>
+      <param name="includeExplicit">Значение <see langword="true" />, чтобы включить правила доступа, явным образом указанные для данного объекта.</param>
+      <param name="includeInherited">Значение <see langword="true" />, чтобы включить унаследованные правила доступа.</param>
+      <param name="targetType">Идентификатор безопасности, для которого извлекаются правила доступа. Это должен быть объект, который можно привести к типу <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <returns>Коллекция правил доступа, связанных с указанным объектом <see cref="T:System.Security.Principal.SecurityIdentifier" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.GetAuditRules(System.Boolean,System.Boolean,System.Type)">
+      <summary>Получает коллекцию правил аудита, связанных с указанным идентификатором безопасности.</summary>
+      <param name="includeExplicit">Значение <see langword="true" />, чтобы включить правила аудита, явным образом указанные для данного объекта.</param>
+      <param name="includeInherited">Значение <see langword="true" />, чтобы включить унаследованные правила аудита.</param>
+      <param name="targetType">Идентификатор безопасности, для которого извлекаются правила аудита. Это должен быть объект, который можно привести к типу <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <returns>Коллекция правил аудита, связанных с указанным объектом <see cref="T:System.Security.Principal.SecurityIdentifier" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ModifyAccess(System.Security.AccessControl.AccessControlModification,System.Security.AccessControl.AccessRule,System.Boolean@)">
+      <summary>Применяет указанное изменение к списку управления доступом на уровне пользователей (DACL), связанному с этим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="modification">Изменение, применяемое к списку DACL.</param>
+      <param name="rule">Изменяемое правило доступа.</param>
+      <param name="modified">Значение <see langword="true" />, если список DACL успешно изменен; в противном случае — значение <see langword="false" />.</param>
+      <returns>Значение <see langword="true" />, если список DACL успешно изменен; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ModifyAudit(System.Security.AccessControl.AccessControlModification,System.Security.AccessControl.AuditRule,System.Boolean@)">
+      <summary>Применяет указанное изменение к системному списку управления доступом (SACL), связанному с этим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="modification">Изменение, применяемое к списку SACL.</param>
+      <param name="rule">Правило аудита, которое нужно изменить.</param>
+      <param name="modified">Значение <see langword="true" />, если список SACL успешно изменен; в противном случае — значение <see langword="false" />.</param>
+      <returns>Значение <see langword="true" />, если список SACL успешно изменен; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Удаляет правила доступа с тем же идентификатором безопасности и маской доступа, что и у указанного правила доступа, из списка управления доступом на уровне пользователей, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило доступа.</param>
+      <returns>Значение <see langword="true" />, если правило доступа успешно удалено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRuleAll(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Удаляет все правила доступа с тем же идентификатором безопасности, что и у указанного правила доступа, из списка управления доступом на уровне пользователей, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило доступа.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Удаляет все правила доступа, в точности совпадающие с указанным правилом доступа, из списка управления доступом на уровне пользователей, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило доступа.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Удаляет правила аудита с тем же идентификатором безопасности и маской доступа, что и у указанного правила аудита, из системного списка управления доступом, связанного с текущим объектом <see cref="T:System.Security.AccessControl.CommonObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило аудита.</param>
+      <returns>Значение <see langword="true" />, если правило аудита успешно удалено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRuleAll(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Удаляет все правила аудита с тем же идентификатором безопасности, что и у указанного правила аудита, из системного списка управления доступом, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило аудита.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Удаляет все правила аудита, в точности совпадающие с указанным правилом аудита, из системного списка управления доступом, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">Удаляемое правило аудита.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ResetAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Удаляет все правила доступа из списка управления доступом на уровне пользователей (DACL), связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />, а затем добавляет указанное правило доступа.</summary>
+      <param name="rule">Сбрасываемое правило доступа.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.SetAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Удаляет все правила доступа с тем же идентификатором и квалификатором безопасности, что и у указанного правила доступа, из списка управления доступом на уровне пользователей, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />, а затем добавляет указанное правило доступа.</summary>
+      <param name="rule">Устанавливаемое правило доступа.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.SetAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Удаляет все правила аудита с тем же идентификатором и квалификатором безопасности, что и у указанного правила аудита, из системного списка управления доступом, связанного с текущим объектом <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />, а затем добавляет указанное правило аудита.</summary>
+      <param name="rule">Устанавливаемое правило аудита.</param>
+    </member>
+    <member name="T:System.Security.AccessControl.DirectorySecurity">
+      <summary>Представляет возможности управления доступом и аудита безопасности для каталога. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectorySecurity.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.DirectorySecurity" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Текущая операционная система не является системой Microsoft Windows 2000 или более поздней версией Windows.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectorySecurity.#ctor(System.String,System.Security.AccessControl.AccessControlSections)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.DirectorySecurity" /> на основании указанного каталога, используя указанные значения из перечисления <see cref="T:System.Security.AccessControl.AccessControlSections" />.</summary>
+      <param name="name">Расположение каталога, на основании которого создается объект <see cref="T:System.Security.AccessControl.DirectorySecurity" />.</param>
+      <param name="includeSections">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlSections" />, указывающее тип сведений о списке управления доступом, которые необходимо получить.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="name" /> представляет собой строку нулевой длины, содержащую только пробелы или один или несколько недопустимых символов, заданных методом <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">Указан недопустимый путь (например, он ведет на несопоставленный диск).</exception>
+      <exception cref="T:System.IO.FileNotFoundException">Файл, указанный в параметре <paramref name="name" />, не найден.</exception>
+      <exception cref="T:System.IO.IOException">При открытии каталога возникла ошибка ввода-вывода.</exception>
+      <exception cref="T:System.NotSupportedException">Параметр <paramref name="name" /> имеет недопустимый формат.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Текущая операционная система не является системой Microsoft Windows 2000 или более поздней версией Windows.</exception>
+      <exception cref="T:System.IO.PathTooLongException">Указанный путь, имя файла или оба значения превышают максимальную длину, заданную в системе.</exception>
+      <exception cref="T:System.Security.AccessControl.PrivilegeNotHeldException">Текущая учетная запись системы не имеет прав администратора.</exception>
+      <exception cref="T:System.SystemException">Не удается найти каталог.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Параметр <paramref name="name" /> указывает каталог, доступный только для чтения.  
+  
+-или- 
+Эта операция не поддерживается на текущей платформе.  
+  
+-или- 
+У вызывающего объекта отсутствует необходимое разрешение.</exception>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSecurity">
+      <summary>Представляет возможности управления доступом и аудита безопасности для файла. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSecurity.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSecurity" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Текущая операционная система не является системой Microsoft Windows 2000 или более поздней версией Windows.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSecurity.#ctor(System.String,System.Security.AccessControl.AccessControlSections)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSecurity" /> на основании указанного файла, используя указанные значения из перечисления <see cref="T:System.Security.AccessControl.AccessControlSections" />.</summary>
+      <param name="fileName">Расположение файла, на основании которого создается объект <see cref="T:System.Security.AccessControl.FileSecurity" />.</param>
+      <param name="includeSections">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlSections" />, указывающее тип сведений о списке управления доступом, которые необходимо получить.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="fileName" /> представляет собой строку нулевой длины, содержащую только пробелы или один или несколько недопустимых символов, заданных методом <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">Указан недопустимый путь (например, он ведет на несопоставленный диск).</exception>
+      <exception cref="T:System.IO.FileNotFoundException">Файл, указанный в параметре <paramref name="fileName" />, не найден.</exception>
+      <exception cref="T:System.IO.IOException">При открытии файла произошла ошибка ввода-вывода.</exception>
+      <exception cref="T:System.NotSupportedException">Параметр <paramref name="path" /> задан в недопустимом формате.</exception>
+      <exception cref="T:System.Runtime.InteropServices.SEHException">Параметр <paramref name="fileName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Текущая операционная система не является системой Microsoft Windows 2000 или более поздней версией Windows.</exception>
+      <exception cref="T:System.IO.PathTooLongException">Указанный путь, имя файла или оба значения превышают максимальную длину, заданную в системе.</exception>
+      <exception cref="T:System.Security.AccessControl.PrivilegeNotHeldException">Текущая учетная запись системы не имеет прав администратора.</exception>
+      <exception cref="T:System.SystemException">Не удалось найти файл.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Параметр <paramref name="fileName" /> указывает файл, доступный только для чтения.  
+  
+-или- 
+Эта операция не поддерживается на текущей платформе.  
+  
+-или- 
+Параметр <paramref name="fileName" /> указывает каталог.  
+  
+-или- 
+У вызывающего объекта отсутствует необходимое разрешение.</exception>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemAccessRule">
+      <summary>Представляет абстракцию элемента управления доступом, определяющую правило доступа для файла или каталога. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, используя ссылку на учетную запись пользователя, значение, определяющее тип операции, связанной с правилом доступа, а также признак разрешения или запрета этой операции.</summary>
+      <param name="identity">Объект <see cref="T:System.Security.Principal.IdentityReference" />, инкапсулирующий ссылку на учетную запись пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающих тип операции, связанной с правилом доступа.</param>
+      <param name="type">Одно из значений перечисления <see cref="T:System.Security.AccessControl.AccessControlType" />, которое определяет, запрещена или разрешена операция.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не является объектом <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="type" />передано неверное перечисление.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, используя ссылку на учетную запись пользователя, значение, определяющее тип связанных с правилом доступа операций, значение, определяющее порядок наследования прав, значение, определяющее порядок распространения прав, а также признак разрешения или запрета этой операции.</summary>
+      <param name="identity">Объект <see cref="T:System.Security.Principal.IdentityReference" />, инкапсулирующий ссылку на учетную запись пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающих тип операции, связанной с правилом доступа.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="type">Одно из значений перечисления <see cref="T:System.Security.AccessControl.AccessControlType" />, которое определяет, запрещена или разрешена операция.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не является объектом <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="type" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="inheritanceFlags" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="propagationFlags" />передано неверное перечисление.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, используя имя учетной записи пользователя, значение, определяющее тип операции, связанной с правилом доступа, а также признак разрешения или запрета этой операции.</summary>
+      <param name="identity">Имя учетной записи пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающих тип операции, связанной с правилом доступа.</param>
+      <param name="type">Одно из значений перечисления <see cref="T:System.Security.AccessControl.AccessControlType" />, которое определяет, запрещена или разрешена операция.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="type" />передано неверное перечисление.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, используя имя учетной записи пользователя, значение, определяющее тип связанных с правилом доступа операций, значение, определяющее порядок наследования прав, значение, определяющее порядок распространения прав, а также признак разрешения или запрета этой операции.</summary>
+      <param name="identity">Имя учетной записи пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающих тип операции, связанной с правилом доступа.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="type">Одно из значений перечисления <see cref="T:System.Security.AccessControl.AccessControlType" />, которое определяет, запрещена или разрешена операция.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="type" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="inheritanceFlags" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="propagationFlags" />передано неверное перечисление.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemAccessRule.FileSystemRights">
+      <summary>Получает флаги <see cref="T:System.Security.AccessControl.FileSystemRights" />, связанные с текущим объектом <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />.</summary>
+      <returns>Флаги <see cref="T:System.Security.AccessControl.FileSystemRights" />, связанные с текущим объектом <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemAuditRule">
+      <summary>Представляет абстракцию элемента управления доступом, определяющую правило аудита для файла или каталога. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, используя ссылку на учетную запись пользователя, значение, определяющее тип операции, связанной с правилом аудита, а также значение, определяющее условия проведения аудита.</summary>
+      <param name="identity">Объект <see cref="T:System.Security.Principal.IdentityReference" />, инкапсулирующий ссылку на учетную запись пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающее тип операции, связанной с правилом аудита.</param>
+      <param name="flags">Одно из значений <see cref="T:System.Security.AccessControl.AuditFlags" />, задающее условия проведения аудита.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не является объектом <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="flags" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="flags" /> передано значение <see cref="F:System.Security.AccessControl.AuditFlags.None" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, используя имя ссылки на учетную запись пользователя, значение, определяющее тип связанных с правилом аудита операций, значение, определяющее порядок наследования прав, значение, определяющее порядок распространения прав, а также значение, обозначающее условия проведения аудита.</summary>
+      <param name="identity">Объект <see cref="T:System.Security.Principal.IdentityReference" />, инкапсулирующий ссылку на учетную запись пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающее тип операции, связанной с правилом аудита.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="flags">Одно из значений <see cref="T:System.Security.AccessControl.AuditFlags" />, задающее условия проведения аудита.</param>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не является объектом <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="flags" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="flags" /> передано значение <see cref="F:System.Security.AccessControl.AuditFlags.None" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, используя имя учетной записи пользователя, значение, определяющее тип операции, связанной с правилом аудита, а также значение, определяющее условия проведения аудита.</summary>
+      <param name="identity">Имя учетной записи пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающее тип операции, связанной с правилом аудита.</param>
+      <param name="flags">Одно из значений <see cref="T:System.Security.AccessControl.AuditFlags" />, задающее условия проведения аудита.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметру <paramref name="flags" />передано неверное перечисление.  
+  
+-или- 
+Параметру <paramref name="flags" /> передано значение <see cref="F:System.Security.AccessControl.AuditFlags.None" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, используя имя учетной записи пользователя, значение, определяющее тип связанных с правилом аудита операций, значение, определяющее порядок наследования прав, значение, определяющее порядок распространения прав, а также значение, обозначающее условия проведения аудита.</summary>
+      <param name="identity">Имя учетной записи пользователя.</param>
+      <param name="fileSystemRights">Одно из значений <see cref="T:System.Security.AccessControl.FileSystemRights" />, задающее тип операции, связанной с правилом аудита.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="flags">Одно из значений <see cref="T:System.Security.AccessControl.AuditFlags" />, задающее условия проведения аудита.</param>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemAuditRule.FileSystemRights">
+      <summary>Получает флаги <see cref="T:System.Security.AccessControl.FileSystemRights" />, связанные с текущим объектом <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />.</summary>
+      <returns>Флаги <see cref="T:System.Security.AccessControl.FileSystemRights" />, связанные с текущим объектом <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemRights">
+      <summary>Определяет права доступа, которые используются при создании правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.AppendData">
+      <summary>Право добавлять данные в конец файла.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ChangePermissions">
+      <summary>Право на изменение правил безопасности и аудита, связанных с файлом или папкой.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.CreateDirectories">
+      <summary>Задает право на создание папки. Для этого права требуется значение <c>Synchronize</c>.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.CreateFiles">
+      <summary>Право на создание файла. Для этого права требуется значение <c>Synchronize</c>.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Delete">
+      <summary>Право на удаление папки или файла.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.DeleteSubdirectoriesAndFiles">
+      <summary>Право на удаление папки и всех файлов в ней.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ExecuteFile">
+      <summary>Право на запуск файла приложения.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.FullControl">
+      <summary>Право на полный контроль над папкой или файлом, а также на изменение правил управления доступом и аудита.  Это значение представляет право выполнять над файлом любые операции и является объединением всех входящих в перечисление прав.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ListDirectory">
+      <summary>Право на чтение содержимого каталога.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Modify">
+      <summary>Право на чтение, запись, получение содержимого папки, удаление папок и файлов, а также на запуск файлов приложений.  Это право включает права <see cref="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute" />, <see cref="F:System.Security.AccessControl.FileSystemRights.Write" /> и <see cref="F:System.Security.AccessControl.FileSystemRights.Delete" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Read">
+      <summary>Право открывать и копировать папки и файлы с разрешением только для чтения.  Это право включает в себя права <see cref="F:System.Security.AccessControl.FileSystemRights.ReadData" />, <see cref="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes" />, <see cref="F:System.Security.AccessControl.FileSystemRights.ReadAttributes" /> и <see cref="F:System.Security.AccessControl.FileSystemRights.ReadPermissions" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute">
+      <summary>Право открывать и копировать и файлы с разрешением только для чтения, а также запускать файлы приложений.  Это право включает права <see cref="F:System.Security.AccessControl.FileSystemRights.Read" /> и <see cref="F:System.Security.AccessControl.FileSystemRights.ExecuteFile" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadAttributes">
+      <summary>Право открывать и копировать атрибуты файловой системы для папки или файла.  Например, это значение дает право на просмотр даты создания или изменения файла.  Оно не включает в себя право на чтение данных, дополнительных атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadData">
+      <summary>Право открывать и копировать файл или папку.  Оно не включает в себя право на чтение атрибутов файловой системы, дополнительных атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes">
+      <summary>Право открывать и копировать дополнительные атрибуты файловой системы для папки или файла.  Например, оно позволяет просматривать сведения об авторе или содержимом.  Оно не включает в себя право на чтение данных, атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadPermissions">
+      <summary>Право открывать и копировать правила доступа и аудита для папки или файла.  Оно не включает в себя право на чтение данных, атрибутов файловой системы и дополнительных атрибутов файловой системы.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Synchronize">
+      <summary>Указывает, может ли приложение ждать синхронизации дескриптора файла с завершением операции ввода-вывода. Это значение автоматически задается при разрешении доступа и автоматически исключается при отклонении доступа.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.TakeOwnership">
+      <summary>Право менять владельца файла или папки.  Следует иметь в виду, что владельцы ресурса имеют полный доступ к этому ресурсу.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Traverse">
+      <summary>Право на получение списка содержимого папки и на запуск содержащихся в этой папке приложений.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Write">
+      <summary>Право создавать папки и файлы, а также добавлять данные в файлы и удалять данные из файлов.  Это право включает в себя права <see cref="F:System.Security.AccessControl.FileSystemRights.WriteData" />, <see cref="F:System.Security.AccessControl.FileSystemRights.AppendData" />, <see cref="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes" /> и <see cref="F:System.Security.AccessControl.FileSystemRights.WriteAttributes" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteAttributes">
+      <summary>Право открытия и записи атрибутов файловой системы для папки или файла. Оно не включает в себя право на запись данных, дополнительных атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteData">
+      <summary>Право открытия и записи для файла или папки.  Оно не включает в себя право на открытие и запись атрибутов файловой системы, дополнительных атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes">
+      <summary>Право открытия и записи дополнительных атрибутов файловой системы для папки или файла.  Оно не включает в себя право на запись данных, атрибутов файловой системы или правил доступа и аудита.</summary>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemSecurity">
+      <summary>Представляет возможности управления доступом и аудита безопасности для файла или каталога.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий новое правило управления доступом для указанного пользователя с указанными правами доступа, типом доступа и флагами.</summary>
+      <param name="identityReference">Объект <see cref="T:System.Security.Principal.IdentityReference" />, представляющий учетную запись пользователя.</param>
+      <param name="accessMask">Целочисленное значение, задающее тип доступа.</param>
+      <param name="isInherited">Значение <see langword="true" />, если правило доступа наследуется; в противном случае — значение <see langword="false" />.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> или <paramref name="type" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="identityReference" /> имеет значение <see langword="null" />.  
+  
+-или- 
+Значение параметра <paramref name="accessMask" /> равно нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identityReference" /> не принадлежит к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> или к типу (такому, как <see cref="T:System.Security.Principal.NTAccount" />), допускающему преобразование в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>Новый объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий новое правило управления доступом для указанного пользователя с указанными правами доступа, типом доступа и флагами.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AddAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Добавляет указанное разрешение списка управления доступом к текущему файлу или каталогу.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий разрешение списка управления доступом, которое необходимо добавить к файлу или каталогу.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AddAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Добавляет указанное правило аудита к текущему файлу или каталогу.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, представляющий правило аудита, которое необходимо добавить к файлу или каталогу.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, который представляет указанное правило аудита для указанного пользователя.</summary>
+      <param name="identityReference">Объект <see cref="T:System.Security.Principal.IdentityReference" />, представляющий учетную запись пользователя.</param>
+      <param name="accessMask">Целочисленное значение, задающее тип доступа.</param>
+      <param name="isInherited">Значение <see langword="true" />, если правило доступа наследуется; в противном случае — значение <see langword="false" />.</param>
+      <param name="inheritanceFlags">Одно из значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок распространения масок доступа на дочерние объекты.</param>
+      <param name="propagationFlags">Одно из значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, определяющее порядок распространения элементов управления доступом на дочерние объекты.</param>
+      <param name="flags">Одно из значений <see cref="T:System.Security.AccessControl.AuditFlags" />, определяющее тип проводимого аудита.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Свойство <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> или <paramref name="flags" /> задает недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">Значение свойства <paramref name="identityReference" /> — <see langword="null" />.  
+  
+-или- 
+Значение свойства <paramref name="accessMask" /> равно нулю.</exception>
+      <exception cref="T:System.ArgumentException">Свойство <paramref name="identityReference" /> не принадлежит к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> или к типу (такому, как <see cref="T:System.Security.Principal.NTAccount" />), допускающему преобразование в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>Новый объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, представляющий указанное правило аудита для указанного пользователя.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Удаляет все подходящие разрешения и запреты списка управления доступом из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий разрешение списка управления доступом, которое необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если правило доступа удалено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRuleAll(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Удаляет все разрешения списка управления доступом для указанного пользователя из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, задающий пользователя, разрешения списка управления доступом которого необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Удаляет одно подходящее разрешение или один запрет списка управления доступом из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, задающий пользователя, разрешения списка управления доступом которого необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Удаляет все подходящие разрешающие или запрещающие правила аудита из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, представляющий правило аудита, которое необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если правило аудита удалено, в противном случае — значение <see langword="false" /></returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRuleAll(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Удаляет все правила аудита для указанного пользователя из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, задающий пользователя, правила аудита которого необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Удаляет одно подходящее разрешающее или запрещающее правило аудита из текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, представляющий правило аудита, которое необходимо удалить из файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.ResetAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Добавляет указанное разрешение списка управления доступом к текущему файлу или каталогу и удаляет все совпадающие разрешения списка управления доступом.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий разрешение списка управления доступом, которое необходимо добавить к файлу или каталогу.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.SetAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Устанавливает указанное разрешение списка управления доступом для текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />, представляющий разрешение списка управления доступом, которое необходимо установить для файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.SetAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Устанавливает указанное правило аудита для текущего файла или каталога.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />, представляющий правило аудита, которое необходимо установить для файла или каталога.</param>
+      <exception cref="T:System.ArgumentNullException">Параметр <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AccessRightType">
+      <summary>Получает значение перечисления, используемое классом <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> для обозначения прав доступа.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий перечисление <see cref="T:System.Security.AccessControl.FileSystemRights" />.</returns>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AccessRuleType">
+      <summary>Получает перечисление, используемое классом <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> для обозначения правил доступа.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий класс <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />.</returns>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AuditRuleType">
+      <summary>Получает тип, используемый классом <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> для обозначения правил аудита.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий класс <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />.</returns>
+    </member>
+  </members>
+</doc>

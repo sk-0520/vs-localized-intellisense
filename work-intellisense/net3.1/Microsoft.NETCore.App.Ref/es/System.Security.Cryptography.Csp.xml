@@ -1,0 +1,1031 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Csp</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AesCryptoServiceProvider">
+      <summary>Realiza el cifrado y descifrado simétricos mediante la implementación de interfaces de programación de aplicaciones criptográficas (CAPI) del algoritmo del estándar de cifrado avanzado (AES).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.AesCryptoServiceProvider" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">No hay ningún tamaño de clave compatible para la plataforma actual.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.BlockSize">
+      <summary>Obtiene o establece el tamaño del bloque de la operación criptográfica en bits.</summary>
+      <returns>Tamaño del bloque en bits.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El tamaño de bloque no es válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor">
+      <summary>Crea un objeto descifrador AES simétrico que utiliza la clave y el vector de inicialización (IV) actuales.</summary>
+      <returns>Objeto descifrador AES simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La clave actual no es válida o falta.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto descifrador AES simétrico que utiliza la clave y el vector de inicialización (IV) especificados.</summary>
+      <param name="rgbKey">La clave secreta que se va a utilizar para el algoritmo simétrico.</param>
+      <param name="rgbIV">Vector de inicialización que se va a usar para el algoritmo simétrico.</param>
+      <returns>Objeto descifrador AES simétrico.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> o <paramref name="iv" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> no es válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor">
+      <summary>Crea un objeto cifrador AES simétrico que utiliza la clave y el vector de inicialización (IV) actuales.</summary>
+      <returns>Objeto de sistema de cifrado AES simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto cifrador simétrico que utiliza la clave y el vector de inicialización (IV) especificados.</summary>
+      <param name="rgbKey">Clave secreta que se va a usar para el algoritmo simétrico.</param>
+      <param name="rgbIV">Vector de inicialización que se va a usar para el algoritmo simétrico.</param>
+      <returns>Objeto de sistema de cifrado AES simétrico.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="key" /> o <paramref name="iv" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> no es válido.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.FeedbackSize">
+      <summary>Obtiene o establece el tamaño de los comentarios, en bits, de la operación criptográfica de los modos de cifrado Comentarios de cifrado (CFB) y Comentarios de salida (OFB).</summary>
+      <returns>Tamaño de respuesta en bits.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El tamaño de respuesta es mayor que el tamaño de bloque.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateIV">
+      <summary>Genera un vector de inicialización aleatorio (IV) que se va a utilizar para el algoritmo.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se pudo generar el vector de inicialización (IV).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCryptoServiceProvider.GenerateKey">
+      <summary>Genera una clave aleatoria que se utiliza para el algoritmo.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se pudo generar la clave.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.IV">
+      <summary>Obtiene o establece el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) del algoritmo simétrico.</summary>
+      <returns>Vector de inicialización.</returns>
+      <exception cref="T:System.ArgumentNullException">Se ha intentado establecer el vector de inicialización en <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Se ha intentado establecer el vector de inicialización en un tamaño no válido.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Key">
+      <summary>Obtiene o establece la clave simétrica que se utiliza para el cifrado y descifrado.</summary>
+      <returns>Clave simétrica que se utiliza para el cifrado y descifrado.</returns>
+      <exception cref="T:System.ArgumentNullException">El valor para la clave es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El tamaño de la clave no es válido.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.KeySize">
+      <summary>Obtiene o establece el tamaño, en bits, de la clave secreta.</summary>
+      <returns>El tamaño, en bits, de la clave.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalBlockSizes">
+      <summary>Obtiene los tamaños de bloque, en bits, admitidos por el algoritmo simétrico.</summary>
+      <returns>Matriz que contiene los tamaños de bloque admitidos por el algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.LegalKeySizes">
+      <summary>Obtiene los tamaños de clave, en bits, admitidos por el algoritmo simétrico.</summary>
+      <returns>Matriz que contiene los tamaños de clave admitidos por el algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Mode">
+      <summary>Obtiene o establece el modo de funcionamiento del algoritmo simétrico.</summary>
+      <returns>Modo de funcionamiento del algoritmo simétrico. De manera predeterminada, es <see cref="F:System.Security.Cryptography.CipherMode.CBC" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El modo de cifrado no es ninguno de los valores de <see cref="T:System.Security.Cryptography.CipherMode" />.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCryptoServiceProvider.Padding">
+      <summary>Obtiene o establece el modo de relleno usado en el algoritmo simétrico.</summary>
+      <returns>Modo de relleno utilizado en el algoritmo simétrico. De manera predeterminada, es <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El modo de relleno no es ninguno de los valores de <see cref="T:System.Security.Cryptography.PaddingMode" />.</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.CspKeyContainerInfo">
+      <summary>Proporciona información adicional sobre un par de claves de cifrado. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspKeyContainerInfo.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> utilizando los parámetros especificados.</summary>
+      <param name="parameters">Un objeto <see cref="T:System.Security.Cryptography.CspParameters" /> que proporciona información sobre la clave.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Accessible">
+      <summary>Obtiene un valor que indica si una clave en un contenedor de claves es accesible.</summary>
+      <returns>
+        <see langword="true" /> si se puede obtener acceso a la clave; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.NotSupportedException">El tipo de clave no es compatible.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Exportable">
+      <summary>Obtiene un valor que indica si una clave se puede exportar de un contenedor de claves.</summary>
+      <returns>
+        <see langword="true" /> si se puede exportar la clave; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.NotSupportedException">El tipo de clave no es compatible.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede encontrar el proveedor de servicios criptográficos.
+o bien
+No se encontró el contenedor de claves.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.HardwareDevice">
+      <summary>Obtiene un valor que indica si es una clave de hardware.</summary>
+      <returns>
+        <see langword="true" /> si es una clave de hardware; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede encontrar el proveedor de servicios criptográficos.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyContainerName">
+      <summary>Obtiene el nombre del contenedor de claves.</summary>
+      <returns>Nombre del contenedor de claves.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.KeyNumber">
+      <summary>Obtiene un valor que describe si se creó una clave asimétrica como una clave de firma o una clave de intercambio.</summary>
+      <returns>Uno de los valores <see cref="T:System.Security.Cryptography.KeyNumber" /> que describe si una clave asimétrica se creó como una clave de firma o una clave de intercambio.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.MachineKeyStore">
+      <summary>Obtiene un valor que indica si una clave se obtiene de conjunto de claves de equipo.</summary>
+      <returns>
+        <see langword="true" />, si la clave se obtiene del conjunto de claves de equipo; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Protected">
+      <summary>Obtiene un valor que indica si un par de claves está protegido.</summary>
+      <returns>
+        <see langword="true" /> si el par de claves está protegido; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.NotSupportedException">El tipo de clave no es compatible.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede encontrar el proveedor de servicios criptográficos.
+o bien
+No se encontró el contenedor de claves.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderName">
+      <summary>Obtiene el nombre del proveedor de una clave.</summary>
+      <returns>Nombre del proveedor.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.ProviderType">
+      <summary>Obtiene el tipo de proveedor de una clave.</summary>
+      <returns>Tipo de proveedor. El valor predeterminado es 1.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.RandomlyGenerated">
+      <summary>Obtiene un valor que indica si una clase de cifrado administrada generó al azar un contenedor de claves.</summary>
+      <returns>
+        <see langword="true" />, si la clave de contenedor se generó al azar; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.Removable">
+      <summary>Obtiene un valor que indica si una clave se puede quitar de un contenedor de claves.</summary>
+      <returns>
+        <see langword="true" /> si la clave se puede quitar; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se ha encontrado el proveedor de servicios criptográficos (CSP).</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CspKeyContainerInfo.UniqueKeyContainerName">
+      <summary>Obtiene un nombre del contenedor de claves único.</summary>
+      <returns>El nombre del contenedor de claves único.</returns>
+      <exception cref="T:System.NotSupportedException">El tipo de clave no es compatible.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede encontrar el proveedor de servicios criptográficos.
+o bien
+No se encontró el contenedor de claves.</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.CspParameters">
+      <summary>Contiene parámetros que se pasan al proveedor de servicios criptográficos (CSP), que realiza cálculos criptográficos. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.CspParameters" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.CspParameters" /> con el código de tipo de proveedor especificado.</summary>
+      <param name="dwTypeIn">Código de tipo de proveedor que especifica el tipo de proveedor que se va a crear.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.CspParameters" /> con el nombre y el código de tipo de proveedor especificados.</summary>
+      <param name="dwTypeIn">Código de tipo de proveedor que especifica el tipo de proveedor que se va a crear.</param>
+      <param name="strProviderNameIn">Nombre del proveedor.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CspParameters.#ctor(System.Int32,System.String,System.String)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.CspParameters" /> con el nombre y el código de tipo de proveedor y el nombre del contenedor especificados.</summary>
+      <param name="dwTypeIn">Código de tipo de proveedor que especifica el tipo de proveedor que se va a crear.</param>
+      <param name="strProviderNameIn">Nombre del proveedor.</param>
+      <param name="strContainerNameIn">Nombre del contenedor.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.Flags">
+      <summary>Representa las marcas de <see cref="T:System.Security.Cryptography.CspParameters" /> que modifican el comportamiento del proveedor de servicios de cifrado (CSP).</summary>
+      <returns>Valor de enumeración o una combinación bit a bit de los valores de enumeración.</returns>
+      <exception cref="T:System.ArgumentException">El valor no es un valor de enumeración válido.</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyContainerName">
+      <summary>Representa el nombre del contenedor de claves para <see cref="T:System.Security.Cryptography.CspParameters" />.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.KeyNumber">
+      <summary>Especifica si una clave asimétrica se crea como una clave de firma o una clave de intercambio.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.KeyPassword">
+      <summary>Obtiene o establece una contraseña asociada a una clave de tarjeta inteligente.</summary>
+      <returns>Contraseña asociada a una clave de tarjeta inteligente.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CspParameters.ParentWindowHandle">
+      <summary>Obtiene o establece un identificador a la ventana primaria no administrada para un cuadro de diálogo de contraseña de tarjeta inteligente.</summary>
+      <returns>Identificador a la ventana primaria para un cuadro de diálogo de contraseña de tarjeta inteligente.</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderName">
+      <summary>Representa el nombre del proveedor para <see cref="T:System.Security.Cryptography.CspParameters" />.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspParameters.ProviderType">
+      <summary>Representa el código del tipo de proveedor para <see cref="T:System.Security.Cryptography.CspParameters" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CspProviderFlags">
+      <summary>Especifica marcas que modifican el comportamiento de los proveedores de servicios criptográficos (CSP).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.CreateEphemeralKey">
+      <summary>Cree una clave temporal que se libera cuando se cierra el objeto Rivest-Shamir-Adleman (RSA) asociado. No utilice esta marca si desea que su clave sea independiente del objeto RSA.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoFlags">
+      <summary>No especifique ninguna configuración.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.NoPrompt">
+      <summary>Evite que el CSP muestre las interfaces de usuario (IU) de este contexto.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseArchivableKey">
+      <summary>Permita que se exporte una clave para archivado o recuperación.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseDefaultKeyContainer">
+      <summary>Utilice la información de clave del contenedor de claves predeterminado.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseExistingKey">
+      <summary>Utilice la información de clave de la clave actual.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseMachineKeyStore">
+      <summary>Utilice la información de clave del almacén de claves del equipo.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseNonExportableKey">
+      <summary>Utilice la información de clave que no se puede exportar.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CspProviderFlags.UseUserProtectedKey">
+      <summary>Notifique al usuario mediante un cuadro de diálogo u otro método cuando algunas acciones intenten usar una clave.  Esta marca no es compatible con la marca <see cref="F:System.Security.Cryptography.CspProviderFlags.NoPrompt" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DESCryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la versión del proveedor de servicios criptográficos (CSP) del algoritmo Estándar de cifrado de datos (<see cref="T:System.Security.Cryptography.DES" />). Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.DESCryptoServiceProvider" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El proveedor de servicios criptográficos del algoritmo Estándar de cifrado de datos (<see cref="T:System.Security.Cryptography.DES" />) no está disponible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor">
+      <summary>Crea un objeto descifrador simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuales.</summary>
+      <returns>Objeto descifrador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto descifrador <see cref="T:System.Security.Cryptography.DES" /> (Estándar de cifrado de datos) simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización especificados (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <param name="rgbKey">Clave secreta que se va a usar para el algoritmo simétrico.</param>
+      <param name="rgbIV">El vector de inicialización que se va a utilizar para el algoritmo simétrico.</param>
+      <returns>Objeto descifrador <see cref="T:System.Security.Cryptography.DES" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+o bien
+El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> y el valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> no es 8.
+o bien
+Se utilizó un tamaño de clave no válido.
+o bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor">
+      <summary>Crea un objeto descifrador simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuales.</summary>
+      <returns>Objeto cifrador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto descifrador <see cref="T:System.Security.Cryptography.DES" /> (Estándar de cifrado de datos) simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización especificados (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <param name="rgbKey">Clave secreta que se va a usar para el algoritmo simétrico.</param>
+      <param name="rgbIV">Vector de inicialización que se va a usar para el algoritmo simétrico.</param>
+      <returns>Objeto cifrador <see cref="T:System.Security.Cryptography.DES" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+o bien
+El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> y el valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> no es 8.
+o bien
+Se utilizó un tamaño de clave no válido.
+o bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateIV">
+      <summary>Genera un vector de inicialización aleatorio (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DESCryptoServiceProvider.GenerateKey">
+      <summary>Genera una propiedad (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) aleatoria que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la implementación del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.DSA" />. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> con el tamaño de clave especificado.</summary>
+      <param name="dwKeySize">Tamaño de la clave para el algoritmo asimétrico en bits.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> con el tamaño de la clave y los parámetros especificados del proveedor de servicios criptográficos (CSP).</summary>
+      <param name="dwKeySize">Tamaño de la clave para el algoritmo criptográfico en bits.</param>
+      <param name="parameters">Parámetros del CSP.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el CSP.
+o bien
+No se puede crear la clave.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="dwKeySize" /> está fuera del intervalo.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> con los parámetros especificados del proveedor de servicios criptográficos (CSP).</summary>
+      <param name="parameters">Parámetros del CSP.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.CreateSignature(System.Byte[])">
+      <summary>Crea la firma <see cref="T:System.Security.Cryptography.DSA" /> de los datos especificados.</summary>
+      <param name="rgbHash">Datos que van a firmar.</param>
+      <returns>La firma digital de los datos especificados.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>Obtiene un objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe la información adicional sobre un par de claves criptográficas.</summary>
+      <returns>Objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe información adicional sobre un par de claves criptográficas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>Exporta un objeto binario que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> para incluir la clave privada; de lo contrario, <see langword="false" />.</param>
+      <returns>Exporta una matriz de bytes que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>Exporta <see cref="T:System.Security.Cryptography.DSAParameters" />.</summary>
+      <param name="includePrivateParameters">Es <see langword="true" /> si se van a incluir parámetros privados; en caso contrario, es <see langword="false" />.</param>
+      <returns>Parámetros de <see cref="T:System.Security.Cryptography.DSA" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La clave no se puede exportar.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>Importa un objeto binario que representa la información de clave DSA.</summary>
+      <param name="keyBlob">Una matriz de bytes que representa un objeto binario de clave DSA.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>Importa el objeto <see cref="T:System.Security.Cryptography.DSAParameters" /> especificado.</summary>
+      <param name="parameters">Parámetros de <see cref="T:System.Security.Cryptography.DSA" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+Faltan campos del parámetro <paramref name="parameters" />.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>Obtiene el nombre del algoritmo de intercambio de claves.</summary>
+      <returns>Nombre del algoritmo de intercambio de claves.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.KeySize">
+      <summary>Obtiene el tamaño de la clave que utiliza el algoritmo asimétrico en bits.</summary>
+      <returns>Tamaño de la clave que utiliza el algoritmo asimétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.LegalKeySizes">
+      <summary>Obtiene los tamaños de clave que admite el algoritmo asimétrico.</summary>
+      <returns>El algoritmo asimétrico sólo admite los tamaños de clave que coincidan con una entrada de esta matriz.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>Obtiene o establece un valor que indica si la clave debe conservarse en el proveedor de servicios criptográficos (CSP).</summary>
+      <returns>
+        <see langword="true" /> si la clave debe conservarse en el CSP; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.PublicOnly">
+      <summary>Obtiene un valor que indica si el objeto <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> contiene solo una clave pública.</summary>
+      <returns>
+        <see langword="true" />, si el objeto <see cref="T:System.Security.Cryptography.DSACryptoServiceProvider" /> contiene solo una clave pública; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>Obtiene el nombre del algoritmo de firma.</summary>
+      <returns>Nombre del algoritmo de firma.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[])">
+      <summary>Calcula el valor hash de la matriz de bytes especificada y firma el valor hash resultante.</summary>
+      <param name="buffer">Datos de entrada para los que se va a calcular el hash.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.DSA" /> de los datos especificados.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>Firma una matriz de bytes del punto inicial especificado al punto final especificado.</summary>
+      <param name="buffer">Los datos de entrada que se van a firmar.</param>
+      <param name="offset">Desplazamiento en la matriz a partir del cual se van a empezar a usar los datos.</param>
+      <param name="count">Número de bytes de la matriz que se van a usar como datos.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.DSA" /> de los datos especificados.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignData(System.IO.Stream)">
+      <summary>Calcula el valor hash del flujo de entrada especificado y firma el valor hash resultante.</summary>
+      <param name="inputStream">Datos de entrada para los que se va a calcular el hash.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.DSA" /> de los datos especificados.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>Calcula la firma del valor hash especificado cifrándolo con la clave privada.</summary>
+      <param name="rgbHash">Valor hash de los datos que se van a firmar.</param>
+      <param name="str">Nombre del algoritmo hash usado para crear el valor hash de los datos.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.DSA" /> del valor hash especificado.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="rgbHash" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+No hay ninguna clave privada.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>Obtiene o establece un valor que indica si la clave debe conservarse en el almacén de claves del equipo en lugar del almacén de perfiles de usuario.</summary>
+      <returns>
+        <see langword="true" /> si la clave debe conservarse en el almacén de claves del equipo; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyData(System.Byte[],System.Byte[])">
+      <summary>Comprueba los datos de la firma especificados comparándolos con la firma calculada para los datos establecidos.</summary>
+      <param name="rgbData">Los datos que se firmaron.</param>
+      <param name="rgbSignature">Datos de la firma que se van a comprobar.</param>
+      <returns>Es <see langword="true" /> si se comprueba que la firma es válida; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>Comprueba los datos de la firma especificados comparándolos con la firma calculada para el valor hash establecido.</summary>
+      <param name="rgbHash">Valor hash de los datos que se van a firmar.</param>
+      <param name="str">Nombre del algoritmo hash que se utiliza para crear el valor hash de los datos.</param>
+      <param name="rgbSignature">Datos de la firma que se van a comprobar.</param>
+      <returns>Es <see langword="true" /> si se comprueba que la firma es válida; en caso contrario, es <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="rgbHash" /> es <see langword="null" />.
+o bien
+El parámetro <paramref name="rgbSignature" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+No se puede comprobar la firma.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACryptoServiceProvider.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>Comprueba la firma <see cref="T:System.Security.Cryptography.DSA" /> de los datos especificados.</summary>
+      <param name="rgbHash">Datos firmados con <paramref name="rgbSignature" />.</param>
+      <param name="rgbSignature">Firma que se va a comprobar para <paramref name="rgbData" />.</param>
+      <returns>
+        <see langword="true" />, si <paramref name="rgbSignature" /> coincide con la firma calculada utilizando el algoritmo hash y la clave especificados en <paramref name="rgbHash" />; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ICspAsymmetricAlgorithm">
+      <summary>Define métodos que permiten a una clase <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> enumerar la información del contenedor de claves, así como importar y exportar blobs de claves compatibles con la API criptográfica (CAPI) de Microsoft.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.ICspAsymmetricAlgorithm.CspKeyContainerInfo">
+      <summary>Obtiene un objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe la información adicional sobre un par de claves criptográficas.</summary>
+      <returns>Objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe información adicional sobre un par de claves criptográficas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ExportCspBlob(System.Boolean)">
+      <summary>Exporta un objeto binario que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</summary>
+      <param name="includePrivateParameters">Es <see langword="true" /> si se va a incluir la clave privada; en caso contrario, es <see langword="false" />.</param>
+      <returns>Matriz de bytes que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICspAsymmetricAlgorithm.ImportCspBlob(System.Byte[])">
+      <summary>Importa un objeto binario que representa la información de clave asimétrica.</summary>
+      <param name="rawData">Una matriz de bytes que representa un objeto binario de clave asimétrico.</param>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyNumber">
+      <summary>Especifica si crear una clave de firma asimétrica o una clave de intercambio asimétrica.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Exchange">
+      <summary>Par de intercambio de claves que se usa para cifrar las claves de sesión de modo que se puedan almacenar de forma segura e intercambiar con otros usuarios. Este valor corresponde al valor AT_KEYEXCHANGE utilizado en la API de criptografía de Microsoft (CAPI) no administrada.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyNumber.Signature">
+      <summary>Par de claves de firma usado para autenticar mensajes o archivos con firma digital. Este valor corresponde al valor AT_SIGNATURE utilizado en la API de criptografía de Microsoft (CAPI) no administrada.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.MD5CryptoServiceProvider">
+      <summary>Calcula el valor de hash <see cref="T:System.Security.Cryptography.MD5" /> de los datos de entrada utilizando la implementación proporcionada por el proveedor de servicios criptográfico (CSP). Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" />.</summary>
+      <exception cref="T:System.InvalidOperationException">No se está utilizando una directiva compatible con el algoritmo FIPS.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.MD5CryptoServiceProvider.Initialize">
+      <summary>Inicializa una instancia de <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PasswordDeriveBytes">
+      <summary>Deriva una clave de una contraseña utilizando una extensión del algoritmo PBKDF1.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[])">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> especificando la contraseña y el valor salt de clave que se van a utilizar para derivar la clave.</summary>
+      <param name="password">Contraseña para la que se va a derivar la clave.</param>
+      <param name="salt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> especificando la contraseña, el valor salt de clave y los parámetros del proveedor de servicios criptográficos (CSP) que se van a utilizar para derivar la clave.</summary>
+      <param name="password">Contraseña para la que se va a derivar la clave.</param>
+      <param name="salt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="cspParams">Los parámetros del proveedor de servicios criptográficos (CSP) para la operación.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> especificando  la contraseña, el valor salt de clave, el nombre hash y las iteraciones que se van a utilizar para derivar la clave.</summary>
+      <param name="password">Contraseña para la que se va a derivar la clave.</param>
+      <param name="salt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="hashName">Algoritmo hash que se va a utilizar para derivar la clave.</param>
+      <param name="iterations">Contador de iteraciones que se va a utilizar para derivar la clave.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.Byte[],System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> especificando la contraseña, el valor salt de clave, el nombre del algoritmo hash, las iteraciones y los parámetros del proveedor de servicios criptográficos (CSP) que se van a utilizar para derivar la clave.</summary>
+      <param name="password">Contraseña para la que se va a derivar la clave.</param>
+      <param name="salt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="hashName">Algoritmo hash que se va a utilizar para derivar la clave.</param>
+      <param name="iterations">Contador de iteraciones que se va a utilizar para derivar la clave.</param>
+      <param name="cspParams">Los parámetros del proveedor de servicios criptográficos (CSP) para la operación.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[])">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> con la contraseña y el valor salt de clave que se van a utilizar para derivar la clave.</summary>
+      <param name="strPassword">Contraseña para la que se va a derivar la clave.</param>
+      <param name="rgbSalt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> con la contraseña, el valor salt de clave y los parámetros del proveedor de servicios criptográficos (CSP) que se van a utilizar para derivar la clave.</summary>
+      <param name="strPassword">Contraseña para la que se va a derivar la clave.</param>
+      <param name="rgbSalt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="cspParams">Parámetros del proveedor de servicios criptográficos (CSP) de la operación.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> con la contraseña, el valor salt de clave, el nombre hash y el número de iteraciones que se van a utilizar para derivar la clave.</summary>
+      <param name="strPassword">Contraseña para la que se va a derivar la clave.</param>
+      <param name="rgbSalt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="strHashName">Nombre del algoritmo hash de la operación.</param>
+      <param name="iterations">Número de iteraciones de la operación.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.#ctor(System.String,System.Byte[],System.String,System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> con la contraseña, el valor salt de clave, el nombre hash, el número de iteraciones y los parámetros del proveedor de servicios criptográficos (CSP) que se van a utilizar para derivar la clave.</summary>
+      <param name="strPassword">Contraseña para la que se va a derivar la clave.</param>
+      <param name="rgbSalt">Valor salt de clave que se va a utilizar para derivar la clave.</param>
+      <param name="strHashName">Nombre del algoritmo hash de la operación.</param>
+      <param name="iterations">Número de iteraciones de la operación.</param>
+      <param name="cspParams">Parámetros del proveedor de servicios criptográficos (CSP) de la operación.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.CryptDeriveKey(System.String,System.String,System.Int32,System.Byte[])">
+      <summary>Deriva una clave criptográfica a partir del objeto <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" />.</summary>
+      <param name="algname">Nombre del algoritmo para el que se va a derivar la clave.</param>
+      <param name="alghashname">Nombre del algoritmo hash que se va a utilizar para derivar la clave.</param>
+      <param name="keySize">Tamaño de la clave, en bits, que se va a derivar.</param>
+      <param name="rgbIV">Vector de inicialización (IV) que se va a utilizar para derivar la clave.</param>
+      <returns>Clave derivada.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El parámetro <paramref name="keySize" /> no es correcto.
+O bien
+No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+El parámetro <paramref name="algname" /> no es un nombre de algoritmo válido.
+O bien
+El parámetro <paramref name="alghashname" /> no es un nombre de algoritmo hash válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Dispose(System.Boolean)">
+      <summary>Libera los recursos no administrados utilizados por la clase <see cref="T:System.Security.Cryptography.PasswordDeriveBytes" /> y, de forma opcional, libera los recursos administrados.</summary>
+      <param name="disposing">Es <see langword="true" /> para liberar tanto recursos administrados como no administrados; es <see langword="false" /> para liberar únicamente recursos no administrados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.GetBytes(System.Int32)">
+      <summary>Devuelve bytes de clave pseudoaleatorios.</summary>
+      <param name="cb">Número de bytes de clave pseudoaleatorios que se van a generar.</param>
+      <returns>Matriz de bytes rellena de bytes de clave pseudoaleatorios.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.HashName">
+      <summary>Obtiene o establece el nombre del algoritmo hash de la operación.</summary>
+      <returns>Nombre del algoritmo hash de la operación.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El nombre del valor hash es fijo, y se ha intentado cambiar este valor.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.IterationCount">
+      <summary>Obtiene o establece el número de iteraciones de la operación.</summary>
+      <returns>Número de iteraciones de la operación.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El número de iteraciones es fijo, y se ha intentado cambiar este valor.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">No se puede establecer la propiedad porque su valor está fuera del intervalo. Esta propiedad requiere un número no negativo.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.PasswordDeriveBytes.Reset">
+      <summary>Restablece el estado de la operación.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.PasswordDeriveBytes.Salt">
+      <summary>Obtiene o establece el valor salt de clave de la operación.</summary>
+      <returns>Valor salt de clave de la operación.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El valor salt de clave es fijo, y se ha intentado cambiar este valor.</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.RC2CryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la implementación del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.RC2" />. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RC2CryptoServiceProvider" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).</exception>
+      <exception cref="T:System.InvalidOperationException">Se encontró un algoritmo FIPS no compatible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto descifrador <see cref="T:System.Security.Cryptography.RC2" /> simétrico con la clave (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) especificados.</summary>
+      <param name="rgbKey">La clave secreta que se va a utilizar para el algoritmo simétrico.</param>
+      <param name="rgbIV">El vector de inicialización que se va a utilizar para el algoritmo simétrico.</param>
+      <returns>Objeto descifrador <see cref="T:System.Security.Cryptography.RC2" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Se utilizó un modo de cifrado <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+O bien
+Se utilizó un modo de cifrado <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> con un tamaño de respuesta distinto de 8 bits.
+O bien
+Se utilizó un tamaño de clave no válido.
+o bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto cifrador <see cref="T:System.Security.Cryptography.RC2" /> simétrico con la clave (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) especificados.</summary>
+      <param name="rgbKey">La clave secreta que se va a utilizar para el algoritmo simétrico.</param>
+      <param name="rgbIV">El vector de inicialización que se va a utilizar para el algoritmo simétrico.</param>
+      <returns>Objeto cifrador <see cref="T:System.Security.Cryptography.RC2" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Se utilizó un modo de cifrado <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+O bien
+Se utilizó un modo de cifrado <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> con un tamaño de respuesta distinto de 8 bits.
+o bien
+Se utilizó un tamaño de clave no válido.
+O bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize">
+      <summary>Obtiene o establece el tamaño efectivo en bits de la clave secreta utilizada por el algoritmo <see cref="T:System.Security.Cryptography.RC2" />.</summary>
+      <returns>Tamaño efectivo de la clave en bits utilizado por el algoritmo <see cref="T:System.Security.Cryptography.RC2" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">La propiedad <see cref="P:System.Security.Cryptography.RC2CryptoServiceProvider.EffectiveKeySize" /> se estableció en un valor distinto de la propiedad <see cref="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateIV">
+      <summary>Genera un vector de inicialización aleatorio (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RC2CryptoServiceProvider.GenerateKey">
+      <summary>Genera una propiedad (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) aleatoria que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.RC2CryptoServiceProvider.UseSalt">
+      <summary>Obtiene o establece un valor que determina si crear una clave con un valor salt cero de 11 bytes de longitud.</summary>
+      <returns>Es <see langword="true" /> si la clave se debe crear con un valor salt cero de 11 bytes de longitud; de lo contrario, es <see langword="false" />. De manera predeterminada, es <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.RNGCryptoServiceProvider">
+      <summary>Implementa un generador de números aleatorios (RNG) criptográfico mediante la implementación proporcionada por el proveedor de servicios criptográficos (CSP). Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Byte[])">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" />.</summary>
+      <param name="rgb">Matriz de bytes. Este valor se omite.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" /> con los parámetros especificados.</summary>
+      <param name="cspParams">Parámetros que se pasan al proveedor de servicios criptográficos (CSP).</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.#ctor(System.String)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RNGCryptoServiceProvider" />.</summary>
+      <param name="str">Entrada en forma de cadena. Este parámetro se ignora.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[])">
+      <summary>Rellena una matriz de bytes con una secuencia aleatoria de valores sólidamente cifrada.</summary>
+      <param name="data">La matriz para rellenar la secuencia aleatoria de valores sólidamente cifrada.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Byte[],System.Int32,System.Int32)">
+      <summary>Rellena la matriz de bytes especificada con una secuencia aleatoria de valores criptográficamente segura a partir de un índice especificado y para un número de bytes especificado.</summary>
+      <param name="data">Matriz que se va a rellenar con los bytes aleatorios sólidamente cifrados.</param>
+      <param name="offset">Índice de la matriz donde empezará la operación de relleno.</param>
+      <param name="count">Número de bytes para rellenar.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> o <paramref name="count" /> es menor que 0.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> más <paramref name="count" /> supera la longitud de <paramref name="data" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetBytes(System.Span{System.Byte})">
+      <summary>Rellena un intervalo con bytes aleatorios criptográficamente seguros.</summary>
+      <param name="data">Intervalo que se va a rellenar con bytes criptográficamente seguros.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Byte[])">
+      <summary>Rellena una matriz de bytes con una secuencia aleatoria de valores distintos de cero sólidamente cifrada.</summary>
+      <param name="data">La matriz para rellenar la secuencia aleatoria de valores distintos de cero sólidamente cifrada.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RNGCryptoServiceProvider.GetNonZeroBytes(System.Span{System.Byte})">
+      <summary>Rellena un intervalo de bytes con una secuencia aleatoria criptográficamente segura de valores distintos de cero.</summary>
+      <param name="data">Intervalo que se va a rellenar con bytes aleatorios criptográficamente seguros distintos de cero.</param>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACryptoServiceProvider">
+      <summary>Realiza el cifrado y descifrado asimétricos utilizando la implementación del algoritmo <see cref="T:System.Security.Cryptography.RSA" /> proporcionada por el proveedor de servicios criptográficos (CSP). Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> usando la clave predeterminada.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> con el tamaño de clave especificado.</summary>
+      <param name="dwKeySize">Tamaño de la clave que se va a utilizar en bits.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Int32,System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> con los parámetros y el tamaño de clave especificados.</summary>
+      <param name="dwKeySize">Tamaño de la clave que se va a usar en bits.</param>
+      <param name="parameters">Parámetros que se pasan al proveedor de servicios criptográficos (CSP).</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el CSP.
+o bien
+La clave no se puede crear.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.#ctor(System.Security.Cryptography.CspParameters)">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> con los parámetros especificados.</summary>
+      <param name="parameters">Parámetros que se pasan al proveedor de servicios criptográficos (CSP).</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el CSP.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.CspKeyContainerInfo">
+      <summary>Obtiene un objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe la información adicional sobre un par de claves criptográficas.</summary>
+      <returns>Objeto <see cref="T:System.Security.Cryptography.CspKeyContainerInfo" /> que describe información adicional sobre un par de claves criptográficas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Boolean)">
+      <summary>Descifra los datos con el algoritmo <see cref="T:System.Security.Cryptography.RSA" />.</summary>
+      <param name="rgb">Datos que se van a descifrar.</param>
+      <param name="fOAEP">Es <see langword="true" /> si se realiza el descifrado directo <see cref="T:System.Security.Cryptography.RSA" /> mediante el relleno OAEP (sólo disponible en un equipo con Microsoft Windows XP o posterior); en caso contrario, es <see langword="false" /> si se utiliza el relleno PKCS#1 v1.5.</param>
+      <returns>Los datos descifrados, que es el texto sin formato original antes del cifrado.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+El parámetro <paramref name="fOAEP" /> es <see langword="true" /> y la longitud del parámetro <paramref name="rgb" /> es mayor que <see cref="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize" />.
+O bien
+El parámetro <paramref name="fOAEP" /> es <see langword="true" /> y no se admite OAEP.
+o bien
+La clave no coincide con los datos cifrados. Sin embargo, las palabras de la excepción pueden no ser precisas. Por ejemplo, podría decir <c>No queda suficiente almacenamiento para procesar este comando</c>.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Descifra los datos que se cifraron anteriormente con el algoritmo <see cref="T:System.Security.Cryptography.RSA" /> utilizando el relleno especificado.</summary>
+      <param name="data">Datos que se van a descifrar.</param>
+      <param name="padding">Relleno.</param>
+      <returns>Datos descifrados.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> es <see langword="null" />.
+o bien
+<paramref name="padding" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se admite el modo de relleno.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.DecryptValue(System.Byte[])">
+      <summary>Este método no es compatible con la versión actual.</summary>
+      <param name="rgb">Datos que se van a descifrar.</param>
+      <returns>Datos descifrados, es decir, el texto sin formato original antes de que se cifrara.</returns>
+      <exception cref="T:System.NotSupportedException">Este método no es compatible con la versión actual.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Boolean)">
+      <summary>Cifra los datos con el algoritmo <see cref="T:System.Security.Cryptography.RSA" />.</summary>
+      <param name="rgb">Datos que se van a cifrar.</param>
+      <param name="fOAEP">
+        <see langword="true" /> para realizar el cifrado <see cref="T:System.Security.Cryptography.RSA" /> directo mediante el relleno de OAEP (solo disponible en equipos con Windows XP o versiones posteriores); de lo contrario, <see langword="false" /> para usar el relleno PKCS#1 v1.5.</param>
+      <returns>Datos cifrados.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+O bien
+La longitud del parámetro <paramref name="rgb" /> es mayor que la longitud máxima permitida.
+o bien
+El parámetro <paramref name="fOAEP" /> es <see langword="true" /> y no se admite el relleno OAEP.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgb" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Cifra los datos con el algoritmo <see cref="T:System.Security.Cryptography.RSA" /> utilizando el relleno especificado.</summary>
+      <param name="data">Datos que se van a cifrar.</param>
+      <param name="padding">Relleno.</param>
+      <returns>Datos cifrados.</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> es <see langword="null" />.
+o bien
+<paramref name="padding" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se admite el modo de relleno.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.EncryptValue(System.Byte[])">
+      <summary>Este método no se puede usar en la versión actual.</summary>
+      <param name="rgb">Datos que se van a cifrar.</param>
+      <returns>Datos cifrados.</returns>
+      <exception cref="T:System.NotSupportedException">Este método no es compatible con la versión actual.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportCspBlob(System.Boolean)">
+      <summary>Exporta un objeto binario que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" />.</summary>
+      <param name="includePrivateParameters">Es <see langword="true" /> si se va a incluir la clave privada; en caso contrario, es <see langword="false" />.</param>
+      <returns>Exporta una matriz de bytes que contiene la información de clave asociada a un objeto <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ExportParameters(System.Boolean)">
+      <summary>Exporta <see cref="T:System.Security.Cryptography.RSAParameters" />.</summary>
+      <param name="includePrivateParameters">Es <see langword="true" /> si se van a incluir parámetros privados; en caso contrario, es <see langword="false" />.</param>
+      <returns>Parámetros de <see cref="T:System.Security.Cryptography.RSA" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La clave no se puede exportar.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportCspBlob(System.Byte[])">
+      <summary>Importa un blob que representa información de clave RSA.</summary>
+      <param name="keyBlob">Una matriz de bytes que representa un objeto binario de clave RSA.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>Importa el elemento <see cref="T:System.Security.Cryptography.RSAParameters" /> especificado.</summary>
+      <param name="parameters">Parámetros de <see cref="T:System.Security.Cryptography.RSA" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+Faltan campos del parámetro <paramref name="parameters" />.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeyExchangeAlgorithm">
+      <summary>Obtiene el nombre del algoritmo de intercambio de claves disponible con esta implementación de <see cref="T:System.Security.Cryptography.RSA" />.</summary>
+      <returns>Nombre del algoritmo de intercambio de claves si existe; si no, <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.KeySize">
+      <summary>Obtiene el tamaño de la clave actual.</summary>
+      <returns>Tamaño de la clave en bits.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.LegalKeySizes">
+      <summary>Obtiene los tamaños de clave que admite el algoritmo asimétrico.</summary>
+      <returns>Matriz que contiene los tamaños de clave admitidos por el algoritmo asimétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PersistKeyInCsp">
+      <summary>Obtiene o establece un valor que indica si la clave debe conservarse en el proveedor de servicios criptográficos (CSP).</summary>
+      <returns>
+        <see langword="true" /> si la clave debe conservarse en el CSP; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.PublicOnly">
+      <summary>Obtiene un valor que indica si el objeto <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> contiene solo una clave pública.</summary>
+      <returns>
+        <see langword="true" />, si el objeto <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> contiene solo una clave pública; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.SignatureAlgorithm">
+      <summary>Obtiene el nombre del algoritmo de firma disponible con esta implementación de <see cref="T:System.Security.Cryptography.RSA" />.</summary>
+      <returns>Nombre del algoritmo de firma.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Int32,System.Int32,System.Object)">
+      <summary>Calcula el valor hash de un subconjunto de la matriz de bytes especificada mediante el algoritmo hash establecido y firma el valor hash resultante.</summary>
+      <param name="buffer">Datos de entrada para los que se va a calcular el hash.</param>
+      <param name="offset">Desplazamiento en la matriz a partir del cual se van a empezar a usar los datos.</param>
+      <param name="count">Número de bytes de la matriz que se van a usar como datos.</param>
+      <param name="halg">Algoritmo hash que se va a usar para crear el valor hash.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.RSA" /> de los datos especificados.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="halg" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">El parámetro <paramref name="halg" /> no es un tipo válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.Byte[],System.Object)">
+      <summary>Calcula el valor hash de la matriz de bytes especificada mediante el algoritmo hash proporcionado y firma el valor hash resultante.</summary>
+      <param name="buffer">Datos de entrada para los que se va a calcular el hash.</param>
+      <param name="halg">Algoritmo hash que se va a usar para crear el valor hash.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.RSA" /> de los datos especificados.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="halg" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">El parámetro <paramref name="halg" /> no es un tipo válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignData(System.IO.Stream,System.Object)">
+      <summary>Calcula el valor hash del flujo de entrada especificado mediante el algoritmo hash proporcionado y firma el valor hash resultante.</summary>
+      <param name="inputStream">Datos de entrada para los que se va a calcular el hash.</param>
+      <param name="halg">Algoritmo hash que se va a usar para crear el valor hash.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.RSA" /> de los datos especificados.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="halg" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">El parámetro <paramref name="halg" /> no es un tipo válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Calcula la firma del valor hash especificado cifrándola con la clave privada que utiliza el relleno especificado.</summary>
+      <param name="hash">Valor hash de los datos que se van a firmar.</param>
+      <param name="hashAlgorithm">Nombre del algoritmo hash que se utiliza para crear el valor hash de los datos.</param>
+      <param name="padding">Relleno.</param>
+      <returns>Signatura <see cref="T:System.Security.Cryptography.RSA" /> del valor hash especificado.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> es <see langword="null" /> o <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> es <see langword="null" />.
+o bien
+<paramref name="padding" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> no es igual a <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.String)">
+      <summary>Calcula la firma del valor hash especificado cifrándolo con la clave privada.</summary>
+      <param name="rgbHash">Valor hash de los datos que se van a firmar.</param>
+      <param name="str">Identificador del algoritmo hash (OID) usado para crear el valor hash de los datos.</param>
+      <returns>Firma <see cref="T:System.Security.Cryptography.RSA" /> del valor hash especificado.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="rgbHash" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+o bien
+No hay ninguna clave privada.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACryptoServiceProvider.UseMachineKeyStore">
+      <summary>Obtiene o establece un valor que indica si la clave debe conservarse en el almacén de claves del equipo en lugar del almacén de perfiles del usuario.</summary>
+      <returns>
+        <see langword="true" /> si la clave debe conservarse en el almacén de claves del equipo; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyData(System.Byte[],System.Object,System.Byte[])">
+      <summary>Comprueba que una firma digital es válida determinando el valor hash en ella mediante la clave pública proporcionada y comparándola con el valor hash de los datos proporcionados.</summary>
+      <param name="buffer">Los datos que se firmaron.</param>
+      <param name="halg">Nombre del algoritmo hash usado para crear el valor hash de los datos.</param>
+      <param name="signature">Datos de la firma que se van a comprobar.</param>
+      <returns>
+        <see langword="true" /> si la firma es válida; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="halg" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">El parámetro <paramref name="halg" /> no es un tipo válido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Comprueba que una firma digital es válida determinando el valor hash de la firma con el algoritmo hash y el relleno especificados, y comparándolo con el valor hash proporcionado.</summary>
+      <param name="hash">Valor hash de los datos firmados.</param>
+      <param name="signature">Datos de la firma que se van a comprobar.</param>
+      <param name="hashAlgorithm">Nombre del algoritmo hash que se utiliza para crear el valor hash.</param>
+      <param name="padding">Relleno.</param>
+      <returns>
+        <see langword="true" /> si la firma es válida; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> es <see langword="null" /> o <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> es <see langword="null" />.
+O bien
+<paramref name="padding" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> no es igual a <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])">
+      <summary>Comprueba que una firma digital es válida determinando el valor hash en ella mediante la clave pública proporcionada y comparándola con el valor hash proporcionado.</summary>
+      <param name="rgbHash">Valor hash de los datos firmados.</param>
+      <param name="str">Identificador de algoritmos hash (OID) que se utiliza para crear el valor hash de los datos.</param>
+      <param name="rgbSignature">Datos de la firma que se van a comprobar.</param>
+      <returns>
+        <see langword="true" /> si la firma es válida; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">El parámetro <paramref name="rgbHash" /> es <see langword="null" />.
+O bien
+El parámetro <paramref name="rgbSignature" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">No se puede adquirir el proveedor de servicios criptográficos (CSP).
+O bien
+No se puede comprobar la firma.</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA1CryptoServiceProvider">
+      <summary>Calcula el valor de hash <see cref="T:System.Security.Cryptography.SHA1" /> de los datos de entrada utilizando la implementación proporcionada por el proveedor de servicios criptográfico (CSP). Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA1CryptoServiceProvider.Initialize">
+      <summary>Inicializa una instancia de <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA256CryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la implementación del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.SHA256" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.SHA256CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA256CryptoServiceProvider.Initialize">
+      <summary>Se inicializa, o reinicializa, una instancia de un algoritmo hash.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA384CryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la implementación del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.SHA384" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.SHA384CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA384CryptoServiceProvider.Initialize">
+      <summary>Se inicializa, o reinicializa, una instancia de un algoritmo hash.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.SHA512CryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la implementación del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.SHA512" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.SHA512CryptoServiceProvider" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SHA512CryptoServiceProvider.Initialize">
+      <summary>Se inicializa, o reinicializa, una instancia de un algoritmo hash.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCryptoServiceProvider">
+      <summary>Define un objeto contenedor para obtener acceso a la versión del proveedor de servicios criptográficos (CSP) del algoritmo <see cref="T:System.Security.Cryptography.TripleDES" />. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.#ctor">
+      <summary>Inicializa una nueva instancia de la clase <see cref="T:System.Security.Cryptography.TripleDESCryptoServiceProvider" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El proveedor de servicios criptográficos de <see cref="T:System.Security.Cryptography.TripleDES" /> no está disponible.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.BlockSize">
+      <summary>Obtiene o establece el tamaño del bloque de la operación criptográfica en bits.</summary>
+      <returns>Tamaño del bloque en bits.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor">
+      <summary>Crea un objeto descifrador simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuales.</summary>
+      <returns>Objeto descifrador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto descifrador <see cref="T:System.Security.Cryptography.TripleDES" /> simétrico con la clave (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) especificados.</summary>
+      <param name="rgbKey">Clave secreta que se va a usar para el algoritmo simétrico.</param>
+      <param name="rgbIV">Vector de inicialización que se va a usar para el algoritmo simétrico.</param>
+      <returns>Objeto descifrador <see cref="T:System.Security.Cryptography.TripleDES" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+o bien
+El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> y el valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> no es 8.
+o bien
+Se utilizó un tamaño de clave no válido.
+o bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor">
+      <summary>Crea un objeto descifrador simétrico con la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuales.</summary>
+      <returns>Objeto cifrador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crea un objeto cifrador <see cref="T:System.Security.Cryptography.TripleDES" /> simétrico con la clave (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) y el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) especificados.</summary>
+      <param name="rgbKey">Clave secreta que se va a usar para el algoritmo simétrico.</param>
+      <param name="rgbIV">Vector de inicialización que se va a usar para el algoritmo simétrico.
+ Nota: El vector de inicialización debe tener una longitud de 8 bytes. Si es mayor de 8 bytes, se trunca y no se produce una excepción. Antes de llamar a <see cref="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.CreateEncryptor(System.Byte[],System.Byte[])" />, compruebe la longitud del vector de inicialización y produzca una excepción si es demasiado larga.</param>
+      <returns>Objeto cifrador <see cref="T:System.Security.Cryptography.TripleDES" /> simétrico.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.OFB" />.
+o bien
+El valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Mode" /> es <see cref="F:System.Security.Cryptography.CipherMode.CFB" /> y el valor de la propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> no es 8.
+o bien
+Se utilizó un tamaño de clave no válido.
+o bien
+El algoritmo del tamaño de clave no estaba disponible.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.FeedbackSize">
+      <summary>Obtiene o establece el tamaño de los comentarios, en bits, de la operación criptográfica de los modos de cifrado Comentarios de cifrado (CFB) y Comentarios de salida (OFB).</summary>
+      <returns>Tamaño de respuesta en bits.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El tamaño de respuesta es mayor que el tamaño de bloque.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateIV">
+      <summary>Genera un vector de inicialización aleatorio (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCryptoServiceProvider.GenerateKey">
+      <summary>Genera una propiedad <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> aleatoria que se va a utilizar para el algoritmo.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.IV">
+      <summary>Obtiene o establece el vector de inicialización (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) del algoritmo simétrico.</summary>
+      <returns>Vector de inicialización.</returns>
+      <exception cref="T:System.ArgumentNullException">Se ha intentado establecer el vector de inicialización en <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Se ha intentado establecer el vector de inicialización en un tamaño no válido.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Key">
+      <summary>Obtiene o establece la clave secreta del algoritmo <see cref="T:System.Security.Cryptography.TripleDES" />.</summary>
+      <returns>Clave secreta para el algoritmo <see cref="T:System.Security.Cryptography.TripleDES" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.KeySize">
+      <summary>Obtiene o establece el tamaño, en bits, de la clave secreta.</summary>
+      <returns>El tamaño, en bits, de la clave.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.LegalBlockSizes">
+      <summary>Obtiene los tamaños de bloque, en bits, admitidos por el algoritmo simétrico.</summary>
+      <returns>Matriz que contiene los tamaños de bloque admitidos por el algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.LegalKeySizes">
+      <summary>Obtiene los tamaños de clave, en bits, admitidos por el algoritmo simétrico.</summary>
+      <returns>Matriz que contiene los tamaños de clave admitidos por el algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Mode">
+      <summary>Obtiene o establece el modo de funcionamiento del algoritmo simétrico.</summary>
+      <returns>Modo de funcionamiento del algoritmo simétrico. De manera predeterminada, es <see cref="F:System.Security.Cryptography.CipherMode.CBC" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El modo de cifrado no es ninguno de los valores de <see cref="T:System.Security.Cryptography.CipherMode" />.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCryptoServiceProvider.Padding">
+      <summary>Obtiene o establece el modo de relleno usado en el algoritmo simétrico.</summary>
+      <returns>Modo de relleno utilizado en el algoritmo simétrico. De manera predeterminada, es <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />.</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">El modo de relleno no es ninguno de los valores de <see cref="T:System.Security.Cryptography.PaddingMode" />.</exception>
+    </member>
+  </members>
+</doc>

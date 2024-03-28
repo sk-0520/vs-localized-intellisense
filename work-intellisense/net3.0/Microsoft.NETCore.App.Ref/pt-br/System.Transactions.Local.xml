@@ -1,0 +1,761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Transactions.Local</name>
+  </assembly>
+  <members>
+    <member name="T:System.Transactions.CommittableTransaction">
+      <summary vsli:raw="Describes a committable transaction.">Descreve uma transação pode ser confirmada.</summary>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.CommittableTransaction&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.CommittableTransaction" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Uma tentativa de criar uma transação no Windows 98, Windows 98 Second Edition ou Windows Millennium Edition.</exception>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.#ctor(System.TimeSpan)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.CommittableTransaction&quot; /&gt; class with the specified &lt;paramref name=&quot;timeout&quot; /&gt; value.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.CommittableTransaction" /> com o valor <paramref name="timeout" /> especificado.</summary>
+      <param name="timeout" vsli:raw="The maximum amount of time the transaction can exist, before it is aborted.">O tempo máximo durante o qual a transação pode existir antes de ser anulada.</param>
+      <exception cref="T:System.PlatformNotSupportedException">Uma tentativa de criar uma transação no Windows 98, Windows 98 Second Edition ou Windows Millennium Edition.</exception>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.#ctor(System.Transactions.TransactionOptions)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.CommittableTransaction&quot; /&gt; class with the specified transaction options.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.CommittableTransaction" /> com as opções de transação especificadas.</summary>
+      <param name="options" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; structure that describes the transaction options to use for the new transaction.">Uma estrutura <see cref="T:System.Transactions.TransactionOptions" /> que descreve as opções de transação a serem usadas para a nova transação.</param>
+      <exception cref="T:System.PlatformNotSupportedException">Uma tentativa de criar uma transação no Windows 98, Windows 98 Second Edition ou Windows Millennium Edition.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;options&quot; /&gt; is invalid.">
+        <paramref name="options" /> é inválido.</exception>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an attempt to commit the transaction asynchronously.">Inicia uma tentativa de confirmar a transação de forma assíncrona.</summary>
+      <param name="asyncCallback" vsli:raw="The &lt;see cref=&quot;T:System.AsyncCallback&quot; /&gt; delegate that is invoked when the transaction completes. This parameter can be &lt;see langword=&quot;null&quot; /&gt;, in which case the application is not notified of the transaction's completion. Instead, the application must use the &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; interface to check for completion and wait accordingly, or call &lt;see cref=&quot;M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)&quot; /&gt; to wait for completion.">O delegado <see cref="T:System.AsyncCallback" /> que é invocado quando a transação é concluída. Esse parâmetro pode ser <see langword="null" />, caso em que o aplicativo não é notificado da conclusão da transação. Em vez disso, o aplicativo deve usar a interface <see cref="T:System.IAsyncResult" /> para verificar se a conclusão ocorreu e aguardar de forma adequada, ou então chamar <see cref="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)" /> para aguardar a conclusão.</param>
+      <param name="asyncState" vsli:raw="An object, which might contain arbitrary state information, associated with the asynchronous commitment. This object is passed to the callback, and is not interpreted by &lt;see cref=&quot;N:System.Transactions&quot; /&gt;. A null reference is permitted.">Um objeto, que pode conter informações de estado arbitrário, associado com a confirmação assíncrona. Esse objeto é passado para o retorno de chamada e não é interpretado por <see cref="N:System.Transactions" />. Uma referência nula é permitida.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; interface that can be used by the caller to check the status of the asynchronous operation, or to wait for the operation to complete.">Uma interface <see cref="T:System.IAsyncResult" /> que pode ser usada pelo chamador para verificar o status da operação assíncrona ou para aguardar a conclusão da operação.</returns>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.Commit">
+      <summary vsli:raw="Attempts to commit the transaction.">Tenta confirmar a transação.</summary>
+      <exception cref="T:System.Transactions.TransactionInDoubtException" vsli:raw="&lt;see cref=&quot;M:System.Transactions.CommittableTransaction.Commit&quot; /&gt; is called on a transaction and the transaction becomes &lt;see cref=&quot;F:System.Transactions.TransactionStatus.InDoubt&quot; /&gt;.">
+        <see cref="M:System.Transactions.CommittableTransaction.Commit" /> é chamado em uma transação e a transação se torna <see cref="F:System.Transactions.TransactionStatus.InDoubt" />.</exception>
+      <exception cref="T:System.Transactions.TransactionAbortedException" vsli:raw="&lt;see cref=&quot;M:System.Transactions.CommittableTransaction.Commit&quot; /&gt; is called and the transaction rolls back for the first time.">
+        <see cref="M:System.Transactions.CommittableTransaction.Commit" /> é chamado e a transação é revertida pela primeira vez.</exception>
+    </member>
+    <member name="M:System.Transactions.CommittableTransaction.EndCommit(System.IAsyncResult)">
+      <summary vsli:raw="Ends an attempt to commit the transaction asynchronously.">Encerra uma tentativa de confirmar a transação de forma assíncrona.</summary>
+      <param name="asyncResult" vsli:raw="The &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object associated with the asynchronous commitment.">O objeto <see cref="T:System.IAsyncResult" /> associado à confirmação assíncrona.</param>
+      <exception cref="T:System.Transactions.TransactionAbortedException" vsli:raw="&lt;see cref=&quot;M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)&quot; /&gt; is called and the transaction rolls back for the first time.">
+        <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" /> é chamado e a transação é revertida pela primeira vez.</exception>
+    </member>
+    <member name="P:System.Transactions.CommittableTransaction.System#IAsyncResult#AsyncState">
+      <summary vsli:raw="Gets the object provided as the last parameter of the &lt;see cref=&quot;M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)&quot; /&gt; method call.">Obtém o objeto fornecido como o último parâmetro da chamada de método <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" />.</summary>
+      <returns vsli:raw="The object provided as the last parameter of the &lt;see cref=&quot;M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)&quot; /&gt; method call.">O objeto fornecido como o último parâmetro da <see cref="M:System.Transactions.CommittableTransaction.BeginCommit(System.AsyncCallback,System.Object)" /> chamada do método.</returns>
+    </member>
+    <member name="P:System.Transactions.CommittableTransaction.System#IAsyncResult#AsyncWaitHandle">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; that is used to wait for an asynchronous operation to complete.">Obtém um <see cref="T:System.Threading.WaitHandle" /> que é usado para aguardar a conclusão de uma operação assíncrona.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; that is used to wait for an asynchronous operation to complete.">Um <see cref="T:System.Threading.WaitHandle" /> que é usado para aguardar a conclusão de uma operação assíncrona.</returns>
+    </member>
+    <member name="P:System.Transactions.CommittableTransaction.System#IAsyncResult#CompletedSynchronously">
+      <summary vsli:raw="Gets an indication of whether the asynchronous commit operation completed synchronously.">Obtém um valor que indica se a operação de confirmação assíncrona foi concluída de forma síncrona.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the asynchronous commit operation completed synchronously; otherwise, &lt;see langword=&quot;false&quot; /&gt;. This property always returns &lt;see langword=&quot;false&quot; /&gt; even if the operation completed synchronously.">
+        <see langword="true" />se a operação de confirmação assíncrona tiver sido concluída de forma síncrona; caso contrário <see langword="false" />,. Essa propriedade sempre retorna <see langword="false" /> mesmo que a operação seja concluída de forma síncrona.</returns>
+    </member>
+    <member name="P:System.Transactions.CommittableTransaction.System#IAsyncResult#IsCompleted">
+      <summary vsli:raw="Gets an indication whether the asynchronous commit operation has completed.">Obtém um valor que indica se a operação de confirmação assíncrona foi concluída.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the operation is complete; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se a operação for concluída; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Transactions.DependentCloneOption">
+      <summary vsli:raw="Controls what kind of dependent transaction to create.">Controla qual tipo de transação dependente criar.</summary>
+    </member>
+    <member name="F:System.Transactions.DependentCloneOption.BlockCommitUntilComplete">
+      <summary vsli:raw="The dependent transaction blocks the commit process of the transaction until the parent transaction times out, or &lt;see cref=&quot;M:System.Transactions.DependentTransaction.Complete&quot; /&gt; is called. In this case, additional work can be done on the transaction and new enlistments can be created.">A transação dependente bloqueia o processo de confirmação da transação até que a transação pai atinja o tempo limite ou <see cref="M:System.Transactions.DependentTransaction.Complete" /> seja chamado. Nesse caso, o trabalho adicional pode ser feito na transação e novas inscrições podem ser criadas.</summary>
+    </member>
+    <member name="F:System.Transactions.DependentCloneOption.RollbackIfNotComplete">
+      <summary vsli:raw="The dependent transaction automatically aborts the transaction if Commit is called on the parent transaction before &lt;see cref=&quot;M:System.Transactions.DependentTransaction.Complete&quot; /&gt; is called.">A transação dependente automaticamente cancelará a transação se Commit for chamado na transação pai antes de <see cref="M:System.Transactions.DependentTransaction.Complete" /> ser chamado.</summary>
+    </member>
+    <member name="T:System.Transactions.DependentTransaction">
+      <summary vsli:raw="Describes a clone of a transaction providing guarantee that the transaction cannot be committed until the application comes to rest regarding work on the transaction. This class cannot be inherited.">Descreve um clone de uma transação que assegura que a transação não pode ser confirmada até o aplicativo atingir o estado de repouso com relação ao trabalho na transação. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Transactions.DependentTransaction.Complete">
+      <summary vsli:raw="Attempts to complete the dependent transaction.">Tenta concluir a transação dependente.</summary>
+      <exception cref="T:System.Transactions.TransactionException" vsli:raw="Any attempt for additional work on the transaction after this method is called. These include invoking methods such as &lt;see cref=&quot;Overload:System.Transactions.Transaction.EnlistVolatile&quot; /&gt;, &lt;see cref=&quot;Overload:System.Transactions.Transaction.EnlistDurable&quot; /&gt;, &lt;see cref=&quot;M:System.Transactions.Transaction.Clone&quot; /&gt;, &lt;see cref=&quot;M:System.Transactions.Transaction.DependentClone(System.Transactions.DependentCloneOption)&quot; /&gt; , or any serialization operations on the transaction.">Qualquer tentativa de trabalho adicional na transação depois que este método é chamado. Isso inclui invocar métodos como <see cref="Overload:System.Transactions.Transaction.EnlistVolatile" />, <see cref="Overload:System.Transactions.Transaction.EnlistDurable" />, <see cref="M:System.Transactions.Transaction.Clone" />, <see cref="M:System.Transactions.Transaction.DependentClone(System.Transactions.DependentCloneOption)" /> ou todas as operações de serialização na transação.</exception>
+    </member>
+    <member name="T:System.Transactions.Enlistment">
+      <summary vsli:raw="Facilitates communication between an enlisted transaction participant and the transaction manager during the final phase of the transaction.">Facilita a comunicação entre um participante de transação inscrito e o gerenciador de transação durante a fase final da transação.</summary>
+    </member>
+    <member name="M:System.Transactions.Enlistment.Done">
+      <summary vsli:raw="Indicates that the transaction participant has completed its work.">Indica que o participante da transação concluiu seu trabalho.</summary>
+    </member>
+    <member name="T:System.Transactions.EnlistmentOptions">
+      <summary vsli:raw="Determines whether the object should be enlisted during the prepare phase.">Determina se o objeto deve ser inscrito durante a fase de preparação.</summary>
+    </member>
+    <member name="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired">
+      <summary vsli:raw="The object must enlist during the initial phase of the commitment process.">O objeto deve se inscrever durante a fase inicial do processo de confirmação.</summary>
+    </member>
+    <member name="F:System.Transactions.EnlistmentOptions.None">
+      <summary vsli:raw="The object does not require enlistment during the initial phase of the commitment process.">O objeto não exige a inscrição durante a fase inicial do processo de confirmação.</summary>
+    </member>
+    <member name="T:System.Transactions.EnterpriseServicesInteropOption">
+      <summary vsli:raw="Specifies how distributed transactions interact with COM+ transactions.">Especifica como as transações distribuídas interagem com transações COM+.</summary>
+    </member>
+    <member name="F:System.Transactions.EnterpriseServicesInteropOption.Automatic">
+      <summary vsli:raw="Search for an existing COM+ context and synchronize with it if one exists.">Pesquise por um contexto COM+ existente e sincronize com ele, se houver.</summary>
+    </member>
+    <member name="F:System.Transactions.EnterpriseServicesInteropOption.Full">
+      <summary vsli:raw="The &lt;see cref=&quot;N:System.EnterpriseServices&quot; /&gt; context (which can be retrieved by calling the static method &lt;see cref=&quot;P:System.EnterpriseServices.ContextUtil.Transaction&quot; /&gt; of the &lt;see cref=&quot;T:System.EnterpriseServices.ContextUtil&quot; /&gt; class) and the &lt;see cref=&quot;N:System.Transactions&quot; /&gt; ambient transaction (which can be retrieved by calling the static method &lt;see cref=&quot;P:System.Transactions.Transaction.Current&quot; /&gt; of the &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; class) are always synchronized. This introduces a performance penalty because new &lt;see cref=&quot;N:System.EnterpriseServices&quot; /&gt; contexts may need to be created.">O contexto <see cref="N:System.EnterpriseServices" /> (que pode ser recuperado chamando o método estático <see cref="P:System.EnterpriseServices.ContextUtil.Transaction" /> da classe <see cref="T:System.EnterpriseServices.ContextUtil" />) e a transação de ambiente <see cref="N:System.Transactions" /> (que pode ser recuperada chamando o método estático <see cref="P:System.Transactions.Transaction.Current" /> da classe<see cref="T:System.Transactions.Transaction" />) sempre são sincronizados. Isso introduz uma penalidade de desempenho porque pode ser necessário criar novos contextos <see cref="N:System.EnterpriseServices" />.</summary>
+    </member>
+    <member name="F:System.Transactions.EnterpriseServicesInteropOption.None">
+      <summary vsli:raw="There is no synchronization between &lt;see cref=&quot;P:System.EnterpriseServices.ContextUtil.Transaction&quot; /&gt; and &lt;see cref=&quot;P:System.Transactions.Transaction.Current&quot; /&gt;.">Não há sincronização entre <see cref="P:System.EnterpriseServices.ContextUtil.Transaction" /> e <see cref="P:System.Transactions.Transaction.Current" />.</summary>
+    </member>
+    <member name="T:System.Transactions.HostCurrentTransactionCallback">
+      <summary vsli:raw="Provides a mechanism for the hosting environment to supply its own default notion of &lt;see cref=&quot;P:System.Transactions.Transaction.Current&quot; /&gt;.">Fornece um mecanismo para o ambiente de hospedagem fornecer sua própria noção de padrão de <see cref="P:System.Transactions.Transaction.Current" />.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; object.">Um objeto <see cref="T:System.Transactions.Transaction" />.</returns>
+    </member>
+    <member name="T:System.Transactions.IDtcTransaction">
+      <summary vsli:raw="Describes a DTC transaction.">Descreve uma transação de DTC.</summary>
+    </member>
+    <member name="M:System.Transactions.IDtcTransaction.Abort(System.IntPtr,System.Int32,System.Int32)">
+      <summary vsli:raw="Aborts a transaction.">Anula uma transação.</summary>
+      <param name="reason" vsli:raw="An optional &lt;see cref=&quot;T:System.EnterpriseServices.BOID&quot; /&gt; that indicates why the transaction is being aborted. This parameter can be &lt;see langword=&quot;null&quot; /&gt;, indicating that no reason for the abort is provided.">Um <see cref="T:System.EnterpriseServices.BOID" /> opcional que indica o motivo pelo qual a transação está sendo anulada. Esse parâmetro pode ser <see langword="null" />, indicando que não foi fornecido nenhum motivo para a anulação.</param>
+      <param name="retaining" vsli:raw="This value must be &lt;see langword=&quot;false&quot; /&gt;.">Esse valor precisa ser <see langword="false" />.</param>
+      <param name="async" vsli:raw="When &lt;paramref name=&quot;async&quot; /&gt; is &lt;see langword=&quot;true&quot; /&gt;, an asynchronous abort is performed and the caller must use &lt;see langword=&quot;ITransactionOutcomeEvents&quot; /&gt; to learn about the outcome of the transaction.">Quando <paramref name="async" /> é <see langword="true" />, uma operação de anulação assíncrona é executada e o chamador deve usar <see langword="ITransactionOutcomeEvents" /> para conhecer o resultado da transação.</param>
+    </member>
+    <member name="M:System.Transactions.IDtcTransaction.Commit(System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Commits a transaction.">Confirma uma transação.</summary>
+      <param name="retaining" vsli:raw="This value must be &lt;see langword=&quot;false&quot; /&gt;.">Esse valor precisa ser <see langword="false" />.</param>
+      <param name="commitType" vsli:raw="A value taken from the OLE DB enumeration &lt;see langword=&quot;XACTTC&quot; /&gt;.">Um valor obtido da enumeração <see langword="XACTTC" /> de OLE DB.</param>
+      <param name="reserved" vsli:raw="This value must be zero.">Esse valor precisa ser zero.</param>
+    </member>
+    <member name="M:System.Transactions.IDtcTransaction.GetTransactionInfo(System.IntPtr)">
+      <summary vsli:raw="Retrieves information about a transaction.">Recupera informações sobre uma transação.</summary>
+      <param name="transactionInformation" vsli:raw="Pointer to the caller-allocated &lt;see cref=&quot;T:System.EnterpriseServices.XACTTRANSINFO&quot; /&gt; structure that will receive information about the transaction. This value must not be &lt;see langword=&quot;null&quot; /&gt;.">Ponteiro para a estrutura <see cref="T:System.EnterpriseServices.XACTTRANSINFO" /> alocada por chamador que receberá informações sobre a transação. Esse valor não deve ser <see langword="null" />.</param>
+    </member>
+    <member name="T:System.Transactions.IEnlistmentNotification">
+      <summary vsli:raw="Describes an interface that a resource manager should implement to provide two phase commit notification callbacks for the transaction manager upon enlisting for participation.">Descreve uma interface que um gerenciador de recursos deve implementar para fornecer dois retornos de chamada de notificação de confirmação de fase para o gerenciador de transação após a inscrição para a participação.</summary>
+    </member>
+    <member name="M:System.Transactions.IEnlistmentNotification.Commit(System.Transactions.Enlistment)">
+      <summary vsli:raw="Notifies an enlisted object that a transaction is being committed.">Notifica um objeto inscrito de que uma transação está sendo confirmada.</summary>
+      <param name="enlistment" vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object used to send a response to the transaction manager.">Um objeto <see cref="T:System.Transactions.Enlistment" /> usado para enviar uma resposta ao gerenciador de transação.</param>
+    </member>
+    <member name="M:System.Transactions.IEnlistmentNotification.InDoubt(System.Transactions.Enlistment)">
+      <summary vsli:raw="Notifies an enlisted object that the status of a transaction is in doubt.">Notifica um objeto inscrito de que o status de uma transação está duvidoso.</summary>
+      <param name="enlistment" vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object used to send a response to the transaction manager.">Um objeto <see cref="T:System.Transactions.Enlistment" /> usado para enviar uma resposta ao gerenciador de transação.</param>
+    </member>
+    <member name="M:System.Transactions.IEnlistmentNotification.Prepare(System.Transactions.PreparingEnlistment)">
+      <summary vsli:raw="Notifies an enlisted object that a transaction is being prepared for commitment.">Notifica um objeto inscrito de que uma transação está sendo preparada para confirmação.</summary>
+      <param name="preparingEnlistment" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.PreparingEnlistment&quot; /&gt; object used to send a response to the transaction manager.">Um objeto <see cref="T:System.Transactions.PreparingEnlistment" /> usado para enviar uma resposta para o gerenciador de transação.</param>
+    </member>
+    <member name="M:System.Transactions.IEnlistmentNotification.Rollback(System.Transactions.Enlistment)">
+      <summary vsli:raw="Notifies an enlisted object that a transaction is being rolled back (aborted).">Notifica um objeto inscrito de que uma transação está sendo revertida (anulada).</summary>
+      <param name="enlistment" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object used to send a response to the transaction manager.">Um objeto <see cref="T:System.Transactions.Enlistment" /> usado para enviar uma resposta para o gerenciador de transação.</param>
+    </member>
+    <member name="T:System.Transactions.IPromotableSinglePhaseNotification">
+      <summary vsli:raw="Describes an object that acts as a commit delegate for a non-distributed transaction internal to a resource manager.">Descreve um objeto que atua como um delegado de confirmação de uma transação não distribuída interna de um Resource Manager.</summary>
+    </member>
+    <member name="M:System.Transactions.IPromotableSinglePhaseNotification.Initialize">
+      <summary vsli:raw="Notifies a transaction participant that enlistment has completed successfully.">Notifica um participante da transação de que a inscrição foi concluída com êxito.</summary>
+      <exception cref="T:System.Transactions.TransactionException" vsli:raw="An attempt to enlist or serialize a transaction.">Uma tentativa de inscrever ou serializar uma transação.</exception>
+    </member>
+    <member name="M:System.Transactions.IPromotableSinglePhaseNotification.Rollback(System.Transactions.SinglePhaseEnlistment)">
+      <summary vsli:raw="Notifies an enlisted object that the transaction is being rolled back.">Notifica um objeto inscrito de que a transação está sendo revertida.</summary>
+      <param name="singlePhaseEnlistment" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.SinglePhaseEnlistment&quot; /&gt; object used to send a response to the transaction manager.">Um objeto <see cref="T:System.Transactions.SinglePhaseEnlistment" /> usado para enviar uma resposta para o gerenciador de transação.</param>
+    </member>
+    <member name="M:System.Transactions.IPromotableSinglePhaseNotification.SinglePhaseCommit(System.Transactions.SinglePhaseEnlistment)">
+      <summary vsli:raw="Notifies an enlisted object that the transaction is being committed.">Notifica um objeto inscrito de que a transação está sendo confirmada.</summary>
+      <param name="singlePhaseEnlistment" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.SinglePhaseEnlistment&quot; /&gt; interface used to send a response to the transaction manager.">Uma interface <see cref="T:System.Transactions.SinglePhaseEnlistment" /> usada para enviar uma resposta para o gerenciador de transação.</param>
+    </member>
+    <member name="T:System.Transactions.ISimpleTransactionSuperior">
+      <summary vsli:raw="Represents a transaction that is not a root transaction, but can be escalated to be managed by the MSDTC.">Representa uma transação que não é uma transação raiz, mas pode ser escalonada para ser gerenciada pelo MSDTC.</summary>
+    </member>
+    <member name="M:System.Transactions.ISimpleTransactionSuperior.Rollback">
+      <summary vsli:raw="Notifies an enlisted object that the transaction is being rolled back.">Notifica um objeto inscrito de que a transação está sendo revertida.</summary>
+    </member>
+    <member name="T:System.Transactions.ISinglePhaseNotification">
+      <summary vsli:raw="Describes a resource object that supports single phase commit optimization to participate in a transaction.">Descreve um objeto de recurso que dá suporte à otimização de confirmação de fase única para participar de uma transação.</summary>
+    </member>
+    <member name="M:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit(System.Transactions.SinglePhaseEnlistment)">
+      <summary vsli:raw="Represents the resource manager's implementation of the callback for the single phase commit optimization.">Representa a implementação do gerenciador de recursos do retorno de chamada para a otimização de confirmação de fase única.</summary>
+      <param name="singlePhaseEnlistment" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.SinglePhaseEnlistment&quot; /&gt; used to send a response to the transaction manager.">Um <see cref="T:System.Transactions.SinglePhaseEnlistment" /> usado para enviar uma resposta para o gerenciador de transação.</param>
+    </member>
+    <member name="T:System.Transactions.IsolationLevel">
+      <summary vsli:raw="Specifies the isolation level of a transaction.">Especifica o nível de isolamento de uma transação.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.Chaos">
+      <summary vsli:raw="The pending changes from more highly isolated transactions cannot be overwritten.">As alterações pendentes de transações com maior isolamento não podem ser substituídas.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.ReadCommitted">
+      <summary vsli:raw="Volatile data cannot be read during the transaction, but can be modified.">Dados voláteis não podem ser lidos durante a transação, mas podem ser modificados.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.ReadUncommitted">
+      <summary vsli:raw="Volatile data can be read and modified during the transaction.">Dados voláteis podem ser lidos e modificados durante a transação.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.RepeatableRead">
+      <summary vsli:raw="Volatile data can be read but not modified during the transaction. New data can be added during the transaction.">Dados voláteis podem ser lidos, mas não modificados durante a transação. Novos dados podem ser adicionados durante a transação.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.Serializable">
+      <summary vsli:raw="Volatile data can be read but not modified, and no new data can be added during the transaction.">Dados voláteis podem ser lidos, mas não modificados, e não é possível adicionar dados novos durante a transação.</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.Snapshot">
+      <summary vsli:raw="&lt;para&gt;Volatile data can be read. Before a transaction modifies data, it verifies if another transaction has changed the data after it was initially read. If the data has been updated, an error is raised. This allows a transaction to get to the previously committed value of the data.&lt;/para&gt;&lt;para&gt;When you try to promote a transaction that was created with the &lt;see langword=&quot;Snapshot&quot; /&gt; isolation level, an &lt;see cref=&quot;T:System.InvalidOperationException&quot; /&gt; is thrown with the error message &quot;Transactions with IsolationLevel Snapshot cannot be promoted&quot;.&lt;/para&gt;">Dados voláteis podem ser lidos. Antes de uma transação modificar dados, ela verifica se outra transação alterou os dados depois de ter sido lida inicialmente. Se os dados tiverem sido atualizados, um erro será gerado. Isso permite que uma transação obtenha os valores dos dados confirmados anteriormente.
+Quando você tentar promover uma transação que foi criada com o nível de isolamento <see langword="Snapshot" />, um <see cref="T:System.InvalidOperationException" /> será lançado com a mensagem de erro "Transações com instantâneo de nível de isolamento não podem ser promovidas".</summary>
+    </member>
+    <member name="F:System.Transactions.IsolationLevel.Unspecified">
+      <summary vsli:raw="A different isolation level than the one specified is being used, but the level cannot be determined. An exception is thrown if this value is set.">Um nível de isolamento diferente daquele especificado está sendo usado, mas não é possível determinar o nível. Uma exceção será lançada se esse valor for definido.</summary>
+    </member>
+    <member name="T:System.Transactions.ITransactionPromoter">
+      <summary vsli:raw="Describes a delegated transaction for an existing transaction that can be escalated to be managed by the MSDTC when needed.">Descreva uma transação delegada para uma transação existente que possa ser escalonada para ser gerenciada pelo MSDTC, quando necessário.</summary>
+    </member>
+    <member name="M:System.Transactions.ITransactionPromoter.Promote">
+      <summary vsli:raw="Notifies an enlisted object that an escalation of the delegated transaction has been requested.">Notifica um objeto inscrito solicitado por um escalonamento da transação delegada.</summary>
+      <returns vsli:raw="A transmitter/receiver propagation token that marshals a distributed transaction. For more information, see &lt;see cref=&quot;M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])&quot; /&gt;.">Um token de propagação do transmissor/receptor que realiza marshaling de uma transação distribuída. Para obter mais informações, consulte <see cref="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])" />.</returns>
+    </member>
+    <member name="T:System.Transactions.PreparingEnlistment">
+      <summary vsli:raw="Facilitates communication between an enlisted transaction participant and the transaction manager during the Prepare phase of the transaction.">Facilita a comunicação entre um participante da transação inscrita e o gerenciador de transação durante a fase de Preparação da transação.</summary>
+    </member>
+    <member name="M:System.Transactions.PreparingEnlistment.ForceRollback">
+      <summary vsli:raw="Indicates that the transaction should be rolled back.">Indica que a transação deve ser revertida.</summary>
+    </member>
+    <member name="M:System.Transactions.PreparingEnlistment.ForceRollback(System.Exception)">
+      <summary vsli:raw="Indicates that the transaction should be rolled back.">Indica que a transação deve ser revertida.</summary>
+      <param name="e" vsli:raw="An explanation of why a rollback is triggered.">Uma explicação do motivo pelo qual uma reversão é acionada.</param>
+    </member>
+    <member name="M:System.Transactions.PreparingEnlistment.Prepared">
+      <summary vsli:raw="Indicates that the transaction can be committed.">Indica que a transação pode ser confirmada.</summary>
+    </member>
+    <member name="M:System.Transactions.PreparingEnlistment.RecoveryInformation">
+      <summary vsli:raw="Gets the recovery information of an enlistment.">Obtém as informações de recuperação de uma inscrição.</summary>
+      <returns vsli:raw="The recovery information of an enlistment.">As informações de recuperação de uma inscrição.</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt to get recovery information inside a volatile enlistment, which does not generate any recovery information.">Uma tentativa de obter informações de recuperação dentro de uma inscrição volátil o que não gera nenhuma informação de recuperação.</exception>
+    </member>
+    <member name="T:System.Transactions.SinglePhaseEnlistment">
+      <summary vsli:raw="Provides a set of callbacks that facilitate communication between a participant enlisted for Single Phase Commit and the transaction manager when the &lt;see cref=&quot;M:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit(System.Transactions.SinglePhaseEnlistment)&quot; /&gt; notification is received.">Fornece um conjunto de retornos de chamada que facilitam a comunicação entre um participante inscrito na Única confirmação de fase e o gerenciador de transação quando a notificação <see cref="M:System.Transactions.ISinglePhaseNotification.SinglePhaseCommit(System.Transactions.SinglePhaseEnlistment)" /> é recebida.</summary>
+    </member>
+    <member name="M:System.Transactions.SinglePhaseEnlistment.Aborted">
+      <summary vsli:raw="Represents a callback that is used to indicate to the transaction manager that the transaction should be rolled back.">Representa um retorno de chamada usado para indicar ao gerenciador de transação que a transação deve ser revertida.</summary>
+    </member>
+    <member name="M:System.Transactions.SinglePhaseEnlistment.Aborted(System.Exception)">
+      <summary vsli:raw="Represents a callback that is used to indicate to the transaction manager that the transaction should be rolled back, and provides an explanation.">Representa um retorno de chamada usado para indicar ao gerenciador de transação que a transação deve ser revertida e fornece uma explicação.</summary>
+      <param name="e" vsli:raw="An explanation of why a rollback is initiated.">Um explicação do porquê uma reversão é iniciada.</param>
+    </member>
+    <member name="M:System.Transactions.SinglePhaseEnlistment.Committed">
+      <summary vsli:raw="Represents a callback that is used to indicate to the transaction manager that the SinglePhaseCommit was successful.">Representa um retorno de chamada usado para indicar ao gerenciador de transação que o SinglePhaseCommit foi bem-sucedido.</summary>
+    </member>
+    <member name="M:System.Transactions.SinglePhaseEnlistment.InDoubt">
+      <summary vsli:raw="Represents a callback that is used to indicate to the transaction manager that the status of the transaction is in doubt.">Representa um retorno de chamada usado para indicar ao gerenciador de transação que o status da transação está em dúvida.</summary>
+    </member>
+    <member name="M:System.Transactions.SinglePhaseEnlistment.InDoubt(System.Exception)">
+      <summary vsli:raw="Represents a callback that is used to indicate to the transaction manager that the status of the transaction is in doubt, and provides an explanation.">Representa um retorno de chamada usado para indicar ao gerenciador de transação que o status da transação está em dúvida e fornece uma explicação.</summary>
+      <param name="e" vsli:raw="An explanation of why the transaction is in doubt.">Uma explicação do porquê a transação está em dúvida.</param>
+    </member>
+    <member name="T:System.Transactions.SubordinateTransaction">
+      <summary vsli:raw="Represents a non-rooted transaction that can be delegated. This class cannot be inherited.">Representa uma transação sem raiz que pode ser delegada. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Transactions.SubordinateTransaction.#ctor(System.Transactions.IsolationLevel,System.Transactions.ISimpleTransactionSuperior)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.SubordinateTransaction&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.SubordinateTransaction" />.</summary>
+      <param name="isoLevel" vsli:raw="The isolation level of the transaction.">O nível de isolamento da transação</param>
+      <param name="superior" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.ISimpleTransactionSuperior&quot; /&gt;.">Um <see cref="T:System.Transactions.ISimpleTransactionSuperior" /></param>
+    </member>
+    <member name="T:System.Transactions.Transaction">
+      <summary vsli:raw="Represents a transaction.">Representa uma transação.</summary>
+    </member>
+    <member name="M:System.Transactions.Transaction.Clone">
+      <summary vsli:raw="Creates a clone of the transaction.">Cria um clone da transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; that is a copy of the current transaction object.">Um <see cref="T:System.Transactions.Transaction" /> que é uma cópia do objeto de transação atual.</returns>
+    </member>
+    <member name="P:System.Transactions.Transaction.Current">
+      <summary vsli:raw="Gets or sets the ambient transaction.">Obtém ou define a transação de ambiente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; that describes the current transaction.">Um <see cref="T:System.Transactions.Transaction" /> que descreve a transação atual.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.DependentClone(System.Transactions.DependentCloneOption)">
+      <summary vsli:raw="Creates a dependent clone of the transaction.">Cria um clone dependente da transação.</summary>
+      <param name="cloneOption" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.DependentCloneOption&quot; /&gt; that controls what kind of dependent transaction to create.">Um <see cref="T:System.Transactions.DependentCloneOption" /> que controla qual tipo de transação dependente criar.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.DependentTransaction&quot; /&gt; that represents the dependent clone.">Um <see cref="T:System.Transactions.DependentTransaction" /> que representa o clone dependente.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.Dispose">
+      <summary vsli:raw="Releases the resources that are held by the object.">Libera os recursos que são mantidos pelo objeto.</summary>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistDurable(System.Guid,System.Transactions.IEnlistmentNotification,System.Transactions.EnlistmentOptions)">
+      <summary vsli:raw="Enlists a durable resource manager that supports two phase commit to participate in a transaction.">Inscreve um gerenciador de recursos durável que dá suporte à confirmação em duas fases para participar de uma transação.</summary>
+      <param name="resourceManagerIdentifier" vsli:raw="A unique identifier for a resource manager, which should persist across resource manager failure or reboot.">’Um identificador exclusivo de um gerenciador de recursos, que deve persistir durante uma falha ou reinicialização do gerenciador de recursos.</param>
+      <param name="enlistmentNotification" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Transactions.IEnlistmentNotification&quot; /&gt; interface to receive two phase commit notifications.">Um objeto que implementa a interface <see cref="T:System.Transactions.IEnlistmentNotification" /> para receber duas notificações de confirmação de fase.</param>
+      <param name="enlistmentOptions" vsli:raw="&lt;see cref=&quot;F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired&quot; /&gt; if the resource manager wants to perform additional work during the prepare phase.">
+        <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> se o gerenciador de recursos desejar realizar trabalho adicional durante a fase de preparação.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object that describes the enlistment.">Um objeto <see cref="T:System.Transactions.Enlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistDurable(System.Guid,System.Transactions.ISinglePhaseNotification,System.Transactions.EnlistmentOptions)">
+      <summary vsli:raw="Enlists a durable resource manager that supports single phase commit optimization to participate in a transaction.">Inscreve um Resource Manager durável que dá suporte à otimização em fase única para participar de uma transação.</summary>
+      <param name="resourceManagerIdentifier" vsli:raw="A unique identifier for a resource manager, which should persist across resource manager failure or reboot.">’Um identificador exclusivo de um gerenciador de recursos, que deve persistir durante uma falha ou reinicialização do gerenciador de recursos.</param>
+      <param name="singlePhaseNotification" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Transactions.ISinglePhaseNotification&quot; /&gt; interface that must be able to receive single phase commit and two phase commit notifications.">Um objeto que implementa a interface <see cref="T:System.Transactions.ISinglePhaseNotification" />, a qual deve ser capaz de receber notificações de confirmação em uma e em duas fases.</param>
+      <param name="enlistmentOptions" vsli:raw="&lt;see cref=&quot;F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired&quot; /&gt; if the resource manager wants to perform additional work during the prepare phase.">
+        <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> se o gerenciador de recursos desejar realizar trabalho adicional durante a fase de preparação.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object that describes the enlistment.">Um objeto <see cref="T:System.Transactions.Enlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistPromotableSinglePhase(System.Transactions.IPromotableSinglePhaseNotification)">
+      <summary vsli:raw="Enlists a resource manager that has an internal transaction using a promotable single phase enlistment (PSPE).">Inscreve um Resource Manager que tem uma transação interna usando uma PSPE (inscrição de fase única passível de promoção).</summary>
+      <param name="promotableSinglePhaseNotification" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.IPromotableSinglePhaseNotification&quot; /&gt; interface implemented by the participant.">Uma interface <see cref="T:System.Transactions.IPromotableSinglePhaseNotification" /> implementada pelo participante.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.SinglePhaseEnlistment&quot; /&gt; interface implementation that describes the enlistment.">Uma implementação de interface <see cref="T:System.Transactions.SinglePhaseEnlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistPromotableSinglePhase(System.Transactions.IPromotableSinglePhaseNotification,System.Guid)">
+      <summary vsli:raw="Enlists a resource manager that has an internal transaction using a promotable single phase enlistment (PSPE).">Inscreve um Resource Manager que tem uma transação interna usando uma PSPE (inscrição de fase única passível de promoção).</summary>
+      <param name="promotableSinglePhaseNotification" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.IPromotableSinglePhaseNotification&quot; /&gt; interface implemented by the participant.">Uma interface <see cref="T:System.Transactions.IPromotableSinglePhaseNotification" /> implementada pelo participante.</param>
+      <param name="promoterType" vsli:raw="The type of the distributed transaction processor.">O tipo do processador de transação distribuída.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.SinglePhaseEnlistment&quot; /&gt; interface implementation that describes the enlistment.">Uma implementação de interface <see cref="T:System.Transactions.SinglePhaseEnlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistVolatile(System.Transactions.IEnlistmentNotification,System.Transactions.EnlistmentOptions)">
+      <summary vsli:raw="Enlists a volatile resource manager that supports two phase commit to participate in a transaction.">Inscreve um Resource Manager volátil que dá suporte à confirmação em duas fases para participar de uma transação.</summary>
+      <param name="enlistmentNotification" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Transactions.IEnlistmentNotification&quot; /&gt; interface to receive two-phase commit notifications.">Um objeto que implementa a interface <see cref="T:System.Transactions.IEnlistmentNotification" /> para receber notificações de confirmação em duas fases.</param>
+      <param name="enlistmentOptions" vsli:raw="&lt;see cref=&quot;F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired&quot; /&gt; if the resource manager wants to perform additional work during the prepare phase.">
+        <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> se o gerenciador de recursos desejar realizar trabalho adicional durante a fase de preparação.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object that describes the enlistment.">Um objeto <see cref="T:System.Transactions.Enlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.EnlistVolatile(System.Transactions.ISinglePhaseNotification,System.Transactions.EnlistmentOptions)">
+      <summary vsli:raw="Enlists a volatile resource manager that supports single phase commit optimization to participate in a transaction.">Inscreve um Resource Manager volátil que dá suporte à otimização em fase única para participar de uma transação.</summary>
+      <param name="singlePhaseNotification" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Transactions.ISinglePhaseNotification&quot; /&gt; interface that must be able to receive single phase commit and two phase commit notifications.">Um objeto que implementa a interface <see cref="T:System.Transactions.ISinglePhaseNotification" />, a qual deve ser capaz de receber notificações de confirmação em uma e em duas fases.</param>
+      <param name="enlistmentOptions" vsli:raw="&lt;see cref=&quot;F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired&quot; /&gt; if the resource manager wants to perform additional work during the prepare phase.">
+        <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> se o gerenciador de recursos desejar realizar trabalho adicional durante a fase de preparação.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; object that describes the enlistment.">Um objeto <see cref="T:System.Transactions.Enlistment" /> que descreve a inscrição.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.Equals(System.Object)">
+      <summary vsli:raw="Determines whether this transaction and the specified object are equal.">Determina se a transação e o objeto especificado são iguais.</summary>
+      <param name="obj" vsli:raw="The object to compare with this instance.">O objeto a ser comparado com essa instância.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; and this transaction are identical; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="obj" /> e essa transação são idênticos; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.GetHashCode">
+      <summary vsli:raw="Returns the hash code for this instance.">Retorna o código hash para essa instância.</summary>
+      <returns vsli:raw="A 32-bit signed integer hash code.">Um código de hash do inteiro assinado de 32 bits.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.GetPromotedToken">
+      <summary vsli:raw="Gets the  &lt;c&gt;byte[]&lt;/c&gt; returned by the &lt;c&gt;Promote&lt;/c&gt; method when the transaction is promoted.">Obtém o <c>byte []</c> retornado pelo método <c>Promote</c> quando a transação é promovida.</summary>
+      <returns vsli:raw="The  &lt;c&gt;byte[]&lt;/c&gt; returned by the &lt;c&gt;Promote&lt;/c&gt; method when the transaction is promoted.">O <c>byte []</c> retornado pelo método <c>Promote</c> quando a transação é promovida.</returns>
+    </member>
+    <member name="P:System.Transactions.Transaction.IsolationLevel">
+      <summary vsli:raw="Gets the isolation level of the transaction.">Obtém o nível de isolamento de uma transação.</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Transactions.IsolationLevel&quot; /&gt; values that indicates the isolation level of the transaction.">Um do valores <see cref="T:System.Transactions.IsolationLevel" /> que indica o nível de isolamento da transação.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.op_Equality(System.Transactions.Transaction,System.Transactions.Transaction)">
+      <summary vsli:raw="Tests whether two specified &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instances are equivalent.">Testa se duas instâncias de <see cref="T:System.Transactions.Transaction" /> especificadas são equivalentes.</summary>
+      <param name="x" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance that is to the left of the equality operator.">A instância de <see cref="T:System.Transactions.Transaction" /> que está à esquerda do operador de igualdade.</param>
+      <param name="y" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance that is to the right of the equality operator.">A instância de <see cref="T:System.Transactions.Transaction" /> que está à direita do operador de igualdade.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;x&quot; /&gt; and &lt;paramref name=&quot;y&quot; /&gt; are equal; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="x" /> e <paramref name="y" /> forem iguais; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.op_Inequality(System.Transactions.Transaction,System.Transactions.Transaction)">
+      <summary vsli:raw="Returns a value that indicates whether two &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instances are not equal.">Retorna um valor que indica se duas instâncias <see cref="T:System.Transactions.Transaction" /> não são iguais.</summary>
+      <param name="x" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance that is to the left of the inequality operator.">A instância de <see cref="T:System.Transactions.Transaction" /> que está à esquerda do operador de desigualdade.</param>
+      <param name="y" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance that is to the right of the inequality operator.">A instância de <see cref="T:System.Transactions.Transaction" /> que está à direita do operador de desigualdade.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;x&quot; /&gt; and &lt;paramref name=&quot;y&quot; /&gt; are not equal; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="x" /> e <paramref name="y" /> não forem iguais; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.PromoteAndEnlistDurable(System.Guid,System.Transactions.IPromotableSinglePhaseNotification,System.Transactions.ISinglePhaseNotification,System.Transactions.EnlistmentOptions)">
+      <summary vsli:raw="Promotes and enlists a durable resource manager that supports two phase commit to participate in a transaction.">Promove e inscreve um gerenciador de recursos durável que dá suporte à confirmação de duas fases para participar de uma transação.</summary>
+      <param name="resourceManagerIdentifier" vsli:raw="A unique identifier for a resource manager, which should persist across resource manager failure or reboot.">’Um identificador exclusivo de um gerenciador de recursos, que deve persistir durante uma falha ou reinicialização do gerenciador de recursos.</param>
+      <param name="promotableNotification" vsli:raw="An object that acts as a commit delegate for a non-distributed transaction internal to a resource manager.">Um objeto que atua como um delegado de confirmação de uma transação não distribuída interna de um gerenciador de recursos.</param>
+      <param name="enlistmentNotification" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Transactions.IEnlistmentNotification&quot; /&gt; interface to receive two phase commit notifications.">Um objeto que implementa a interface <see cref="T:System.Transactions.IEnlistmentNotification" /> para receber duas notificações de confirmação de fase.</param>
+      <param name="enlistmentOptions" vsli:raw="&lt;see cref=&quot;F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired&quot; /&gt; if the resource manager wants to perform additional work during the prepare phase.">
+        <see cref="F:System.Transactions.EnlistmentOptions.EnlistDuringPrepareRequired" /> se o gerenciador de recursos desejar realizar trabalho adicional durante a fase de preparação.</param>
+    </member>
+    <member name="P:System.Transactions.Transaction.PromoterType">
+      <summary vsli:raw="Uniquely identifies the format of the &lt;c&gt;byte[]&lt;/c&gt; returned by the Promote method when the transaction is promoted.">Identifica exclusivamente o formato do <c>byte []</c> retornado pelo método Promote quando a transação é promovida.</summary>
+      <returns vsli:raw="A guid that uniquely identifies the format of the &lt;c&gt;byte[]&lt;/c&gt; returned by the Promote method when the transaction is promoted.">Um GUID que identifica exclusivamente o formato do <c>byte []</c> retornado pelo método Promote quando a transação é promovida.</returns>
+    </member>
+    <member name="M:System.Transactions.Transaction.Rollback">
+      <summary vsli:raw="Rolls back (aborts) the transaction.">Reverte (anula) a transação.</summary>
+    </member>
+    <member name="M:System.Transactions.Transaction.Rollback(System.Exception)">
+      <summary vsli:raw="Rolls back (aborts) the transaction.">Reverte (anula) a transação.</summary>
+      <param name="e" vsli:raw="An explanation of why a rollback occurred.">Uma explicação do porquê uma reversão ocorreu.</param>
+    </member>
+    <member name="M:System.Transactions.Transaction.SetDistributedTransactionIdentifier(System.Transactions.IPromotableSinglePhaseNotification,System.Guid)">
+      <summary vsli:raw="Sets the distributed transaction identifier generated by the non-MSDTC promoter.">Define o identificador da transação distribuída gerado pelo promotor não MSDTC.</summary>
+      <param name="promotableNotification" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.IPromotableSinglePhaseNotification&quot; /&gt; interface implemented by the participant.">Uma interface <see cref="T:System.Transactions.IPromotableSinglePhaseNotification" /> implementada pelo participante.</param>
+      <param name="distributedTransactionIdentifier" vsli:raw="The identifier for the transaction used by the distributed transaction manager.">O identificador da transação usado pelo gerenciador de transação distribuídas.</param>
+    </member>
+    <member name="M:System.Transactions.Transaction.System#Runtime#Serialization#ISerializable#GetObjectData(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; with the data required to serialize this transaction.">Obtém um <see cref="T:System.Runtime.Serialization.SerializationInfo" /> com os dados necessários para serializar essa transação.</summary>
+      <param name="serializationInfo" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; to populate with data.">O <see cref="T:System.Runtime.Serialization.SerializationInfo" /> a ser preenchido com dados.</param>
+      <param name="context" vsli:raw="The destination (see &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; ) for this serialization.">O destino (consulte <see cref="T:System.Runtime.Serialization.StreamingContext" />) dessa serialização.</param>
+    </member>
+    <member name="E:System.Transactions.Transaction.TransactionCompleted">
+      <summary vsli:raw="Indicates that the transaction is completed.">Indica que a transação está concluída.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt to subscribe this event on a transaction that has been disposed.">Uma tentativa de assinar esse evento em uma transação que foi descartada.</exception>
+    </member>
+    <member name="P:System.Transactions.Transaction.TransactionInformation">
+      <summary vsli:raw="Retrieves additional information about a transaction.">Recupera informações adicionais sobre uma transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionInformation&quot; /&gt; that contains additional information about the transaction.">Um <see cref="T:System.Transactions.TransactionInformation" /> que contém informações adicionais sobre a transação.</returns>
+    </member>
+    <member name="T:System.Transactions.TransactionAbortedException">
+      <summary vsli:raw="The exception that is thrown when an operation is attempted on a transaction that has already been rolled back, or an attempt is made to commit the transaction and the transaction aborts.">A exceção que é lançada quando há a tentativa de uma operação em uma transação que já foi revertida ou quando é feita uma tentativa de confirmar a transação e a transação foi anulada.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionAbortedException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionAbortedException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionAbortedException" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionAbortedException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionAbortedException&quot; /&gt; class with the specified serialization and streaming context information.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionAbortedException" /> com as informações de serialização e contexto de fluxo especificadas.</summary>
+      <param name="info" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha na serialização.</param>
+      <param name="context" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization context.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha no contexto de serialização.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionAbortedException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionAbortedException&quot; /&gt; class with the specified message.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionAbortedException" /> com a mensagem especificada.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionAbortedException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionAbortedException&quot; /&gt; class with the specified message and inner exception.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionAbortedException" /> com a mensagem e exceção interna especificadas.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+      <param name="innerException" vsli:raw="Gets the exception instance that causes the current exception. For more information, see the &lt;see cref=&quot;P:System.Exception.InnerException&quot; /&gt; property.">Obtém a instância de exceção que provoca a exceção atual. Para obter mais informações, consulte a propriedade <see cref="P:System.Exception.InnerException" />.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionCompletedEventHandler">
+      <summary vsli:raw="Represents the method that handles the &lt;see cref=&quot;E:System.Transactions.Transaction.TransactionCompleted&quot; /&gt; event of a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; class.">Representa o método que manipula o evento <see cref="E:System.Transactions.Transaction.TransactionCompleted" /> de uma classe <see cref="T:System.Transactions.Transaction" />.</summary>
+      <param name="sender" vsli:raw="The source of the event.">A fonte do evento.</param>
+      <param name="e" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionEventArgs&quot; /&gt; that contains the event data.">O <see cref="T:System.Transactions.TransactionEventArgs" /> que contém os dados do evento.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionEventArgs">
+      <summary vsli:raw="Provides data for the following transaction events: &lt;see cref=&quot;E:System.Transactions.TransactionManager.DistributedTransactionStarted&quot; /&gt;, &lt;see cref=&quot;E:System.Transactions.Transaction.TransactionCompleted&quot; /&gt;.">Fornece dados para os seguintes eventos de transação: <see cref="E:System.Transactions.TransactionManager.DistributedTransactionStarted" />, <see cref="E:System.Transactions.Transaction.TransactionCompleted" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionEventArgs.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionEventArgs&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionEventArgs" />.</summary>
+    </member>
+    <member name="P:System.Transactions.TransactionEventArgs.Transaction">
+      <summary vsli:raw="Gets the transaction for which event status is provided.">Obtém a transação da qual o evento de status é fornecido.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; for which event status is provided.">Um <see cref="T:System.Transactions.Transaction" /> para o qual o status do evento é fornecido.</returns>
+    </member>
+    <member name="T:System.Transactions.TransactionException">
+      <summary vsli:raw="The exception that is thrown when you attempt to do work on a transaction that cannot accept new work.">A exceção que é lançada durante a tentativa de trabalhar em uma transação que não pode aceitar o novo trabalho.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionException" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionException&quot; /&gt; class with the specified serialization and streaming context information.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionException" /> com as informações de serialização e contexto de fluxo especificadas.</summary>
+      <param name="info" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha na serialização.</param>
+      <param name="context" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization context.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha no contexto de serialização.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionException&quot; /&gt; class with the specified message.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionException" /> com a mensagem especificada.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionException&quot; /&gt; class with the specified message and inner exception.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionException" /> com a mensagem e exceção interna especificadas.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+      <param name="innerException" vsli:raw="Gets the exception instance that causes the current exception. For more information, see the &lt;see cref=&quot;P:System.Exception.InnerException&quot; /&gt; property.">Obtém a instância de exceção que provoca a exceção atual. Para obter mais informações, consulte a propriedade <see cref="P:System.Exception.InnerException" />.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionInDoubtException">
+      <summary vsli:raw="The exception that is thrown when an operation is attempted on a transaction that is in doubt, or an attempt is made to commit the transaction and the transaction becomes InDoubt.">A exceção que é lançada quando é feita uma tentativa de uma operação em uma transação que está em dúvida ou é feita uma tentativa de confirmar a transação e a transação retorna InDoubt.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionInDoubtException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionInDoubtException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionInDoubtException" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionInDoubtException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionInDoubtException&quot; /&gt; class with the specified serialization and streaming context information.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionInDoubtException" /> com as informações de serialização e contexto de fluxo especificadas.</summary>
+      <param name="info" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha na serialização.</param>
+      <param name="context" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization context.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha no contexto de serialização.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionInDoubtException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionInDoubtException&quot; /&gt; class with the specified message.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionInDoubtException" /> com a mensagem especificada.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionInDoubtException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionInDoubtException&quot; /&gt; class with the specified message and inner exception.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionInDoubtException" /> com a mensagem e exceção interna especificadas.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+      <param name="innerException" vsli:raw="Gets the exception instance that causes the current exception. For more information, see the &lt;see cref=&quot;P:System.Exception.InnerException&quot; /&gt; property.">Obtém a instância de exceção que provoca a exceção atual. Para obter mais informações, consulte a propriedade <see cref="P:System.Exception.InnerException" />.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionInformation">
+      <summary vsli:raw="Provides additional information regarding a transaction.">Fornece informações adicionais sobre uma transação.</summary>
+    </member>
+    <member name="P:System.Transactions.TransactionInformation.CreationTime">
+      <summary vsli:raw="Gets the creation time of the transaction.">Obtém a hora de criação da transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.DateTime&quot; /&gt; that contains the creation time of the transaction.">Um <see cref="T:System.DateTime" /> que contém a hora de criação da transação.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionInformation.DistributedIdentifier">
+      <summary vsli:raw="Gets a unique identifier of the escalated transaction.">Obtém um identificador exclusivo da transação escalada.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; that contains the unique identifier of the escalated transaction.">Um <see cref="T:System.Guid" /> que contém o identificador exclusivo da transação escalonada.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionInformation.LocalIdentifier">
+      <summary vsli:raw="Gets a unique identifier of the transaction.">Obtém um identificador exclusivo da transação.</summary>
+      <returns vsli:raw="A unique identifier of the transaction.">Um identificador exclusivo da transação.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionInformation.Status">
+      <summary vsli:raw="Gets the status of the transaction.">Obtém o status da transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionStatus&quot; /&gt; that contains the status of the transaction.">Um <see cref="T:System.Transactions.TransactionStatus" /> que contém o status da transação.</returns>
+    </member>
+    <member name="T:System.Transactions.TransactionInterop">
+      <summary vsli:raw="Facilitates interaction between &lt;see cref=&quot;N:System.Transactions&quot; /&gt; and components that were previously written to interact with MSDTC, COM+, or &lt;see cref=&quot;N:System.EnterpriseServices&quot; /&gt;. This class cannot be inherited.">Facilita a interação entre <see cref="N:System.Transactions" /> e componentes anteriormente escritos para interagir com o MSDTC, COM+ ou <see cref="N:System.EnterpriseServices" />. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetDtcTransaction(System.Transactions.Transaction)">
+      <summary vsli:raw="Gets an &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt; instance that represents a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt;.">Obtém uma instância <see cref="T:System.Transactions.IDtcTransaction" /> que representa um <see cref="T:System.Transactions.Transaction" />.</summary>
+      <param name="transaction" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance to be marshaled.">Uma instância <see cref="T:System.Transactions.Transaction" /> em que será realizado marshaling.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt; instance that represents a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt;.  The &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt; instance is compatible with the unmanaged form of ITransaction used by MSDTC and with the Managed form of &lt;see cref=&quot;T:System.EnterpriseServices.ITransaction&quot; /&gt; used by &lt;see cref=&quot;N:System.EnterpriseServices&quot; /&gt;.">Uma instância <see cref="T:System.Transactions.IDtcTransaction" /> que representa um <see cref="T:System.Transactions.Transaction" />.  A instância <see cref="T:System.Transactions.IDtcTransaction" /> é compatível com o formulário não gerenciado de ITransaction usado pelo MSDTC e com o formulário gerenciado do <see cref="T:System.EnterpriseServices.ITransaction" /> usado pelo <see cref="N:System.EnterpriseServices" />.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetExportCookie(System.Transactions.Transaction,System.Byte[])">
+      <summary vsli:raw="Transforms a transaction object into an export transaction cookie.">Transforma um objeto de transação em um cookie de transação de exportação.</summary>
+      <param name="transaction" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; object to be marshaled.">O objeto <see cref="T:System.Transactions.Transaction" /> que terá marshal realizado.</param>
+      <param name="whereabouts" vsli:raw="An address that describes the location of the destination transaction manager. This permits two transaction managers to communicate with one another and thereby propagate a transaction from one system to the other.">Um endereço que descreve o local do gerenciador de transação de destino. Isso permite que dois gerenciadores de transações se comuniquem entre si e, portanto, propaguem uma transação de um sistema para outro.</param>
+      <returns vsli:raw="An export transaction cookie representing the specified &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; object.">Um cookie de transação de exportação representando o objeto <see cref="T:System.Transactions.Transaction" /> especificado.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetTransactionFromDtcTransaction(System.Transactions.IDtcTransaction)">
+      <summary vsli:raw="Generates a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; from a specified &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt;.">Gera um <see cref="T:System.Transactions.Transaction" /> de um <see cref="T:System.Transactions.IDtcTransaction" /> especificado.</summary>
+      <param name="transactionNative" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt; object to be marshaled.">O objeto <see cref="T:System.Transactions.IDtcTransaction" /> que terá marshal realizado.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance that represents the given &lt;see cref=&quot;T:System.Transactions.IDtcTransaction&quot; /&gt;.">Uma instância <see cref="T:System.Transactions.Transaction" /> que representa o <see cref="T:System.Transactions.IDtcTransaction" /> determinado.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetTransactionFromExportCookie(System.Byte[])">
+      <summary vsli:raw="Generates a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; from the specified an export cookie.">Gera um <see cref="T:System.Transactions.Transaction" /> do especificado em um cookie de exportação.</summary>
+      <param name="cookie" vsli:raw="A marshaled form of the transaction object.">Um formulário com marshaling do objeto de transação.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; from the specified export cookie.">Um <see cref="T:System.Transactions.Transaction" /> do especificado em um cookie de exportação.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])">
+      <summary vsli:raw="Generates a &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; instance from the specified transmitter propagation token.">Gera uma instância <see cref="T:System.Transactions.Transaction" /> do token de propagação do transmissor especificado.</summary>
+      <param name="propagationToken" vsli:raw="A propagation token representing a transaction.">Um token de propagação que representa uma transação.</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt; from the specified transmitter propagation token.">Um <see cref="T:System.Transactions.Transaction" /> do token de propagação do transmissor especificado.</returns>
+      <exception cref="T:System.Transactions.TransactionManagerCommunicationException" vsli:raw="The deserialization of a transaction fails because the transaction manager cannot be contacted. This may be caused by network firewall or security settings.">A desserialização de uma transação falha porque o gerenciador de transação não pode ser contatado. Isso pode ser causado por configurações de firewall ou de segurança de rede.</exception>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetTransmitterPropagationToken(System.Transactions.Transaction)">
+      <summary vsli:raw="Generates a propagation token for the specified &lt;see cref=&quot;T:System.Transactions.Transaction&quot; /&gt;.">Gera um token de propagação para o <see cref="T:System.Transactions.Transaction" /> especificado.</summary>
+      <param name="transaction" vsli:raw="A transaction to be marshaled into a propagation token.">Uma transação na qual deverá ser realizado marshal em um token de propagação.</param>
+      <returns vsli:raw="This method, together with the &lt;see cref=&quot;M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])&quot; /&gt; method, provide functionality for Transmitter/Receiver propagation, in which the transaction is &quot;pulled&quot; from the remote machine when the latter is called to unmarshal the transaction.  &#xA;  &#xA; For more information on different propagation models, see &lt;see cref=&quot;T:System.Transactions.TransactionInterop&quot; /&gt; class.">Esse método, junto com o método <see cref="M:System.Transactions.TransactionInterop.GetTransactionFromTransmitterPropagationToken(System.Byte[])" />, fornece a funcionalidade de propagação do transmissor/receptor, em que a transação é "puxada" do computador remoto quando o último é chamado para desfazer marshal da transação.  
+Para obter mais informações sobre modelos de propagação diferentes, consulte a classe <see cref="T:System.Transactions.TransactionInterop" />.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionInterop.GetWhereabouts">
+      <summary vsli:raw="Gets the Whereabouts of the distributed transaction manager that &lt;see cref=&quot;N:System.Transactions&quot; /&gt; uses.">Obtém a localização do gerenciador de transação distribuída usado por <see cref="N:System.Transactions" />.</summary>
+      <returns vsli:raw="The Whereabouts of the distributed transaction manager that &lt;see cref=&quot;N:System.Transactions&quot; /&gt; uses.">A localização do gerenciador de transação distribuída usado por <see cref="N:System.Transactions" />.</returns>
+    </member>
+    <member name="F:System.Transactions.TransactionInterop.PromoterTypeDtc">
+      <summary vsli:raw="The type of the distributed transaction processor.">O tipo do processador de transação distribuída.</summary>
+    </member>
+    <member name="T:System.Transactions.TransactionManager">
+      <summary vsli:raw="Contains methods used for transaction management. This class cannot be inherited.">Contém métodos usados para gerenciamento de transações. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.DefaultTimeout">
+      <summary vsli:raw="Gets the default timeout interval for new transactions.">Obtém o intervalo de tempo limite padrão para novas transações.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value that specifies the timeout interval for new transactions.">Um valor <see cref="T:System.TimeSpan" /> que especifica o intervalo de tempo limite para novas transações.</returns>
+    </member>
+    <member name="E:System.Transactions.TransactionManager.DistributedTransactionStarted">
+      <summary vsli:raw="Indicates that a distributed transaction has started.">Indica que uma transação distribuída foi iniciada.</summary>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.HostCurrentCallback">
+      <summary vsli:raw="Gets or sets a custom transaction factory.">Obtém ou define uma fábrica de transação personalizada.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.HostCurrentTransactionCallback&quot; /&gt; that contains a custom transaction factory.">Um <see cref="T:System.Transactions.HostCurrentTransactionCallback" /> que contém uma fábrica de transação personalizada.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionManager.MaximumTimeout">
+      <summary vsli:raw="Gets the default maximum timeout interval for new transactions.">Obtém o intervalo de tempo limite máximo padrão para novas transações.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value that specifies the maximum timeout interval that is allowed when creating new transactions.">Um valor <see cref="T:System.TimeSpan" /> que especifica o intervalo de tempo limite máximo permitido ao criar novas transações.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionManager.RecoveryComplete(System.Guid)">
+      <summary vsli:raw="Notifies the transaction manager that a resource manager recovering from failure has finished reenlisting in all unresolved transactions.">Notifica o gerenciador de transação de que um Resource Manager em recuperação de falha finalizou a nova inscrição em todas as transações não resolvidas.</summary>
+      <param name="resourceManagerIdentifier" vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; that uniquely identifies the resource to be recovered from.">Um <see cref="T:System.Guid" /> que identifica exclusivamente o recurso do qual realizar a recuperação.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;resourceManagerIdentifier&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">O parâmetro <paramref name="resourceManagerIdentifier" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Transactions.TransactionManager.Reenlist(System.Guid,System.Byte[],System.Transactions.IEnlistmentNotification)">
+      <summary vsli:raw="Reenlists a durable participant in a transaction.">Reinscreve um participante durável em uma transação.</summary>
+      <param name="resourceManagerIdentifier" vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; that uniquely identifies the resource manager.">Um <see cref="T:System.Guid" /> que identifica o gerenciador de recursos exclusivamente.</param>
+      <param name="recoveryInformation" vsli:raw="Contains additional information of recovery information.">Contém informações adicionais de recuperação.</param>
+      <param name="enlistmentNotification" vsli:raw="A resource object that implements &lt;see cref=&quot;T:System.Transactions.IEnlistmentNotification&quot; /&gt; to receive notifications.">Um objeto de recurso que implementa <see cref="T:System.Transactions.IEnlistmentNotification" /> para receber notificações.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Transactions.Enlistment&quot; /&gt; that describes the enlistment.">Um <see cref="T:System.Transactions.Enlistment" /> que descreve a inscrição.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;recoveryInformation&quot; /&gt; is invalid.  &#xA;  &#xA; -or-  &#xA;  &#xA; Transaction Manager information in &lt;paramref name=&quot;recoveryInformation&quot; /&gt; does not match the configured transaction manager.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;RecoveryInformation&quot; /&gt; is not recognized by &lt;see cref=&quot;N:System.Transactions&quot; /&gt;.">
+        <paramref name="recoveryInformation" /> é inválido.  
+
+ou - 
+As informações do Gerenciador de Transação em <paramref name="recoveryInformation" /> não correspondem ao gerenciador de transação configurado.  
+
+ou - 
+<paramref name="RecoveryInformation" /> não é reconhecido por <see cref="N:System.Transactions" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="&lt;see cref=&quot;M:System.Transactions.TransactionManager.RecoveryComplete(System.Guid)&quot; /&gt; has already been called for the specified &lt;paramref name=&quot;resourceManagerIdentifier&quot; /&gt;. The reenlistment is rejected.">
+        <see cref="M:System.Transactions.TransactionManager.RecoveryComplete(System.Guid)" /> já foi chamado para o <paramref name="resourceManagerIdentifier" /> especificado. A nova inscrição foi rejeitada.</exception>
+      <exception cref="T:System.Transactions.TransactionException" vsli:raw="The &lt;paramref name=&quot;resourceManagerIdentifier&quot; /&gt; does not match the content of the specified recovery information in &lt;paramref name=&quot;recoveryInformation&quot; /&gt;.">O <paramref name="resourceManagerIdentifier" /> não corresponde ao conteúdo das informações de recuperação especificadas em <paramref name="recoveryInformation" />.</exception>
+    </member>
+    <member name="T:System.Transactions.TransactionManagerCommunicationException">
+      <summary vsli:raw="The exception that is thrown when a resource manager cannot communicate with the transaction manager.">A exceção lançada quando um gerenciador de recursos não pode se comunicar com o gerenciador de transações.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionManagerCommunicationException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionManagerCommunicationException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionManagerCommunicationException" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionManagerCommunicationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionManagerCommunicationException&quot; /&gt; class with the specified serialization and streaming context information.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionManagerCommunicationException" /> com as informações de serialização e contexto de fluxo especificadas.</summary>
+      <param name="info" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha na serialização.</param>
+      <param name="context" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization context.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha no contexto de serialização.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionManagerCommunicationException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionManagerCommunicationException&quot; /&gt; class with the specified message.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionManagerCommunicationException" /> com a mensagem especificada.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionManagerCommunicationException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionManagerCommunicationException&quot; /&gt; class with the specified message and inner exception.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionManagerCommunicationException" /> com a mensagem e exceção interna especificadas.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+      <param name="innerException" vsli:raw="Gets the exception instance that causes the current exception. For more information, see the &lt;see cref=&quot;P:System.Exception.InnerException&quot; /&gt; property.">Obtém a instância de exceção que provoca a exceção atual. Para obter mais informações, consulte a propriedade <see cref="P:System.Exception.InnerException" />.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionOptions">
+      <summary vsli:raw="Contains additional information that specifies transaction behaviors.">Contém informações adicionais que especificam comportamentos de transação.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionOptions.Equals(System.Object)">
+      <summary vsli:raw="Determines whether this &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance and the specified object are equal.">Determina se essa instância <see cref="T:System.Transactions.TransactionOptions" /> e o objeto especificado são iguais.</summary>
+      <param name="obj" vsli:raw="The object to compare with this instance.">O objeto a ser comparado com essa instância.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; and this &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance are identical; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="obj" /> e essa instância <see cref="T:System.Transactions.TransactionOptions" /> forem idênticos; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionOptions.GetHashCode">
+      <summary vsli:raw="Returns the hash code for this instance.">Retorna o código hash para essa instância.</summary>
+      <returns vsli:raw="A 32-bit signed integer hash code.">Um código de hash do inteiro assinado de 32 bits.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionOptions.IsolationLevel">
+      <summary vsli:raw="Gets or sets the isolation level of the transaction.">Obtém ou define o nível de isolamento da transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Transactions.IsolationLevel&quot; /&gt; enumeration that specifies the isolation level of the transaction.">Uma enumeração <see cref="T:System.Transactions.IsolationLevel" /> que especifica o nível de isolamento da transação.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionOptions.op_Equality(System.Transactions.TransactionOptions,System.Transactions.TransactionOptions)">
+      <summary vsli:raw="Tests whether two specified &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instances are equivalent.">Testa se duas instâncias de <see cref="T:System.Transactions.TransactionOptions" /> especificadas são equivalentes.</summary>
+      <param name="x" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance that is to the left of the equality operator.">A instância de <see cref="T:System.Transactions.TransactionOptions" /> que está à esquerda do operador de igualdade.</param>
+      <param name="y" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance that is to the right of the equality operator.">A instância de <see cref="T:System.Transactions.TransactionOptions" /> que está à direita do operador de igualdade.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;x&quot; /&gt; and &lt;paramref name=&quot;y&quot; /&gt; are equal; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="x" /> e <paramref name="y" /> forem iguais; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Transactions.TransactionOptions.op_Inequality(System.Transactions.TransactionOptions,System.Transactions.TransactionOptions)">
+      <summary vsli:raw="Returns a value that indicates whether two &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instances are not equal.">Retorna um valor que indica se duas instâncias <see cref="T:System.Transactions.TransactionOptions" /> não são iguais.</summary>
+      <param name="x" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance that is to the left of the equality operator.">A instância de <see cref="T:System.Transactions.TransactionOptions" /> que está à esquerda do operador de igualdade.</param>
+      <param name="y" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; instance that is to the right of the equality operator.">A instância de <see cref="T:System.Transactions.TransactionOptions" /> que está à direita do operador de igualdade.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;x&quot; /&gt; and &lt;paramref name=&quot;y&quot; /&gt; are not equal; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> se <paramref name="x" /> e <paramref name="y" /> não forem iguais; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Transactions.TransactionOptions.Timeout">
+      <summary vsli:raw="Gets or sets the timeout period for the transaction.">Obtém ou define o período de tempo limite da transação.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value that specifies the timeout period for the transaction.">Um valor <see cref="T:System.TimeSpan" /> que especifica o período de tempo limite da transação.</returns>
+    </member>
+    <member name="T:System.Transactions.TransactionPromotionException">
+      <summary vsli:raw="The exception that is thrown when a promotion fails.">A exceção lançada quando uma promoção falha.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionPromotionException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionPromotionException&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionPromotionException" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionPromotionException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionPromotionException&quot; /&gt; class with the specified serialization and streaming context information.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionPromotionException" /> com as informações de serialização e contexto de fluxo especificadas.</summary>
+      <param name="info" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha na serialização.</param>
+      <param name="context" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that describes a failed serialization context.">Um objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que descreve uma falha no contexto de serialização.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionPromotionException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionPromotionException&quot; /&gt; class with the specified message.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionPromotionException" /> com a mensagem especificada.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionPromotionException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionPromotionException&quot; /&gt; class with the specified message and inner exception.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionPromotionException" /> com a mensagem e exceção interna especificadas.</summary>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains a message that explains why the exception occurred.">Um <see cref="T:System.String" /> que contém uma mensagem que explica o motivo da exceção.</param>
+      <param name="innerException" vsli:raw="Gets the exception instance that causes the current exception. For more information, see the &lt;see cref=&quot;P:System.Exception.InnerException&quot; /&gt; property.">Obtém a instância de exceção que provoca a exceção atual. Para obter mais informações, consulte a propriedade <see cref="P:System.Exception.InnerException" />.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionScope">
+      <summary vsli:raw="Makes a code block transactional. This class cannot be inherited.">Torna um bloco de códigos transacional. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" />.</summary>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> e define a transação especificada como a transação de ambiente, de modo que o trabalho transacional realizado dentro do escopo use essa transação.</summary>
+      <param name="transactionToUse" vsli:raw="The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.">A transação a ser definida como a transação de ambiente, para que o trabalho transacional realizado dentro do escopo use essa transação.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.TimeSpan)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified timeout value, and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com o valor de tempo limite especificado e define a transação especificada como a transação de ambiente, de modo que o trabalho transacional realizado dentro do escopo use essa transação.</summary>
+      <param name="transactionToUse" vsli:raw="The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.">A transação a ser definida como a transação de ambiente, para que o trabalho transacional realizado dentro do escopo use essa transação.</param>
+      <param name="scopeTimeout" vsli:raw="The &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; after which the transaction scope times out and aborts the transaction.">O <see cref="T:System.TimeSpan" /> após o qual o escopo da transação atinge o tempo limite e anula a transação.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.TimeSpan,System.Transactions.EnterpriseServicesInteropOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified timeout value and COM+ interoperability requirements, and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos de interoperabilidade COM+ e o valor de tempo limite especificados e define a transação especificada como a transação de ambiente, de modo que o trabalho transacional realizado dentro do escopo use essa transação.</summary>
+      <param name="transactionToUse" vsli:raw="The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.">A transação a ser definida como a transação de ambiente, para que o trabalho transacional realizado dentro do escopo use essa transação.</param>
+      <param name="scopeTimeout" vsli:raw="The &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; after which the transaction scope times out and aborts the transaction.">O <see cref="T:System.TimeSpan" /> após o qual o escopo da transação atinge o tempo limite e anula a transação.</param>
+      <param name="interopOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.EnterpriseServicesInteropOption&quot; /&gt; enumeration that describes how the associated transaction interacts with COM+ transactions.">Uma instância da enumeração <see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> que descreve como a transação associada interage com transações COM+.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.TimeSpan,System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="[Supported in the .NET Framework 4.5.1 and later versions]  &#xA;  &#xA; Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified timeout value, and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.">[Suporte somente no .NET Framework 4.5.1 e versões posteriores] 
+Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com o valor de tempo limite especificado e define a transação especificada como a transação de ambiente, de modo que o trabalho transacional realizado dentro do escopo use essa transação.</summary>
+      <param name="transactionToUse" vsli:raw="The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.">A transação a ser definida como a transação de ambiente, para que o trabalho transacional realizado dentro do escopo use essa transação.</param>
+      <param name="scopeTimeout" vsli:raw="The &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; after which the transaction scope times out and aborts the transaction.">O <see cref="T:System.TimeSpan" /> após o qual o escopo da transação atinge o tempo limite e anula a transação.</param>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.Transaction,System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="[Supported in the .NET Framework 4.5.1 and later versions]  &#xA;  &#xA; Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class and sets the specified transaction as the ambient transaction, so that transactional work done inside the scope uses this transaction.">[Suporte somente no .NET Framework 4.5.1 e versões posteriores] 
+Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> e define a transação especificada como a transação de ambiente, de modo que o trabalho transacional realizado dentro do escopo use essa transação.</summary>
+      <param name="transactionToUse" vsli:raw="The transaction to be set as the ambient transaction, so that transactional work done inside the scope uses this transaction.">A transação a ser definida como a transação de ambiente, para que o trabalho transacional realizado dentro do escopo use essa transação.</param>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified asynchronous flow option.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com a opção de fluxo assíncrono especificado.</summary>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified requirements.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified timeout value and requirements.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com o valor e requisitos de tempo limite especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="scopeTimeout" vsli:raw="The &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; after which the transaction scope times out and aborts the transaction.">O <see cref="T:System.TimeSpan" /> após o qual o escopo da transação atinge o tempo limite e anula a transação.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.TimeSpan,System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified timeout value, requirements, and asynchronous flow option.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos e a opção de fluxo assíncrono, bem como o valor de tempo limite especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="scopeTimeout" vsli:raw="The &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; after which the transaction scope times out and aborts the transaction.">O <see cref="T:System.TimeSpan" /> após o qual o escopo da transação atinge o tempo limite e anula a transação.</param>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified requirements.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="transactionOptions" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the timeout value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.">Uma estrutura <see cref="T:System.Transactions.TransactionOptions" /> que descreve as opções de transação a serem usadas se uma nova transação for criada. Se uma transação existente for usada, o valor de tempo limite nesse parâmetro se aplicará ao escopo da transação. Se esse período expirar antes de o escopo ser descartado, a transação será anulada.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,System.Transactions.EnterpriseServicesInteropOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified scope and COM+ interoperability requirements, and transaction options.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com o escopo especificado e os requisitos de interoperabilidade COM+ e opções de transação.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="transactionOptions" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the timeout value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.">Uma estrutura <see cref="T:System.Transactions.TransactionOptions" /> que descreve as opções de transação a serem usadas se uma nova transação for criada. Se uma transação existente for usada, o valor de tempo limite nesse parâmetro se aplicará ao escopo da transação. Se esse período expirar antes de o escopo ser descartado, a transação será anulada.</param>
+      <param name="interopOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.EnterpriseServicesInteropOption&quot; /&gt; enumeration that describes how the associated transaction interacts with COM+ transactions.">Uma instância da enumeração <see cref="T:System.Transactions.EnterpriseServicesInteropOption" /> que descreve como a transação associada interage com transações COM+.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionOptions,System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="[Supported in the .NET Framework 4.5.1 and later versions]  &#xA;  &#xA; Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified requirements and asynchronous flow option.">[Suporte somente no .NET Framework 4.5.1 e versões posteriores] 
+Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos e a opção de fluxo assíncrono especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="transactionOptions" vsli:raw="A &lt;see cref=&quot;T:System.Transactions.TransactionOptions&quot; /&gt; structure that describes the transaction options to use if a new transaction is created. If an existing transaction is used, the timeout value in this parameter applies to the transaction scope. If that time expires before the scope is disposed, the transaction is aborted.">Uma estrutura <see cref="T:System.Transactions.TransactionOptions" /> que descreve as opções de transação a serem usadas se uma nova transação for criada. Se uma transação existente for usada, o valor de tempo limite nesse parâmetro se aplicará ao escopo da transação. Se esse período expirar antes de o escopo ser descartado, a transação será anulada.</param>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.#ctor(System.Transactions.TransactionScopeOption,System.Transactions.TransactionScopeAsyncFlowOption)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt; class with the specified requirements and asynchronous flow option.">Inicializa uma nova instância da classe <see cref="T:System.Transactions.TransactionScope" /> com os requisitos e a opção de fluxo assíncrono especificados.</summary>
+      <param name="scopeOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeOption&quot; /&gt; enumeration that describes the transaction requirements associated with this transaction scope.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeOption" /> que descreve os requisitos de transação associados a este escopo de transação.</param>
+      <param name="asyncFlowOption" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Transactions.TransactionScopeAsyncFlowOption&quot; /&gt; enumeration that describes whether the ambient transaction associated with the transaction scope will flow across thread continuations when using Task or async/await .NET async programming patterns.">Uma instância da enumeração <see cref="T:System.Transactions.TransactionScopeAsyncFlowOption" /> que descreve se a transação de ambiente associada ao escopo de transação fluirá pelas continuações de thread ao usar a Tarefa ou padrões de programação assíncrona/de espera .NET.</param>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.Complete">
+      <summary vsli:raw="Indicates that all operations within the scope are completed successfully.">Indica que todas as operações dentro do escopo foram concluídas com êxito.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This method has already been called once.">Este método já foi chamado uma vez.</exception>
+    </member>
+    <member name="M:System.Transactions.TransactionScope.Dispose">
+      <summary vsli:raw="Ends the transaction scope.">Encerra o escopo da transação.</summary>
+    </member>
+    <member name="T:System.Transactions.TransactionScopeAsyncFlowOption">
+      <summary vsli:raw="Specifies whether transaction flow across thread continuations is enabled for &lt;see cref=&quot;T:System.Transactions.TransactionScope&quot; /&gt;.">Especifica se o fluxo de transações em continuações de thread está habilitado para <see cref="T:System.Transactions.TransactionScope" />.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionScopeAsyncFlowOption.Enabled">
+      <summary vsli:raw="Specifies that transaction flow across thread continuations is enabled.">Especifica que o fluxo de transações em continuações de thread está habilitado.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionScopeAsyncFlowOption.Suppress">
+      <summary vsli:raw="Specifies that transaction flow across thread continuations is suppressed. This is the default setting if no &lt;see langword=&quot;TransactionScopeAsyncFlowOption&quot; /&gt; is specified in the &lt;see cref=&quot;Overload:System.Transactions.TransactionScope.#ctor&quot; /&gt; constructor.">Especifica que o fluxo de transações em continuações de thread está suprimido. Essa será a configuração padrão se nenhum <see langword="TransactionScopeAsyncFlowOption" /> for especificado no construtor <see cref="Overload:System.Transactions.TransactionScope.#ctor" />.</summary>
+    </member>
+    <member name="T:System.Transactions.TransactionScopeOption">
+      <summary vsli:raw="Provides additional options for creating a transaction scope.">Fornece opções adicionais para criar um escopo de transação.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionScopeOption.Required">
+      <summary vsli:raw="A transaction is required by the scope. It uses an ambient transaction if one already exists. Otherwise, it creates a new transaction before entering the scope. This is the default value.">Uma transação é necessária para o escopo. Ela usará uma transação de ambiente se já existir um. Caso contrário, ela criará uma nova transação antes de inserir o escopo. Este é o valor padrão.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionScopeOption.RequiresNew">
+      <summary vsli:raw="A new transaction is always created for the scope.">Uma nova transação é sempre criada para o escopo.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionScopeOption.Suppress">
+      <summary vsli:raw="The ambient transaction context is suppressed when creating the scope. All operations within the scope are done without an ambient transaction context.">O contexto de transação de ambiente será suprimido ao criar o escopo. Todas as operações no escopo são executadas sem um contexto de transação de ambiente.</summary>
+    </member>
+    <member name="T:System.Transactions.TransactionStartedEventHandler">
+      <summary vsli:raw="Represents the method that will handle the &lt;see cref=&quot;E:System.Transactions.TransactionManager.DistributedTransactionStarted&quot; /&gt; event of a &lt;see cref=&quot;T:System.Transactions.TransactionManager&quot; /&gt; class.">Representa o método que manipulará o evento de <see cref="E:System.Transactions.TransactionManager.DistributedTransactionStarted" /> de uma classe <see cref="T:System.Transactions.TransactionManager" />.</summary>
+      <param name="sender" vsli:raw="The source of the event.">A fonte do evento.</param>
+      <param name="e" vsli:raw="The &lt;see cref=&quot;T:System.Transactions.TransactionEventArgs&quot; /&gt; that contains the transaction from which transaction information can be retrieved.">O <see cref="T:System.Transactions.TransactionEventArgs" /> que contém a transação da qual informações de transação podem ser recuperadas.</param>
+    </member>
+    <member name="T:System.Transactions.TransactionStatus">
+      <summary vsli:raw="Describes the current status of a distributed transaction.">Descreve o status atual de uma transação distribuída.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionStatus.Aborted">
+      <summary vsli:raw="The transaction has been rolled back.">A transação foi revertida.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionStatus.Active">
+      <summary vsli:raw="The status of the transaction is unknown, because some participants must still be polled.">O status da transação é desconhecido, pois alguns participantes ainda devem ser sondados.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionStatus.Committed">
+      <summary vsli:raw="The transaction has been committed.">A transação foi confirmada.</summary>
+    </member>
+    <member name="F:System.Transactions.TransactionStatus.InDoubt">
+      <summary vsli:raw="The status of the transaction is unknown.">O status da transação é desconhecido.</summary>
+    </member>
+  </members>
+</doc>

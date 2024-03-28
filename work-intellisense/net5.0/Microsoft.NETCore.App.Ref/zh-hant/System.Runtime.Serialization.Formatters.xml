@@ -1,0 +1,777 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Runtime.Serialization.Formatters</name>
+  </assembly>
+  <members>
+    <member name="T:System.Runtime.Serialization.Formatter">
+      <summary vsli:raw="Provides base functionality for the common language runtime serialization formatters.">將基本功能提供給 Common Language Runtime 序列化格式子 (Serialization Formatter)。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_idGenerator">
+      <summary vsli:raw="Contains the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; used with the current formatter.">包含與目前的格式子 (Formatter) 使用的 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" />。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatter.m_objectQueue">
+      <summary vsli:raw="Contains a &lt;see cref=&quot;T:System.Collections.Queue&quot; /&gt; of the objects left to serialize.">包含為了序列化而保留的物件 <see cref="T:System.Collections.Queue" />。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatter&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.Formatter" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="When overridden in a derived class, deserializes the stream attached to the formatter when it was created, creating a graph of objects identical to the graph originally serialized into that stream.">當覆寫於衍生類別時，還原序列化建立時即附加至格式子的資料流，建立與原本序列化至資料流之 Graph 相同的物件 Graph。</summary>
+      <param name="serializationStream" vsli:raw="The stream to deserialize.">要還原序列化的資料流。</param>
+      <returns vsli:raw="The top object of the deserialized graph of objects.">還原序列化物件 Graph 的最上層物件。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.GetNext(System.Int64@)">
+      <summary vsli:raw="Returns the next object to serialize, from the formatter's internal work queue.">從格式子的內部工作佇列傳回要序列化的下一個物件。</summary>
+      <param name="objID" vsli:raw="The ID assigned to the current object during serialization.">在序列化期間指定給目前物件的 ID。</param>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The next object retrieved from the work queue did not have an assigned ID.">從工作佇列擷取的下一個物件不具有指派的 ID。</exception>
+      <returns vsli:raw="The next object to serialize.">要序列化的下一個物件。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Schedule(System.Object)">
+      <summary vsli:raw="Schedules an object for later serialization.">為後續的序列化排程物件。</summary>
+      <param name="obj" vsli:raw="The object to schedule for serialization.">要為序列化排程的物件。</param>
+      <returns vsli:raw="The object ID assigned to the object.">指派給物件的物件 ID。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="When overridden in a derived class, serializes the graph of objects with the specified root to the stream already attached to the formatter.">當覆寫於衍生類別時，使用已附加於格式子的資料流指定根 (Root)，序列化物件的 Graph。</summary>
+      <param name="serializationStream" vsli:raw="The stream to which the objects are serialized.">物件要序列化的目的資料流。</param>
+      <param name="graph" vsli:raw="The object at the root of the graph to serialize.">物件，位在要序列化的 Graph 的根。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteArray(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes an array to the stream already attached to the formatter.">當覆寫於衍生類別時，將陣列寫入至已附加於格式子的資料流。</summary>
+      <param name="obj" vsli:raw="The array to write.">要寫入的陣列。</param>
+      <param name="name" vsli:raw="The name of the array.">陣列名稱。</param>
+      <param name="memberType" vsli:raw="The type of elements that the array holds.">陣列所存留的元素型別。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteBoolean(System.Boolean,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a Boolean value to the stream already attached to the formatter.">當覆寫於衍生類別時，將布林值 (Boolean) 寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteByte(System.Byte,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes an 8-bit unsigned integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 8 位元的不帶正負號整數 (Unsigned Integer) 寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteChar(System.Char,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a Unicode character to the stream already attached to the formatter.">當覆寫於衍生類別時，將 Unicode 字元寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDateTime(System.DateTime,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; value to the stream already attached to the formatter.">當覆寫於衍生類別時，將 <see cref="T:System.DateTime" /> 值寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDecimal(System.Decimal,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.Decimal&quot; /&gt; value to the stream already attached to the formatter.">當覆寫於衍生類別時，將 <see cref="T:System.Decimal" /> 值寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteDouble(System.Double,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a double-precision floating-point number to the stream already attached to the formatter.">當覆寫於衍生類別時，將雙精度浮點數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt16(System.Int16,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 16-bit signed integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 16 位元的帶正負號整數 (Signed Integer) 寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt32(System.Int32,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 32-bit signed integer to the stream.">當覆寫於衍生類別時，將 32 位元的帶正負號整數寫入至資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteInt64(System.Int64,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 64-bit signed integer to the stream.">當覆寫於衍生類別時，將 64 位元的帶正負號整數寫入至資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteMember(System.String,System.Object)">
+      <summary vsli:raw="Inspects the type of data received, and calls the appropriate &lt;see langword=&quot;Write&quot; /&gt; method to perform the write to the stream already attached to the formatter.">檢查所接收的資料型別，並呼叫適當的 <see langword="Write" /> 方法，執行對已附加於格式子的資料流寫入。</summary>
+      <param name="memberName" vsli:raw="The name of the member to serialize.">要序列化的成員名稱。</param>
+      <param name="data" vsli:raw="The object to write to the stream attached to the formatter.">要寫入至附加於格式子資料流的物件。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteObjectRef(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes an object reference to the stream already attached to the formatter.">當覆寫於衍生類別時，將物件參考寫入至已附加於格式子的資料流。</summary>
+      <param name="obj" vsli:raw="The object reference to write.">要寫入的物件參考。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+      <param name="memberType" vsli:raw="The type of object the reference points to.">參考所指向的物件型別。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteSByte(System.SByte,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes an 8-bit signed integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 8 位元的帶正負號整數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteSingle(System.Single,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a single-precision floating-point number to the stream already attached to the formatter.">當覆寫於衍生類別時，將單精確度浮點數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteTimeSpan(System.TimeSpan,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value to the stream already attached to the formatter.">當覆寫於衍生類別時，將 <see cref="T:System.TimeSpan" /> 值寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt16(System.UInt16,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 16-bit unsigned integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 16 位元的不帶正負號整數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt32(System.UInt32,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 32-bit unsigned integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 32 位元的不帶正負號整數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteUInt64(System.UInt64,System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a 64-bit unsigned integer to the stream already attached to the formatter.">當覆寫於衍生類別時，將 64 位元的不帶正負號整數寫入至已附加於格式子的資料流。</summary>
+      <param name="val" vsli:raw="The value to write.">要寫入的值。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatter.WriteValueType(System.Object,System.String,System.Type)">
+      <summary vsli:raw="When overridden in a derived class, writes a value of the given type to the stream already attached to the formatter.">當覆寫於衍生類別時，將指定型別值寫入至已附加於格式子的資料流。</summary>
+      <param name="obj" vsli:raw="The object representing the value type.">表示實值型別 (Value Type) 的物件。</param>
+      <param name="name" vsli:raw="The name of the member.">成員的名稱。</param>
+      <param name="memberType" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of the value type.">值型別的 <see cref="T:System.Type" />。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Binder">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; used with the current formatter.">當覆寫於衍生類別時，取得或設定與目前的格式子使用的 <see cref="T:System.Runtime.Serialization.SerializationBinder" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; used with the current formatter.">搭配目前格式器使用的 <see cref="T:System.Runtime.Serialization.SerializationBinder" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.Context">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for the current serialization.">當覆寫於衍生類別時，取得或設定用於目前序列化的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for the current serialization.">用於目前序列化的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatter.SurrogateSelector">
+      <summary vsli:raw="When overridden in a derived class, gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; used with the current formatter.">當覆寫於衍生類別時，取得或設定與目前的格式子使用的 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; used with the current formatter.">搭配目前格式器使用的 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.FormatterConverter">
+      <summary vsli:raw="Represents a base implementation of the &lt;see cref=&quot;T:System.Runtime.Serialization.IFormatterConverter&quot; /&gt; interface that uses the &lt;see cref=&quot;T:System.Convert&quot; /&gt; class and the &lt;see cref=&quot;T:System.IConvertible&quot; /&gt; interface.">表示 <see cref="T:System.Runtime.Serialization.IFormatterConverter" /> 介面的基底實作，該介面使用 <see cref="T:System.Convert" /> 類別和 <see cref="T:System.IConvertible" /> 介面。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.FormatterConverter&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.FormatterConverter" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.Convert(System.Object,System.Type)">
+      <summary vsli:raw="Converts a value to the given &lt;see cref=&quot;T:System.Type&quot; /&gt;.">將值轉換為指定的 <see cref="T:System.Type" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; into which &lt;paramref name=&quot;value&quot; /&gt; is converted.">
+        <see cref="T:System.Type" />，<paramref name="value" /> 要轉換為該型別。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.Convert(System.Object,System.TypeCode)">
+      <summary vsli:raw="Converts a value to the given &lt;see cref=&quot;T:System.TypeCode&quot; /&gt;.">將值轉換為指定的 <see cref="T:System.TypeCode" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <param name="typeCode" vsli:raw="The &lt;see cref=&quot;T:System.TypeCode&quot; /&gt; into which &lt;paramref name=&quot;value&quot; /&gt; is converted.">
+        <see cref="T:System.TypeCode" />，<paramref name="value" /> 要轉換為該型別。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt;, or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToBoolean(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.">將值轉換成 <see cref="T:System.Boolean" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToByte(System.Object)">
+      <summary vsli:raw="Converts a value to an 8-bit unsigned integer.">將值轉換為 8 位元的不帶正負號整數 (Unsigned Integer)。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToChar(System.Object)">
+      <summary vsli:raw="Converts a value to a Unicode character.">將值轉換為 Unicode 字元。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDateTime(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.DateTime&quot; /&gt;.">將值轉換成 <see cref="T:System.DateTime" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDecimal(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.Decimal&quot; /&gt;.">將值轉換成 <see cref="T:System.Decimal" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToDouble(System.Object)">
+      <summary vsli:raw="Converts a value to a double-precision floating-point number.">將值轉換為雙精度浮點數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt16(System.Object)">
+      <summary vsli:raw="Converts a value to a 16-bit signed integer.">將值轉換為 16 位元帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt32(System.Object)">
+      <summary vsli:raw="Converts a value to a 32-bit signed integer.">將值轉換為 32 位元帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToInt64(System.Object)">
+      <summary vsli:raw="Converts a value to a 64-bit signed integer.">將值轉換為 64 位元帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToSByte(System.Object)">
+      <summary vsli:raw="Converts a value to a &lt;see cref=&quot;T:System.SByte&quot; /&gt;.">將值轉換成 <see cref="T:System.SByte" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToSingle(System.Object)">
+      <summary vsli:raw="Converts a value to a single-precision floating-point number.">將值轉換為單精確度浮點數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToString(System.Object)">
+      <summary vsli:raw="Converts the specified object to a &lt;see cref=&quot;T:System.String&quot; /&gt;.">將指定物件轉換為 <see cref="T:System.String" />。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt16(System.Object)">
+      <summary vsli:raw="Converts a value to a 16-bit unsigned integer.">將值轉換為 16 位元不帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt32(System.Object)">
+      <summary vsli:raw="Converts a value to a 32-bit unsigned integer.">將值轉換為 32 位元不帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterConverter.ToUInt64(System.Object)">
+      <summary vsli:raw="Converts a value to a 64-bit unsigned integer.">將值轉換為 64 位元不帶正負號的整數。</summary>
+      <param name="value" vsli:raw="The object to convert.">要轉換的物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;value&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The converted &lt;paramref name=&quot;value&quot; /&gt; or &lt;see langword=&quot;null&quot; /&gt; if the &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">轉換的 <paramref name="value" />，如果 <paramref name="type" /> 參數為 <see langword="null" />，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter">
+      <summary vsli:raw="Serializes and deserializes an object, or an entire graph of connected objects, in binary format.">以二進位格式將物件或連接物件的整個圖形序列化和還原序列化。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; class with default values.">使用預設值，初始化 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.#ctor(System.Runtime.Serialization.ISurrogateSelector,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; class with a given surrogate selector and streaming context.">使用指定的代理選取器和資料流內容，初始化 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> 類別的新執行個體。</summary>
+      <param name="selector" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; to use. Can be &lt;see langword=&quot;null&quot; /&gt;.">要使用的 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />。 可以是 <see langword="null" />。</param>
+      <param name="context" vsli:raw="The source and destination for the serialized data.">用於序列化資料的來源和目的端。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="Deserializes the specified stream into an object graph.">將指定的資料流還原序列化至物件圖形。</summary>
+      <param name="serializationStream" vsli:raw="The stream from which to deserialize the object graph.">要還原序列化物件圖形的來源資料流。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="serializationStream" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; supports seeking, but its length is 0.&#xA;&#xA; -or-&#xA;&#xA;The input stream does not represent a well-formed &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; serialized payload.&#xA;&#xA;-or-&#xA;&#xA;An error occurred while deserializing an object from the input stream.&#xA;&#xA;The &lt;see langword=&quot;InnerException&quot; /&gt; property may contain more information about the root cause.">
+        <paramref name="serializationStream" /> 支援搜尋，但是其長度為 0。  
+  
+-或- 
+輸入資料流不代表格式正確的 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> 序列化承載。
+          
+-或- 
+從輸入資料流將物件還原序列化時發生錯誤。
+          
+<see langword="InnerException" /> 屬性可能包含更多關於根本原因的資訊。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="ASP.NET Core 5 and later: Always thrown unless &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; functionality is re-enabled in the project file. For more information, see Resolving BinaryFormatter obsoletion and disablement errors.">ASP.NET 5.0 與更新版本：除非在專案檔中重新啟用 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> 功能，否則一律會擲回。 如需詳細資訊，請參閱解決 BinaryFormatter 過時與停用錯誤。</exception>
+      <returns vsli:raw="The top (root) of the object graph.">物件圖形的最上層 (根)。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="Serializes the object, or graph of objects with the specified top (root), to the given stream.">使用指定的最上層 (根)，將物件或物件的圖形序列化至指定的資料流。</summary>
+      <param name="serializationStream" vsli:raw="The stream to which the graph is to be serialized.">要序列化圖形的目的資料流。</param>
+      <param name="graph" vsli:raw="The object at the root of the graph to serialize.">物件，位在要序列化的 Graph 的根。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;serializationStream&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.&#xA;&#xA; -or-&#xA;&#xA; The &lt;paramref name=&quot;graph&quot; /&gt; is null.">
+        <paramref name="serializationStream" /> 為 <see langword="null" />。  
+  
+-或- 
+<paramref name="graph" /> 為 Null。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An error has occurred during serialization, such as if an object in the &lt;paramref name=&quot;graph&quot; /&gt; parameter is not marked as serializable.">在序列化期間發生錯誤，例如在 <paramref name="graph" /> 參數中的物件未標記為可序列化。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="ASP.NET Core 5 and later: Always thrown unless &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; functionality is re-enabled in the project file. For more information, see Resolving BinaryFormatter obsoletion and disablement errors.">ASP.NET 5.0 與更新版本：除非在專案檔中重新啟用 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" /> 功能，否則一律會擲回。 如需詳細資訊，請參閱解決 BinaryFormatter 過時與停用錯誤。</exception>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.AssemblyFormat">
+      <summary vsli:raw="Gets or sets the behavior of the deserializer with regards to finding and loading assemblies.">取得或設定有關尋找和載入組件之還原序列化程式的行為。</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle&quot; /&gt; values that specifies the deserializer behavior.">其中一個 <see cref="T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle" /> 值，指定還原序列化程式行為。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Binder">
+      <summary vsli:raw="(Insecure) Gets or sets an object of type &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that controls the binding of a serialized object to a type.">(不安全) 取得或設定控制型別為 <see cref="T:System.Runtime.Serialization.SerializationBinder" /> 的物件，此物件會控制將序列化物件繫結至型別的作業。</summary>
+      <returns vsli:raw="The serialization binder to use with this formatter.">序列化繫結器 (Binder)，要與這個格式子一起使用。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.Context">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; for this formatter.">取得或設定這個格式子的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</summary>
+      <returns vsli:raw="The streaming context to use with this formatter.">資料流內容，要與這個格式子一起使用。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.FilterLevel">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; of automatic deserialization the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter&quot; /&gt; performs.">取得或設定 <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> 所執行自動還原序列化的 <see cref="T:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; that represents the current automatic deserialization level.">
+        <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" />，表示目前的自動還原序列化層級。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.SurrogateSelector">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that controls type substitution during serialization and deserialization.">取得或設定 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />，其控制序列化和還原序列化期間的型別替代。</summary>
+      <returns vsli:raw="The surrogate selector to use with this formatter.">代理選取器，要與這個格式子一起使用。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.Binary.BinaryFormatter.TypeFormat">
+      <summary vsli:raw="Gets or sets the format in which type descriptions are laid out in the serialized stream.">取得或設定型別描述在已序列化資料流中的配置格式。</summary>
+      <returns vsli:raw="The style of type layouts to use.">要使用的型別配置樣式。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle">
+      <summary vsli:raw="Indicates the method that will be used during deserialization for locating and loading assemblies.">表示將在尋找和載入組件的還原序列化 (Deserialization) 期間使用的方法。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Full">
+      <summary vsli:raw="In full mode, the assembly used during deserialization must match exactly the assembly used during serialization. The &lt;see cref=&quot;Overload:System.Reflection.Assembly.Load&quot; /&gt; method of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; class is used to load the assembly.">在完整模式下，還原序列化期間所使用的組件必須完全符合序列化 (Serialization) 期間所使用的組件。 <see cref="Overload:System.Reflection.Assembly.Load" /> 類別的 <see cref="T:System.Reflection.Assembly" /> 方法可用來載入組件。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterAssemblyStyle.Simple">
+      <summary vsli:raw="In simple mode, the assembly used during deserialization need not match exactly the assembly used during serialization. Specifically, the version numbers need not match as the &lt;see cref=&quot;Overload:System.Reflection.Assembly.LoadWithPartialName&quot; /&gt; method is used to load the assembly.">在簡單模式下，還原序列化期間所使用的組件無需完全符合序列化期間所使用的組件。 特別是當 <see cref="Overload:System.Reflection.Assembly.LoadWithPartialName" /> 方法用於載入組件時，版本號碼無需相符。</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.FormatterTypeStyle">
+      <summary vsli:raw="Indicates the format in which type descriptions are laid out in the serialized stream.">指示用來在序列化資料流中配置型別描述的格式。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesAlways">
+      <summary vsli:raw="Indicates that types can be given to all object members and &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; object members.">指示型別可以提供給所有的物件成員和 <see cref="T:System.Runtime.Serialization.ISerializable" /> 物件成員。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.TypesWhenNeeded">
+      <summary vsli:raw="Indicates that types can be stated only for arrays of objects, object members of type &lt;see cref=&quot;T:System.Object&quot; /&gt;, and &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; non-primitive value types.">指示型別只可以為物件之陣列、型別 <see cref="T:System.Object" /> 之物件成員和 <see cref="T:System.Runtime.Serialization.ISerializable" /> 非基本實值型別的陳述。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.FormatterTypeStyle.XsdString">
+      <summary vsli:raw="Indicates that strings can be given in the XSD format rather than SOAP. No string IDs are transmitted.">指示將字串提供為 XSD 格式，而不是 SOAP 格式。 不會傳送字串 ID。</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.IFieldInfo">
+      <summary vsli:raw="Allows access to field names and field types of objects that support the &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; interface.">允許對支援 <see cref="T:System.Runtime.Serialization.ISerializable" /> 介面的物件欄位名稱和欄位型別 (Field Type) 的存取。</summary>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldNames">
+      <summary vsli:raw="Gets or sets the field names of serialized objects.">取得或設定序列化物件的欄位型別。</summary>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The field names of serialized objects.">序列化物件的欄位型別。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.Formatters.IFieldInfo.FieldTypes">
+      <summary vsli:raw="Gets or sets the field types of the serialized objects.">取得或設定序列化物件的欄位型別。</summary>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The field types of the serialized objects.">序列化物件的欄位型別。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.Formatters.TypeFilterLevel">
+      <summary vsli:raw="Specifies the level of automatic deserialization for .NET Framework remoting.">指定 .NET Framework Remoting 之自動還原序列化 (Deserialization) 的層級。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.TypeFilterLevel.Full">
+      <summary vsli:raw="The full deserialization level for .NET Framework remoting. It supports all types that remoting supports in all situations.">.NET Framework Remoting 的完整還原序列化層級。 在所有情況下它都支援遠端處理所支援的所有類型。</summary>
+    </member>
+    <member name="F:System.Runtime.Serialization.Formatters.TypeFilterLevel.Low">
+      <summary vsli:raw="The low deserialization level for .NET Framework remoting. It supports types associated with basic remoting functionality.">.NET Framework Remoting 的低還原序列化層級。 它支援與基本遠端處理功能關聯的類型。</summary>
+    </member>
+    <member name="T:System.Runtime.Serialization.FormatterServices">
+      <summary vsli:raw="Provides static methods to aid with the implementation of a &lt;see cref=&quot;T:System.Runtime.Serialization.Formatter&quot; /&gt; for serialization. This class cannot be inherited.">提供靜態方法，協助序列化 (Serialization) <see cref="T:System.Runtime.Serialization.Formatter" /> 的實作。 此類別無法獲得繼承。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.CheckTypeSecurity(System.Type,System.Runtime.Serialization.Formatters.TypeFilterLevel)">
+      <summary vsli:raw="Determines whether the specified &lt;see cref=&quot;T:System.Type&quot; /&gt; can be deserialized with the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property set to &lt;see langword=&quot;Low&quot; /&gt;.">判斷 <see cref="T:System.Type" /> 屬性設為 <see langword="Low" /> 時是否可還原序列化指定的 <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" />。</summary>
+      <param name="t" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; to check for the ability to deserialize.">要檢查還原序列化能力的 <see cref="T:System.Type" />。</param>
+      <param name="securityLevel" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property value.">
+        <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> 屬性值。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The &lt;paramref name=&quot;t&quot; /&gt; parameter is an advanced type and cannot be deserialized when the &lt;see cref=&quot;T:System.Runtime.Serialization.Formatters.TypeFilterLevel&quot; /&gt; property is set to &lt;see langword=&quot;Low&quot; /&gt;.">
+        <paramref name="t" /> 參數為進階型別，而且在 <see cref="T:System.Runtime.Serialization.Formatters.TypeFilterLevel" /> 屬性設為 <see langword="Low" /> 時無法還原序列化。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetObjectData(System.Object,System.Reflection.MemberInfo[])">
+      <summary vsli:raw="Extracts the data from the specified object and returns it as an array of objects.">從指定物件擷取資料，並將它傳回為物件陣列。</summary>
+      <param name="obj" vsli:raw="The object to write to the formatter.">寫入至格式子 (Formatter) 的物件。</param>
+      <param name="members" vsli:raw="The members to extract from the object.">要從物件擷取的成員。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; or &lt;paramref name=&quot;members&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; An element of &lt;paramref name=&quot;members&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 或 <paramref name="members" /> 參數為 <see langword="null" />。  
+  
+<paramref name="members" /> 的項目是 <see langword="null" />。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An element of &lt;paramref name=&quot;members&quot; /&gt; does not represent a field.">
+        <paramref name="members" /> 的元素不表示欄位。</exception>
+      <returns vsli:raw="An array of &lt;see cref=&quot;T:System.Object&quot; /&gt; that contains data stored in &lt;paramref name=&quot;members&quot; /&gt; and associated with &lt;paramref name=&quot;obj&quot; /&gt;.">
+        <see cref="T:System.Object" /> 的陣列，包含儲存於 <paramref name="members" /> 以及與 <paramref name="obj" /> 相關聯的資料。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSafeUninitializedObject(System.Type)">
+      <summary vsli:raw="Creates a new instance of the specified object type.">建立指定物件型別的新執行個體。</summary>
+      <param name="type" vsli:raw="The type of object to create.">要建立之物件的類型。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is not a valid common language runtime type.">
+        <paramref name="type" /> 參數不是有效的 Common Language Runtime 型別。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="A zeroed object of the specified type.">指定型別的零位調整物件。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type)">
+      <summary vsli:raw="Gets all the serializable members for a class of the specified &lt;see cref=&quot;T:System.Type&quot; /&gt;.">為指定 <see cref="T:System.Type" /> 的類別取得所有可序列化成員。</summary>
+      <param name="type" vsli:raw="The type being serialized.">將序列化的型別。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; of the non-transient, non-static members.">非暫時性、非靜態成員之 <see cref="T:System.Reflection.MemberInfo" /> 型別的陣列。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSerializableMembers(System.Type,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Gets all the serializable members for a class of the specified &lt;see cref=&quot;T:System.Type&quot; /&gt; and in the provided &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt;.">為指定 <see cref="T:System.Type" /> 的類別，並在所提供的 <see cref="T:System.Runtime.Serialization.StreamingContext" /> 中，取得所有可序列化成員。</summary>
+      <param name="type" vsli:raw="The type being serialized or cloned.">將序列化或複製的型別。</param>
+      <param name="context" vsli:raw="The context where the serialization occurs.">其中發生序列化的內容。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="An array of type &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; of the non-transient, non-static members.">非暫時性、非靜態成員之 <see cref="T:System.Reflection.MemberInfo" /> 型別的陣列。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetSurrogateForCyclicalReference(System.Runtime.Serialization.ISerializationSurrogate)">
+      <summary vsli:raw="Returns a serialization surrogate for the specified &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;.">傳回指定之 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> 的序列化代理。</summary>
+      <param name="innerSurrogate" vsli:raw="The specified surrogate.">指定的代理。</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt; for the specified &lt;paramref name=&quot;innerSurrogate&quot; /&gt;.">指定 <paramref name="innerSurrogate" /> 的 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetTypeFromAssembly(System.Reflection.Assembly,System.String)">
+      <summary vsli:raw="Looks up the &lt;see cref=&quot;T:System.Type&quot; /&gt; of the specified object in the provided &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt;.">在所提供的 <see cref="T:System.Type" /> 中查詢指定物件的 <see cref="T:System.Reflection.Assembly" />。</summary>
+      <param name="assem" vsli:raw="The assembly where you want to look up the object.">您要查詢物件的所在組件。</param>
+      <param name="name" vsli:raw="The name of the object.">物件的名稱。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;assem&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assem" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of the named object.">具名物件的 <see cref="T:System.Type" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.GetUninitializedObject(System.Type)">
+      <summary vsli:raw="Creates a new instance of the specified object type.">建立指定物件型別的新執行個體。</summary>
+      <param name="type" vsli:raw="The type of object to create.">要建立之物件的類型。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="A zeroed object of the specified type.">指定型別的零位調整物件。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.FormatterServices.PopulateObjectMembers(System.Object,System.Reflection.MemberInfo[],System.Object[])">
+      <summary vsli:raw="Populates the specified object with values for each field drawn from the data array of objects.">將取自物件資料陣列每個欄位的值填入指定物件。</summary>
+      <param name="obj" vsli:raw="The object to populate.">要填入的物件。</param>
+      <param name="members" vsli:raw="An array of &lt;see cref=&quot;T:System.Reflection.MemberInfo&quot; /&gt; that describes which fields and properties to populate.">
+        <see cref="T:System.Reflection.MemberInfo" /> 的陣列，描述要填入哪些欄位和屬性。</param>
+      <param name="data" vsli:raw="An array of &lt;see cref=&quot;T:System.Object&quot; /&gt; that specifies the values for each field and property to populate.">
+        <see cref="T:System.Object" /> 的陣列，指定要填入每個欄位和屬性的值。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt;, &lt;paramref name=&quot;members&quot; /&gt;, or &lt;paramref name=&quot;data&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; An element of &lt;paramref name=&quot;members&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" />、<paramref name="members" /> 或 <paramref name="data" /> 參數是 <see langword="null" />。  
+  
+<paramref name="members" /> 的項目是 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The length of &lt;paramref name=&quot;members&quot; /&gt; does not match the length of &lt;paramref name=&quot;data&quot; /&gt;.">
+        <paramref name="members" /> 的長度不符合 <paramref name="data" /> 的長度。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="An element of &lt;paramref name=&quot;members&quot; /&gt; is not an instance of &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt;.">
+        <paramref name="members" /> 的元素不是 <see cref="T:System.Reflection.FieldInfo" /> 的執行個體。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The newly populated object.">新填入的物件。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.IFormatter">
+      <summary vsli:raw="Provides functionality for formatting serialized objects.">提供用於格式化已序列化物件的功能。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.IFormatter.Deserialize(System.IO.Stream)">
+      <summary vsli:raw="Deserializes the data on the provided stream and reconstitutes the graph of objects.">還原序列化在提供的資料流上的資料，並重新組合物件 Graph。</summary>
+      <param name="serializationStream" vsli:raw="The stream that contains the data to deserialize.">資料流，包含要還原序列化的資料。</param>
+      <returns vsli:raw="The top object of the deserialized graph.">還原序列化 Graph 的最上層物件。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.IFormatter.Serialize(System.IO.Stream,System.Object)">
+      <summary vsli:raw="Serializes an object, or graph of objects with the given root to the provided stream.">使用所提供資料流的指定根序列化物件或物件 Graph。</summary>
+      <param name="serializationStream" vsli:raw="The stream where the formatter puts the serialized data. This stream can reference a variety of backing stores (such as files, network, memory, and so on).">格式子置放已序列化資料的所在資料流。 這個資料流可以參考多種支援存放區 (例如檔案、網路、記憶體等等)。</param>
+      <param name="graph" vsli:raw="The object, or root of the object graph, to serialize. All child objects of this root object are automatically serialized.">要序列化的物件或物件 Graph 的根。 這個根物件的所有子物件都會自動序列化。</param>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Binder">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that performs type lookups during deserialization.">取得或設定在還原序列化 (Deserialization) 期間執行型別查閱的 <see cref="T:System.Runtime.Serialization.SerializationBinder" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; that performs type lookups during deserialization.">
+        <see cref="T:System.Runtime.Serialization.SerializationBinder" />，在序列化期間執行型別查閱。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.Context">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for serialization and deserialization.">取得或設定用於序列化和還原序列化的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; used for serialization and deserialization.">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" />，用於序列化和還原序列化。</returns>
+    </member>
+    <member name="P:System.Runtime.Serialization.IFormatter.SurrogateSelector">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; used by the current formatter.">取得或設定目前格式子所使用的 <see cref="T:System.Runtime.Serialization.SurrogateSelector" />。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; used by this formatter.">
+        <see cref="T:System.Runtime.Serialization.SurrogateSelector" />，由這個格式子所使用。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ISerializationSurrogate">
+      <summary vsli:raw="Implements a serialization surrogate selector that allows one object to perform serialization and deserialization of another.">實作允許一個物件執行另一個物件序列化 (Serialization) 和還原序列化 (Deserialization) 的序列化代理選取器。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogate.GetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Populates the provided &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; with the data needed to serialize the object.">將序列化物件所需的資料填入 (Populate) 所提供的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="obj" vsli:raw="The object to serialize.">要序列化的物件。</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; to populate with data.">要以資料填入的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</param>
+      <param name="context" vsli:raw="The destination (see &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt;) for this serialization.">這個序列化的目的端 (請參閱 <see cref="T:System.Runtime.Serialization.StreamingContext" />)。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISerializationSurrogate.SetObjectData(System.Object,System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Populates the object using the information in the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">使用 <see cref="T:System.Runtime.Serialization.SerializationInfo" /> 中的資訊填入物件。</summary>
+      <param name="obj" vsli:raw="The object to populate.">要填入的物件。</param>
+      <param name="info" vsli:raw="The information to populate the object.">要填入物件的資訊。</param>
+      <param name="context" vsli:raw="The source from which the object is deserialized.">物件要還原序列化的來源。</param>
+      <param name="selector" vsli:raw="The surrogate selector where the search for a compatible surrogate begins.">代理選取器，相容代理的搜尋在其中開始。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The populated deserialized object.">所填入的還原序列化物件。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ISurrogateSelector">
+      <summary vsli:raw="Indicates a serialization surrogate selector class.">指示序列化 (Serialization) 代理選取器類別。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.ChainSelector(System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Specifies the next &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; for surrogates to examine if the current instance does not have a surrogate for the specified type and assembly in the specified context.">指定代理的下一個 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> 來檢查目前的執行個體 (Instance) 是否在指定內容中不具有指定型別和組件的代理。</summary>
+      <param name="selector" vsli:raw="The next surrogate selector to examine.">要檢查的下一個代理選取器。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetNextSelector">
+      <summary vsli:raw="Returns the next surrogate selector in the chain.">傳回鏈結中的下一個代理選取器。</summary>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The next surrogate selector in the chain or &lt;see langword=&quot;null&quot; /&gt;.">鏈結中的下一個代理選取器或 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.ISurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
+      <summary vsli:raw="Finds the surrogate that represents the specified object's type, starting with the specified surrogate selector for the specified serialization context.">搜尋表示指定物件型別的代理，從指定序列化內容的指定代理選取器開始。</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; of object (class) that needs a surrogate.">需要代理之物件 (類別) 的 <see cref="T:System.Type" />。</param>
+      <param name="context" vsli:raw="The source or destination context for the current serialization.">目前序列化的來源或目的內容。</param>
+      <param name="selector" vsli:raw="When this method returns, contains a &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that holds a reference to the surrogate selector where the appropriate surrogate was found. This parameter is passed uninitialized.">當這個方法傳回時，會包含 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />，其中保有對找到適當代理之代理選取器的參考。 這個參數會以未初始化的狀態傳遞。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The appropriate surrogate for the given type in the given context.">指定內容中指定型別的適當代理。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ObjectIDGenerator">
+      <summary vsli:raw="Generates IDs for objects.">產生物件的 ID。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.GetId(System.Object,System.Boolean@)">
+      <summary vsli:raw="Returns the ID for the specified object, generating a new ID if the specified object has not already been identified by the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;.">傳回指定物件的 ID，如果指定物件尚未由 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 識別，則產生新 ID。</summary>
+      <param name="obj" vsli:raw="The object you want an ID for.">您要取得 ID 的物件。</param>
+      <param name="firstTime" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; was not previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <paramref name="obj" /> 先前未由 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 所辨識，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt; has been asked to keep track of too many objects.">已經要求 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 保持追蹤過多物件。</exception>
+      <returns vsli:raw="The object's ID is used for serialization. &lt;paramref name=&quot;firstTime&quot; /&gt; is set to &lt;see langword=&quot;true&quot; /&gt; if this is the first time the object has been identified; otherwise, it is set to &lt;see langword=&quot;false&quot; /&gt;.">物件的 ID 會用於序列化。 如果這是物件第一次被識別，則 <paramref name="firstTime" /> 會設定為 <see langword="true" />，否則設定為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectIDGenerator.HasId(System.Object,System.Boolean@)">
+      <summary vsli:raw="Determines whether an object has already been assigned an ID.">判斷物件是否已經指派 ID。</summary>
+      <param name="obj" vsli:raw="The object you are asking for.">您所要求的物件。</param>
+      <param name="firstTime" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;obj&quot; /&gt; was not previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <paramref name="obj" /> 先前未由 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 所辨識，則為 <see langword="true" />，否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <returns vsli:raw="The object ID of &lt;paramref name=&quot;obj&quot; /&gt; if previously known to the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectIDGenerator&quot; /&gt;; otherwise, zero.">如果先前已由 <see cref="T:System.Runtime.Serialization.ObjectIDGenerator" /> 所辨識，則為 <paramref name="obj" /> 的物件 ID，否則為零。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.ObjectManager">
+      <summary vsli:raw="Keeps track of objects as they are deserialized.">在物件還原序列化時保持追蹤。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.#ctor(System.Runtime.Serialization.ISurrogateSelector,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.ObjectManager&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.ObjectManager" /> 類別的新執行個體。</summary>
+      <param name="selector" vsli:raw="The surrogate selector to use. The &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; determines the correct surrogate to use when deserializing objects of a given type. At deserialization time, the surrogate selector creates a new instance of the object from the information transmitted on the stream.">要使用的代理選取器。 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> 會決定還原序列化指定之型別的物件時所使用的正確代理。 在還原序列化時，代理選取器會從資料流上傳輸的資訊建立新的物件執行個體。</param>
+      <param name="context" vsli:raw="The streaming context. The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; is not used by &lt;see langword=&quot;ObjectManager&quot; /&gt;, but is passed as a parameter to any objects implementing &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or having a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. These objects can take specific actions depending on the source of the information to deserialize.">資料流內容。 <see langword="ObjectManager" /> 不使用 <see cref="T:System.Runtime.Serialization.StreamingContext" />，但是該內容會當做參數傳入任何實作 <see cref="T:System.Runtime.Serialization.ISerializable" /> 或具有 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> 的物件。 這些物件可以根據還原序列化的資訊來源執行特定的動作。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.DoFixups">
+      <summary vsli:raw="Performs all the recorded fixups.">執行所有記錄的修復。</summary>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="A fixup was not successfully completed.">修復未成功完成。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.GetObject(System.Int64)">
+      <summary vsli:raw="Returns the object with the specified object ID.">傳回具有所指定物件 ID 的物件。</summary>
+      <param name="objectID" vsli:raw="The ID of the requested object.">要求物件的 ID。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectID" /> 參數小於或等於零。</exception>
+      <returns vsli:raw="The object with the specified object ID if it has been previously stored or &lt;see langword=&quot;null&quot; /&gt; if no such object has been registered.">如果先前已經儲存，則為具有指定之物件 ID 的物件，但如果尚未註冊這類物件，則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RaiseDeserializationEvent">
+      <summary vsli:raw="Raises the deserialization event to any registered object that implements &lt;see cref=&quot;T:System.Runtime.Serialization.IDeserializationCallback&quot; /&gt;.">引發還原序列化事件至任何實作 <see cref="T:System.Runtime.Serialization.IDeserializationCallback" /> 的已登錄物件。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RaiseOnDeserializingEvent(System.Object)">
+      <summary vsli:raw="Invokes the method marked with the &lt;see cref=&quot;T:System.Runtime.Serialization.OnDeserializingAttribute&quot; /&gt;.">叫用 (Invoke) 以 <see cref="T:System.Runtime.Serialization.OnDeserializingAttribute" /> 標記的方法。</summary>
+      <param name="obj" vsli:raw="The instance of the type that contains the method to be invoked.">包含要叫用的方法之型別的執行個體。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordArrayElementFixup(System.Int64,System.Int32,System.Int64)">
+      <summary vsli:raw="Records a fixup for one element in an array.">記錄陣列中單一元素的修復。</summary>
+      <param name="arrayToBeFixed" vsli:raw="The ID of the array used to record a fixup.">用來記錄修復的陣列 ID。</param>
+      <param name="index" vsli:raw="The index within &lt;c&gt;arrayFixup&lt;/c&gt; that a fixup is requested for.">要求修復之 <c>arrayFixup</c> 中的索引。</param>
+      <param name="objectRequired" vsli:raw="The ID of the object that the current array element will point to after fixup is completed.">在完成修復之後，目前陣列元素將指向的物件 ID。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;arrayToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="arrayToBeFixed" /> 或 <paramref name="objectRequired" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;index&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="index" /> 參數為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordArrayElementFixup(System.Int64,System.Int32[],System.Int64)">
+      <summary vsli:raw="Records fixups for the specified elements in an array, to be executed later.">記錄陣列中指定之元素的修復，以便稍後執行。</summary>
+      <param name="arrayToBeFixed" vsli:raw="The ID of the array used to record a fixup.">用來記錄修復的陣列 ID。</param>
+      <param name="indices" vsli:raw="The indexes within the multidimensional array that a fixup is requested for.">要求修復之多維陣列中的索引。</param>
+      <param name="objectRequired" vsli:raw="The ID of the object the array elements will point to after fixup is completed.">在完成修復之後，陣列元素將指向的物件 ID。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;arrayToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="arrayToBeFixed" /> 或 <paramref name="objectRequired" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;indices&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="indices" /> 參數為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordDelayedFixup(System.Int64,System.String,System.Int64)">
+      <summary vsli:raw="Records a fixup for an object member, to be executed later.">記錄物件成員的修復，以便稍後執行。</summary>
+      <param name="objectToBeFixed" vsli:raw="The ID of the object that needs the reference to &lt;paramref name=&quot;objectRequired&quot; /&gt;.">需要參考 <paramref name="objectRequired" /> 的物件 ID。</param>
+      <param name="memberName" vsli:raw="The member name of &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; where the fixup will be performed.">
+        <paramref name="objectToBeFixed" /> 的成員名稱，將在其中執行修復。</param>
+      <param name="objectRequired" vsli:raw="The ID of the object required by &lt;paramref name=&quot;objectToBeFixed&quot; /&gt;.">
+        <paramref name="objectToBeFixed" /> 需要的物件 ID。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;objectToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectToBeFixed" /> 或 <paramref name="objectRequired" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;memberName&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="memberName" /> 參數為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RecordFixup(System.Int64,System.Reflection.MemberInfo,System.Int64)">
+      <summary vsli:raw="Records a fixup for a member of an object, to be executed later.">記錄物件成員的修復，以便稍後執行。</summary>
+      <param name="objectToBeFixed" vsli:raw="The ID of the object that needs the reference to the &lt;paramref name=&quot;objectRequired&quot; /&gt; object.">需要參考 <paramref name="objectRequired" /> 物件的物件 ID。</param>
+      <param name="member" vsli:raw="The member of &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; where the fixup will be performed.">
+        <paramref name="objectToBeFixed" /> 的成員，將在其中執行修復。</param>
+      <param name="objectRequired" vsli:raw="The ID of the object required by &lt;paramref name=&quot;objectToBeFixed&quot; /&gt;.">
+        <paramref name="objectToBeFixed" /> 需要的物件 ID。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectToBeFixed&quot; /&gt; or &lt;paramref name=&quot;objectRequired&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectToBeFixed" /> 或 <paramref name="objectRequired" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;member&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="member" /> 參數為 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64)">
+      <summary vsli:raw="Registers an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;.">在物件還原序列化時登錄該物件，將它與 <paramref name="objectID" /> 相關聯。</summary>
+      <param name="obj" vsli:raw="The object to register.">要註冊的物件。</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">要登錄的物件 ID。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectID" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;.">
+        <paramref name="objectID" /> 已經為 <paramref name="obj" /> 以外的物件進行登錄。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo)">
+      <summary vsli:raw="Registers an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used with it.">在物件還原序列化時登錄該物件，將它與 <paramref name="objectID" /> 相關聯，並記錄和它一起使用的 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="obj" vsli:raw="The object to register.">要註冊的物件。</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">要登錄的物件 ID。</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，用於 <paramref name="obj" /> 實作 <see cref="T:System.Runtime.Serialization.ISerializable" /> 或具有 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> 時。 <paramref name="info" /> 將使用任何必要的修復資訊來完成，然後在必要的物件完成時傳遞給該物件。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectID" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;.">
+        <paramref name="objectID" /> 已經為 <paramref name="obj" /> 以外的物件進行登錄。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo,System.Int64,System.Reflection.MemberInfo)">
+      <summary vsli:raw="Registers a member of an object as it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">在物件還原序列化時登錄該物件，將它與 <paramref name="objectID" /> 相關聯，並記錄 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="obj" vsli:raw="The object to register.">要註冊的物件。</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">要登錄的物件 ID。</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，用於 <paramref name="obj" /> 實作 <see cref="T:System.Runtime.Serialization.ISerializable" /> 或具有 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> 時。 <paramref name="info" /> 將使用任何必要的修復資訊來完成，然後在必要的物件完成時傳遞給該物件。</param>
+      <param name="idOfContainingObj" vsli:raw="The ID of the object that contains &lt;paramref name=&quot;obj&quot; /&gt;. This parameter is required only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">包含 <paramref name="obj" /> 的物件 ID。 只有當 <paramref name="obj" /> 是實值型別時，才需要這個參數。</param>
+      <param name="member" vsli:raw="The field in the containing object where &lt;paramref name=&quot;obj&quot; /&gt; exists. This parameter has meaning only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">包含物件中的欄位，其中有 <paramref name="obj" /> 存在。 只有當 <paramref name="obj" /> 是實值型別時，這個參數才有意義。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectID" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;, or &lt;paramref name=&quot;member&quot; /&gt; is not a &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt; and &lt;paramref name=&quot;member&quot; /&gt; is not &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="objectID" /> 已經為 <paramref name="obj" /> 以外的物件進行登錄，或者 <paramref name="member" /> 不是 <see cref="T:System.Reflection.FieldInfo" />，而且 <paramref name="member" /> 不是 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.ObjectManager.RegisterObject(System.Object,System.Int64,System.Runtime.Serialization.SerializationInfo,System.Int64,System.Reflection.MemberInfo,System.Int32[])">
+      <summary vsli:raw="Registers a member of an array contained in an object while it is deserialized, associating it with &lt;paramref name=&quot;objectID&quot; /&gt;, and recording the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt;.">當物件還原序列化時，登錄物件中所包含的陣列成員，將它與 <paramref name="objectID" /> 相關聯，並記錄 <see cref="T:System.Runtime.Serialization.SerializationInfo" />。</summary>
+      <param name="obj" vsli:raw="The object to register.">要註冊的物件。</param>
+      <param name="objectID" vsli:raw="The ID of the object to register.">要登錄的物件 ID。</param>
+      <param name="info" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; used if &lt;paramref name=&quot;obj&quot; /&gt; implements &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializable&quot; /&gt; or has a &lt;see cref=&quot;T:System.Runtime.Serialization.ISerializationSurrogate&quot; /&gt;. &lt;paramref name=&quot;info&quot; /&gt; will be completed with any required fixup information and then passed to the required object when that object is completed.">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" />，用於 <paramref name="obj" /> 實作 <see cref="T:System.Runtime.Serialization.ISerializable" /> 或具有 <see cref="T:System.Runtime.Serialization.ISerializationSurrogate" /> 時。 <paramref name="info" /> 將使用任何必要的修復資訊來完成，然後在必要的物件完成時傳遞給該物件。</param>
+      <param name="idOfContainingObj" vsli:raw="The ID of the object that contains &lt;paramref name=&quot;obj&quot; /&gt;. This parameter is required only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">包含 <paramref name="obj" /> 的物件 ID。 只有當 <paramref name="obj" /> 是實值型別時，才需要這個參數。</param>
+      <param name="member" vsli:raw="The field in the containing object where &lt;paramref name=&quot;obj&quot; /&gt; exists. This parameter has meaning only if &lt;paramref name=&quot;obj&quot; /&gt; is a value type.">包含物件中的欄位，其中有 <paramref name="obj" /> 存在。 只有當 <paramref name="obj" /> 是實值型別時，這個參數才有意義。</param>
+      <param name="arrayIndex" vsli:raw="If &lt;paramref name=&quot;obj&quot; /&gt; is a &lt;see cref=&quot;T:System.ValueType&quot; /&gt; and a member of an array, &lt;paramref name=&quot;arrayIndex&quot; /&gt; contains the index within that array where &lt;paramref name=&quot;obj&quot; /&gt; exists. &lt;paramref name=&quot;arrayIndex&quot; /&gt; is ignored if &lt;paramref name=&quot;obj&quot; /&gt; is not both a &lt;see cref=&quot;T:System.ValueType&quot; /&gt; and a member of an array.">如果 <paramref name="obj" /> 為 <see cref="T:System.ValueType" /> 並且是陣列的成員，<paramref name="arrayIndex" /> 會包含該陣列 (有 <paramref name="obj" /> 存在) 中的索引。 如果 <paramref name="arrayIndex" /> 不是 <see cref="T:System.ValueType" /> 並且不是陣列的成員，則會忽略 <paramref name="obj" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;obj&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="obj" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; parameter is less than or equal to zero.">
+        <paramref name="objectID" /> 參數小於或等於零。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The &lt;paramref name=&quot;objectID&quot; /&gt; has already been registered for an object other than &lt;paramref name=&quot;obj&quot; /&gt;, or &lt;paramref name=&quot;member&quot; /&gt; is not a &lt;see cref=&quot;T:System.Reflection.FieldInfo&quot; /&gt; and &lt;paramref name=&quot;member&quot; /&gt; isn't &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="objectID" /> 已經為 <paramref name="obj" /> 以外的物件進行登錄，或者 <paramref name="member" /> 不是 <see cref="T:System.Reflection.FieldInfo" />，而且 <paramref name="member" /> 不是 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Runtime.Serialization.SerializationBinder">
+      <summary vsli:raw="Allows users to control class loading and mandate what class to load.">允許使用者控制類別的載入，並且託管要載入的類別。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationBinder&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.SerializationBinder" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.BindToName(System.Type,System.String@,System.String@)">
+      <summary vsli:raw="When overridden in a derived class, controls the binding of a serialized object to a type.">在衍生類別中覆寫時，控制序列化物件與類型的繫結。</summary>
+      <param name="serializedType" vsli:raw="The type of the object the formatter creates a new instance of.">格式子建立新執行個體之物件的類型。</param>
+      <param name="assemblyName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; name of the serialized object.">指定序列化物件的 <see cref="T:System.Reflection.Assembly" /> 名稱。</param>
+      <param name="typeName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Type&quot; /&gt; name of the serialized object.">指定序列化物件的 <see cref="T:System.Type" /> 名稱。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationBinder.BindToType(System.String,System.String)">
+      <summary vsli:raw="When overridden in a derived class, controls the binding of a serialized object to a type.">在衍生類別中覆寫時，控制序列化物件與類型的繫結。</summary>
+      <param name="assemblyName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; name of the serialized object.">指定序列化物件的 <see cref="T:System.Reflection.Assembly" /> 名稱。</param>
+      <param name="typeName" vsli:raw="Specifies the &lt;see cref=&quot;T:System.Type&quot; /&gt; name of the serialized object.">指定序列化物件的 <see cref="T:System.Type" /> 名稱。</param>
+      <returns vsli:raw="The type of the object the formatter creates a new instance of.">格式子建立新執行個體之物件的類型。</returns>
+    </member>
+    <member name="T:System.Runtime.Serialization.SerializationObjectManager">
+      <summary vsli:raw="Manages serialization processes at run time. This class cannot be inherited.">在執行階段管理序列化處理序。 此類別無法獲得繼承。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.#ctor(System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationObjectManager&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.SerializationObjectManager" /> 類別的新執行個體。</summary>
+      <param name="context" vsli:raw="An instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; class that contains information about the current serialization operation.">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> 類別的執行個體，包含目前序列化作業的相關資訊。</param>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.RaiseOnSerializedEvent">
+      <summary vsli:raw="Invokes the OnSerializing callback event if the type of the object has one; and registers the object for raising the OnSerialized event if the type of the object has one.">如果物件型別具有 OnSerializing 回呼 (Callback) 事件，則會叫用該事件；如果物件型別具有 OnSerialized 事件，則需登錄該物件以引發此事件。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SerializationObjectManager.RegisterObject(System.Object)">
+      <summary vsli:raw="Registers the object upon which events will be raised.">登錄物件時會引發事件。</summary>
+      <param name="obj" vsli:raw="The object to register.">要註冊的物件。</param>
+    </member>
+    <member name="T:System.Runtime.Serialization.SurrogateSelector">
+      <summary vsli:raw="Assists formatters in selection of the serialization surrogate to delegate the serialization or deserialization process to.">在序列化 (Serialization) 代理的選取方面協助格式子 (Formatter)，以委派 (Delegate) 序列化或還原序列化 (Deserialization) 處理序。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Serialization.SurrogateSelector&quot; /&gt; class.">初始化 <see cref="T:System.Runtime.Serialization.SurrogateSelector" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.AddSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISerializationSurrogate)">
+      <summary vsli:raw="Adds a surrogate to the list of checked surrogates.">將代理加入至已檢查代理的清單中。</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which the surrogate is required.">必須有代理的 <see cref="T:System.Type" />。</param>
+      <param name="context" vsli:raw="The context-specific data.">內容特定資料。</param>
+      <param name="surrogate" vsli:raw="The surrogate to call for this type.">要為這個型別呼叫的代理。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; or &lt;paramref name=&quot;surrogate&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 或 <paramref name="surrogate" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="A surrogate already exists for this type and context.">代理已經為這個型別和內容存在。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.ChainSelector(System.Runtime.Serialization.ISurrogateSelector)">
+      <summary vsli:raw="Adds the specified &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; that can handle a particular object type to the list of surrogates.">將可以控制特定物件型別的指定 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" /> 加入至代理清單。</summary>
+      <param name="selector" vsli:raw="The surrogate selector to add.">要加入的代理選取器。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;selector&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="selector" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Runtime.Serialization.SerializationException" vsli:raw="The selector is already on the list of selectors.">選取器已經在選取器清單上。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.GetNextSelector">
+      <summary vsli:raw="Returns the next selector on the chain of selectors.">傳回在選取器鏈結上的下一個選取器。</summary>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The next &lt;see cref=&quot;T:System.Runtime.Serialization.ISurrogateSelector&quot; /&gt; on the chain of selectors.">在選取器鏈結上的下一個 <see cref="T:System.Runtime.Serialization.ISurrogateSelector" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.GetSurrogate(System.Type,System.Runtime.Serialization.StreamingContext,System.Runtime.Serialization.ISurrogateSelector@)">
+      <summary vsli:raw="Returns the surrogate for a particular type.">傳回特定型別的代理。</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which the surrogate is requested.">為其要求代理的 <see cref="T:System.Type" />。</param>
+      <param name="context" vsli:raw="The streaming context.">資料流內容。</param>
+      <param name="selector" vsli:raw="The surrogate to use.">要使用的代理。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼叫端沒有必要的權限。</exception>
+      <returns vsli:raw="The surrogate for a particular type.">特定型別的代理。</returns>
+    </member>
+    <member name="M:System.Runtime.Serialization.SurrogateSelector.RemoveSurrogate(System.Type,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Removes the surrogate associated with a given type.">移除與指定型別相關聯的代理。</summary>
+      <param name="type" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; for which to remove the surrogate.">要為其移除代理的 <see cref="T:System.Type" />。</param>
+      <param name="context" vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; for the current surrogate.">用於目前代理的 <see cref="T:System.Runtime.Serialization.StreamingContext" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;type&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="type" /> 參數為 <see langword="null" />。</exception>
+    </member>
+  </members>
+</doc>

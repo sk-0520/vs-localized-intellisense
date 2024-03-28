@@ -1,0 +1,230 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Runtime.Loader</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.Metadata.AssemblyExtensions" />
+    <member name="M:System.Reflection.Metadata.AssemblyExtensions.TryGetRawMetadata(System.Reflection.Assembly,System.Byte*@,System.Int32@)">
+      <param name="assembly" vsli:raw="The assembly from which to retrieve the metadata." />
+      <param name="blob" vsli:raw="When this method returns, contains the pointer to the metadata section blob." />
+      <param name="length" vsli:raw="When this method returns, contains the length of the metadata section blob." />
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyDependencyResolver">
+      <summary vsli:raw="Allows a program to resolve assemblies and native libraries to paths based on the dependencies of a given assembly.">プログラムで、特定のアセンブリの依存関係に基づいて、パスへのアセンブリとネイティブ ライブラリを解決できるようにします。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyDependencyResolver&quot; /&gt; class with a path to a component's assembly.">コンポーネントのアセンブリへのパスを使用して、<see cref="T:System.Runtime.Loader.AssemblyDependencyResolver" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="componentAssemblyPath" vsli:raw="The path to the component or plugin's managed entry point.">コンポーネントまたはプラグインのマネージド エントリ ポイントへのパス。</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.ResolveAssemblyToPath(System.Reflection.AssemblyName)">
+      <summary vsli:raw="Resolves a path to an assembly with the given assembly name based on the component's dependencies.">コンポーネントの依存関係に基づいて、指定されたアセンブリ名でアセンブリへのパスを解決します。</summary>
+      <param name="assemblyName" vsli:raw="The assembly name to resolve.">解決対象のアセンブリ名。</param>
+      <returns vsli:raw="The path to an assembly with the given name from the component's deps.json file, or &lt;see langword=&quot;null&quot; /&gt; if the assembly does not exist in the deps.json file or is not on disk in the location specified by the deps.json file.">コンポーネントの deps.json ファイルから指定した名前を使用したアセンブリへのパス。または、アセンブリが deps. json ファイルに存在しない場合、または deps. json ファイルで指定された場所のディスク上にない場合は <c>null</c>。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.ResolveUnmanagedDllToPath(System.String)">
+      <summary vsli:raw="Resolves a path to a native library with the given name based on the component's dependencies.">コンポーネントの依存関係に基づいて、指定された名前でネイティブ ライブラリへのパスを解決します。</summary>
+      <param name="unmanagedDllName" vsli:raw="The name of the native library to resolve.">解決対象のネイティブ ライブラリの名前。</param>
+      <returns vsli:raw="The path to a native library with the given name from the component's deps.json file and the current runtime identifier, or &lt;see langword=&quot;null&quot; /&gt; if the assembly does not exist in the deps.json file or is not on disk  in the location specified by the deps.json file.">コンポーネントの deps.json ファイルと現在のランタイム識別子から指定した名前を使用したアセンブリへのパス。または、アセンブリが deps. json ファイルに存在しない場合、または deps. json ファイルで指定された場所のディスク上にない場合は <c>null</c>。</returns>
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyLoadContext">
+      <summary vsli:raw="Represents the runtime's concept of a scope for assembly loading.">バインディングに関するランタイムのスコープの概念を表します。 このクラスは抽象クラスです。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor(System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class with a value that indicates whether unloading is enabled.">アンロードが有効かどうかを示す値を使用して、<see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="isCollectible" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to enable &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.Unload&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt; because there is a performance cost associated with enabling unloading.">
+        <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" /> を有効にするには <see langword="true" /> で、それ以外の場合は <see langword="false" /> です。 アンロードを有効にするにはパフォーマンス コストがあるため、既定値は <see langword="false" /> です。</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor(System.String,System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class with a name and a value that indicates whether unloading is enabled.">アンロードが有効かどうかを示す名前と値を使用して、<see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="name" vsli:raw="The value for &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.Name&quot; /&gt; in the new instance. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">新しいインスタンスの <see cref="P:System.Runtime.Loader.AssemblyLoadContext.Name" /> の値です。 この値は <see langword="null" /> の場合もあります。</param>
+      <param name="isCollectible" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to enable &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.Unload&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt; because there is a performance cost associated with enabling unloading.">
+        <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" /> を有効にするには <see langword="true" /> で、それ以外の場合は <see langword="false" /> です。 アンロードを有効にするにはパフォーマンス コストがあるため、既定値は <see langword="false" /> です。</param>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.All">
+      <summary vsli:raw="Returns a collection of all &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instances.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> のすべてのインスタンスのコレクションを返します。</summary>
+      <returns vsli:raw="A collection of all &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instances.">すべて<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />のインスタンスのコレクション。</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Assemblies">
+      <summary vsli:raw="Returns a collection of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; instances loaded in the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> に読み込まれた <see cref="T:System.Reflection.Assembly" /> インスタンスのコレクションを返します。</summary>
+      <returns vsli:raw="A collection of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; instances loaded in the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">に読み込まれた<see cref="T:System.Reflection.Assembly" />インスタンスのコレクション。 <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /></returns>
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyLoadContext.ContextualReflectionScope">
+      <summary vsli:raw="Provides a return type used exclusively for &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">
+        <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> のみで使用される戻り値の型を返します。 これは、<see langword="using" /> ブロックの <see cref="T:System.IDisposable" /> として使用されることを意図しています。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.ContextualReflectionScope.Dispose">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to the value preceding the call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt; which returned this instance.">
+        <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> を、このインスタンスを返した <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> への呼び出しの前の値に設定します。</summary>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; set by the most recent call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;.">
+        <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> への一番最近の呼び出しを使用して、<see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> セットを取得します。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; set by the most recent call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;. This value can be &lt;see langword=&quot;null&quot; /&gt;. The value is stored in an &lt;see cref=&quot;T:System.Threading.AsyncLocal`1&quot; /&gt;, so the value is unique per asynchronous context.">の<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />最後の<see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />呼び出しで設定された。 この値は、<see langword="null" /> の場合もあります。 値はに格納さ<see cref="T:System.Threading.AsyncLocal`1" />れるため、値は非同期コンテキストごとに一意です。</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Default">
+      <summary vsli:raw="Gets the default &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;. The default context contains the main application assembly and its static dependencies.">既定の <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> を取得します。 既定のコンテキストには、メイン アプリケーション アセンブリとその静的依存関係が含まれます。</summary>
+      <returns vsli:raw="The default assembly load context.">既定のアセンブリ読み込みコンテキスト。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to &lt;see langword=&quot;this&quot; /&gt;&lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">
+        <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> を <see langword="this" /><see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> に設定します。</summary>
+      <returns vsli:raw="An object to restore the previous value of &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">
+        <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> の以前の値を復元するオブジェクトです。 これは、<see langword="using" /> ブロックの <see cref="T:System.IDisposable" /> として使用されることを意図しています。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection(System.Reflection.Assembly)">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; which loaded the assembly.">アセンブリをロードした <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> に <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> を設定します。</summary>
+      <param name="activating" vsli:raw="The assembly that is used to determine the requested &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instance.">要求された <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> インスタンスを決定するのに使用されるアセンブリです。</param>
+      <returns vsli:raw="An object to restore the previous value of &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">
+        <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> の以前の値を復元するオブジェクトです。 これは、<see langword="using" /> ブロックの <see cref="T:System.IDisposable" /> として使用されることを意図しています。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Finalize">
+      <summary vsli:raw="Allows the object to try to free resources and perform other cleanup operations before it's reclaimed by garbage collection.">オブジェクトがガベージ コレクションにより収集される前に、そのオブジェクトがリソースを解放し、その他のクリーンアップ操作を実行できるようにします。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)">
+      <summary vsli:raw="Gets an &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt; for an assembly path.">アセンブリ パスの <see cref="T:System.Reflection.AssemblyName" /> を取得します。</summary>
+      <param name="assemblyPath" vsli:raw="The path to the assembly.">アセンブリへのパス。</param>
+      <returns vsli:raw="An object that contains the fully parsed assembly name for the assembly at &lt;paramref name=&quot;assemblyPath&quot; /&gt;.">
+        <paramref name="assemblyPath" /> にあるアセンブリのすべて解析されたアセンブリ名を格納するオブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assemblyPath&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assemblyPath" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The assembly cannot be found.">アセンブリが見つかりません。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The assembly is not a valid assembly.">アセンブリは、有効なアセンブリではありません。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; containing the specified &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt;.">指定された <see cref="T:System.Reflection.Assembly" /> を含む <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> を取得します。</summary>
+      <param name="assembly" vsli:raw="An assembly.">アセンブリ。</param>
+      <returns vsli:raw="The assembly load context containing the &lt;paramref name=&quot;assembly&quot; /&gt;. If the &lt;paramref name=&quot;assembly&quot; /&gt; is not provided by the runtime, this method returns null.">
+        <paramref name="assembly" /> を含むアセンブリ読み込みコンテキスト。 ランタイムから <paramref name="assembly" /> が提供されなかった場合、このメソッドは null を返します。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.IsCollectible">
+      <summary vsli:raw="Gets a value that indicates whether this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is collectible.">この <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> が収集可能かどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is collectible; otherwise, &lt;see langword=&quot;false&quot; /&gt;. If a value is not specified in the constructor, the value is &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />この<see cref="T:System.Runtime.Loader.AssemblyLoadContext" />が収集可能な場合は<see langword="false" />。それ以外の場合は。 コンストラクターで値が指定されていない場合、値<see langword="false" />はになります。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)">
+      <summary vsli:raw="When overridden in a derived class, allows an assembly to be resolved based on its &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt;.">派生クラス内でオーバーライドされると、<see cref="T:System.Reflection.AssemblyName" /> に基づいてアセンブリを解決して読み込むことができます。</summary>
+      <param name="assemblyName" vsli:raw="The object that describes the assembly to be resolved.">読み込むアセンブリを記述するオブジェクト。</param>
+      <returns vsli:raw="The resolved assembly, or &lt;see langword=&quot;null&quot; /&gt;.">読み込まれるアセンブリ。または <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)">
+      <summary vsli:raw="Resolves and loads an assembly given its &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt;.">
+        <see cref="T:System.Reflection.AssemblyName" /> を指定してアセンブリを解決して読み込みます。</summary>
+      <param name="assemblyName" vsli:raw="The object that describes the assembly to load.">読み込むアセンブリについて記述しているオブジェクト。</param>
+      <returns vsli:raw="The loaded assembly, or throws.">読み込まれるアセンブリ。またはスローされます。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assemblyName" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is not found.">
+        <paramref name="assemblyName" /> が見つかりません。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is not a valid assembly.">
+        <paramref name="assemblyName" /> は正しいアセンブリではありません。</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="An assembly or module was loaded which did not match the &lt;paramref name=&quot;assemblyName&quot; /&gt;.">
+        <paramref name="assemblyName" /> と一致しないアセンブリまたはモジュールが読み込まれました。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)">
+      <summary vsli:raw="Loads the contents of an assembly file on the specified path.">指定したパスのアセンブリ ファイルの内容を読み込みます。</summary>
+      <param name="assemblyPath" vsli:raw="The fully qualified path of the file to load.">読み込むファイルの完全修飾パス。</param>
+      <returns vsli:raw="The loaded assembly.">読み込まれるアセンブリ。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not an absolute path.">
+        <paramref name="assemblyPath" /> 引数が絶対パスではありません。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assemblyPath" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="A file that was found could not be loaded.">検出されたファイルを読み込めませんでした。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is an empty string (&quot;&quot;) or does not exist.">
+        <paramref name="assemblyPath" /> パラメーターが空の文字列 ("") になっているか、存在しません。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The  &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not a valid assembly.">
+        <paramref name="assemblyPath" /> は正しいアセンブリではありません。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String,System.String)">
+      <summary vsli:raw="Loads the contents of the native image of a managed assembly file on the specified path.">指定したパスにあるマネージド アセンブリ ファイルのネイティブ イメージの内容を読み込みます。</summary>
+      <param name="nativeImagePath" vsli:raw="The fully qualified path of the file to load.">読み込むファイルの完全修飾パス。</param>
+      <param name="assemblyPath" vsli:raw="The fully qualified path of the IL version of the file to load, or &lt;see langword=&quot;null&quot; /&gt;.">読み込むファイルの IL バージョンの完全修飾パス。または <see langword="null" />。</param>
+      <returns vsli:raw="The loaded assembly.">読み込まれるアセンブリ。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is not an absolute path.">
+        <paramref name="nativeImagePath" /> 引数が絶対パスではありません。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not an absolute path.">
+        <paramref name="assemblyPath" /> 引数が絶対パスではありません。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="nativeImagePath" /> パラメーターが <see langword="null" /> です。</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="A file that was found could not be loaded.">検出されたファイルを読み込めませんでした。</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is an empty string (&quot;&quot;) or does not exist.">
+        <paramref name="nativeImagePath" /> パラメーターが空の文字列 ("") になっているか、存在しません。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not a valid assembly.">
+        <paramref name="assemblyPath" /> は正しいアセンブリではありません。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)">
+      <summary vsli:raw="Loads the assembly with a common object file format (COFF)-based image containing a managed assembly.">マネージド アセンブリを含む COFF (Common Object File Format) ベースのイメージを使用して、アセンブリを読み込みます。</summary>
+      <param name="assembly" vsli:raw="A byte array that is a COFF-based image containing a managed assembly.">マネージド アセンブリを含む COFF ベースのイメージであるバイト配列。</param>
+      <returns vsli:raw="The loaded assembly.">読み込まれるアセンブリ。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is not a valid assembly.">
+        <paramref name="assembly" /> は正しいアセンブリではありません。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)">
+      <summary vsli:raw="Loads the assembly with a common object file format (COFF)-based image containing a managed assembly, optionally including symbols for the assembly.">マネージド アセンブリが含まれている COFF (Common Object File Format) ベースのイメージを使用して、このアセンブリを読み込みます。アセンブリのシンボルを含めることもできます。</summary>
+      <param name="assembly" vsli:raw="A byte array that is a COFF-based image containing a managed assembly.">マネージド アセンブリを含む COFF ベースのイメージであるバイト配列。</param>
+      <param name="assemblySymbols" vsli:raw="A byte array that contains the raw bytes representing the symbols for the assembly.">アセンブリのシンボルを表す生バイトを格納するバイト配列。</param>
+      <returns vsli:raw="The loaded assembly.">読み込まれるアセンブリ。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is not a valid assembly.">
+        <paramref name="assembly" /> は正しいアセンブリではありません。</exception>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)">
+      <summary vsli:raw="Allows derived class to load an unmanaged library by name.">名前を指定してアンマネージ ライブラリを読み込むことを派生クラスに許可します。</summary>
+      <param name="unmanagedDllName" vsli:raw="Name of the unmanaged library. Typically this is the filename without its path or extensions.">アンマネージ ライブラリの名前。 通常、これはパスまたは拡張子を含まないファイル名です。</param>
+      <returns vsli:raw="A handle to the loaded library, or &lt;see cref=&quot;F:System.IntPtr.Zero&quot; /&gt;.">読み込まれたライブラリのハンドル。または <see cref="F:System.IntPtr.Zero" />。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDllFromPath(System.String)">
+      <summary vsli:raw="Loads an unmanaged library from the specified path.">指定したパスからアンマネージ ライブラリを読み込みます。</summary>
+      <param name="unmanagedDllPath" vsli:raw="The path to the unmanaged library.">アンマネージ ライブラリのパス。</param>
+      <returns vsli:raw="The OS handle for the loaded native library.">読み込まれたライブラリのハンドル。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;unmanagedDllPath&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="unmanagedDllPath" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;unmanagedDllPath&quot; /&gt; argument is empty or not an absolute path.">
+        <paramref name="unmanagedDllPath" /> 引数が絶対パスではありません。</exception>
+      <exception cref="T:System.IO.FileNotFoundException">アンマネージ ライブラリが見つかりません。</exception>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Name">
+      <summary vsli:raw="Get the name of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> の名前を取得します。</summary>
+      <returns vsli:raw="The name of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> の名前。 この値は <see langword="null" /> の場合もあります。</returns>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.Resolving">
+      <summary vsli:raw="Occurs when the resolution of an assembly fails when attempting to load into this assembly load context.">このアセンブリ読み込みコンテキストに読み込もうとしたときにアセンブリの解決に失敗したときに発生します。</summary>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.ResolvingUnmanagedDll">
+      <summary vsli:raw="Occurs when the resolution of a native library fails.">ネイティブ ライブラリの解決が失敗したときに発生します。</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)">
+      <summary vsli:raw="Sets the root path where the optimization profiles for this load context are stored.">この読み込みコンテキストの最適化プロファイルが格納されるルート パスを設定します。</summary>
+      <param name="directoryPath" vsli:raw="The full path to the directory where the optimization profiles are stored.">最適化プロファイルが格納されているディレクトリへの完全パス。</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)">
+      <summary vsli:raw="Starts the profile optimization for the specified profile.">指定されたプロファイルのプロファイル最適化を開始します。</summary>
+      <param name="profile" vsli:raw="The name of the optimization profile.">最適化プロファイルの名前。</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.ToString">
+      <summary vsli:raw="Returns the string representation of this load context.">この読み込みコンテキストの文字列形式を返します。</summary>
+      <returns vsli:raw="The string representation of this load context.">この読み込みコンテキストの文字列形式。</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Unload">
+      <summary vsli:raw="Initiates an unload of this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">この <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> のアンロードを開始します。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="Unloading is not allowed.">アンロードすることはできません。</exception>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.Unloading">
+      <summary vsli:raw="Occurs when the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is unloaded.">
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> がアンロードされるときに発生します。</summary>
+    </member>
+  </members>
+</doc>

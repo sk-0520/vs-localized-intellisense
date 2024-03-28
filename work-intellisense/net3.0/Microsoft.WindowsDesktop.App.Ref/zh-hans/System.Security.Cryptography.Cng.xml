@@ -1,0 +1,1619 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Cng</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <summary>提供了可被下一代加密技术 (CNG) 对象使用的安全句柄。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> 类的新实例。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>实例化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> 类的新实例。</summary>
+      <param name="handle">要使用的预先存在的句柄。 使用 <see cref="F:System.IntPtr.Zero" /> 返回无效句柄。</param>
+      <param name="parentHandle">此 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" /> 的父句柄。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> 已关闭。  
+或 
+ <paramref name="parentHandle" /> 无效。</exception>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeNCryptHandle.IsInvalid" />
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle">
+      <summary>释放由下一代加密技术 (CNG) 对象使用的句柄。</summary>
+      <returns>如果成功释放了句柄，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle">
+      <summary>释放由下一代加密技术 (CNG) 对象使用的本机句柄。</summary>
+      <returns>如果成功释放了句柄，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <summary>提供了表示密钥 (NCRYPT_KEY_HANDLE) 的安全句柄。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> 类的新实例。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>实例化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> 类的新实例。</summary>
+      <param name="handle">要使用的预先存在的句柄。 使用 <see cref="F:System.IntPtr.Zero" /> 返回无效句柄。</param>
+      <param name="parentHandle">此 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" /> 的父句柄。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> 已关闭。  
+或 
+ <paramref name="parentHandle" /> 无效。</exception>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <summary>提供了表示密钥存储提供程序 (NCRYPT_PROV_HANDLE) 的安全句柄。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" /> 类的新实例。</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <summary>提供了表示机密协议值 (NCRYPT_SECRET_HANDLE) 的安全句柄。</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor">
+      <summary>初始化 <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" /> 类的新实例。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.AesCng">
+      <summary>提供高级加密标准 (AES) 算法的下一代加密技术 (CNG) 实现。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor">
+      <summary>使用临时密钥初始化 <see cref="T:System.Security.Cryptography.AesCng" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String)">
+      <summary>使用指定密钥名称初始化 <see cref="T:System.Security.Cryptography.AesCng" /> 类的新实例，该密钥名称表示现有的保留的 AES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>使用指定的密钥名称和密钥存储提供者 (KSP) 初始化 <see cref="T:System.Security.Cryptography.AesCng" /> 类的新实例，其中指定的密钥名称表示现有的保留的 AES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。  
+
+或 - 
+<paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>使用指定的密钥名称、密钥存储提供者 (KSP) 和密钥打开选项初始化 <see cref="T:System.Security.Cryptography.AesCng" /> 类的新实例，其中指定的密钥名称表示现有的保留的 AES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <param name="openOptions">枚举值的一个按位组合，这些值指定打开密钥的选项，例如打开密钥的位置（计算机或用户存储）以及是否取消 UI 提示。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。  
+或 
+ <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor">
+      <summary>用当前键和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称 AES 解密器对象。</summary>
+      <returns>对称 AES 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥和初始化向量 (IV) 创建对称 AES 解密器对象。</summary>
+      <param name="rgbKey">用于 AES 算法的密钥。 密钥大小必须为 128、192 或 256 位。</param>
+      <param name="rgbIV">用于 AES 算法的初始化向量。</param>
+      <returns>对称 AES 解密器对象。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> 的大小对于此算法无效。  
+或 
+ <paramref name="rgbIV" /> 的大小与此算法的块大小不匹配。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> 是此算法的已知弱密钥，不能使用。  
+或 
+ <paramref name="rgbIV" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor">
+      <summary>使用当前键和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称 AES 加密器对象。</summary>
+      <returns>对称 AES 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥和初始化向量 (IV) 创建对称 AES 加密器对象。</summary>
+      <param name="rgbKey">用于 AES 算法的密钥。 密钥大小必须为 128、192 或 256 位。</param>
+      <param name="rgbIV">用于 AES 算法的初始化向量。</param>
+      <returns>对称 AES 加密器对象。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> 的大小对于此算法无效。  
+或 
+ <paramref name="rgbIV" /> 的大小与此算法的块大小不匹配。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> 是此算法的已知弱密钥，不能使用。  
+或 
+ <paramref name="rgbIV" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateIV">
+      <summary>生成用于 AES 算法的随机初始化向量 (IV)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateKey">
+      <summary>生成用于 AES 算法的随机密钥。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.Key">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.AesCng" /> 算法的密钥。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.AesCng" /> 算法的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.KeySize">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.AesCng" /> 算法所用密钥的大小（以位为单位）。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.AesCng" /> 算法所用密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithm">
+      <summary>封装加密算法的名称。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 类的新实例。</summary>
+      <param name="algorithm">要初始化的算法的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="algorithm" /> 参数的长度为 0（零）。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Algorithm">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象指定的算法名称。</summary>
+      <returns>嵌入的算法名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellman">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，此对象指定椭圆曲线 Diffie-Hellman (ECDH) 密钥交换算法，此算法的曲线通过密钥属性描述。</summary>
+      <returns>一个对象，此对象指定 ECDH 密钥交换算法，此算法的曲线通过密钥属性进行描述。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP256">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-256 曲线的椭圆曲线 Diffie-Hellman (ECDH) 密钥交换算法。</summary>
+      <returns>一个指定使用 P-256 曲线的 ECDH 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP384">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-384 曲线的椭圆曲线 Diffie-Hellman (ECDH) 密钥交换算法。</summary>
+      <returns>一个指定使用 P-384 曲线的 ECDH 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP521">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-521 曲线的椭圆曲线 Diffie-Hellman (ECDH) 密钥交换算法。</summary>
+      <returns>一个指定使用 P-521 曲线的 ECDH 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsa">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，该对象指定椭圆曲线数字签名算法 (ECDSA)，此算法的曲线通过密钥属性描述。</summary>
+      <returns>一个对象，此对象指定 ECDSA 的曲线通过密钥属性进行描述。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP256">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-256 曲线的椭圆曲线数字签名算法 (ECDSA)。</summary>
+      <returns>一个指定使用 P-256 曲线的 ECDSA 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP384">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-384 曲线的椭圆曲线数字签名算法 (ECDSA)。</summary>
+      <returns>一个指定使用 P-384 曲线的 ECDSA 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP521">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定使用 P-521 曲线的椭圆曲线数字签名算法 (ECDSA)。</summary>
+      <returns>一个指定使用 P-521 曲线的 ECDSA 算法的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Object)">
+      <summary>将指定的对象与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象进行比较。</summary>
+      <param name="obj">要与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 参数是一个指定与当前对象相同算法的 <see cref="T:System.Security.Cryptography.CngAlgorithm" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Security.Cryptography.CngAlgorithm)">
+      <summary>将指定的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象进行比较。</summary>
+      <param name="other">要与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 参数指定的算法与当前对象的算法相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.GetHashCode">
+      <summary>为当前 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象中嵌入的算法名称生成一个哈希值。</summary>
+      <returns>嵌入的算法名称的哈希值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.MD5">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定消息摘要 5 (MD5) 哈希算法。</summary>
+      <returns>一个指定 MD5 算法的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Equality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象是否指定了相同的算法名称。</summary>
+      <param name="left">一个指定算法名称的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象指定了相同的算法名称，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Inequality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象是否未指定相同的算法。</summary>
+      <param name="left">一个指定算法名称的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象未指定相同的算法，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Rsa">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定 RSA 哈希算法。</summary>
+      <returns>一个指定 RSA 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha1">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定安全哈希算法 1 (SHA-1) 算法。</summary>
+      <returns>一个指定 SHA-1 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha256">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定安全哈希算法 256 (SHA-256) 算法。</summary>
+      <returns>一个指定 SHA-256 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha384">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定安全哈希算法 384 (SHA-384) 算法。</summary>
+      <returns>一个指定 SHA-384 算法的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha512">
+      <summary>获取一个新的 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象，它指定安全哈希算法 512 (SHA-512) 算法。</summary>
+      <returns>一个指定 SHA-512 算法的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.ToString">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象指定的算法的名称。</summary>
+      <returns>嵌入的算法名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithmGroup">
+      <summary>封装加密算法组的名称。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 类的新实例。</summary>
+      <param name="algorithmGroup">要初始化的算法组的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithmGroup" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="algorithmGroup" /> 参数的长度为 0（零）。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.AlgorithmGroup">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象指定的算法组的名称。</summary>
+      <returns>嵌入的算法组名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.DiffieHellman">
+      <summary>获取一个指定 Diffie-Hellman 算法系列的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象。</summary>
+      <returns>一个指定 Diffie-Hellman 算法系列的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Dsa">
+      <summary>获取一个指定数字签名算法 (DSA) 算法系列的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象。</summary>
+      <returns>一个指定 DSA 算法系列的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman">
+      <summary>获取一个指定椭圆曲线 Diffie-Hellman (ECDH) 算法系列的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象。</summary>
+      <returns>一个指定 ECDH 算法系列的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDsa">
+      <summary>获取一个指定椭圆曲线数字签名算法 (ECDSA) 算法系列的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象。</summary>
+      <returns>一个指定 ECDSA 算法系列的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Object)">
+      <summary>将指定的对象与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象进行比较。</summary>
+      <param name="obj">要与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 参数是一个 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />，而且它指定的算法组与当前对象的算法组相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>将指定的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象进行比较。</summary>
+      <param name="other">要与当前的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 参数指定的算法组与当前对象的算法组相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.GetHashCode">
+      <summary>为当前 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象中嵌入的算法组名称生成一个哈希值。</summary>
+      <returns>嵌入的算法组名称的哈希值。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Equality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象指定的是否是同一算法组。</summary>
+      <param name="left">一个指定某一算法组的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象指定的是同一算法组，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Inequality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象是否未指定同一算法组。</summary>
+      <param name="left">一个指定某一算法组的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象指定的不是同一算法组，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Rsa">
+      <summary>获取一个指定 Rivest-Shamir-Adleman (RSA) 算法系列的 <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> 对象。</summary>
+      <returns>一个指定 RSA 算法系列的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.ToString">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngAlgorithm" /> 对象指定的算法组的名称。</summary>
+      <returns>嵌入的算法组名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngExportPolicies">
+      <summary>指定密钥的密钥导出策略。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowArchiving">
+      <summary>私钥可以导出一次以用于存档。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowExport">
+      <summary>私钥可以导出多次。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextArchiving">
+      <summary>私钥可以纯文本形式导出一次。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextExport">
+      <summary>私钥可以纯文本形式导出多次。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.None">
+      <summary>未建立导出策略。 可以导出密钥，而无任何限制。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKey">
+      <summary>定义与下一代加密技术 (CNG) 对象一起使用的密钥的核心功能。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Algorithm">
+      <summary>获取密钥所使用的算法。</summary>
+      <returns>一个指定加密算法名称的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.AlgorithmGroup">
+      <summary>获取密钥所使用的算法组。</summary>
+      <returns>一个指定加密算法组名称的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm)">
+      <summary>创建一个可以与指定算法一起使用的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象。</summary>
+      <param name="algorithm">将与密钥一起使用的算法。</param>
+      <returns>一个暂时的密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String)">
+      <summary>创建一个已命名的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象，该对象提供指定的算法。</summary>
+      <param name="algorithm">将与密钥一起使用的算法。</param>
+      <param name="keyName">密钥名称。 如果未提供名称，则密钥将不是持久的。</param>
+      <returns>提供指定算法的持久或暂时的密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String,System.Security.Cryptography.CngKeyCreationParameters)">
+      <summary>使用所提供的密钥创建参数，创建一个已命名的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象，该对象提供指定的算法。</summary>
+      <param name="algorithm">将与密钥一起使用的算法。</param>
+      <param name="keyName">密钥名称。 如果未提供名称，则密钥将不是持久的。</param>
+      <param name="creationParameters">一个指定方法的高级参数（包括 <see cref="T:System.Security.Cryptography.CngProvider" />）的对象。</param>
+      <returns>提供指定算法的持久或暂时的密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Delete">
+      <summary>移除与对象相关联的密钥。</summary>
+      <exception cref="T:System.ObjectDisposedException">尝试访问已删除的密钥。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Dispose">
+      <summary>释放 <see cref="T:System.Security.Cryptography.CngKey" /> 类的当前实例所使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String)">
+      <summary>检查默认的密钥存储提供程序 (KSP) 中是否存在已命名的密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <returns>如果默认的 KSP 中存在该已命名的密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>检查指定的密钥存储提供程序 (KSP) 中是否存在已命名的密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">用于检查密钥的 KSP。</param>
+      <returns>如果指定的提供程序中存在该已命名的密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 或 <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>根据指定的选项，检查指定的密钥存储提供程序 (KSP) 中是否存在已命名的密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">用于搜索密钥的 KSP。</param>
+      <param name="options">指定密钥打开选项的枚举值的按位组合。</param>
+      <returns>如果指定的提供程序中存在该已命名的密钥，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 或 <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Export(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>将密钥材料以指定的格式导出到 BLOB 中。</summary>
+      <param name="format">一个指定密钥 BLOB 格式的对象。</param>
+      <returns>一个包含指定格式的密钥材料的 BLOB。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。 通常情况下，<see cref="P:System.Security.Cryptography.CngKey.ExportPolicy" /> 不允许导出密钥。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ExportPolicy">
+      <summary>获取密钥所使用的导出策略。</summary>
+      <returns>一个指定密钥的导出策略的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>在给定名称和一组属性选项的情况下，获取一个属性。</summary>
+      <param name="name">所需属性的名称。</param>
+      <param name="options">指定已命名属性选项的枚举值的按位组合。</param>
+      <returns>一个包含指定属性的原始值的对象。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Handle">
+      <summary>获取一个表示本机密钥 (NCRYPT_KEY_HANDLE) 的安全句柄。</summary>
+      <returns>一个表示密钥的安全句柄。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.HasProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>检查密钥上是否存在指定的属性。</summary>
+      <param name="name">要检查的属性名称。</param>
+      <param name="options">指定已命名属性选项的枚举值的按位组合。</param>
+      <returns>如果找到指定的属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>通过将指定的密钥材料导入到默认的密钥存储提供程序 (KSP) 中和使用指定的格式创建一个新密钥。</summary>
+      <param name="keyBlob">一个包含密钥信息的数组。</param>
+      <param name="format">一个对象，该对象指定 <paramref name="keyBlob" /> 数组的格式。</param>
+      <returns>一个新的密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" /> 或 <paramref name="format" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngProvider)">
+      <summary>通过导入指定的密钥材料到指定的密钥存储提供程序 (KSP) 中，使用指定的格式创建一个新的密钥。</summary>
+      <param name="keyBlob">一个包含密钥信息的数组。</param>
+      <param name="format">一个对象，该对象指定 <paramref name="keyBlob" /> 数组的格式。</param>
+      <param name="provider">KSP。</param>
+      <returns>一个新的密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" />、<paramref name="format" /> 或 <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsEphemeral">
+      <summary>获取密钥的持久性状态。</summary>
+      <returns>如果密钥是暂时的，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsMachineKey">
+      <summary>获取密钥的范围（计算机或用户）。</summary>
+      <returns>如果密钥在计算机范围的基础上可用，则为 <see langword="true" />；如果密钥只用于当前用户，则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyName">
+      <summary>获取密钥的名称。</summary>
+      <returns>密钥名称。 如果密钥是暂时的，则值为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeySize">
+      <summary>获取密钥的大小（以位为单位）。</summary>
+      <returns>密钥的大小（以位为单位）。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyUsage">
+      <summary>获取密钥指定的加密操作。</summary>
+      <returns>指定允许的密钥用法的枚举值的按位组合。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle,System.Security.Cryptography.CngKeyHandleOpenOptions)">
+      <summary>使用现有密钥的句柄创建 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的一个实例。</summary>
+      <param name="keyHandle">现有密钥的句柄。</param>
+      <param name="keyHandleOpenOptions">指示 <paramref name="keyHandle" /> 是否表示暂时密钥或已命名密钥的枚举值之一。</param>
+      <returns>现有密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyHandle" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyHandle" /> 无效或格式不正确或已经被关闭。 如果密钥是由公共语言运行时 (CLR) 创建的暂时密钥，但未指定 <see cref="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey" /> 值，也会引发此异常。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String)">
+      <summary>创建表示现有已命名密钥的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的一个实例。</summary>
+      <param name="keyName">密钥名称。</param>
+      <returns>现有密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>使用指定的密钥存储提供程序 (KSP)，创建表示现有已命名密钥的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的一个实例。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <returns>现有密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 或 <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>使用指定的密钥存储提供程序 (KSP) 和密钥打开选项，创建表示现有已命名密钥的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的一个实例。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <param name="openOptions">枚举值的一个按位组合，这些值指定打开密钥的选项，例如打开密钥的位置（计算机或用户存储）以及是否取消 UI 提示。</param>
+      <returns>现有密钥。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 或 <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ParentWindowHandle">
+      <summary>获取或设置窗口句柄 (HWND)，该句柄应该用于由访问密钥而产生的用户界面 (UI) 提示。</summary>
+      <returns>密钥的父窗口句柄。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Provider">
+      <summary>获取托管密钥的密钥存储提供程序 (KSP)。</summary>
+      <returns>托管密钥的 KSP。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ProviderHandle">
+      <summary>获取密钥存储提供程序 (KSP) 的一个本机句柄 (NCRYPT_PROV_HANDLE)。</summary>
+      <returns>KSP 的一个句柄。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.SetProperty(System.Security.Cryptography.CngProperty)">
+      <summary>设置密钥的已命名属性。</summary>
+      <param name="property">要设置的密钥属性。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UIPolicy">
+      <summary>获取控制访问密钥时用户界面 (UI) 的参数。</summary>
+      <returns>一个包含用于显示 UI 的配置参数的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UniqueName">
+      <summary>获取密钥的唯一名称。</summary>
+      <returns>密钥的替换名称。 如果密钥是暂时的，则值为 <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyBlobFormat">
+      <summary>指定与 Microsoft 下一代加密技术 (CNG) 对象一起使用的密钥 BLOB 格式。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.#ctor(System.String)">
+      <summary>使用指定的格式初始化 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 类的一个新实例。</summary>
+      <param name="format">要初始化的密钥 BLOB 格式。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="format" /> 参数的长度为 0（零）。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPrivateBlob">
+      <summary>获取 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，此对象指定包含显式曲线参数的椭圆曲线加密 (ECC) 密钥的私钥 BLOB。</summary>
+      <returns>描述私钥 BLOB 的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPublicBlob">
+      <summary>获取 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，此对象指定包含显式曲线参数的椭圆曲线加密 (ECC) 密钥的公钥 BLOB。</summary>
+      <returns>描述公钥 BLOB 的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPrivateBlob">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，它指定椭圆曲线加密法 (ECC) 密钥的私钥 BLOB。</summary>
+      <returns>一个指定 ECC 私钥 BLOB 的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPublicBlob">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，它指定椭圆曲线加密法 (ECC) 密钥的公钥 BLOB。</summary>
+      <returns>一个指定 ECC 公钥 BLOB 的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Object)">
+      <summary>将指定的对象与当前的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象进行比较。</summary>
+      <param name="obj">要与当前的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 参数为指定了与当前对象相同的密钥 BLOB 格式的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>将指定的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象与当前的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象进行比较。</summary>
+      <param name="other">要与当前的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 参数指定的密钥 BLOB 格式与当前对象的相同，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Format">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象指定的密钥 BLOB 格式的名称。</summary>
+      <returns>嵌入的密钥 BLOB 格式名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPrivateBlob">
+      <summary>获取一个指定泛型私钥 BLOB 的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象。</summary>
+      <returns>一个指定泛型私钥 BLOB 的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPublicBlob">
+      <summary>获取一个指定泛型公钥 BLOB 的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象。</summary>
+      <returns>一个指定泛型公钥 BLOB 的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.GetHashCode">
+      <summary>为当前 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象中的嵌入密钥 BLOB 格式生成一个哈希值。</summary>
+      <returns>嵌入的密钥 BLOB 格式的哈希值。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Equality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象是否指定了相同的密钥 BLOB 格式。</summary>
+      <param name="left">一个指定密钥 BLOB 格式的对象。</param>
+      <param name="right">第二个对象，该对象将与由 <paramref name="left" /> 参数标识的对象进行比较。</param>
+      <returns>如果两个对象指定了相同的密钥 BLOB 格式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Inequality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象是否未指定相同的密钥 BLOB 格式。</summary>
+      <param name="left">一个指定密钥 BLOB 格式的对象。</param>
+      <param name="right">第二个对象，该对象将与由 <paramref name="left" /> 参数标识的对象进行比较。</param>
+      <returns>如果两个对象未指定相同的密钥 BLOB 格式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.OpaqueTransportBlob">
+      <summary>获取一个指定不透明传输密钥 BLOB 的 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象。</summary>
+      <returns>一个指定不透明传输密钥 BLOB 的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Pkcs8PrivateBlob">
+      <summary>获取一个 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象，它指定私钥信息语法标准 (PKCS #8) 密钥 BLOB。</summary>
+      <returns>一个指定 PKCS #8 私钥 BLOB 的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.ToString">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> 对象指定的密钥 BLOB 格式的名称。</summary>
+      <returns>嵌入的密钥 BLOB 格式名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationOptions">
+      <summary>指定用于密钥创建的选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.MachineKey">
+      <summary>已创建计算机范围的密钥。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.None">
+      <summary>未使用任何密钥创建选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.OverwriteExistingKey">
+      <summary>密钥创建期间，现有密钥被覆盖。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationParameters">
+      <summary>包含密钥创建的高级属性。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyCreationParameters.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CngKeyCreationParameters" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ExportPolicy">
+      <summary>获取或设置密钥导出策略。</summary>
+      <returns>指定密钥导出策略的对象。 默认值为 <see langword="null" />，该值指示已设置密钥存储提供程序的默认导出策略。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyCreationOptions">
+      <summary>获取或设置密钥创建选项。</summary>
+      <returns>一个对象，指定正在创建的密钥的选项。 默认值为 <see langword="null" />，该值指示已设置密钥存储提供程序的默认密钥创建选项。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyUsage">
+      <summary>获取或设置应用于当前密钥的加密操作。</summary>
+      <returns>指定密钥用法的一个或多个枚举值的按位组合。 默认值为 <see langword="null" />，该值指示已设置密钥存储提供程序的默认密钥用法。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Parameters">
+      <summary>可使用密钥创建完成之前设置的其他属性创建 <see cref="T:System.Security.Cryptography.CngKey" /> 对象。</summary>
+      <returns>一个集合对象，该集合对象包含密钥创建期间必须在 <see cref="T:System.Security.Cryptography.CngKey" /> 对象上设置的所有其他参数。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ParentWindowHandle">
+      <summary>获取或设置窗口句柄，该句柄应用作由下一代加密技术 (CNG) 类创建的对话框的父窗口的句柄。</summary>
+      <returns>用作 CNG 对话框的父窗口的 HWND。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Provider">
+      <summary>获取或设置在其中创建密钥的密钥存储提供程序 (KSP)。</summary>
+      <returns>一个对象，该对象指定在其中创建新密钥的 KSP。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="P:System.Security.Cryptography.CngKeyCreationParameters.Provider" /> 属性设置为 <see langword="null" /> 值。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.UIPolicy">
+      <summary>获取或设置有关创建或访问密钥时显示的用户界面的信息。</summary>
+      <returns>一个对象，该对象包含有关创建或访问密钥时由下一代加密技术 (CNG) 类显示的用户界面的详细信息。 一个 <see langword="null" /> 值，该值指示已设置密钥存储提供程序的默认用户界面策略。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyHandleOpenOptions">
+      <summary>指定用于打开密钥句柄的选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey">
+      <summary>正在打开的密钥句柄会指定一个暂时的密钥。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.None">
+      <summary>正在打开的密钥句柄不会指定一个暂时的密钥。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyOpenOptions">
+      <summary>指定用于打开密钥的选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey">
+      <summary>计算机范围的密钥已打开。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.None">
+      <summary>未指定任何密钥打开选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.Silent">
+      <summary>已取消显示 UI 提示。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.UserKey">
+      <summary>如果未指定 <see cref="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey" /> 值，则打开用户密钥。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyUsages">
+      <summary>指定下一代加密技术 (CNG) 密钥可能用于的加密操作。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.AllUsages">
+      <summary>密钥可用于所有目的。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Decryption">
+      <summary>密钥可用于加密和解密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.KeyAgreement">
+      <summary>密钥可用于机密协议生成和密钥交换。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.None">
+      <summary>没有给密钥分配任何用法值。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Signing">
+      <summary>密钥可用于签名和验证。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProperty">
+      <summary>封装下一代加密技术 (CNG) 密钥或提供程序的属性。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.#ctor(System.String,System.Byte[],System.Security.Cryptography.CngPropertyOptions)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CngProperty" /> 类的新实例。</summary>
+      <param name="name">要初始化的属性名。</param>
+      <param name="value">要初始化的属性值。</param>
+      <param name="options">指定如何存储属性的枚举值的按位组合。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Object)">
+      <summary>将指定的对象与当前的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象进行比较。</summary>
+      <param name="obj">要与当前的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 参数是一个指定与当前对象相同属性的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Security.Cryptography.CngProperty)">
+      <summary>将指定的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象与当前的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象进行比较。</summary>
+      <param name="other">要与当前的 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 参数表示与当前对象相同的属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetHashCode">
+      <summary>生成当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象的哈希值。</summary>
+      <returns>当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象的哈希值。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetValue">
+      <summary>获取由当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象指定的属性值。</summary>
+      <returns>一个数组，表示属性中存储的值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Name">
+      <summary>获取由当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象指定的属性名。</summary>
+      <returns>在当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象中设置的属性名。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Equality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象是否指定相同的属性名、值和选项。</summary>
+      <param name="left">一个对象，指定下一代加密技术 (CNG) 密钥或提供程序的属性。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象指定相同的属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Inequality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象是否未指定相同的属性名、值和选项。</summary>
+      <param name="left">一个对象，指定下一代加密技术 (CNG) 密钥或提供程序的属性。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象未指定相同的属性，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Options">
+      <summary>获取由当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象指定的属性选项。</summary>
+      <returns>一个对象，该对象指定在当前 <see cref="T:System.Security.Cryptography.CngProperty" /> 对象中设置的选项。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyCollection">
+      <summary>提供下一代加密技术 (CNG) 属性的强类型集合。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngPropertyCollection.#ctor">
+      <summary>初始化新的 <see cref="T:System.Security.Cryptography.CngPropertyCollection" /> 对象。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyOptions">
+      <summary>指定下一代加密技术 (CNG) 密钥属性选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.CustomProperty">
+      <summary>属性不是由 CNG 指定的。 使用此选项可避免将来的名称与 CNG 属性冲突。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.None">
+      <summary>引用的属性没有任何选项。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.Persist">
+      <summary>应保持属性。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProvider">
+      <summary>封装与下一代加密技术 (CNG) 对象一起使用的密钥存储提供程序 (KSP) 的名称。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.#ctor(System.String)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CngProvider" /> 类的新实例。</summary>
+      <param name="provider">要初始化的密钥存储提供程序 (KSP) 的名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="provider" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="provider" /> 参数的长度为 0（零）。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Object)">
+      <summary>将指定的对象与当前的 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象进行比较。</summary>
+      <param name="obj">要与当前的 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="obj" /> 参数是一个指定与当前对象相同的密钥存储提供程序 (KSP) 的 <see cref="T:System.Security.Cryptography.CngProvider" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Security.Cryptography.CngProvider)">
+      <summary>将指定的 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象与当前的 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象进行比较。</summary>
+      <param name="other">要与当前的 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象进行比较的对象。</param>
+      <returns>如果 <paramref name="other" /> 参数指定与当前对象相同的密钥存储提供程序 (KSP)，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.GetHashCode">
+      <summary>生成一个嵌入在当前 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象中的密钥存储提供程序 (KSP) 名称的哈希值。</summary>
+      <returns>嵌入的 KSP 名称的哈希值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSmartCardKeyStorageProvider">
+      <summary>获取 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象，该对象指定 Microsoft 智能卡密钥存储提供程序。</summary>
+      <returns>一个对象，指定 Microsoft 智能卡密钥存储提供程序。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSoftwareKeyStorageProvider">
+      <summary>获取 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象，该对象指定 Microsoft 软件密钥存储提供程序。</summary>
+      <returns>一个对象，指定 Microsoft 软件密钥存储提供程序。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Equality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象是否指定相同的密钥存储提供程序 (KSP)。</summary>
+      <param name="left">指定 KSP 的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象表示相同的 KSP，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Inequality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>确定两个 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象是否不表示相同的密钥存储提供程序 (KSP)。</summary>
+      <param name="left">指定 KSP 的对象。</param>
+      <param name="right">要与 <paramref name="left" /> 参数标识的对象进行比较的另一个对象。</param>
+      <returns>如果两个对象不表示相同的 KSP，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.Provider">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象指定的密钥存储提供程序 (KSP) 的名称。</summary>
+      <returns>嵌入的 KSP 名称。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.ToString">
+      <summary>获取当前 <see cref="T:System.Security.Cryptography.CngProvider" /> 对象指定的密钥存储提供程序 (KSP) 的名称。</summary>
+      <returns>嵌入的 KSP 名称。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIPolicy">
+      <summary>封装访问受保护密钥时下一代加密技术 (CNG) 所显示用户界面 (UI) 的可选配置参数。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels)">
+      <summary>使用指定的保护级别初始化 <see cref="T:System.Security.Cryptography.CngUIPolicy" /> 类的一个新实例。</summary>
+      <param name="protectionLevel">指定保护级别的枚举值的按位组合。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String)">
+      <summary>使用指定的保护级别和友好名称初始化 <see cref="T:System.Security.Cryptography.CngUIPolicy" /> 类的一个新实例。</summary>
+      <param name="protectionLevel">指定保护级别的枚举值的按位组合。</param>
+      <param name="friendlyName">将在 UI 提示中使用的密钥的友好名称。 若要使用默认名称，请指定空字符串。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String)">
+      <summary>使用指定的保护级别、友好名称和说明初始化 <see cref="T:System.Security.Cryptography.CngUIPolicy" /> 类的一个新实例。</summary>
+      <param name="protectionLevel">指定保护级别的枚举值的按位组合。</param>
+      <param name="friendlyName">将在 UI 提示中使用的密钥的友好名称。 若要使用默认名称，请指定空字符串。</param>
+      <param name="description">密钥的全文本说明。 若要使用默认说明，请指定空字符串。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String)">
+      <summary>使用指定的保护级别、友好名称、说明字符串和使用上下文初始化 <see cref="T:System.Security.Cryptography.CngUIPolicy" /> 类的一个新实例。</summary>
+      <param name="protectionLevel">指定保护级别的枚举值的按位组合。</param>
+      <param name="friendlyName">将在 UI 提示中使用的密钥的友好名称。 若要使用默认名称，请指定空字符串。</param>
+      <param name="description">密钥的全文本说明。 若要使用默认说明，请指定空字符串。</param>
+      <param name="useContext">对将如何使用密钥的说明。 若要使用默认说明，请指定空字符串。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String,System.String)">
+      <summary>使用指定的保护级别、友好名称、说明字符串、使用上下文和标题初始化 <see cref="T:System.Security.Cryptography.CngUIPolicy" /> 类的一个新实例。</summary>
+      <param name="protectionLevel">指定保护级别的枚举值的按位组合。</param>
+      <param name="friendlyName">将在 UI 提示中使用的密钥的友好名称。 若要使用默认名称，请指定空字符串。</param>
+      <param name="description">密钥的全文本说明。 若要使用默认说明，请指定空字符串。</param>
+      <param name="useContext">对将如何使用密钥的说明。 若要使用默认说明，请指定空字符串。</param>
+      <param name="creationTitle">提供 UI 提示的对话框的标题。 若要使用默认标题，请指定空字符串。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.CreationTitle">
+      <summary>获取由 UI 提示显示的标题。</summary>
+      <returns>访问密钥时出现的对话框的标题。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.Description">
+      <summary>获取由 UI 提示显示的说明字符串。</summary>
+      <returns>访问密钥时出现的对话框的说明文本。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.FriendlyName">
+      <summary>获取由 UI 提示显示的友好名称。</summary>
+      <returns>用于在访问密钥时出现的对话框中描述密钥的友好名称。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.ProtectionLevel">
+      <summary>获取密钥的 UI 保护级别。</summary>
+      <returns>一个描述应用于密钥的 UI 保护级别的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.UseContext">
+      <summary>获取对将如何使用密钥的说明。</summary>
+      <returns>对将如何使用密钥的说明。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIProtectionLevels">
+      <summary>指定用户界面 (UI) 提示方案中密钥的保护级别。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ForceHighProtection">
+      <summary>每当密钥被访问时显示 UI 提示。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.None">
+      <summary>密钥被访问时不显示 UI 提示。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ProtectKey">
+      <summary>在进程中密钥第一次被访问时显示 UI 提示。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACng">
+      <summary>提供数字签名算法 (DSA) 的下一代加密技术 (CNG) 实现。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor">
+      <summary>使用随机的 2,048 位密钥对初始化 <see cref="T:System.Security.Cryptography.DSACng" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Int32)">
+      <summary>使用具有指定大小的随机生成密钥初始化 <see cref="T:System.Security.Cryptography.DSACng" /> 类的新实例。</summary>
+      <param name="keySize">要生成的密钥的大小(以位为单位)。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> 无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>使用指定的密钥初始化 <see cref="T:System.Security.Cryptography.DSACng" /> 类的新实例。</summary>
+      <param name="key">要用于 DSA 操作的密钥。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 不是有效的 DSA 密钥。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.CreateSignature(System.Byte[])">
+      <summary>为指定数据创建数字签名。</summary>
+      <param name="rgbHash">要签名的数据。</param>
+      <returns>指定数据的数字签名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="rgbHash" /> 比 DSA 键的 Q 值短。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ExportParameters(System.Boolean)">
+      <summary>导出 DSA 算法参数。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>DSA 算法参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">DSA 不是有效的公钥或私钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>通过创建为参数结构创建新的 <see cref="T:System.Security.Cryptography.CngKey" />，来替换当前实例使用的现有密钥。</summary>
+      <param name="parameters">DSA 参数。</param>
+      <exception cref="T:System.ArgumentException">指定的 DSA 参数无效。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.Key">
+      <summary>获取将由 <see cref="T:System.Security.Cryptography.DSACng" /> 对象用于它执行的任何加密操作的密钥。</summary>
+      <returns>由 <see cref="T:System.Security.Cryptography.DSACng" /> 对象用来执行加密操作的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.KeyExchangeAlgorithm">
+      <summary>获取密钥交换算法的名称。</summary>
+      <returns>总是为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.LegalKeySizes">
+      <summary>获取 DSA 算法支持的密钥大小（以位为单位）。</summary>
+      <returns>一个数组，包含此算法支持的密钥大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.SignatureAlgorithm">
+      <summary>获取签名算法的名称。</summary>
+      <returns>字符串“DSA”。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>验证指定数字签名是否与指定数据相匹配。</summary>
+      <param name="rgbHash">已签名的数据。</param>
+      <param name="rgbSignature">要验证的数字签名。</param>
+      <returns>如果 <paramref name="rgbSignature" /> 与使用指定数据计算的签名相匹配，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> 参数为 <see langword="null" />。  
+或 
+<paramref name="rgbSignature" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="rgbHash" /> 比 DSA 密钥的 Q 值短。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCng">
+      <summary>提供椭圆曲线 Diffie-Hellman (ECDH) 算法的下一代加密技术 (CNG) 实现。 此类用于执行加密操作。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor">
+      <summary>使用随机的密钥对初始化 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Int32)">
+      <summary>使用指定密钥大小，通过随机密钥对来初始化 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类的新实例。</summary>
+      <param name="keySize">密钥大小。 有效密钥大小是 256、384 和 521 位。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keySize" /> 指定了无效的长度。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统不支持下一代加密技术 (CNG) 类。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>使用指定的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象初始化 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类的新实例。</summary>
+      <param name="key">一个密钥，它将用作当前对象所执行的加密操作的输入。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 未指定椭圆曲线 Diffie-Hellman (ECDH) 算法组。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统不支持下一代加密技术 (CNG) 类。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>创建 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类的新实例，其公钥/私钥对通过指定曲线生成。</summary>
+      <param name="curve">用于生成公钥/私钥对的曲线。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> 不进行验证。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[])">
+      <summary>若给定了另一方的公钥、哈希算法的名称、预置值和追加值，使用哈希函数派生可用作密钥的字节。</summary>
+      <param name="otherPartyPublicKey">另一方的公钥。</param>
+      <param name="hashAlgorithm">用于派生密钥材料的哈希算法。</param>
+      <param name="secretPrepend">在进行哈希算法之前，要预置到派生密钥前面的值。</param>
+      <param name="secretAppend">在进行哈希算法之前，要追加到派生密钥的值。</param>
+      <returns>来自与另一方的公钥进行密钥交换的密钥材料。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 ECDH 密钥，或者大小不正确。  
+
+或 - 
+<paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 为 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[],System.Byte[])">
+      <summary>使用基于哈希的消息验证代码 (HMAC) 派生可用作密钥的字节。</summary>
+      <param name="otherPartyPublicKey">另一方的公钥。</param>
+      <param name="hashAlgorithm">用于派生密钥材料的哈希算法。</param>
+      <param name="hmacKey">HMAC 的密钥。</param>
+      <param name="secretPrepend">在进行哈希算法之前，要预置到派生密钥前面的值。</param>
+      <param name="secretAppend">在进行哈希算法之前，要追加到派生密钥的值。</param>
+      <returns>来自与另一方的公钥进行密钥交换的密钥材料。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 ECDH 密钥，或者大小不正确。  
+或 
+ <paramref name="hashAlgorithm" />.<see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 为 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.CngKey)">
+      <summary>在给定包含第二方公钥的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的情况下，派生从双方之间的机密协议生成的密钥材料。</summary>
+      <param name="otherPartyPublicKey">一个对象，它包含来自密钥交换中另一方的椭圆曲线 Diffie-Hellman (ECDH) 密钥的公共部分。</param>
+      <returns>一个包含密钥材料的字节数组。 此信息从机密协议生成，机密协议是从当前对象的私钥和指定的公钥计算得到的。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 无效。 它的 <see cref="P:System.Security.Cryptography.CngKey.AlgorithmGroup" /> 属性未指定 <see cref="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman" />，或者其密钥大小与此实例的密钥大小不匹配。</exception>
+      <exception cref="T:System.InvalidOperationException">此对象的 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction" /> 属性指定了 <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" /> 密钥派生函数，但 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> 或 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>在给定包含第二方公钥的 <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> 对象的情况下，派生从双方之间的机密协议生成的密钥材料。</summary>
+      <param name="otherPartyPublicKey">密钥交换中另一方的公钥。</param>
+      <returns>一个包含密钥材料的字节数组。 此信息从机密协议生成，机密协议是从当前对象的私钥和指定的公钥计算得到的。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 密钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Byte[],System.Byte[])">
+      <summary>使用传输层安全性 (TLS) 伪随机功能 (PRF) 派生算法派生可用作密钥的字节。</summary>
+      <param name="otherPartyPublicKey">另一方的公钥。</param>
+      <param name="prfLabel">ASCII 编码的 PRF 标签。</param>
+      <param name="prfSeed">64 字节的 PRF 种子。</param>
+      <returns>来自与另一方的公钥进行密钥交换的密钥材料。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。  
+
+或 - 
+<paramref name="prfLabel" /> 为 <see langword="null" />。  
+
+或 
+ <paramref name="prfSeed" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 ECDH 密钥，或者大小不正确。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="prfSeed" /> 的长度并不正好是 64 字节。  
+
+或 - 
+所有其他加密错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.CngKey)">
+      <summary>在给定包含另一方公钥的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象的情况下，获取双方之间生成的机密协议的句柄。</summary>
+      <param name="otherPartyPublicKey">一个对象，它包含来自密钥交换中另一方的椭圆曲线 Diffie-Hellman (ECDH) 密钥的公共部分。</param>
+      <returns>一个机密协议的句柄。 此信息是从当前对象的私钥和指定的公钥计算得到的。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 ECDH 密钥，或者大小不正确。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>在给定包含另一方公钥的 <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> 对象的情况下，获取双方之间生成的机密协议的句柄。</summary>
+      <param name="otherPartyPublicKey">密钥交换中另一方的公钥。</param>
+      <returns>一个机密协议的句柄。 此信息是从当前对象的私钥和指定的公钥计算得到的。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> 不是 <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> 密钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportExplicitParameters(System.Boolean)">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和显式曲线参数导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和显式曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">此方法无法获取曲线值。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此平台不支持显式导出。 必须使用 Windows 10 或更高版本。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportParameters(System.Boolean)">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和已命名曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">此方法无法获取曲线值。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>使用指定的格式反序列化 XML 字符串中的密钥信息。</summary>
+      <param name="xml">要反序列化的基于 XML 的密钥信息。</param>
+      <param name="format">枚举值之一，它指定 XML 字符串的格式。 当前接受的唯一格式为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="xml" /> 的格式不正确。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> 指定的格式无效。 唯一接受的值为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>为指定曲线生成新的临时公钥/私钥对。</summary>
+      <param name="curve">用于生成临时公钥/私钥对的曲线。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> 不进行验证。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm">
+      <summary>获取或设置生成密钥材料时要使用的哈希算法。</summary>
+      <returns>一个指定哈希算法的对象。</returns>
+      <exception cref="T:System.ArgumentNullException">该值为 <see langword="null." />。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey">
+      <summary>获取或设置派生密钥材料时要使用的基于哈希的消息身份验证代码 (HMAC) 密钥。</summary>
+      <returns>派生密钥材料时要使用的基于哈希的消息身份验证代码 (HMAC) 密钥。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECCurve" /> 对象的指定参数作为密钥导入当前实例。</summary>
+      <param name="parameters">要导入的曲线参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> 不进行验证。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> 引用无法导入的一条曲线。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> 引用此平台不支持的一条曲线。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Key">
+      <summary>指定当前对象用于加密操作的 <see cref="T:System.Security.Cryptography.CngKey" />。</summary>
+      <returns>此对象用于执行加密操作的密钥对。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类的密钥派生函数。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction" /> 枚举值之一：<see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />、<see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" /> 或 <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />。 默认值为 <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">枚举值超出范围。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeySize" />
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Label">
+      <summary>获取或设置用于密钥派生的标签值。</summary>
+      <returns>标签值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.PublicKey">
+      <summary>获取另一个 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 对象可用来生成共享机密协议的公钥。</summary>
+      <returns>与 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 对象的此实例关联的公钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend">
+      <summary>获取或设置生成密钥材料时将追加到机密协议的值。</summary>
+      <returns>追加到机密协议的值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend">
+      <summary>获取或设置派生密钥材料时将添加到机密协议开头的值。</summary>
+      <returns>密钥派生期间追加到机密协议开头的值。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed">
+      <summary>获取或设置派生密钥材料时将要使用的种子值。</summary>
+      <returns>种子值。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>使用指定的格式将密钥信息序列化为 XML 字符串。</summary>
+      <param name="format">枚举值之一，它指定 XML 字符串的格式。 当前接受的唯一格式为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</param>
+      <returns>一个包含密钥信息的字符串对象，该密钥信息已根据请求的格式序列化为 XML 字符串。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> 指定的格式无效。 唯一接受的值为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey">
+      <summary>获取一个值，该值指示机密协议是否用作基于哈希的消息身份验证代码 (HMAC) 密钥以派生密钥材料。</summary>
+      <returns>如果机密协议用作 HMAC 密钥以派生机密材料，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey">
+      <summary>指定与 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类一起使用的椭圆曲线 Diffie-Hellman (ECDH) 公钥。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.BlobFormat">
+      <summary>获取 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 对象的密钥 BLOB 格式。</summary>
+      <returns>表示密钥 BLOB 的格式。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportExplicitParameters">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和显式曲线参数导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和显式曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">此方法无法获取曲线值。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此平台不支持显式导出。 必须使用 Windows 10 或更高版本。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportParameters">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.ECCurve" /> 对象使用的密钥和已命名曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">此方法无法获取曲线值。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromByteArray(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>根据指定的格式，将包含公钥的字节数组转换为 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 对象。</summary>
+      <param name="publicKeyBlob">一个包含椭圆曲线 Diffie-Hellman (ECDH) 公钥的字节数组。</param>
+      <param name="format">一个指定密钥 BLOB 格式的对象。</param>
+      <returns>一个包含 ECDH 公钥的对象，ECDH 公钥在字节数组中被序列化。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="publicKeyBlob" /> 或 <paramref name="format" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="publicKeyBlob" /> 参数未包含 <see cref="T:System.Security.Cryptography.ECDiffieHellman" /> 密钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromXmlString(System.String)">
+      <summary>将 XML 字符串转换为 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 对象。</summary>
+      <param name="xml">一个包含椭圆曲线 Diffie-Hellman (ECDH) 密钥的 XML 字符串。</param>
+      <returns>一个包含 ECDH 公钥的对象，ECDH 公钥由给定的 XML 指定。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> 参数为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="xml" /> 参数未指定 <see cref="T:System.Security.Cryptography.ECDiffieHellman" /> 密钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.Import">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 对象转换为 <see cref="T:System.Security.Cryptography.CngKey" /> 对象。</summary>
+      <returns>一个包含由 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 对象表示的密钥的对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ToXmlString">
+      <summary>将 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 公钥序列化为 RFC 4050 格式的 XML 字符。</summary>
+      <returns>一个包含已序列化的 <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> 公钥的 XML 字符串。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction">
+      <summary>指定密钥派生函数，<see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> 类将使用此函数将机密协议转换为密钥材料。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash">
+      <summary>哈希算法用于生成密钥材料。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm" /> 属性指定要使用的算法的名称。 如果未指定算法名称，则将 <see cref="T:System.Security.Cryptography.SHA256" /> 用作默认算法。 此外，可以指定 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> 和 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> 属性，但不是必需的。 生成的密钥材料的数量等同于指定算法哈希值的大小。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac">
+      <summary>基于散列的消息验证代码 (HMAC) 算法用于生成密钥材料。 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey" /> 属性指定要使用的密钥。 必须设置此属性或者必须将 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey" /> 属性设置为 <see langword="true" />；否则使用 <see cref="T:System.Security.Cryptography.CryptographicException" /> 时，会引发 <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" />。 如果同时设置了这两个属性，则将机密协议用作 HMAC 密钥。 此外，可以指定 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> 和 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> 属性，但不是必需的。 生成的密钥材料的数量等同于 HMAC 值的大小。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls">
+      <summary>传输层安全 (TLS) 协议用于生成密钥材料。 必须设置 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> 和 <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> 属性；否则使用 <see cref="T:System.Security.Cryptography.CryptographicException" /> 时，会引发 <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />。 此值将生成 160 位的密钥材料。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDsaCng">
+      <summary>提供椭圆曲线数字签名算法 (ECDSA) 的下一代加密技术 (CNG) 实现。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor">
+      <summary>使用随机的密钥对初始化 <see cref="T:System.Security.Cryptography.ECDsaCng" /> 类的新实例。</summary>
+      <exception cref="T:System.PlatformNotSupportedException">此系统不支持下一代加密技术 (CNG) 类。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Int32)">
+      <summary>使用指定密钥大小，通过随机密钥对来初始化 <see cref="T:System.Security.Cryptography.ECDsaCng" /> 类的新实例。</summary>
+      <param name="keySize">密钥大小。 有效密钥大小是 256、384 和 521 位。</param>
+      <exception cref="T:System.PlatformNotSupportedException">此系统不支持下一代加密技术 (CNG) 类。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> 指定了无效的长度。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>使用指定的 <see cref="T:System.Security.Cryptography.CngKey" /> 对象初始化 <see cref="T:System.Security.Cryptography.ECDsaCng" /> 类的新实例。</summary>
+      <param name="key">一个密钥，它将用作当前对象所执行的加密操作的输入。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 不指定椭圆曲线数字签名算法 (ECDSA) 组。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统不支持下一代加密技术 (CNG) 类。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.ECDsaCng" /> 类的新实例，该类的公钥/私钥对通过指定曲线生成。</summary>
+      <param name="curve">用于生成公钥/私钥对的曲线。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> 不进行验证。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="curve" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">如果 <paramref name="curve" /> 不包含带 FriendlyName 的 Oid。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportExplicitParameters(System.Boolean)">
+      <summary>将椭圆曲线加密 (ECC) 对象使用的密钥和显式曲线参数导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>ECC 对象使用的密钥和显式曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">获取曲线值时发生错误。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此平台不支持显式导出。 必须使用 Windows 10 或更高版本。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportParameters(System.Boolean)">
+      <summary>将椭圆曲线加密 (ECC) 对象使用的密钥导出到 <see cref="T:System.Security.Cryptography.ECParameters" /> 对象。 如果密钥作为已命名曲线创建，<see cref="F:System.Security.Cryptography.ECParameters.Curve" /> 字段包含已命名的曲线参数，否则将包含显式参数。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>ECC 对象使用的密钥和已命名曲线参数。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">获取曲线值时发生错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>使用指定的格式反序列化 XML 字符串中的密钥信息。</summary>
+      <param name="xml">要反序列化的基于 XML 的密钥信息。</param>
+      <param name="format">枚举值之一，它指定 XML 字符串的格式。 当前接受的唯一格式为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> 指定的格式无效。 唯一接受的值为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>生成用于 ECDsaCng 算法的密钥。</summary>
+      <param name="curve">用于生成密钥的曲线。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> 不进行验证。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.HashAlgorithm">
+      <summary>获取或设置签名和验证数据时要使用的哈希算法。</summary>
+      <returns>一个指定哈希算法的对象。</returns>
+      <exception cref="T:System.ArgumentNullException">该值为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>通过创建为参数结构创建新的 <see cref="T:System.Security.Cryptography.CngKey" />，来替换当前实例使用的现有密钥。</summary>
+      <param name="parameters">曲线的参数。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> 不包含有效的值。</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> 引用无法导入的一条曲线。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> 引用此平台不支持的一条曲线。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.Key">
+      <summary>获取或设置对数据进行签名或验证时要使用的键。</summary>
+      <returns>指定键的对象。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.KeySize" />
+    <member name="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes" />
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[])">
+      <summary>生成指定数据的签名。</summary>
+      <param name="data">要签名的消息数据。</param>
+      <returns>指定数据的数字签名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>从指定的偏移量开始生成指定长度的数据的数字签名。</summary>
+      <param name="data">要签名的消息数据。</param>
+      <param name="offset">字符串中开始签名的位置。</param>
+      <param name="count">紧跟在将要签名的 <paramref name="offset" /> 后的字符串长度（以字符为单位）。</param>
+      <returns>指定长度的数据的数字签名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> 或 <paramref name="offset" /> 导致读取超出数据字符串范围。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.IO.Stream)">
+      <summary>通过读取数据流的末尾内容生成指定数据流的签名。</summary>
+      <param name="data">要签名的数据流。</param>
+      <returns>指定的数据流的数字签名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignHash(System.Byte[])">
+      <summary>为指定哈希值生成签名。</summary>
+      <param name="hash">待签名数据的哈希值。</param>
+      <returns>指定哈希值的数字签名。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">与该实例关联的密钥信息没有私钥。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>使用指定的格式将密钥信息序列化为 XML 字符串。</summary>
+      <param name="format">枚举值之一，它指定 XML 字符串的格式。 当前接受的唯一格式为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</param>
+      <returns>一个包含密钥信息的字符串对象，已根据所需的格式将其序列化为 XML 字符串。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> 指定的格式无效。 唯一接受的值为 <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Byte[])">
+      <summary>验证指定的数据的数字签名。</summary>
+      <param name="data">已签名的数据。</param>
+      <param name="signature">要验证的签名。</param>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 或 <paramref name="signature" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[])">
+      <summary>从指定的偏移量开始验证指定长度的数据的签名。</summary>
+      <param name="data">已签名的数据。</param>
+      <param name="offset">数据中已签名数据开始的位置。</param>
+      <param name="count">紧跟在将要签名的 <paramref name="offset" /> 后的数据长度（以字符为单位）。</param>
+      <param name="signature">要验证的签名。</param>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 小于零。  
+或 
+ <paramref name="offset" /> 或 <paramref name="count" /> 大于在 <paramref name="data" /> 参数中传递的字节数组的长度。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 或 <paramref name="signature" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream,System.Byte[])">
+      <summary>通过读取数据流的末尾内容验证指定数据流的数字签名。</summary>
+      <param name="data">已签名的数据流。</param>
+      <param name="signature">要验证的签名。</param>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 或 <paramref name="signature" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>针对指定的哈希值验证指定的数字签名。</summary>
+      <param name="hash">待验证的数据的哈希值。</param>
+      <param name="signature">要结合哈希值验证的数据的数字签名。</param>
+      <returns>如果签名有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 或 <paramref name="signature" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.ECKeyXmlFormat">
+      <summary>为椭圆曲线密钥定义 XML 序列化格式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050">
+      <summary>“Using the Elliptic Curve Signature Algorithm (ECDSA) for XML Digital Signatures”（对 XML 数字签名使用椭圆曲线签名算法 (ECDSA)）中的“RFC 4050”中所描述的 XML 序列化格式。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACng">
+      <summary>提供 RSA 的下一代加密技术 (CNG) 实现。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor">
+      <summary>使用随机的 2,048 位密钥对初始化 <see cref="T:System.Security.Cryptography.RSACng" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Int32)">
+      <summary>使用具有指定大小的随机生成密钥初始化 <see cref="T:System.Security.Cryptography.RSACng" /> 类的新实例。</summary>
+      <param name="keySize">要生成的密钥的大小(以位为单位)。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> 无效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>使用指定的密钥初始化 <see cref="T:System.Security.Cryptography.RSACng" /> 类的新实例。</summary>
+      <param name="key">要用于 RSA 操作的密钥。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> 不是有效的 RSA 密钥。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>使用指定填充模式对输入数据解密。</summary>
+      <param name="data">要解密的数据。</param>
+      <param name="padding">填充模式。</param>
+      <returns>已解密的数据。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。  
+或 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Pkcs1" />否则 <paramref name="padding" /> 的 <see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> 不等于 <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>使用指定的填充方式对输入数据进行加密。</summary>
+      <param name="data">要加密的数据。</param>
+      <param name="padding">填充模式。</param>
+      <returns>已加密的数据。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> 为 <see langword="null" />。  
+
+或 - 
+<paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> 或 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ExportParameters(System.Boolean)">
+      <summary>将 RSA 对象使用的密钥导出到 <see cref="T:System.Security.Cryptography.RSAParameters" /> 对象中。</summary>
+      <param name="includePrivateParameters">若要包含专用参数，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <returns>RSA 对象使用的密钥。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>通过创建为参数结构创建新的 <see cref="T:System.Security.Cryptography.CngKey" />，来替换当前实例使用的现有密钥。</summary>
+      <param name="parameters">RSA 参数。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameters" /> 既不包含指数，也不包含模数。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> 不是有效的 RSA 密钥。  
+或 
+ <paramref name="parameters" /> 是一个完整的密钥对并使用默认的 KSP。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.Key">
+      <summary>获取将由 <see cref="T:System.Security.Cryptography.RSACng" /> 对象用于它执行的任何加密操作的密钥。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.RSACng" /> 对象使用的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.LegalKeySizes" />
+    <member name="M:System.Security.Cryptography.RSACng.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>对使用指定哈希算法和填充模式进行了哈希处理的数据进行签名。</summary>
+      <param name="hash">要签名的哈希值。</param>
+      <param name="hashAlgorithm">哈希算法名称。</param>
+      <param name="padding">填充模式。</param>
+      <returns>已签名的数据。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 为 <see langword="null" />。  
+
+或 - 
+<paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 属性的值为 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> 或 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>验证已签名且已使用指定算法和填充模式进行哈希处理的数据。</summary>
+      <param name="hash">要验证的哈希值。</param>
+      <param name="signature">数据的签名。</param>
+      <param name="hashAlgorithm">哈希算法名称。</param>
+      <param name="padding">填充模式。</param>
+      <returns>如果签名对哈希值有效，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> 为 <see langword="null" />。  
+或 
+ <paramref name="signature" /> 为 <see langword="null" />。  
+或 
+ <paramref name="padding" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hashAlgorithm" /> 的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 属性的值为 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> 不等于 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> 或 <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />。  
+或 
+签名的格式错误。 （在 .NET Framework 4.6 中且仅在 4.6.1 中，从 .NET Framework 4.6.2 开始，如果签名格式不正确，则方法返回 <see langword="false" />。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCng">
+      <summary>提供三重数据加密标准 (3DES) 算法的下一代加密技术 (CNG) 实现。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor">
+      <summary>使用临时密钥初始化 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String)">
+      <summary>使用指定的密钥名称初始化 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 类的新实例，该密钥名称表示现有的保留的 3DES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>使用指定的密钥名称和密钥存储提供者 (KSP) 初始化 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 类的新实例，其中指定的密钥名称表示现有的保留的 3DES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。  
+或 
+ <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>使用指定的密钥名称、密钥存储提供程序 (KSP) 和密钥打开选项初始化 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 类的新实例，其中指定的密钥名称表示现有的保留的 3DES 密钥。</summary>
+      <param name="keyName">密钥名称。</param>
+      <param name="provider">包含密钥的 KSP。</param>
+      <param name="openOptions">枚举值的一个按位组合，这些值指定打开密钥的选项，例如打开密钥的位置（计算机或用户存储）以及是否取消 UI 提示。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> 为 <see langword="null" />。  
+或 
+ <paramref name="provider" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.PlatformNotSupportedException">此系统上不支持下一代加密技术 (CNG)。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">所有其他错误。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor">
+      <summary>用当前键和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称 3DES 解密器对象。</summary>
+      <returns>对称 3DES 解密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥和初始化向量 (IV) 创建对称 3DES 解密器对象。</summary>
+      <param name="rgbKey">用于 3DES 算法的密钥。 密钥大小必须为 192 位。</param>
+      <param name="rgbIV">用于 3DES 算法的初始化向量。</param>
+      <returns>对称 3DES 解密器对象。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> 的大小对于此算法无效。  
+或 
+ <paramref name="rgbIV" /> 的大小与此算法的块大小不匹配。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> 是此算法的已知弱密钥，不能使用。  
+或 
+ <paramref name="rgbIV" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor">
+      <summary>使用当前键和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 创建对称 3DES 加密器对象。</summary>
+      <returns>对称 3DES 加密器对象。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>用指定的密钥和初始化向量 (IV) 创建对称 3DES 加密器对象。</summary>
+      <param name="rgbKey">用于 3DES 算法的密钥。 密钥大小必须为 192 位。</param>
+      <param name="rgbIV">用于 3DES 算法的初始化向量。</param>
+      <returns>对称 3DES 加密器对象。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> 的大小对于此算法无效。  
+或 
+ <paramref name="rgbIV" /> 的大小与此算法的块大小不匹配。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> 是此算法的已知弱密钥，不能使用。  
+或 
+ <paramref name="rgbIV" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateIV">
+      <summary>生成用于 3DES 算法的随机初始化向量 (IV)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateKey">
+      <summary>生成用于 3DES 算法的随机密钥。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.Key">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 算法的密钥。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> 算法的密钥。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.KeySize">
+      <summary>获取或设置 <see cref="T:System.Security.Cryptography.TripleDESCng" /> 算法所用密钥的大小（以位为单位）。</summary>
+      <returns>
+        <see cref="T:System.Security.Cryptography.TripleDESCng" /> 算法所用密钥的大小（以位为单位）。</returns>
+    </member>
+  </members>
+</doc>

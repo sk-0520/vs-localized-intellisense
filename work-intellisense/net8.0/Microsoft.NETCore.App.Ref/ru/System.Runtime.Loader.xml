@@ -1,0 +1,208 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Runtime.Loader</name>
+  </assembly>
+  <members>
+    <member name="T:System.Reflection.Metadata.AssemblyExtensions" />
+    <member name="M:System.Reflection.Metadata.AssemblyExtensions.TryGetRawMetadata(System.Reflection.Assembly,System.Byte*@,System.Int32@)">
+      <param name="assembly" vsli:raw="The assembly from which to retrieve the metadata." />
+      <param name="blob" vsli:raw="When this method returns, contains the pointer to the metadata section blob." />
+      <param name="length" vsli:raw="When this method returns, contains the length of the metadata section blob." />
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyDependencyResolver">
+      <summary vsli:raw="Allows a program to resolve assemblies and native libraries to paths based on the dependencies of a given assembly.">Позволяет программе разрешать сборки и собственные библиотеки в пути на основе зависимостей заданной сборки.</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyDependencyResolver&quot; /&gt; class with a path to a component's assembly.">Инициализирует новый экземпляр класса <see cref="T:System.Runtime.Loader.AssemblyDependencyResolver" />, используя путь к сборке компонента.</summary>
+      <param name="componentAssemblyPath" vsli:raw="The path to the component or plugin's managed entry point.">Путь к управляемой точке входа компонента или подключаемого модуля.</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.ResolveAssemblyToPath(System.Reflection.AssemblyName)">
+      <summary vsli:raw="Resolves a path to an assembly with the given assembly name based on the component's dependencies.">Разрешает путь к сборке с заданным именем сборки на основе зависимостей компонента.</summary>
+      <param name="assemblyName" vsli:raw="The assembly name to resolve.">Имя сборки, которое необходимо разрешить.</param>
+      <returns vsli:raw="The path to an assembly with the given name from the component's deps.json file, or &lt;see langword=&quot;null&quot; /&gt; if the assembly does not exist in the deps.json file or is not on disk in the location specified by the deps.json file.">Путь к сборке с заданным именем из файла deps.json компонента или значение <see langword="null" />, если сборка не существует в файле deps.json или не находится на диске в расположении, указанном в файле deps.json.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyDependencyResolver.ResolveUnmanagedDllToPath(System.String)">
+      <summary vsli:raw="Resolves a path to a native library with the given name based on the component's dependencies.">Разрешает путь к собственной библиотеке с заданным именем на основе зависимостей компонента.</summary>
+      <param name="unmanagedDllName" vsli:raw="The name of the native library to resolve.">Имя собственной библиотеки, которую необходимо разрешить.</param>
+      <returns vsli:raw="The path to a native library with the given name from the component's deps.json file and the current runtime identifier, or &lt;see langword=&quot;null&quot; /&gt; if the assembly does not exist in the deps.json file or is not on disk  in the location specified by the deps.json file.">Путь к собственной библиотеке с заданным именем из файла deps.json компонента и текущим идентификатором среды выполнения или значение <see langword="null" />, если сборка не существует в файле deps.json или не находится на диске в расположении, указанном в файле deps.json.</returns>
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyLoadContext">
+      <summary vsli:raw="Represents the runtime's concept of a scope for assembly loading.">Представляет концепцию области среды выполнения для загрузки сборки.</summary>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.Resolving">
+      <summary vsli:raw="Occurs when the resolution of an assembly fails when attempting to load into this assembly load context.">Происходит, когда разрешение сборки завершается неудачей при попытке загрузки в этот контекст загрузки сборки.</summary>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.ResolvingUnmanagedDll">
+      <summary vsli:raw="Occurs when the resolution of a native library fails.">Происходит, когда разрешение собственной библиотеки завершается неудачей.</summary>
+    </member>
+    <member name="E:System.Runtime.Loader.AssemblyLoadContext.Unloading">
+      <summary vsli:raw="Occurs when the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is unloaded.">Происходит при выгрузке <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class.">Инициализирует новый экземпляр класса <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor(System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class with a value that indicates whether unloading is enabled.">Инициализирует новый экземпляр класса <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> со значением, указывающим, включена ли выгрузка.</summary>
+      <param name="isCollectible" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to enable &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.Unload&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt; because there is a performance cost associated with enabling unloading.">
+        <see langword="true" />, чтобы включить <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" />; в противном случае — <see langword="false" />. Значение по умолчанию — <see langword="false" />, так как включение выгрузки снижает производительность.</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.#ctor(System.String,System.Boolean)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; class with a name and a value that indicates whether unloading is enabled.">Инициализирует новый экземпляр класса <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> с именем и значением, указывающим, включена ли выгрузка.</summary>
+      <param name="name" vsli:raw="The value for &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.Name&quot; /&gt; in the new instance. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">Значение для <see cref="P:System.Runtime.Loader.AssemblyLoadContext.Name" /> в новом экземпляре. Это значение может быть равно <see langword="null" />.</param>
+      <param name="isCollectible" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to enable &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.Unload&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt; because there is a performance cost associated with enabling unloading.">
+        <see langword="true" />, чтобы включить <see cref="M:System.Runtime.Loader.AssemblyLoadContext.Unload" />; в противном случае — <see langword="false" />. Значение по умолчанию — <see langword="false" />, так как включение выгрузки снижает производительность.</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to &lt;see langword=&quot;this&quot; /&gt;&lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">Задает для <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> значение <see langword="this" /><see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+      <returns vsli:raw="An object to restore the previous value of &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">Объект для восстановления предыдущего значения <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" />. Предназначен для использования в качестве <see cref="T:System.IDisposable" /> в блоке <see langword="using" />.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection(System.Reflection.Assembly)">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; which loaded the assembly.">Задает для <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> значение <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />, которое загрузило сборку.</summary>
+      <param name="activating" vsli:raw="The assembly that is used to determine the requested &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instance.">Сборка, которая используется для определения запрошенного экземпляра <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</param>
+      <returns vsli:raw="An object to restore the previous value of &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">Объект для восстановления предыдущего значения <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" />. Предназначен для использования в качестве <see cref="T:System.IDisposable" /> в блоке <see langword="using" />.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Finalize">
+      <summary vsli:raw="Allows the object to try to free resources and perform other cleanup operations before it's reclaimed by garbage collection.">Позволяет объекту пытаться освобождать ресурсы и выполнять другие операции очистки, прежде чем он будет утилизирован сборкой мусора.</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.GetAssemblyName(System.String)">
+      <summary vsli:raw="Gets an &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt; for an assembly path.">Получает <see cref="T:System.Reflection.AssemblyName" /> для пути к сборке.</summary>
+      <param name="assemblyPath" vsli:raw="The path to the assembly.">Путь к сборке.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assemblyPath&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assemblyPath" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The assembly cannot be found.">Не удается найти сборку.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The assembly is not a valid assembly.">Сборка не является допустимой.</exception>
+      <returns vsli:raw="An object that contains the fully parsed assembly name for the assembly at &lt;paramref name=&quot;assemblyPath&quot; /&gt;.">Объект, содержащий полностью проанализированное имя для этой сборки в <paramref name="assemblyPath" />.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.GetLoadContext(System.Reflection.Assembly)">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; containing the specified &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt;.">Получает <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> с указанным <see cref="T:System.Reflection.Assembly" />.</summary>
+      <param name="assembly" vsli:raw="An assembly.">Сборка</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> имеет значение <see langword="null" />.</exception>
+      <returns vsli:raw="The assembly load context containing the &lt;paramref name=&quot;assembly&quot; /&gt;. If the &lt;paramref name=&quot;assembly&quot; /&gt; is not provided by the runtime, this method returns null.">Контекст загрузки сборки с <paramref name="assembly" />. Если <paramref name="assembly" /> не предоставляется средой выполнения, этот метод возвращает null.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Load(System.Reflection.AssemblyName)">
+      <summary vsli:raw="When overridden in a derived class, allows an assembly to be resolved based on its &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt;.">При переопределении в производном классе позволяет сборке разрешаться и загружаться в зависимости от <see cref="T:System.Reflection.AssemblyName" />.</summary>
+      <param name="assemblyName" vsli:raw="The object that describes the assembly to be resolved.">Объект, описывающий загружаемую сборку.</param>
+      <returns vsli:raw="The resolved assembly, or &lt;see langword=&quot;null&quot; /&gt;.">Загруженная сборка или <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyName(System.Reflection.AssemblyName)">
+      <summary vsli:raw="Resolves and loads an assembly given its &lt;see cref=&quot;T:System.Reflection.AssemblyName&quot; /&gt;.">Разрешает и загружает сборку в зависимости от <see cref="T:System.Reflection.AssemblyName" />.</summary>
+      <param name="assemblyName" vsli:raw="The object that describes the assembly to load.">Объект, который описывает сборку, подлежащую загрузке.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assemblyName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is not found.">
+        <paramref name="assemblyName" /> не найден.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assemblyName&quot; /&gt; is not a valid assembly.">
+        <paramref name="assemblyName" /> не является допустимой сборкой.</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="An assembly or module was loaded which did not match the &lt;paramref name=&quot;assemblyName&quot; /&gt;.">Загружены сборка или модуль, которые не соответствуют <paramref name="assemblyName" />.</exception>
+      <returns vsli:raw="The loaded assembly, or throws.">Загруженная сборка или исключение.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromAssemblyPath(System.String)">
+      <summary vsli:raw="Loads the contents of an assembly file on the specified path.">Загружает содержимое файла сборки, находящегося по указанному пути.</summary>
+      <param name="assemblyPath" vsli:raw="The fully qualified path of the file to load.">Полный путь к загружаемому файлу.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not an absolute path.">Аргумент <paramref name="assemblyPath" /> не является абсолютным путем.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is &lt;see langword=&quot;null&quot; /&gt;.">Параметр <paramref name="assemblyPath" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="A file that was found could not be loaded.">Не удалось загрузить файл, который был найден.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is an empty string (&quot;&quot;) or does not exist.">Параметр <paramref name="assemblyPath" /> представляет собой пустую строку ("") или не существует.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The  &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not a valid assembly.">
+        <paramref name="assemblyPath" /> не является допустимой сборкой.</exception>
+      <returns vsli:raw="The loaded assembly.">Загруженная сборка.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromNativeImagePath(System.String,System.String)">
+      <summary vsli:raw="Loads the contents of the native image of a managed assembly file on the specified path.">Загружает содержимое собственного образа файла управляемой сборки по указанному пути.</summary>
+      <param name="nativeImagePath" vsli:raw="The fully qualified path of the file to load.">Полный путь к загружаемому файлу.</param>
+      <param name="assemblyPath" vsli:raw="The fully qualified path of the IL version of the file to load, or &lt;see langword=&quot;null&quot; /&gt;.">Полный путь к версии IL файла для загрузки или <see langword="null" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is not an absolute path.">Аргумент <paramref name="nativeImagePath" /> не является абсолютным путем.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not an absolute path.">Аргумент <paramref name="assemblyPath" /> не является абсолютным путем.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is &lt;see langword=&quot;null&quot; /&gt;.">Параметр <paramref name="nativeImagePath" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.IO.FileLoadException" vsli:raw="A file that was found could not be loaded.">Не удалось загрузить файл, который был найден.</exception>
+      <exception cref="T:System.IO.FileNotFoundException" vsli:raw="The &lt;paramref name=&quot;nativeImagePath&quot; /&gt; argument is an empty string (&quot;&quot;) or does not exist.">Параметр <paramref name="nativeImagePath" /> представляет собой пустую строку ("") или не существует.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The &lt;paramref name=&quot;assemblyPath&quot; /&gt; argument is not a valid assembly.">
+        <paramref name="assemblyPath" /> не является допустимой сборкой.</exception>
+      <returns vsli:raw="The loaded assembly.">Загруженная сборка.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream)">
+      <summary vsli:raw="Loads the assembly with a common object file format (COFF)-based image containing a managed assembly.">Загружает сборку с образом в формате COFF, содержащим управляемую сборку.</summary>
+      <param name="assembly" vsli:raw="A byte array that is a COFF-based image containing a managed assembly.">Массив байтов, который является образом в формате COFF, содержащим управляемую сборку.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is not a valid assembly.">
+        <paramref name="assembly" /> не является допустимой сборкой.</exception>
+      <returns vsli:raw="The loaded assembly.">Загруженная сборка.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadFromStream(System.IO.Stream,System.IO.Stream)">
+      <summary vsli:raw="Loads the assembly with a common object file format (COFF)-based image containing a managed assembly, optionally including symbols for the assembly.">Загружает сборку с образом в формате COFF, содержащим управляемую сборку и (дополнительно) символы для сборки.</summary>
+      <param name="assembly" vsli:raw="A byte array that is a COFF-based image containing a managed assembly.">Массив байтов, который является образом в формате COFF, содержащим управляемую сборку.</param>
+      <param name="assemblySymbols" vsli:raw="A byte array that contains the raw bytes representing the symbols for the assembly.">Массив байтов, содержащий необработанные байты, которые представляют символы для сборки.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is not a valid assembly.">
+        <paramref name="assembly" /> не является допустимой сборкой.</exception>
+      <returns vsli:raw="The loaded assembly.">Загруженная сборка.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDll(System.String)">
+      <summary vsli:raw="Allows derived class to load an unmanaged library by name.">Позволяет производному классу загружать неуправляемую библиотеку по имени.</summary>
+      <param name="unmanagedDllName" vsli:raw="Name of the unmanaged library. Typically this is the filename without its path or extensions.">Имя неуправляемые библиотеки. Как правило, это имя файла без пути или расширений.</param>
+      <returns vsli:raw="A handle to the loaded library, or &lt;see cref=&quot;F:System.IntPtr.Zero&quot; /&gt;.">Дескриптор для загруженной библиотеки или <see cref="F:System.IntPtr.Zero" />.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.LoadUnmanagedDllFromPath(System.String)">
+      <summary vsli:raw="Loads an unmanaged library from the specified path.">Загружает неуправляемую библиотеку из указанного пути.</summary>
+      <param name="unmanagedDllPath" vsli:raw="The path to the unmanaged library.">Путь к неуправляемой библиотеке.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;unmanagedDllPath&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="unmanagedDllPath" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The &lt;paramref name=&quot;unmanagedDllPath&quot; /&gt; argument is empty or not an absolute path.">Аргумент <paramref name="unmanagedDllPath" /> пуст или не является абсолютным путем.</exception>
+      <exception cref="T:System.DllNotFoundException" vsli:raw="The library can't be found.">Не удается найти библиотеку.</exception>
+      <exception cref="T:System.BadImageFormatException" vsli:raw="The library is not valid.">Библиотека недопустима.</exception>
+      <returns vsli:raw="The OS handle for the loaded native library.">Дескриптор ОС для загруженной собственной библиотеки.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.SetProfileOptimizationRoot(System.String)">
+      <summary vsli:raw="Sets the root path where the optimization profiles for this load context are stored.">Задает корневой путь, по которому хранятся профили оптимизации для данного контекста загрузки.</summary>
+      <param name="directoryPath" vsli:raw="The full path to the directory where the optimization profiles are stored.">Полный путь к каталогу, в котором хранятся профили оптимизации.</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.StartProfileOptimization(System.String)">
+      <summary vsli:raw="Starts the profile optimization for the specified profile.">Запускает процесс оптимизации профиля для указанного профиля.</summary>
+      <param name="profile" vsli:raw="The name of the optimization profile.">Имя профиля оптимизации.</param>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.ToString">
+      <summary vsli:raw="Returns the string representation of this load context.">Возвращает строковое представление этого контекста загрузки.</summary>
+      <returns vsli:raw="The string representation of this load context.">Строковое представление этого контекста загрузки.</returns>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.Unload">
+      <summary vsli:raw="Initiates an unload of this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">Инициирует выгрузку <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="Unloading is not allowed.">Выгрузка не допускается.</exception>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.All">
+      <summary vsli:raw="Returns a collection of all &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instances.">Возвращает коллекцию всех экземпляров класса <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+      <returns vsli:raw="A collection of all &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; instances.">Коллекция всех <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> экземпляров.</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Assemblies">
+      <summary vsli:raw="Returns a collection of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; instances loaded in the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">Возвращает коллекцию экземпляров <see cref="T:System.Reflection.Assembly" />, загруженных в <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+      <returns vsli:raw="A collection of the &lt;see cref=&quot;T:System.Reflection.Assembly&quot; /&gt; instances loaded in the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">Коллекция <see cref="T:System.Reflection.Assembly" /> экземпляров, загруженных в <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> .</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; set by the most recent call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;.">Получает <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />, заданный последним вызовов к <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; set by the most recent call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;. This value can be &lt;see langword=&quot;null&quot; /&gt;. The value is stored in an &lt;see cref=&quot;T:System.Threading.AsyncLocal`1&quot; /&gt;, so the value is unique per asynchronous context.">Набор, заданный последним <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> вызовом <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" /> . Это значение может быть равно <see langword="null" />. Значение хранится в <see cref="T:System.Threading.AsyncLocal`1" /> , поэтому значение уникально для каждого асинхронного контекста.</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Default">
+      <summary vsli:raw="Gets the default &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;. The default context contains the main application assembly and its static dependencies.">Возвращает значение по умолчанию для объекта <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />. Контекст по умолчанию содержит основную сборку приложения и его статические зависимости.</summary>
+      <returns vsli:raw="The default assembly load context.">Контекст загрузки сборки по умолчанию.</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.IsCollectible">
+      <summary vsli:raw="Gets a value that indicates whether this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is collectible.">Получает значение, указывающее, является ли контекст <see cref="T:System.Runtime.Loader.AssemblyLoadContext" /> забираемым.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt; is collectible; otherwise, &lt;see langword=&quot;false&quot; /&gt;. If a value is not specified in the constructor, the value is &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />
+        <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />значение, если это значение является собираемым; в противном случае — <see langword="false" /> . Если значение не указано в конструкторе, то оно имеет значение <see langword="false" /> .</returns>
+    </member>
+    <member name="P:System.Runtime.Loader.AssemblyLoadContext.Name">
+      <summary vsli:raw="Get the name of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;.">Возвращает имя <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />.</summary>
+      <returns vsli:raw="The name of the &lt;see cref=&quot;T:System.Runtime.Loader.AssemblyLoadContext&quot; /&gt;. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">Имя <see cref="T:System.Runtime.Loader.AssemblyLoadContext" />. Это значение может быть равно <see langword="null" />.</returns>
+    </member>
+    <member name="T:System.Runtime.Loader.AssemblyLoadContext.ContextualReflectionScope">
+      <summary vsli:raw="Provides a return type used exclusively for &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt;. It is intended to be used as an &lt;see cref=&quot;T:System.IDisposable&quot; /&gt; in a &lt;see langword=&quot;using&quot; /&gt; block.">Предоставляет тип возвращаемого значения, используемые исключительно для <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />. Предназначен для использования в качестве <see cref="T:System.IDisposable" /> в блоке <see langword="using" />.</summary>
+    </member>
+    <member name="M:System.Runtime.Loader.AssemblyLoadContext.ContextualReflectionScope.Dispose">
+      <summary vsli:raw="Sets &lt;see cref=&quot;P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext&quot; /&gt; to the value preceding the call to &lt;see cref=&quot;M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection&quot; /&gt; which returned this instance.">Задает для <see cref="P:System.Runtime.Loader.AssemblyLoadContext.CurrentContextualReflectionContext" /> значение, предшествующее вызову <see cref="M:System.Runtime.Loader.AssemblyLoadContext.EnterContextualReflection" />, вернувшему этот экземпляр.</summary>
+    </member>
+  </members>
+</doc>

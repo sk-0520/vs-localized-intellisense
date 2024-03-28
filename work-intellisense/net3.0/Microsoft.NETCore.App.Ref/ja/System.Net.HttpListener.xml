@@ -1,0 +1,742 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Net.HttpListener</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.AuthenticationSchemeSelector">
+      <summary vsli:raw="Selects the authentication scheme for an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">
+        <see cref="T:System.Net.HttpListener" /> インスタンスの認証方式を選択します。</summary>
+      <param name="httpRequest" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; instance for which to select an authentication scheme.">認証方式の選択対象となる <see cref="T:System.Net.HttpListenerRequest" /> インスタンス。</param>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Net.AuthenticationSchemes&quot; /&gt; values that indicates the method of authentication to use for the specified client request.">指定したクライアント要求に使用する認証のメソッドを示す <see cref="T:System.Net.AuthenticationSchemes" /> 値の 1 つ。</returns>
+    </member>
+    <member name="T:System.Net.HttpListener">
+      <summary vsli:raw="Provides a simple, programmatically controlled HTTP protocol listener. This class cannot be inherited.">単純で、プログラムによって制御できる HTTP プロトコル リスナーを提供します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Net.HttpListener.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class.">
+        <see cref="T:System.Net.HttpListener" /> クラスの新しいインスタンスを初期化します。</summary>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="This class cannot be used on the current operating system. Windows Server 2003 or Windows XP SP2 is required to use instances of this class.">このクラスは、現在のオペレーティング システムでは使用できません。 このクラスのインスタンスを使用するには、Windows Server 2003 または Windows XP SP2 以降が必要です。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Abort">
+      <summary vsli:raw="Shuts down the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object immediately, discarding all currently queued requests.">すぐに <see cref="T:System.Net.HttpListener" /> オブジェクトをシャットダウンし、現在キューに置かれているすべての要求を破棄します。</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemes">
+      <summary vsli:raw="Gets or sets the scheme used to authenticate clients.">クライアントの認証に使用する方式を取得または設定します。</summary>
+      <returns vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Net.AuthenticationSchemes&quot; /&gt; enumeration values that indicates how clients are to be authenticated. The default value is &lt;see cref=&quot;F:System.Net.AuthenticationSchemes.Anonymous&quot; /&gt;.">クライアントの認証方法を示す <see cref="T:System.Net.AuthenticationSchemes" /> 列挙値のビットごとの組み合わせ。 既定値は <see cref="F:System.Net.AuthenticationSchemes.Anonymous" /> です。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemeSelectorDelegate">
+      <summary vsli:raw="Gets or sets the delegate called to determine the protocol used to authenticate clients.">クライアントの認証に使用するプロトコルを確認するために呼び出されるデリゲートを取得または設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.AuthenticationSchemeSelector&quot; /&gt; delegate that invokes the method used to select an authentication protocol. The default value is &lt;see langword=&quot;null&quot; /&gt;.">認証プロトコルの選択に使用されるメソッドを呼び出す <see cref="T:System.Net.AuthenticationSchemeSelector" /> デリゲート。 既定値は <see langword="null" /> です。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins asynchronously retrieving an incoming request.">受信要求の非同期の取得を開始します。</summary>
+      <param name="callback" vsli:raw="An &lt;see cref=&quot;T:System.AsyncCallback&quot; /&gt; delegate that references the method to invoke when a client request is available.">クライアント要求が使用可能なときに呼び出すメソッドを参照する <see cref="T:System.AsyncCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="A user-defined object that contains information about the operation. This object is passed to the &lt;paramref name=&quot;callback&quot; /&gt; delegate when the operation completes.">操作に関する情報を格納するユーザー定義のオブジェクト。 このオブジェクトは、操作の完了時に <paramref name="callback" /> デリゲートに渡されます。</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that indicates the status of the asynchronous operation.">非同期操作のステータスを示す <see cref="T:System.IAsyncResult" /> オブジェクト。</returns>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Win32 関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This object has not been started or is currently stopped.">このオブジェクトが開始されていないか、現在停止されています。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Close">
+      <summary vsli:raw="Shuts down the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt;.">
+        <see cref="T:System.Net.HttpListener" /> を終了します。</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.DefaultServiceNames">
+      <summary vsli:raw="Gets a default list of Service Provider Names (SPNs) as determined by registered prefixes.">登録済みプレフィックスによって決定される既定のサービス プロバイダー名 (SPN: Service Provider Name) の一覧を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection&quot; /&gt; that contains a list of SPNs.">SPN の一覧を格納している <see cref="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)">
+      <summary vsli:raw="Completes an asynchronous operation to retrieve an incoming client request.">受信クライアント要求を取得する非同期操作を完了します。</summary>
+      <param name="asyncResult" vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that was obtained when the asynchronous operation was started.">非同期操作の開始時に取得した <see cref="T:System.IAsyncResult" /> オブジェクト。</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents the client request.">クライアント要求を表す <see cref="T:System.Net.HttpListenerContext" /> オブジェクト。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; was not obtained by calling the &lt;see cref=&quot;M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)&quot; /&gt; method.">
+        <paramref name="asyncResult" /> を <see cref="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)" /> メソッドの呼び出しで取得できませんでした。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Win32 関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)&quot; /&gt; method was already called for the specified &lt;paramref name=&quot;asyncResult&quot; /&gt; object.">
+        <see cref="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)" /> メソッドは、既に指定された <paramref name="asyncResult" /> オブジェクトに対して呼び出されています。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionPolicy">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for extended protection for a session.">セッションの拡張保護に使用する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> を取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; that specifies the policy to use for extended protection.">拡張保護に使用するポリシーを指定する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property, but the &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding&quot; /&gt; property was not &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> プロパティを設定しようとしましたが、<see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> プロパティは <see langword="null" /> ではありませんでした。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property to &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> プロパティを <see langword="null" /> に設定しようとしました。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property after the &lt;see cref=&quot;M:System.Net.HttpListener.Start&quot; /&gt; method was already called.">
+        <see cref="M:System.Net.HttpListener.Start" /> メソッドを呼び出した後で <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> プロパティを設定しようとしました。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="The &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement&quot; /&gt; property was set to &lt;see cref=&quot;F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always&quot; /&gt; on a platform that does not support extended protection.">
+        <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement" /> プロパティが、拡張保護をサポートしていないプラットフォーム上で <see cref="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always" /> に設定されました。</exception>
+    </member>
+    <member name="T:System.Net.HttpListener.ExtendedProtectionSelector">
+      <summary vsli:raw="A delegate called to determine the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for each &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; request.">各 <see cref="T:System.Net.HttpListener" /> 要求に使用する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> を決定するために呼び出されるデリゲートです。</summary>
+      <param name="request" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; to determine the extended protection policy that the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance will use to provide extended protection.">
+        <see cref="T:System.Net.HttpListener" /> インスタンスが拡張保護の提供に使用する拡張保護ポリシーを決定するための <see cref="T:System.Net.HttpListenerRequest" />。</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; object that specifies the extended protection policy to use for this request.">この要求に使用する拡張保護ポリシーを指定する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate">
+      <summary vsli:raw="Gets or sets the delegate called to determine the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for each request.">各要求に使用する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> を決定するために呼び出すデリゲートを取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; that specifies the policy to use for extended protection.">拡張保護に使用するポリシーを指定する <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" />。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property, but the &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding&quot; /&gt; property must be &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> プロパティを設定しようとしましたが、<see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> プロパティが <see langword="null" /> である必要があります。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property to &lt;see langword=&quot;null&quot; /&gt;.">
+        <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> プロパティを <see langword="null" /> に設定しようとしました。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property after the &lt;see cref=&quot;M:System.Net.HttpListener.Start&quot; /&gt; method was already called.">
+        <see cref="M:System.Net.HttpListener.Start" /> メソッドを呼び出した後で <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> プロパティを設定しようとしました。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property on a platform that does not support extended protection.">拡張保護をサポートしていないプラットフォームで <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> プロパティを設定しようとしました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContext">
+      <summary vsli:raw="Waits for an incoming request and returns when one is received.">受信要求を待機し、受信するとその要求を返します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents a client request.">クライアント要求を表す <see cref="T:System.Net.HttpListenerContext" /> オブジェクト。</returns>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Win32 関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This object has not been started or is currently stopped.  &#xA;  &#xA; -or-  &#xA;  &#xA; The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; does not have any Uniform Resource Identifier (URI) prefixes to respond to.">このオブジェクトが開始されていないか、現在停止されています。  
+
+または - 
+<see cref="T:System.Net.HttpListener" /> に、応答対象の URI (Uniform Resource Identifier) がありません。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContextAsync">
+      <summary vsli:raw="Waits for an incoming request as an asynchronous operation.">非同期操作として受信要求を待ちます。</summary>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents a client request.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、クライアント要求を表す <see cref="T:System.Net.HttpListenerContext" /> オブジェクトを返します。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IgnoreWriteExceptions">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that specifies whether your application receives exceptions that occur when an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; sends the response to the client.">
+        <see cref="T:System.Boolean" /> がクライアントに応答を送信したときに発生する例外をアプリケーションで受信するかどうかを指定する <see cref="T:System.Net.HttpListener" /> 値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; should not return exceptions that occur when sending the response to the client; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />クライアントに応答を送信するときに発生する例外を返さない場合は。それ<see langword="false" />以外の場合は。 <see cref="T:System.Net.HttpListener" /> 既定値は <see langword="false" /> です。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.IsListening">
+      <summary vsli:raw="Gets a value that indicates whether &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; has been started.">
+        <see cref="T:System.Net.HttpListener" /> が開始されているかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; was started; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see cref="T:System.Net.HttpListener" /> が開始されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IsSupported">
+      <summary vsli:raw="Gets a value that indicates whether &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; can be used with the current operating system.">現在のオペレーティング システムで <see cref="T:System.Net.HttpListener" /> を使用できるかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; on all platforms.">
+        <see cref="T:System.Net.HttpListener" /> がサポートされている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.Prefixes">
+      <summary vsli:raw="Gets the Uniform Resource Identifier (URI) prefixes handled by this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">この <see cref="T:System.Net.HttpListener" /> オブジェクトによって処理される URI (Uniform Resource Identifier) プレフィックスを取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; that contains the URI prefixes that this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object is configured to handle.">この <see cref="T:System.Net.HttpListenerPrefixCollection" /> オブジェクトで処理するように構成されている URI プレフィックスが格納された <see cref="T:System.Net.HttpListener" />。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.Realm">
+      <summary vsli:raw="Gets or sets the realm, or resource partition, associated with this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">この <see cref="T:System.Net.HttpListener" /> オブジェクトに関連付けられているレルム (リソース パーティション) を取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; value that contains the name of the realm associated with the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.String" /> オブジェクトに関連付けられているレルムの名前が格納された <see cref="T:System.Net.HttpListener" /> 値。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Start">
+      <summary vsli:raw="Allows this instance to receive incoming requests.">このインスタンスが受信要求を受信できるようにします。</summary>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Win32 関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Stop">
+      <summary vsli:raw="Causes this instance to stop receiving new incoming requests and terminates processing of all ongoing requests.">このインスタンスの受信要求の受信を停止します。</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.System#IDisposable#Dispose">
+      <summary vsli:raw="Releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">この <see cref="T:System.Net.HttpListener" /> オブジェクトに保持されているリソースを解放します。</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.TimeoutManager">
+      <summary vsli:raw="The timeout manager for this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">この <see cref="T:System.Net.HttpListener" /> インスタンスのタイムアウト マネージャーです。</summary>
+      <returns vsli:raw="The timeout manager for this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">この <see cref="T:System.Net.HttpListener" /> インスタンスのタイムアウト マネージャーです。</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.UnsafeConnectionNtlmAuthentication">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that controls whether, when NTLM is used, additional requests using the same Transmission Control Protocol (TCP) connection are required to authenticate.">NTLM が使用されているときに、同じ TCP (Transmission Control Protocol) 接続を使用した別の要求を認証する必要があるかどうかを制御する <see cref="T:System.Boolean" /> 値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Security.Principal.IIdentity&quot; /&gt; of the first request will be used for subsequent requests on the same connection; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt;.">最初の要求の <see cref="T:System.Security.Principal.IIdentity" /> が同じ接続で行われる後続の要求に使用される場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は <see langword="false" /> です。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">このオブジェクトは閉じられました。</exception>
+    </member>
+    <member name="T:System.Net.HttpListenerBasicIdentity">
+      <summary vsli:raw="Holds the user name and password from a basic authentication request.">基本認証要求から取得したユーザー名とパスワードを保持します。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerBasicIdentity.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerBasicIdentity&quot; /&gt; class using the specified user name and password.">指定したユーザー名とパスワードを使用して、<see cref="T:System.Net.HttpListenerBasicIdentity" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="username" vsli:raw="The user name.">ユーザー名。</param>
+      <param name="password" vsli:raw="The password.">パスワード。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerBasicIdentity.Password">
+      <summary vsli:raw="Indicates the password from a basic authentication attempt.">基本認証の試行から取得したパスワードを示します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that holds the password.">パスワードを保持する <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerContext">
+      <summary vsli:raw="Provides access to the request and response objects used by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class. This class cannot be inherited.">
+        <see cref="T:System.Net.HttpListener" /> クラスで使用される要求オブジェクトと応答オブジェクトへのアクセスを提供します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String)">
+      <summary vsli:raw="Accept a WebSocket connection as an asynchronous operation.">WebSocket 接続を非同期操作として受け入れます。</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">サポートされる WebSocket サブプロトコル。</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> オブジェクトを返します。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> が空の文字列です。 
+または 
+ <paramref name="subProtocol" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">WebSocket ハンドシェイクを完了するために応答を送信中にエラーが発生しました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan)">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol, receive buffer size, and WebSocket keep-alive interval as an asynchronous operation.">サポートされている WebSocket サブプロトコル受信バッファー サイズと WebSocket のキープアライブ間隔を指定する WebSocket 接続を、非同期操作として受け入れます。</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">サポートされる WebSocket サブプロトコル。</param>
+      <param name="receiveBufferSize" vsli:raw="The receive buffer size in bytes.">受信バッファーのサイズ (バイト単位)。</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">WebSocket プロトコルのミリ秒単位での keep-alive 間隔。</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> オブジェクトを返します。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> が空の文字列です。 
+
+または - 
+<paramref name="subProtocol" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is less than 16 bytes  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is greater than 64K bytes.">
+        <paramref name="keepAliveInterval" /> が小さすぎます。  
+
+または - 
+<paramref name="receiveBufferSize" /> が 16 バイト未満です 
+または 
+<paramref name="receiveBufferSize" /> が 64K バイトを超えています。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">WebSocket ハンドシェイクを完了するために応答を送信中にエラーが発生しました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan,System.ArraySegment{System.Byte})">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol, receive buffer size, WebSocket keep-alive interval, and the internal buffer as an asynchronous operation.">サポートされている WebSocket サブプロトコル受信バッファー サイズ、WebSocket のキープアライブ間隔、内部バッファーを指定する WebSocket 接続を、非同期操作として受け入れます。</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">サポートされる WebSocket サブプロトコル。</param>
+      <param name="receiveBufferSize" vsli:raw="The receive buffer size in bytes.">受信バッファーのサイズ (バイト単位)。</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">WebSocket プロトコルのミリ秒単位での keep-alive 間隔。</param>
+      <param name="internalBuffer" vsli:raw="An internal buffer to use for this operation.">この操作で使用する内部バッファー。</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> オブジェクトを返します。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> が空の文字列です。 
+
+または - 
+<paramref name="subProtocol" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is less than 16 bytes  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is greater than 64K bytes.">
+        <paramref name="keepAliveInterval" /> が小さすぎます。  
+または 
+ <paramref name="receiveBufferSize" /> が 16 バイト未満です 
+または 
+ <paramref name="receiveBufferSize" /> が 64K バイトを超えています。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">WebSocket ハンドシェイクを完了するために応答を送信中にエラーが発生しました。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.TimeSpan)">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol  and WebSocket keep-alive interval as an asynchronous operation.">サポートされている WebSocket サブプロトコルと WebSocket のキープアライブ間隔を指定する WebSocket 接続を、非同期操作として受け入れます。</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">サポートされる WebSocket サブプロトコル。</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">WebSocket プロトコルのミリ秒単位での keep-alive 間隔。</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、<see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" /> オブジェクトを返します。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> が空の文字列です。 
+または 
+ <paramref name="subProtocol" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.">
+        <paramref name="keepAliveInterval" /> が小さすぎます。</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">WebSocket ハンドシェイクを完了するために応答を送信中にエラーが発生しました。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Request">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; that represents a client's request for a resource.">クライアントのリソース要求を表す <see cref="T:System.Net.HttpListenerRequest" /> を取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; object that represents the client request.">クライアント要求を表す <see cref="T:System.Net.HttpListenerRequest" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Response">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; object that will be sent to the client in response to the client's request.">クライアントの要求に応答してクライアントに送信される <see cref="T:System.Net.HttpListenerResponse" /> オブジェクトを取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; object used to send a response back to the client.">クライアントに応答を送り返すために使用する <see cref="T:System.Net.HttpListenerResponse" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.User">
+      <summary vsli:raw="Gets an object used to obtain identity, authentication information, and security roles for the client whose request is represented by this &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object.">要求が <see cref="T:System.Net.HttpListenerContext" /> オブジェクトによって表されるクライアントの ID、認証情報、セキュリティ ロールを取得するために使用するオブジェクトを取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Security.Principal.IPrincipal&quot; /&gt; object that describes the client, or &lt;see langword=&quot;null&quot; /&gt; if the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; that supplied this &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; does not require authentication.">クライアントを記述する <see cref="T:System.Security.Principal.IPrincipal" /> オブジェクト。この <see cref="T:System.Net.HttpListener" /> を提供した <see cref="T:System.Net.HttpListenerContext" /> が認証を必要としない場合は <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerException">
+      <summary vsli:raw="The exception that is thrown when an error occurs processing an HTTP request.">HTTP 要求の処理中にエラーが発生するとスローされる例外。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class.">
+        <see cref="T:System.Net.HttpListenerException" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class using the specified error code.">指定したエラー コードを使用して、<see cref="T:System.Net.HttpListenerException" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="errorCode" vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that identifies the error that occurred.">発生したエラーを識別する <see cref="T:System.Int32" /> 値。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class using the specified error code and message.">指定したエラー コードおよびメッセージを使用して、<see cref="T:System.Net.HttpListenerException" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="errorCode" vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that identifies the error that occurred.">発生したエラーを識別する <see cref="T:System.Int32" /> 値。</param>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that describes the error that occurred.">発生したエラーを説明する <see cref="T:System.String" />。</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class from the specified instances of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; and &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; classes.">
+        <see cref="T:System.Runtime.Serialization.SerializationInfo" /> クラスと <see cref="T:System.Runtime.Serialization.StreamingContext" /> クラスの指定したインスタンスから、<see cref="T:System.Net.HttpListenerException" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="serializationInfo" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that contains the information required to deserialize the new &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; object.">新しい <see cref="T:System.Runtime.Serialization.SerializationInfo" /> オブジェクトを逆シリアル化するために必要な情報を格納する <see cref="T:System.Net.HttpListenerException" /> オブジェクト。</param>
+      <param name="streamingContext" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; object.">
+        <see cref="T:System.Runtime.Serialization.StreamingContext" /> オブジェクト。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerException.ErrorCode">
+      <summary vsli:raw="Gets a value that identifies the error that occurred.">発生したエラーを識別する値を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value.">
+        <see cref="T:System.Int32" /> 値。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerPrefixCollection">
+      <summary vsli:raw="Represents the collection used to store Uniform Resource Identifier (URI) prefixes for &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; objects.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトの URI (Uniform Resource Identifier) プレフィックスの格納に使用するコレクションを表します。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Add(System.String)">
+      <summary vsli:raw="Adds a Uniform Resource Identifier (URI) prefix to the collection.">URI (Uniform Resource Identifier) プレフィックスをコレクションに追加します。</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that identifies the URI information that is compared in incoming requests. The prefix must be terminated with a forward slash (&quot;/&quot;).">受信要求で比較される URI 情報を識別する <see cref="T:System.String" />。 プレフィックスは、スラッシュ ("/") で終了する必要があります。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; does not use the http:// or https:// scheme. These are the only schemes supported for &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; objects.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;uriPrefix&quot; /&gt; is not a correctly formatted URI prefix. Make sure the string is terminated with a &quot;/&quot;.">
+        <paramref name="uriPrefix" /> が、http:// または https:// スキームを使用していません。 <see cref="T:System.Net.HttpListener" /> オブジェクトでは、これらのスキームのみがサポートされています。  
+
+または - 
+<paramref name="uriPrefix" /> が、正しい書式の URI プレフィックスではありません。 文字列が "/" で終わっていることを確認してください。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">このコレクションに関連付けられている <see cref="T:System.Net.HttpListener" /> は閉じています。</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception. This exception is thrown if another &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; has already added the prefix &lt;paramref name=&quot;uriPrefix&quot; /&gt;.">Windows の関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。 この例外は、別の <see cref="T:System.Net.HttpListener" /> が既にプレフィックス <paramref name="uriPrefix" /> を追加している場合にスローされます。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Clear">
+      <summary vsli:raw="Removes all the Uniform Resource Identifier (URI) prefixes from the collection.">コレクションからすべての URI プレフィックスを削除します。</summary>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Windows の関数呼び出しが失敗しました。 例外の <see cref="P:System.Net.HttpListenerException.ErrorCode" /> プロパティを調べて、例外の原因を確認します。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">このコレクションに関連付けられている <see cref="T:System.Net.HttpListener" /> は閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Contains(System.String)">
+      <summary vsli:raw="Returns a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the specified prefix is contained in the collection.">指定したプレフィックスがコレクションに含まれているかどうかを示す <see cref="T:System.Boolean" /> 値を返します。</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the Uniform Resource Identifier (URI) prefix to test.">テストする Uniform Resource Identifier (URI) プレフィックスを格納している <see cref="T:System.String" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this collection contains the prefix specified by &lt;paramref name=&quot;uriPrefix&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">このコレクションに <paramref name="uriPrefix" /> で指定したプレフィックスが存在する場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.Array,System.Int32)">
+      <summary vsli:raw="Copies the contents of an &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; to the specified array.">指定した配列に <see cref="T:System.Net.HttpListenerPrefixCollection" /> の内容をコピーします。</summary>
+      <param name="array" vsli:raw="The one dimensional &lt;see cref=&quot;T:System.Array&quot; /&gt; that receives the Uniform Resource Identifier (URI) prefix strings in this collection.">このコレクション内の URI プレフィックス文字列を受け取る、1 次元の <see cref="T:System.Array" />。</param>
+      <param name="offset" vsli:raw="The zero-based index in &lt;paramref name=&quot;array&quot; /&gt; at which copying begins.">コピーの開始位置とする <paramref name="array" /> のインデックス (0 から始まる)。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; has more than one dimension.">
+        <paramref name="array" /> の次元が 2 次元以上です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="This collection contains more elements than can be stored in &lt;paramref name=&quot;array&quot; /&gt; starting at &lt;paramref name=&quot;offset&quot; /&gt;.">このコレクションには、<paramref name="offset" /> から始まる <paramref name="array" /> に格納できる数以上の要素が格納されています。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">このコレクションに関連付けられている <see cref="T:System.Net.HttpListener" /> は閉じています。</exception>
+      <exception cref="T:System.InvalidCastException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; cannot store string values.">
+        <paramref name="array" /> には文字列値を格納できません。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.String[],System.Int32)">
+      <summary vsli:raw="Copies the contents of an &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; to the specified string array.">指定した文字列配列に <see cref="T:System.Net.HttpListenerPrefixCollection" /> の内容をコピーします。</summary>
+      <param name="array" vsli:raw="The one dimensional string array that receives the Uniform Resource Identifier (URI) prefix strings in this collection.">このコレクション内の URI プレフィックス文字列を受け取る 1 次元文字列配列。</param>
+      <param name="offset" vsli:raw="The zero-based index in &lt;paramref name=&quot;array&quot; /&gt; at which copying begins.">コピーの開始位置とする <paramref name="array" /> のインデックス (0 から始まる)。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; has more than one dimension.">
+        <paramref name="array" /> の次元が 2 次元以上です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="This collection contains more elements than can be stored in &lt;paramref name=&quot;array&quot; /&gt; starting at &lt;paramref name=&quot;offset&quot; /&gt;.">このコレクションには、<paramref name="offset" /> から始まる <paramref name="array" /> に格納できる数以上の要素が格納されています。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">このコレクションに関連付けられている <see cref="T:System.Net.HttpListener" /> は閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.Count">
+      <summary vsli:raw="Gets the number of prefixes contained in the collection.">コレクションに格納されているプレフィックスの数を取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; that contains the number of prefixes in this collection.">このコレクション内のプレフィックスの数を格納している <see cref="T:System.Int32" />。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.GetEnumerator">
+      <summary vsli:raw="Returns an object that can be used to iterate through the collection.">コレクションを反復処理するために使用できるオブジェクトを返します。</summary>
+      <returns vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Collections.IEnumerator&quot; /&gt; interface and provides access to the strings in this collection.">
+        <see cref="T:System.Collections.IEnumerator" /> インターフェイスを実装し、このコレクション内の文字列にアクセスできるようにするオブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsReadOnly">
+      <summary vsli:raw="Gets a value that indicates whether access to the collection is read-only.">コレクションへのアクセスが読み取り専用かどうかを示す値を取得します。</summary>
+      <returns vsli:raw="Always returns &lt;see langword=&quot;false&quot; /&gt;.">常に <see langword="false" /> を返します。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsSynchronized">
+      <summary vsli:raw="Gets a value that indicates whether access to the collection is synchronized (thread-safe).">コレクションへのアクセスが同期されている (スレッド セーフである) かどうかを示す値を取得します。</summary>
+      <returns vsli:raw="This property always returns &lt;see langword=&quot;false&quot; /&gt;.">このプロパティは常に <see langword="false" /> を返します。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Remove(System.String)">
+      <summary vsli:raw="Removes the specified Uniform Resource Identifier (URI) from the list of prefixes handled by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトが処理するプレフィックスのリストから、指定した URI を削除します。</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the URI prefix to remove.">削除する URI プレフィックスを格納している <see cref="T:System.String" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;paramref name=&quot;uriPrefix&quot; /&gt; was found in the &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; and removed; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <paramref name="uriPrefix" /> が <see cref="T:System.Net.HttpListenerPrefixCollection" /> に存在していたが削除された場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. To determine the cause of the exception, check the exception's error code.">Windows の関数呼び出しが失敗しました。 例外の原因を判断するには、例外のエラー コードをチェックします。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">このコレクションに関連付けられている <see cref="T:System.Net.HttpListener" /> は閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary vsli:raw="Returns an object that can be used to iterate through the collection.">コレクションを反復処理するために使用できるオブジェクトを返します。</summary>
+      <returns vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Collections.IEnumerator&quot; /&gt; interface and provides access to the strings in this collection.">
+        <see cref="T:System.Collections.IEnumerator" /> インターフェイスを実装し、このコレクション内の文字列にアクセスできるようにするオブジェクト。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerRequest">
+      <summary vsli:raw="Describes an incoming HTTP request to an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object. This class cannot be inherited.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトに対する受信 HTTP 要求を記述します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.AcceptTypes">
+      <summary vsli:raw="Gets the MIME types accepted by the client.">クライアントが受け入れる MIME の種類を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; array that contains the type names specified in the request's &lt;see langword=&quot;Accept&quot; /&gt; header or &lt;see langword=&quot;null&quot; /&gt; if the client request did not include an &lt;see langword=&quot;Accept&quot; /&gt; header.">要求の <see langword="Accept" /> ヘッダーで指定されているタイプの名前、またはクライアント要求に <see langword="null" /> ヘッダーが含まれていない場合は <see langword="Accept" /> を格納している <see cref="T:System.String" /> 配列。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an asynchronous request for the client's X.509 v.3 certificate.">クライアントの X.509 v.3 証明書への非同期要求を開始します。</summary>
+      <param name="requestCallback" vsli:raw="An &lt;see cref=&quot;T:System.AsyncCallback&quot; /&gt; delegate that references the method to invoke when the operation is complete.">操作の完了時に呼び出すメソッドを参照する <see cref="T:System.AsyncCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="A user-defined object that contains information about the operation. This object is passed to the callback delegate when the operation completes.">操作に関する情報を格納するユーザー定義のオブジェクト。 このオブジェクトは、操作の完了時にコールバック デリゲートに渡されます。</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; that indicates the status of the operation.">操作のステータスを示す <see cref="T:System.IAsyncResult" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ClientCertificateError">
+      <summary vsli:raw="Gets an error code that identifies a problem with the &lt;see cref=&quot;T:System.Security.Cryptography.X509Certificates.X509Certificate&quot; /&gt; provided by the client.">クライアントから提供された <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate" /> の問題を識別するエラー コードを取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that contains a Windows error code.">Windows エラー コードを格納している <see cref="T:System.Int32" /> 値。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The client certificate has not been initialized yet by a call to the &lt;see cref=&quot;M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)&quot; /&gt; or &lt;see cref=&quot;M:System.Net.HttpListenerRequest.GetClientCertificate&quot; /&gt; methods  &#xA;  &#xA; -or -  &#xA;  &#xA; The operation is still in progress.">
+        <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" /> または <see cref="M:System.Net.HttpListenerRequest.GetClientCertificate" /> メソッドへの呼び出しによって、クライアント証明書がまだ初期化されていません。 
+または 
+操作はまだ進行中です。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentEncoding">
+      <summary vsli:raw="Gets the content encoding that can be used with data sent with the request.">要求と共に送信されるデータに使用できるコンテンツ エンコーディングを取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; object suitable for use with the data in the &lt;see cref=&quot;P:System.Net.HttpListenerRequest.InputStream&quot; /&gt; property.">
+        <see cref="T:System.Text.Encoding" /> プロパティのデータへの使用に適した <see cref="P:System.Net.HttpListenerRequest.InputStream" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentLength64">
+      <summary vsli:raw="Gets the length of the body data included in the request.">要求に含まれている本体データの長さを取得します。</summary>
+      <returns vsli:raw="The value from the request's &lt;see langword=&quot;Content-Length&quot; /&gt; header. This value is -1 if the content length is not known.">要求の <see langword="Content-Length" /> ヘッダーの値。 コンテンツの長さが不明な場合、この値は -1 です。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentType">
+      <summary vsli:raw="Gets the MIME type of the body data included in the request.">要求に含まれている本体データの MIME の種類を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the text of the request's &lt;see langword=&quot;Content-Type&quot; /&gt; header.">要求の <see langword="Content-Type" /> ヘッダーのテキストを格納している <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Cookies">
+      <summary vsli:raw="Gets the cookies sent with the request.">要求と共に送信されたクッキーを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.CookieCollection&quot; /&gt; that contains cookies that accompany the request. This property returns an empty collection if the request does not contain cookies.">要求に伴うクッキーを格納している <see cref="T:System.Net.CookieCollection" />。 要求にクッキーが含まれていない場合、このプロパティは空のコレクションを返します。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.EndGetClientCertificate(System.IAsyncResult)">
+      <summary vsli:raw="Ends an asynchronous request for the client's X.509 v.3 certificate.">クライアントの X.509 v.3 証明書への非同期要求を終了します。</summary>
+      <param name="asyncResult" vsli:raw="The pending request for the certificate.">証明書への保留中の要求。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that is returned when the operation started.">操作の開始時に返される <see cref="T:System.IAsyncResult" /> オブジェクト。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; was not obtained by calling &lt;see cref=&quot;M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)&quot; /&gt;&lt;paramref name=&quot;e&quot; /&gt;.">
+        <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" />
+        <paramref name="e." /> の呼び出しで、<paramref name="asyncResult" /> が取得されませんでした。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This method was already called for the operation identified by &lt;paramref name=&quot;asyncResult&quot; /&gt;.">このメソッドは、<paramref name="asyncResult" /> で識別される操作に対して既に呼び出されています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificate">
+      <summary vsli:raw="Retrieves the client's X.509 v.3 certificate.">クライアントの X.509 v.3 証明書を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;N:System.Security.Cryptography.X509Certificates&quot; /&gt; object that contains the client's X.509 v.3 certificate.">クライアントの X.509 v.3 証明書を格納している <see cref="N:System.Security.Cryptography.X509Certificates" /> オブジェクト。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="A call to this method to retrieve the client's X.509 v.3 certificate is in progress and therefore another call to this method cannot be made.">クライアントの X.509 v.3 証明書を取得するために既に呼び出されているので、このメソッドに対して別の呼び出しを行うことはできません。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificateAsync">
+      <summary vsli:raw="Retrieves the client's X.509 v.3 certificate as an asynchronous operation.">クライアントの X.509 v.3 証明書を非同期操作として取得します。</summary>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns a &lt;see cref=&quot;N:System.Security.Cryptography.X509Certificates&quot; /&gt; object that contains the client's X.509 v.3 certificate.">非同期操作を表すタスク オブジェクト。 タスク オブジェクトの <see cref="P:System.Threading.Tasks.Task`1.Result" /> プロパティは、クライアントの X.509 v.3 証明書を含む <see cref="N:System.Security.Cryptography.X509Certificates" /> オブジェクトを返します。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HasEntityBody">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the request has associated body data.">要求に関連付けられている本体データがあるかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the request has associated body data; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">要求に関連付けられている本体データがある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Headers">
+      <summary vsli:raw="Gets the collection of header name/value pairs sent in the request.">要求で送信されるヘッダーの名前と値のペアのコレクションを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; that contains the HTTP headers included in the request.">要求に含まれている HTTP ヘッダーを格納している <see cref="T:System.Net.WebHeaderCollection" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HttpMethod">
+      <summary vsli:raw="Gets the HTTP method specified by the client.">クライアントによって指定された HTTP メソッドを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the method used in the request.">要求で使用されているメソッドを格納している <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.InputStream">
+      <summary vsli:raw="Gets a stream that contains the body data sent by the client.">クライアントから送信された本体データを格納しているストリームを取得します。</summary>
+      <returns vsli:raw="A readable &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object that contains the bytes sent by the client in the body of the request. This property returns &lt;see cref=&quot;F:System.IO.Stream.Null&quot; /&gt; if no data is sent with the request.">要求の本体でクライアントから送信されたバイトを格納している読み取り可能な <see cref="T:System.IO.Stream" /> オブジェクト。 要求と共にデータが送信されなかった場合、このプロパティは <see cref="F:System.IO.Stream.Null" /> を返します。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsAuthenticated">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the client sending this request is authenticated.">この要求の送信元クライアントが認証されているかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the client was authenticated; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">クライアントが認証されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsLocal">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the request is sent from the local computer.">要求がローカル コンピューターから送信されたかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the request originated on the same computer as the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object that provided the request; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">要求が、その要求を発行した <see cref="T:System.Net.HttpListener" /> オブジェクトと同じコンピューターから送信されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsSecureConnection">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the TCP connection used to send the request is using the Secure Sockets Layer (SSL) protocol.">要求の送信に使用された TCP 接続が SSL (Secure Sockets Layer) プロトコルを使用しているかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the TCP connection is using SSL; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">TCP 接続が SSL を使用している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsWebSocketRequest">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the TCP connection was  a WebSocket request.">TCP 接続が WebSocket 要求であったかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.  &#xA;  &#xA; &lt;see langword=&quot;true&quot; /&gt; if the TCP connection is a WebSocket request; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see cref="T:System.Boolean" /> を返します。  
+ TCP 接続が WebSocket 要求である場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.KeepAlive">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the client requests a persistent connection.">クライアントが永続的な接続を要求しているかどうかを示す <see cref="T:System.Boolean" /> 値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the connection should be kept open; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">接続を開いておく必要がある場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.LocalEndPoint">
+      <summary vsli:raw="Gets the server IP address and port number to which the request is directed.">要求の転送先のサーバー IP アドレスおよびポート番号を取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.IPEndPoint&quot; /&gt; that represents the IP address that the request is sent to.">要求の送信先の IP アドレスを表す <see cref="T:System.Net.IPEndPoint" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ProtocolVersion">
+      <summary vsli:raw="Gets the HTTP version used by the requesting client.">要求元クライアントで使用されている HTTP のバージョンを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Version&quot; /&gt; that identifies the client's version of HTTP.">クライアントの HTTP のバージョンを示す <see cref="T:System.Version" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.QueryString">
+      <summary vsli:raw="Gets the query string included in the request.">要求に含まれているクエリ文字列を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.NameValueCollection&quot; /&gt; object that contains the query data included in the request &lt;see cref=&quot;P:System.Net.HttpListenerRequest.Url&quot; /&gt;.">要求の <see cref="T:System.Collections.Specialized.NameValueCollection" /> に含まれているクエリ データを格納している <see cref="P:System.Net.HttpListenerRequest.Url" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RawUrl">
+      <summary vsli:raw="Gets the URL information (without the host and port) requested by the client.">クライアントによって要求された (ホストおよびポートを含まない) URL 情報を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the raw URL for this request.">この要求の生の URL を格納している <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RemoteEndPoint">
+      <summary vsli:raw="Gets the client IP address and port number from which the request originated.">要求の発行元の IP アドレスおよびポート番号を取得します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.IPEndPoint&quot; /&gt; that represents the IP address and port number from which the request originated.">要求の発行元の IP アドレスおよびポート番号を表す <see cref="T:System.Net.IPEndPoint" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RequestTraceIdentifier">
+      <summary vsli:raw="Gets the request identifier of the incoming HTTP request.">受信 HTTP 要求の要求 ID を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; object that contains the identifier of the HTTP request.">HTTP 要求の ID を格納している <see cref="T:System.Guid" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ServiceName">
+      <summary vsli:raw="Gets the Service Provider Name (SPN) that the client sent on the request.">クライアントが要求を送信したサービス プロバイダー名 (SPN: Service Provider Name) を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the SPN the client sent on the request.">クライアントが要求を送信した SPN を格納している <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.TransportContext">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.TransportContext&quot; /&gt; for the client request.">クライアント要求の <see cref="T:System.Net.TransportContext" /> を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.TransportContext&quot; /&gt; object for the client request.">クライアント要求の <see cref="T:System.Net.TransportContext" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Url">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Uri&quot; /&gt; object requested by the client.">クライアントによって要求された <see cref="T:System.Uri" /> オブジェクトを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Uri&quot; /&gt; object that identifies the resource requested by the client.">クライアントによって要求されたリソースを識別する <see cref="T:System.Uri" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UrlReferrer">
+      <summary vsli:raw="Gets the Uniform Resource Identifier (URI) of the resource that referred the client to the server.">クライアントをサーバーに導いたリソースの URI (Uniform Resource Identifier) を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Uri&quot; /&gt; object that contains the text of the request's &lt;see cref=&quot;F:System.Net.HttpRequestHeader.Referer&quot; /&gt; header, or &lt;see langword=&quot;null&quot; /&gt; if the header was not included in the request.">要求の <see cref="T:System.Uri" /> ヘッダーのテキストが格納された <see cref="F:System.Net.HttpRequestHeader.Referer" /> オブジェクト。要求にヘッダーが含まれていない場合は <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserAgent">
+      <summary vsli:raw="Gets the user agent presented by the client.">クライアントによって示されたユーザー エージェントを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; object that contains the text of the request's &lt;see langword=&quot;User-Agent&quot; /&gt; header.">要求の <see langword="User-Agent" /> ヘッダーのテキストを格納している <see cref="T:System.String" /> オブジェクト。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostAddress">
+      <summary vsli:raw="Gets the server IP address and port number to which the request is directed.">要求の転送先のサーバー IP アドレスおよびポート番号を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the host address information.">ホスト アドレス情報を格納している <see cref="T:System.String" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostName">
+      <summary vsli:raw="Gets the DNS name and, if provided, the port number specified by the client.">DNS 名とクライアントによって指定されたポート番号 (存在する場合) を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; value that contains the text of the request's &lt;see langword=&quot;Host&quot; /&gt; header.">要求の <see langword="Host" /> ヘッダーのテキストを格納している <see cref="T:System.String" /> 値。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserLanguages">
+      <summary vsli:raw="Gets the natural languages that are preferred for the response.">応答への使用に適している自然言語を取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; array that contains the languages specified in the request's &lt;see cref=&quot;F:System.Net.HttpRequestHeader.AcceptLanguage&quot; /&gt; header or &lt;see langword=&quot;null&quot; /&gt; if the client request did not include an &lt;see cref=&quot;F:System.Net.HttpRequestHeader.AcceptLanguage&quot; /&gt; header.">要求の <see cref="T:System.String" /> ヘッダーで指定されている自然言語を格納した <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" /> 配列。クライアント要求に <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" /> ヘッダーが含まれていない場合は <see langword="null" />。</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerResponse">
+      <summary vsli:raw="Represents a response to a request being handled by an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトによって処理される要求に対する応答を表します。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Abort">
+      <summary vsli:raw="Closes the connection to the client without sending a response.">応答を送信せずにクライアントとの間の接続を閉じます。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AddHeader(System.String,System.String)">
+      <summary vsli:raw="Adds the specified header and value to the HTTP headers for this response.">指定したヘッダーと値をこの応答の HTTP ヘッダーに追加します。</summary>
+      <param name="name" vsli:raw="The name of the HTTP header to set.">設定する HTTP ヘッダーの名前。</param>
+      <param name="value" vsli:raw="The value for the &lt;paramref name=&quot;name&quot; /&gt; header.">
+        <paramref name="name" /> ヘッダーの値。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or an empty string (&quot;&quot;).">
+        <paramref name="name" /> は <see langword="null" /> または空の文字列 ("") です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="You are not allowed to specify a value for the specified header.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;name&quot; /&gt; or &lt;paramref name=&quot;value&quot; /&gt; contains invalid characters.">指定したヘッダーの指定が許可されていません。  
+または 
+ <paramref name="name" /> または <paramref name="value" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw=".NET Framework and .NET Core versions 2.0 - 3.1 only: The length of &lt;paramref name=&quot;value&quot; /&gt; is greater than 65,535 characters.">
+        <paramref name="value" /> の長さが 65,535 文字を超えています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendCookie(System.Net.Cookie)">
+      <summary vsli:raw="Adds the specified &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; to the collection of cookies for this response.">指定した <see cref="T:System.Net.Cookie" /> をこの応答のクッキーのコレクションに追加します。</summary>
+      <param name="cookie" vsli:raw="The &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; to add to the collection to be sent with this response.">この応答で送信されるコレクションに追加する <see cref="T:System.Net.Cookie" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;cookie&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="cookie" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendHeader(System.String,System.String)">
+      <summary vsli:raw="Appends a value to the specified HTTP header to be sent with this response.">この応答と共に送信される、指定した HTTP ヘッダーに値を追加します。</summary>
+      <param name="name" vsli:raw="The name of the HTTP header to append &lt;paramref name=&quot;value&quot; /&gt; to.">
+        <paramref name="value" /> の追加先となる HTTP ヘッダーの名前。</param>
+      <param name="value" vsli:raw="The value to append to the &lt;paramref name=&quot;name&quot; /&gt; header.">
+        <paramref name="name" /> ヘッダーに追加する値。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or an empty string (&quot;&quot;).  &#xA;  &#xA; -or-  &#xA;  &#xA; You are not allowed to specify a value for the specified header.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;name&quot; /&gt; or &lt;paramref name=&quot;value&quot; /&gt; contains invalid characters.">
+        <paramref name="name" /> は <see langword="null" /> または空の文字列 ("") です。  
+または 
+指定したヘッダーの指定が許可されていません。  
+
+または - 
+<paramref name="name" /> または <paramref name="value" /> に無効な文字が含まれています。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw=".NET Framework and .NET Core versions 2.0 - 3.1 only: The length of &lt;paramref name=&quot;value&quot; /&gt; is greater than 65,535 characters.">
+        <paramref name="value" /> の長さが 65,535 文字を超えています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close">
+      <summary vsli:raw="Sends the response to the client and releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance.">クライアントに応答を送信し、この <see cref="T:System.Net.HttpListenerResponse" /> インスタンスに保持されているリソースを解放します。</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close(System.Byte[],System.Boolean)">
+      <summary vsli:raw="Returns the specified byte array to the client and releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance.">指定されたバイト配列をクライアントに返し、この <see cref="T:System.Net.HttpListenerResponse" /> インスタンスに保持されているリソースを解放します。</summary>
+      <param name="responseEntity" vsli:raw="A &lt;see cref=&quot;T:System.Byte&quot; /&gt; array that contains the response to send to the client.">クライアントに送信する応答を格納している <see cref="T:System.Byte" /> 配列。</param>
+      <param name="willBlock" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to block execution while flushing the stream to the client; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">クライアントへのストリームのフラッシュ中は実行をブロックする場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;responseEntity&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="responseEntity" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentEncoding">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; for this response's &lt;see cref=&quot;P:System.Net.HttpListenerResponse.OutputStream&quot; /&gt;.">この応答の <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> の <see cref="T:System.Text.Encoding" /> を取得または設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; object suitable for use with the data in the &lt;see cref=&quot;P:System.Net.HttpListenerResponse.OutputStream&quot; /&gt; property, or &lt;see langword=&quot;null&quot; /&gt; if no encoding is specified.">
+        <see cref="T:System.Text.Encoding" /> プロパティのデータへの使用に適した <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> オブジェクト。エンコーディングが指定されていない場合は <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentLength64">
+      <summary vsli:raw="Gets or sets the number of bytes in the body data included in the response.">応答に含まれている本体データのバイト数を取得または設定します。</summary>
+      <returns vsli:raw="The value of the response's &lt;see langword=&quot;Content-Length&quot; /&gt; header.">応答の <see langword="Content-Length" /> ヘッダーの値。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The value specified for a set operation is less than zero.">設定操作に指定された値が 0 未満です。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The response is already being sent.">この応答は既に送信されています。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentType">
+      <summary vsli:raw="Gets or sets the MIME type of the content returned.">返されるコンテンツの MIME の種類を取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; instance that contains the text of the response's &lt;see langword=&quot;Content-Type&quot; /&gt; header.">応答の <see langword="Content-Type" /> ヘッダーのテキストを格納している <see cref="T:System.String" /> インスタンス。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">設定操作に指定された値は <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation is an empty string (&quot;&quot;).">設定操作として指定した値が空の文字列 ("") です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Cookies">
+      <summary vsli:raw="Gets or sets the collection of cookies returned with the response.">応答と共に返されるクッキーのコレクションを取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.CookieCollection&quot; /&gt; that contains cookies to accompany the response. The collection is empty if no cookies have been added to the response.">応答に付随しているクッキーを格納している <see cref="T:System.Net.CookieCollection" />。 応答にクッキーが追加されていない場合、このコレクションは空です。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.CopyFrom(System.Net.HttpListenerResponse)">
+      <summary vsli:raw="Copies properties from the specified &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; to this response.">プロパティを、指定した <see cref="T:System.Net.HttpListenerResponse" /> からこの応答へコピーします。</summary>
+      <param name="templateResponse" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance to copy.">コピーする <see cref="T:System.Net.HttpListenerResponse" /> インスタンス。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Headers">
+      <summary vsli:raw="Gets or sets the collection of header name/value pairs returned by the server.">サーバーから返されるヘッダーの名前と値のペアのコレクションを取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; instance that contains all the explicitly set HTTP headers to be included in the response.">応答に挿入される、明示的に設定されたすべての HTTP ヘッダーを格納している <see cref="T:System.Net.WebHeaderCollection" /> インスタンス。</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; instance specified for a set operation is not valid for a response.">設定操作に指定された <see cref="T:System.Net.WebHeaderCollection" /> インスタンスが、応答では無効です。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.KeepAlive">
+      <summary vsli:raw="Gets or sets a value indicating whether the server requests a persistent connection.">サーバーが永続的な接続を要求しているかどうかを示す値を取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the server requests a persistent connection; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;true&quot; /&gt;.">サーバーが永続的な接続を要求している場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="true" /> です。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.OutputStream">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object to which a response can be written.">応答の書き込み先として使用できる <see cref="T:System.IO.Stream" /> オブジェクトを取得します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object to which a response can be written.">応答の書き込み先として使用できる <see cref="T:System.IO.Stream" /> オブジェクト。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ProtocolVersion">
+      <summary vsli:raw="Gets or sets the HTTP version used for the response.">応答に使用する HTTP バージョンを取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Version&quot; /&gt; object indicating the version of HTTP used when responding to the client. Note that this property is now obsolete.">クライアントへの応答時に使用される HTTP のバージョンを表す <see cref="T:System.Version" /> オブジェクト。 このプロパティは今後使用しません。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">設定操作に指定された値は <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation does not have its &lt;see cref=&quot;P:System.Version.Major&quot; /&gt; property set to 1 or does not have its &lt;see cref=&quot;P:System.Version.Minor&quot; /&gt; property set to either 0 or 1.">設定操作に指定された値に、1 に設定された <see cref="P:System.Version.Major" /> プロパティが存在しないか、0 または 1 に設定された <see cref="P:System.Version.Minor" /> プロパティが存在しません。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Redirect(System.String)">
+      <summary vsli:raw="Configures the response to redirect the client to the specified URL.">指定した URL にクライアントをリダイレクトするように応答を構成します。</summary>
+      <param name="url" vsli:raw="The URL that the client should use to locate the requested resource.">クライアントが要求されたリソースの検索に使用する URL。</param>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.RedirectLocation">
+      <summary vsli:raw="Gets or sets the value of the HTTP &lt;see langword=&quot;Location&quot; /&gt; header in this response.">この応答の <see langword="Location" /> HTTP ヘッダーの値を取得または設定します。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the absolute URL to be sent to the client in the &lt;see langword=&quot;Location&quot; /&gt; header.">
+        <see langword="Location" /> ヘッダーでクライアントに送信される絶対 URL が格納された <see cref="T:System.String" />。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation is an empty string (&quot;&quot;).">設定操作として指定した値が空の文字列 ("") です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.SendChunked">
+      <summary vsli:raw="Gets or sets whether the response uses chunked transfer encoding.">応答がチャンク処理された転送エンコーディングを使用するかどうかを取得または設定します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the response is set to use chunked transfer encoding; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">応答がチャンク処理された転送エンコーディングを使用するように設定されている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 既定値は、<see langword="false" /> です。</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.SetCookie(System.Net.Cookie)">
+      <summary vsli:raw="Adds or updates a &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; in the collection of cookies sent with this response.">この応答と共に送信されたクッキーのコレクションに対して <see cref="T:System.Net.Cookie" /> を追加または更新します。</summary>
+      <param name="cookie" vsli:raw="A &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; for this response.">この応答の <see cref="T:System.Net.Cookie" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;cookie&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="cookie" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The cookie already exists in the collection and could not be replaced.">クッキーが既にコレクション内に存在し、置き換えることができません。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusCode">
+      <summary vsli:raw="Gets or sets the HTTP status code to be returned to the client.">クライアントへ返される HTTP ステータス コードを取得または設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that specifies the HTTP status code for the requested resource. The default is &lt;see cref=&quot;F:System.Net.HttpStatusCode.OK&quot; /&gt;, indicating that the server successfully processed the client's request and included the requested resource in the response body.">要求されたリソースの HTTP ステータス コードを示す <see cref="T:System.Int32" /> 値。 既定値は <see cref="F:System.Net.HttpStatusCode.OK" /> で、サーバーがクライアントの要求を正常に処理し、要求されたリソースを応答本体に挿入したことを示します。</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">オブジェクトが閉じています。</exception>
+      <exception cref="T:System.Net.ProtocolViolationException" vsli:raw="The value specified for a set operation is not valid. Valid values are between 100 and 999 inclusive.">設定操作として指定した値が無効です。 有効な値は 100 から 999 の範囲です。</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusDescription">
+      <summary vsli:raw="Gets or sets a text description of the HTTP status code returned to the client.">クライアントへ返される HTTP ステータス コードの説明テキストを取得または設定します。</summary>
+      <returns vsli:raw="The text description of the HTTP status code returned to the client. The default is the RFC 2616 description for the &lt;see cref=&quot;P:System.Net.HttpListenerResponse.StatusCode&quot; /&gt; property value, or an empty string (&quot;&quot;) if an RFC 2616 description does not exist.">クライアントへ返される HTTP ステータス コードの説明テキスト。 既定値は、<see cref="P:System.Net.HttpListenerResponse.StatusCode" /> プロパティ値に対する RFC 2616 の説明、または RFC 2616 の説明が存在しない場合は空の文字列 ("") です。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">設定操作に指定された値は <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation contains non-printable characters.">設定操作として指定した値に印刷できない文字が含まれます。</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.System#IDisposable#Dispose">
+      <summary vsli:raw="Releases all resources used by the &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt;.">
+        <see cref="T:System.Net.HttpListenerResponse" /> によって使用されているすべてのリソースを解放します。</summary>
+    </member>
+    <member name="T:System.Net.HttpListenerTimeoutManager">
+      <summary vsli:raw="The timeout manager to use for an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトが使用するタイムアウト マネージャーです。</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.DrainEntityBody">
+      <summary vsli:raw="Gets or sets the time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to drain the entity body on a Keep-Alive connection.">
+        <see cref="T:System.Net.HttpListener" /> が Keep-Alive 接続でエンティティ本体をドレインするまでに許容される時間を取得または設定します。</summary>
+      <returns vsli:raw="The time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to drain the entity body on a Keep-Alive connection.">が<see cref="T:System.Net.HttpListener" /> keep-alive 接続でエンティティ本体をドレインするために許容される時間。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.EntityBody">
+      <summary vsli:raw="Gets or sets the time allowed for the request entity body to arrive.">要求のエンティティ本体が到着するまでに許容される時間を取得または設定します。</summary>
+      <returns vsli:raw="The time allowed for the request entity body to arrive.">要求エンティティ本体が到着するまでに許容される時間。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.HeaderWait">
+      <summary vsli:raw="Gets or sets the time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to parse the request header.">
+        <see cref="T:System.Net.HttpListener" /> が要求ヘッダーを解析するために許容される時間を取得または設定します。</summary>
+      <returns vsli:raw="The time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to parse the request header.">が<see cref="T:System.Net.HttpListener" />要求ヘッダーを解析するために許容される時間。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.IdleConnection">
+      <summary vsli:raw="Gets or sets the time allowed for an idle connection.">接続で許容されるアイドル時間を取得または設定します。</summary>
+      <returns vsli:raw="The time allowed for an idle connection.">アイドル状態の接続で許容される時間です。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.MinSendBytesPerSecond">
+      <summary vsli:raw="Gets or sets the minimum send rate, in bytes-per-second, for the response.">応答の最小の送信率を、毎秒のバイト数単位で取得または設定します。</summary>
+      <returns vsli:raw="The minimum send rate, in bytes-per-second, for the response.">応答の最小の送信率を、毎秒のバイト数単位で示します。</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.RequestQueue">
+      <summary vsli:raw="Gets or sets the time allowed for the request to remain in the request queue before the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; picks it up.">
+        <see cref="T:System.Net.HttpListener" /> がピック アップする前に、要求が要求キュー内にとどまることができる時間を取得または設定します。</summary>
+      <returns vsli:raw="The time allowed for the request to remain in the request queue before the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; picks it up.">要求が要求キューに保持されてから、によっ<see cref="T:System.Net.HttpListener" />て取得されるまでの許容時間。</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <summary vsli:raw="Provides access to information received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class when accepting WebSocket connections.">WebSocket 接続を受け入れたときに <see cref="T:System.Net.HttpListener" /> のクラスが受け取った情報へのアクセスを提供します。</summary>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection">
+      <summary vsli:raw="Gets the cookies received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object in the WebSocket opening handshake.">WebSocket を開くハンドシェイクの中で、<see cref="T:System.Net.HttpListener" /> オブジェクトが受信する Cookie を取得します。</summary>
+      <returns vsli:raw="The cookies received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトが受信したクッキーです。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers">
+      <summary vsli:raw="Gets the HTTP headers received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object in the WebSocket opening handshake.">WebSocket を開くハンドシェイクの中で、<see cref="T:System.Net.HttpListener" /> オブジェクトが受信する HTTP ヘッダーを取得します。</summary>
+      <returns vsli:raw="The HTTP headers received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">
+        <see cref="T:System.Net.HttpListener" /> オブジェクトが受信した HTTP ヘッダーです。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket client is authenticated.">WebSocket クライアントが認証済みかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket client is authenticated; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />WebSocket クライアントが認証されている場合は。それ以外<see langword="false" />の場合は。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket client connected from the local machine.">WebSocket クライアントがローカル コンピューターから接続されているかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket client connected from the local machine; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />WebSocket クライアントがローカルコンピューターから接続されている場合は。それ以外<see langword="false" />の場合は。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket connection is secured using Secure Sockets Layer (SSL).">WebSocket 接続が SSL (Secure Sockets Layer) を使用して保護されているかどうかを示す値を取得します。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket connection is secured using SSL; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" />WebSocket 接続が SSL を使用してセキュリティ保護されている場合それ以外<see langword="false" />の場合は。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin">
+      <summary vsli:raw="Gets the value of the Origin HTTP header included in the WebSocket opening handshake.">WebSocket 開始ハンドシェイクに含まれる起点 HTTP ヘッダーの値を取得します。</summary>
+      <returns vsli:raw="The value of the Origin HTTP header.">起点 HTTP ヘッダーの値。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri">
+      <summary vsli:raw="Gets the URI requested by the WebSocket client.">WebSocket クライアントによって要求された URI を取得します。</summary>
+      <returns vsli:raw="The URI requested by the WebSocket client.">WebSocket クライアントによって要求された URI。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey">
+      <summary vsli:raw="Gets the value of the SecWebSocketKey HTTP header included in the WebSocket opening handshake.">WebSocket 開始ハンドシェイクに含まれる SecWebSocketKey HTTP ヘッダーの値を取得します。</summary>
+      <returns vsli:raw="The value of the SecWebSocketKey HTTP header.">SecWebSocketKey HTTP ヘッダーの値。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols">
+      <summary vsli:raw="Gets the list of the Secure WebSocket protocols included in the WebSocket opening handshake.">WebSocket を開くハンドシェイクに含まれる、安全な WebSocket プロトコルのリストを取得します。</summary>
+      <returns vsli:raw="The list of the Secure WebSocket protocols.">安全な WebSocket プロトコルのリストです。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion">
+      <summary vsli:raw="Gets the list of sub-protocols requested by the WebSocket client.">WebSocket クライアントから要求されるサブプロトコルのリストを取得します。</summary>
+      <returns vsli:raw="The list of sub-protocols requested by the WebSocket client.">WebSocket クライアントから要求されたサブプロトコルのリスト。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.User">
+      <summary vsli:raw="Gets an object used to obtain identity, authentication information, and security roles for the WebSocket client.">WebSocket クライアントの ID、認証情報、およびセキュリティ ロールを取得するために使用されるオブジェクトを取得します。</summary>
+      <returns vsli:raw="The identity, authentication information, and security roles for the WebSocket client.">WebSocket クライアントの ID、認証情報、およびセキュリティ ロール。</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; instance used to send and receive data over the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; connection.">
+        <see cref="T:System.Net.WebSockets.WebSocket" /> 接続でデータの送受信に使用される <see cref="T:System.Net.WebSockets.WebSocket" /> インスタンスを取得します。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; instance used to send and receive data over the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; connection.">接続でデータを送受信するために使用されるインスタンス。<see cref="T:System.Net.WebSockets.WebSocket" /><see cref="T:System.Net.WebSockets.WebSocket" /></returns>
+    </member>
+  </members>
+</doc>

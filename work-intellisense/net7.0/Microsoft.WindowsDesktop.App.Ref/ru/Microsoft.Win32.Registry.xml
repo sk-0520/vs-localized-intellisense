@@ -1,0 +1,947 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Microsoft.Win32.Registry</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.Registry">
+      <summary>Предоставляет объекты <see cref="T:Microsoft.Win32.RegistryKey" />, представляющие корневые разделы в реестре Windows, и методы <see langword="static" /> для доступа к парам "раздел-значение".</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.ClassesRoot">
+      <summary>Определяет типы (или классы) документов и свойства, связанные с этими типами. Это поле считывает базовый раздел реестра Windows HKEY_CLASSES_ROOT.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.CurrentConfig">
+      <summary>Содержит сведения о конфигурации, относящиеся к оборудованию, не связанному с конкретным пользователем. Это поле считывает базовый раздел реестра Windows HKEY_CURRENT_CONFIG.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.CurrentUser">
+      <summary>Содержит сведения о текущих пользовательских параметрах. Это поле считывает базовый раздел реестра Windows HKEY_CURRENT_USER.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.LocalMachine">
+      <summary>Содержит данные о конфигурации для локального компьютера. Это поле считывает базовый раздел реестра Windows HKEY_LOCAL_MACHINE.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.PerformanceData">
+      <summary>Содержит сведения о производительности для компонентов программного обеспечения. Это поле считывает базовый раздел реестра Windows HKEY_PERFORMANCE_DATA.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.Registry.Users">
+      <summary>Содержит сведения о стандартной пользовательской конфигурации. Это поле считывает базовый раздел реестра Windows HKEY_USERS.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.GetValue(System.String,System.String,System.Object)">
+      <summary>Извлекает значение, связанное с указанным именем, в указанном разделе реестра. Если имя не найдено в указанном разделе, возвращает предоставленное значение по умолчанию или значение <see langword="null" />, если указанный раздел не существует.</summary>
+      <param name="keyName">Полный путь к разделу реестра, начинающийся с правильного корневого раздела реестра, такого как HKEY_CURRENT_USER.</param>
+      <param name="valueName">Имя в паре "имя-значение".</param>
+      <param name="defaultValue">Возвращаемое значение, если параметр <paramref name="valueName" /> не существует.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.IO.IOException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, был помечен для удаления.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="keyName" /> не начинается с правильного корневого раздела реестра.</exception>
+      <returns>Значение <see langword="null" />, если вложенный раздел, заданный параметром <paramref name="keyName" />, не существует; в противном случае — значение, связанное с параметром <paramref name="valueName" />, или <paramref name="defaultValue" />, если значение параметра <paramref name="valueName" /> не найдено.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object)">
+      <summary>Задает указанное значение пары "имя-значение" для указанного раздела реестра. Если указанный раздел не существует, он будет создан.</summary>
+      <param name="keyName">Полный путь к разделу реестра, начинающийся с правильного корневого раздела реестра, такого как HKEY_CURRENT_USER.</param>
+      <param name="valueName">Имя в паре "имя-значение".</param>
+      <param name="value">Сохраняемое значение.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="keyName" /> не начинается с правильного корневого раздела реестра.  
+  
+-или- 
+ Значение параметра <paramref name="keyName" /> длиннее максимально допустимой длины (255 знаков).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является разделом только для чтения и запись в него невозможна, например, если это узел корневого уровня.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для изменения разделов реестра.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.Registry.SetValue(System.String,System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <summary>Задает пару "имя-значение" для указанного раздела реестра, используя указанный тип данных реестра. Если указанный раздел не существует, он будет создан.</summary>
+      <param name="keyName">Полный путь к разделу реестра, начинающийся с правильного корневого раздела реестра, такого как HKEY_CURRENT_USER.</param>
+      <param name="valueName">Имя в паре "имя-значение".</param>
+      <param name="value">Сохраняемое значение.</param>
+      <param name="valueKind">Тип данных реестра, используемый при сохранении данных.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="keyName" /> не начинается с правильного корневого раздела реестра.  
+  
+-или- 
+ Значение параметра <paramref name="keyName" /> длиннее максимально допустимой длины (255 знаков).  
+  
+-или- 
+Тип параметра <paramref name="value" /> не соответствует типу данных реестра, заданному параметром <paramref name="valueKind" />, поэтому данные не удалось правильно преобразовать.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> доступен только для чтения, и, следовательно, запись в него невозможна (например, это узел корневого уровня или раздел не был открыт с доступом для записи).</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для изменения разделов реестра.</exception>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryHive">
+      <summary>Представляет возможные значения для узла верхнего уровня на чужом компьютере.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.ClassesRoot">
+      <summary>Представляет базовый раздел HKEY_CLASSES_ROOT на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.CurrentConfig">
+      <summary>Представляете базовый раздел HKEY_CURRENT_CONFIG на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.CurrentUser">
+      <summary>Представляете базовый раздел HKEY_CURRENT_USER на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.LocalMachine">
+      <summary>Представляете базовый раздел HKEY_LOCAL_MACHINE на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.PerformanceData">
+      <summary>Представляете базовый раздел HKEY_PERFORMANCE_DATA на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryHive.Users">
+      <summary>Представляете базовый раздел HKEY_USERS на другом компьютере. Для удаленного открытия данного узла это значение может быть передано в метод <see cref="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)" />.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryKey">
+      <summary>Представляет узел уровня раздела в реестре Windows. Этот класс является инкапсуляцией реестра.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Close">
+      <summary>Если содержимое раздела было изменено, следует закрыть раздел и записать его на диск.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String)">
+      <summary>Создает новый вложенный раздел или открывает существующий вложенный раздел с доступом на запись.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, для которого вызывается этот метод, закрыт (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Запись в объект <see cref="T:Microsoft.Win32.RegistryKey" /> невозможна, например, он не может быть открыт как раздел, доступный для записи, или у пользователя нет необходимых прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создать раздел в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции. Если в качестве значения <paramref name="subkey" /> задана строка нулевой длины, возвращается текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck)">
+      <summary>Создает новый вложенный раздел или открывает существующий вложенный раздел с доступом на запись, используя заданный вариант проверки разрешений.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="permissionCheck" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, для которого вызывается этот метод, закрыт (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Запись в объект <see cref="T:Microsoft.Win32.RegistryKey" /> невозможна, например, он не может быть открыт как раздел, доступный для записи, или у пользователя нет необходимых прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создать раздел в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции. Если в качестве значения <paramref name="subkey" /> задана строка нулевой длины, возвращается текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,Microsoft.Win32.RegistryOptions)">
+      <summary>Создает подраздел или открывает подраздел с доступом на запись, используя заданные параметры проверки разрешений и параметры реестра.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <param name="registryOptions">Используемый параметр реестра; например, для создания временного ключа.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Текущий объект <see cref="T:Microsoft.Win32.RegistryKey" /> закрыт (к закрытым ключам доступ отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Запись в текущий объект <see cref="T:Microsoft.Win32.RegistryKey" /> невозможна; например, он не может быть открыт как раздел, доступный для записи, или у пользователя нет необходимых прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создания раздела в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,Microsoft.Win32.RegistryOptions,System.Security.AccessControl.RegistrySecurity)">
+      <summary>Создает подраздел или подраздел с доступом на запись, используя заданные параметры проверки разрешений, параметры реестра и безопасности реестра.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <param name="registryOptions">Параметр реестра для использования.</param>
+      <param name="registrySecurity">Безопасность управления доступом для нового подраздела.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Текущий объект <see cref="T:Microsoft.Win32.RegistryKey" /> закрыт. К закрытым ключам доступ отсутствует.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Запись в текущий объект <see cref="T:Microsoft.Win32.RegistryKey" /> невозможна; например, он не может быть открыт как раздел, доступный для записи, или у пользователя нет необходимых прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создания раздела в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,System.Security.AccessControl.RegistrySecurity)">
+      <summary>Создает новый вложенный раздел или открывает существующий вложенный раздел с доступом на запись, используя заданный вариант проверки разрешений и безопасности реестра.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <param name="registrySecurity">Безопасность управления доступом для нового раздела.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="permissionCheck" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, для которого вызывается этот метод, закрыт (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Невозможно выполнить запись в текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />; например, он не был открыт как раздел, доступный для записи, или у пользователя нет нужных прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создать раздел в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции. Если в качестве значения <paramref name="subkey" /> задана строка нулевой длины, возвращается текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean)">
+      <summary>Создает новый подраздел или открывает существующий с указанным доступом. Доступно начиная с .NET Framework 4.6.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="writable">Значение <see langword="true" /> указывает, что новый подраздел доступен для записи; в противном случае значение <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Невозможно выполнить запись в текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />; например, он не был открыт как раздел, доступный для записи, или у пользователя нет нужных прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создать раздел в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции. Если в качестве значения <paramref name="subkey" /> задана строка нулевой длины, возвращается текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.CreateSubKey(System.String,System.Boolean,Microsoft.Win32.RegistryOptions)">
+      <summary>Создает новый подраздел или открывает существующий с указанным доступом. Доступно начиная с .NET Framework 4.6.</summary>
+      <param name="subkey">Имя или путь создаваемого или открываемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="writable">Значение <see langword="true" /> указывает, что новый подраздел доступен для записи; в противном случае значение <see langword="false" />.</param>
+      <param name="options">Параметр реестра для использования.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="options" /> не задает допустимый параметр.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя нет разрешений, необходимых для создания или открытия раздела реестра.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Невозможно выполнить запись в текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />; например, он не был открыт как раздел, доступный для записи, или у пользователя нет нужных прав доступа.</exception>
+      <exception cref="T:System.IO.IOException">Уровень вложенности превышает 510.  
+  
+-или- 
+Произошла системная ошибка, например удаление раздела или попытка создать раздел в корне <see cref="F:Microsoft.Win32.Registry.LocalMachine" />.</exception>
+      <returns>Созданный подраздел или <see langword="null" /> в случае сбоя операции. Если в качестве значения <paramref name="subkey" /> задана строка нулевой длины, возвращается текущий объект <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)">
+      <summary>Удаляет заданный подраздел.</summary>
+      <param name="subkey">Имя удаляемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <exception cref="T:System.InvalidOperationException">У вложенного раздела <paramref name="subkey" /> есть вложенные разделы</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="subkey" /> не задает правильный раздел реестра</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> равно <see langword="null" /></exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKey(System.String,System.Boolean)">
+      <summary>Удаляет указанный подраздел и определяет, нужно ли создавать исключение, если подраздел не найден.</summary>
+      <param name="subkey">Имя удаляемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="throwOnMissingSubKey">Указывает, должно ли вызываться исключение, если заданный подраздел найти невозможно. Если этот аргумент равен <see langword="true" />, а заданный подраздел не существует, создается исключение. Если этот аргумент равен <see langword="false" />, а заданный подраздел не существует, никакие действия не предпринимаются.</param>
+      <exception cref="T:System.InvalidOperationException">У вложенного раздела <paramref name="subkey" /> есть дочерние вложенные разделы.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="subkey" /> не задает правильный раздел реестра, и значение <paramref name="throwOnMissingSubKey" /> равно <see langword="true" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)">
+      <summary>Рекурсивно удаляет вложенный раздел и все дочерние вложенные разделы.</summary>
+      <param name="subkey">Удаляемый подраздел. В этой строке не учитывается регистр знаков.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Предпринята попытка удаления корневого куста реестра.  
+  
+-или- 
+ Параметр <paramref name="subkey" /> не определяет правильный вложенный раздел реестра.</exception>
+      <exception cref="T:System.IO.IOException">Произошла ошибка ввода-вывода.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String,System.Boolean)">
+      <summary>Рекурсивно удаляет указанный подраздел и все дочерние подразделы и определяет, нужно ли создавать исключение, если не удается найти подраздел.</summary>
+      <param name="subkey">Имя удаляемого подраздела. В этой строке не учитывается регистр знаков.</param>
+      <param name="throwOnMissingSubKey">Указывает, должно ли вызываться исключение, если заданный подраздел найти невозможно. Если этот аргумент равен <see langword="true" />, а заданный подраздел не существует, создается исключение. Если этот аргумент равен <see langword="false" />, а заданный подраздел не существует, никакие действия не предпринимаются.</param>
+      <exception cref="T:System.ArgumentException">Предпринята попытка удаления корневого куста дерева.  
+  
+-или- 
+ Параметр <paramref name="subkey" /> не задает правильный подраздел реестра, и значение <paramref name="throwOnMissingSubKey" /> равно <see langword="true" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="subkey" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления раздела.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String)">
+      <summary>Удаляет заданное значение из этого раздела.</summary>
+      <param name="name">Имя удаляемого значения.</param>
+      <exception cref="T:System.ArgumentException">Значение <paramref name="name" /> не является допустимой ссылкой на значение.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления значения.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Объект <see cref="T:Microsoft.Win32.RegistryKey" /> доступен только для чтения.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.DeleteValue(System.String,System.Boolean)">
+      <summary>Удаляет указанное значение из данного раздела и определяет, нужно ли создавать исключение, если значение на найдено.</summary>
+      <param name="name">Имя удаляемого значения.</param>
+      <param name="throwOnMissingValue">Показывает, должно ли вызываться исключение, если заданное значение найти невозможно. Если этот аргумент равен <see langword="true" />, а заданное значение не существует, создается исключение. Если этот аргумент равен <see langword="false" />, а заданное значение не существует, никакие действия не предпринимаются.</param>
+      <exception cref="T:System.ArgumentException">Значение <paramref name="name" /> не является допустимой ссылкой на значение и <paramref name="throwOnMissingValue" /> равно <see langword="true" />.  
+  
+-или- 
+ <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для удаления значения.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Объект <see cref="T:Microsoft.Win32.RegistryKey" /> доступен только для чтения.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Dispose">
+      <summary>Освобождает все ресурсы, используемые текущим экземпляром класса <see cref="T:Microsoft.Win32.RegistryKey" />.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.Flush">
+      <summary>Записывает в реестр все атрибуты заданного открытого раздела реестра.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle)">
+      <summary>Создает раздел реестра на базе указанного дескриптора.</summary>
+      <param name="handle">Дескриптор раздела реестра.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="handle" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для выполнения этого действия.</exception>
+      <returns>Раздел реестра.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.FromHandle(Microsoft.Win32.SafeHandles.SafeRegistryHandle,Microsoft.Win32.RegistryView)">
+      <summary>Создает раздел реестра на базе указанного дескриптора и параметров представления реестра.</summary>
+      <param name="handle">Дескриптор раздела реестра.</param>
+      <param name="view">Представление реестра для использования.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="view" /> недопустим.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="handle" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для выполнения этого действия.</exception>
+      <returns>Раздел реестра.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetAccessControl">
+      <summary>Возвращает безопасность элемента управления доступом для текущего раздела реестра.</summary>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют необходимые разрешения.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.InvalidOperationException">Текущий раздел был удален.</exception>
+      <returns>Объект, описывающий разрешения управления доступом для раздела реестра, представленного текущим объектом <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetAccessControl(System.Security.AccessControl.AccessControlSections)">
+      <summary>Возвращает заданные разделы безопасности элемента управления доступом для текущего раздела реестра.</summary>
+      <param name="includeSections">Побитовое сочетание значений перечисления, определяющее тип возвращаемых данных безопасности.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют необходимые разрешения.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.InvalidOperationException">Текущий раздел был удален.</exception>
+      <returns>Объект, описывающий разрешения управления доступом для раздела реестра, представленного текущим объектом <see cref="T:Microsoft.Win32.RegistryKey" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetSubKeyNames">
+      <summary>Возвращает массив строк, который содержит все имена подразделов.</summary>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.IO.IOException">Произошла системная ошибка, например, был удален текущий раздел.</exception>
+      <returns>Массив строк, который содержит имена подразделов для текущего раздела.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String)">
+      <summary>Возвращает значение, связанное с заданным именем. Возвращает <see langword="null" />, если пара "имя-значение" отсутствует в реестре.</summary>
+      <param name="name">Имя извлекаемого значения. В этой строке не учитывается регистр знаков.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.IO.IOException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, был помечен для удаления.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <returns>Значение, связанное с параметром <paramref name="name" />, или <see langword="null" />, если параметр <paramref name="name" /> не обнаружен.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)">
+      <summary>Возвращает значение, связанное с заданным именем. Если имя не найдено, возвращает предоставленное значение по умолчанию.</summary>
+      <param name="name">Имя извлекаемого значения. В этой строке не учитывается регистр знаков.</param>
+      <param name="defaultValue">Возвращаемое значение, если параметр <paramref name="name" /> не существует.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.IO.IOException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, был помечен для удаления.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <returns>Значение, связанное с параметром <paramref name="name" />, с оставшимися нерасширенными встроенными переменными среды, или <paramref name="defaultValue" />, если параметр <paramref name="name" /> не найден.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)">
+      <summary>Возвращает значение, связанное с заданным именем и параметрами извлечения. Если имя не найдено, возвращает предоставленное значение по умолчанию.</summary>
+      <param name="name">Имя извлекаемого значения. В этой строке не учитывается регистр знаков.</param>
+      <param name="defaultValue">Возвращаемое значение, если параметр <paramref name="name" /> не существует.</param>
+      <param name="options">Одно из значений перечисления, определяющее дополнительную обработку возвращаемого значения.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.IO.IOException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, был помечен для удаления.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="options" /> не является допустимым значением <see cref="T:Microsoft.Win32.RegistryValueOptions" />; например, недопустимое значение приводится к типу <see cref="T:Microsoft.Win32.RegistryValueOptions" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <returns>Значение, связанное с параметром <paramref name="name" />, обрабатываемым с соответствии с заданным параметром <paramref name="options" />, или <paramref name="defaultValue" />, если значение <paramref name="name" /> не найдено.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValueKind(System.String)">
+      <summary>Возвращает тип данных реестра для значения, связанного с заданным именем.</summary>
+      <param name="name">Имя значения, для которого возвращается тип данных реестра. В этой строке не учитывается регистр знаков.</param>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.IO.IOException">Вложенный раздел, содержащий заданное значение, не существует.  
+  
+-или- 
+Пара "имя-значение", заданное параметром <paramref name="name" />, не существует.  
+  
+Это исключение не выбрасывается в операционных системах Windows 98 и Windows Millennium Edition.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <returns>Тип данных реестра для значения, связанного с параметром <paramref name="name" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.GetValueNames">
+      <summary>Возвращает массив строк, содержащий все имена значений, связанных с этим разделом.</summary>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения из раздела реестра.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.IO.IOException">Произошла системная ошибка, например, был удален текущий раздел.</exception>
+      <returns>Массив строк, который содержит имена значений для текущего раздела.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenBaseKey(Microsoft.Win32.RegistryHive,Microsoft.Win32.RegistryView)">
+      <summary>Открывает новый объект <see cref="T:Microsoft.Win32.RegistryKey" />, который представляет запрошенный раздел на локальном компьютере в указанном представлении.</summary>
+      <param name="hKey">Раздел HKEY, который необходимо открыть.</param>
+      <param name="view">Представление реестра для использования.</param>
+      <exception cref="T:System.ArgumentException">Недопустимое значение <paramref name="hKey" /> или <paramref name="view" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для выполнения этого действия.</exception>
+      <returns>Запрошенный раздел реестра.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String)">
+      <summary>Открытие нового раздела <see cref="T:Microsoft.Win32.RegistryKey" />, который представляет запрошенный раздел на удаленном компьютере.</summary>
+      <param name="hKey">Открываемый раздел HKEY, из перечисления <see cref="T:Microsoft.Win32.RegistryHive" />.</param>
+      <param name="machineName">Удаленный компьютер.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="hKey" /> недопустим.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="machineName" /> не найден.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="machineName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для выполнения этой операции.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <returns>Запрошенный раздел реестра.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenRemoteBaseKey(Microsoft.Win32.RegistryHive,System.String,Microsoft.Win32.RegistryView)">
+      <summary>Открывает новый раздел реестра, который представляет запрошенный раздел на удаленном компьютере в указанном представлении.</summary>
+      <param name="hKey">Открываемый раздел HKEY из перечисления <see cref="T:Microsoft.Win32.RegistryHive" />.</param>
+      <param name="machineName">Удаленный компьютер.</param>
+      <param name="view">Представление реестра для использования.</param>
+      <exception cref="T:System.ArgumentException">Недопустимое значение <paramref name="hKey" /> или <paramref name="view" />.</exception>
+      <exception cref="T:System.IO.IOException">
+        <paramref name="machineName" /> не найден.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="machineName" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для выполнения этой операции.</exception>
+      <returns>Запрошенный раздел реестра.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String)">
+      <summary>Возвращает подраздел с доступом только для чтения.</summary>
+      <param name="name">Имя или путь для подраздела, открываемого только для чтения.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> равно <see langword="null" /></exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения раздела реестра.</exception>
+      <returns>Запрошенный вложенный раздел или <see langword="null" /> при неудачном выполнении операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck)">
+      <summary>Возвращает заданный подраздел с доступом для чтения или для чтения и записи.</summary>
+      <param name="name">Имя или путь создаваемого или открываемого подраздела.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> равно <see langword="null" /></exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="permissionCheck" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения раздела реестра.</exception>
+      <returns>Запрошенный вложенный раздел или <see langword="null" /> при неудачном выполнении операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck,System.Security.AccessControl.RegistryRights)">
+      <summary>Возвращает заданный подраздел с доступом для чтения или для чтения и записи с запросом заданных прав доступа.</summary>
+      <param name="name">Имя или путь создаваемого или открываемого подраздела.</param>
+      <param name="permissionCheck">Одно из значений перечисления, определяющее, с какими правами открывается раздел: только для чтения или для чтения и записи.</param>
+      <param name="rights">Побитовое сочетание значений перечисления, которое определяет требуемый доступ безопасности.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> равно <see langword="null" /></exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="permissionCheck" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.Security.SecurityException">Параметр <paramref name="rights" /> содержит недопустимые значение прав доступа к реестру.  
+  
+-или- 
+У пользователя отсутствуют запрошенные разрешения.</exception>
+      <returns>Запрошенный вложенный раздел или <see langword="null" /> при неудачном выполнении операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)">
+      <summary>Получает указанный подраздел и определяет, следует ли предоставить доступ для записи в этот раздел.</summary>
+      <param name="name">Имя или путь для открываемого вложенного раздела.</param>
+      <param name="writable">Если для раздела необходим доступ на запись, следует задать значение <see langword="true" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для доступа к разделу реестра в заданном режиме.</exception>
+      <returns>Запрошенный вложенный раздел или <see langword="null" /> при неудачном выполнении операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Security.AccessControl.RegistryRights)">
+      <summary>Возвращает подраздел с указанным именем и правами доступа. Доступно начиная с .NET Framework 4.6.</summary>
+      <param name="name">Имя или путь создаваемого или открываемого подраздела.</param>
+      <param name="rights">Права для раздела реестра.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для доступа к разделу реестра в заданном режиме.</exception>
+      <returns>Запрошенный вложенный раздел или <see langword="null" /> при неудачном выполнении операции.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetAccessControl(System.Security.AccessControl.RegistrySecurity)">
+      <summary>Применяет безопасность управления доступом Windows к существующему разделу реестра.</summary>
+      <param name="registrySecurity">Безопасность управления доступом, применяемая к текущему подразделу.</param>
+      <exception cref="T:System.UnauthorizedAccessException">Текущий объект <see cref="T:Microsoft.Win32.RegistryKey" /> представляет раздел с безопасностью управления доступом, и вызывающий объект не обладает правами <see cref="F:System.Security.AccessControl.RegistryRights.ChangePermissions" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registrySecurity" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)">
+      <summary>Задает указанную пару "имя-значение".</summary>
+      <param name="name">Имя сохраняемого значения.</param>
+      <param name="value">Сохраняемые данные.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Значение параметра <paramref name="value" /> является неподдерживаемым типом данных.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является разделом только для чтения, и запись в него невозможна. Например, этот раздел не был открыт с доступом для записи.  
+  
+-или- 
+Объект <see cref="T:Microsoft.Win32.RegistryKey" /> представляет собой узел корневого уровня, и операционной системой является Windows Millennium Edition или Windows 98.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для изменения разделов реестра.</exception>
+      <exception cref="T:System.IO.IOException">Объект <see cref="T:Microsoft.Win32.RegistryKey" /> представляет собой узел корневого уровня, и операционной системой является Windows 2000, Windows XP или Windows Server 2003.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)">
+      <summary>Устанавливает значение пары "имя-значение" в разделе реестра, используя заданный тип данных реестра.</summary>
+      <param name="name">Имя сохраняемого значения.</param>
+      <param name="value">Сохраняемые данные.</param>
+      <param name="valueKind">Тип данных реестра, используемый при сохранении данных.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="value" /> имеет значение <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Тип параметра <paramref name="value" /> не соответствует типу данных реестра, заданному параметром <paramref name="valueKind" />, поэтому данные не удалось правильно преобразовать.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, содержащий заданное значение, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является разделом только для чтения, и запись в него невозможна. Например, этот раздел не был открыт с доступом для записи.  
+  
+-или- 
+Объект <see cref="T:Microsoft.Win32.RegistryKey" /> представляет собой узел корневого уровня, и операционной системой является Windows Millennium Edition или Windows 98.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для изменения разделов реестра.</exception>
+      <exception cref="T:System.IO.IOException">Объект <see cref="T:Microsoft.Win32.RegistryKey" /> представляет собой узел корневого уровня, и операционной системой является Windows 2000, Windows XP или Windows Server 2003.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.RegistryKey.ToString">
+      <summary>Возвращает строковое представление этого раздела.</summary>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" />, к которому осуществляется попытка доступа, закрыт (к закрытым ключам доступ отсутствует).</exception>
+      <returns>Строка, представляющая раздел. Если заданный раздел является неправильным (найти его не удается), возвращается значение <see langword="null" />.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.Handle">
+      <summary>Получает объект <see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />, представляющий раздел реестра, инкапсулируемый текущим объектом <see cref="T:Microsoft.Win32.RegistryKey" />.</summary>
+      <exception cref="T:System.ObjectDisposedException">Раздел реестра закрыт. К закрытым ключам доступ отсутствует.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.IO.IOException">Произошла системная ошибка, например, удаление текущего ключа.</exception>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствуют разрешения, необходимые для чтения раздела.</exception>
+      <returns>Дескриптор раздела реестра.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.Name">
+      <summary>Возвращает имя раздела.</summary>
+      <exception cref="T:System.ObjectDisposedException">Раздел <see cref="T:Microsoft.Win32.RegistryKey" /> является закрытым (доступ к закрытым разделам невозможен).</exception>
+      <returns>Абсолютное (полное) имя раздела.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.SubKeyCount">
+      <summary>Возвращает количество подразделов для текущего раздела.</summary>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствует разрешение на чтение раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.IO.IOException">Произошла системная ошибка, например, был удален текущий раздел.</exception>
+      <returns>Количество подразделов для текущего раздела.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.ValueCount">
+      <summary>Возвращает число значений в разделе.</summary>
+      <exception cref="T:System.Security.SecurityException">У пользователя отсутствует разрешение на чтение раздела.</exception>
+      <exception cref="T:System.ObjectDisposedException">Объект <see cref="T:Microsoft.Win32.RegistryKey" />, с которым выполняются действия, закрыт (доступ к закрытым разделам отсутствует).</exception>
+      <exception cref="T:System.UnauthorizedAccessException">У пользователя отсутствуют необходимые права доступа к реестру.</exception>
+      <exception cref="T:System.IO.IOException">Произошла системная ошибка, например, был удален текущий раздел.</exception>
+      <returns>Число пар "имя/значение" в разделе.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.RegistryKey.View">
+      <summary>Получает представление, которое использовалось для создания раздела реестра.</summary>
+      <returns>Представление, которое использовалось для создания раздела реестра.  
+  
+-или- 
+ Значение <see cref="F:Microsoft.Win32.RegistryView.Default" />, если представление не использовалось.</returns>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryKeyPermissionCheck">
+      <summary>Определяет, выполняются ли проверки безопасности при открытии разделов реестра и доступе к соответствующим парам "имя-значение".</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.Default">
+      <summary>Раздел реестра наследует режим родительского раздела. Проверки безопасности выполняются при попытке доступа к вложенным разделам или значениям, если родительский раздел не был открыт в режиме <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree" /> или <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree">
+      <summary>Никакие проверки безопасности не выполняются при доступе к вложенным разделам или значениям. Проверка безопасности выполняется при попытке открыть текущий раздел, если родительский раздел был открыт с помощью поля <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadSubTree" /> или <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" />.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree">
+      <summary>Никакие проверки безопасности не выполняются при доступе к вложенным разделам или значениям. Проверка безопасности выполняется при попытке открыть текущий раздел, если родительский раздел был открыт с помощью поля <see cref="F:Microsoft.Win32.RegistryKeyPermissionCheck.ReadWriteSubTree" />.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryOptions">
+      <summary>Задает параметры, которые необходимо использовать при создании раздела реестра.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryOptions.None">
+      <summary>Постоянный ключ. Это значение по умолчанию.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryOptions.Volatile">
+      <summary>Временный ключ. Информация хранится в памяти и не сохраняется при выгрузке соответствующего куста реестра.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryValueKind">
+      <summary>Определяет типы данных, используемые для хранения значений в реестре, или задает тип данных значения в реестре.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.Binary">
+      <summary>Двоичные данные в любой форме. Это значение эквивалентно типу данных реестра REG_BINARY интерфейса Windows API.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.DWord">
+      <summary>32-разрядное двоичное число. Это значение эквивалентно типу данных реестра REG_DWORD API Windows.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.ExpandString">
+      <summary>Заканчивающаяся нулем строка, содержащая нерасширенные ссылки на переменные среды, такие как %PATH%, которые расширяются при получении значения. Это значение эквивалентно типу данных реестра REG_EXPAND_SZ API Windows.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.MultiString">
+      <summary>Массив заканчивающихся нулем строк, завершаемый двумя символами NULL. Это значение эквивалентно типу данных реестра REG_MULTI_SZ API Windows.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.None">
+      <summary>Не тип данных.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.QWord">
+      <summary>64-разрядное двоичное число. Это значение эквивалентно типу данных реестра REG_QWORD API Windows.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.String">
+      <summary>Строка с нулевым символом в конце. Это значение эквивалентно типу данных реестра REG_SZ API Windows.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueKind.Unknown">
+      <summary>Неподдерживаемый тип данных реестра. Например, неподдерживаемым является тип данных REG_RESOURCE_LIST API Windows. Это значение позволяет определить, что при сохранении пары "имя-значение" метод <see cref="M:Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)" /> должен определять соответствующий тип данных реестра.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryValueOptions">
+      <summary>Определяет необязательное поведение при возвращении пар "имя-значение" из раздела реестра.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames">
+      <summary>Значение типа <see cref="F:Microsoft.Win32.RegistryValueKind.ExpandString" /> возвращается без расширения соответствующих встроенных переменных среды.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryValueOptions.None">
+      <summary>Необязательное поведение не задано.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.RegistryView">
+      <summary>Задает представление реестра, которое должны быть целевым в 64-разрядных операционных системах.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Default">
+      <summary>Представление по умолчанию.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Registry32">
+      <summary>32-разрядное представление.</summary>
+    </member>
+    <member name="F:Microsoft.Win32.RegistryView.Registry64">
+      <summary>64-разрядное представление.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle">
+      <summary>Представляет безопасный дескриптор для реестра Windows.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeRegistryHandle.#ctor(System.IntPtr,System.Boolean)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:Microsoft.Win32.SafeHandles.SafeRegistryHandle" />.</summary>
+      <param name="preexistingHandle">Объект, представляющий уже существовавший ранее дескриптор для использования.</param>
+      <param name="ownsHandle">Значение <see langword="true" />, чтобы надежно освободить дескриптор на стадии завершения; значение <see langword="false" />, чтобы запретить надежное освобождение.</param>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistryAccessRule">
+      <summary>Представляет набор прав доступа, разрешенных или запрещенных пользователю или группе. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий пользователя или группу, к которым применяются правило, права доступа, а также тип правила ("разрешить" или "запретить").</summary>
+      <param name="identity">Пользователь или группа, к которым относится данное правило. Должен обладать типом <see cref="T:System.Security.Principal.SecurityIdentifier" /> или таким типом, как <see cref="T:System.Security.Principal.NTAccount" />, чтобы его можно было преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, которые разрешаются или запрещаются.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="registryRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="type" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="eventRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не относится к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> и к такому типу, как <see cref="T:System.Security.Principal.NTAccount" />, который можно преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий имя пользователя или группы, на которые распространяется действие правила, права доступа, флаги наследования, флаги распространения, а также тип правила ("разрешить" или "запретить").</summary>
+      <param name="identity">Пользователь или группа, к которым относится данное правило. Должен обладать типом <see cref="T:System.Security.Principal.SecurityIdentifier" /> или таким типом, как <see cref="T:System.Security.Principal.NTAccount" />, чтобы его можно было преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, которые разрешаются или запрещаются.</param>
+      <param name="inheritanceFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.InheritanceFlags" />, которое определяет порядок наследования прав доступа у других объектов.</param>
+      <param name="propagationFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.PropagationFlags" />, которое определяет порядок распространения прав доступа на другие объекты.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="registryRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="type" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="inheritanceFlags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="propagationFlags" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="registryRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не относится к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> и к такому типу, как <see cref="T:System.Security.Principal.NTAccount" />, который можно преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий имя пользователя или группы, к которым применяются правило, права доступа, а также тип правила ("разрешить" или "запретить").</summary>
+      <param name="identity">Имя пользователя или группы, к которым относится данное правило.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, которые разрешаются или запрещаются.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="registryRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="type" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registryRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="identity" /> представляет собой строку нулевой длины.  
+  
+-или- 
+ Длина значения параметра <paramref name="identity" /> превышает 512 символов.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAccessRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий имя пользователя или группы, на которые распространяется действие правила, права доступа, флаги наследования, флаги распространения, а также тип правила ("разрешить" или "запретить").</summary>
+      <param name="identity">Имя пользователя или группы, к которым относится данное правило.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, которые разрешаются или запрещаются.</param>
+      <param name="inheritanceFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.InheritanceFlags" />, которое определяет порядок наследования прав доступа у других объектов.</param>
+      <param name="propagationFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.PropagationFlags" />, которое определяет порядок распространения прав доступа на другие объекты.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="registryRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="type" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="inheritanceFlags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="propagationFlags" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="eventRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="identity" /> представляет собой строку нулевой длины.  
+  
+-или- 
+ Длина значения параметра <paramref name="identity" /> превышает 512 символов.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistryAccessRule.RegistryRights">
+      <summary>Получает права, разрешаемые или запрещаемые правилом доступа.</summary>
+      <returns>Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, которые разрешаются или запрещаются правилом доступа.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistryAuditRule">
+      <summary>Представляет набор прав доступа, подлежащих аудиту для пользователя или группы. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAuditRule" /> с указанием пользователя или группы для аудита, прав для аудита, необходимости учитывать наследование и подлежащих аудиту операций (успешных попыток доступа, неудачных попыток доступа или всех попыток доступа).</summary>
+      <param name="identity">Пользователь или группа, к которым относится данное правило. Должен обладать типом <see cref="T:System.Security.Principal.SecurityIdentifier" /> или таким типом, как <see cref="T:System.Security.Principal.NTAccount" />, чтобы его можно было преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее подлежащие аудиту права доступа.</param>
+      <param name="inheritanceFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, которое определяет, должно ли правило аудита применяться к подразделам текущего раздела.</param>
+      <param name="propagationFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, влияющее на способ распространения наследования правила аудита на подразделы текущего раздела.</param>
+      <param name="flags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.AuditFlags" />, определяющее предмет аудита — успешные попытки доступа, неудачные попытки доступа или все попытки доступа.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="eventRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="flags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="inheritanceFlags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="propagationFlags" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="registryRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identity" /> не относится к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> и к такому типу, как <see cref="T:System.Security.Principal.NTAccount" />, который можно преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistryAuditRule.#ctor(System.String,System.Security.AccessControl.RegistryRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistryAuditRule" /> с указанием имени пользователя или группы для аудита, прав для аудита, необходимости учитывать наследование, и подлежащих аудиту операций (успешных попыток доступа, неудачных попыток доступа или всех попыток доступа).</summary>
+      <param name="identity">Имя пользователя или группы, к которым относится данное правило.</param>
+      <param name="registryRights">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее подлежащие аудиту права доступа.</param>
+      <param name="inheritanceFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.InheritanceFlags" />, которое определяет, должно ли правило аудита применяться к подразделам текущего раздела.</param>
+      <param name="propagationFlags">Побитовое сочетание флагов <see cref="T:System.Security.AccessControl.PropagationFlags" />, влияющее на способ распространения наследования правила аудита на подразделы текущего раздела.</param>
+      <param name="flags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.AuditFlags" />, определяющее предмет аудита — успешные попытки доступа, неудачные попытки доступа или все попытки доступа.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="eventRights" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="flags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="inheritanceFlags" /> содержит недопустимое значение.  
+  
+-или- 
+ Параметр <paramref name="propagationFlags" /> содержит недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="registryRights" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="identity" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="identity" /> представляет собой строку нулевой длины.  
+  
+-или- 
+ Длина значения параметра <paramref name="identity" /> превышает 512 символов.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistryAuditRule.RegistryRights">
+      <summary>Получает права доступа, на которые распространяется действие этого правила аудита.</summary>
+      <returns>Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права, на которые распространяется действие этого правила аудита.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistryRights">
+      <summary>Определяет права доступа, которые можно применять к объектам реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ChangePermissions">
+      <summary>Право изменять правила доступа и аудита, связанные с разделом реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.CreateLink">
+      <summary>Зарезервировано для системного использования.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.CreateSubKey">
+      <summary>Право создавать подразделы в разделе реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.Delete">
+      <summary>Право удалить раздел реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.EnumerateSubKeys">
+      <summary>Право создавать список подразделов в разделе реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ExecuteKey">
+      <summary>Эквивалентно <see cref="F:System.Security.AccessControl.RegistryRights.ReadKey" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.FullControl">
+      <summary>Право на полный контроль над разделом реестра, а также на изменение правил доступа и аудита.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.Notify">
+      <summary>Право запрашивать уведомление об изменениях раздела реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.QueryValues">
+      <summary>Право запрашивать пары "имя-значение" в разделе реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ReadKey">
+      <summary>Право запрашивать пары "имя-значение" в разделе реестра, запрашивать уведомление об изменениях, получать список подразделов, а также право на чтение правил доступа и аудита раздела.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.ReadPermissions">
+      <summary>Право открывать и копировать правила доступа и аудита, связанные с разделом реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.SetValue">
+      <summary>Право создавать, удалять и задавать пары "имя-значение" в разделе реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.TakeOwnership">
+      <summary>Право изменять владельца раздела реестра.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.RegistryRights.WriteKey">
+      <summary>Право создавать, удалять и задавать пары "имя-значение" в разделе реестра, создавать и удалять подразделы, запрашивать уведомление об изменениях, получать список подразделов, а также право на чтение правил доступа и аудита раздела.</summary>
+    </member>
+    <member name="T:System.Security.AccessControl.RegistrySecurity">
+      <summary>Обеспечивает безопасность управления доступом Windows для раздела реестра. Этот класс не наследуется.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.#ctor">
+      <summary>Инициализирует новый экземпляр класса <see cref="T:System.Security.AccessControl.RegistrySecurity" /> со значениями по умолчанию.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Создает новое правило управления доступом для указанного пользователя с указанными правами, типом управления доступом и флагами.</summary>
+      <param name="identityReference">Объект <see cref="T:System.Security.Principal.IdentityReference" />, идентифицирующий пользователя или группу, к которым относится данное правило.</param>
+      <param name="accessMask">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее разрешаемые или запрещаемые права доступа, приведенное к целочисленному типу.</param>
+      <param name="isInherited">Логическое значение, которое определяет, наследуется ли правило.</param>
+      <param name="inheritanceFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок наследования правила подразделами.</param>
+      <param name="propagationFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, изменяющее порядок наследования правила подразделами. Не имеет смысла, если свойство <paramref name="inheritanceFlags" /> имеет значение <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="type">Одно из значений <see cref="T:System.Security.AccessControl.AccessControlType" />, определяющее тип правила ("разрешить" или "запретить").</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> или <paramref name="type" /> имеет недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identityReference" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="accessMask" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identityReference" /> не относится к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> и к такому типу, как <see cref="T:System.Security.Principal.NTAccount" />, который можно преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>Объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, представляющий указанные права для указанного пользователя.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AddAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Выполняет поиск подходящего элемента управления доступом, с которым можно объединить новое правило. Если поиск не дал результатов, добавляется новое правило.</summary>
+      <param name="rule">Добавляемое правило управления доступом.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AddAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Осуществляет поиск правила аудита, с которым можно объединить новое правило. Если поиск не дал результатов, добавляется новое правило.</summary>
+      <param name="rule">Добавляемое правило аудита. Поиск ведется по имени пользователя, указанному в этом правиле.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Создает новое правило аудита, в котором указывается пользователь, к которому относится правило, права доступа для аудита, параметры наследования и распространения правила, а также событие, вызывающее срабатывание правила.</summary>
+      <param name="identityReference">Объект <see cref="T:System.Security.Principal.IdentityReference" />, идентифицирующий пользователя или группу, к которым относится данное правило.</param>
+      <param name="accessMask">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.RegistryRights" />, определяющее права доступа для аудита, приведенное к целочисленному типу.</param>
+      <param name="isInherited">Логическое значение, которое определяет, наследуется ли правило.</param>
+      <param name="inheritanceFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.InheritanceFlags" />, определяющее порядок наследования правила подразделами.</param>
+      <param name="propagationFlags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.PropagationFlags" />, изменяющее порядок наследования правила подразделами. Не имеет смысла, если свойство <paramref name="inheritanceFlags" /> имеет значение <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="flags">Побитовое сочетание значений <see cref="T:System.Security.AccessControl.AuditFlags" />, определяющее предмет аудита — успешные попытки доступа, неудачные попытки доступа или все попытки доступа.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Параметр <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> или <paramref name="flags" /> имеет недопустимое значение.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="identityReference" /> имеет значение <see langword="null" />.  
+  
+-или- 
+ <paramref name="accessMask" /> равен нулю.</exception>
+      <exception cref="T:System.ArgumentException">Параметр <paramref name="identityReference" /> не относится к типу <see cref="T:System.Security.Principal.SecurityIdentifier" /> и к такому типу, как <see cref="T:System.Security.Principal.NTAccount" />, который можно преобразовать в тип <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+      <returns>Объект <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, представляющий указанное правило аудита для заданного пользователя с заданными флагами. Метод возвращает объект базового класса (<see cref="T:System.Security.AccessControl.AuditRule" />), но возвращаемое значение можно безопасно привести к производному классу.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Осуществляет поиск правила управления доступом с тем же именем пользователя и значением <see cref="T:System.Security.AccessControl.AccessControlType" /> ("разрешить" или "запретить"), что и указанного правила доступа, а также с совместимыми флагами наследования и распространения; если правило найдено, содержащиеся в указанном правиле доступа права удаляются.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий пользователя и тип <see cref="T:System.Security.AccessControl.AccessControlType" /> для поиска, а также набор флагов наследования и распространения, с которыми должно быть совместимо найденное правило. Задает права, которые требуется удалить из совместимого правила, если оно будет найдено.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если совместимое правило найдено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleAll(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Осуществляет поиск всех правил управления доступом с тем же именем пользователя и значением свойства <see cref="T:System.Security.AccessControl.AccessControlType" /> ("разрешить" или "запретить"), что и у указанного правила, и удаляет найденные правила.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" />, определяющий пользователя и значение <see cref="T:System.Security.AccessControl.AccessControlType" /> для поиска. Никакие указанные в этом правиле права, флаги наследования и распространения не учитываются.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Осуществляет поиск правила управления доступом, в точности соответствующего указанному правилу, и удаляет найденное правило.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" /> для удаления.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Осуществляет поиск правила управления аудитом с тем же именем пользователя, что и указанного правила доступа, а также с совместимыми флагами наследования и распространения; если совместимое правило найдено, содержащиеся в указанном правиле права удаляются.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, определяющий пользователя для поиска, а также набор флагов наследования и распространения, с которыми должно быть совместимо найденное правило. Задает права, которые требуется удалить из совместимого правила, если оно будет найдено.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+      <returns>Значение <see langword="true" />, если совместимое правило найдено; в противном случае — значение <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleAll(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Производит поиск всех правил аудита с тем же пользователем, что и у указанного правила, и удаляет найденные правила.</summary>
+      <param name="rule">Объект <see cref="T:System.Security.AccessControl.RegistryAuditRule" />, определяющий пользователя для поиска. Никакие указанные в этом правиле права, флаги наследования и распространения не учитываются.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Осуществляет поиск правила аудита, в точности соответствующего указанному правилу, и удаляет найденное правило.</summary>
+      <param name="rule">Удаляемый объект <see cref="T:System.Security.AccessControl.RegistryAuditRule" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.ResetAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Удаляет все правила управления доступом с тем же именем пользователя, что и у указанного правила, вне зависимости от значения свойства <see cref="T:System.Security.AccessControl.AccessControlType" />, после чего добавляет указанное правило.</summary>
+      <param name="rule">Добавляемый объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" />. Имя пользователя, заданное в этом правиле, определяет правила, которые необходимо удалить перед добавлением данного правила.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.SetAccessRule(System.Security.AccessControl.RegistryAccessRule)">
+      <summary>Удаляет все правила управления доступом с тем же именем пользователя и значением свойства <see cref="T:System.Security.AccessControl.AccessControlType" /> ("разрешить" или "запретить"), что и у указанного правила, после чего добавляет указанное правило.</summary>
+      <param name="rule">Добавляемый объект <see cref="T:System.Security.AccessControl.RegistryAccessRule" />. Имя пользователя и значение <see cref="T:System.Security.AccessControl.AccessControlType" /> определяют правила, которые необходимо удалить перед добавлением этого правила.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.RegistrySecurity.SetAuditRule(System.Security.AccessControl.RegistryAuditRule)">
+      <summary>Удаляет все правила аудита с тем же именем пользователя, что и у указанного правила, вне зависимости от значения свойства <see cref="T:System.Security.AccessControl.AuditFlags" />, после чего добавляет указанное правило.</summary>
+      <param name="rule">Добавляемый объект <see cref="T:System.Security.AccessControl.RegistryAuditRule" />. Имя пользователя, заданное в этом правиле, определяет правила, которые необходимо удалить перед добавлением данного правила.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rule" /> имеет значение <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AccessRightType">
+      <summary>Получает значение перечисления, используемое классом <see cref="T:System.Security.AccessControl.RegistrySecurity" /> для обозначения прав доступа.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий перечисление <see cref="T:System.Security.AccessControl.RegistryRights" />.</returns>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AccessRuleType">
+      <summary>Получает тип, используемый классом <see cref="T:System.Security.AccessControl.RegistrySecurity" /> для обозначения правил доступа.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий класс <see cref="T:System.Security.AccessControl.RegistryAccessRule" />.</returns>
+    </member>
+    <member name="P:System.Security.AccessControl.RegistrySecurity.AuditRuleType">
+      <summary>Получает тип, используемый классом <see cref="T:System.Security.AccessControl.RegistrySecurity" /> для обозначения правил аудита.</summary>
+      <returns>Объект <see cref="T:System.Type" />, представляющий класс <see cref="T:System.Security.AccessControl.RegistryAuditRule" />.</returns>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,704 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>UIAutomationProvider</name>
+  </assembly>
+  <members>
+    <member name="T:System.Windows.Automation.Provider.AutomationInteropProvider">
+      <summary vsli:raw="Provides support for communication between UI Automation providers and UI Automation client applications.">Ofrece compatibilidad para la comunicación entre los proveedores de automatización de la interfaz de usuario y las aplicaciones del cliente de automatización de la interfaz de usuario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.AppendRuntimeId">
+      <summary vsli:raw="Contains a value that, when returned as the first element of the array passed by the UI Automation provider to &lt;see cref=&quot;M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId&quot; /&gt;, indicates that the ID is partial and should be appended to the ID provided by the base provider.">Contiene un valor que, cuando se devuelve como el primer elemento de la matriz pasada por el proveedor de Automatización de la interfaz de usuario para <see cref="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId" />, indica que el identificador es parcial y se debe anexar al identificador proporcionado por el proveedor base.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.AutomationInteropProvider.ClientsAreListening">
+      <summary vsli:raw="Gets a value that specifies whether any UI Automation client application is subscribed to UI Automation events.">Obtiene un valor que especifica si alguna aplicación cliente de automatización de la interfaz de usuario está suscrita a eventos Automatización de la interfaz de usuario.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if a client is subscribed to events; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si un cliente está suscrito a eventos; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.HostProviderFromHandle(System.IntPtr)">
+      <summary vsli:raw="Returns a UI Automation provider that represents the specified window.">Devuelve un proveedor de automatización de la interfaz de usuario que representa la ventana especificada.</summary>
+      <param name="hwnd" vsli:raw="The handle of the window.">Controlador de la ventana.</param>
+      <returns vsli:raw="The raw element provider for the specified window.">Proveedor de elementos sin formato para la ventana especificada.</returns>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.InvalidateLimit">
+      <summary vsli:raw="Specifies the maximum number of events to send before batching.">Especifica el número máximo de eventos que deben enviarse antes del procesamiento por lotes.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.ItemsInvalidateLimit">
+      <summary vsli:raw="The maximum number of events to send before batching for items in containers.">Número máximo de eventos que se van a enviar antes de procesar por lotes los elementos de contenedores.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseAutomationEvent(System.Windows.Automation.AutomationEvent,System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.AutomationEventArgs)">
+      <summary vsli:raw="Raises a pattern event or a custom event.">Genera un evento de patrón o un evento personalizado.</summary>
+      <param name="eventId" vsli:raw="The event identifier.">Identificador de evento.</param>
+      <param name="provider" vsli:raw="The element associated with the event.">Elemento asociado al evento.</param>
+      <param name="e" vsli:raw="Information about the event.">Información acerca del evento.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseAutomationPropertyChangedEvent(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.AutomationPropertyChangedEventArgs)">
+      <summary vsli:raw="Raises an event when a UI Automation property has changed.">Genera un evento cuando ha cambiado una propiedad de Automatización de la interfaz de usuario .</summary>
+      <param name="element" vsli:raw="The element associated with the event.">Elemento asociado al evento.</param>
+      <param name="e" vsli:raw="Information about the event.">Información acerca del evento.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.RaiseStructureChangedEvent(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Windows.Automation.StructureChangedEventArgs)">
+      <summary vsli:raw="Raises an event when the UI Automation tree has changed.">Genera un evento cuando ha cambiado el árbol de Automatización de la interfaz de usuario.</summary>
+      <param name="provider" vsli:raw="The element associated with the event.">Elemento asociado al evento.</param>
+      <param name="e" vsli:raw="Information about the event.">Información acerca del evento.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.AutomationInteropProvider.ReturnRawElementProvider(System.IntPtr,System.IntPtr,System.IntPtr,System.Windows.Automation.Provider.IRawElementProviderSimple)">
+      <summary vsli:raw="Returns the UI automation provider for an element in response to a &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">Devuelve el proveedor de automatización de la interfaz de usuario para un elemento en respuesta a un mensaje <see langword="WM_GETOBJECT" />.</summary>
+      <param name="hwnd" vsli:raw="Handle of the element's window.">Identificador de la ventana del elemento.</param>
+      <param name="wParam" vsli:raw="The &lt;see langword=&quot;wParam&quot; /&gt; member of the &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">Miembro <see langword="wParam" /> del mensaje <see langword="WM_GETOBJECT" />.</param>
+      <param name="lParam" vsli:raw="The &lt;see langword=&quot;lParam&quot; /&gt; member of the &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message.">Miembro <see langword="lParam" /> del mensaje <see langword="WM_GETOBJECT" /> .</param>
+      <param name="el" vsli:raw="The UI Automation provider for the element.">Proveedor de UI Automation para el elemento.</param>
+      <returns vsli:raw="A pointer to data that should be assigned to &lt;see cref=&quot;P:System.Windows.Forms.Message.Result&quot; /&gt; before passing the message to the base window procedure.">Puntero a los datos que deben asignarse a <see cref="P:System.Windows.Forms.Message.Result" /> antes de pasar el mensaje al procedimiento de ventana base.</returns>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.AutomationInteropProvider.RootObjectId">
+      <summary vsli:raw="Contains a value used in the &lt;see langword=&quot;lParam&quot; /&gt; member of a &lt;see langword=&quot;WM_GETOBJECT&quot; /&gt; message, indicating that the server should return a reference to the root raw element provider.">Contiene un valor utilizado en el miembro <see langword="lParam" /> de un mensaje <see langword="WM_GETOBJECT" />, que indica que el servidor debe devolver una referencia al proveedor del elemento raíz sin formato.</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IDockProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that expose their dock properties within a docking container.">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a controles que exponen sus propiedades de acoplamiento dentro de un contenedor de acoplamiento.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IDockProvider.DockPosition">
+      <summary vsli:raw="Gets the current &lt;see cref=&quot;T:System.Windows.Automation.DockPosition&quot; /&gt; of the control within a docking container.">Obtiene la enumeración <see cref="T:System.Windows.Automation.DockPosition" /> actual del control dentro de un contenedor de acoplamiento.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.DockPosition&quot; /&gt; of the control, relative to the boundaries of the docking container and other elements within the container.">
+        <see cref="T:System.Windows.Automation.DockPosition" /> del control, respecto a los límites del contenedor de acoplamiento y otros elementos del contenedor.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IDockProvider.SetDockPosition(System.Windows.Automation.DockPosition)">
+      <summary vsli:raw="Docks the control within a docking container.">Acopla el control dentro de un contenedor de acoplamiento.</summary>
+      <param name="dockPosition" vsli:raw="The dock position, relative to the boundaries of the docking container and other elements within the container.">La posición de acoplamiento con respecto a los límites del contenedor de acoplamiento y otros elementos dentro del contenedor.</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IExpandCollapseProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that visually expand to display content and collapse to hide content.">Expone métodos y propiedades para admitir el acceso de cliente de UI Automation a los controles que se expanden visualmente para mostrar el contenido y se contraen para ocultar el contenido.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Collapse">
+      <summary vsli:raw="Hides all nodes, controls, or content that are descendants of the control.">Oculta todos los nodos, controles o contenido que son descendientes del control.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IExpandCollapseProvider.Expand">
+      <summary vsli:raw="Displays all child nodes, controls, or content of the control.">Presenta todos los nodos secundarios, controles o contenido del control.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IExpandCollapseProvider.ExpandCollapseState">
+      <summary vsli:raw="Gets the state, expanded or collapsed, of the control.">Obtiene el estado, expandido o contraído, del control.</summary>
+      <returns vsli:raw="The state, expanded or collapsed, of the control.">Estado, expandido o contraído, del control.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IGridItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles secundarios individuales de contenedores que implementan <see cref="T:System.Windows.Automation.Provider.IGridProvider" />.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.Column">
+      <summary vsli:raw="Gets the ordinal number of the column that contains the cell or item.">Obtiene el número ordinal de la columna que contiene la celda o elemento.</summary>
+      <returns vsli:raw="A zero-based ordinal number that identifies the column containing the cell or item.">Número ordinal de base cero que identifica la columna que contiene la celda o elemento.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ColumnSpan">
+      <summary vsli:raw="Gets the number of columns spanned by a cell or item.">Obtiene el número de columnas que abarca una celda o elemento.</summary>
+      <returns vsli:raw="The number of columns spanned.">Número de columnas abarcado.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.ContainingGrid">
+      <summary vsli:raw="Gets a UI Automation provider that implements &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridProvider&quot; /&gt; and represents the container of the cell or item.">Obtiene un proveedor de automatización de la interfaz de usuario que implementa <see cref="T:System.Windows.Automation.Provider.IGridProvider" /> y representa el contenedor de la celda o elemento.</summary>
+      <returns vsli:raw="A UI Automation provider that implements the &lt;see cref=&quot;T:System.Windows.Automation.GridPattern&quot; /&gt; and represents the cell or item container.">Proveedor de automatización de la interfaz de usuario que implementa el <see cref="T:System.Windows.Automation.GridPattern" /> y representa el contenedor de la celda o elemento.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.Row">
+      <summary vsli:raw="Gets the ordinal number of the row that contains the cell or item.">Obtiene el número ordinal de la fila que contiene la celda o elemento.</summary>
+      <returns vsli:raw="A zero-based ordinal number that identifies the row containing the cell or item.">Número ordinal basado en cero que identifica la fila que contiene la celda o elemento.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridItemProvider.RowSpan">
+      <summary vsli:raw="Gets the number of rows spanned by a cell or item.">Obtiene el número de filas que abarca una celda o elemento.</summary>
+      <returns vsli:raw="The number of rows spanned.">Número de filas abarcado.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IGridProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of child elements. The children of this element must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IGridItemProvider&quot; /&gt; and be organized in a two-dimensional logical coordinate system that can be traversed (that is, a UI Automation client can move to adjacent controls) by using the keyboard.">Expone métodos y propiedades para admitir el acceso del cliente de UI Automation a controles que actúan como contenedores de una colección de elementos secundarios. Los elementos secundarios de este elemento deben implementar <see cref="T:System.Windows.Automation.Provider.IGridItemProvider" /> y organizarse en un sistema de coordenadas lógicas bidimensional que se pueda recorrer (es decir, un cliente de automatización de interfaz de usuario puede moverse a controles adyacentes) con el teclado.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridProvider.ColumnCount">
+      <summary vsli:raw="Gets the total number of columns in a grid.">Obtiene el número total de columnas de una cuadrícula.</summary>
+      <returns vsli:raw="The total number of columns in a grid.">Número total de columnas de una cuadrícula.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IGridProvider.GetItem(System.Int32,System.Int32)">
+      <summary vsli:raw="Retrieves the UI Automation provider for the specified cell.">Recupera el proveedor de UI Automation para la celda especificada.</summary>
+      <param name="row" vsli:raw="The ordinal number of the row of interest.">Número ordinal de la fila de interés.</param>
+      <param name="column" vsli:raw="The ordinal number of the column of interest.">Número ordinal de la columna de interés.</param>
+      <returns vsli:raw="The UI Automation provider for the specified cell.">Proveedor de UI Automation para la celda especificada.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IGridProvider.RowCount">
+      <summary vsli:raw="Gets the total number of rows in a grid.">Obtiene el número total de filas de una cuadrícula.</summary>
+      <returns vsli:raw="The total number of rows in a grid.">Número total de filas de una cuadrícula.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IInvokeProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that initiate or perform a single, unambiguous action and do not maintain state when activated.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles que inician o realizan una única acción inequívoca y no mantienen el estado cuando se activan.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IInvokeProvider.Invoke">
+      <summary vsli:raw="Sends a request to activate a control and initiate its single, unambiguous action.">Envía una solicitud para activar un control e iniciar su acción única e inequívoca.</summary>
+      <exception cref="T:System.Windows.Automation.ElementNotEnabledException" vsli:raw="If the control is not enabled.">Si el control no está habilitado.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IItemContainerProvider">
+      <summary vsli:raw="Exposes a method to enable applications to find an element in a container, such as a virtualized list.">Expone un método para permitir a las aplicaciones buscar un elemento en un contenedor, como una lista virtualizada.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IItemContainerProvider.FindItemByProperty(System.Windows.Automation.Provider.IRawElementProviderSimple,System.Int32,System.Object)">
+      <summary vsli:raw="Retrieves an element by the specified property value.">Recupera un elemento por el valor de propiedad especificado.</summary>
+      <param name="startAfter" vsli:raw="The item in the container after which to begin the search.">Elemento del contenedor después del cual se inicia la búsqueda.</param>
+      <param name="propertyId" vsli:raw="The property that contains the value to retrieve.">Propiedad que contiene el valor que se va a recuperar.</param>
+      <param name="value" vsli:raw="The value to retrieve.">Valor que se va a recuperar.</param>
+      <returns vsli:raw="The first item that matches the search criterion; otherwise, &lt;see langword=&quot;null&quot; /&gt; if no items match.">Devuelve el primer elemento que coincide con el criterio de búsqueda; si no se encuentran coincidencias, devuelve <see langword="null" />.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IMultipleViewProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that provide, and are able to switch between, multiple representations of the same set of information or child controls.">Expone métodos y propiedades para admitir el acceso del cliente de UI Automation a los controles que ofrece y puede cambiar entre varias representaciones del mismo conjunto de información o controles secundarios.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IMultipleViewProvider.CurrentView">
+      <summary vsli:raw="Gets the current control-specific view.">Obtiene la vista específica del control actual.</summary>
+      <returns vsli:raw="The value for the current view of the UI Automation element.">Valor de la vista actual del elemento de automatización de la interfaz de usuario.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetSupportedViews">
+      <summary vsli:raw="Retrieves a collection of control-specific view identifiers.">Recupera una colección de identificadores de vista específicos del control.</summary>
+      <returns vsli:raw="A collection of values that identifies the views available for a UI Automation element.">Una colección de valores que identifica las vistas disponibles para un elemento de Automatización de la interfaz de usuario.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.GetViewName(System.Int32)">
+      <summary vsli:raw="Retrieves the name of a control-specific view.">Recupera el nombre de una vista específica del control.</summary>
+      <param name="viewId" vsli:raw="The view identifier.">Identificador de la vista.</param>
+      <returns vsli:raw="A localized name for the view.">Nombre traducido para la vista.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;viewId&quot; /&gt; is not a member of the supported views collection.">
+        <paramref name="viewId" /> no es un miembro de la colección de vistas admitidas.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IMultipleViewProvider.SetCurrentView(System.Int32)">
+      <summary vsli:raw="Sets the current control-specific view.">Establece la vista específica del control actual.</summary>
+      <param name="viewId" vsli:raw="A view identifier.">Identificador de vista.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;viewId&quot; /&gt; is not a member of the supported views collection.">
+        <paramref name="viewId" /> no es un miembro de la colección de vistas admitidas.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRangeValueProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can be set to a value within a range.">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a controles que se pueden establecer en un valor dentro de un intervalo.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.IsReadOnly">
+      <summary vsli:raw="Gets a value that specifies whether the value of a control is read-only.">Obtiene un valor que especifica si el valor de un control es de sólo lectura.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value is read-only; &lt;see langword=&quot;false&quot; /&gt; if it can be modified.">
+        <see langword="true" /> si el valor es de solo lectura; <see langword="false" /> si se puede modificar.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange">
+      <summary vsli:raw="Gets the value that is added to or subtracted from the &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt; property when a large change is made, such as with the PAGE DOWN key.">Obtiene el valor que se suma o se resta a la propiedad <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /> cuando se realiza un cambio grande, por ejemplo con la tecla AV PÁG.</summary>
+      <returns vsli:raw="The large-change value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange&quot; /&gt;.">Valor de cambio grande admitido por el control o null (<see langword="Nothing" /> en Visual Basic) si el control no admite. <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.LargeChange" /></returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum">
+      <summary vsli:raw="Gets the maximum range value supported by the control.">Obtiene el valor máximo del intervalo admitido por el control.</summary>
+      <returns vsli:raw="The maximum value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum&quot; /&gt;.">Valor máximo admitido por el control o null (<see langword="Nothing" /> en Visual Basic) si el control no admite. <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Maximum" /></returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum">
+      <summary vsli:raw="Gets the minimum range value supported by the control.">Obtiene el valor mínimo del intervalo admitido por el control.</summary>
+      <returns vsli:raw="The minimum value supported by the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum&quot; /&gt;.">Valor mínimo admitido por el control o null (<see langword="Nothing" /> en Visual Basic) si el control no admite. <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Minimum" /></returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRangeValueProvider.SetValue(System.Double)">
+      <summary vsli:raw="Sets the value of the control.">Establece el valor del control.</summary>
+      <param name="value" vsli:raw="The value to set.">Valor que se va a establecer.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="When &lt;paramref name=&quot;value&quot; /&gt; is less than the minimum or greater than the maximum value of the control.">Cuando <paramref name="value" /> es menor que el mínimo o mayor que el valor máximo del control.</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange">
+      <summary vsli:raw="Gets the value that is added to or subtracted from the &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt; property when a small change is made, such as with an arrow key.">Obtiene el valor que se suma o se resta a la propiedad <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /> cuando se realiza un cambio pequeño, por ejemplo con una tecla de dirección.</summary>
+      <returns vsli:raw="The small-change value or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange&quot; /&gt;.">Valor de cambio pequeño o null (<see langword="Nothing" /> en Visual Basic) si el control no admite. <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.SmallChange" /></returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRangeValueProvider.Value">
+      <summary vsli:raw="Gets the value of the control.">Obtiene el valor del control.</summary>
+      <returns vsli:raw="The value of the control or null (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the control does not support &lt;see cref=&quot;P:System.Windows.Automation.Provider.IRangeValueProvider.Value&quot; /&gt;.">Valor del control o null (<see langword="Nothing" /> en Visual Basic) si el control no admite. <see cref="P:System.Windows.Automation.Provider.IRangeValueProvider.Value" /></returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents">
+      <summary vsli:raw="Exposes methods that are called to notify the root element of a fragment when a UI Automation client application begins or ends listening for events.">Expone métodos que se llaman para notificar el elemento raíz de un fragmento cuando una aplicación cliente de UI Automation inicia o finaliza la escucha de eventos.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents.AdviseEventAdded(System.Int32,System.Int32[])">
+      <summary vsli:raw="Notifies the UI Automation provider when a UI Automation client begins listening for a specific event, including a property-changed event.">Informa al proveedor de Automatización de la interfaz de usuario de cuando un cliente de Automatización de la interfaz de usuario comienza a realizar escuchas para un evento específico, lo que incluye un evento cambiado por una propiedad.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event being added.">El identificador del evento que se agrega.</param>
+      <param name="properties" vsli:raw="The identifiers of the properties being added, or &lt;see langword=&quot;null&quot; /&gt; if the event listener being added is not listening for property events.">Identificadores de las propiedades que se agregan, o <see langword="null" /> si la escucha de eventos que se agrega no realiza escuchas de eventos de propiedad.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderAdviseEvents.AdviseEventRemoved(System.Int32,System.Int32[])">
+      <summary vsli:raw="Notifies the UI Automation provider when a UI Automation client stops listening for a specific event, including a property-changed event.">Informa al proveedor de Automatización de la interfaz de usuario de cuando un cliente de Automatización de la interfaz de usuario deja de escuchar para un evento específico, lo que incluye un evento cambiado por una propiedad.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event being removed.">Identificador del evento que se quita</param>
+      <param name="properties" vsli:raw="The identifiers of the properties being removed, or &lt;see langword=&quot;null&quot; /&gt; if the event listener being removed is not listening for property events.">Identificadores de las propiedades que se quitan, o <see langword="null" /> si la escucha de eventos que se quita no realiza escuchas de eventos de propiedad.</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderFragment">
+      <summary vsli:raw="Exposes methods and properties on user interface (UI) elements that are part of a structure more than one level deep, such as a list box or a list item. Implemented by UI Automation providers.">Expone métodos y propiedades en elementos de la interfaz de usuario que forman parte de una estructura de más de un nivel de profundidad, como un cuadro de lista o un elemento de lista. Lo implementan los proveedores de Automatización de la interfaz de usuario.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderFragment.BoundingRectangle">
+      <summary vsli:raw="Gets the bounding rectangle of this element.">Obtiene el rectángulo delimitador de este elemento.</summary>
+      <returns vsli:raw="The bounding rectangle, in screen coordinates.">El rectángulo delimitador, en coordenadas de pantalla.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderFragment.FragmentRoot">
+      <summary vsli:raw="Retrieves the root node of the fragment.">Recupera el nodo raíz del fragmento.</summary>
+      <returns vsli:raw="The root node.">Nodo raíz.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetEmbeddedFragmentRoots">
+      <summary vsli:raw="Retrieves an array of fragment roots that are embedded in the UI Automation element tree rooted at the current element.">Recupera una matriz de raíces de fragmento que están incrustadas en el árbol de elementos de Automatización de la interfaz de usuario con raíz en el elemento actual.</summary>
+      <returns vsli:raw="An array of root fragments, or &lt;see langword=&quot;null&quot; /&gt;.">Una matriz de fragmentos de raíz o <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.GetRuntimeId">
+      <summary vsli:raw="Retrieves the runtime identifier of an element.">Recupera el identificador en tiempo de ejecución de un elemento.</summary>
+      <returns vsli:raw="The unique run-time identifier of the element.">Identificador único en tiempo de ejecución del elemento.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.Navigate(System.Windows.Automation.Provider.NavigateDirection)">
+      <summary vsli:raw="Retrieves the UI Automation element in a specified direction within the tree.">Recupera el elemento Automatización de la interfaz de usuario en una dirección especificada dentro del árbol.</summary>
+      <param name="direction" vsli:raw="The direction in which to navigate.">Dirección en la que se va a navegar.</param>
+      <returns vsli:raw="The element in the specified direction, or &lt;see langword=&quot;null&quot; /&gt; if there is no element in that direction.">Elemento en la dirección especificada, o <see langword="null" /> si no hay ningún elemento en esa dirección.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragment.SetFocus">
+      <summary vsli:raw="Sets the focus to this element.">Establece el foco en este elemento.</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot">
+      <summary vsli:raw="Exposes methods and properties on the root element in a fragment.">Expone métodos y propiedades en el elemento raíz de un fragmento.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot.ElementProviderFromPoint(System.Double,System.Double)">
+      <summary vsli:raw="Retrieves the element in this fragment that is at the specified point.">Recupera el elemento de este fragmento que está en el punto especificado.</summary>
+      <param name="x" vsli:raw="The X coordinate.">Coordenada X.</param>
+      <param name="y" vsli:raw="The Y coordinate.">Coordenada Y.</param>
+      <returns vsli:raw="The provider for the child element at the specified point, if one exists, or the root provider if the point is on this element but not on any child element. Otherwise returns &lt;see langword=&quot;null&quot; /&gt;.">Proveedor para el elemento secundario en el punto especificado, si existe, o proveedor raíz si el punto está en este elemento pero no en cualquier elemento secundario. De lo contrario, devuelve <see langword="null" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderFragmentRoot.GetFocus">
+      <summary vsli:raw="Retrieves the element in this fragment that has the input focus.">Recupera el elemento de este fragmento que tiene el foco de entrada.</summary>
+      <returns vsli:raw="The provider for the element in this fragment that has the input focus, if any; otherwise, a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic).">Proveedor del elemento de este fragmento que tiene el foco de entrada, si existe; en caso contrario, una referencia null (<see langword="Nothing" /> en Visual Basic).</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderHwndOverride">
+      <summary vsli:raw="Exposes a method that enables repositioning of window-based elements within the UI Automation tree of the fragment.">Expone un método que permite el cambio de posición de los elementos basados en ventanas en el árbol de automatización de la interfaz de usuario de un fragmento.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderHwndOverride.GetOverrideProviderForHwnd(System.IntPtr)">
+      <summary vsli:raw="Retrieves a UI automation provider for the specified element.">Recupera el proveedor de automatización de la interfaz de usuario para el elemento especificado.</summary>
+      <param name="hwnd" vsli:raw="The window handle of the element.">Identificador de ventana del elemento.</param>
+      <returns vsli:raw="The provider for the specified element, or a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) if the element's default provider is not being overridden.">El proveedor para el elemento especificado o una referencia nula (<see langword="Nothing" /> en Visual Basic) si no se reemplaza el proveedor predeterminado del elemento.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IRawElementProviderSimple">
+      <summary>Ofrece métodos y propiedades que exponen información básica sobre un elemento de interfaz de usuario.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderSimple.GetPatternProvider(System.Int32)">
+      <summary>Recupera un objeto que ofrece compatibilidad con un patrón de control en un elemento Automatización de la interfaz de usuario.</summary>
+      <param name="patternId">Identificador del patrón.</param>
+      <returns>Objeto que implementa la interfaz de patrón, o <see langword="null" /> si no se admite el patrón.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IRawElementProviderSimple.GetPropertyValue(System.Int32)">
+      <summary>Recupera el valor de una propiedad que admite el proveedor de automatización de la interfaz de usuario.</summary>
+      <param name="propertyId">Identificador de propiedad.</param>
+      <returns>El valor de propiedad o un elemento <see langword="null" /> si este proveedor no admite la propiedad o <see cref="F:System.Windows.Automation.AutomationElementIdentifiers.NotSupported" /> si no se admite en absoluto.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderSimple.HostRawElementProvider">
+      <summary>Obtiene un proveedor base para este elemento.</summary>
+      <returns>El proveedor base o <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IRawElementProviderSimple.ProviderOptions">
+      <summary>Obtiene un valor que especifica las características del proveedor de UI Automation; por ejemplo, si es un proveedor de cliente o de servidor.</summary>
+      <returns>
+        <see cref="F:System.Windows.Automation.Provider.ProviderOptions.ClientSideProvider" /> o <see cref="F:System.Windows.Automation.Provider.ProviderOptions.ServerSideProvider" />.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IScrollItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IScrollProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles secundarios individuales de contenedores que implementan <see cref="T:System.Windows.Automation.Provider.IScrollProvider" />.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollItemProvider.ScrollIntoView">
+      <summary vsli:raw="Scrolls the content area of a container object in order to display the control within the visible region (viewport) of the container.">Desplaza el área de contenido de un objeto contenedor para presentar el control dentro del área visible (ventanilla) del contenedor.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The item cannot be scrolled into view.">El elemento no se puede desplazar en la vista.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IScrollProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to a control that acts as a scrollable container for a collection of child objects. The children of this control must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.IScrollItemProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a un control que actúa como contenedor desplazable para una colección de objetos secundarios. Los elementos secundarios de este control deben implementar <see cref="T:System.Windows.Automation.Provider.IScrollItemProvider" />.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontallyScrollable">
+      <summary vsli:raw="Gets a value that indicates whether the control can scroll horizontally.">Obtiene un valor que indica si el control puede desplazarse horizontalmente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the control can scroll horizontally; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el control puede desplazarse horizontalmente; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent">
+      <summary vsli:raw="Gets the current horizontal scroll position.">Obtiene la posición de desplazamiento horizontal actual.</summary>
+      <returns vsli:raw="The horizontal scroll position as a percentage of the total content area within the control.">Posición de desplazamiento horizontal como porcentaje del total del área de contenido del control.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalViewSize">
+      <summary vsli:raw="Gets the current horizontal view size.">Obtiene el tamaño de la vista horizontal actual.</summary>
+      <returns vsli:raw="The horizontal size of the viewable region as a percentage of the total content area within the control.">Tamaño horizontal de la región visible como porcentaje del total del área de contenido del control.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollProvider.Scroll(System.Windows.Automation.ScrollAmount,System.Windows.Automation.ScrollAmount)">
+      <summary vsli:raw="Scrolls the visible region of the content area horizontally and vertically.">Desplaza la región visible del área de contenido horizontal y verticalmente.</summary>
+      <param name="horizontalAmount" vsli:raw="The horizontal increment specific to the control. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">Incremento horizontal específico del control. Debe pasarse <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> si el control no se puede desplazar en esta dirección.</param>
+      <param name="verticalAmount" vsli:raw="The vertical increment specific to the control. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">Incremento vertical específico del control. Debe pasarse <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> si el control no se puede desplazar en esta dirección.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a control supports &lt;see cref=&quot;F:System.Windows.Automation.ScrollAmount.SmallIncrement&quot; /&gt; values exclusively for horizontal or vertical scrolling but a &lt;see cref=&quot;F:System.Windows.Automation.ScrollAmount.LargeIncrement&quot; /&gt; value is passed in.">Si un control admite valores <see cref="F:System.Windows.Automation.ScrollAmount.SmallIncrement" /> exclusivamente para el desplazamiento horizontal o vertical, pero se pasa un valor <see cref="F:System.Windows.Automation.ScrollAmount.LargeIncrement" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt is made to scroll in an unsupported direction.">Se realiza un intento para desplazarse en una dirección no admitida.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IScrollProvider.SetScrollPercent(System.Double,System.Double)">
+      <summary vsli:raw="Sets the horizontal and vertical scroll position as a percentage of the total content area within the control.">Establece la posición de desplazamiento horizontal y vertical como un porcentaje del área de contenido total en el control.</summary>
+      <param name="horizontalPercent" vsli:raw="The horizontal position as a percentage of the content area's total range. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">Posición horizontal como un porcentaje del intervalo total del área de contenido. Debe pasarse <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> si el control no se puede desplazar en esta dirección.</param>
+      <param name="verticalPercent" vsli:raw="The vertical position as a percentage of the content area's total range. &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt; should be passed in if the control cannot be scrolled in this direction.">Posición vertical como un porcentaje del intervalo total del área de contenido. Debe pasarse <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" /> si el control no se puede desplazar en esta dirección.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="A value that cannot be converted to a double is passed in.">Se pasó un valor que no se puede convertir en un doble.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="A value greater than 100 or less than 0 is passed in (except -1, which is equivalent to &lt;see cref=&quot;F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll&quot; /&gt;). The &lt;see cref=&quot;P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent&quot; /&gt; and &lt;see cref=&quot;P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent&quot; /&gt; values are normalized to either 100 percent or 0 percent.">Se pasó un valor mayor que 100 o menor que 0 (excepto -1, que equivale a <see cref="F:System.Windows.Automation.ScrollPatternIdentifiers.NoScroll" />). Los valores <see cref="P:System.Windows.Automation.Provider.IScrollProvider.HorizontalScrollPercent" /> y <see cref="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent" /> se normalizan en 100 % o 0 %.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt is made to scroll in an unsupported direction.">Se realiza un intento para desplazarse en una dirección no admitida.</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticallyScrollable">
+      <summary vsli:raw="Gets a value that indicates whether the control can scroll vertically.">Obtiene un valor que indica si el control puede desplazarse verticalmente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the control can scroll vertically; otherwise &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si el control puede desplazarse verticalmente; de lo contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticalScrollPercent">
+      <summary vsli:raw="Gets the current vertical scroll position.">Obtiene la posición de desplazamiento vertical actual.</summary>
+      <returns vsli:raw="The vertical scroll position as a percentage of the total content area within the control.">Posición de desplazamiento vertical como porcentaje del total del área de contenido del control.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IScrollProvider.VerticalViewSize">
+      <summary vsli:raw="Gets the vertical view size.">Obtiene el tamaño de la vista vertical.</summary>
+      <returns vsli:raw="The vertical size of the viewable region as a percentage of the total content area within the control.">Tamaño vertical de la región visible como porcentaje del total del área de contenido del control.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISelectionItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to individual, selectable child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso de cliente de UI Automation a los controles secundarios individuales seleccionables de contenedores que implementan <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" />.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.AddToSelection">
+      <summary vsli:raw="Adds the current element to the collection of selected items.">Agrega el elemento actual a la colección de elementos seleccionados.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionItemProvider.IsSelected">
+      <summary vsli:raw="Gets a value that indicates whether an item is selected.">Obtiene un valor que indica si un elemento está seleccionado.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element is selected; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el elemento está seleccionado; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.RemoveFromSelection">
+      <summary vsli:raw="Removes the current element from the collection of selected items.">Quita el elemento actual de la colección de elementos seleccionados.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionItemProvider.Select">
+      <summary vsli:raw="Deselects any selected items and then selects the current element.">Anula la selección de los elementos seleccionados y, después, selecciona el elemento actual.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionItemProvider.SelectionContainer">
+      <summary vsli:raw="Gets the UI Automation provider that implements &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt; and acts as the container for the calling object.">Obtiene el proveedor de automatización de la interfaz de usuario que implementa <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" /> y actúa como contenedor para el objeto que realiza la llamada.</summary>
+      <returns vsli:raw="The provider that supports &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionProvider&quot; /&gt;.">Proveedor que admite <see cref="T:System.Windows.Automation.Provider.ISelectionProvider" />.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISelectionProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of individual, selectable child items. The children of this control must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ISelectionItemProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a controles que actúan como contenedores para una colección de elementos secundarios seleccionables individuales. Los elementos secundarios de este control deben implementar <see cref="T:System.Windows.Automation.Provider.ISelectionItemProvider" />.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionProvider.CanSelectMultiple">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation provider allows more than one child element to be selected concurrently.">Obtiene un valor que especifica si el proveedor de automatización de interfaz de usuario permite la selección de más de un elemento secundario simultáneamente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if multiple selection is allowed; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se permite la selección múltiple; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISelectionProvider.GetSelection">
+      <summary vsli:raw="Retrieves a UI Automation provider for each child element that is selected.">Recupera un proveedor de UI Automation para cada elemento secundario que está seleccionado.</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">Colección de proveedores de UI Automation.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ISelectionProvider.IsSelectionRequired">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation provider requires at least one child element to be selected.">Obtiene un valor que especifica si el proveedor de UI Automation requiere que se seleccione al menos un elemento secundario.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if selection is required; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se requiere la selección; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ISynchronizedInputProvider">
+      <summary vsli:raw="Exposes methods to facilitate UI Automation client access to controls that support synchronized input.">Expone los métodos para facilitar el acceso del cliente de automatización de la interfaz de usuario a los controles que admiten la entrada sincronizada.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISynchronizedInputProvider.Cancel">
+      <summary vsli:raw="Stops listening for input.">Detiene la escucha de entradas.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ISynchronizedInputProvider.StartListening(System.Windows.Automation.SynchronizedInputType)">
+      <summary vsli:raw="Designates that the provider start listening for input of the specified type.">Designa que el proveedor comienza a escuchar entradas del tipo especificado.</summary>
+      <param name="inputType" vsli:raw="The type of input to listen for.">Tipo de entrada que se va a escuchar.</param>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITableItemProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to child controls of containers that implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ITableProvider&quot; /&gt;.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles secundarios de contenedores que implementan <see cref="T:System.Windows.Automation.Provider.ITableProvider" />.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableItemProvider.GetColumnHeaderItems">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers representing all the column headers associated with a table item or cell.">Recupera una colección de proveedores de UI Automation que representa todos los encabezados de columna asociados a un elemento o una celda de una tabla.</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">Colección de proveedores de UI Automation.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableItemProvider.GetRowHeaderItems">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers representing all the row headers associated with a table item or cell.">Recupera una colección de proveedores de UI Automation que representa todos los encabezados de fila asociados a un elemento o una celda de una tabla.</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">Colección de proveedores de UI Automation.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITableProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that act as containers for a collection of child elements. The children of this element must implement &lt;see cref=&quot;T:System.Windows.Automation.Provider.ITableItemProvider&quot; /&gt; and be organized in a two-dimensional logical coordinate system that can be traversed (that is, a UI Automation client can move to adjacent controls) by using the keyboard.">Expone métodos y propiedades para admitir el acceso del cliente de UI Automation a controles que actúan como contenedores de una colección de elementos secundarios. Los elementos secundarios de este elemento deben implementar <see cref="T:System.Windows.Automation.Provider.ITableItemProvider" /> y organizarse en un sistema de coordenadas lógicas bidimensional que se pueda recorrer (es decir, un cliente de automatización de interfaz de usuario puede moverse a controles adyacentes) con el teclado.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableProvider.GetColumnHeaders">
+      <summary vsli:raw="Gets a collection of UI Automation providers that represents all the column headers in a table.">Obtiene una colección de proveedores de UI Automation que representa todos los encabezados de columna en una tabla.</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">Colección de proveedores de UI Automation.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITableProvider.GetRowHeaders">
+      <summary vsli:raw="Retrieves a collection of UI Automation providers that represents all row headers in the table.">Recupera una colección de proveedores de UI Automation que representa todos los encabezados de fila en la tabla.</summary>
+      <returns vsli:raw="A collection of UI Automation providers.">Colección de proveedores de UI Automation.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITableProvider.RowOrColumnMajor">
+      <summary vsli:raw="Retrieves the primary direction of traversal for the table.">Recupera la dirección primaria de exploración transversal para la tabla.</summary>
+      <returns vsli:raw="The primary direction of traversal.">Dirección primaria de exploración transversal.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITextProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that contain text.">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a controles que contienen texto.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange">
+      <summary vsli:raw="Gets a text range that encloses the main text of a document.">Obtiene un intervalo de texto que agrega el texto principal de un documento.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.GetSelection">
+      <summary vsli:raw="Retrieves a collection of disjoint text ranges associated with the current text selection or selections.">Recupera una colección de intervalos de texto no contiguos asociados a la selección o selecciones de texto actuales.</summary>
+      <returns vsli:raw="A collection of disjoint text ranges.">Una colección de intervalos de texto no contiguos.</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the UI Automation provider does not support text selection.">Si el proveedor de Automatización de la interfaz de usuario no admite la selección de texto.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.GetVisibleRanges">
+      <summary vsli:raw="Retrieves an array of disjoint text ranges from a text container where each text range begins with the first partially visible line through to the end of the last partially visible line.">Recupera una matriz de intervalos de texto no contiguos de un contenedor de texto donde cada intervalo comienza con la primera línea parcialmente visible y continúa hasta el final de la última línea parcialmente visible.</summary>
+      <returns vsli:raw="The collection of visible text ranges within the container or an empty array. A null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) is never returned.">La colección de intervalos de texto visibles en el contenedor o una matriz vacía. Nunca se devuelve una referencia nula (<see langword="Nothing" /> en Visual Basic).</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.RangeFromChild(System.Windows.Automation.Provider.IRawElementProviderSimple)">
+      <summary vsli:raw="Retrieves a text range enclosing a child element such as an image, hyperlink, or other embedded object.">Recupera un rango de texto que incluye un elemento secundario, como una imagen, un hipervínculo u otro objeto insertado.</summary>
+      <param name="childElement" vsli:raw="The enclosed object.">Objeto incluido.</param>
+      <returns vsli:raw="A range that spans the child element.">Un intervalo que abarca el elemento secundario.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="If the child element is a null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic).">Si el elemento secundario es una referencia nula (<see langword="Nothing" /> en Visual Basic).</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextProvider.RangeFromPoint(System.Windows.Point)">
+      <summary vsli:raw="Returns the degenerate (empty) text range nearest to the specified screen coordinates.">Devuelve el intervalo de texto degenerado (vacío) más cercano a las coordenadas de la pantalla especificadas.</summary>
+      <param name="screenLocation" vsli:raw="The location in screen coordinates.">Ubicación en las coordenadas de la pantalla.</param>
+      <returns vsli:raw="A degenerate range nearest the specified location. A null reference (&lt;see langword=&quot;Nothing&quot; /&gt; in Visual Basic) is never returned.">Intervalo degenerado más próximo a la ubicación especificada. Nunca se devuelve una referencia nula (<see langword="Nothing" /> en Visual Basic).</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a given point is outside the UI Automation element associated with the text pattern.">Si un punto determinado está fuera del elemento de Automatización de la interfaz de usuario asociado al modelo de texto.</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection">
+      <summary vsli:raw="Gets a value that specifies whether a text provider supports selection and, if so, the type of selection supported.">Obtiene un valor que especifica si un proveedor de texto admite la selección y, en ese caso, el tipo de selección admitida.</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Windows.Automation.SupportedTextSelection&quot; /&gt; values.">
+        <see langword="None" />, <see langword="Single" /> o <see langword="Multiple" /> de <see cref="T:System.Windows.Automation.SupportedTextSelection" />.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITextRangeProvider">
+      <summary>Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a una sección de texto continuo en un contenedor de texto que implemente <see cref="T:System.Windows.Automation.Provider.ITextProvider" />.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.AddToSelection">
+      <summary>Agrega a la colección de texto resaltado en un contenedor de texto que admite varias selecciones discontinuas.</summary>
+      <exception cref="T:System.InvalidOperationException">Si el proveedor de texto no admite varias selecciones discontinuas (es decir, <see cref="P:System.Windows.Automation.Provider.ITextProvider.SupportedTextSelection" /> tiene un valor de <see langword="Multiple" />).</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Clone">
+      <summary>Devuelve una <see cref="T:System.Windows.Automation.Provider.ITextRangeProvider" /> nueva idéntica a la <see cref="T:System.Windows.Automation.Provider.ITextRangeProvider" /> original y hereda todas sus propiedades.</summary>
+      <returns>Intervalo de texto nuevo. Nunca se devuelve una referencia nula (<see langword="Nothing" /> en Visual Basic).</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Compare(System.Windows.Automation.Provider.ITextRangeProvider)">
+      <summary>Devuelve un valor que indica si el tramo (del punto de conexión <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> al punto de conexión <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" />) de un intervalo de texto es igual que otro intervalo de texto.</summary>
+      <param name="range">Intervalo de texto que se debe comparar</param>
+      <returns>
+        <see langword="true" /> si el tramo de ambos intervalos de texto es idéntico; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentException">Si el intervalo que se compara no proviene del mismo proveedor de texto.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.CompareEndpoints(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <summary>Devuelve un valor que especifica si dos intervalos de texto tienen extremos idénticos.</summary>
+      <param name="endpoint">punto de conexión <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> o <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> del llamador.</param>
+      <param name="targetRange">Intervalo de destino para la comparación.</param>
+      <param name="targetEndpoint">Extremo <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> o <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> del destino.</param>
+      <returns>Devuelve un valor negativo si el punto de conexión del llamador se produce en el texto antes que en el punto de conexión de destino.  
+ Devuelve cero si el punto de conexión del llamador está en la misma ubicación que el punto de conexión de destino.  
+ Devuelve un valor positivo si el punto de conexión del llamador se produce en el texto después que en el punto de conexión de destino.</returns>
+      <exception cref="T:System.ArgumentException">Si <paramref name="targetRange" /> es de un proveedor de texto diferente.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.ExpandToEnclosingUnit(System.Windows.Automation.Text.TextUnit)">
+      <summary>Expande el intervalo de texto a la unidad de texto especificada.</summary>
+      <param name="unit">Unidad textual.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.FindAttribute(System.Int32,System.Object,System.Boolean)">
+      <summary>Devuelve un subconjunto del intervalo de texto que tiene el valor de atributo especificado.</summary>
+      <param name="attribute">Atributo que se debe buscar.</param>
+      <param name="value">Valor del atributo que se debe buscar. Este valor debe coincidir con el tipo especificado para el atributo.</param>
+      <param name="backward">
+        <see langword="true" /> si debe devolverse el último intervalo de texto en lugar del primero; en caso contrario, <see langword="false" />.</param>
+      <returns>Intervalo de texto que tiene un atributo y un valor de atributo correspondiente; en caso contrario, null (<see langword="Nothing" /> en Visual Basic).</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.FindText(System.String,System.Boolean,System.Boolean)">
+      <summary>Devuelve un subconjunto del intervalo de texto que contiene el texto especificado.</summary>
+      <param name="text">Cadena de texto que se debe buscar.</param>
+      <param name="backward">
+        <see langword="true" /> si debe devolverse el último intervalo de texto en lugar del primero; en caso contrario, <see langword="false" />.</param>
+      <param name="ignoreCase">
+        <see langword="true" /> si no se distingue entre mayúsculas y minúsculas; en caso contrario, <see langword="false" />.</param>
+      <returns>Intervalo de texto que coincide con el texto especificado; en caso contrario, null (<see langword="Nothing" /> en Visual Basic).</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetAttributeValue(System.Int32)">
+      <summary>Recupera el valor del atributo especificado por el intervalo de texto.</summary>
+      <param name="attribute">Atributo de texto.</param>
+      <returns>Recupera un objeto que representa el valor del atributo especificado. Por ejemplo, <c>GetAttributeValue(TextPattern.FontNameAttribute)</c> devolvería una cadena que representa el nombre de fuente del intervalo de texto, mientras que <c>GetAttributeValue(TextPattern.IsItalicAttribute)</c> devolvería un valor de tipo <see cref="T:System.Boolean" />.  
+Devuelve <see cref="F:System.Windows.Automation.TextPattern.MixedAttributeValue" /> si el valor del atributo especificado varía respecto al intervalo de texto.  
+Devuelve <see cref="F:System.Windows.Automation.AutomationElement.NotSupported" /> si el proveedor o el control no admiten el atributo especificado.</returns>
+      <exception cref="T:System.ArgumentException">Si el atributo especificado no es válido.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetBoundingRectangles">
+      <summary>Recupera una colección de rectángulos delimitadores para cada línea de texto total o parcialmente visible en un intervalo de texto.</summary>
+      <returns>Matriz de rectángulos delimitadores para cada línea de texto completa o parcial en un intervalo de texto.  
+ Matriz vacía para un intervalo degenerado.  
+ Matriz vacía para un intervalo de texto cuyas coordenadas de pantalla lo colocan completamente fuera de la pantalla, lo desplazan fuera de la vista o lo ocultan con una ventana superpuesta.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetChildren">
+      <summary>Recupera una colección de todos los objetos incrustados que se encuentran en el intervalo de texto.</summary>
+      <returns>Colección de objetos secundarios que se encuentran dentro del intervalo. Los elementos secundarios superpuestos en el intervalo de texto que este no enmarca completamente también se incluyen en la colección.  
+ Devuelve una colección vacía si no hay ningún objeto secundario.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetEnclosingElement">
+      <summary>Devuelve el control más interno que enmarca el intervalo de texto.</summary>
+      <returns>Control envolvente, que es normalmente el proveedor de texto que proporciona el intervalo de texto. Sin embargo, si el proveedor de texto admite elementos secundarios como tablas o hipervínculos, el elemento envolvente podría ser un descendiente del proveedor de texto.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.GetText(System.Int32)">
+      <summary>Recupera el texto sin formato del intervalo.</summary>
+      <param name="maxLength">Longitud máxima de la cadena que se debe devolver. Use <c>-1</c> si no se requiere ningún límite.</param>
+      <returns>Texto sin formato del intervalo de texto, posiblemente truncado según el <paramref name="maxLength" /> especificado.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Si <paramref name="maxLength" /> es menor que 1.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Move(System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <summary>Mueve el intervalo de texto el número especificado de unidades de texto.</summary>
+      <param name="unit">Límite de la unidad de texto.</param>
+      <param name="count">Número de unidades de texto que se deben mover.  
+ Un valor positivo mueve el intervalo de texto hacia adelante, un valor negativo mueve el intervalo de texto hacia atrás y 0 no tiene ningún efecto.</param>
+      <returns>Número de unidades que se movieron realmente. Puede ser menor que el número solicitado si cualquiera de los nuevos extremos del intervalo de texto es mayor o menor que los extremos de <see cref="P:System.Windows.Automation.Provider.ITextProvider.DocumentRange" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByRange(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Provider.ITextRangeProvider,System.Windows.Automation.Text.TextPatternRangeEndpoint)">
+      <summary>Mueve un punto de conexión de un intervalo de texto al punto de conexión especificado de un segundo intervalo de texto.</summary>
+      <param name="endpoint">punto de conexión que se debe mover.</param>
+      <param name="targetRange">Otro intervalo del mismo proveedor de texto.</param>
+      <param name="targetEndpoint">Extremo en el otro intervalo.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.MoveEndpointByUnit(System.Windows.Automation.Text.TextPatternRangeEndpoint,System.Windows.Automation.Text.TextUnit,System.Int32)">
+      <summary>Mueve un extremo del intervalo de texto el número especificado de unidades de texto dentro del intervalo del documento.</summary>
+      <param name="endpoint">punto de conexión que se debe mover.</param>
+      <param name="unit">Unidad textual que se debe mover.</param>
+      <param name="count">Número de unidades para mover. Un valor positivo mueve el punto de conexión hacia adelante. Un valor negativo lo mueve hacia atrás. Un valor de 0 no tiene ningún efecto.</param>
+      <returns>Número de unidades que realmente se mueven. Puede ser menor que el número solicitado si al mover el punto de conexión se pasa por el principio o el final del documento.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.RemoveFromSelection">
+      <summary>Quita una sección resaltada de texto, que corresponde a los puntos de conexión <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> y <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> del llamador, de la colección de texto resaltado en un contenedor de texto que admite varias selecciones discontinuas.</summary>
+      <exception cref="T:System.InvalidOperationException">Si el proveedor de texto no admite varias selecciones discontinuas (por ejemplo, <see cref="P:System.Windows.Automation.TextPattern.SupportedTextSelection" /> tiene un valor de <see langword="Multiple" />).</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.ScrollIntoView(System.Boolean)">
+      <summary>Hace que el control de texto se desplace verticalmente hasta que el intervalo de texto esté visible en la ventanilla.</summary>
+      <param name="alignToTop">
+        <see langword="true" /> si el control de texto se debe desplazar de forma que el intervalo de texto quede alineado con la parte superior de la ventanilla; <see langword="false" /> si debe alinearse con la parte inferior de la ventanilla.</param>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITextRangeProvider.Select">
+      <summary>Resalta el texto en el control de texto que corresponde a los extremos <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.Start" /> y <see cref="F:System.Windows.Automation.Text.TextPatternRangeEndpoint.End" /> del intervalo de texto.</summary>
+      <exception cref="T:System.InvalidOperationException">Se produce cuando la selección de texto no es compatible con el control de texto.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IToggleProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can cycle through a set of states and maintain a state once set.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles que puede recorrer en iteración un conjunto de estados y mantener un estado una vez establecido.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IToggleProvider.Toggle">
+      <summary vsli:raw="Cycles through the toggle states of a control.">Recorre los estados de alternancia de un control.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IToggleProvider.ToggleState">
+      <summary vsli:raw="Gets the toggle state of the control.">Obtiene el estado alternativo del control.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.ToggleState&quot; /&gt; of the control.">
+        <see cref="T:System.Windows.Automation.ToggleState" /> del control.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ITransformProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that can be moved, resized, or rotated within a two-dimensional space.">Expone métodos y propiedades para admitir el acceso del cliente de UI Automation a controles que se pueden mover, cambiar de tamaño o girar en un espacio bidimensional.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanMove">
+      <summary vsli:raw="Gets a value that specifies whether the control can be moved.">Obtiene un valor que especifica si se puede mover el control.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be moved; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se puede mover el elemento; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanResize">
+      <summary vsli:raw="Gets a value that specifies whether the UI Automation element can be resized.">Obtiene un valor que especifica si se puede cambiar el tamaño del elemento de Automatización de la interfaz de usuario.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be resized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se puede cambiar el tamaño del elemento; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate">
+      <summary vsli:raw="Gets a value that specifies whether the control can be rotated.">Obtiene un valor que especifica si se puede girar el control.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the element can be rotated; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si se puede girar el elemento; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Move(System.Double,System.Double)">
+      <summary vsli:raw="Moves the control.">Mueve el control.</summary>
+      <param name="x" vsli:raw="Absolute screen coordinates of the left side of the control.">Coordenadas de pantalla absolutas del lado izquierdo del control.</param>
+      <param name="y" vsli:raw="Absolute screen coordinates of the top of the control.">Coordenadas de pantalla absolutas del lado superior del control.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanMove&quot; /&gt; property is false.">Si la propiedad <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanMove" /> es false.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Resize(System.Double,System.Double)">
+      <summary vsli:raw="Resizes the control.">Cambia el tamaño del control.</summary>
+      <param name="width" vsli:raw="The new width of the window, in pixels.">Nuevo ancho de la ventana, en píxeles.</param>
+      <param name="height" vsli:raw="The new height of the window, in pixels.">Nuevo alto de la ventana, en píxeles.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanResize&quot; /&gt; property is false.">Si la propiedad <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanResize" /> es false.</exception>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.ITransformProvider.Rotate(System.Double)">
+      <summary vsli:raw="Rotates the control.">Gira el control.</summary>
+      <param name="degrees" vsli:raw="The number of degrees to rotate the control. A positive number rotates clockwise; a negative number rotates counterclockwise.">Número de grados que se va a girar el control. Un número positivo realiza la rotación en el sentido de las agujas del reloj; un número negativo la realiza en sentido contrario.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If the &lt;see cref=&quot;P:System.Windows.Automation.Provider.ITransformProvider.CanRotate&quot; /&gt; property is false.">Si la propiedad <see cref="P:System.Windows.Automation.Provider.ITransformProvider.CanRotate" /> es false.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IValueProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls having an intrinsic value that does not span a range and that can be represented as a string.">Expone métodos y propiedades para admitir el acceso de cliente de automatización de la interfaz de usuario a los controles que tienen un valor intrínseco que no abarca un intervalo y que se puede representar como una cadena.</summary>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IValueProvider.IsReadOnly">
+      <summary vsli:raw="Gets a value that specifies whether the value of a control is read-only.">Obtiene un valor que especifica si el valor de un control es de sólo lectura.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the value is read-only; &lt;see langword=&quot;false&quot; /&gt; if it can be modified.">
+        <see langword="true" /> si el valor es de solo lectura; <see langword="false" /> si se puede modificar.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IValueProvider.SetValue(System.String)">
+      <summary vsli:raw="Sets the value of a control.">Establece el valor de un control.</summary>
+      <param name="value" vsli:raw="The value to set. The provider is responsible for converting the value to the appropriate data type.">Valor que se va a establecer. El proveedor es responsable de convertir el valor al tipo de datos adecuado.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="If locale-specific information is passed to a control in an incorrect format such as an incorrectly formatted date.">Si la información específica de la configuración regional se pasa a un control en un formato incorrecto, como una fecha con formato incorrecto.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="If a new value cannot be converted from a string to a format the control recognizes.">Si no se puede convertir un nuevo valor de una cadena a un formato que el control reconozca.</exception>
+      <exception cref="T:System.Windows.Automation.ElementNotEnabledException" vsli:raw="When an attempt is made to manipulate a control that is not enabled.">Si se realiza un intento de manipular un control que no está habilitado.</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IValueProvider.Value">
+      <summary vsli:raw="Gets the value of the control.">Obtiene el valor del control.</summary>
+      <returns vsli:raw="The value of the control as a string.">Valor del control como cadena.</returns>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IVirtualizedItemProvider">
+      <summary vsli:raw="Exposes a method to support the virtualized item control pattern.">Expone un método para que admita el patrón de control del elemento virtualizado.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IVirtualizedItemProvider.Realize">
+      <summary vsli:raw="Makes the virtual item fully accessible as a UI Automation element.">Hace que el elemento virtual sea totalmente accesible como elemento de automatización de la interfaz de usuario.</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.IWindowProvider">
+      <summary vsli:raw="Exposes methods and properties to support UI Automation client access to controls that provide fundamental window-based functionality within a traditional graphical user interface (GUI).">Expone métodos y propiedades para admitir el acceso del cliente de automatización de la interfaz de usuario a controles que proporcionan la función fundamental basada en ventanas dentro de una interfaz gráfica de usuario tradicional.</summary>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.Close">
+      <summary vsli:raw="Attempts to close the window.">Intenta cerrar la ventana.</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="When the control is unable to perform the requested action.">Cuando el control no puede realizar la acción solicitada.</exception>
+      <exception cref="T:System.Windows.Automation.ElementNotAvailableException" vsli:raw="When the target element is no longer available (for example, the window has closed).">Cuando el elemento de destino ya no está disponible (por ejemplo, la ventana se cerró).</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.InteractionState">
+      <summary vsli:raw="Gets the interaction state of the window.">Obtiene el estado de interacción de la ventana.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Windows.Automation.WindowInteractionState&quot; /&gt; of the control.">
+        <see cref="T:System.Windows.Automation.WindowInteractionState" /> del control.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.IsModal">
+      <summary vsli:raw="Gets a value that specifies whether the window is modal.">Obtiene un valor que especifica si la ventana es modal.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window is modal; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la ventana es modal; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.IsTopmost">
+      <summary vsli:raw="Gets a value that specifies whether the window is the topmost element in the z-order.">Obtiene un valor que especifica si la ventana es el elemento superior en el orden z.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window is topmost; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la ventana es de nivel superior; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.Maximizable">
+      <summary vsli:raw="Gets a value that specifies whether the window can be maximized.">Obtiene un valor que especifica si la ventana se puede maximizar.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window can be maximized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la ventana se puede maximizar; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.Minimizable">
+      <summary vsli:raw="Gets a value that specifies whether the window can be minimized.">Obtiene un valor que especifica si la ventana se puede minimizar.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window can be minimized; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la ventana se puede minimizar; en caso contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.SetVisualState(System.Windows.Automation.WindowVisualState)">
+      <summary vsli:raw="Changes the visual state of the window. For example, minimizes or maximizes it.">Cambia el estado visual de la ventana. Por ejemplo, lo minimiza o lo maximiza.</summary>
+      <param name="state" vsli:raw="The requested visual state of the window.">Estado visual solicitado de la ventana.</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="When the control does not support the requested behavior.">Cuando el control no admite un comportamiento solicitado.</exception>
+    </member>
+    <member name="P:System.Windows.Automation.Provider.IWindowProvider.VisualState">
+      <summary vsli:raw="Gets the visual state of the window.">Obtiene el estado visual de la ventana.</summary>
+      <returns vsli:raw="The visual state of the window.">Estado visual de la ventana.</returns>
+    </member>
+    <member name="M:System.Windows.Automation.Provider.IWindowProvider.WaitForInputIdle(System.Int32)">
+      <summary vsli:raw="Causes the calling code to block for the specified time or until the associated process enters an idle state, whichever completes first.">Hace que el código de llamada se bloquee durante el tiempo especificado o hasta que el proceso asociado entre en un estado de inactividad, lo que ocurra primero.</summary>
+      <param name="milliseconds" vsli:raw="The amount of time, in milliseconds, to wait for the associated process to become idle. The maximum is &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">Cantidad de tiempo, en milisegundos, que se esperará hasta que el proceso asociado entre a un estado de inactividad. El máximo es <see cref="F:System.Int32.MaxValue" />.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the window has entered the idle state; &lt;see langword=&quot;false&quot; /&gt; if the timeout occurred.">Es <see langword="true" /> si la ventana ha entrado en el estado de inactividad; es <see langword="false" /> si se agotó el tiempo de espera.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="When the parameter passed in is not a valid number.">Cuando el parámetro pasado no es un número válido.</exception>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.NavigateDirection">
+      <summary vsli:raw="Contains values used to specify the direction of navigation within the UI Automation tree.">Contiene valores que se usan para especificar la dirección de navegación en el árbol de automatización de la interfaz de usuario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.FirstChild">
+      <summary vsli:raw="The navigation direction is to the first child.">Se navega hacia el primer elemento secundario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.LastChild">
+      <summary vsli:raw="The navigation direction is to the last child.">Se navega hacia el último elemento secundario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.NextSibling">
+      <summary vsli:raw="The navigation direction is to the next sibling.">Se navega hacia el elemento siguiente del mismo nivel.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.Parent">
+      <summary vsli:raw="The navigation direction is toward the parent.">Se navega hacia el elemento primario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.NavigateDirection.PreviousSibling">
+      <summary vsli:raw="The navigation direction is to the previous sibling.">Se navega hacia el elemento anterior del mismo nivel.</summary>
+    </member>
+    <member name="T:System.Windows.Automation.Provider.ProviderOptions">
+      <summary>Contiene valores que especifican el tipo del proveedor de automatización de la interfaz de usuario.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ClientSideProvider">
+      <summary>El proveedor de UI Automation es un proveedor del lado cliente.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.NonClientAreaProvider">
+      <summary>El proveedor de UI Automation es un proveedor del área que no es del cliente.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.OverrideProvider">
+      <summary>El proveedor de automatización de la interfaz de usuario reemplaza a otro proveedor.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ProviderOwnsSetFocus">
+      <summary>El proveedor de automatización de la interfaz de usuario controla su propio enfoque y no quiere que Automatización de la interfaz de usuario establezca el enfoque a la ventana más cercana en su nombre cuando se llama a <see cref="M:System.Windows.Automation.AutomationElement.SetFocus" />. Esta opción se usa normalmente por los proveedores para ventanas que parecen tomar el enfoque sin recibir realmente el enfoque Win32, como menús y menús desplegables.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.ServerSideProvider">
+      <summary>El proveedor de UI Automation es un proveedor del lado servidor.</summary>
+    </member>
+    <member name="F:System.Windows.Automation.Provider.ProviderOptions.UseComThreading">
+      <summary>El proveedor de UI Automation espera a que le llamen según las normas de subprocesamiento de COM. Si el proveedor se encuentra en un contenedor uniproceso, se le llamará solo en el subproceso del contenedor. Solo los proveedores del lado servidor pueden usar esta opción.</summary>
+    </member>
+  </members>
+</doc>

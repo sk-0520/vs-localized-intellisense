@@ -1,0 +1,696 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Net.HttpListener</name>
+  </assembly>
+  <members>
+    <member name="T:System.Net.AuthenticationSchemeSelector">
+      <summary vsli:raw="Selects the authentication scheme for an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">Selecciona el esquema de autenticación para una instancia de <see cref="T:System.Net.HttpListener" />.</summary>
+      <param name="httpRequest" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; instance for which to select an authentication scheme.">La instancia de <see cref="T:System.Net.HttpListenerRequest" /> para la cual se selecciona un esquema de autenticación.</param>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Net.AuthenticationSchemes&quot; /&gt; values that indicates the method of authentication to use for the specified client request.">Uno de los valores <see cref="T:System.Net.AuthenticationSchemes" /> que indica el método de autenticación que se utiliza para la solicitud de cliente especificada.</returns>
+    </member>
+    <member name="T:System.Net.HttpListener">
+      <summary vsli:raw="Provides a simple, programmatically controlled HTTP protocol listener. This class cannot be inherited.">Proporciona un agente de escucha del protocolo HTTP sencillo y controlado mediante programación. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Net.HttpListener.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Net.HttpListener" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="This class cannot be used on the current operating system. Windows Server 2003 or Windows XP SP2 is required to use instances of this class.">Esta clase no se puede utilizar en el sistema operativo actual. Se requiere Windows Server 2003 o Windows XP SP2 para poder utilizar instancias de esta clase.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Abort">
+      <summary vsli:raw="Shuts down the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object immediately, discarding all currently queued requests.">Cierra inmediatamente el objeto <see cref="T:System.Net.HttpListener" />, descartando todas las solicitudes actualmente puestas en la cola.</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemes">
+      <summary vsli:raw="Gets or sets the scheme used to authenticate clients.">Obtiene o establece el esquema utilizado para autenticar los clientes.</summary>
+      <returns vsli:raw="A bitwise combination of &lt;see cref=&quot;T:System.Net.AuthenticationSchemes&quot; /&gt; enumeration values that indicates how clients are to be authenticated. The default value is &lt;see cref=&quot;F:System.Net.AuthenticationSchemes.Anonymous&quot; /&gt;.">Una combinación bit a bit de valores de la enumeración <see cref="T:System.Net.AuthenticationSchemes" /> que indica cómo serán autenticados los clientes. El valor predeterminado es <see cref="F:System.Net.AuthenticationSchemes.Anonymous" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.AuthenticationSchemeSelectorDelegate">
+      <summary vsli:raw="Gets or sets the delegate called to determine the protocol used to authenticate clients.">Obtiene o establece el delegado al que se llama para determinar el protocolo utilizado para autenticar los clientes.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.AuthenticationSchemeSelector&quot; /&gt; delegate that invokes the method used to select an authentication protocol. The default value is &lt;see langword=&quot;null&quot; /&gt;.">Un delegado <see cref="T:System.Net.AuthenticationSchemeSelector" /> que invoca el método utilizado para seleccionar un protocolo de autenticación. El valor predeterminado es <see langword="null" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins asynchronously retrieving an incoming request.">Empieza a recuperar de forma asincrónica una solicitud de entrada.</summary>
+      <param name="callback" vsli:raw="An &lt;see cref=&quot;T:System.AsyncCallback&quot; /&gt; delegate that references the method to invoke when a client request is available.">Un delegado de <see cref="T:System.AsyncCallback" /> que hace referencia al método que se invoca cuando está disponible una solicitud de cliente.</param>
+      <param name="state" vsli:raw="A user-defined object that contains information about the operation. This object is passed to the &lt;paramref name=&quot;callback&quot; /&gt; delegate when the operation completes.">Objeto definido por el usuario que contiene información sobre la operación. Este objeto se pasa al delegado de <paramref name="callback" /> cuando la operación ha terminado.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that indicates the status of the asynchronous operation.">Un objeto <see cref="T:System.IAsyncResult" /> que indica el estado de la operación asincrónica.</returns>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Se ha producido un error en una llamada de función de Win32. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This object has not been started or is currently stopped.">Este objeto no se ha iniciado o actualmente está detenido.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Close">
+      <summary vsli:raw="Shuts down the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt;.">Cierra <see cref="T:System.Net.HttpListener" />.</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.DefaultServiceNames">
+      <summary vsli:raw="Gets a default list of Service Provider Names (SPNs) as determined by registered prefixes.">Obtiene una lista predeterminada de nombres de proveedores de servicios (SPN) determinada por los prefijos registrados.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection&quot; /&gt; that contains a list of SPNs.">
+        <see cref="T:System.Security.Authentication.ExtendedProtection.ServiceNameCollection" /> que contiene una lista de SPN.</returns>
+    </member>
+    <member name="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)">
+      <summary vsli:raw="Completes an asynchronous operation to retrieve an incoming client request.">Finaliza una operación asincrónica para recuperar una solicitud de cliente de entrada.</summary>
+      <param name="asyncResult" vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that was obtained when the asynchronous operation was started.">Un objeto <see cref="T:System.IAsyncResult" /> que se obtuvo al iniciar la operación asincrónica.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents the client request.">Un objeto <see cref="T:System.Net.HttpListenerContext" /> que representa la solicitud de cliente.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; was not obtained by calling the &lt;see cref=&quot;M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)&quot; /&gt; method.">No se ha obtenido el valor <paramref name="asyncResult" /> llamando al método <see cref="M:System.Net.HttpListener.BeginGetContext(System.AsyncCallback,System.Object)" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Se ha producido un error en una llamada de función de Win32. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)&quot; /&gt; method was already called for the specified &lt;paramref name=&quot;asyncResult&quot; /&gt; object.">Ya se llamó al método <see cref="M:System.Net.HttpListener.EndGetContext(System.IAsyncResult)" /> para el objeto <paramref name="asyncResult" /> especificado.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionPolicy">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for extended protection for a session.">Obtiene o establece el objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que se va a emplear para la protección extendida para una sesión.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; that specifies the policy to use for extended protection.">Objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que especifica la directiva que se va a usar para la protección extendida.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property, but the &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding&quot; /&gt; property was not &lt;see langword=&quot;null&quot; /&gt;.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" />, pero la propiedad <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> no era <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property to &lt;see langword=&quot;null&quot; /&gt;.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> en <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionPolicy&quot; /&gt; property after the &lt;see cref=&quot;M:System.Net.HttpListener.Start&quot; /&gt; method was already called.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionPolicy" /> después de que ya se hubiera llamado al método <see cref="M:System.Net.HttpListener.Start" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="The &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement&quot; /&gt; property was set to &lt;see cref=&quot;F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always&quot; /&gt; on a platform that does not support extended protection.">La propiedad <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement" /> se estableció en <see cref="F:System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Always" /> en una plataforma que no admite la protección extendida.</exception>
+    </member>
+    <member name="T:System.Net.HttpListener.ExtendedProtectionSelector">
+      <summary vsli:raw="A delegate called to determine the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for each &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; request.">Representa un delegado que se invoca para determinar el objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que se va a usar para cada solicitud <see cref="T:System.Net.HttpListener" />.</summary>
+      <param name="request" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; to determine the extended protection policy that the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance will use to provide extended protection.">Objeto <see cref="T:System.Net.HttpListenerRequest" /> para determinar la directiva de protección extendida que la instancia de <see cref="T:System.Net.HttpListener" /> va a usar para proporcionar la protección extendida.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; object that specifies the extended protection policy to use for this request.">Objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que especifica la directiva de protección extendida que se va a utilizar para esta solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate">
+      <summary vsli:raw="Gets or sets the delegate called to determine the &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; to use for each request.">Obtiene o establece el delegado llamado para determinar el objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que se va a emplear para cada solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy&quot; /&gt; that specifies the policy to use for extended protection.">Objeto <see cref="T:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy" /> que especifica la directiva que se va a usar para la protección extendida.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property, but the &lt;see cref=&quot;P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding&quot; /&gt; property must be &lt;see langword=&quot;null&quot; /&gt;.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" />, pero la propiedad <see cref="P:System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.CustomChannelBinding" /> debe ser <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property to &lt;see langword=&quot;null&quot; /&gt;.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> en <see langword="null" />.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property after the &lt;see cref=&quot;M:System.Net.HttpListener.Start&quot; /&gt; method was already called.">Se intentó establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> después de que ya se hubiera llamado al método <see cref="M:System.Net.HttpListener.Start" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+      <exception cref="T:System.PlatformNotSupportedException" vsli:raw="An attempt was made to set the &lt;see cref=&quot;P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate&quot; /&gt; property on a platform that does not support extended protection.">Se hizo un intento de establecer la propiedad <see cref="P:System.Net.HttpListener.ExtendedProtectionSelectorDelegate" /> en una plataforma que no admite la protección extendida.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContext">
+      <summary vsli:raw="Waits for an incoming request and returns when one is received.">Espera a una solicitud de entrada y vuelve cuando se recibe una.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents a client request.">Un objeto <see cref="T:System.Net.HttpListenerContext" /> que representa una solicitud de cliente.</returns>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Se ha producido un error en una llamada de función de Win32. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This object has not been started or is currently stopped.  &#xA;  &#xA; -or-  &#xA;  &#xA; The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; does not have any Uniform Resource Identifier (URI) prefixes to respond to.">Este objeto no se ha iniciado o actualmente está detenido.
+O bien
+El objeto <see cref="T:System.Net.HttpListener" /> no tiene un prefijo de identificador URI al que responder.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.GetContextAsync">
+      <summary vsli:raw="Waits for an incoming request as an asynchronous operation.">Espera una solicitud entrante como una operación asincrónica.</summary>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object that represents a client request.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> en el objeto de tarea devuelve un objeto <see cref="T:System.Net.HttpListenerContext" /> que representa una solicitud de cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IgnoreWriteExceptions">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that specifies whether your application receives exceptions that occur when an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; sends the response to the client.">Obtiene o establece un valor <see cref="T:System.Boolean" /> que especifica si su aplicación recibe las excepciones que aparecen cuando <see cref="T:System.Net.HttpListener" /> envía la respuesta al cliente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; should not return exceptions that occur when sending the response to the client; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si este <see cref="T:System.Net.HttpListener" /> no debe devolver las excepciones que se producen al enviar la respuesta al cliente; de lo contrario, <see langword="false" />. El valor predeterminado es <see langword="false" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.IsListening">
+      <summary vsli:raw="Gets a value that indicates whether &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; has been started.">Obtiene un valor que indica si se ha iniciado <see cref="T:System.Net.HttpListener" />.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; was started; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si se inició <see cref="T:System.Net.HttpListener" />; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.IsSupported">
+      <summary vsli:raw="Gets a value that indicates whether &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; can be used with the current operating system.">Obtiene un valor que indica si <see cref="T:System.Net.HttpListener" /> se puede utilizar con el sistema operativo actual.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; on all platforms.">Es <see langword="true" /> si se admite <see cref="T:System.Net.HttpListener" />; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.Prefixes">
+      <summary vsli:raw="Gets the Uniform Resource Identifier (URI) prefixes handled by this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Obtiene los prefijos de identificador uniforme de recursos (URI) controlados por este objeto <see cref="T:System.Net.HttpListener" />.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; that contains the URI prefixes that this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object is configured to handle.">Un objeto <see cref="T:System.Net.HttpListenerPrefixCollection" /> que contiene los prefijos URI que la configuración de este objeto <see cref="T:System.Net.HttpListener" /> le permite controlar.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListener.Realm">
+      <summary vsli:raw="Gets or sets the realm, or resource partition, associated with this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Obtiene o establece el territorio, o partición de recurso, asociado con el objeto <see cref="T:System.Net.HttpListener" />.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; value that contains the name of the realm associated with the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Un valor <see cref="T:System.String" /> que contiene el nombre del territorio asociado al objeto <see cref="T:System.Net.HttpListener" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Start">
+      <summary vsli:raw="Allows this instance to receive incoming requests.">Permite que esta instancia reciba solicitudes de entrada.</summary>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Win32 function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Se ha producido un error en una llamada de función de Win32. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.Stop">
+      <summary vsli:raw="Causes this instance to stop receiving new incoming requests and terminates processing of all ongoing requests.">Hace que esta instancia deje de recibir solicitudes de entrada.</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListener.System#IDisposable#Dispose">
+      <summary vsli:raw="Releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Libera los recursos mantenidos por este objeto <see cref="T:System.Net.HttpListener" />.</summary>
+    </member>
+    <member name="P:System.Net.HttpListener.TimeoutManager">
+      <summary vsli:raw="The timeout manager for this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">El administrador de tiempo de espera para esta instancia <see cref="T:System.Net.HttpListener" />.</summary>
+      <returns vsli:raw="The timeout manager for this &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; instance.">El administrador de tiempo de espera para esta instancia <see cref="T:System.Net.HttpListener" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListener.UnsafeConnectionNtlmAuthentication">
+      <summary vsli:raw="Gets or sets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that controls whether, when NTLM is used, additional requests using the same Transmission Control Protocol (TCP) connection are required to authenticate.">Obtiene o establece un valor <see cref="T:System.Boolean" /> que controla si, cuando se utiliza NTLM, se requieren solicitudes adicionales que utilicen la misma conexión del protocolo TCP (Protocolo de control de transmisión) para la autenticación.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Security.Principal.IIdentity&quot; /&gt; of the first request will be used for subsequent requests on the same connection; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default value is &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si el objeto <see cref="T:System.Security.Principal.IIdentity" /> de la primera solicitud debe utilizarse para las solicitudes posteriores de la misma conexión; de lo contrario, es <see langword="false" />. El valor predeterminado es <see langword="false" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object has been closed.">Este objeto se ha cerrado.</exception>
+    </member>
+    <member name="T:System.Net.HttpListenerBasicIdentity">
+      <summary vsli:raw="Holds the user name and password from a basic authentication request.">Contiene el nombre de usuario y la contraseña de una solicitud de autenticación básica.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerBasicIdentity.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerBasicIdentity&quot; /&gt; class using the specified user name and password.">Inicializa una nueva instancia de la clase <see cref="T:System.Net.HttpListenerBasicIdentity" /> con el nombre de usuario y la contraseña especificados.</summary>
+      <param name="username" vsli:raw="The user name.">Nombre de usuario.</param>
+      <param name="password" vsli:raw="The password.">Contraseña.</param>
+    </member>
+    <member name="P:System.Net.HttpListenerBasicIdentity.Password">
+      <summary vsli:raw="Indicates the password from a basic authentication attempt.">Indica la contraseña de un intento de autenticación básica.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that holds the password.">
+        <see cref="T:System.String" /> que contiene la contraseña.</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerContext">
+      <summary vsli:raw="Provides access to the request and response objects used by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class. This class cannot be inherited.">Proporciona acceso a los objetos de solicitud y respuesta utilizados por la clase <see cref="T:System.Net.HttpListener" />. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String)">
+      <summary vsli:raw="Accept a WebSocket connection as an asynchronous operation.">Acepta una conexión WebSocket como una operación asincrónica.</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">El subprotocolo compatible de WebSocket.</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> del objeto de tarea devuelve un objeto <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> es una cadena vacía
+O bien
+<paramref name="subProtocol" /> contiene caracteres no válidos.</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">Error al enviar la respuesta para completar el protocolo de enlace WebSocket.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan)">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol, receive buffer size, and WebSocket keep-alive interval as an asynchronous operation.">Acepta una conexión WebSocket que especifica el subprotocolo compatible de WebSocket, el tamaño del búfer de recepción y el intervalo keep-alive de WebSocket como una operación asincrónica.</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">El subprotocolo compatible de WebSocket.</param>
+      <param name="receiveBufferSize" vsli:raw="The receive buffer size in bytes.">Tamaño del búfer recibido en bytes.</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">El intervalo de mantenimiento del protocolo de WebSocket en milisegundos.</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> del objeto de tarea devuelve un objeto <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> es una cadena vacía
+o bien
+<paramref name="subProtocol" /> contiene caracteres no válidos.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is less than 16 bytes  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is greater than 64K bytes.">
+        <paramref name="keepAliveInterval" /> es demasiado pequeño.
+o bien
+<paramref name="receiveBufferSize" /> es menor que 16 bytes.
+O bien
+<paramref name="receiveBufferSize" /> es mayor que 64 kB.</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">Error al enviar la respuesta para completar el protocolo de enlace WebSocket.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.Int32,System.TimeSpan,System.ArraySegment{System.Byte})">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol, receive buffer size, WebSocket keep-alive interval, and the internal buffer as an asynchronous operation.">Acepta una conexión WebSocket que especifica el subprotocolo compatible de WebSocket, el tamaño del búfer de recepción, el intervalo keep-alive de WebSocket y el búfer interno como una operación asincrónica.</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">El subprotocolo compatible de WebSocket.</param>
+      <param name="receiveBufferSize" vsli:raw="The receive buffer size in bytes.">Tamaño del búfer recibido en bytes.</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">El intervalo de mantenimiento del protocolo de WebSocket en milisegundos.</param>
+      <param name="internalBuffer" vsli:raw="An internal buffer to use for this operation.">Un búfer interno para utilizar en esta operación.</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> del objeto de tarea devuelve un objeto <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> es una cadena vacía
+O bien
+<paramref name="subProtocol" /> contiene caracteres no válidos.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is less than 16 bytes  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;receiveBufferSize&quot; /&gt; is greater than 64K bytes.">
+        <paramref name="keepAliveInterval" /> es demasiado pequeño.
+o bien
+<paramref name="receiveBufferSize" /> es menor que 16 bytes.
+O bien
+<paramref name="receiveBufferSize" /> es mayor que 64 kB.</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">Error al enviar la respuesta para completar el protocolo de enlace WebSocket.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerContext.AcceptWebSocketAsync(System.String,System.TimeSpan)">
+      <summary vsli:raw="Accept a WebSocket connection specifying the supported WebSocket sub-protocol  and WebSocket keep-alive interval as an asynchronous operation.">Acepta una conexión WebSocket que especifica el subprotocolo compatible de WebSocket y el intervalo keep-alive de WebSocket como una operación asincrónica.</summary>
+      <param name="subProtocol" vsli:raw="The supported WebSocket sub-protocol.">El subprotocolo compatible de WebSocket.</param>
+      <param name="keepAliveInterval" vsli:raw="The WebSocket protocol keep-alive interval in milliseconds.">El intervalo de mantenimiento del protocolo de WebSocket en milisegundos.</param>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns an &lt;see cref=&quot;T:System.Net.WebSockets.HttpListenerWebSocketContext&quot; /&gt; object.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> del objeto de tarea devuelve un objeto <see cref="T:System.Net.WebSockets.HttpListenerWebSocketContext" />.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;subProtocol&quot; /&gt; is an empty string  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;subProtocol&quot; /&gt; contains illegal characters.">
+        <paramref name="subProtocol" /> es una cadena vacía
+o bien
+<paramref name="subProtocol" /> contiene caracteres no válidos.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="&lt;paramref name=&quot;keepAliveInterval&quot; /&gt; is too small.">
+        <paramref name="keepAliveInterval" /> es demasiado pequeño.</exception>
+      <exception cref="T:System.Net.WebSockets.WebSocketException" vsli:raw="An error occurred when sending the response to complete the WebSocket handshake.">Error al enviar la respuesta para completar el protocolo de enlace WebSocket.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Request">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; that represents a client's request for a resource.">Obtiene la clase <see cref="T:System.Net.HttpListenerRequest" /> que representa la solicitud de un cliente para un recurso.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerRequest&quot; /&gt; object that represents the client request.">Un objeto <see cref="T:System.Net.HttpListenerRequest" /> que representa la solicitud de cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.Response">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; object that will be sent to the client in response to the client's request.">Obtiene el objeto <see cref="T:System.Net.HttpListenerResponse" /> que se enviará al cliente en respuesta a la solicitud del cliente.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; object used to send a response back to the client.">Un objeto <see cref="T:System.Net.HttpListenerResponse" /> que permite devolver una respuesta al cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerContext.User">
+      <summary vsli:raw="Gets an object used to obtain identity, authentication information, and security roles for the client whose request is represented by this &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; object.">Obtiene un objeto utilizado para obtener la identidad, la información de autenticación y los roles de seguridad para el cliente cuya solicitud está representada por este objeto <see cref="T:System.Net.HttpListenerContext" />.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Security.Principal.IPrincipal&quot; /&gt; object that describes the client, or &lt;see langword=&quot;null&quot; /&gt; if the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; that supplied this &lt;see cref=&quot;T:System.Net.HttpListenerContext&quot; /&gt; does not require authentication.">Un objeto <see cref="T:System.Security.Principal.IPrincipal" /> que describe el cliente o bien <see langword="null" />, si el objeto <see cref="T:System.Net.HttpListener" /> que proporcionó <see cref="T:System.Net.HttpListenerContext" /> no requiere autenticación.</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerException">
+      <summary vsli:raw="The exception that is thrown when an error occurs processing an HTTP request.">Excepción que se produce cuando ocurre un error al procesar una solicitud HTTP.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class.">Inicializa una nueva instancia de la clase <see cref="T:System.Net.HttpListenerException" />.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class using the specified error code.">Inicializa una instancia nueva de la clase <see cref="T:System.Net.HttpListenerException" /> con el código de error especificado.</summary>
+      <param name="errorCode" vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that identifies the error that occurred.">Un valor <see cref="T:System.Int32" /> que identifica el error producido.</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Int32,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class using the specified error code and message.">Inicializa una instancia nueva de la clase <see cref="T:System.Net.HttpListenerException" /> con el mensaje y el código de error especificados.</summary>
+      <param name="errorCode" vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that identifies the error that occurred.">Un valor <see cref="T:System.Int32" /> que identifica el error producido.</param>
+      <param name="message" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that describes the error that occurred.">Objeto <see cref="T:System.String" /> que describe el error que se ha producido.</param>
+    </member>
+    <member name="M:System.Net.HttpListenerException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; class from the specified instances of the &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; and &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; classes.">Inicializa una nueva instancia de la clase <see cref="T:System.Net.HttpListenerException" /> desde las instancias especificadas de las clases <see cref="T:System.Runtime.Serialization.SerializationInfo" /> y <see cref="T:System.Runtime.Serialization.StreamingContext" />.</summary>
+      <param name="serializationInfo" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.SerializationInfo&quot; /&gt; object that contains the information required to deserialize the new &lt;see cref=&quot;T:System.Net.HttpListenerException&quot; /&gt; object.">Un objeto <see cref="T:System.Runtime.Serialization.SerializationInfo" /> que contiene la información requerida para deserializar la nueva instancia de <see cref="T:System.Net.HttpListenerException" />.</param>
+      <param name="streamingContext" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.Serialization.StreamingContext&quot; /&gt; object.">Objeto <see cref="T:System.Runtime.Serialization.StreamingContext" />.</param>
+    </member>
+    <member name="P:System.Net.HttpListenerException.ErrorCode">
+      <summary vsli:raw="Gets a value that identifies the error that occurred.">Obtiene un valor que identifica el error producido.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Int32&quot; /&gt; value.">Valor <see cref="T:System.Int32" />.</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerPrefixCollection">
+      <summary vsli:raw="Represents the collection used to store Uniform Resource Identifier (URI) prefixes for &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; objects.">Representa la colección utilizada para almacenar los prefijos URI (Identificador uniforme de recursos) de los objetos <see cref="T:System.Net.HttpListener" />.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Add(System.String)">
+      <summary vsli:raw="Adds a Uniform Resource Identifier (URI) prefix to the collection.">Agrega un prefijo del identificador uniforme de recursos (URI) a la colección.</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that identifies the URI information that is compared in incoming requests. The prefix must be terminated with a forward slash (&quot;/&quot;).">
+        <see cref="T:System.String" /> que identifica la información de URI que se compara en las solicitudes entrantes. El prefijo debe terminar con una barra diagonal ("/").</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; does not use the http:// or https:// scheme. These are the only schemes supported for &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; objects.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;uriPrefix&quot; /&gt; is not a correctly formatted URI prefix. Make sure the string is terminated with a &quot;/&quot;.">
+        <paramref name="uriPrefix" /> no utiliza el esquema http:// o https://. Estos son los únicos esquemas admitidos en los objetos <see cref="T:System.Net.HttpListener" />.
+o bien
+<paramref name="uriPrefix" /> no es un prefijo URI con formato correcto. Asegúrese de que la cadena finaliza con un "/".</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">La clase <see cref="T:System.Net.HttpListener" /> asociada a esta colección está cerrada.</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception. This exception is thrown if another &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; has already added the prefix &lt;paramref name=&quot;uriPrefix&quot; /&gt;.">Error al llamar a una función de Windows. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa. Se produce esta excepción si otro objeto <see cref="T:System.Net.HttpListener" /> ya ha agregado el prefijo <paramref name="uriPrefix" />.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Clear">
+      <summary vsli:raw="Removes all the Uniform Resource Identifier (URI) prefixes from the collection.">Quita todos los prefijos URI (Identificador uniforme de recursos) de la colección.</summary>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. Check the exception's &lt;see cref=&quot;P:System.Net.HttpListenerException.ErrorCode&quot; /&gt; property to determine the cause of the exception.">Error al llamar a una función de Windows. Examine la propiedad <see cref="P:System.Net.HttpListenerException.ErrorCode" /> de la excepción para determinar su causa.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">La clase <see cref="T:System.Net.HttpListener" /> asociada a esta colección está cerrada.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Contains(System.String)">
+      <summary vsli:raw="Returns a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the specified prefix is contained in the collection.">Devuelve un valor <see cref="T:System.Boolean" /> que indica si la colección contiene el prefijo especificado.</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the Uniform Resource Identifier (URI) prefix to test.">
+        <see cref="T:System.String" /> que contiene el prefijo URI (Identificador uniforme de recursos) que se va a comprobar.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if this collection contains the prefix specified by &lt;paramref name=&quot;uriPrefix&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si esta colección contiene el prefijo especificado por <paramref name="uriPrefix" />; en caso contrario, es <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.Array,System.Int32)">
+      <summary vsli:raw="Copies the contents of an &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; to the specified array.">Copia el contenido de <see cref="T:System.Net.HttpListenerPrefixCollection" /> en la matriz especificada.</summary>
+      <param name="array" vsli:raw="The one dimensional &lt;see cref=&quot;T:System.Array&quot; /&gt; that receives the Uniform Resource Identifier (URI) prefix strings in this collection.">
+        <see cref="T:System.Array" /> unidimensional que recibe las cadenas de prefijos URI (Identificador uniforme de recursos) de esta colección.</param>
+      <param name="offset" vsli:raw="The zero-based index in &lt;paramref name=&quot;array&quot; /&gt; at which copying begins.">Índice de base cero en la <paramref name="array" /> donde comienza la copia.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; has more than one dimension.">
+        <paramref name="array" /> tiene más de una dimensión.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="This collection contains more elements than can be stored in &lt;paramref name=&quot;array&quot; /&gt; starting at &lt;paramref name=&quot;offset&quot; /&gt;.">Esta colección contiene más elementos de los que se pueden almacenar en <paramref name="array" /> a partir de <paramref name="offset" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">La clase <see cref="T:System.Net.HttpListener" /> asociada a esta colección está cerrada.</exception>
+      <exception cref="T:System.InvalidCastException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; cannot store string values.">
+        <paramref name="array" /> no puede almacenar valores de cadena.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.CopyTo(System.String[],System.Int32)">
+      <summary vsli:raw="Copies the contents of an &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; to the specified string array.">Copia el contenido de <see cref="T:System.Net.HttpListenerPrefixCollection" /> en una matriz de cadenas especificada.</summary>
+      <param name="array" vsli:raw="The one dimensional string array that receives the Uniform Resource Identifier (URI) prefix strings in this collection.">Matriz de cadenas unidimensional que recibe las cadenas de prefijos URI (Identificador uniforme de recursos) de esta colección.</param>
+      <param name="offset" vsli:raw="The zero-based index in &lt;paramref name=&quot;array&quot; /&gt; at which copying begins.">Índice de base cero en la <paramref name="array" /> donde comienza la copia.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;array&quot; /&gt; has more than one dimension.">
+        <paramref name="array" /> tiene más de una dimensión.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="This collection contains more elements than can be stored in &lt;paramref name=&quot;array&quot; /&gt; starting at &lt;paramref name=&quot;offset&quot; /&gt;.">Esta colección contiene más elementos de los que se pueden almacenar en <paramref name="array" /> a partir de <paramref name="offset" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">La clase <see cref="T:System.Net.HttpListener" /> asociada a esta colección está cerrada.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.Count">
+      <summary vsli:raw="Gets the number of prefixes contained in the collection.">Obtiene el número de prefijos contenidos en la colección.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; that contains the number of prefixes in this collection.">
+        <see cref="T:System.Int32" /> que contiene el número de prefijos de esta colección.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.GetEnumerator">
+      <summary vsli:raw="Returns an object that can be used to iterate through the collection.">Devuelve un objeto que puede utilizarse para recorrer en iteración la colección.</summary>
+      <returns vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Collections.IEnumerator&quot; /&gt; interface and provides access to the strings in this collection.">Objeto que implementa la interfaz <see cref="T:System.Collections.IEnumerator" /> y proporciona acceso a las cadenas de esta colección.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsReadOnly">
+      <summary vsli:raw="Gets a value that indicates whether access to the collection is read-only.">Obtiene un valor que indica si el acceso a la colección es de sólo lectura.</summary>
+      <returns vsli:raw="Always returns &lt;see langword=&quot;false&quot; /&gt;.">Siempre devuelve <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerPrefixCollection.IsSynchronized">
+      <summary vsli:raw="Gets a value that indicates whether access to the collection is synchronized (thread-safe).">Obtiene un valor que indica si el acceso a la colección está sincronizado (es seguro para la ejecución de subprocesos).</summary>
+      <returns vsli:raw="This property always returns &lt;see langword=&quot;false&quot; /&gt;.">Esta propiedad devuelve siempre <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.Remove(System.String)">
+      <summary vsli:raw="Removes the specified Uniform Resource Identifier (URI) from the list of prefixes handled by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Quita el identificador uniforme de recursos (URI) especificado de la lista de prefijos controlada por el objeto <see cref="T:System.Net.HttpListener" />.</summary>
+      <param name="uriPrefix" vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the URI prefix to remove.">
+        <see cref="T:System.String" /> que contiene el prefijo URI que se va a quitar.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;paramref name=&quot;uriPrefix&quot; /&gt; was found in the &lt;see cref=&quot;T:System.Net.HttpListenerPrefixCollection&quot; /&gt; and removed; otherwise &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si <paramref name="uriPrefix" /> se encontró en <see cref="T:System.Net.HttpListenerPrefixCollection" /> y se quitó; en caso contrario, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;uriPrefix&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="uriPrefix" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.Net.HttpListenerException" vsli:raw="A Windows function call failed. To determine the cause of the exception, check the exception's error code.">Error al llamar a una función de Windows. Para determinar la causa de la excepción, compruebe el código de error de la misma.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; associated with this collection is closed.">La clase <see cref="T:System.Net.HttpListener" /> asociada a esta colección está cerrada.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerPrefixCollection.System#Collections#IEnumerable#GetEnumerator">
+      <summary vsli:raw="Returns an object that can be used to iterate through the collection.">Devuelve un objeto que puede utilizarse para recorrer en iteración la colección.</summary>
+      <returns vsli:raw="An object that implements the &lt;see cref=&quot;T:System.Collections.IEnumerator&quot; /&gt; interface and provides access to the strings in this collection.">Objeto que implementa la interfaz <see cref="T:System.Collections.IEnumerator" /> y proporciona acceso a las cadenas de esta colección.</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerRequest">
+      <summary vsli:raw="Describes an incoming HTTP request to an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object. This class cannot be inherited.">Describe una solicitud HTTP de entrada a un objeto <see cref="T:System.Net.HttpListener" />. Esta clase no puede heredarse.</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.AcceptTypes">
+      <summary vsli:raw="Gets the MIME types accepted by the client.">Obtiene los tipos MIME aceptados por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; array that contains the type names specified in the request's &lt;see langword=&quot;Accept&quot; /&gt; header or &lt;see langword=&quot;null&quot; /&gt; if the client request did not include an &lt;see langword=&quot;Accept&quot; /&gt; header.">Una matriz <see cref="T:System.String" /> que contiene los nombres de tipo especificados en el encabezado <see langword="Accept" /> de la solicitud o bien <see langword="null" />, si la solicitud de cliente no incluía un encabezado <see langword="Accept" />.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)">
+      <summary vsli:raw="Begins an asynchronous request for the client's X.509 v.3 certificate.">Inicia una solicitud asincrónica para el certificado X.509 v.3 del cliente.</summary>
+      <param name="requestCallback" vsli:raw="An &lt;see cref=&quot;T:System.AsyncCallback&quot; /&gt; delegate that references the method to invoke when the operation is complete.">Delegado de <see cref="T:System.AsyncCallback" /> que hace referencia al método que se invocará cuando la operación se complete.</param>
+      <param name="state" vsli:raw="A user-defined object that contains information about the operation. This object is passed to the callback delegate when the operation completes.">Objeto definido por el usuario que contiene información sobre la operación. Este objeto se pasa al delegado de devolución de llamada cuando la operación ha terminado.</param>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; that indicates the status of the operation.">Un valor <see cref="T:System.IAsyncResult" /> que indica el estado de la operación.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ClientCertificateError">
+      <summary vsli:raw="Gets an error code that identifies a problem with the &lt;see cref=&quot;T:System.Security.Cryptography.X509Certificates.X509Certificate&quot; /&gt; provided by the client.">Obtiene un código de error que identifica un problema con el objeto <see cref="T:System.Security.Cryptography.X509Certificates.X509Certificate" /> proporcionado por el cliente.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that contains a Windows error code.">Un valor <see cref="T:System.Int32" /> que contiene un código de error de Windows.</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The client certificate has not been initialized yet by a call to the &lt;see cref=&quot;M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)&quot; /&gt; or &lt;see cref=&quot;M:System.Net.HttpListenerRequest.GetClientCertificate&quot; /&gt; methods  &#xA;  &#xA; -or -  &#xA;  &#xA; The operation is still in progress.">El certificado de cliente no ha sido inicializado aún por una llamada a los métodos <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" /> o <see cref="M:System.Net.HttpListenerRequest.GetClientCertificate" />
+O bien
+La operación todavía está en curso.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentEncoding">
+      <summary vsli:raw="Gets the content encoding that can be used with data sent with the request.">Obtiene la codificación de contenido que se puede usar con los datos enviados con la solicitud.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; object suitable for use with the data in the &lt;see cref=&quot;P:System.Net.HttpListenerRequest.InputStream&quot; /&gt; property.">Un objeto <see cref="T:System.Text.Encoding" /> apto para el uso con los datos de la propiedad <see cref="P:System.Net.HttpListenerRequest.InputStream" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentLength64">
+      <summary vsli:raw="Gets the length of the body data included in the request.">Obtiene la longitud de los datos de cuerpo incluidos en la solicitud.</summary>
+      <returns vsli:raw="The value from the request's &lt;see langword=&quot;Content-Length&quot; /&gt; header. This value is -1 if the content length is not known.">Valor del encabezado <see langword="Content-Length" /> de la solicitud. Este valor es -1 si no se conoce la longitud del contenido.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ContentType">
+      <summary vsli:raw="Gets the MIME type of the body data included in the request.">Obtiene el tipo MIME de los datos del cuerpo incluidos en la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the text of the request's &lt;see langword=&quot;Content-Type&quot; /&gt; header.">Un valor <see cref="T:System.String" /> que contiene el texto del encabezado <see langword="Content-Type" /> de la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Cookies">
+      <summary vsli:raw="Gets the cookies sent with the request.">Obtiene las cookies enviadas con la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.CookieCollection&quot; /&gt; that contains cookies that accompany the request. This property returns an empty collection if the request does not contain cookies.">Un objeto <see cref="T:System.Net.CookieCollection" /> que contiene las cookies adjuntas a la solicitud. Esta propiedad devuelve una colección vacía si la solicitud no contiene cookies.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.EndGetClientCertificate(System.IAsyncResult)">
+      <summary vsli:raw="Ends an asynchronous request for the client's X.509 v.3 certificate.">Finaliza una solicitud asincrónica para el certificado X.509 v.3 del cliente.</summary>
+      <param name="asyncResult" vsli:raw="The pending request for the certificate.">La solicitud pendiente para el certificado.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; object that is returned when the operation started.">El objeto <see cref="T:System.IAsyncResult" /> que se devuelve cuando se inicia la operación.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="asyncResult" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;asyncResult&quot; /&gt; was not obtained by calling &lt;see cref=&quot;M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)&quot; /&gt;&lt;paramref name=&quot;e&quot; /&gt;.">
+        <paramref name="asyncResult" /> no se obtuvo mediante una llamada a <see cref="M:System.Net.HttpListenerRequest.BeginGetClientCertificate(System.AsyncCallback,System.Object)" /><paramref name="e." /></exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="This method was already called for the operation identified by &lt;paramref name=&quot;asyncResult&quot; /&gt;.">Ya se llamó a este método para la operación identificada por <paramref name="asyncResult" />.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificate">
+      <summary vsli:raw="Retrieves the client's X.509 v.3 certificate.">Recupera el certificado X.509 v.3 del cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;N:System.Security.Cryptography.X509Certificates&quot; /&gt; object that contains the client's X.509 v.3 certificate.">Un objeto <see cref="N:System.Security.Cryptography.X509Certificates" /> que contiene el certificado X.509 v.3 del cliente.</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="A call to this method to retrieve the client's X.509 v.3 certificate is in progress and therefore another call to this method cannot be made.">Está en curso una llamada a este método para recuperar el certificado X.509 v.3 del cliente y, por consiguiente, no se puede realizar otra llamada a este método.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerRequest.GetClientCertificateAsync">
+      <summary vsli:raw="Retrieves the client's X.509 v.3 certificate as an asynchronous operation.">Recupera el certificado de X.509 v.3 del cliente como una operación asincrónica.</summary>
+      <returns vsli:raw="The task object representing the asynchronous operation. The &lt;see cref=&quot;P:System.Threading.Tasks.Task`1.Result&quot; /&gt; property on the task object returns a &lt;see cref=&quot;N:System.Security.Cryptography.X509Certificates&quot; /&gt; object that contains the client's X.509 v.3 certificate.">Objeto de tarea que representa la operación asincrónica. La propiedad <see cref="P:System.Threading.Tasks.Task`1.Result" /> en el objeto de tarea devuelve un objeto <see cref="N:System.Security.Cryptography.X509Certificates" /> que contiene el certificado X.509 v.3 del cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HasEntityBody">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the request has associated body data.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si la solicitud tiene asociados datos de cuerpo.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the request has associated body data; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si la solicitud tiene asociados datos de cuerpo; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Headers">
+      <summary vsli:raw="Gets the collection of header name/value pairs sent in the request.">Obtiene la colección de pares nombre de encabezado/valor enviados en la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; that contains the HTTP headers included in the request.">Un objeto <see cref="T:System.Net.WebHeaderCollection" /> que contiene los encabezados HTTP incluidos en la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.HttpMethod">
+      <summary vsli:raw="Gets the HTTP method specified by the client.">Obtiene el método HTTP especificado por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the method used in the request.">Un valor <see cref="T:System.String" /> que contiene el método utilizado en la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.InputStream">
+      <summary vsli:raw="Gets a stream that contains the body data sent by the client.">Obtiene una secuencia que contiene los datos del cuerpo enviados por el cliente.</summary>
+      <returns vsli:raw="A readable &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object that contains the bytes sent by the client in the body of the request. This property returns &lt;see cref=&quot;F:System.IO.Stream.Null&quot; /&gt; if no data is sent with the request.">Un objeto <see cref="T:System.IO.Stream" /> legible que contiene los bytes enviados por el cliente en el cuerpo de la solicitud. Esta propiedad devuelve <see cref="F:System.IO.Stream.Null" /> si no se envían datos con la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsAuthenticated">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the client sending this request is authenticated.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si el cliente que envía esta solicitud está autenticado.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the client was authenticated; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si se ha autenticado al cliente; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsLocal">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the request is sent from the local computer.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si la solicitud se envía desde el equipo local.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the request originated on the same computer as the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object that provided the request; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si la solicitud se originó en el mismo equipo que el objeto <see cref="T:System.Net.HttpListener" /> que proporcionó la solicitud; de lo contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsSecureConnection">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the TCP connection used to send the request is using the Secure Sockets Layer (SSL) protocol.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si la conexión TCP utilizada para enviar la solicitud está utilizando el protocolo Secure Sockets Layer (SSL).</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the TCP connection is using SSL; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si la conexión TCP utiliza SSL; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.IsWebSocketRequest">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the TCP connection was  a WebSocket request.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si la conexión TCP fue una solicitud WebSocket.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Boolean&quot; /&gt;.  &#xA;  &#xA; &lt;see langword=&quot;true&quot; /&gt; if the TCP connection is a WebSocket request; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Devuelva <see cref="T:System.Boolean" />.
+<see langword="true" /> si la conexión TCP es una solicitud de WebSocket; si no, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.KeepAlive">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Boolean&quot; /&gt; value that indicates whether the client requests a persistent connection.">Obtiene un valor <see cref="T:System.Boolean" /> que indica si el cliente solicita una conexión persistente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the connection should be kept open; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si la conexión debe mantenerse abierta; en caso contrario, es <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.LocalEndPoint">
+      <summary vsli:raw="Gets the server IP address and port number to which the request is directed.">Obtiene la dirección IP y el número de puerto del servidor a los que se dirige la solicitud.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.IPEndPoint&quot; /&gt; that represents the IP address that the request is sent to.">Un objeto <see cref="T:System.Net.IPEndPoint" /> que representa la dirección IP a la que se envía la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ProtocolVersion">
+      <summary vsli:raw="Gets the HTTP version used by the requesting client.">Obtiene la versión de HTTP utilizada por el cliente que hace la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Version&quot; /&gt; that identifies the client's version of HTTP.">Un objeto <see cref="T:System.Version" /> que identifica la versión del cliente de HTTP.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.QueryString">
+      <summary vsli:raw="Gets the query string included in the request.">Obtiene la cadena de consulta incluida en la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.NameValueCollection&quot; /&gt; object that contains the query data included in the request &lt;see cref=&quot;P:System.Net.HttpListenerRequest.Url&quot; /&gt;.">Un objeto <see cref="T:System.Collections.Specialized.NameValueCollection" /> que contiene los datos de consulta incluidos en la solicitud <see cref="P:System.Net.HttpListenerRequest.Url" />.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RawUrl">
+      <summary vsli:raw="Gets the URL information (without the host and port) requested by the client.">Obtiene la información de la dirección URL (sin el host y el puerto) solicitada por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the raw URL for this request.">Un valor <see cref="T:System.String" /> que contiene la dirección URL original para esta solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RemoteEndPoint">
+      <summary vsli:raw="Gets the client IP address and port number from which the request originated.">Obtiene la dirección IP y el número de puerto de cliente desde los que se originó la solicitud.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Net.IPEndPoint&quot; /&gt; that represents the IP address and port number from which the request originated.">Un objeto <see cref="T:System.Net.IPEndPoint" /> que representa la dirección IP y el número de puerto desde los que se originó la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.RequestTraceIdentifier">
+      <summary vsli:raw="Gets the request identifier of the incoming HTTP request.">Obtiene el identificador de la solicitud HTTP de entrada.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; object that contains the identifier of the HTTP request.">Un objeto <see cref="T:System.Guid" /> que contiene el identificador de la solicitud HTTP.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.ServiceName">
+      <summary vsli:raw="Gets the Service Provider Name (SPN) that the client sent on the request.">Obtiene el nombre del proveedor de servicios (SPN) que el cliente envió en la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the SPN the client sent on the request.">Objeto <see cref="T:System.String" /> que contiene el SPN que el cliente envió en la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.TransportContext">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.TransportContext&quot; /&gt; for the client request.">Obtiene el objeto <see cref="T:System.Net.TransportContext" /> de la solicitud de cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.TransportContext&quot; /&gt; object for the client request.">Objeto <see cref="T:System.Net.TransportContext" /> de la solicitud de cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.Url">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Uri&quot; /&gt; object requested by the client.">Obtiene el objeto <see cref="T:System.Uri" /> solicitado por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Uri&quot; /&gt; object that identifies the resource requested by the client.">Un objeto <see cref="T:System.Uri" /> que identifica el recurso solicitado por el cliente.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UrlReferrer">
+      <summary vsli:raw="Gets the Uniform Resource Identifier (URI) of the resource that referred the client to the server.">Obtiene el identificador URI del recurso que remitió el cliente al servidor.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Uri&quot; /&gt; object that contains the text of the request's &lt;see cref=&quot;F:System.Net.HttpRequestHeader.Referer&quot; /&gt; header, or &lt;see langword=&quot;null&quot; /&gt; if the header was not included in the request.">Un objeto <see cref="T:System.Uri" /> que contiene el texto del encabezado <see cref="F:System.Net.HttpRequestHeader.Referer" /> de la solicitud o bien <see langword="null" />, si el encabezado no estaba incluido en la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserAgent">
+      <summary vsli:raw="Gets the user agent presented by the client.">Obtiene el agente de usuario presentado por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; object that contains the text of the request's &lt;see langword=&quot;User-Agent&quot; /&gt; header.">Un objeto <see cref="T:System.String" /> que contiene el texto del encabezado <see langword="User-Agent" /> de la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostAddress">
+      <summary vsli:raw="Gets the server IP address and port number to which the request is directed.">Obtiene la dirección IP y el número de puerto del servidor a los que se dirige la solicitud.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the host address information.">Un valor <see cref="T:System.String" /> que contiene información de la dirección del host.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserHostName">
+      <summary vsli:raw="Gets the DNS name and, if provided, the port number specified by the client.">Obtiene el nombre DNS y, si se proporciona, el número de puerto especificado por el cliente.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; value that contains the text of the request's &lt;see langword=&quot;Host&quot; /&gt; header.">Un valor <see cref="T:System.String" /> que contiene el texto del encabezado <see langword="Host" /> de la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerRequest.UserLanguages">
+      <summary vsli:raw="Gets the natural languages that are preferred for the response.">Obtiene los idiomas naturales preferidos para la respuesta.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; array that contains the languages specified in the request's &lt;see cref=&quot;F:System.Net.HttpRequestHeader.AcceptLanguage&quot; /&gt; header or &lt;see langword=&quot;null&quot; /&gt; if the client request did not include an &lt;see cref=&quot;F:System.Net.HttpRequestHeader.AcceptLanguage&quot; /&gt; header.">Matriz <see cref="T:System.String" /> que contiene los idiomas especificados en el encabezado <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" /> de la solicitud o bien <see langword="null" />, si la solicitud de cliente no incluía un encabezado <see cref="F:System.Net.HttpRequestHeader.AcceptLanguage" />.</returns>
+    </member>
+    <member name="T:System.Net.HttpListenerResponse">
+      <summary vsli:raw="Represents a response to a request being handled by an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Representa una respuesta a una solicitud que controla un objeto <see cref="T:System.Net.HttpListener" />.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Abort">
+      <summary vsli:raw="Closes the connection to the client without sending a response.">Cierra la conexión con el cliente sin enviar una respuesta.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AddHeader(System.String,System.String)">
+      <summary vsli:raw="Adds the specified header and value to the HTTP headers for this response.">Agrega el encabezado y valor especificados a los encabezados HTTP para esta respuesta.</summary>
+      <param name="name" vsli:raw="The name of the HTTP header to set.">El nombre del encabezado HTTP que se establece.</param>
+      <param name="value" vsli:raw="The value for the &lt;paramref name=&quot;name&quot; /&gt; header.">El valor del encabezado <paramref name="name" />.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or an empty string (&quot;&quot;).">
+        <paramref name="name" /> es <see langword="null" /> o una cadena vacía ("").</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="You are not allowed to specify a value for the specified header.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;name&quot; /&gt; or &lt;paramref name=&quot;value&quot; /&gt; contains invalid characters.">No tiene permiso para especificar un valor para el encabezado especificado.
+o bien
+<paramref name="name" /> o <paramref name="value" /> contienen caracteres no válidos.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw=".NET Framework and .NET Core versions 2.0 - 3.1 only: The length of &lt;paramref name=&quot;value&quot; /&gt; is greater than 65,535 characters.">La longitud de <paramref name="value" /> es mayor que 65.535 caracteres.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendCookie(System.Net.Cookie)">
+      <summary vsli:raw="Adds the specified &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; to the collection of cookies for this response.">Agrega el objeto especificado <see cref="T:System.Net.Cookie" /> a la colección de cookies para esta respuesta.</summary>
+      <param name="cookie" vsli:raw="The &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; to add to the collection to be sent with this response.">
+        <see cref="T:System.Net.Cookie" /> para agregar a la colección que se envía con esta respuesta.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;cookie&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="cookie" /> es <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.AppendHeader(System.String,System.String)">
+      <summary vsli:raw="Appends a value to the specified HTTP header to be sent with this response.">Anexa un valor al encabezado HTTP especificado que se enviará con esta respuesta.</summary>
+      <param name="name" vsli:raw="The name of the HTTP header to append &lt;paramref name=&quot;value&quot; /&gt; to.">El nombre del encabezado HTTP al que se anexará <paramref name="value" />.</param>
+      <param name="value" vsli:raw="The value to append to the &lt;paramref name=&quot;name&quot; /&gt; header.">El valor que se agrega al encabezado <paramref name="name" />.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt; or an empty string (&quot;&quot;).  &#xA;  &#xA; -or-  &#xA;  &#xA; You are not allowed to specify a value for the specified header.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;name&quot; /&gt; or &lt;paramref name=&quot;value&quot; /&gt; contains invalid characters.">
+        <paramref name="name" /> es <see langword="null" /> o una cadena vacía ("").
+o bien
+No tiene permiso para especificar un valor para el encabezado especificado.
+o bien
+<paramref name="name" /> o <paramref name="value" /> contienen caracteres no válidos.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw=".NET Framework and .NET Core versions 2.0 - 3.1 only: The length of &lt;paramref name=&quot;value&quot; /&gt; is greater than 65,535 characters.">La longitud de <paramref name="value" /> es mayor que 65.535 caracteres.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close">
+      <summary vsli:raw="Sends the response to the client and releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance.">Envía la respuesta al cliente y libera los recursos que contenía esta instancia de <see cref="T:System.Net.HttpListenerResponse" />.</summary>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Close(System.Byte[],System.Boolean)">
+      <summary vsli:raw="Returns the specified byte array to the client and releases the resources held by this &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance.">Devuelve al cliente la matriz de bytes especificada y libera los recursos mantenidos por esta instancia de <see cref="T:System.Net.HttpListenerResponse" />.</summary>
+      <param name="responseEntity" vsli:raw="A &lt;see cref=&quot;T:System.Byte&quot; /&gt; array that contains the response to send to the client.">Una matriz <see cref="T:System.Byte" /> que contiene la respuesta enviada al cliente.</param>
+      <param name="willBlock" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to block execution while flushing the stream to the client; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> para bloquear la ejecución mientras se vuelca la secuencia al cliente; de lo contrario, es <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;responseEntity&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="responseEntity" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentEncoding">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; for this response's &lt;see cref=&quot;P:System.Net.HttpListenerResponse.OutputStream&quot; /&gt;.">Obtiene o establece el objeto <see cref="T:System.Text.Encoding" /> para la propiedad <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> de esta respuesta.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Text.Encoding&quot; /&gt; object suitable for use with the data in the &lt;see cref=&quot;P:System.Net.HttpListenerResponse.OutputStream&quot; /&gt; property, or &lt;see langword=&quot;null&quot; /&gt; if no encoding is specified.">Un objeto <see cref="T:System.Text.Encoding" /> apropiado para el uso con los datos de la propiedad <see cref="P:System.Net.HttpListenerResponse.OutputStream" /> o bien <see langword="null" />, si no se especifica ninguna codificación.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentLength64">
+      <summary vsli:raw="Gets or sets the number of bytes in the body data included in the response.">Obtiene o establece el número de bytes de los datos del cuerpo incluidos en la respuesta.</summary>
+      <returns vsli:raw="The value of the response's &lt;see langword=&quot;Content-Length&quot; /&gt; header.">Valor del encabezado <see langword="Content-Length" /> de la respuesta.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The value specified for a set operation is less than zero.">El valor especificado para una operación de conjunto es menor que cero.</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The response is already being sent.">Ya se está enviando la respuesta.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ContentType">
+      <summary vsli:raw="Gets or sets the MIME type of the content returned.">Obtiene o establece el tipo MIME del contenido devuelto.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; instance that contains the text of the response's &lt;see langword=&quot;Content-Type&quot; /&gt; header.">Una instancia de <see cref="T:System.String" /> que contiene el texto del encabezado <see langword="Content-Type" /> de la respuesta.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">El valor especificado para una operación Set es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation is an empty string (&quot;&quot;).">El valor especificado en una operación de conjunto es una cadena vacía ("").</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Cookies">
+      <summary vsli:raw="Gets or sets the collection of cookies returned with the response.">Obtiene o establece la colección de cookies devuelta con la respuesta.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.CookieCollection&quot; /&gt; that contains cookies to accompany the response. The collection is empty if no cookies have been added to the response.">Una <see cref="T:System.Net.CookieCollection" /> que contiene las cookies adjuntas a la respuesta. La colección está vacía si no se agregaron cookies a la respuesta.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.CopyFrom(System.Net.HttpListenerResponse)">
+      <summary vsli:raw="Copies properties from the specified &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; to this response.">Copia las propiedades de la <see cref="T:System.Net.HttpListenerResponse" /> especificada en esta respuesta.</summary>
+      <param name="templateResponse" vsli:raw="The &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt; instance to copy.">La instancia de <see cref="T:System.Net.HttpListenerResponse" /> que se copia.</param>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.Headers">
+      <summary vsli:raw="Gets or sets the collection of header name/value pairs returned by the server.">Obtiene o establece la colección de pares nombre/valor de encabezado que devuelve el servidor.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; instance that contains all the explicitly set HTTP headers to be included in the response.">Una instancia de <see cref="T:System.Net.WebHeaderCollection" /> que contiene todos los encabezados HTTP establecidos explícitamente que se deben incluir en la respuesta.</returns>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;T:System.Net.WebHeaderCollection&quot; /&gt; instance specified for a set operation is not valid for a response.">La instancia de <see cref="T:System.Net.WebHeaderCollection" /> especificada para una operación de conjunto no es válida para una respuesta.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.KeepAlive">
+      <summary vsli:raw="Gets or sets a value indicating whether the server requests a persistent connection.">Obtiene o establece un valor que indica si el servidor solicita una conexión persistente.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the server requests a persistent connection; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;true&quot; /&gt;.">Es <see langword="true" /> si el servidor solicita una conexión persistente; de lo contrario, es <see langword="false" />. De manera predeterminada, es <see langword="true" />.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.OutputStream">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object to which a response can be written.">Obtiene un objeto <see cref="T:System.IO.Stream" /> en el que se puede escribir una respuesta.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.IO.Stream&quot; /&gt; object to which a response can be written.">Un objeto <see cref="T:System.IO.Stream" /> en el que se puede escribir una respuesta.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.ProtocolVersion">
+      <summary vsli:raw="Gets or sets the HTTP version used for the response.">Obtiene o establece la versión de HTTP utilizada para la respuesta.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Version&quot; /&gt; object indicating the version of HTTP used when responding to the client. Note that this property is now obsolete.">Un objeto <see cref="T:System.Version" /> que indica la versión de HTTP utilizada al responder al cliente. Tenga en cuenta que esta propiedad está obsoleta.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">El valor especificado para una operación Set es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation does not have its &lt;see cref=&quot;P:System.Version.Major&quot; /&gt; property set to 1 or does not have its &lt;see cref=&quot;P:System.Version.Minor&quot; /&gt; property set to either 0 or 1.">El valor especificado para una operación de conjunto no tiene su propiedad <see cref="P:System.Version.Major" /> establecida en 1 o su propiedad <see cref="P:System.Version.Minor" /> establecida en 0 ó 1.</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.Redirect(System.String)">
+      <summary vsli:raw="Configures the response to redirect the client to the specified URL.">Configura la respuesta para redirigir el cliente a la dirección URL especificada.</summary>
+      <param name="url" vsli:raw="The URL that the client should use to locate the requested resource.">La dirección URL que el cliente debe utilizar para buscar el recurso solicitado.</param>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.RedirectLocation">
+      <summary vsli:raw="Gets or sets the value of the HTTP &lt;see langword=&quot;Location&quot; /&gt; header in this response.">Obtiene o establece el valor del encabezado HTTP <see langword="Location" /> en esta respuesta.</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.String&quot; /&gt; that contains the absolute URL to be sent to the client in the &lt;see langword=&quot;Location&quot; /&gt; header.">Un valor <see cref="T:System.String" /> que contiene la dirección URL absoluta que se envía al cliente en el encabezado <see langword="Location" />.</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation is an empty string (&quot;&quot;).">El valor especificado en una operación de conjunto es una cadena vacía ("").</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.SendChunked">
+      <summary vsli:raw="Gets or sets whether the response uses chunked transfer encoding.">Obtiene o establece si la respuesta utiliza una codificación de transferencia en fragmentos.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the response is set to use chunked transfer encoding; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">Es <see langword="true" /> si la respuesta está configurada para utilizar codificación de transferencia en fragmentos; de lo contrario, es <see langword="false" />. De manera predeterminada, es <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.SetCookie(System.Net.Cookie)">
+      <summary vsli:raw="Adds or updates a &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; in the collection of cookies sent with this response.">Agrega o actualiza un objeto <see cref="T:System.Net.Cookie" /> en la colección de cookies enviada con esta respuesta.</summary>
+      <param name="cookie" vsli:raw="A &lt;see cref=&quot;T:System.Net.Cookie&quot; /&gt; for this response.">Un objeto <see cref="T:System.Net.Cookie" /> para esta respuesta.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;cookie&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="cookie" /> es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The cookie already exists in the collection and could not be replaced.">La cookie ya existe en la colección y no se pudo reemplazar.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusCode">
+      <summary vsli:raw="Gets or sets the HTTP status code to be returned to the client.">Obtiene o establece el código de estado de HTTP que se devuelve al cliente.</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value that specifies the HTTP status code for the requested resource. The default is &lt;see cref=&quot;F:System.Net.HttpStatusCode.OK&quot; /&gt;, indicating that the server successfully processed the client's request and included the requested resource in the response body.">Un valor <see cref="T:System.Int32" /> que especifica el código de estado de HTTP para el recurso solicitado. El valor predeterminado es <see cref="F:System.Net.HttpStatusCode.OK" />, que indica que el servidor procesó correctamente la solicitud del cliente e incluyó el recurso solicitado en el cuerpo de la respuesta.</returns>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This object is closed.">Este objeto está cerrado.</exception>
+      <exception cref="T:System.Net.ProtocolViolationException" vsli:raw="The value specified for a set operation is not valid. Valid values are between 100 and 999 inclusive.">El valor especificado para una operación de conjunto no es válido. Los valores válidos están comprendidos entre 100 y 999, ambos inclusive.</exception>
+    </member>
+    <member name="P:System.Net.HttpListenerResponse.StatusDescription">
+      <summary vsli:raw="Gets or sets a text description of the HTTP status code returned to the client.">Obtiene o establece una descripción de texto del código de estado de HTTP devuelto al cliente.</summary>
+      <returns vsli:raw="The text description of the HTTP status code returned to the client. The default is the RFC 2616 description for the &lt;see cref=&quot;P:System.Net.HttpListenerResponse.StatusCode&quot; /&gt; property value, or an empty string (&quot;&quot;) if an RFC 2616 description does not exist.">La descripción de texto del código de estado de HTTP devuelto al cliente. El valor predeterminado es la descripción de RFC 2616 del valor de la propiedad <see cref="P:System.Net.HttpListenerResponse.StatusCode" /> o una cadena vacía (""), si no existe una descripción de RFC 2616.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value specified for a set operation is &lt;see langword=&quot;null&quot; /&gt;.">El valor especificado para una operación Set es <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="The value specified for a set operation contains non-printable characters.">El valor especificado para una operación de establecimiento contiene caracteres que no se pueden imprimir.</exception>
+    </member>
+    <member name="M:System.Net.HttpListenerResponse.System#IDisposable#Dispose">
+      <summary vsli:raw="Releases all resources used by the &lt;see cref=&quot;T:System.Net.HttpListenerResponse&quot; /&gt;.">Libera todos los recursos que usa <see cref="T:System.Net.HttpListenerResponse" />.</summary>
+    </member>
+    <member name="T:System.Net.HttpListenerTimeoutManager">
+      <summary vsli:raw="The timeout manager to use for an &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">El administrador de tiempo de espera para un objeto <see cref="T:System.Net.HttpListener" /> .</summary>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.DrainEntityBody">
+      <summary vsli:raw="Gets or sets the time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to drain the entity body on a Keep-Alive connection.">Obtiene o establece el tiempo permitido para que <see cref="T:System.Net.HttpListener" /> agote el cuerpo de la entidad en una conexión Keep-Alive.</summary>
+      <returns vsli:raw="The time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to drain the entity body on a Keep-Alive connection.">El tiempo permitido para que el <see cref="T:System.Net.HttpListener" /> agote el cuerpo de la entidad en una conexión Keep-Alive.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.EntityBody">
+      <summary vsli:raw="Gets or sets the time allowed for the request entity body to arrive.">Obtiene o establece el tiempo permitido para que llegue el cuerpo de la entidad de solicitud.</summary>
+      <returns vsli:raw="The time allowed for the request entity body to arrive.">El tiempo permitido para que llegue el cuerpo de la entidad de solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.HeaderWait">
+      <summary vsli:raw="Gets or sets the time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to parse the request header.">Obtiene o establece el tiempo permitido para que <see cref="T:System.Net.HttpListener" /> analice el encabezado de solicitud.</summary>
+      <returns vsli:raw="The time allowed for the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; to parse the request header.">El tiempo permitido para que el <see cref="T:System.Net.HttpListener" /> analice el encabezado de la solicitud.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.IdleConnection">
+      <summary vsli:raw="Gets or sets the time allowed for an idle connection.">Obtiene o establece el tiempo permitido para una conexión inactiva.</summary>
+      <returns vsli:raw="The time allowed for an idle connection.">El tiempo permitido para una conexión inactiva.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.MinSendBytesPerSecond">
+      <summary vsli:raw="Gets or sets the minimum send rate, in bytes-per-second, for the response.">Obtiene o establece la velocidad mínima que se envía, en bytes por segundo, para la respuesta.</summary>
+      <returns vsli:raw="The minimum send rate, in bytes-per-second, for the response.">La velocidad mínima que se envía, en bytes por segundo, para la respuesta.</returns>
+    </member>
+    <member name="P:System.Net.HttpListenerTimeoutManager.RequestQueue">
+      <summary vsli:raw="Gets or sets the time allowed for the request to remain in the request queue before the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; picks it up.">Obtiene o establece el tiempo permitido para que la solicitud permanezca en la cola de solicitudes antes de que la detecte <see cref="T:System.Net.HttpListener" />.</summary>
+      <returns vsli:raw="The time allowed for the request to remain in the request queue before the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; picks it up.">El tiempo permitido para que la solicitud permanezca en la cola de solicitudes antes de que la <see cref="T:System.Net.HttpListener" /> la seleccione.</returns>
+    </member>
+    <member name="T:System.Net.WebSockets.HttpListenerWebSocketContext">
+      <summary vsli:raw="Provides access to information received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; class when accepting WebSocket connections.">Proporciona acceso a la información recibida por la clase <see cref="T:System.Net.HttpListener" /> al aceptar las conexiones de WebSocket.</summary>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.CookieCollection">
+      <summary vsli:raw="Gets the cookies received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object in the WebSocket opening handshake.">Obtiene las cookies recibidas por el objeto de <see cref="T:System.Net.HttpListener" /> en el protocolo de enlace de apertura de WebSocket.</summary>
+      <returns vsli:raw="The cookies received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Las cookies recibidas por el objeto <see cref="T:System.Net.HttpListener" /> .</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Headers">
+      <summary vsli:raw="Gets the HTTP headers received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object in the WebSocket opening handshake.">Obtiene los encabezados HTTP recibidos por el objeto de <see cref="T:System.Net.HttpListener" /> en el protocolo de enlace de apertura de WebSocket.</summary>
+      <returns vsli:raw="The HTTP headers received by the &lt;see cref=&quot;T:System.Net.HttpListener&quot; /&gt; object.">Los encabezados HTTP recibidos por el objeto <see cref="T:System.Net.HttpListener" /> .</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsAuthenticated">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket client is authenticated.">Obtiene un valor que indica si se autentica el cliente de WebSocket.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket client is authenticated; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el cliente de WebSocket está autenticado; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsLocal">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket client connected from the local machine.">Obtiene un valor que indica si el cliente de WebSocket está conectado desde el equipo local.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket client connected from the local machine; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si el cliente de WebSocket está conectado desde el equipo local; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.IsSecureConnection">
+      <summary vsli:raw="Gets a value that indicates if the WebSocket connection is secured using Secure Sockets Layer (SSL).">Obtiene un valor que indica si la conexión de WebSocket garantiza el uso de Secure Sockets Layer (SSL).</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the WebSocket connection is secured using SSL; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la conexión WebSocket está protegida mediante SSL; de lo contrario, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.Origin">
+      <summary vsli:raw="Gets the value of the Origin HTTP header included in the WebSocket opening handshake.">Obtiene el valor del encabezado HTTP Origin incluido en el protocolo de enlace de apertura WebSocket.</summary>
+      <returns vsli:raw="The value of the Origin HTTP header.">Valor del encabezado HTTP Origin.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.RequestUri">
+      <summary vsli:raw="Gets the URI requested by the WebSocket client.">Obtiene la URI solicitada por el cliente WebSocket.</summary>
+      <returns vsli:raw="The URI requested by the WebSocket client.">Dirección URI solicitada por el cliente WebSocket.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketKey">
+      <summary vsli:raw="Gets the value of the SecWebSocketKey HTTP header included in the WebSocket opening handshake.">Obtiene el valor del encabezado HTTP SecWebSocketKey incluido en el protocolo de enlace de apertura WebSocket.</summary>
+      <returns vsli:raw="The value of the SecWebSocketKey HTTP header.">El valor del encabezado HTTP SecWebSocketKey.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketProtocols">
+      <summary vsli:raw="Gets the list of the Secure WebSocket protocols included in the WebSocket opening handshake.">Obtiene la lista de protocolos seguros de WebSocket incluidos en el protocolo de enlace de apertura de WebSocket.</summary>
+      <returns vsli:raw="The list of the Secure WebSocket protocols.">La lista de protocolos seguros de WebSocket.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.SecWebSocketVersion">
+      <summary vsli:raw="Gets the list of sub-protocols requested by the WebSocket client.">Obtiene la lista de subprotocolos solicitados por el cliente WebSocket.</summary>
+      <returns vsli:raw="The list of sub-protocols requested by the WebSocket client.">Lista de subprotocolos solicitados por el cliente WebSocket.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.User">
+      <summary vsli:raw="Gets an object used to obtain identity, authentication information, and security roles for the WebSocket client.">Obtiene un objeto utilizado para obtener la identidad, la información de autenticación y los roles de seguridad para el cliente WebSocket.</summary>
+      <returns vsli:raw="The identity, authentication information, and security roles for the WebSocket client.">La identidad, la información de autenticación y los roles de seguridad para el cliente WebSocket.</returns>
+    </member>
+    <member name="P:System.Net.WebSockets.HttpListenerWebSocketContext.WebSocket">
+      <summary vsli:raw="Gets the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; instance used to send and receive data over the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; connection.">Obtiene la <see cref="T:System.Net.WebSockets.WebSocket" /> instancia usada para enviar y recibir datos mediante la conexión <see cref="T:System.Net.WebSockets.WebSocket" />.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; instance used to send and receive data over the &lt;see cref=&quot;T:System.Net.WebSockets.WebSocket&quot; /&gt; connection.">La instancia de <see cref="T:System.Net.WebSockets.WebSocket" /> utilizada para enviar y recibir datos a través de la conexión <see cref="T:System.Net.WebSockets.WebSocket" />.</returns>
+    </member>
+  </members>
+</doc>

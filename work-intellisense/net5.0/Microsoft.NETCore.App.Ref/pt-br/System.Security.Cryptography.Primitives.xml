@@ -1,0 +1,1129 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AsymmetricAlgorithm">
+      <summary>Representa a classe base abstrata da qual todas as implementações de algoritmos assimétricos devem ser herdadas.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.KeySizeValue">
+      <summary>Representa o tamanho, em bits, do módulo chave usado pelo algoritmo assimétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizesValue">
+      <summary>Especifica os tamanhos de chave que são compatíveis com o algoritmo assimétrico.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">A implementação da classe derivada não é válida.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Clear">
+      <summary>Libera todos os recursos usados pela classe <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create">
+      <summary>Cria um objeto criptográfico padrão usado para executar o algoritmo assimétrico.</summary>
+      <returns>Uma nova instância <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" />, a menos que as configurações padrão tenham sido alteradas com o elemento &lt;cryptoClass&gt;.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create(System.String)">
+      <summary>Cria uma instância da implementação especificada de um algoritmo assimétrico.</summary>
+      <param name="algName">A implementação do algoritmo assimétrico a ser usada. A tabela a seguir mostra os valores válidos para o parâmetro <paramref name="algName" /> e os algoritmos para os quais são mapeados.  
+  
+ <list type="table"><listheader><term> Valor do parâmetro</term><description> Implements</description></listheader><item><term> System.Security.Cryptography.AsymmetricAlgorithm</term><description><see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /></description></item><item><term> RSA</term><description><see cref="T:System.Security.Cryptography.RSA" /></description></item><item><term> System.Security.Cryptography.RSA</term><description><see cref="T:System.Security.Cryptography.RSA" /></description></item><item><term> DSA</term><description><see cref="T:System.Security.Cryptography.DSA" /></description></item><item><term> System.Security.Cryptography.DSA</term><description><see cref="T:System.Security.Cryptography.DSA" /></description></item><item><term> ECDsa</term><description><see cref="T:System.Security.Cryptography.ECDsa" /></description></item><item><term> ECDsaCng</term><description><see cref="T:System.Security.Cryptography.ECDsaCng" /></description></item><item><term> System.Security.Cryptography.ECDsaCng</term><description><see cref="T:System.Security.Cryptography.ECDsaCng" /></description></item><item><term> ECDH</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellman" /></description></item><item><term> ECDiffieHellman</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellman" /></description></item><item><term> ECDiffieHellmanCng</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /></description></item><item><term> System.Security.Cryptography.ECDiffieHellmanCng</term><description><see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /></description></item></list></param>
+      <returns>Uma nova instância da implementação do algoritmo assimétrico especificada.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose">
+      <summary>Libera todos os recursos usados pela instância atual da classe <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pela classe <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> e, opcionalmente, libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters)">
+      <summary>Exporta a chave atual no formato EncryptedPrivateKeyInfo do PKCS nº 8 com uma senha baseada em bytes.</summary>
+      <param name="passwordBytes">Os bytes a serem usados como senha ao criptografar o material da chave.</param>
+      <param name="pbeParameters">Os parâmetros de PBE (criptografia baseada em senha) a serem usados ao criptografar o material da chave.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.
+
+- ou -
+
+<paramref name="pbeParameters" /> indica que <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" /> deve ser usado, o que exige senhas baseadas em <see cref="T:System.Char" />.</exception>
+      <returns>Uma matriz de bytes contendo a representação de EncryptedPrivateKeyInfo do PKCS nº 8 dessa chave.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters)">
+      <summary>Exporta a chave atual no formato EncryptedPrivateKeyInfo do PKCS nº 8 com uma senha baseada em caracteres.</summary>
+      <param name="password">A senha a ser usada ao criptografar o material da chave.</param>
+      <param name="pbeParameters">Os parâmetros de PBE (criptografia baseada em senha) a serem usados ao criptografar o material da chave.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.</exception>
+      <returns>Uma matriz de bytes contendo a representação de EncryptedPrivateKeyInfo do PKCS nº 8 dessa chave.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportPkcs8PrivateKey">
+      <summary>Exporta a chave atual no formato PrivateKeyInfo do PKCS nº 8.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.</exception>
+      <returns>Uma matriz de bytes contendo a representação de PrivateKeyInfo do PKCS nº 8 dessa chave.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportSubjectPublicKeyInfo">
+      <summary>Exporta a parte pública da chave atual no formato SubjectPublicKeyInfo X.509.</summary>
+      <returns>Uma matriz de bytes que contém a representação de SubjectPublicKeyInfo X.509 da parte pública dessa chave.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.FromXmlString(System.String)">
+      <summary>Quando substituído em uma classe derivada, recria um objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> de uma cadeia de caracteres XML. Caso contrário, gerará um <see cref="T:System.NotImplementedException" />.</summary>
+      <param name="xmlString">A cadeia de caracteres XML a ser usada para reconstruir o objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" />.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, importa o par de chaves pública/privada de uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 após descriptografar com uma senha baseada em bytes, substituindo as chaves desse objeto.</summary>
+      <param name="passwordBytes">Os bytes a serem usados como senha ao descriptografar o material da chave.</param>
+      <param name="source">Os bytes de uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 na codificação ASN.1-BER.</param>
+      <param name="bytesRead">Quando é retornado, este método contém um valor que indica o número de bytes lidos de <paramref name="source" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">A senha está incorreta.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> indica que a KDF (Função de Derivação de Chaves) a ser aplicada é a KDF do PKCS nº 12 herdada, que requer senhas baseadas em <see cref="T:System.Char" />.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> não representa uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 codificada por ASN.1-BER.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> indica que a chave é de um algoritmo que não é aquele representado por essa instância.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> representa a chave em um formato sem suporte.
+
+- ou -
+
+Falha na importação da chave específica do algoritmo.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, importa o par de chaves pública/privada de uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 após descriptografar com uma senha baseada em caracteres, substituindo as chaves desse objeto.</summary>
+      <param name="password">A senha a ser usada para descriptografar o material da chave.</param>
+      <param name="source">Os bytes de uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 na codificação ASN.1-BER.</param>
+      <param name="bytesRead">Quando é retornado, este método contém um valor que indica o número de bytes lidos de <paramref name="source" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">A senha está incorreta.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> não representa uma estrutura de EncryptedPrivateKeyInfo do PKCS nº 8 codificada por ASN.1-BER.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> indica que a chave é de um algoritmo que não é aquele representado por essa instância.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> representa a chave em um formato sem suporte.
+
+- ou -
+
+Falha na importação da chave específica do algoritmo.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromEncryptedPem(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte})">
+      <summary>Quando substituído em uma classe derivada, importa uma chave criptografada no formato PEM conforme RFC 7468, substituindo as chaves do objeto.</summary>
+      <param name="input">Texto no formato PEM da chave criptografada a ser importada.</param>
+      <param name="passwordBytes">Os bytes a serem usados como senha ao descriptografar o material da chave.</param>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromEncryptedPem(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Char})">
+      <summary>Quando substituído em uma classe derivada, importa uma chave criptografada no formato PEM conforme RFC 7468, substituindo as chaves do objeto.</summary>
+      <param name="input">Texto no formato PEM da chave criptografada a ser importada.</param>
+      <param name="password">A senha a ser usada para descriptografar o material da chave.</param>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportFromPem(System.ReadOnlySpan{System.Char})">
+      <summary>Quando substituído em uma classe derivada, importa uma chave codificada textualmente conforme RFC 7468, substituindo as chaves do objeto.</summary>
+      <param name="input">Texto da chave PEM a ser importada.</param>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, importa o par de chaves pública/privada de uma estrutura de PrivateKeyInfo do PKCS nº 8 após a descriptografia, substituindo as chaves desse objeto.</summary>
+      <param name="source">Os bytes de uma estrutura de PrivateKeyInfo do PKCS nº 8 na codificação ASN.1-BER.</param>
+      <param name="bytesRead">Quando é retornado, este método contém um valor que indica o número de bytes lidos de <paramref name="source" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O conteúdo de <paramref name="source" /> não representa uma estrutura de PrivateKeyInfo do PKCS nº 8 codificada por ASN.1-BER.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> indica que a chave é de um algoritmo que não é aquele representado por essa instância.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> representa a chave em um formato sem suporte.
+
+- ou -
+
+Falha na importação da chave específica do algoritmo.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportSubjectPublicKeyInfo(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, importa a chave pública de uma estrutura de SubjectPublicKeyInfo X.509 após a descriptografia, substituindo as chaves desse objeto.</summary>
+      <param name="source">Os bytes de uma estrutura de SubjectPublicKeyInfo X.509 na codificação ASN.1-DER.</param>
+      <param name="bytesRead">Quando é retornado, este método contém um valor que indica o número de bytes lidos de <paramref name="source" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O conteúdo de <paramref name="source" /> não representa uma estrutura de SubjectPublicKeyInfo X.509 codificada por ASN.1-DER.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> indica que a chave é de um algoritmo que não é aquele representado por essa instância.
+
+- ou -
+
+O conteúdo de <paramref name="source" /> representa a chave em um formato sem suporte.
+
+- ou -
+
+Falha na importação da chave específica do algoritmo.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ToXmlString(System.Boolean)">
+      <summary>Quando substituído em uma classe derivada, cria e retorna uma representação de cadeia de caracteres XML do objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> atual. Caso contrário, gerará um <see cref="T:System.NotImplementedException" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> para incluir parâmetros particulares; caso contrário, <see langword="false" />.</param>
+      <returns>Uma codificação de cadeia de caracteres XML do objeto <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> atual.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, tenta exportar a chave atual no formato EncryptedPrivateKeyInfo do PKCS nº 8 para um buffer fornecido, usando uma senha baseada em bytes.</summary>
+      <param name="passwordBytes">Os bytes a serem usados como senha ao criptografar o material da chave.</param>
+      <param name="pbeParameters">Os parâmetros de PBE (criptografia baseada em senha) a serem usados ao criptografar o material da chave.</param>
+      <param name="destination">O intervalo de bytes que receberá os dados de EncryptedPrivateKeyInfo do PKCS n º 8.</param>
+      <param name="bytesWritten">Quando é retornado, este método contém um valor que indica o número de caracteres gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.
+
+- ou -
+
+<paramref name="pbeParameters" /> indica que <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" /> deve ser usado, o que exige senhas baseadas em <see cref="T:System.Char" />.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for grande o suficiente para receber a saída; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, tenta exportar a chave atual no formato EncryptedPrivateKeyInfo do PKCS nº 8 para um buffer fornecido, usando uma senha baseada em caracteres.</summary>
+      <param name="password">A senha a ser usada ao criptografar o material da chave.</param>
+      <param name="pbeParameters">Os parâmetros de PBE (criptografia baseada em senha) a serem usados ao criptografar o material da chave.</param>
+      <param name="destination">O intervalo de bytes que receberá os dados de EncryptedPrivateKeyInfo do PKCS n º 8.</param>
+      <param name="bytesWritten">Quando é retornado, este método contém um valor que indica o número de caracteres gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for grande o suficiente para receber a saída; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportPkcs8PrivateKey(System.Span{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, tenta exportar a chave atual no formato PrivateKeyInfo do PKCS nº 8 para um buffer fornecido.</summary>
+      <param name="destination">O intervalo de bytes que receberá os dados de PrivateKeyInfo do PKCS n º 8.</param>
+      <param name="bytesWritten">Quando é retornado, este método contém um valor que indica o número de caracteres gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for grande o suficiente para receber a saída; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportSubjectPublicKeyInfo(System.Span{System.Byte},System.Int32@)">
+      <summary>Quando substituído em uma classe derivada, tenta exportar a chave atual no formato SubjectPublicKeyInfo do X.509 para um buffer fornecido.</summary>
+      <param name="destination">O intervalo de bytes que receberá os dados de SubjectPublicKeyInfo X.509.</param>
+      <param name="bytesWritten">Quando é retornado, este método contém um valor que indica o número de caracteres gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Não foi possível exportar a chave.</exception>
+      <exception cref="T:System.NotImplementedException">Um tipo derivado não substituiu esse membro.</exception>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for grande o suficiente para receber a saída; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeyExchangeAlgorithm">
+      <summary>Quando substituída em uma classe derivada, obtém o nome do algoritmo de troca de chaves. Caso contrário, gerará um <see cref="T:System.NotImplementedException" />.</summary>
+      <returns>O nome do algoritmo de troca de chave.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeySize">
+      <summary>Obtém ou define o tamanho, em bits, do módulo chave usado pelo algoritmo assimétrico.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O tamanho do módulo chave é inválido.</exception>
+      <returns>O tamanho, em bits, do módulo chave usado pelo algoritmo assimétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizes">
+      <summary>Obtém os tamanhos de chave que têm suporte pelo algoritmo assimétrico.</summary>
+      <returns>Uma matriz que contém os tamanhos de chave com suporte pelo algoritmo assimétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.SignatureAlgorithm">
+      <summary>Quando implementado em uma classe derivada, obtém o nome do algoritmo de assinatura. Caso contrário, sempre gerará um <see cref="T:System.NotImplementedException" />.</summary>
+      <returns>O nome do algoritmo de assinatura.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CipherMode">
+      <summary>Especifica o modo de codificação de bloco a ser usado para criptografia.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CBC">
+      <summary>O modo Encadeamento de Blocos de Criptografia (<see langword="CBC" />) apresenta comentários. Antes de cada bloco de texto sem formatação ser criptografado, ele é combinado com o texto criptografado do bloco anterior por uma operação OR exclusiva bit a bit. Isso garante que mesmo se o texto sem formatação contiver muitos blocos idênticos, cada um criptografará para um bloco de texto criptografado diferente. O vetor de inicialização é combinado com o primeiro bloco de texto sem formatação por uma operação OR exclusiva bit a bit antes de o bloco ser criptografado. Se um único bit do bloco de texto criptografado estiver danificado, o bloco de texto sem formatação correspondente também será danificado. Além disso, um bit no bloco subsequente, na mesma posição que o bit danificado original, será danificado.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CFB">
+      <summary>O modo Comentários de Criptografia (<see langword="CFB" />) processa pequenos incrementos de texto sem formatação em texto criptografado, em vez de processar um bloco inteiro por vez. Esse modo usa um registrador de deslocamento que é um bloco no tamanho e é dividido em seções. Por exemplo, se o tamanho do bloco é de 8 bytes, com um byte processado por vez, o registrador de deslocamento é dividido em oito seções. Se um bit no texto criptografado estiver danificado, um bit de texto sem formatação será danificado e o registrador de deslocamento será corrompido. Isso faz com que os próximos vários incrementos de texto sem formatação sejam danificados até que o bit incorreto seja deslocado para fora do registrador de deslocamento. O tamanho de comentários padrão pode variar de acordo com o algoritmo, mas, normalmente, é 8 bits ou o número de bits do tamanho do bloco. Você pode alterar o número de bits de comentários usando a propriedade <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" />. Os algoritmos que dão suporte a CFB usam essa propriedade para definir os comentários.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CTS">
+      <summary>O modo Roubo de Texto Criptografado (<see langword="CTS" />) trata qualquer tamanho de texto sem formatação e produz texto criptografado cujo tamanho corresponde ao tamanho do texto sem formatação. Esse modo se comporta como o modo <see langword="CBC" /> para todos, exceto para os dois últimos blocos do texto sem formatação.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.ECB">
+      <summary>O modo Livro de Códigos Eletrônico (<see langword="ECB" />) criptografa cada bloco individualmente. Todos os blocos de texto sem formatação que são idênticos e estão na mesma mensagem ou que estão em uma mensagem criptografada diferente com a mesma chave, serão transformados em blocos de texto criptografado idênticos. Importante: este modo não é recomendado porque abre as portas para várias explorações de segurança. Se o texto sem formatação a ser criptografado contiver repetição substancial, é provável que o texto criptografado será dividido em um bloco por vez. Também é possível usar a análise de bloco para determinar a chave de criptografia. Além disso, um adversário ativo pode substituir e trocar blocos individuais sem detecção, o que permite que os blocos sejam salvos e inseridos no fluxo em outros pontos sem detecção.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.OFB">
+      <summary>O modo Comentários de Saída (<see langword="OFB" />) processa pequenos incrementos de texto sem formatação em texto criptografado em vez de processar um bloco inteiro por vez. Esse modo é semelhante ao <see langword="CFB" />, a única diferença entre os dois modos é a maneira que o registrador de deslocamento é preenchido. Se um bit no texto criptografado for danificado, o bit correspondente do texto sem formatação será danificado. No entanto, se houver bits extras ou ausentes do texto criptografado, o texto sem formatação será danificado desse ponto.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicOperations">
+      <summary>Fornece métodos para uso no trabalho com criptografia para reduzir o risco de vazamento de informações de temporização.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicOperations.FixedTimeEquals(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+      <summary>Determina a igualdade de duas sequências de bytes em um período que depende do comprimento das sequências, mas não dos valores.</summary>
+      <param name="left">O primeiro buffer a ser comparado.</param>
+      <param name="right">O segundo buffer a ser comparado.</param>
+      <returns>
+        <see langword="true" /> se <paramref name="left" /> e <paramref name="right" /> tiverem os mesmos valores para <see cref="P:System.ReadOnlySpan`1.Length" /> e o mesmo conteúdo; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicOperations.ZeroMemory(System.Span{System.Byte})">
+      <summary>Preenche o buffer fornecido com zeros.</summary>
+      <param name="buffer">O buffer para preencher com zeros.</param>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+      <summary>A exceção lançada quando ocorre uma operação inesperada durante uma operação criptográfica.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> com propriedades padrão.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> com dados serializados.</summary>
+      <param name="info">O objeto que mantém os dados de objeto serializados.</param>
+      <param name="context">As informações contextuais sobre a origem ou o destino.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> com uma mensagem de erro especificada.</summary>
+      <param name="message">A mensagem de erro que explica a razão da exceção.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.Exception)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> com uma mensagem de erro especificada e uma referência à exceção interna que é a causa da exceção.</summary>
+      <param name="message">A mensagem de erro que explica a razão da exceção.</param>
+      <param name="inner">A exceção que é a causa da exceção atual. Caso o parâmetro <paramref name="inner" /> não seja <see langword="null" />, a exceção atual é acionada em um bloco <see langword="catch" /> que identifica a exceção interna.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.String)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> com uma mensagem de erro em um formato especificado.</summary>
+      <param name="format">O formato usado para gerar a mensagem de erro.</param>
+      <param name="insert">A mensagem de erro que explica a razão da exceção.</param>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStream">
+      <summary>Define uma transmissão que liga fluxos de dados a transformações criptográficas.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptoStream" /> com um fluxo de dados de destino, a transformação a ser usada e o modo do fluxo.</summary>
+      <param name="stream">O fluxo no qual a transformação de criptografia será executada.</param>
+      <param name="transform">A transformação criptográfica a ser executada no fluxo.</param>
+      <param name="mode">Um dos valores de <see cref="T:System.Security.Cryptography.CryptoStreamMode" />.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="stream" /> é inválido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode,System.Boolean)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.CryptoStream" />.</summary>
+      <param name="stream">O fluxo no qual a transformação de criptografia será executada.</param>
+      <param name="transform">A transformação criptográfica a ser executada no fluxo.</param>
+      <param name="mode">O modo de fluxo.</param>
+      <param name="leaveOpen">
+        <see langword="true" /> para não fechar o fluxo subjacente quando o objeto <see cref="T:System.Security.Cryptography.CryptoStream" /> é descartado; caso contrário, <see langword="false" />.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> é inválido.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>Inicia uma operação de leitura assíncrona. (Considere o uso de <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> em seu lugar.)</summary>
+      <param name="buffer">O buffer para ler os dados.</param>
+      <param name="offset">O deslocamento de bytes no <paramref name="buffer" /> no qual será iniciada a gravação da leitura de dados no fluxo.</param>
+      <param name="count">O número máximo de bytes a serem lidos.</param>
+      <param name="callback">Um retorno de chamada assíncrono opcional, a ser chamado quando a leitura for concluída.</param>
+      <param name="state">Um objeto fornecido pelo usuário que distingue essa solicitação de leitura assíncrona específica de outras solicitações.</param>
+      <exception cref="T:System.IO.IOException">Houve uma tentativa de leitura assíncrona após o final do fluxo ou ocorreu um erro de disco.</exception>
+      <exception cref="T:System.ArgumentException">Um ou mais argumentos são inválidos.</exception>
+      <exception cref="T:System.ObjectDisposedException">Foram chamados métodos depois que o fluxo foi fechado.</exception>
+      <exception cref="T:System.NotSupportedException">A implementação <see langword="Stream" /> atual não dá suporte à operação de leitura.</exception>
+      <returns>Um <see cref="T:System.IAsyncResult" /> que representa a operação de leitura assíncrona, que ainda pode estar pendente.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>Inicia uma operação de gravação assíncrona. (Considere o uso de <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> em seu lugar.)</summary>
+      <param name="buffer">O buffer do qual os dados serão gravados.</param>
+      <param name="offset">O deslocamento de bytes no <paramref name="buffer" /> no qual a gravação deve iniciar.</param>
+      <param name="count">O número máximo de bytes a serem gravados.</param>
+      <param name="callback">Um retorno de chamada assíncrona opcional, a ser chamada quando a operação de gravação for concluída.</param>
+      <param name="state">Um objeto fornecido pelo usuário que distingue essa solicitação de gravação assíncrona específica de outras solicitações.</param>
+      <exception cref="T:System.IO.IOException">Houve uma tentativa de gravação assíncrona após o final do fluxo ou ocorreu um erro de disco.</exception>
+      <exception cref="T:System.ArgumentException">Um ou mais argumentos são inválidos.</exception>
+      <exception cref="T:System.ObjectDisposedException">Foram chamados métodos depois que o fluxo foi fechado.</exception>
+      <exception cref="T:System.NotSupportedException">A implementação <see langword="Stream" /> atual não dá suporte à operação de gravação.</exception>
+      <returns>Um <see langword="IAsyncResult" /> que representa a gravação assíncrona, que ainda pode estar pendente.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Clear">
+      <summary>Libera todos os recursos usados pelo <see cref="T:System.Security.Cryptography.CryptoStream" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pelo <see cref="T:System.Security.Cryptography.CryptoStream" /> e opcionalmente libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.DisposeAsync">
+      <summary>Libera de forma assíncrona os recursos não gerenciados usados pelo <see cref="T:System.Security.Cryptography.CryptoStream" />.</summary>
+      <returns>Uma tarefa que representa a operação de descarte assíncrona.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndRead(System.IAsyncResult)">
+      <summary>Espera a leitura assíncrona pendente ser concluída. (Considere o uso de <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> em seu lugar.)</summary>
+      <param name="asyncResult">A referência à solicitação assíncrona pendente a ser concluída.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Um identificador para a operação de leitura pendente não está disponível.  
+  
+ - ou -  
+  
+ A operação pendente não dá suporte à leitura.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> não é proveniente de um método <see cref="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> no fluxo atual.</exception>
+      <exception cref="T:System.IO.IOException">O fluxo está fechado ou ocorreu um erro interno.</exception>
+      <returns>O número de bytes lidos do fluxo, entre zero (0) e o número de bytes solicitado. Os fluxos retornam zero (0) somente no final do fluxo, caso contrário, eles devem ser bloqueados até que pelo menos um byte esteja disponível.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndWrite(System.IAsyncResult)">
+      <summary>Encerra uma operação de gravação assíncrona. (Considere o uso de <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> em seu lugar.)</summary>
+      <param name="asyncResult">Uma referência à solicitação de E/S assíncrona pendente.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Não há um identificador disponível para a operação de gravação pendente.  
+  
+ - ou -  
+  
+ A operação pendente não dá suporte à gravação.</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> não é proveniente de um método <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> no fluxo atual.</exception>
+      <exception cref="T:System.IO.IOException">O fluxo está fechado ou ocorreu um erro interno.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Flush">
+      <summary>Limpa todos os buffers do fluxo atual e faz com que todos os dados armazenados em buffer sejam gravados no dispositivo subjacente.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>Limpa todos os buffers para o fluxo atual de forma assíncrona, faz com que quaisquer dados armazenados em buffer sejam gravados no dispositivo subjacente e monitora as solicitações de cancelamento.</summary>
+      <param name="cancellationToken">O token a se monitorar para solicitações de cancelamento. O valor padrão é <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.ObjectDisposedException">O fluxo foi descartado.</exception>
+      <returns>Uma tarefa que representa a operação de liberação assíncrona.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushFinalBlock">
+      <summary>Atualiza a fonte de dados ou o repositório subjacente com o estado atual do buffer e, em seguida, limpa o buffer.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">A chave está corrompida, o que pode causar um preenchimento inválido no fluxo.</exception>
+      <exception cref="T:System.NotSupportedException">O fluxo atual não é gravável.  
+  
+ - ou -  
+  
+ O bloco final já foi transformado.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushFinalBlockAsync(System.Threading.CancellationToken)">
+      <summary>Atualiza de maneira assíncrona a fonte de dados ou o repositório subjacente com o estado atual do buffer e limpa o buffer.</summary>
+      <param name="cancellationToken">O token a se monitorar para solicitações de cancelamento. O valor padrão é <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <returns>Uma tarefa que representa a operação de liberação assíncrona.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>Lê uma sequência de bytes do fluxo atual e avança a posição no fluxo até o número de bytes lidos.</summary>
+      <param name="buffer">Uma matriz de bytes. Um máximo de <paramref name="count" /> bytes são lidos do fluxo atual e armazenados em <paramref name="buffer" />.</param>
+      <param name="offset">O deslocamento de bytes em <paramref name="buffer" /> no qual será iniciada a leitura de dados no fluxo atual.</param>
+      <param name="count">O número máximo de bytes a serem lidos no fluxo atual.</param>
+      <exception cref="T:System.NotSupportedException">O <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> associado ao objeto <see cref="T:System.Security.Cryptography.CryptoStream" /> atual não corresponde ao fluxo subjacente.  Por exemplo, essa exceção é gerada ao usar <see cref="F:System.Security.Cryptography.CryptoStreamMode.Read" /> com um fluxo subjacente que é somente gravação.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">O parâmetro <paramref name="offset" /> é menor que zero.  
+  
+- ou - 
+O parâmetro <paramref name="count" /> é menor que zero.</exception>
+      <exception cref="T:System.ArgumentException">A soma dos parâmetros <paramref name="count" /> e <paramref name="offset" /> é maior do que o tamanho do buffer.</exception>
+      <returns>O número total de bytes lidos do buffer. Isso poderá ser menor que o número de bytes solicitado se tal quantidade de bytes não estiver disponível no momento ou zero se o final do fluxo tiver sido atingido.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>Lê uma sequência de bytes do fluxo atual de forma assíncrona, avança a posição no fluxo até o número de bytes lidos e monitora as solicitações de cancelamento.</summary>
+      <param name="buffer">O buffer no qual os dados serão gravados.</param>
+      <param name="offset">O deslocamento de bytes no <paramref name="buffer" /> no qual será iniciada a gravação de dados no fluxo.</param>
+      <param name="count">O número máximo de bytes a serem lidos.</param>
+      <param name="cancellationToken">O token a se monitorar para solicitações de cancelamento. O valor padrão é <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> ou <paramref name="count" /> é negativo.</exception>
+      <exception cref="T:System.ArgumentException">A soma de <paramref name="offset" /> e <paramref name="count" /> é maior que o tamanho do buffer.</exception>
+      <exception cref="T:System.NotSupportedException">Não há suporte para leitura no fluxo.</exception>
+      <exception cref="T:System.ObjectDisposedException">O fluxo foi descartado.</exception>
+      <exception cref="T:System.InvalidOperationException">O fluxo está sendo usado no momento por uma operação de leitura anterior.</exception>
+      <returns>Uma tarefa que representa a operação de leitura assíncrona. O valor do parâmetro <paramref name="TResult" /> do objeto da tarefa contém o número total de bytes lidos no buffer. O resultado poderá ser menor que o número de bytes solicitados se o número de bytes disponíveis no momento for menor que o número solicitado ou poderá ser 0 (zero) se o final do fluxo foi atingido.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadByte">
+      <summary>Lê um byte do fluxo e avança a posição no fluxo em um byte ou retorna -1 caso esteja no final do fluxo.</summary>
+      <exception cref="T:System.NotSupportedException">Não há suporte para leitura no fluxo.</exception>
+      <exception cref="T:System.ObjectDisposedException">Foram chamados métodos depois que o fluxo foi fechado.</exception>
+      <returns>O byte sem sinal convertido em um <see cref="T:System.Int32" /> ou -1 se o final do fluxo for atingido.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>Define a posição no fluxo atual.</summary>
+      <param name="offset">Um deslocamento de bytes em relação ao parâmetro <paramref name="origin" />.</param>
+      <param name="origin">Um objeto <see cref="T:System.IO.SeekOrigin" /> indicando o ponto de referência usado para obter a nova posição.</param>
+      <exception cref="T:System.NotSupportedException">Não há suporte para o método.</exception>
+      <returns>Não há suporte para o método.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.SetLength(System.Int64)">
+      <summary>Define o comprimento do fluxo atual.</summary>
+      <param name="value">O tamanho desejado do fluxo atual em bytes.</param>
+      <exception cref="T:System.NotSupportedException">Essa propriedade existe somente para dar suporte à herança de <see cref="T:System.IO.Stream" /> e não pode ser usada.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>Grava assincronamente uma sequência de bytes no <see cref="T:System.Security.Cryptography.CryptoStream" /> atual e avança a posição atual no fluxo pelo número de bytes gravados.</summary>
+      <param name="buffer">Uma matriz de bytes. Esse método copia <paramref name="count" /> bytes do <paramref name="buffer" /> para o fluxo atual.</param>
+      <param name="offset">O deslocamento de bytes em <paramref name="buffer" /> no qual será iniciada a cópia de bytes no fluxo atual.</param>
+      <param name="count">O número de bytes a serem gravados no fluxo atual.</param>
+      <exception cref="T:System.NotSupportedException">O <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> associado ao objeto <see cref="T:System.Security.Cryptography.CryptoStream" /> atual não corresponde ao fluxo subjacente.  Por exemplo, essa exceção é gerada ao usar <see cref="F:System.Security.Cryptography.CryptoStreamMode.Write" /> com um fluxo subjacente que é somente leitura.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">O parâmetro <paramref name="offset" /> é menor que zero.  
+  
+- ou - 
+O parâmetro <paramref name="count" /> é menor que zero.</exception>
+      <exception cref="T:System.ArgumentException">A soma dos parâmetros <paramref name="count" /> e <paramref name="offset" /> é maior do que o tamanho do buffer.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>Grava uma sequência de bytes no fluxo atual de forma assíncrona, avança a posição atual dentro do fluxo pelo número de bytes gravados e monitora as solicitações de cancelamento.</summary>
+      <param name="buffer">O buffer do qual os dados serão gravados.</param>
+      <param name="offset">O deslocamento de bytes baseado em zero em <paramref name="buffer" /> do qual será iniciada a gravação de bytes no fluxo.</param>
+      <param name="count">O número máximo de bytes a serem gravados.</param>
+      <param name="cancellationToken">O token a se monitorar para solicitações de cancelamento. O valor padrão é <see cref="P:System.Threading.CancellationToken.None" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> ou <paramref name="count" /> é negativo.</exception>
+      <exception cref="T:System.ArgumentException">A soma de <paramref name="offset" /> e <paramref name="count" /> é maior que o tamanho do buffer.</exception>
+      <exception cref="T:System.NotSupportedException">Não há suporte para gravação no fluxo.</exception>
+      <exception cref="T:System.ObjectDisposedException">O fluxo foi descartado.</exception>
+      <exception cref="T:System.InvalidOperationException">O fluxo está em uso no momento por uma operação de gravação anterior.</exception>
+      <returns>Uma tarefa que representa a operação de gravação assíncrona.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteByte(System.Byte)">
+      <summary>Grava um byte na posição atual no fluxo e avança a posição dentro no fluxo em um byte.</summary>
+      <param name="value">O byte a ser gravado no fluxo.</param>
+      <exception cref="T:System.IO.IOException">Ocorre um erro de E/S.</exception>
+      <exception cref="T:System.NotSupportedException">O fluxo não dá suporte à gravação ou o fluxo já foi fechado.</exception>
+      <exception cref="T:System.ObjectDisposedException">Foram chamados métodos depois que o fluxo foi fechado.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanRead">
+      <summary>Obtém um valor que indica se o <see cref="T:System.Security.Cryptography.CryptoStream" /> atual é legível.</summary>
+      <returns>
+        <see langword="true" /> se o fluxo atual é legível; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanSeek">
+      <summary>Obtém um valor que indica se você pode buscar dentro do <see cref="T:System.Security.Cryptography.CryptoStream" /> atual.</summary>
+      <returns>Sempre <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanWrite">
+      <summary>Obtém um valor que indica se o <see cref="T:System.Security.Cryptography.CryptoStream" /> atual é gravável.</summary>
+      <returns>
+        <see langword="true" /> Se o fluxo atual for gravável; caso contrário, <see langword="false" /> .</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.HasFlushedFinalBlock">
+      <summary>Obtém um valor que indica se o bloco de buffer final foi gravado no fluxo subjacente.</summary>
+      <returns>
+        <see langword="true" /> Se o bloco final foi liberado; caso contrário, <see langword="false" /> .</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Length">
+      <summary>Obtém o tamanho do fluxo em bytes.</summary>
+      <exception cref="T:System.NotSupportedException">Não há suporte a esta propriedade.</exception>
+      <returns>Não há suporte a esta propriedade.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Position">
+      <summary>Obtém ou define a posição no fluxo atual.</summary>
+      <exception cref="T:System.NotSupportedException">Não há suporte a esta propriedade.</exception>
+      <returns>Não há suporte a esta propriedade.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStreamMode">
+      <summary>Especifica o modo de um fluxo criptográfico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Read">
+      <summary>Acesso de leitura para um fluxo de criptografia.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Write">
+      <summary>Acesso de gravação para um fluxo de criptografia.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithm">
+      <summary>Representa a classe base abstrata da qual todas as implementações de algoritmo de hash criptográficos devem derivar.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashSizeValue">
+      <summary>Representa o tamanho, em bits, do código hash calculado.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashValue">
+      <summary>Representa o valor do código hash computado.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.State">
+      <summary>Representa o estado do cálculo de hash.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.HashAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Clear">
+      <summary>Libera todos os recursos usados pela classe <see cref="T:System.Security.Cryptography.HashAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])">
+      <summary>Calcula o valor do hash da matriz de bytes especificada.</summary>
+      <param name="buffer">A entrada para a qual calcular o código hash.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>O código hash calculado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)">
+      <summary>Calcula o valor de hash para a região especificada da matriz de bytes especificada.</summary>
+      <param name="buffer">A entrada para a qual calcular o código hash.</param>
+      <param name="offset">O deslocamento para a matriz de bytes com base na qual os dados começarão a ser usados.</param>
+      <param name="count">O número de bytes na matriz a ser usado como dados.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> é um valor inválido.  
+  
+- ou - 
+ O comprimento <paramref name="buffer" /> é inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> está fora do intervalo. Esse parâmetro requer um número não negativo.</exception>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>O código hash calculado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)">
+      <summary>Calcula o valor do hash do objeto <see cref="T:System.IO.Stream" /> especificado.</summary>
+      <param name="inputStream">A entrada para a qual calcular o código hash.</param>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>O código hash calculado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHashAsync(System.IO.Stream,System.Threading.CancellationToken)">
+      <summary>Calcula assincronamente o valor do hash do objeto <see cref="T:System.IO.Stream" /> especificado.</summary>
+      <param name="inputStream">A entrada para a qual calcular o código hash.</param>
+      <param name="cancellationToken">O token a se monitorar para solicitações de cancelamento.</param>
+      <returns>Uma tarefa que representa a operação de hash de computação assíncrona e encapsula o código hash computado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create">
+      <summary>Cria uma instância da implementação padrão de um algoritmo de hash.</summary>
+      <returns>Uma nova instância de <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" />, a menos que as configurações padrão tenham sido alteradas usando o.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create(System.String)">
+      <summary>Cria uma instância da implementação especificada de um algoritmo de hash.</summary>
+      <param name="hashName">A implementação do algoritmo de hash a ser usada. A tabela a seguir mostra os valores válidos para o parâmetro <paramref name="hashName" /> e os algoritmos para os quais são mapeados.  
+  
+ <list type="table"><listheader><term> Valor do parâmetro</term><description> Implements</description></listheader><item><term> SHA</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> SHA1</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.SHA1</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.HashAlgorithm</term><description><see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /></description></item><item><term> MD5</term><description><see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /></description></item><item><term> System.Security.Cryptography.MD5</term><description><see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /></description></item><item><term> SHA256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> SHA-256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> System.Security.Cryptography.SHA256</term><description><see cref="T:System.Security.Cryptography.SHA256Managed" /></description></item><item><term> SHA384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> SHA-384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> System.Security.Cryptography.SHA384</term><description><see cref="T:System.Security.Cryptography.SHA384Managed" /></description></item><item><term> SHA512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item><item><term> SHA-512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item><item><term> System.Security.Cryptography.SHA512</term><description><see cref="T:System.Security.Cryptography.SHA512Managed" /></description></item></list></param>
+      <returns>Uma nova instância do algoritmo de hash especificado ou <see langword="null" /> se <paramref name="hashName" /> não for um algoritmo de hash válido.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose">
+      <summary>Libera todos os recursos usados pela instância atual da classe <see cref="T:System.Security.Cryptography.HashAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pelo <see cref="T:System.Security.Cryptography.HashAlgorithm" /> e opcionalmente libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>Quando substituído em uma classe derivada, roteia os dados gravados no objeto para o algoritmo de hash para computar o hash.</summary>
+      <param name="array">A entrada para a qual calcular o código hash.</param>
+      <param name="ibStart">O deslocamento para a matriz de bytes com base na qual os dados começarão a ser usados.</param>
+      <param name="cbSize">O número de bytes na matriz de bytes a ser usado como dados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})">
+      <summary>Roteia os dados gravados no objeto para o algoritmo de hash para cálculo do hash.</summary>
+      <param name="source">A entrada para a qual calcular o código hash.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashFinal">
+      <summary>Quando substituído em uma classe derivada, finaliza o cálculo de hash depois que os últimos dados são processados pelo algoritmo de hash de criptografia.</summary>
+      <returns>O código hash calculado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Initialize">
+      <summary>Redefine o algoritmo de hash para o estado inicial.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>Calcula o valor de hash para a região especificada da matriz de bytes de entrada e copia a região especificada da matriz de bytes de entrada para a região especificada da matriz de bytes de saída.</summary>
+      <param name="inputBuffer">A entrada para a qual calcular o código hash.</param>
+      <param name="inputOffset">O deslocamento na matriz de bytes de entrada do qual começar a usar os dados.</param>
+      <param name="inputCount">O número de bytes na matriz de bytes de entrada a ser usado como dados.</param>
+      <param name="outputBuffer">Uma cópia da parte da matriz de entrada usada para calcular o código hash.</param>
+      <param name="outputOffset">O deslocamento na matriz de bytes de saída do qual começar a gravar os dados.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> usa um valor inválido.  
+  
+- ou - 
+ <paramref name="inputBuffer" /> tem um tamanho inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> está fora do intervalo. Esse parâmetro requer um número não negativo.</exception>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>O número de bytes gravados.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>Calcula o valor de hash para a região especificada da matriz de bytes especificada.</summary>
+      <param name="inputBuffer">A entrada para a qual calcular o código hash.</param>
+      <param name="inputOffset">O deslocamento para a matriz de bytes com base na qual os dados começarão a ser usados.</param>
+      <param name="inputCount">O número de bytes na matriz de bytes a ser usado como dados.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> usa um valor inválido.  
+  
+- ou - 
+ <paramref name="inputBuffer" /> tem um tamanho inválido de deslocamento.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> está fora do intervalo. Esse parâmetro requer um número não negativo.</exception>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>Uma matriz que é uma cópia da parte da entrada que é transformada em hash.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+      <summary>Tenta calcular o valor de hash para a matriz de bytes especificada.</summary>
+      <param name="source">A entrada para a qual calcular o código hash.</param>
+      <param name="destination">O buffer que recebe o valor de hash.</param>
+      <param name="bytesWritten">Quando esse método é retornado, o número total de bytes gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for longo o suficiente para receber o valor de hash; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <summary>Tenta finalizar o cálculo de hash depois que os últimos dados são processados pelo algoritmo de hash.</summary>
+      <param name="destination">O buffer que recebe o valor de hash.</param>
+      <param name="bytesWritten">Quando esse método é retornado, o número total de bytes gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for longo o suficiente para receber o valor de hash; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanReuseTransform">
+      <summary>Obtém um valor que indica se a transformação atual pode ser reutilizada.</summary>
+      <returns>Sempre <see langword="true" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks">
+      <summary>Quando substituído em uma classe derivada, obtém um valor que indica se vários blocos podem ser transformados.</summary>
+      <returns>
+        <see langword="true" /> se vários blocos puderem ser transformados; caso contrário, <see langword="false" /> .</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.Hash">
+      <summary>Obtém o valor do código hash computado.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+        <see cref="F:System.Security.Cryptography.HashAlgorithm.HashValue" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ObjectDisposedException">O objeto já foi descartado.</exception>
+      <returns>Obtém o valor atual do código hash computado.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.HashSize">
+      <summary>Obtém o tamanho, em bits, do código hash computado.</summary>
+      <returns>O tamanho, em bits, o código hash computado.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.InputBlockSize">
+      <summary>Quando substituído em uma classe derivada, obtém o tamanho do bloco de entrada.</summary>
+      <returns>O tamanho do bloco de entrada.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.OutputBlockSize">
+      <summary>Quando substituído em uma classe derivada, obtém o tamanho do bloco de saída.</summary>
+      <returns>O tamanho do bloco de saída.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithmName">
+      <summary>Especifica o nome de um algoritmo de hash criptográfico.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.#ctor(System.String)">
+      <summary>Inicializa uma nova instância da estrutura <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> com um nome personalizado.</summary>
+      <param name="name">O nome do algoritmo de hash personalizado.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Object)">
+      <summary>Retorna um valor que indica se a instância atual e um objeto especificado são iguais.</summary>
+      <param name="obj">O objeto a ser comparado com a instância atual.</param>
+      <returns>
+        <see langword="true" /> se <paramref name="obj" /> é um objeto <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> e sua propriedade <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> é igual àquela da instância atual. A comparação é ordinal e diferencia maiúsculas de minúsculas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Security.Cryptography.HashAlgorithmName)">
+      <summary>Retorna um valor que indica se duas instâncias <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> são iguais.</summary>
+      <param name="other">O objeto a ser comparado com a instância atual.</param>
+      <returns>
+        <see langword="true" /> se a propriedade <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> de <paramref name="other" /> é igual àquela da instância atual. A comparação é ordinal e diferencia maiúsculas de minúsculas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.FromOid(System.String)">
+      <summary>Converte o OID especificado em um nome de algoritmo de hash.</summary>
+      <param name="oidValue">O OID do algoritmo de hash.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oidValue" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="oidValue" /> não representa um algoritmo de hash conhecido.</exception>
+      <returns>O nome do algoritmo hash identificado pelo OID.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.GetHashCode">
+      <summary>Retorna o código hash para a instância atual.</summary>
+      <returns>O código hash para a instância atual ou então 0, se nenhum valor <paramref name="name" /> foi fornecido para o construtor <see cref="T:System.Security.Cryptography.HashAlgorithmName" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Equality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>Determina se dois objetos <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> especificados são iguais.</summary>
+      <param name="left">O primeiro objeto a ser comparado.</param>
+      <param name="right">O segundo objeto a ser comparado.</param>
+      <returns>
+        <see langword="true" /> se ambos <paramref name="left" /> e <paramref name="right" /> tiverem o mesmo valor <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" />; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Inequality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>Determina se dois objetos <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> especificados não são iguais.</summary>
+      <param name="left">O primeiro objeto a ser comparado.</param>
+      <param name="right">O segundo objeto a ser comparado.</param>
+      <returns>
+        <see langword="true" /> se ambos <paramref name="left" /> e <paramref name="right" /> não tiverem o mesmo valor <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" />; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.ToString">
+      <summary>Retorna a representação de cadeia de caracteres da instância <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> atual.</summary>
+      <returns>A representação de cadeia de caracteres da instância <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> atual.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.TryFromOid(System.String,System.Security.Cryptography.HashAlgorithmName@)">
+      <summary>Tenta converter o OID especificado em um nome de algoritmo de hash.</summary>
+      <param name="oidValue">O OID do algoritmo de hash.</param>
+      <param name="value">Quando o método retorna <see langword="true" />, o algoritmo hash. Quando o método retorna <see langword="false" />, ele contém o <c>padrão</c>.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="oidValue" /> é <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> se o OID foi mapeado com sucesso para um algoritmo hash; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.MD5">
+      <summary>Obtém um nome de algoritmo de hash que representa "MD5".</summary>
+      <returns>Um nome de algoritmo de hash que representa "MD5".</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.Name">
+      <summary>Obtém a representação de cadeia de caracteres subjacente do nome do algoritmo.</summary>
+      <returns>A representação da cadeia de caracteres do nome do algoritmo ou <see langword="default" /> se nenhum algoritmo de hash estiver disponível.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA1">
+      <summary>Obtém um nome de algoritmo de hash que representa "SHA1".</summary>
+      <returns>Um nome de algoritmo de hash que representa "SHA1".</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA256">
+      <summary>Obtém um nome de algoritmo de hash que representa "SHA256".</summary>
+      <returns>Um nome de algoritmo de hash que representa "SHA256".</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA384">
+      <summary>Obtém um nome de algoritmo de hash que representa "SHA384".</summary>
+      <returns>Um nome de algoritmo de hash que representa "SHA384".</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA512">
+      <summary>Obtém um nome de algoritmo de hash que representa "SHA512".</summary>
+      <returns>Um nome de algoritmo de hash que representa "SHA512".</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.HMAC">
+      <summary>Representa a classe abstrata da qual todas as implementações de HMAC (Hash-based Message Authentication Code) devem derivar.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.HMAC" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create">
+      <summary>Cria uma instância da implementação padrão de um HMAC (Hash-based Message Authentication Code).</summary>
+      <returns>Uma nova instância SHA-1, a menos que as configurações padrão tenham sido alteradas usando o elemento &lt;cryptoClass&gt;.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create(System.String)">
+      <summary>Cria uma instância da implementação especificada de um HMAC (Hash-based Message Authentication Code).</summary>
+      <param name="algorithmName">A implementação do HMAC a ser usada. A tabela a seguir mostra os valores válidos para o parâmetro <paramref name="algorithmName" /> e os algoritmos para os quais são mapeados.  
+  
+ <list type="table"><listheader><term> Valor do parâmetro</term><description> Implements</description></listheader><item><term> System.Security.Cryptography.HMAC</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.KeyedHashAlgorithm</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> System.Security.Cryptography.HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> System.Security.Cryptography.HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> System.Security.Cryptography.HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> System.Security.Cryptography.HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> System.Security.Cryptography.HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item><item><term> System.Security.Cryptography.MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item></list></param>
+      <returns>Uma nova instância da implementação do HMAC especificada.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pela classe <see cref="T:System.Security.Cryptography.HMAC" /> quando uma alteração de chave é legítima e, opcionalmente, libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>Quando substituído em uma classe derivada, roteia os dados gravados no objeto para o algoritmo HMAC para cálculo do valor de HMAC.</summary>
+      <param name="rgb">Os dados de entrada.</param>
+      <param name="ib">O deslocamento para a matriz de bytes com base na qual os dados começarão a ser usados.</param>
+      <param name="cb">O número de bytes na matriz a ser usado como dados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.ReadOnlySpan{System.Byte})">
+      <summary>Roteia os dados gravados no objeto para o algoritmo HMAC para cálculo do HMAC.</summary>
+      <param name="source">A entrada para a qual o código HMAC será calculado.</param>
+      <exception cref="T:System.PlatformNotSupportedException">Em todos os casos.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashFinal">
+      <summary>Quando substituído em uma classe derivada, finaliza o cálculo de HMAC depois que os últimos dados são processados pelo algoritmo.</summary>
+      <returns>O valor de HMAC calculado em uma matriz de bytes.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Initialize">
+      <summary>Inicializa uma nova instância da implementação padrão do <see cref="T:System.Security.Cryptography.HMAC" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <summary>Tenta finalizar o cálculo de HMAC depois que os últimos dados são processados pelo algoritmo HMAC.</summary>
+      <param name="destination">O buffer que receberá o valor de HMAC.</param>
+      <param name="bytesWritten">Quando esse método é retornado, o número total de bytes gravados em <paramref name="destination" />. Esse parâmetro é tratado como não inicializado.</param>
+      <exception cref="T:System.PlatformNotSupportedException">O método não é substituído no tipo derivado.</exception>
+      <returns>
+        <see langword="true" /> se <paramref name="destination" /> for longo o suficiente para receber o valor de HMAC; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.BlockSizeValue">
+      <summary>Obtém ou define o tamanho do bloco a ser usado no valor de hash.</summary>
+      <returns>O tamanho do bloco a ser usado no valor de hash.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.HashName">
+      <summary>Obtém ou define o nome do algoritmo de hash a ser usado para hash.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O algoritmo de hash atual não pode ser alterado.</exception>
+      <returns>O nome do algoritmo de hash.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.Key">
+      <summary>Obtém ou define a chave a ser usada no algoritmo HMAC.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">É feita uma tentativa de alterar a propriedade <see cref="P:System.Security.Cryptography.HMAC.Key" /> após o início do hash.</exception>
+      <returns>A chave a ser usada no cálculo de HMAC.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ICryptoTransform">
+      <summary>Define as operações básicas de transformações criptográficas.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>Transforma a região especificada da matriz de bytes de entrada e copia a transformação resultante para a região especificada da matriz de bytes de saída.</summary>
+      <param name="inputBuffer">A entrada para a qual a transformação será calculada.</param>
+      <param name="inputOffset">O deslocamento na matriz de bytes de entrada do qual começar a usar os dados.</param>
+      <param name="inputCount">O número de bytes na matriz de bytes de entrada a ser usado como dados.</param>
+      <param name="outputBuffer">A saída na qual gravar a transformação.</param>
+      <param name="outputOffset">O deslocamento na matriz de bytes de saída do qual começar a gravar os dados.</param>
+      <returns>O número de bytes gravados.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>Transforma a região especificada da matriz de bytes especificada.</summary>
+      <param name="inputBuffer">A entrada para a qual a transformação será calculada.</param>
+      <param name="inputOffset">O deslocamento para a matriz de bytes com base na qual os dados começarão a ser usados.</param>
+      <param name="inputCount">O número de bytes na matriz de bytes a ser usado como dados.</param>
+      <returns>A transformação calculada.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanReuseTransform">
+      <summary>Obtém um valor que indica se a transformação atual pode ser reutilizada.</summary>
+      <returns>
+        <see langword="true" /> se a transformação atual puder ser reutilizada; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanTransformMultipleBlocks">
+      <summary>Obtém um valor que indica se vários blocos podem ser transformados.</summary>
+      <returns>
+        <see langword="true" /> se vários blocos puderem ser transformados; caso contrário, <see langword="false" /> .</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.InputBlockSize">
+      <summary>Obtém o tamanho do bloco de entrada.</summary>
+      <returns>O tamanho dos blocos de dados de entrada em bytes.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.OutputBlockSize">
+      <summary>Obtém o tamanho do bloco de saída.</summary>
+      <returns>O tamanho dos blocos de dados de saída em bytes.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyedHashAlgorithm">
+      <summary>Representa a classe base abstrata da qual todas as implementações de algoritmo de hash inseridas devem derivar.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyedHashAlgorithm.KeyValue">
+      <summary>A chave a ser usada no algoritmo de hash.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create">
+      <summary>Cria uma instância da implementação padrão de um algoritmo de hash com chave.</summary>
+      <returns>Uma nova instância de <see cref="T:System.Security.Cryptography.HMACSHA1" />, a menos que as configurações padrão tenham sido alteradas.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create(System.String)">
+      <summary>Cria uma instância da implementação especificada de um algoritmo de hash com chave.</summary>
+      <param name="algName">A implementação do algoritmo de hash com chave a ser usada. A tabela a seguir mostra os valores válidos para o parâmetro <paramref name="algName" /> e os algoritmos para os quais são mapeados.  
+  
+ <list type="table"><listheader><term> Valor do parâmetro</term><description> Implements</description></listheader><item><term> System.Security.Cryptography.HMAC</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.KeyedHashAlgorithm</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> System.Security.Cryptography.HMACMD5</term><description><see cref="T:System.Security.Cryptography.HMACMD5" /></description></item><item><term> HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> System.Security.Cryptography.HMACRIPEMD160</term><description><see cref="T:System.Security.Cryptography.HMACRIPEMD160" /></description></item><item><term> HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> System.Security.Cryptography.HMACSHA1</term><description><see cref="T:System.Security.Cryptography.HMACSHA1" /></description></item><item><term> HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> System.Security.Cryptography.HMACSHA256</term><description><see cref="T:System.Security.Cryptography.HMACSHA256" /></description></item><item><term> HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> System.Security.Cryptography.HMACSHA384</term><description><see cref="T:System.Security.Cryptography.HMACSHA384" /></description></item><item><term> HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> System.Security.Cryptography.HMACSHA512</term><description><see cref="T:System.Security.Cryptography.HMACSHA512" /></description></item><item><term> MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item><item><term> System.Security.Cryptography.MACTripleDES</term><description><see cref="T:System.Security.Cryptography.MACTripleDES" /></description></item></list></param>
+      <returns>Uma nova instância do algoritmo de hash com chave especificado.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pelo <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" /> e opcionalmente libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeyedHashAlgorithm.Key">
+      <summary>Obtém ou define a chave a ser usada no algoritmo de hash.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Foi feita uma tentativa de alterar a propriedade <see cref="P:System.Security.Cryptography.KeyedHashAlgorithm.Key" /> após o início do hash.</exception>
+      <returns>A chave a ser usada no algoritmo de hash.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeySizes">
+      <summary>Determina o conjunto de tamanhos de chave válidos para os algoritmos criptográficas simétricos.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeySizes.#ctor(System.Int32,System.Int32,System.Int32)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.KeySizes" /> com os valores de chave especificados.</summary>
+      <param name="minSize">O tamanho mínimo de chave válido.</param>
+      <param name="maxSize">O tamanho máximo de chave válido.</param>
+      <param name="skipSize">O intervalo entre tamanhos de chave válidos.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MaxSize">
+      <summary>Especifica o tamanho máximo da chave.</summary>
+      <returns>O tamanho máximo da chave.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MinSize">
+      <summary>Especifica o tamanho mínimo da chave.</summary>
+      <returns>O tamanho mínimo da chave.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.SkipSize">
+      <summary>Especifica o intervalo entre tamanhos de chave válidos.</summary>
+      <returns>O intervalo entre tamanhos de chave válidos.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.PaddingMode">
+      <summary>Especifica o tipo de preenchimento a ser aplicado quando o bloco de dados da mensagem é menor do que o número total de bytes necessários para uma operação criptográfica.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ANSIX923">
+      <summary>A cadeia de caracteres de preenchimento ANSIX923 consiste em uma sequência de bytes preenchida com zeros antes do tamanho.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ISO10126">
+      <summary>A cadeia de caracteres de preenchimento ISO10126 consiste em dados aleatórios antes do tamanho.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.None">
+      <summary>Nenhum preenchimento é feito.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.PKCS7">
+      <summary>A cadeia de caracteres de preenchimento PKCS #7 consiste em uma sequência de bytes, cada um dos quais é igual ao número total de bytes de preenchimento adicionados.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.Zeros">
+      <summary>A cadeia de caracteres de preenchimento consiste em bytes definidos como zero.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeEncryptionAlgorithm">
+      <summary>Especifica os algoritmos de criptografia a serem usados com a PBE (Criptografia Baseada em Senha).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes128Cbc">
+      <summary>Indica que a criptografia deve ser executada com o algoritmo AES-128 no modo CBC com o preenchimento PKCS nº 7.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes192Cbc">
+      <summary>Indica que a criptografia deve ser executada com o algoritmo AES-192 no modo CBC com o preenchimento PKCS nº 7.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes256Cbc">
+      <summary>Indica que a criptografia foi executada com o algoritmo AES-256 no modo CBC com o preenchimento PKCS nº 7.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12">
+      <summary>Indica que a criptografia deve ser executada com o algoritmo TripleDES no modo CBC com uma chave de 192 bits derivada usando a função de derivação de chaves do PKCS nº 12.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Unknown">
+      <summary>Indica que nenhum algoritmo de criptografia foi selecionado.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeParameters">
+      <summary>Representa parâmetros a serem usados para a PBE (Criptografia Baseada em Senha).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PbeParameters.#ctor(System.Security.Cryptography.PbeEncryptionAlgorithm,System.Security.Cryptography.HashAlgorithmName,System.Int32)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.PbeParameters" />.</summary>
+      <param name="encryptionAlgorithm">O algoritmo a ser usado ao criptografar dados.</param>
+      <param name="hashAlgorithm">O nome de um algoritmo de hash a ser usado com a função de derivação de chaves para transformar uma senha em uma chave de criptografia.</param>
+      <param name="iterationCount">A contagem de iteração a ser fornecida para a função de derivação de chaves para transformar uma senha em uma chave de criptografia.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="iterationCount" /> é menor que 1.</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.EncryptionAlgorithm">
+      <summary>Obtém o algoritmo a ser usado ao criptografar dados.</summary>
+      <returns>O algoritmo a ser usado ao criptografar dados.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.HashAlgorithm">
+      <summary>Obtém o nome do algoritmo de hash a ser usado com a função de derivação de chaves para transformar uma senha em uma chave de criptografia.</summary>
+      <returns>O nome do algoritmo de hash a ser usado com a função de derivação de chave (KDF) para transformar uma senha em uma chave de criptografia.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.IterationCount">
+      <summary>Obtém a contagem de iteração a ser fornecida para a função de derivação de chaves para transformar uma senha em uma chave de criptografia.</summary>
+      <returns>A contagem de iteração a ser fornecida para a função de derivação de chaves para transformar uma senha em uma chave de criptografia.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.SymmetricAlgorithm">
+      <summary>Representa a classe base abstrata da qual todas as implementações de algoritmos simétricos devem ser herdadas.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.BlockSizeValue">
+      <summary>Representa o tamanho do bloco, em bits, da operação criptográfica.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSizeValue">
+      <summary>Representa o tamanho dos comentários, em bits, da operação de criptografia.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.IVValue">
+      <summary>Representa o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) do algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue">
+      <summary>Representa o tamanho, em bits, da chave secreta usada pelo algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeyValue">
+      <summary>Representa a chave secreta para o algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizesValue">
+      <summary>Especifica os tamanhos de bloco, em bits, que têm suporte pelo algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizesValue">
+      <summary>Especifica os tamanhos de chave, em bits, que têm suporte pelo algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.ModeValue">
+      <summary>Representa o modo de criptografia usado no algoritmo simétrico.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.PaddingValue">
+      <summary>Representa o modo de preenchimento usado no algoritmo simétrico.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">A implementação da classe derivada do algoritmo simétrico não é válida.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Clear">
+      <summary>Libera todos os recursos usados pela classe <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create">
+      <summary>Cria um objeto de criptografia padrão usado para executar o algoritmo simétrico.</summary>
+      <returns>Um objeto de criptografia padrão usado para executar o algoritmo simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create(System.String)">
+      <summary>Cria o objeto criptográfico especificado usado para executar o algoritmo simétrico.</summary>
+      <param name="algName">O nome da implementação específica da classe <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> a ser usada.</param>
+      <returns>Um objeto criptográfico usado para executar o algoritmo simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor">
+      <summary>Cria um objeto descriptografador simétrico com a propriedade <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> atual e o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Um objeto descriptografador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Quando substituído em uma classe derivada, cria um objeto descriptografador simétrico com a propriedade <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> especificada e o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <param name="rgbKey">A chave secreta a ser usada para o algoritmo simétrico.</param>
+      <param name="rgbIV">O vetor de inicialização a ser usado para o algoritmo simétrico.</param>
+      <returns>Um objeto descriptografador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor">
+      <summary>Cria um objeto criptografador simétrico com a propriedade <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> atual e o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <returns>Um objeto criptografador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Quando substituído em uma classe derivada, cria um objeto criptografador simétrico com a propriedade <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> especificada e o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />).</summary>
+      <param name="rgbKey">A chave secreta a ser usada para o algoritmo simétrico.</param>
+      <param name="rgbIV">O vetor de inicialização a ser usado para o algoritmo simétrico.</param>
+      <returns>Um objeto criptografador simétrico.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose">
+      <summary>Libera todos os recursos usados pela instância atual da classe <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>Libera os recursos não gerenciados usados pelo <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> e opcionalmente libera os recursos gerenciados.</summary>
+      <param name="disposing">
+        <see langword="true" /> para liberar recursos gerenciados e não gerenciados; <see langword="false" /> para liberar apenas recursos não gerenciados.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV">
+      <summary>Quando substituído em uma classe derivada, gera um vetor de inicialização aleatório (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) a ser usado para o algoritmo.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey">
+      <summary>Quando substituído em uma classe derivada, gera uma chave aleatória (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />) para ser usada com o algoritmo.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.ValidKeySize(System.Int32)">
+      <summary>Determina se o tamanho da chave especificado é válido para o algoritmo atual.</summary>
+      <param name="bitLength">O tamanho, em bits, para verificar se há um tamanho de chave válido.</param>
+      <returns>
+        <see langword="true" /> se o tamanho da chave especificado é válido para o algoritmo atual; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.BlockSize">
+      <summary>Obtém ou define o tamanho do bloco, em bits, da operação de criptografia.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O tamanho do bloco é inválido.</exception>
+      <returns>O tamanho do bloco, em bits.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize">
+      <summary>Obtém ou define o tamanho dos comentários, em bits, da operação de criptografia para os modos de codificação CFB (Comentário de Codificação) e OFB (Comentário de Saída).</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O tamanho dos comentários é maior que o tamanho do bloco.</exception>
+      <returns>O tamanho dos comentários em bits.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.IV">
+      <summary>Obtém ou define o vetor de inicialização (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) para o algoritmo simétrico.</summary>
+      <exception cref="T:System.ArgumentNullException">Foi feita uma tentativa para definir o vetor de inicialização para <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Foi feita uma tentativa para definir o vetor de inicialização para um tamanho inválido.</exception>
+      <returns>O vetor de inicialização.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Key">
+      <summary>Obtém ou define a chave secreta para o algoritmo simétrico.</summary>
+      <exception cref="T:System.ArgumentNullException">Foi feita uma tentativa de definir a chave como <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O tamanho de chave é inválido.</exception>
+      <returns>A chave secreta a ser usada para o algoritmo simétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.KeySize">
+      <summary>Obtém ou define o tamanho, em bits, da chave secreta usada pelo algoritmo simétrico.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O tamanho de chave não é válido.</exception>
+      <returns>O tamanho, em bits, da chave secreta usada pelo algoritmo simétrico.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes">
+      <summary>Obtém os tamanhos de bloco, em bits, que tem suporte com o algoritmo simétrico.</summary>
+      <returns>Uma matriz que contém os tamanhos de bloco com suporte pelo algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes">
+      <summary>Obtém os tamanhos de chave, em bits, que têm suporte pelo algoritmo simétrico.</summary>
+      <returns>Uma matriz que contém os tamanhos de chave com suporte pelo algoritmo.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Mode">
+      <summary>Obtém ou define o modo de operação do algoritmo simétrico.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O modo de criptografia não é um dos valores <see cref="T:System.Security.Cryptography.CipherMode" />.</exception>
+      <returns>O modo de operação do algoritmo simétrico. O padrão é <see cref="F:System.Security.Cryptography.CipherMode.CBC" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Padding">
+      <summary>Obtém ou define o modo de preenchimento usado no algoritmo simétrico.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">O modo de preenchimento não é um dos valores <see cref="T:System.Security.Cryptography.PaddingMode" />.</exception>
+      <returns>O modo de preenchimento usado no algoritmo simétrico. O padrão é <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />.</returns>
+    </member>
+  </members>
+</doc>

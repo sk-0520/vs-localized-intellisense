@@ -1,0 +1,493 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.IO.FileSystem.AccessControl</name>
+  </assembly>
+  <members>
+    <member name="T:System.IO.FileSystemAclExtensions" />
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.DirectoryInfo)">
+      <param name="directoryInfo" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.DirectoryInfo,System.Security.AccessControl.AccessControlSections)">
+      <param name="directoryInfo" />
+      <param name="includeSections" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileInfo)">
+      <param name="fileInfo" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileInfo,System.Security.AccessControl.AccessControlSections)">
+      <param name="fileInfo" />
+      <param name="includeSections" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.GetAccessControl(System.IO.FileStream)">
+      <param name="fileStream" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.DirectoryInfo,System.Security.AccessControl.DirectorySecurity)">
+      <param name="directoryInfo" />
+      <param name="directorySecurity" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.FileInfo,System.Security.AccessControl.FileSecurity)">
+      <param name="fileInfo" />
+      <param name="fileSecurity" />
+    </member>
+    <member name="M:System.IO.FileSystemAclExtensions.SetAccessControl(System.IO.FileStream,System.Security.AccessControl.FileSecurity)">
+      <param name="fileStream" />
+      <param name="fileSecurity" />
+    </member>
+    <member name="T:System.Security.AccessControl.DirectoryObjectSecurity">
+      <summary>Fornece a capacidade de controlar o acesso a objetos de diretório sem a manipulação direta de ACLs (Listas de Controle de Acesso).</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.#ctor(System.Security.AccessControl.CommonSecurityDescriptor)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> com o descritor de segurança especificado.</summary>
+      <param name="securityDescriptor">O descritor de segurança a ser associado com o novo objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType,System.Guid,System.Guid)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.AccessRule" /> com os valores especificados.</summary>
+      <param name="identityReference">A identidade à qual a regra de acesso se aplica.  Precisa ser um objeto que possa ser convertido como um <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">A máscara de acesso dessa regra. A máscara de acesso é uma coleção de 32 bits de bits anônimos, cujo significado é definido pelos integradores individuais.</param>
+      <param name="isInherited">true se essa regra for herdada de um contêiner pai.</param>
+      <param name="inheritanceFlags">Especifica as propriedades de herança da regra de acesso.</param>
+      <param name="propagationFlags">Especifica se as regras de acesso herdadas são propagadas automaticamente. Os sinalizadores de propagação serão ignorados se <paramref name="inheritanceFlags" /> estiver definido como <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="type">Especifica o tipo de controle de acesso válido.</param>
+      <param name="objectType">A identidade da classe de objetos aos quais a nova regra de acesso se aplica.</param>
+      <param name="inheritedObjectType">A identidade da classe de objetos filho que podem herdar a nova regra de acesso.</param>
+      <returns>O objeto <see cref="T:System.Security.AccessControl.AccessRule" /> criado por esse método.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AddAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Aplica a regra de acesso especificada à DACL (Lista de Controle de Acesso Discricionário) associada a esse objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de acesso a adicionar.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AddAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Adiciona a regra de auditoria especificada à SACL (Lista de Controle de Acesso do Sistema) associada ao objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> atual.</summary>
+      <param name="rule">A regra de auditoria a adicionar.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags,System.Guid,System.Guid)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.AuditRule" /> com os valores especificados.</summary>
+      <param name="identityReference">A identidade à qual a regra de auditoria se aplica.  Precisa ser um objeto que possa ser convertido como um <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <param name="accessMask">A máscara de acesso dessa regra. A máscara de acesso é uma coleção de 32 bits de bits anônimos, cujo significado é definido pelos integradores individuais.</param>
+      <param name="isInherited">
+        <see langword="true" /> se essa regra for herdada de um contêiner pai.</param>
+      <param name="inheritanceFlags">Especifica as propriedades de herança da regra de auditoria.</param>
+      <param name="propagationFlags">Especifica se as regras de auditoria herdadas são propagadas automaticamente. Os sinalizadores de propagação serão ignorados se <paramref name="inheritanceFlags" /> estiver definido como <see cref="F:System.Security.AccessControl.InheritanceFlags.None" />.</param>
+      <param name="flags">Especifica as condições para as quais a regra é auditada.</param>
+      <param name="objectType">A identidade da classe de objetos aos quais se aplica a nova regra de auditoria.</param>
+      <param name="inheritedObjectType">A identidade da classe de objetos filho que podem herdar a nova regra de auditoria.</param>
+      <returns>O objeto <see cref="T:System.Security.AccessControl.AuditRule" /> criado por esse método.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.GetAccessRules(System.Boolean,System.Boolean,System.Type)">
+      <summary>Obtém uma coleção das regras de acesso associadas ao identificador de segurança especificado.</summary>
+      <param name="includeExplicit">
+        <see langword="true" /> para incluir as regras de acesso definidas explicitamente para o objeto.</param>
+      <param name="includeInherited">
+        <see langword="true" /> para incluir as regras de acesso herdadas.</param>
+      <param name="targetType">O identificador de segurança para o qual as regras de acesso serão recuperadas. Este precisa ser um objeto que pode ser convertido em um objeto <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <returns>A coleção de regras de acesso associada ao objeto <see cref="T:System.Security.Principal.SecurityIdentifier" /> especificado.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.GetAuditRules(System.Boolean,System.Boolean,System.Type)">
+      <summary>Obtém uma coleção das regras de auditoria associadas ao identificador de segurança especificado.</summary>
+      <param name="includeExplicit">
+        <see langword="true" /> para incluir as regras de auditoria definidas explicitamente para o objeto.</param>
+      <param name="includeInherited">
+        <see langword="true" /> para incluir as regras de auditoria herdadas.</param>
+      <param name="targetType">O identificador de segurança para o qual as regras de auditoria serão recuperadas. Este precisa ser um objeto que pode ser convertido em um objeto <see cref="T:System.Security.Principal.SecurityIdentifier" />.</param>
+      <returns>A coleção de regras de auditoria associadas ao objeto <see cref="T:System.Security.Principal.SecurityIdentifier" /> especificado.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ModifyAccess(System.Security.AccessControl.AccessControlModification,System.Security.AccessControl.AccessRule,System.Boolean@)">
+      <summary>Aplica a modificação especificada à DACL (Lista de controle de acesso discricionário) associada a esse objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="modification">A modificação a ser aplicada à DACL.</param>
+      <param name="rule">A regra de acesso a ser modificada.</param>
+      <param name="modified">
+        <see langword="true" /> se a DACL for modificada com êxito; caso contrário, <see langword="false" />.</param>
+      <returns>
+        <see langword="true" /> se a DACL for modificada com êxito; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ModifyAudit(System.Security.AccessControl.AccessControlModification,System.Security.AccessControl.AuditRule,System.Boolean@)">
+      <summary>Aplica a modificação especificada à SACL (Lista de Controle de Acesso do Sistema) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="modification">A modificação a ser aplicada à SACL.</param>
+      <param name="rule">A regra de auditoria a ser modificada.</param>
+      <param name="modified">
+        <see langword="true" /> se a SACL for modificada com êxito; caso contrário, <see langword="false" />.</param>
+      <returns>
+        <see langword="true" /> se a SACL for modificada com êxito; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Remove as regras de acesso que contêm a mesma máscara de acesso e o identificador de segurança, como a regra de acesso especificada da DACL (lista de controle de acesso discricionário) associada a esse objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de acesso a ser removida.</param>
+      <returns>
+        <see langword="true" /> se a regra de acesso for removida com êxito; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRuleAll(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Remove todas as regras de acesso que correspondem ao mesmo identificador de segurança que a regra de acesso especificada da DACL (Lista de Controle de Acesso Discricionário) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de acesso a ser removida.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Remove todas as regras de acesso que correspondem com exatidão à regra de acesso especificada da DACL (Lista de Controle de Acesso Discricionário) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de acesso a ser removida.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Remove todas as regras de auditoria que contêm o mesmo identificador de segurança e máscara de acesso que a regra de auditoria especificada na SACL (Lista de Controle de Acesso do Sistema) associada a este objeto <see cref="T:System.Security.AccessControl.CommonObjectSecurity" />.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+      <returns>
+        <see langword="true" /> se a regra de auditoria for removida com êxito; caso contrário, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRuleAll(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Remove todas as regras de auditoria que têm o mesmo identificador de segurança que a regra de auditoria especificada da SACL (Lista de Controle de Acesso do Sistema) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Remove todas as regras de auditoria que correspondem com exatidão à regra de auditoria especificada na SACL (Lista de Controle de Acesso do Sistema) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" />.</summary>
+      <param name="rule">A regra de auditoria a remover.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.ResetAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Remove todas as regras de acesso na DACL (Lista de Controle de Acesso Discricionário) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> e, em seguida, adiciona a regra de acesso especificada.</summary>
+      <param name="rule">A regra de acesso a ser redefinida.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.SetAccessRule(System.Security.AccessControl.ObjectAccessRule)">
+      <summary>Remove todas as regras de acesso que contêm o mesmo identificador de segurança e qualificador que a regra de acesso especificada na DACL (Lista de Controle de Acesso Discricionário) associada a esse objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> e, em seguida, adiciona a regra de acesso indicada.</summary>
+      <param name="rule">A regra de acesso a ser definida.</param>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectoryObjectSecurity.SetAuditRule(System.Security.AccessControl.ObjectAuditRule)">
+      <summary>Remove todas as regras de auditoria que contêm o mesmo identificador de segurança e qualificador que a regra de auditoria especificada na SACL (Lista de Controle de Acesso do Sistema) associada a este objeto <see cref="T:System.Security.AccessControl.DirectoryObjectSecurity" /> e, em seguida, adiciona a regra de auditoria indicada.</summary>
+      <param name="rule">A regra de auditoria a ser definida.</param>
+    </member>
+    <member name="T:System.Security.AccessControl.DirectorySecurity">
+      <summary>Representa o controle de acesso e a auditoria de segurança para um diretório. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectorySecurity.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.DirectorySecurity" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">O sistema operacional atual não é o Microsoft Windows 2000 ou posterior.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.DirectorySecurity.#ctor(System.String,System.Security.AccessControl.AccessControlSections)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.DirectorySecurity" /> de um diretório especificado usando os valores especificados da enumeração <see cref="T:System.Security.AccessControl.AccessControlSections" />.</summary>
+      <param name="name">O local de um diretório do qual criar um objeto <see cref="T:System.Security.AccessControl.DirectorySecurity" />.</param>
+      <param name="includeSections">Um dos valores <see cref="T:System.Security.AccessControl.AccessControlSections" /> que especifica o tipo de informações da ACL (lista de controle de acesso) a serem recuperadas.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="name" /> é uma cadeia de comprimento zero, contém somente espaços em branco ou um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="name" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.FileNotFoundException">O arquivo especificado no parâmetro <paramref name="name" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.IOException">Ocorreu um erro de E/S ao abrir o diretório.</exception>
+      <exception cref="T:System.NotSupportedException">O parâmetro <paramref name="name" /> está em um formato inválido.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">O sistema operacional atual não é o Microsoft Windows 2000 ou posterior.</exception>
+      <exception cref="T:System.IO.PathTooLongException">O caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.Security.AccessControl.PrivilegeNotHeldException">A conta do sistema atual não tem privilégios administrativos.</exception>
+      <exception cref="T:System.SystemException">Não foi possível encontrar o diretório.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">O parâmetro <paramref name="name" /> especificou um diretório somente leitura.
+- ou -
+Não há suporte para essa operação na plataforma atual.
+- ou -
+O chamador não tem a permissão necessária.</exception>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSecurity">
+      <summary>Representa o controle de acesso e a auditoria de segurança para um arquivo. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSecurity.#ctor">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSecurity" />.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">O sistema operacional atual não é o Microsoft Windows 2000 ou posterior.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSecurity.#ctor(System.String,System.Security.AccessControl.AccessControlSections)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSecurity" /> de um arquivo especificado usando os valores especificados da enumeração <see cref="T:System.Security.AccessControl.AccessControlSections" />.</summary>
+      <param name="fileName">O local de um arquivo do qual criar um objeto <see cref="T:System.Security.AccessControl.FileSecurity" />.</param>
+      <param name="includeSections">Um dos valores <see cref="T:System.Security.AccessControl.AccessControlSections" /> que especifica o tipo de informações da ACL (lista de controle de acesso) a serem recuperadas.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="fileName" /> é uma cadeia de comprimento zero, contém somente espaços em branco ou um ou mais caracteres inválidos, conforme definido por <see cref="F:System.IO.Path.InvalidPathChars" />.</exception>
+      <exception cref="T:System.IO.DirectoryNotFoundException">O caminho especificado é inválido (por exemplo, ele está em uma unidade não mapeada).</exception>
+      <exception cref="T:System.IO.FileNotFoundException">O arquivo especificado no parâmetro <paramref name="fileName" /> não foi encontrado.</exception>
+      <exception cref="T:System.IO.IOException">Um erro de E/S ocorreu ao abrir o arquivo.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="path" /> está em um formato inválido.</exception>
+      <exception cref="T:System.Runtime.InteropServices.SEHException">O parâmetro <paramref name="fileName" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">O sistema operacional atual não é o Microsoft Windows 2000 ou posterior.</exception>
+      <exception cref="T:System.IO.PathTooLongException">O caminho especificado, o nome de arquivo, ou ambos excedem o tamanho máximo definido pelo sistema.</exception>
+      <exception cref="T:System.Security.AccessControl.PrivilegeNotHeldException">A conta do sistema atual não tem privilégios administrativos.</exception>
+      <exception cref="T:System.SystemException">Não foi possível encontrar o arquivo.</exception>
+      <exception cref="T:System.UnauthorizedAccessException">O parâmetro <paramref name="fileName" /> especificou um arquivo somente leitura.
+- ou -
+Não há suporte para essa operação na plataforma atual.
+- ou -
+O parâmetro <paramref name="fileName" /> especificou um diretório.
+- ou -
+O chamador não tem a permissão necessária.</exception>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemAccessRule">
+      <summary>Representa uma abstração de uma ACE (Entrada de Controle de Acesso) que define uma regra de acesso para um arquivo ou diretório. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> usando uma referência a uma conta de usuário, um valor que especifica o tipo de operação associado à regra de acesso e um valor que especifica se a operação será permitida ou negada.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="identity" /> não é um objeto <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="type" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> usando uma referência a uma conta de usuário, um valor que especifica o tipo de operação associado à regra de acesso, um valor que determina como os direitos são herdados, um valor que determina como os direitos são propagados e um valor que especifica se a operação será permitida ou negada.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especificam como as máscaras de acesso são propagadas para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especificam como as ACEs (Entradas de Controle de Acesso) são propagadas para objetos filho.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="identity" /> não é um objeto <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="type" />.
+- ou -
+Uma enumeração incorreta foi passada para o parâmetro <paramref name="inheritanceFlags" />.
+- ou -
+Uma enumeração incorreta foi passada para o parâmetro <paramref name="propagationFlags" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> usando o nome de uma conta de usuário, um valor que especifica o tipo de operação associado à regra de acesso e um valor que descreve se a operação será permitida ou negada.</summary>
+      <param name="identity">O nome de uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="type" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAccessRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> usando um nome de uma conta de usuário, um valor que especifica o tipo de operação associado à regra de acesso, um valor que determina como os direitos são herdados, um valor que determina como os direitos são propagados e um valor que especifica se a operação será permitida ou negada.</summary>
+      <param name="identity">O nome de uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de acesso.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especificam como as máscaras de acesso são propagadas para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especificam como as ACEs (Entradas de Controle de Acesso) são propagadas para objetos filho.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se a operação será permitida ou negada.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="type" />.
+- ou -
+Uma enumeração incorreta foi passada para o parâmetro <paramref name="inheritanceFlags" />.
+- ou -
+Uma enumeração incorreta foi passada para o parâmetro <paramref name="propagationFlags" />.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemAccessRule.FileSystemRights">
+      <summary>Obtém os sinalizadores <see cref="T:System.Security.AccessControl.FileSystemRights" /> associados ao objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> atual.</summary>
+      <returns>Os sinalizadores <see cref="T:System.Security.AccessControl.FileSystemRights" /> associados ao objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> atual.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemAuditRule">
+      <summary>Representa uma abstração de uma ACE (Entrada de Controle de Acesso) que define uma regra de auditoria para um arquivo ou diretório. Essa classe não pode ser herdada.</summary>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> usando uma referência a uma conta de usuário, um valor que especifica o tipo de operação associado à regra de auditoria e um valor que indica quando executar a auditoria.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de auditoria.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="identity" /> não é um objeto <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="flags" />.
+- ou -
+O valor <see cref="F:System.Security.AccessControl.AuditFlags.None" /> foi passado para o parâmetro <paramref name="flags" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.Security.Principal.IdentityReference,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> usando o nome de uma referência a uma conta de usuário, um valor que especifica o tipo de operação associado à regra de auditoria, um valor que determina como os direitos são herdados, um valor que determina como os direitos são propagados e um valor que especifica quando executar a auditoria.</summary>
+      <param name="identity">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que encapsula uma referência a uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de auditoria.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especificam como as máscaras de acesso são propagadas para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especificam como as ACEs (Entradas de Controle de Acesso) são propagadas para objetos filho.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="identity" /> não é um objeto <see cref="T:System.Security.Principal.IdentityReference" />.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identity" /> é <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="flags" />.
+- ou -
+O valor <see cref="F:System.Security.AccessControl.AuditFlags.None" /> foi passado para o parâmetro <paramref name="flags" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> usando um nome conta de usuário, um valor que especifica o tipo de operação associado à regra de auditoria e um valor que indica quando executar a auditoria.</summary>
+      <param name="identity">O nome de uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de auditoria.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">Uma enumeração incorreta foi passada para o parâmetro <paramref name="flags" />.
+- ou -
+O valor <see cref="F:System.Security.AccessControl.AuditFlags.None" /> foi passado para o parâmetro <paramref name="flags" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemAuditRule.#ctor(System.String,System.Security.AccessControl.FileSystemRights,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> usando o nome de uma conta de usuário, um valor que especifica o tipo de operação associado à regra de auditoria, um valor que determina como os direitos são herdados, um valor que determina como os direitos são propagados e um valor que especifica quando executar a auditoria.</summary>
+      <param name="identity">O nome de uma conta de usuário.</param>
+      <param name="fileSystemRights">Um dos valores <see cref="T:System.Security.AccessControl.FileSystemRights" /> que especifica o tipo de operação associada à regra de auditoria.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especificam como as máscaras de acesso são propagadas para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especificam como as ACEs (Entradas de Controle de Acesso) são propagadas para objetos filho.</param>
+      <param name="flags">Um dos valores <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica quando executar a auditoria.</param>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemAuditRule.FileSystemRights">
+      <summary>Obtém os sinalizadores <see cref="T:System.Security.AccessControl.FileSystemRights" /> associados ao objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> atual.</summary>
+      <returns>Os sinalizadores <see cref="T:System.Security.AccessControl.FileSystemRights" /> associados ao objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> atual.</returns>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemRights">
+      <summary>Define os direitos de acesso a serem usados ao criar regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.AppendData">
+      <summary>Especifica o direito de acrescentar dados ao final de um arquivo.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ChangePermissions">
+      <summary>Especifica o direito de alterar as regras de segurança e auditoria associadas a um arquivo ou pasta.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.CreateDirectories">
+      <summary>Especifica o direito de criar uma pasta. Esse direito exige o valor <c>Synchronize</c>.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.CreateFiles">
+      <summary>Especifica o direito de criar um arquivo. Esse direito exige o valor <c>Synchronize</c>.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Delete">
+      <summary>Especifica o direito de excluir uma pasta ou arquivo.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.DeleteSubdirectoriesAndFiles">
+      <summary>Especifica o direito de excluir uma pasta e os arquivos contidos nessa pasta.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ExecuteFile">
+      <summary>Especifica o direito de executar um arquivo de aplicativo.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.FullControl">
+      <summary>Especifica o direito de exercer controle total sobre uma pasta ou arquivo e de modificar o controle de acesso e regras de auditoria.  Esse valor representa o direito de fazer qualquer coisa com um arquivo e é a combinação de todos os direitos desta enumeração.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ListDirectory">
+      <summary>Especifica o direito de ler o conteúdo de um diretório.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Modify">
+      <summary>Especifica o direito de ler, gravar, listar conteúdo da pasta, excluir pastas e arquivos e executar arquivos de aplicativo.  Essa permissão inclui os direitos <see cref="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute" />, <see cref="F:System.Security.AccessControl.FileSystemRights.Write" /> e <see cref="F:System.Security.AccessControl.FileSystemRights.Delete" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Read">
+      <summary>Especifica o direito de abrir e copiar pastas ou arquivos como somente leitura.  Essa permissão inclui os direitos <see cref="F:System.Security.AccessControl.FileSystemRights.ReadData" />, <see cref="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes" />, <see cref="F:System.Security.AccessControl.FileSystemRights.ReadAttributes" /> e <see cref="F:System.Security.AccessControl.FileSystemRights.ReadPermissions" />.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadAndExecute">
+      <summary>Especifica o direito de abrir e copiar pastas ou arquivos como somente leitura e executar arquivos de aplicativo.  Essa permissão inclui os direitos <see cref="F:System.Security.AccessControl.FileSystemRights.Read" /> e <see cref="F:System.Security.AccessControl.FileSystemRights.ExecuteFile" /> .</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadAttributes">
+      <summary>Especifica o direito de abrir e copiar os atributos de sistema de arquivos de um arquivo ou pasta.  Por exemplo, esse valor especifica o direito de exibir a data de criação ou modificação do arquivo.  Isso não inclui o direito de ler dados, atributos estendidos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadData">
+      <summary>Especifica o direito de abrir e copiar um arquivo ou pasta.  Isso não inclui o direito de ler atributos do sistema de arquivos, atributos estendidos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadExtendedAttributes">
+      <summary>Especifica o direito de abrir e copiar os atributos estendidos do sistema de arquivos de um arquivo ou pasta.  Por exemplo, esse valor especifica o direito de exibir informações de conteúdo e autor.  Isso não inclui o direito de ler dados, atributos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.ReadPermissions">
+      <summary>Especifica o direito de abrir e copiar regras de acesso e auditoria de um arquivo ou pasta.  Isso não inclui o direito de ler dados, atributos do sistema de arquivos e atributos estendidos do sistema de arquivos.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Synchronize">
+      <summary>Especifica se o aplicativo pode aguardar um identificador de arquivo sincronizar com a conclusão de uma operação de E/S. Esse valor é definido automaticamente ao permitir o acesso e excluído automaticamente ao negar o acesso.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.TakeOwnership">
+      <summary>Especifica o direito de alterar o proprietário de um arquivo ou pasta.  Observe que os proprietários de um recurso têm acesso completo a esse recurso.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Traverse">
+      <summary>Especifica o direito de listar o conteúdo de uma pasta e executar aplicativos contidos nessa pasta.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.Write">
+      <summary>Especifica o direito de criar pastas e arquivos e de adicionar ou remover dados dos arquivos.  Essa permissão inclui os direitos <see cref="F:System.Security.AccessControl.FileSystemRights.WriteData" /> , <see cref="F:System.Security.AccessControl.FileSystemRights.AppendData" /> , <see cref="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes" /> e <see cref="F:System.Security.AccessControl.FileSystemRights.WriteAttributes" /> .</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteAttributes">
+      <summary>Especifica o direito de abrir e gravar os atributos de sistema de arquivos em um arquivo ou pasta. Isso não inclui a capacidade de gravar dados, atributos estendidos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteData">
+      <summary>Especifica o direito de abrir e gravar em um arquivo ou pasta.  Isso não inclui o direito de abrir e gravar atributos do sistema de arquivos, atributos estendidos do sistema de arquivos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="F:System.Security.AccessControl.FileSystemRights.WriteExtendedAttributes">
+      <summary>Especifica o direito de abrir e gravar os atributos estendidos do sistema de arquivos em um arquivo ou pasta.  Isso não inclui a capacidade de gravar dados, atributos ou regras de acesso e auditoria.</summary>
+    </member>
+    <member name="T:System.Security.AccessControl.FileSystemSecurity">
+      <summary>Representa o controle de acesso e auditoria de segurança de um arquivo ou diretório.</summary>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AccessRightType">
+      <summary>Obtém a enumeração que a classe <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> usa para representar os direitos de acesso.</summary>
+      <returns>Um objeto <see cref="T:System.Type" /> que representa a enumeração <see cref="T:System.Security.AccessControl.FileSystemRights" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AccessRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AccessControlType)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma nova regra de controle de acesso para o usuário especificado, com os direitos de acesso, o controle de acesso e os sinalizadores especificados.</summary>
+      <param name="identityReference">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que representa uma conta de usuário.</param>
+      <param name="accessMask">Um inteiro que especifica um tipo de acesso.</param>
+      <param name="isInherited">
+        <see langword="true" /> se a regra de acesso for herdada; caso contrário, <see langword="false" />.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especifica como propagar máscaras de acesso para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especifica como propagar as ACEs (Entradas de Controle de Acesso) para objetos filho.</param>
+      <param name="type">Um dos valores de <see cref="T:System.Security.AccessControl.AccessControlType" /> que especifica se o acesso é permitido ou negado.</param>
+      <returns>Um novo objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma nova regra de controle de acesso para o usuário especificado, com os direitos de acesso, o controle de acesso e os sinalizadores especificados.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">Os parâmetros <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> ou <paramref name="type" /> especificam um valor inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="identityReference" /> é <see langword="null" />.
+- ou -
+O parâmetro <paramref name="accessMask" /> é zero.</exception>
+      <exception cref="T:System.ArgumentException">O parâmetro <paramref name="identityReference" /> não é do tipo <see cref="T:System.Security.Principal.SecurityIdentifier" /> nem de um tipo como <see cref="T:System.Security.Principal.NTAccount" /> que pode ser convertido no tipo <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AccessRuleType">
+      <summary>Obtém a enumeração que a classe <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> usa para representar as regras de acesso.</summary>
+      <returns>Um objeto <see cref="T:System.Type" /> que representa a classe <see cref="T:System.Security.AccessControl.FileSystemAccessRule" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AddAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Adiciona a permissão de lista de controle de acesso (ACL) especificada ao arquivo ou diretório atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma permissão de lista de controle de acesso (ACL) a se adicionar a um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AddAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Adiciona a regra de auditoria especificada ao diretório ou arquivo atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa uma regra de auditoria a ser adicionada a um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.AuditRuleFactory(System.Security.Principal.IdentityReference,System.Int32,System.Boolean,System.Security.AccessControl.InheritanceFlags,System.Security.AccessControl.PropagationFlags,System.Security.AccessControl.AuditFlags)">
+      <summary>Inicializa uma nova instância da classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa a regra de auditoria para o usuário especificado.</summary>
+      <param name="identityReference">Um objeto <see cref="T:System.Security.Principal.IdentityReference" /> que representa uma conta de usuário.</param>
+      <param name="accessMask">Um inteiro que especifica um tipo de acesso.</param>
+      <param name="isInherited">
+        <see langword="true" /> se a regra de acesso for herdada; caso contrário, <see langword="false" />.</param>
+      <param name="inheritanceFlags">Um dos valores <see cref="T:System.Security.AccessControl.InheritanceFlags" /> que especifica como propagar máscaras de acesso para objetos filho.</param>
+      <param name="propagationFlags">Um dos valores <see cref="T:System.Security.AccessControl.PropagationFlags" /> que especifica como propagar as ACEs (Entradas de Controle de Acesso) para objetos filho.</param>
+      <param name="flags">Um dos valores de <see cref="T:System.Security.AccessControl.AuditFlags" /> que especifica o tipo de auditoria a ser realizada.</param>
+      <returns>Um novo objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa a regra de auditoria para o usuário especificado.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException">As propriedades <paramref name="accessMask" />, <paramref name="inheritanceFlags" />, <paramref name="propagationFlags" /> ou <paramref name="flags" /> especificam um valor inválido.</exception>
+      <exception cref="T:System.ArgumentNullException">A propriedade <paramref name="identityReference" /> é <see langword="null" />.
+- ou -
+A propriedade <paramref name="accessMask" /> é zero.</exception>
+      <exception cref="T:System.ArgumentException">A propriedade <paramref name="identityReference" /> não é do tipo <see cref="T:System.Security.Principal.SecurityIdentifier" /> e nem de um tipo que, assim como o <see cref="T:System.Security.Principal.NTAccount" />, pode ser convertido no tipo <see cref="T:System.Security.Principal.SecurityIdentifier" />.</exception>
+    </member>
+    <member name="P:System.Security.AccessControl.FileSystemSecurity.AuditRuleType">
+      <summary>Obtém o tipo que a classe <see cref="T:System.Security.AccessControl.FileSystemSecurity" /> usa para representar as regras de auditoria.</summary>
+      <returns>Um objeto <see cref="T:System.Type" /> que representa a classe <see cref="T:System.Security.AccessControl.FileSystemAuditRule" />.</returns>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Remove do diretório ou arquivo atual todas as permissões de negar ou permitir da ACL (lista de controle de acesso) que forem correspondentes.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma permissão da ACL (lista de controle de acesso) a ser removida de um arquivo ou diretório.</param>
+      <returns>
+        <see langword="true" /> se a regra de acesso tiver sido removida; caso contrário, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRuleAll(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Remove todas as permissões da ACL (lista de controle de acesso) para o usuário especificado do diretório ou arquivo atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que especifica um usuário cuja ACL (lista de controle de acesso) deve ser removida de um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAccessRuleSpecific(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Remove do diretório ou arquivo atual uma única permissão de negar ou permitir correspondente da ACL (lista de controle de acesso).</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que especifica um usuário cuja ACL (lista de controle de acesso) deve ser removida de um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Remove do diretório ou arquivo atual todas as regras de auditoria correspondentes.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa uma regra de auditoria a ser removida de um arquivo ou diretório.</param>
+      <returns>
+        <see langword="true" /> se a regra de auditoria tiver sido removida; caso contrário,<see langword="false" /></returns>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRuleAll(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Remove todas as permissões das regras de auditoria para o usuário especificado do diretório ou arquivo atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que especifica um usuário cujas regras de auditoria devem ser removidas de um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.RemoveAuditRuleSpecific(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Remove do diretório ou arquivo atual uma única regra de auditoria correspondente.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa uma regra de auditoria a ser removida de um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.ResetAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Adiciona a permissão de lista de controle de acesso (ACL) especificada ao arquivo ou diretório atual e remove todas as permissões de ACL correspondentes.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma permissão de lista de controle de acesso (ACL) a se adicionar a um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.SetAccessRule(System.Security.AccessControl.FileSystemAccessRule)">
+      <summary>Define a permissão da ACL (lista de controle de acesso) especificada para o diretório ou o arquivo atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAccessRule" /> que representa uma permissão da ACL (lista de controle de acesso) a ser definida para um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.AccessControl.FileSystemSecurity.SetAuditRule(System.Security.AccessControl.FileSystemAuditRule)">
+      <summary>Define a regra de auditoria especificada para o diretório ou arquivo atual.</summary>
+      <param name="rule">Um objeto <see cref="T:System.Security.AccessControl.FileSystemAuditRule" /> que representa uma regra de auditoria a ser definida para um arquivo ou diretório.</param>
+      <exception cref="T:System.ArgumentNullException">O parâmetro <paramref name="rule" /> é <see langword="null" />.</exception>
+    </member>
+  </members>
+</doc>

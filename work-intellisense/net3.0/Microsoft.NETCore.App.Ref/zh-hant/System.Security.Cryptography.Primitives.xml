@@ -1,0 +1,1080 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Primitives</name>
+  </assembly>
+  <members>
+    <member name="T:System.Security.Cryptography.AsymmetricAlgorithm">
+      <summary>表示抽象基底類別，非對稱演算法的所有實作都必須從它繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">衍生類別的實作無效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Clear">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 類別所使用的所有資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create">
+      <summary>建立用來執行非對稱演算法的預設密碼編譯物件。</summary>
+      <returns>除非已經使用 &lt;cryptoClass&gt; 項目變更預設設定，否則為新的 <see cref="T:System.Security.Cryptography.RSACryptoServiceProvider" /> 執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Create(System.String)">
+      <summary>建立非對稱演算法之指定實作的執行個體。</summary>
+      <param name="algName">要使用的非對稱演算法實作。 下表顯示 <paramref name="algName" /> 參數的有效值及其對應的演算法。  
+  參數值 
+  實作 
+  System.Security.Cryptography.AsymmetricAlgorithm 
+ <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> RSA 
+ <see cref="T:System.Security.Cryptography.RSA" /> System.Security.Cryptography.RSA 
+ <see cref="T:System.Security.Cryptography.RSA" /> DSA 
+ <see cref="T:System.Security.Cryptography.DSA" /> System.Security.Cryptography.DSA 
+ <see cref="T:System.Security.Cryptography.DSA" /> ECDsa 
+ <see cref="T:System.Security.Cryptography.ECDsa" /> ECDsaCng 
+ <see cref="T:System.Security.Cryptography.ECDsaCng" /> System.Security.Cryptography.ECDsaCng 
+ <see cref="T:System.Security.Cryptography.ECDsaCng" /> ECDH 
+ <see cref="T:System.Security.Cryptography.ECDiffieHellman" /> ECDiffieHellman 
+ <see cref="T:System.Security.Cryptography.ECDiffieHellman" /> ECDiffieHellmanCng 
+ <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> System.Security.Cryptography.ECDiffieHellmanCng 
+ <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /></param>
+      <returns>指定之非對稱演算法實作的新執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 類別目前的執行個體所使用的全部資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 類別所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters)">
+      <summary>使用位元組型密碼以 PKCS#8 EncryptedPrivateKeyInfo 格式匯出目前金鑰。</summary>
+      <param name="passwordBytes">加密金鑰內容時要用作密碼的位元組。</param>
+      <param name="pbeParameters">加密金鑰內容時要使用的密碼型加密 (PBE) 參數。</param>
+      <returns>位元組陣列，其中包含此金鑰的 PKCS#8 EncryptedPrivateKeyInfo 表示。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。
+-或-
+<paramref name="pbeParameters" /> 指出應該使用 <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" />，這需要 <see cref="T:System.Char" /> 型密碼。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters)">
+      <summary>使用 Char 型密碼以 PKCS#8 EncryptedPrivateKeyInfo 格式匯出目前金鑰。</summary>
+      <param name="password">加密金鑰產製原料時要使用的密碼。</param>
+      <param name="pbeParameters">加密金鑰內容時要使用的密碼型加密 (PBE) 參數。</param>
+      <returns>位元組陣列，其中包含此金鑰的 PKCS#8 EncryptedPrivateKeyInfo 表示。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportPkcs8PrivateKey">
+      <summary>以 PKCS#8 PrivateKeyInfo 格式匯出目前金鑰。</summary>
+      <returns>位元組陣列，其中包含此金鑰的 PKCS#8 PrivateKeyInfo 表示。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ExportSubjectPublicKeyInfo">
+      <summary>以 X.509 SubjectPublicKeyInfo 格式匯出目前金鑰的公開金鑰部分。</summary>
+      <returns>位元組陣列，其中包含此金鑰公開金鑰部分的 X.509 SubjectPublicKeyInfo 表示。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.FromXmlString(System.String)">
+      <summary>在衍生類別中覆寫時，從 XML 字串重新建構 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件。 否則，擲回 <see cref="T:System.NotImplementedException" />。</summary>
+      <param name="xmlString">要用來重新建構 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件的 XML 字串。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，於使用位元組型密碼解密之後，從 PKCS#8 EncryptedPrivateKeyInfo 結構匯入公開/私密金鑰組，以取代這個物件的金鑰。</summary>
+      <param name="passwordBytes">解密金鑰內容時要用作密碼的位元組。</param>
+      <param name="source">以 ASN.1-BER 編碼的 PKCS#8 EncryptedPrivateKeyInfo 結構位元組。</param>
+      <param name="bytesRead">當此方法傳回時，會包含一個值，指出讀取自 <paramref name="source" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密碼不正確。
+-或-
+<paramref name="source" /> 的內容指出要套用的金鑰衍生函數 (Key Derivation Function) (KDF) 是舊版 PKCS#12 KDF，這需要 <see cref="T:System.Char" /> 型密碼。
+-或-
+<paramref name="source" /> 的內容不表示 ASN.1-BER 編碼的 PKCS#8 EncryptedPrivateKeyInfo 結構。
+-或-
+<paramref name="source" /> 的內容指出金鑰適用於這個執行個體所表示演算法以外的演算法。
+-或-
+<paramref name="source" /> 的內容表示金鑰的格式不受支援。
+-或-
+演算法專屬金鑰匯入失敗。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，於使用字元型密碼解密之後，從 PKCS#8 EncryptedPrivateKeyInfo 結構匯入公開/私密金鑰組，以取代這個物件的金鑰。</summary>
+      <param name="password">要用於解密金鑰產製原料的密碼。</param>
+      <param name="source">以 ASN.1-BER 編碼的 PKCS#8 EncryptedPrivateKeyInfo 結構位元組。</param>
+      <param name="bytesRead">當此方法傳回時，會包含一個值，指出讀取自 <paramref name="source" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密碼不正確。
+-或-
+<paramref name="source" /> 的內容不表示 ASN.1-BER 編碼的 PKCS#8 EncryptedPrivateKeyInfo 結構。
+-或-
+<paramref name="source" /> 的內容指出金鑰適用於這個執行個體所表示演算法以外的演算法。
+-或-
+<paramref name="source" /> 的內容表示金鑰的格式不受支援。
+-或-
+演算法專屬金鑰匯入失敗。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，於解密後從 PKCS#8 PrivateKeyInfo 結構匯入公開/私密金鑰組，以取代這個物件的金鑰。</summary>
+      <param name="source">以 ASN.1-BER 編碼的 PKCS#8 PrivateKeyInfo 結構位元組。</param>
+      <param name="bytesRead">當此方法傳回時，會包含一個值，指出讀取自 <paramref name="source" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="source" /> 的內容不表示 ASN.1-BER 編碼的 PKCS#8 PrivateKeyInfo 結構。
+-或-
+<paramref name="source" /> 的內容指出金鑰適用於這個執行個體所表示演算法以外的演算法。
+-或-
+<paramref name="source" /> 的內容表示金鑰的格式不受支援。
+-或-
+演算法專屬金鑰匯入失敗。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ImportSubjectPublicKeyInfo(System.ReadOnlySpan{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，於解密後從 X.509 SubjectPublicKeyInfo 結構匯入公開金鑰，以取代這個物件的金鑰。</summary>
+      <param name="source">以 ASN.1-DER 編碼的 X.509 SubjectPublicKeyInfo 結構位元組。</param>
+      <param name="bytesRead">當此方法傳回時，會包含一個值，指出讀取自 <paramref name="source" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="source" /> 的內容不表示 ASN.1-DER 編碼的 X.509 SubjectPublicKeyInfo 結構。
+-或-
+<paramref name="source" /> 的內容指出金鑰適用於這個執行個體所表示演算法以外的演算法。
+-或-
+<paramref name="source" /> 的內容表示金鑰的格式不受支援。
+-或-
+演算法專屬金鑰匯入失敗。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeyExchangeAlgorithm">
+      <summary>在衍生類別中覆寫時，取得金鑰交換演算法的名稱。 否則，擲回 <see cref="T:System.NotImplementedException" />。</summary>
+      <returns>金鑰交換演算法的名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.KeySize">
+      <summary>取得或設定非對稱演算法使用的金鑰模數大小，以位元為單位。</summary>
+      <returns>非對稱演算法使用的金鑰模數大小，以位元為單位。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">索引鍵模數大小不正確。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.KeySizeValue">
+      <summary>表示非對稱演算法使用的金鑰模數大小，以位元為單位。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizes">
+      <summary>取得非對稱演算法所支援的金鑰大小。</summary>
+      <returns>含有非對稱演算法所支援之金鑰大小的陣列。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizesValue">
+      <summary>指定非對稱演算法所支援的金鑰大小。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AsymmetricAlgorithm.SignatureAlgorithm">
+      <summary>在衍生類別中實作時，取得簽章演算法的名稱。 否則，一律擲回 <see cref="T:System.NotImplementedException" />。</summary>
+      <returns>簽章演算法的名稱。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.ToXmlString(System.Boolean)">
+      <summary>在衍生類別中覆寫時，建立並傳回目前 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件的 XML 字串表示。 否則，擲回 <see cref="T:System.NotImplementedException" />。</summary>
+      <param name="includePrivateParameters">如果要包含私用參數，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <returns>目前 <see cref="T:System.Security.Cryptography.AsymmetricAlgorithm" /> 物件的 XML 字串編碼方式。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Byte},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，使用位元組型密碼嘗試以 PKCS#8 EncryptedPrivateKeyInfo 格式將目前的金鑰匯出至提供的緩衝區。</summary>
+      <param name="passwordBytes">加密金鑰內容時要用作密碼的位元組。</param>
+      <param name="pbeParameters">加密金鑰產製原料時要使用的密碼型加密 (PBE) 參數。</param>
+      <param name="destination">要接收 PKCS#8 EncryptedPrivateKeyInfo 資料的位元組範圍。</param>
+      <param name="bytesWritten">當此方法傳回時，會包含一個值，指出寫入至 <paramref name="destination" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <returns>若 <paramref name="destination" /> 夠大可接收輸出，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。
+-或-
+<paramref name="pbeParameters" /> 指出應該使用 <see cref="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12" />，這需要 <see cref="T:System.Char" /> 型密碼。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportEncryptedPkcs8PrivateKey(System.ReadOnlySpan{System.Char},System.Security.Cryptography.PbeParameters,System.Span{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，使用字元型密碼嘗試以 PKCS#8 EncryptedPrivateKeyInfo 格式將目前的金鑰匯出至提供的緩衝區。</summary>
+      <param name="password">加密金鑰產製原料時要使用的密碼。</param>
+      <param name="pbeParameters">加密金鑰產製原料時要使用的密碼型加密 (PBE) 參數。</param>
+      <param name="destination">要接收 PKCS#8 EncryptedPrivateKeyInfo 資料的位元組範圍。</param>
+      <param name="bytesWritten">當此方法傳回時，會包含一個值，指出寫入至 <paramref name="destination" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <returns>若 <paramref name="destination" /> 夠大可接收輸出，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportPkcs8PrivateKey(System.Span{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，嘗試以 PKCS#8 PrivateKeyInfo 格式將目前的金鑰匯出至提供的緩衝區。</summary>
+      <param name="destination">要接收 PKCS#8 PrivateKeyInfo 資料的位元組範圍。</param>
+      <param name="bytesWritten">當此方法傳回時，會包含一個值，指出寫入至 <paramref name="destination" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <returns>若 <paramref name="destination" /> 夠大可接收輸出，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AsymmetricAlgorithm.TryExportSubjectPublicKeyInfo(System.Span{System.Byte},System.Int32@)">
+      <summary>當在衍生類別中受到覆寫時，嘗試以 X.509 SubjectPublicKeyInfo 格式將目前的金鑰匯出至提供的緩衝區。</summary>
+      <param name="destination">要接收 X.509 SubjectPublicKeyInfo 資料的位元組範圍。</param>
+      <param name="bytesWritten">當此方法傳回時，會包含一個值，指出寫入至 <paramref name="destination" /> 的位元組數。 這個參數會被視為未初始化。</param>
+      <returns>若 <paramref name="destination" /> 夠大可接收輸出，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法匯出金鑰。</exception>
+      <exception cref="T:System.NotImplementedException">衍生類型未覆寫此成員。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.CipherMode">
+      <summary>指定要用來加密的區塊加密模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CBC">
+      <summary>密碼區塊鏈結 (Cipher Block Chaining，<see langword="CBC" />) 模式會引用回饋。 在每個純文字區塊被加密之前，會以位元互斥 OR 運算將它與前一個區塊的密碼文字相結合。 這樣可以確保即使純文字含有許多相同的區塊，也會各自被加密成為不同的密碼文字區塊。 初始化向量在區塊被加密之前，會與第一個純文字區塊以位元互斥 OR 運算結合。 如果密碼文字區塊的單一位元受損，對應的純文字區塊也會受損。 此外，在後續區塊中，與原來受損位元在同一位置的位元也會受損。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CFB">
+      <summary>密碼回饋 (Cipher Feedback，<see langword="CFB" />) 模式會將純文字以小量的增量方式處理成密碼文字，而不是一次處理整個區塊。 這個模式會使用移位 (Shift) 暫存器，它的長度為一個區塊並且分成若干個區段。 舉例來說，如果區塊的大小為 8 個位元組，每次處理一個位元組，那麼位移暫存器就會分成八個區段。 如果密碼文字中某個位元受損，那麼就會有一個純文字位元受損，而且位移暫存器也就損毀了。 這樣會造成接下來的幾個純文字增量也跟著受損，直到損壞的位元被位移到位移暫存器之外為止。 預設的回饋大小可能因演算法而異，但通常是 8 個位元或是區塊大小的位元數。 您可以使用 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize" /> 屬性來變更回饋的位元數。 支援 CFB 的演算法會使用這個屬性來設定回饋。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.CTS">
+      <summary>密碼文字竊取 (Cipher Text Stealing，<see langword="CTS" />) 模式可處理任何長度的純文字，並且會產生與純文字長度相符的密碼文字。 這個模式的行為除了純文字的最後兩個區塊之外，其餘都很像是 <see langword="CBC" /> 模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.ECB">
+      <summary>電子密碼書 (Electronic Codebook，<see langword="ECB" />) 模式會個別加密每一個區塊。 任何相同且在同一訊息中 (或在不同訊息中而以相同金鑰加密) 的純文字區塊，都會被轉換成相同的密碼文字區塊。 重要：不建議您使用這個模式，因為這會使系統門戶洞開，讓許多安全性入侵程式有機可趁。 如果要加密的純文字含有相當多的重複，那麼密碼文字有可能一次被破解一個區塊。 也有可能使用區塊分析來判斷加密金鑰。 此外，積極的入侵者還可以取代和交換個別區塊而不被察覺，也就是可以在不知不覺中將區塊儲存並插入至資料流的其他位置。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CipherMode.OFB">
+      <summary>輸出回饋 (Output Feedback，<see langword="OFB" />) 模式會將純文字以小量的增量方式處理成密碼文字，而不是一次處理整個區塊。 這個模式很類似 <see langword="CFB" />；這兩個模式唯一的差異在於填入位移暫存器的方式。 如果密碼文字中某個位元受損，對應的純文字位元也會受損。 但是，如果密碼文字中有多出來的或遺失的位元，那麼從該處開始的純文字都會受損。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicOperations" />
+    <member name="M:System.Security.Cryptography.CryptographicOperations.FixedTimeEquals(System.ReadOnlySpan{System.Byte},System.ReadOnlySpan{System.Byte})">
+      <summary>判斷兩個位元組序列的時間量是否相等，此時間量取決於序列長度，而不是其值。</summary>
+      <param name="left">要比較的第一個緩衝區。</param>
+      <param name="right">要比較的第二個緩衝區。</param>
+      <returns>若 <paramref name="left" /> 和 <paramref name="right" /> 具有相同 <see cref="P:System.ReadOnlySpan`1.Length" /> 值和相同內容，則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicOperations.ZeroMemory(System.Span{System.Byte})">
+      <param name="buffer" />
+    </member>
+    <member name="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+      <summary>在密碼編譯作業中發生未預期的作業時所擲回的例外狀況。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor">
+      <summary>使用預設屬性，初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary>使用序列化資料，初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 類別的新執行個體。</summary>
+      <param name="info">存放序列物件資料的物件。</param>
+      <param name="context">關於來源或目的端的內容資訊。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String)">
+      <summary>使用指定的錯誤訊息，初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 類別的新執行個體。</summary>
+      <param name="message">解釋例外狀況原因的錯誤訊息。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.Exception)">
+      <summary>使用指定的錯誤訊息以及造成此例外狀況的內部例外狀況的參考，初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 類別的新執行個體。</summary>
+      <param name="message">解釋例外狀況原因的錯誤訊息。</param>
+      <param name="inner">做為目前例外狀況發生原因的例外狀況。 如果 <paramref name="inner" /> 參數不是 <see langword="null" />，則目前的例外狀況會在處理內部例外的 <see langword="catch" /> 區塊中引發。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptographicUnexpectedOperationException.#ctor(System.String,System.String)">
+      <summary>以指定的格式使用指定的錯誤訊息，初始化 <see cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException" /> 類別的新執行個體。</summary>
+      <param name="format">用來輸出錯誤訊息的格式。</param>
+      <param name="insert">解釋例外狀況原因的錯誤訊息。</param>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStream">
+      <summary>定義連結資料流與密碼編譯轉換的資料流。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode)">
+      <summary>使用目標資料流、要使用的轉換和資料流模式，來初始化 <see cref="T:System.Security.Cryptography.CryptoStream" /> 類別的新執行個體。</summary>
+      <param name="stream">要在其上執行密碼編譯轉換的資料流。</param>
+      <param name="transform">要在資料流上執行的密碼編譯轉換。</param>
+      <param name="mode">其中一個 <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 值。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="stream" /> 無效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.#ctor(System.IO.Stream,System.Security.Cryptography.ICryptoTransform,System.Security.Cryptography.CryptoStreamMode,System.Boolean)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.CryptoStream" /> 類別的新執行個體。</summary>
+      <param name="stream">要在其上執行密碼編譯轉換的資料流。</param>
+      <param name="transform">要在資料流上執行的密碼編譯轉換。</param>
+      <param name="mode">資料流的模式。</param>
+      <param name="leaveOpen">處置 <see cref="T:System.Security.Cryptography.CryptoStream" /> 物件後，若不關閉基礎資料流，則為 <see langword="true" />；否則為 <see langword="false" />。</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="mode" /> 無效。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>開始非同步的讀取作業。 (請考慮用 <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> 替代。)</summary>
+      <param name="buffer">讀取資料的緩衝區。</param>
+      <param name="offset">開始寫入自資料流讀取資料的 <paramref name="buffer" /> 位元組位移。</param>
+      <param name="count">要讀取的最大位元組數。</param>
+      <param name="callback">選擇性的非同步回呼，在讀取完成時呼叫。</param>
+      <param name="state">使用者所提供的物件，其可以從其他要求中區分出這個特定非同步讀取的要求。</param>
+      <returns>
+        <see cref="T:System.IAsyncResult" />，代表可能還在擱置中的非同步讀取。</returns>
+      <exception cref="T:System.IO.IOException">嘗試超越資料流結尾的非同步讀取，或發生磁碟錯誤。</exception>
+      <exception cref="T:System.ArgumentException">一或多個引數無效。</exception>
+      <exception cref="T:System.ObjectDisposedException">關閉資料流後呼叫了方法。</exception>
+      <exception cref="T:System.NotSupportedException">目前的 <see langword="Stream" /> 實作不支援讀取作業。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)">
+      <summary>開始非同步的寫入作業。 (請考慮用 <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> 替代。)</summary>
+      <param name="buffer">寫入資料的來源緩衝區。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中要開始寫入之處的位元組位移。</param>
+      <param name="count">寫入的最大位元組數。</param>
+      <param name="callback">選擇性的非同步回呼，在寫入完成時呼叫。</param>
+      <param name="state">使用者所提供的物件，其可以從其他要求中區分出這個特定非同步寫入的要求。</param>
+      <returns>
+        <see langword="IAsyncResult" />，代表可能還在擱置中的非同步寫入。</returns>
+      <exception cref="T:System.IO.IOException">嘗試超出資料流結尾的非同步寫入，或發生磁碟錯誤。</exception>
+      <exception cref="T:System.ArgumentException">一或多個引數無效。</exception>
+      <exception cref="T:System.ObjectDisposedException">關閉資料流後呼叫了方法。</exception>
+      <exception cref="T:System.NotSupportedException">目前的 <see langword="Stream" /> 實作不支援寫入作業。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanRead">
+      <summary>取得值，指出目前的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 是否可讀取。</summary>
+      <returns>如果目前的資料流為可讀取，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanSeek">
+      <summary>取得值，指出您是否可以在目前的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 中搜尋。</summary>
+      <returns>一定是 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.CanWrite">
+      <summary>取得值，指出目前的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 是否可寫入。</summary>
+      <returns>如果目前的資料流為可寫入，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Clear">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.CryptoStream" /> 所使用的所有資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.CryptoStream" /> 所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.DisposeAsync">
+      <summary>以非同步方式釋放 <see cref="T:System.Security.Cryptography.CryptoStream" /> 使用的不受控資源。</summary>
+      <returns>代表非同步處署作業的工作。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndRead(System.IAsyncResult)">
+      <summary>等候暫止的非同步讀取完成。 (請考慮用 <see cref="Overload:System.Security.Cryptography.CryptoStream.ReadAsync" /> 替代。)</summary>
+      <param name="asyncResult">要完成的擱置中非同步要求的參考。</param>
+      <returns>從資料流讀取的位元組數，位於零 (0) 和您所要求的位元組數之間。 資料流只在資料流結尾傳回零 (0)，否則，它們應該封鎖，直到至少有一個位元組可用為止。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">暫止讀取作業的控制代碼無法使用。  
+ -或-  
+ 暫止的作業不支援讀取。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> 不是來自目前資料流的 <see cref="M:System.Security.Cryptography.CryptoStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.IO.IOException">資料流已關閉或發生內部錯誤。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.EndWrite(System.IAsyncResult)">
+      <summary>結束非同步的寫入作業。 (請考慮用 <see cref="Overload:System.Security.Cryptography.CryptoStream.WriteAsync" /> 替代。)</summary>
+      <param name="asyncResult">未處理的非同步 I/O 要求的參考。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="asyncResult" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException">暫止寫入作業的控制代碼無法使用。  
+ -或-  
+ 暫止的作業不支援寫入。</exception>
+      <exception cref="T:System.InvalidOperationException">
+        <paramref name="asyncResult" /> 不是來自目前資料流的 <see cref="M:System.IO.Stream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)" /> 方法。</exception>
+      <exception cref="T:System.IO.IOException">資料流已關閉或發生內部錯誤。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Flush">
+      <summary>清除目前資料流的所有緩衝區，並且造成任何緩衝資料都寫入基礎裝置。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushAsync(System.Threading.CancellationToken)">
+      <summary>以非同步的方式清除目前資料流的所有緩衝區，造成任何緩衝資料都寫入基礎裝置，並且監視取消要求。</summary>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步排清作業的工作。</returns>
+      <exception cref="T:System.ObjectDisposedException">資料流已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.FlushFinalBlock">
+      <summary>以緩衝區的目前狀態更新基礎資料來源或存放庫，並接著清除緩衝區。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">金鑰已損毀，可能產生無效的資料流填補。</exception>
+      <exception cref="T:System.NotSupportedException">目前的資料流無法寫入。  
+ -或-  
+ 最後的區塊已經轉換。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.HasFlushedFinalBlock">
+      <summary>取得值，這個值表示最後的緩衝區區塊是否已寫入基礎資料流。</summary>
+      <returns>如果最後的區塊已清除則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Length">
+      <summary>取得資料流的位元組長度。</summary>
+      <returns>不支援這個屬性。</returns>
+      <exception cref="T:System.NotSupportedException">不支援這個屬性。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.CryptoStream.Position">
+      <summary>取得或設定在目前資料流中的位置。</summary>
+      <returns>不支援這個屬性。</returns>
+      <exception cref="T:System.NotSupportedException">不支援這個屬性。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Read(System.Byte[],System.Int32,System.Int32)">
+      <summary>從目前的資料流讀取位元組序列，並依讀取的位元組數將資料流中的位置往前移。</summary>
+      <param name="buffer">位元組陣列。 最大的 <paramref name="count" /> 個位元組從目前資料流讀取，並且儲存在 <paramref name="buffer" />。</param>
+      <param name="offset">開始儲存從目前資料流讀取資料的 <paramref name="buffer" /> 位元組位移。</param>
+      <param name="count">自目前資料流讀取的最大位元組數。</param>
+      <returns>緩衝區所讀取的總位元組數。 如果目前沒有那麼多的位元組，則這個數目可能小於所要求的位元組數，或如果已經到達資料流結尾，則為零。</returns>
+      <exception cref="T:System.NotSupportedException">與目前 <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 物件關聯的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 與基礎資料流不符。  例如，如果將 <see cref="F:System.Security.Cryptography.CryptoStreamMode.Read" /> 搭配唯寫的基礎資料流使用，便會擲回這個例外狀況。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 參數小於零。  
+-或- 
+<paramref name="count" /> 參數小於零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 和 <paramref name="offset" /> 參數的總和大於緩衝區的長度。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>自目前資料流非同步讀取一連串的位元組、依所讀取的位元組數目進階資料流中的位置，以及監視取消要求。</summary>
+      <param name="buffer">寫入資料的緩衝區。</param>
+      <param name="offset">開始於此處自資料流寫入資料的 <paramref name="buffer" /> 中的位元組位移。</param>
+      <param name="count">要讀取的最大位元組數。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步讀取作業的工作。 工作物件的<paramref name="TResult" />參數的值會包含讀取至緩衝區的位元組總數。 如果目前可供使用的位元組數目少於所要求的數目，結果可能會小於所要求的位元組數目，或者如果已經到達資料流末端，則可能為 0（零）。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 為負。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 和 <paramref name="count" /> 的總和大於緩衝區長度。</exception>
+      <exception cref="T:System.NotSupportedException">資料流不支援讀取。</exception>
+      <exception cref="T:System.ObjectDisposedException">資料流已經處置。</exception>
+      <exception cref="T:System.InvalidOperationException">之前的讀取作業目前正在使用資料流。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.ReadByte">
+      <summary>從資料流讀取一個位元組，並將資料流的位置推進一個位元組；如果在資料流末端，則傳回 -1。</summary>
+      <returns>轉型為 <see langword="Int32" /> 的不帶正負號位元組，如果在資料流末端，則為 -1。</returns>
+      <exception cref="T:System.NotSupportedException">資料流不支援讀取。</exception>
+      <exception cref="T:System.ObjectDisposedException">關閉資料流後呼叫了方法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Seek(System.Int64,System.IO.SeekOrigin)">
+      <summary>設定目前資料流位置。</summary>
+      <param name="offset">相對於 <paramref name="origin" /> 參數的位元組位移。</param>
+      <param name="origin">
+        <see cref="T:System.IO.SeekOrigin" /> 物件，指出用以取得新位置的參考點。</param>
+      <returns>不支援這個方法。</returns>
+      <exception cref="T:System.NotSupportedException">不支援這個方法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.SetLength(System.Int64)">
+      <summary>設定目前資料流的長度。</summary>
+      <param name="value">想要的目前資料流長度 (單位為位元組)。</param>
+      <exception cref="T:System.NotSupportedException">這個屬性的存在只為了支援從 <see cref="T:System.IO.Stream" /> 的繼承，並且無法使用。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.Write(System.Byte[],System.Int32,System.Int32)">
+      <summary>寫入一位元組序列至目前的 <see cref="T:System.Security.Cryptography.CryptoStream" />，並依所寫入的位元組數目進階這個資料流裡的目前位置。</summary>
+      <param name="buffer">位元組陣列。 此方法會從 <paramref name="buffer" /> 複製 <paramref name="count" /> 位元組到目前資料流。</param>
+      <param name="offset">開始複製位元組到目前資料流的 <paramref name="buffer" /> 的位元組位移。</param>
+      <param name="count">寫入目前資料流的位元組數目。</param>
+      <exception cref="T:System.NotSupportedException">與目前 <see cref="T:System.Security.Cryptography.CryptoStreamMode" /> 物件關聯的 <see cref="T:System.Security.Cryptography.CryptoStream" /> 與基礎資料流不符。  例如，如果將 <see cref="F:System.Security.Cryptography.CryptoStreamMode.Write" /> 搭配唯讀的基礎資料流使用，便會擲回這個例外狀況。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 參數小於零。  
+-或- 
+<paramref name="count" /> 參數小於零。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 和 <paramref name="offset" /> 參數的總和大於緩衝區的長度。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)">
+      <summary>以非同步的方式將一連串的位元組寫入至目前的資料流，由這個資料流中目前的位置前移寫入的位元組數目，並且監視取消要求。</summary>
+      <param name="buffer">寫入資料的來源緩衝區。</param>
+      <param name="offset">
+        <paramref name="buffer" /> 中以零起始的位元組位移，要從其中開始將位元組寫入至資料流。</param>
+      <param name="count">寫入的最大位元組數。</param>
+      <param name="cancellationToken">用來監視是否有取消要求的語彙基元。 預設值為 <see cref="P:System.Threading.CancellationToken.None" />。</param>
+      <returns>表示非同步寫入作業的工作。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 或 <paramref name="count" /> 為負。</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="offset" /> 和 <paramref name="count" /> 的總和大於緩衝區長度。</exception>
+      <exception cref="T:System.NotSupportedException">資料流不支援寫入。</exception>
+      <exception cref="T:System.ObjectDisposedException">資料流已經處置。</exception>
+      <exception cref="T:System.InvalidOperationException">之前的寫入作業目前正在使用資料流。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CryptoStream.WriteByte(System.Byte)">
+      <summary>寫入一個位元組至資料流的目前位置，並將資料流位置推進一個位元組。</summary>
+      <param name="value">寫入資料流的位元組。</param>
+      <exception cref="T:System.IO.IOException">發生 I/O 錯誤。</exception>
+      <exception cref="T:System.NotSupportedException">資料流不支援寫入，或資料流已經關閉。</exception>
+      <exception cref="T:System.ObjectDisposedException">關閉資料流後呼叫了方法。</exception>
+    </member>
+    <member name="T:System.Security.Cryptography.CryptoStreamMode">
+      <summary>指定密碼編譯資料流的模式。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Read">
+      <summary>密碼編譯資料流的讀取存取權限。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CryptoStreamMode.Write">
+      <summary>密碼編譯資料流的寫入存取權限。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithm">
+      <summary>代表基底類別，密碼編譯雜湊演算法的所有實作必須從它衍生。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanReuseTransform">
+      <summary>取得值，表示目前的轉換是否可重複使用。</summary>
+      <returns>一定是 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.CanTransformMultipleBlocks">
+      <summary>在衍生類別中覆寫時，取得值以指出是否有多個區塊可被轉換。</summary>
+      <returns>如果有多個區塊可被轉換，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Clear">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 類別所使用的所有資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[])">
+      <summary>計算指定位元組陣列的雜湊值。</summary>
+      <param name="buffer">要用來計算雜湊碼的輸入。</param>
+      <returns>計算出來的雜湊碼。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.Byte[],System.Int32,System.Int32)">
+      <summary>計算所指定位元組陣列中指定區域的雜湊值。</summary>
+      <param name="buffer">要用來計算雜湊碼的輸入。</param>
+      <param name="offset">位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="count">陣列中要用作資料的位元組數目。</param>
+      <returns>計算出來的雜湊碼。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="count" /> 是無效的值。  
+-或- 
+ <paramref name="buffer" /> 長度無效。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="buffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> 超出範圍。 這個參數需要非負數的數字。</exception>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.ComputeHash(System.IO.Stream)">
+      <summary>計算指定 <see cref="T:System.IO.Stream" /> 物件的雜湊值。</summary>
+      <param name="inputStream">要用來計算雜湊碼的輸入。</param>
+      <returns>計算出來的雜湊碼。</returns>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create">
+      <summary>建立雜湊演算法的預設實作執行個體。</summary>
+      <returns>除非已經使用 變更預設設定，否則為新的 <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> 執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Create(System.String)">
+      <summary>建立雜湊演算法之指定實作的執行個體。</summary>
+      <param name="hashName">要使用的雜湊演算法實作。 下表顯示 <paramref name="hashName" /> 參數的有效值及其對應的演算法。  
+  參數值 
+  實作 
+  SHA 
+ <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> SHA1 
+ <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> System.Security.Cryptography.SHA1 
+ <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> System.Security.Cryptography.HashAlgorithm 
+ <see cref="T:System.Security.Cryptography.SHA1CryptoServiceProvider" /> MD5 
+ <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> System.Security.Cryptography.MD5 
+ <see cref="T:System.Security.Cryptography.MD5CryptoServiceProvider" /> SHA256 
+ <see cref="T:System.Security.Cryptography.SHA256Managed" /> SHA-256 
+ <see cref="T:System.Security.Cryptography.SHA256Managed" /> System.Security.Cryptography.SHA256 
+ <see cref="T:System.Security.Cryptography.SHA256Managed" /> SHA384 
+ <see cref="T:System.Security.Cryptography.SHA384Managed" /> SHA-384 
+ <see cref="T:System.Security.Cryptography.SHA384Managed" /> System.Security.Cryptography.SHA384 
+ <see cref="T:System.Security.Cryptography.SHA384Managed" /> SHA512 
+ <see cref="T:System.Security.Cryptography.SHA512Managed" /> SHA-512 
+ <see cref="T:System.Security.Cryptography.SHA512Managed" /> System.Security.Cryptography.SHA512 
+ <see cref="T:System.Security.Cryptography.SHA512Managed" /></param>
+      <returns>指定之雜湊演算法的新執行個體，如果 <paramref name="hashName" /> 不是有效的雜湊演算法則為 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 類別目前的執行個體所使用的全部資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.Hash">
+      <summary>取得計算出來之雜湊碼的值。</summary>
+      <returns>計算出來之雜湊碼的目前值。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicUnexpectedOperationException">
+        <see cref="F:System.Security.Cryptography.HashAlgorithm.HashValue" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>在衍生類別中覆寫時，將寫入物件的資料轉遞到用來計算雜湊的雜湊演算法。</summary>
+      <param name="array">要用來計算雜湊碼的輸入。</param>
+      <param name="ibStart">位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="cbSize">位元組陣列中要用作資料的位元組數目。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashCore(System.ReadOnlySpan{System.Byte})">
+      <param name="source" />
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.HashFinal">
+      <summary>在衍生類別中覆寫時，當密碼編譯資料流物件處理最後的資料後，會對雜湊計算做最後處理。</summary>
+      <returns>計算出來的雜湊碼。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.HashSize">
+      <summary>取得計算出來的雜湊碼的大小，以位元為單位。</summary>
+      <returns>計算出來的雜湊碼的大小，以位元為單位。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashSizeValue">
+      <summary>代表計算出來之雜湊碼的大小，以位元為單位。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.HashValue">
+      <summary>表示計算出來的雜湊碼的值。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HashAlgorithm" /> 類別的實作。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.InputBlockSize">
+      <summary>在衍生類別中覆寫時，取得輸入區塊的大小。</summary>
+      <returns>輸入區塊的大小。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithm.OutputBlockSize">
+      <summary>在衍生類別中覆寫時，取得輸出區塊的大小。</summary>
+      <returns>輸出區塊的大小。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.HashAlgorithm.State">
+      <summary>表示雜湊計算的狀態。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>計算輸入位元組陣列中指定區域的雜湊值，並將指定的輸入位元組陣列區域複製到指定的輸出位元組陣列區域。</summary>
+      <param name="inputBuffer">要用來計算雜湊碼的輸入。</param>
+      <param name="inputOffset">輸入位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="inputCount">輸入位元組陣列中要用作資料的位元組數目。</param>
+      <param name="outputBuffer">用來計算雜湊碼的輸入陣列部分之複本。</param>
+      <param name="outputOffset">輸出位元組陣列中的座標，從此處開始寫入資料。</param>
+      <returns>寫入的位元組數目。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> 使用無效的值。  
+-或- 
+ <paramref name="inputBuffer" />的長度無效。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> 超出範圍。 這個參數需要非負數的數字。</exception>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>計算所指定位元組陣列中指定區域的雜湊值。</summary>
+      <param name="inputBuffer">要用來計算雜湊碼的輸入。</param>
+      <param name="inputOffset">位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="inputCount">位元組陣列中要用作資料的位元組數目。</param>
+      <returns>進行雜湊的輸入陣列部分之複本。</returns>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="inputCount" /> 使用無效的值。  
+-或- 
+ <paramref name="inputBuffer" /> 的位移長度無效。</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="inputBuffer" /> 為 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="inputOffset" /> 超出範圍。 這個參數需要非負數的數字。</exception>
+      <exception cref="T:System.ObjectDisposedException">物件已經處置。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryComputeHash(System.ReadOnlySpan{System.Byte},System.Span{System.Byte},System.Int32@)">
+      <param name="source" />
+      <param name="destination" />
+      <param name="bytesWritten" />
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithm.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <param name="destination" />
+      <param name="bytesWritten" />
+    </member>
+    <member name="T:System.Security.Cryptography.HashAlgorithmName">
+      <summary>指定密碼編譯雜湊演算法的名稱。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.#ctor(System.String)">
+      <summary>使用自訂名稱初始化的新 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 結構的執行個體。</summary>
+      <param name="name">自訂的雜湊演算法名稱。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Object)">
+      <summary>傳回值，指出目前的執行個體與指定物件是否相等。</summary>
+      <param name="obj">要與目前執行個體比較的物件。</param>
+      <returns>如果 <paramref name="obj" /> 是 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 物件，且其 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 屬性等於目前執行個體的該屬性則為 <see langword="true" />。 這項比較會依照順序並區分大小寫。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.Equals(System.Security.Cryptography.HashAlgorithmName)">
+      <summary>傳回值，這個值表示兩個 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 執行個體是否相等。</summary>
+      <param name="other">要與目前執行個體比較的物件。</param>
+      <returns>如果 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 屬性 <paramref name="other" /> 等於目前執行個體的該屬性則為 <see langword="true" />。 這項比較會依照順序並區分大小寫。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.GetHashCode">
+      <summary>傳回目前執行個體的雜湊碼。</summary>
+      <returns>目前執行個體的雜湊碼；如有提供 <paramref name="name" /> 值給 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 建構函式則為 0。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.MD5">
+      <summary>取得代表 "MD5" 的雜湊演算法名稱。</summary>
+      <returns>代表 "MD5" 的雜湊演算法名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.Name">
+      <summary>取得代表演算法名稱的基礎字串。</summary>
+      <returns>演算法名稱的字串表示；如果沒有雜湊演算法，則為 <see langword="null" /> 或 <see cref="F:System.String.Empty" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Equality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>判斷指定的兩個 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 物件是否相等。</summary>
+      <param name="left">要比較的第一個物件。</param>
+      <param name="right">要比較的第二個物件。</param>
+      <returns>如果 <paramref name="left" /> 及 <paramref name="right" /> 的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 值相同則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.op_Inequality(System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.HashAlgorithmName)">
+      <summary>判斷指定的兩個 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 物件是否相等。</summary>
+      <param name="left">要比較的第一個物件。</param>
+      <param name="right">要比較的第二個物件。</param>
+      <returns>如果 <paramref name="left" /> 及 <paramref name="right" /> 的 <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> 值不相同則為 <see langword="true" />；否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA1">
+      <summary>取得代表 "SHA1" 的雜湊演算法名稱。</summary>
+      <returns>代表 "SHA1" 的雜湊演算法名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA256">
+      <summary>取得代表 "SHA256" 的雜湊演算法名稱。</summary>
+      <returns>代表 "SHA256" 的雜湊演算法名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA384">
+      <summary>取得代表 "SHA384" 的雜湊演算法名稱。</summary>
+      <returns>代表 "SHA384" 的雜湊演算法名稱。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HashAlgorithmName.SHA512">
+      <summary>取得代表 "SHA512" 的雜湊演算法名稱。</summary>
+      <returns>代表 "SHA512" 的雜湊演算法名稱。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HashAlgorithmName.ToString">
+      <summary>傳回目前 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 執行個體的字串表示。</summary>
+      <returns>目前 <see cref="T:System.Security.Cryptography.HashAlgorithmName" /> 執行個體的字串表示。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.HMAC">
+      <summary>表示抽象類別，所有的雜湊式訊息驗證碼 (HMAC) 實作均須從這個類別衍生。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HMAC" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.BlockSizeValue">
+      <summary>取得或設定要使用於雜湊值的區塊大小。</summary>
+      <returns>要使用於雜湊值的區塊大小。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create">
+      <summary>建立雜湊式訊息驗證碼 (HMAC) 預設實作的執行個體。</summary>
+      <returns>除非已使用 &lt;cryptoClass&gt; 項目變更預設設定，否則為新的 SHA-1 執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Create(System.String)">
+      <summary>建立雜湊式訊息驗證碼 (HMAC) 之指定實作的執行個體。</summary>
+      <param name="algorithmName">要使用的 HMAC 實作。 下表顯示 <paramref name="algorithmName" /> 參數的有效值及其對應的演算法。  
+  參數值 
+  實作 
+  System.Security.Cryptography.HMAC 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> System.Security.Cryptography.KeyedHashAlgorithm 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> HMACMD5 
+ <see cref="T:System.Security.Cryptography.HMACMD5" /> System.Security.Cryptography.HMACMD5 
+ <see cref="T:System.Security.Cryptography.HMACMD5" /> HMACRIPEMD160 
+ <see cref="T:System.Security.Cryptography.HMACRIPEMD160" /> System.Security.Cryptography.HMACRIPEMD160 
+ <see cref="T:System.Security.Cryptography.HMACRIPEMD160" /> HMACSHA1 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> System.Security.Cryptography.HMACSHA1 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> HMACSHA256 
+ <see cref="T:System.Security.Cryptography.HMACSHA256" /> System.Security.Cryptography.HMACSHA256 
+ <see cref="T:System.Security.Cryptography.HMACSHA256" /> HMACSHA384 
+ <see cref="T:System.Security.Cryptography.HMACSHA384" /> System.Security.Cryptography.HMACSHA384 
+ <see cref="T:System.Security.Cryptography.HMACSHA384" /> HMACSHA512 
+ <see cref="T:System.Security.Cryptography.HMACSHA512" /> System.Security.Cryptography.HMACSHA512 
+ <see cref="T:System.Security.Cryptography.HMACSHA512" /> MACTripleDES 
+ <see cref="T:System.Security.Cryptography.MACTripleDES" /> System.Security.Cryptography.MACTripleDES 
+ <see cref="T:System.Security.Cryptography.MACTripleDES" /></param>
+      <returns>指定 HMAC 實作的新執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Dispose(System.Boolean)">
+      <summary>如果金鑰變更是合法的，則釋放 <see cref="T:System.Security.Cryptography.HMAC" /> 類別所使用的 Unmanaged 資源，並選擇性釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.Byte[],System.Int32,System.Int32)">
+      <summary>在衍生類別中覆寫時，將寫入物件的資料轉遞到用來計算雜湊的預設 <see cref="T:System.Security.Cryptography.HMAC" /> 雜湊演算法。</summary>
+      <param name="rgb">輸入資料。</param>
+      <param name="ib">位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="cb">陣列中要用作資料的位元組數目。</param>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashCore(System.ReadOnlySpan{System.Byte})">
+      <param name="source" />
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.HashFinal">
+      <summary>在衍生類別中覆寫時，當密碼編譯資料流物件處理最後的資料後，會對雜湊計算做最後處理。</summary>
+      <returns>位元組陣列中計算出的雜湊碼。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.HashName">
+      <summary>取得或設定用於雜湊的雜湊演算法名稱。</summary>
+      <returns>雜湊演算法的名稱。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">無法變更目前的雜湊演算法。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.Initialize">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.HMAC" /> 預設實作的執行個體。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.HMAC.Key">
+      <summary>取得或設定要使用於雜湊演算法的金鑰。</summary>
+      <returns>要使用於雜湊演算法的金鑰。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">嘗試在雜湊開始後變更 <see cref="P:System.Security.Cryptography.HMAC.Key" /> 屬性。</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.HMAC.TryHashFinal(System.Span{System.Byte},System.Int32@)">
+      <param name="destination" />
+      <param name="bytesWritten" />
+    </member>
+    <member name="T:System.Security.Cryptography.ICryptoTransform">
+      <summary>定義密碼編譯轉換的基本運算。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanReuseTransform">
+      <summary>取得值，表示目前的轉換是否可重複使用。</summary>
+      <returns>如果目前轉換可以重複使用，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.CanTransformMultipleBlocks">
+      <summary>取得值，表示是否有多個區塊可被轉換。</summary>
+      <returns>如果有多個區塊可被轉換，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.InputBlockSize">
+      <summary>取得輸入區塊的大小。</summary>
+      <returns>輸入資料區塊的大小，以位元組為單位。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ICryptoTransform.OutputBlockSize">
+      <summary>取得輸出區塊的大小。</summary>
+      <returns>輸出資料區塊的大小，以位元組為單位。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformBlock(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Int32)">
+      <summary>轉換輸入位元組陣列中指定的區域，並且將產生的轉換複製到輸出位元組陣列中指定的區域。</summary>
+      <param name="inputBuffer">要用來計算轉換的輸入。</param>
+      <param name="inputOffset">輸入位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="inputCount">輸入位元組陣列中要用作資料的位元組數目。</param>
+      <param name="outputBuffer">要將轉換寫入的輸出。</param>
+      <param name="outputOffset">輸出位元組陣列中的座標，從此處開始寫入資料。</param>
+      <returns>寫入的位元組數目。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ICryptoTransform.TransformFinalBlock(System.Byte[],System.Int32,System.Int32)">
+      <summary>轉換所指定位元組陣列的指定區域。</summary>
+      <param name="inputBuffer">要用來計算轉換的輸入。</param>
+      <param name="inputOffset">位元組陣列中的座標，從此處開始使用資料。</param>
+      <param name="inputCount">位元組陣列中要用作資料的位元組數目。</param>
+      <returns>計算出來的轉換。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.KeyedHashAlgorithm">
+      <summary>表示基底類別，金鑰雜湊演算法的所有實作 (Implementation) 必須從它衍生。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create">
+      <summary>建立金鑰雜湊演算法之預設實作的執行個體。</summary>
+      <returns>除非已經變更預設設定，否則為新的 <see cref="T:System.Security.Cryptography.HMACSHA1" /> 執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Create(System.String)">
+      <summary>建立金鑰雜湊演算法之指定實作的執行個體。</summary>
+      <param name="algName">要使用的金鑰雜湊演算法實作。 下表顯示 <paramref name="algName" /> 參數的有效值及其對應的演算法。  
+  參數值 
+  實作 
+  System.Security.Cryptography.HMAC 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> System.Security.Cryptography.KeyedHashAlgorithm 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> HMACMD5 
+ <see cref="T:System.Security.Cryptography.HMACMD5" /> System.Security.Cryptography.HMACMD5 
+ <see cref="T:System.Security.Cryptography.HMACMD5" /> HMACRIPEMD160 
+ <see cref="T:System.Security.Cryptography.HMACRIPEMD160" /> System.Security.Cryptography.HMACRIPEMD160 
+ <see cref="T:System.Security.Cryptography.HMACRIPEMD160" /> HMACSHA1 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> System.Security.Cryptography.HMACSHA1 
+ <see cref="T:System.Security.Cryptography.HMACSHA1" /> HMACSHA256 
+ <see cref="T:System.Security.Cryptography.HMACSHA256" /> System.Security.Cryptography.HMACSHA256 
+ <see cref="T:System.Security.Cryptography.HMACSHA256" /> HMACSHA384 
+ <see cref="T:System.Security.Cryptography.HMACSHA384" /> System.Security.Cryptography.HMACSHA384 
+ <see cref="T:System.Security.Cryptography.HMACSHA384" /> HMACSHA512 
+ <see cref="T:System.Security.Cryptography.HMACSHA512" /> System.Security.Cryptography.HMACSHA512 
+ <see cref="T:System.Security.Cryptography.HMACSHA512" /> MACTripleDES 
+ <see cref="T:System.Security.Cryptography.MACTripleDES" /> System.Security.Cryptography.MACTripleDES 
+ <see cref="T:System.Security.Cryptography.MACTripleDES" /></param>
+      <returns>所指定金鑰雜湊演算法的新執行個體。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.KeyedHashAlgorithm.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.KeyedHashAlgorithm" /> 所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeyedHashAlgorithm.Key">
+      <summary>取得或設定要使用於雜湊演算法的金鑰。</summary>
+      <returns>要使用於雜湊演算法的金鑰。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">嘗試在雜湊開始後變更 <see cref="P:System.Security.Cryptography.KeyedHashAlgorithm.Key" /> 屬性。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.KeyedHashAlgorithm.KeyValue">
+      <summary>要使用於雜湊演算法的金鑰。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.KeySizes">
+      <summary>判斷對稱密碼編譯演算法的有效金鑰組大小。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.KeySizes.#ctor(System.Int32,System.Int32,System.Int32)">
+      <summary>使用指定的金鑰值，初始化 <see cref="T:System.Security.Cryptography.KeySizes" /> 類別的新執行個體。</summary>
+      <param name="minSize">有效金鑰大小的最小值。</param>
+      <param name="maxSize">有效金鑰大小的最大值。</param>
+      <param name="skipSize">有效金鑰大小之間的間隔。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MaxSize">
+      <summary>指定最大金鑰大小，以位元為單位。</summary>
+      <returns>最大金鑰大小，以位元為單位。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.MinSize">
+      <summary>指定最小金鑰大小，以位元為單位。</summary>
+      <returns>最小金鑰大小，以位元為單位。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.KeySizes.SkipSize">
+      <summary>指定有效金鑰大小之間的間隔，以位元為單位。</summary>
+      <returns>有效金鑰大小之間的間隔，以位元為單位。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.PaddingMode">
+      <summary>指定所要套用之填補的型別，當訊息資料區塊比密碼編譯作業所需的全部位元組數目要短時。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ANSIX923">
+      <summary>ANSIX923 填補字串是由位元組序列 (此序列在長度之前是由零所填滿) 所組成。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.ISO10126">
+      <summary>ISO10126 填補字串是由長度之前的隨機資料所組成。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.None">
+      <summary>不予填補。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.PKCS7">
+      <summary>PKCS #7 填補字串是由位元組序列構成，序列中的每個位元組就等於加入的填補位元組的總數。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PaddingMode.Zeros">
+      <summary>填補字串是由設定為零的位元組構成。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeEncryptionAlgorithm">
+      <summary>指定加密演算法來與密碼型加密 (PBE) 搭配使用。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes128Cbc">
+      <summary>指出應該使用 AES-128 演算法在 CBC 模式中使用 PKCS#7 填補來執行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes192Cbc">
+      <summary>指出應該使用 AES-192 演算法在 CBC 模式中使用 PKCS#7 填補來執行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Aes256Cbc">
+      <summary>指出使用 AES-256 演算法在 CBC 模式中使用 PKCS#7 填補來執行加密。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.TripleDes3KeyPkcs12">
+      <summary>指出應在 CBC 模式中使用 TripleDES 演算法來執行加密，並使用 PKCS#12 中的金鑰衍生函數 (KDF) 衍生 192 位元金鑰。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.PbeEncryptionAlgorithm.Unknown">
+      <summary>指出未選取任何加密演算法。</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.PbeParameters">
+      <summary>表示要用於密碼型加密 (PBE) 的參數。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.PbeParameters.#ctor(System.Security.Cryptography.PbeEncryptionAlgorithm,System.Security.Cryptography.HashAlgorithmName,System.Int32)">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.PbeParameters" /> 類別的新執行個體。</summary>
+      <param name="encryptionAlgorithm">加密資料時要使用的演算法。</param>
+      <param name="hashAlgorithm">要搭配金鑰衍生函數 (Key Derivation Function，KDF) 使用以將密碼轉換為加密金鑰的雜湊演算法名稱。</param>
+      <param name="iterationCount">要提供給金鑰衍生函數 (Key Derivation Function，KDF) 以將密碼轉換為加密金鑰的反覆項目計數。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="iterationCount" /> 小於 1。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.EncryptionAlgorithm">
+      <summary>取得加密資料時要使用的演算法。</summary>
+      <returns>加密資料時要使用的演算法。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.HashAlgorithm">
+      <summary>取得要搭配金鑰衍生函數 (Key Derivation Function，KDF) 使用以將密碼轉換為加密金鑰的雜湊演算法名稱。</summary>
+      <returns>要與金鑰衍生函式 (KDF) 搭配使用的雜湊演算法名稱, 以將密碼轉換成加密金鑰。</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.PbeParameters.IterationCount">
+      <summary>取得要提供給金鑰衍生函數 (Key Derivation Function，KDF) 以將密碼轉換為加密金鑰的反覆項目計數。</summary>
+      <returns>要提供給金鑰衍生函數 (Key Derivation Function，KDF) 以將密碼轉換為加密金鑰的反覆項目計數。</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.SymmetricAlgorithm">
+      <summary>表示抽象基底類別，對稱演算法之所有實作 (Implementation) 必須從它繼承。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.#ctor">
+      <summary>初始化 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 類別的新執行個體。</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">衍生自對稱演算法的類別實作無效。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.BlockSize">
+      <summary>取得或設定密碼編譯作業的區塊大小，以位元為單位。</summary>
+      <returns>區塊大小，以位元為單位。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">區塊大小無效。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.BlockSizeValue">
+      <summary>表示密碼編譯作業的區塊大小，以位元為單位。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Clear">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 類別所使用的所有資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create">
+      <summary>建立用來執行對稱演算法的預設密碼編譯物件。</summary>
+      <returns>用來執行對稱演算法的預設密碼編譯物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Create(System.String)">
+      <summary>建立用來執行對稱演算法之指定密碼編譯物件。</summary>
+      <param name="algName">要使用的 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 類別的特定實作的名稱。</param>
+      <returns>密碼編譯物件，用來執行對稱演算法。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor">
+      <summary>使用目前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 屬性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)，建立對稱解密子物件。</summary>
+      <returns>對稱解密子物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>在衍生類別中覆寫時，使用指定的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 屬性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 建立對稱解密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱解密子物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor">
+      <summary>使用目前的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 屬性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)，建立對稱加密子物件。</summary>
+      <returns>對稱加密子物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>在衍生類別中覆寫時，使用指定的 <see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" /> 屬性和初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) 建立對稱加密子物件。</summary>
+      <param name="rgbKey">對稱演算法所用的秘密金鑰。</param>
+      <param name="rgbIV">對稱演算法所用的初始化向量。</param>
+      <returns>對稱加密子物件。</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 類別目前的執行個體所使用的全部資源。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.Dispose(System.Boolean)">
+      <summary>釋放 <see cref="T:System.Security.Cryptography.SymmetricAlgorithm" /> 所使用的 Unmanaged 資源，並選擇性地釋放 Managed 資源。</summary>
+      <param name="disposing">
+        <see langword="true" /> 表示釋放 Managed 和 Unmanaged 資源，<see langword="false" /> 則表示只釋放 Unmanaged 資源。</param>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSize">
+      <summary>取得或設定密碼編譯作業的回饋大小，以位元為單位。</summary>
+      <returns>回饋大小，以位元為單位。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">回饋大小大於區塊大小。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.FeedbackSizeValue">
+      <summary>表示密碼編譯作業的回饋大小，以位元為單位。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateIV">
+      <summary>在衍生類別中覆寫時，產生要用於該演算法的隨機初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.GenerateKey">
+      <summary>在衍生類別中覆寫時，產生要用於演算法的隨機金鑰 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.Key" />)。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.IV">
+      <summary>取得或設定對稱演算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+      <returns>初始化向量。</returns>
+      <exception cref="T:System.ArgumentNullException">嘗試將初始化向量設定為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">嘗試將初始化向量設定為無效的大小。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.IVValue">
+      <summary>表示對稱演算法的初始化向量 (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />)。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Key">
+      <summary>取得或設定對稱演算法的秘密金鑰。</summary>
+      <returns>對稱演算法所用的秘密金鑰。</returns>
+      <exception cref="T:System.ArgumentNullException">嘗試將金鑰設定為 <see langword="null" />。</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">金鑰大小無效。</exception>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.KeySize">
+      <summary>取得或設定對稱演算法使用之秘密金鑰的大小，以位元為單位。</summary>
+      <returns>對稱演算法使用之秘密金鑰的大小，以位元為單位。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">金鑰大小無效。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeySizeValue">
+      <summary>表示對稱演算法使用之秘密金鑰的大小，以位元為單位。</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.KeyValue">
+      <summary>表示對稱演算法的秘密金鑰。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizes">
+      <summary>取得對稱演算法所支援的區塊大小，以位元為單位。</summary>
+      <returns>陣列，含有演算法所支援的區塊大小。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalBlockSizesValue">
+      <summary>指定對稱演算法所支援的區塊大小，以位元為單位。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizes">
+      <summary>取得對稱演算法所支援的金鑰大小，以位元為單位。</summary>
+      <returns>陣列，含有演算法所支援的金鑰大小。</returns>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.LegalKeySizesValue">
+      <summary>指定對稱演算法所支援的金鑰大小，以位元為單位。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Mode">
+      <summary>取得或設定對稱演算法的作業模式。</summary>
+      <returns>對稱演算法的作業模式。 預設為 <see cref="F:System.Security.Cryptography.CipherMode.CBC" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">密碼模式不是其中一個 <see cref="T:System.Security.Cryptography.CipherMode" /> 值。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.ModeValue">
+      <summary>表示對稱演算法中使用的密碼模式。</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.SymmetricAlgorithm.Padding">
+      <summary>取得或設定對稱演算法中使用的填補模式。</summary>
+      <returns>對稱演算法中使用的填補模式。 預設為 <see cref="F:System.Security.Cryptography.PaddingMode.PKCS7" />。</returns>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">填補模式不是其中一個 <see cref="T:System.Security.Cryptography.PaddingMode" /> 值。</exception>
+    </member>
+    <member name="F:System.Security.Cryptography.SymmetricAlgorithm.PaddingValue">
+      <summary>表示對稱演算法中使用的填補模式。</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.SymmetricAlgorithm.ValidKeySize(System.Int32)">
+      <summary>判斷指定的金鑰大小對目前的演算法是否有效。</summary>
+      <param name="bitLength">用來檢查金鑰大小是否有效的長度，以位元為單位。</param>
+      <returns>如果指定的金鑰大小對目前的演算法有效，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+  </members>
+</doc>

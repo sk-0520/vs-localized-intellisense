@@ -1,20 +1,20 @@
-name: Build Raw-Xml
+name: Build Raw
 
 on:
   push:
     paths:
-      - 'src/VsLocalizedIntellisense.Raw/**/'
+      - 'src/VsLocalizedIntellisense.Raw/**/*'
       - '.github/workflows/build-raw.yml'
   pull_request:
     paths:
-      - 'src/VsLocalizedIntellisense.Raw/**/'
+      - 'src/VsLocalizedIntellisense.Raw/**/*'
       - '.github/workflows/build-raw.yml'
 
 env:
   DOTNET_VERSION: 8.0.x
 
 concurrency:
-  group: ${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:

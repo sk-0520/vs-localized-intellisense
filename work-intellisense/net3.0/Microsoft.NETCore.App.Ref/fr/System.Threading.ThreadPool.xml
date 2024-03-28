@@ -1,0 +1,276 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Threading.ThreadPool</name>
+  </assembly>
+  <members>
+    <member name="T:System.Threading.IThreadPoolWorkItem">
+      <summary vsli:raw="Represents a work item that can be executed by the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">Représente un élément de travail qui peut être exécuté par le <see cref="T:System.Threading.ThreadPool" />.</summary>
+    </member>
+    <member name="M:System.Threading.IThreadPoolWorkItem.Execute">
+      <summary vsli:raw="Executes the work item on the thread pool.">Exécute l’élément de travail sur le pool de threads.</summary>
+    </member>
+    <member name="T:System.Threading.RegisteredWaitHandle">
+      <summary vsli:raw="Represents a handle that has been registered when calling &lt;see cref=&quot;M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)&quot; /&gt;. This class cannot be inherited.">Représente un handle inscrit lors de l'appel à <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" />. Cette classe ne peut pas être héritée.</summary>
+    </member>
+    <member name="M:System.Threading.RegisteredWaitHandle.Unregister(System.Threading.WaitHandle)">
+      <summary vsli:raw="Cancels a registered wait operation issued by the &lt;see cref=&quot;M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)&quot; /&gt; method.">Annule une opération d'attente inscrite émise par la méthode <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" />.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to be signaled.">
+        <see cref="T:System.Threading.WaitHandle" /> à signaler.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the function succeeds; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la fonction aboutit ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Threading.ThreadPool">
+      <summary vsli:raw="Provides a pool of threads that can be used to execute tasks, post work items, process asynchronous I/O, wait on behalf of other threads, and process timers.">Fournit un pool de threads qui peuvent servir à exécuter des tâches, publier des éléments de travail, traiter des E/S asynchrones, attendre au nom d’autres threads et traiter des minuteries.</summary>
+    </member>
+    <member name="M:System.Threading.ThreadPool.BindHandle(System.IntPtr)">
+      <summary vsli:raw="Binds an operating system handle to the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">Lie un handle de système d'exploitation à <see cref="T:System.Threading.ThreadPool" />.</summary>
+      <param name="osHandle" vsli:raw="An &lt;see cref=&quot;T:System.IntPtr&quot; /&gt; that holds the handle. The handle must have been opened for overlapped I/O on the unmanaged side.">
+        <see cref="T:System.IntPtr" /> qui contient le handle. Il faut que le handle ait été ouvert pour des E/S avec chevauchement du côté non managé.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the handle is bound; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si le handle est lié ; sinon, <see langword="false" />.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.BindHandle(System.Runtime.InteropServices.SafeHandle)">
+      <summary vsli:raw="Binds an operating system handle to the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">Lie un handle de système d'exploitation à <see cref="T:System.Threading.ThreadPool" />.</summary>
+      <param name="osHandle" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.InteropServices.SafeHandle&quot; /&gt; that holds the operating system handle. The handle must have been opened for overlapped I/O on the unmanaged side.">
+        <see cref="T:System.Runtime.InteropServices.SafeHandle" /> qui contient le handle du système d'exploitation. Il faut que le handle ait été ouvert pour des E/S avec chevauchement du côté non managé.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the handle is bound; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si le handle est lié ; sinon, <see langword="false" />.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;osHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="osHandle" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="P:System.Threading.ThreadPool.CompletedWorkItemCount">
+      <summary vsli:raw="Gets the number of work items that have been processed so far.">Obtient le nombre d’éléments de travail qui ont été traités jusqu’à présent.</summary>
+      <returns vsli:raw="The number of work items that have been processed so far.">Nombre d’éléments de travail traités jusqu’à présent.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetAvailableThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the difference between the maximum number of thread pool threads returned by the &lt;see cref=&quot;M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)&quot; /&gt; method, and the number currently active.">Récupère la différence entre le nombre maximal de threads du pool retourné par la méthode <see cref="M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)" /> et le nombre actuel de threads actifs.</summary>
+      <param name="workerThreads" vsli:raw="The number of available worker threads.">Nombre de threads de travail disponibles.</param>
+      <param name="completionPortThreads" vsli:raw="The number of available asynchronous I/O threads.">Nombre de threads d'E/S asynchrones disponibles.</param>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the number of requests to the thread pool that can be active concurrently. All requests above that number remain queued until thread pool threads become available.">Récupère le nombre de demandes au pool de threads pouvant être simultanément actives. Toutes les demandes excédant ce nombre restent dans la file d'attente jusqu'à ce que des threads du pool soient disponibles.</summary>
+      <param name="workerThreads" vsli:raw="The maximum number of worker threads in the thread pool.">Nombre maximal de threads de travail dans le pool de threads.</param>
+      <param name="completionPortThreads" vsli:raw="The maximum number of asynchronous I/O threads in the thread pool.">Nombre maximal de threads d'E/S asynchrones dans le pool de threads.</param>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetMinThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the minimum number of threads the thread pool creates on demand, as new requests are made, before switching to an algorithm for managing thread creation and destruction.">Récupère le nombre minimal de threads que le pool de threads crée à la demande, au fur et à mesure que de nouvelles requêtes sont effectuées, avant de basculer sur un algorithme pour la gestion de la création et de la suppression des threads.</summary>
+      <param name="workerThreads" vsli:raw="When this method returns, contains the minimum number of worker threads that the thread pool creates on demand.">Lorsque cette méthode est retournée, contient le nombre minimal de threads de travail que le pool de threads crée à la demande.</param>
+      <param name="completionPortThreads" vsli:raw="When this method returns, contains the minimum number of asynchronous I/O threads that the thread pool creates on demand.">Lorsque cette méthode est retournée, contient le nombre minimal de threads d'E/S asynchrones que le pool de threads crée à la demande.</param>
+    </member>
+    <member name="P:System.Threading.ThreadPool.PendingWorkItemCount">
+      <summary vsli:raw="Gets the number of work items that are currently queued to be processed.">Obtient le nombre d’éléments de travail qui sont actuellement en file d’attente pour être traités.</summary>
+      <returns vsli:raw="The number of work items that are currently queued to be processed.">Nombre d’éléments de travail actuellement en file d’attente à traiter.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback)">
+      <summary vsli:raw="Queues a method for execution. The method executes when a thread pool thread becomes available.">Place une méthode en file d'attente pour exécution. La méthode s'exécute lorsqu'un thread du pool devient disponible.</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; that represents the method to be executed.">
+        <see cref="T:System.Threading.WaitCallback" /> qui représente la méthode à exécuter.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est placée en file d'attente avec succès ; <see cref="T:System.NotSupportedException" /> est levé si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The common language runtime (CLR) is hosted, and the host does not support this action.">Le Common Language Runtime (CLR) est hébergé et l'hôte ne prend pas en charge cette action.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback,System.Object)">
+      <summary vsli:raw="Queues a method for execution, and specifies an object containing data to be used by the method. The method executes when a thread pool thread becomes available.">Place une méthode en file d'attente pour exécution et spécifie un objet contenant les données que la méthode doit utiliser. La méthode s'exécute lorsqu'un thread du pool devient disponible.</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; representing the method to execute.">
+        <see cref="T:System.Threading.WaitCallback" /> représentant la méthode à exécuter.</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">Objet contenant les données que la méthode doit utiliser.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est placée en file d'attente avec succès ; <see cref="T:System.NotSupportedException" /> est levé si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The common language runtime (CLR) is hosted, and the host does not support this action.">Le Common Language Runtime (CLR) est hébergé et l'hôte ne prend pas en charge cette action.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem``1(System.Action{``0},``0,System.Boolean)">
+      <summary vsli:raw="Queues a method specified by an &lt;see cref=&quot;T:System.Action`1&quot; /&gt; delegate for execution, and provides data to be used by the method. The method executes when a thread pool thread becomes available.">Place en file d'attente une méthode spécifiée par un délégué <see cref="T:System.Action`1" /> pour exécution et fournit les données que la méthode doit utiliser. La méthode s'exécute lorsqu'un thread du pool devient disponible.</summary>
+      <param name="callBack" vsli:raw="An &lt;see cref=&quot;T:System.Action`1&quot; /&gt; representing the method to execute.">
+        <see cref="T:System.Action`1" /> représentant la méthode à exécuter.</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">Objet contenant les données que la méthode doit utiliser.</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">
+        <see langword="true" /> pour placer l’élément de travail dans une file d’attente à proximité du thread actuel ; <see langword="false" /> pour placer l’élément de travail dans la file d’attente partagée du pool de threads.</param>
+      <typeparam name="TState" vsli:raw="The type of elements of &lt;paramref name=&quot;state&quot; /&gt;.">Le type des éléments de <paramref name="state" />.</typeparam>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est placée en file d'attente avec succès ; <see cref="T:System.NotSupportedException" /> est levé si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit signed integer for the time-out in milliseconds.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier 32 bits signé.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué <see cref="T:System.Threading.WaitOrTimerCallback" /> à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">
+        <see cref="T:System.Threading.RegisteredWaitHandle" /> qui encapsule le handle natif.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="millisecondsTimeOutInterval" /> est inférieur à -1.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int64,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 64-bit signed integer for the time-out in milliseconds.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier 64 bits signé.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué <see cref="T:System.Threading.WaitOrTimerCallback" /> à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">
+        <see cref="T:System.Threading.RegisteredWaitHandle" /> qui encapsule le handle natif.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="millisecondsTimeOutInterval" /> est inférieur à -1.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.TimeSpan,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value for the time-out.">Inscrit un délégué en attente de <see cref="T:System.Threading.WaitHandle" />, en spécifiant une valeur <see cref="T:System.TimeSpan" /> pour indiquer le délai.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué <see cref="T:System.Threading.WaitOrTimerCallback" /> à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">Objet passé au délégué.</param>
+      <param name="timeout" vsli:raw="The time-out represented by a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt;. If &lt;paramref name=&quot;timeout&quot; /&gt; is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;timeout&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai représenté par <see cref="T:System.TimeSpan" />. Si le paramètre <paramref name="timeout" /> a la valeur zéro, la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="timeout" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">
+        <see cref="T:System.Threading.RegisteredWaitHandle" /> qui encapsule le handle natif.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="timeout" /> est inférieur à -1.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is greater than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">Le paramètre <paramref name="timeout" /> est supérieur à <see cref="F:System.Int32.MaxValue" />.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit unsigned integer for the time-out in milliseconds.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier 32 bits non signé.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué <see cref="T:System.Threading.WaitOrTimerCallback" /> à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that can be used to cancel the registered wait operation.">
+        <see cref="T:System.Threading.RegisteredWaitHandle" /> pouvant être utilisé pour annuler l'opération d'attente inscrite.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="millisecondsTimeOutInterval" /> est inférieur à -1.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.SetMaxThreads(System.Int32,System.Int32)">
+      <summary vsli:raw="Sets the number of requests to the thread pool that can be active concurrently. All requests above that number remain queued until thread pool threads become available.">Définit le nombre de demandes au pool de threads pouvant être simultanément actives. Toutes les demandes excédant ce nombre restent dans la file d'attente jusqu'à ce que des threads du pool soient disponibles.</summary>
+      <param name="workerThreads" vsli:raw="The maximum number of worker threads in the thread pool.">Nombre maximal de threads de travail dans le pool de threads.</param>
+      <param name="completionPortThreads" vsli:raw="The maximum number of asynchronous I/O threads in the thread pool.">Nombre maximal de threads d'E/S asynchrones dans le pool de threads.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the change is successful; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la modification aboutit ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.SetMinThreads(System.Int32,System.Int32)">
+      <summary vsli:raw="Sets the minimum number of threads the thread pool creates on demand, as new requests are made, before switching to an algorithm for managing thread creation and destruction.">Définit le nombre minimal de threads que le pool de threads crée à la demande, au fur et à mesure que de nouvelles requêtes sont effectuées, avant de basculer sur un algorithme pour la gestion de la création et de la suppression des threads.</summary>
+      <param name="workerThreads" vsli:raw="The minimum number of worker threads that the thread pool creates on demand.">Nombre minimal de threads de travail que le pool de threads crée à la demande.</param>
+      <param name="completionPortThreads" vsli:raw="The minimum number of asynchronous I/O threads that the thread pool creates on demand.">Nombre minimal de threads d'E/S asynchrones que le pool de threads crée à la demande.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the change is successful; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si la modification aboutit ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Threading.ThreadPool.ThreadCount">
+      <summary vsli:raw="Gets the number of thread pool threads that currently exist.">Obtient le nombre de threads du pool de threads qui existent actuellement.</summary>
+      <returns vsli:raw="The number of thread pool threads that currently exist.">Nombre de threads de pool de threads qui existent actuellement.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueNativeOverlapped(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Queues an overlapped I/O operation for execution.">Met en file d'attente l'exécution d'une opération d'E/S avec chevauchement.</summary>
+      <param name="overlapped" vsli:raw="The &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure to queue.">Structure <see cref="T:System.Threading.NativeOverlapped" /> à placer en file d'attente.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the operation was successfully queued to an I/O completion port; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <see langword="true" /> si l'opération a été mise en file d'attente dans un port de terminaison d'E/S ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem(System.Threading.IThreadPoolWorkItem,System.Boolean)">
+      <summary vsli:raw="Queues the specified work item object to the thread pool.">Met en file d’attente l’objet élément de travail spécifié dans le pool de threads.</summary>
+      <param name="callBack" vsli:raw="The work item to invoke when a thread in the thread pool picks up the work item.">Élément de travail à appeler lorsqu’un thread du pool de threads sélectionne cet élément de travail.</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">
+        <see langword="true" /> pour placer l’élément de travail dans une file d’attente à proximité du thread actuel ; <see langword="false" /> pour placer l’élément de travail dans la file d’attente partagée du pool de threads.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method succeeds; &lt;see cref=&quot;T:System.OutOfMemoryException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est exécutée avec succès ; <see cref="T:System.OutOfMemoryException" /> est levée si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The work item is a &lt;see cref=&quot;T:System.Threading.Tasks.Task&quot; /&gt;.">L’élément de travail est un <see cref="T:System.Threading.Tasks.Task" />.</exception>
+      <exception cref="T:System.OutOfMemoryException" vsli:raw="The work item could not be queued.">L'élément de travail n'a pas pu être placé en file d'attente.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem(System.Threading.WaitCallback,System.Object)">
+      <summary vsli:raw="Queues the specified delegate to the thread pool, but does not propagate the calling stack to the worker thread.">Met le délégué spécifié en file d'attente dans le pool de threads, mais ne propage pas la pile d'appels vers le thread de travail.</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; that represents the delegate to invoke when a thread in the thread pool picks up the work item.">
+        <see cref="T:System.Threading.WaitCallback" /> représentant le délégué à appeler lorsqu’un thread du pool de threads sélectionne l’élément de travail.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate when serviced from the thread pool.">Objet passé au délégué lors de son traitement dans le pool de threads.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method succeeds; &lt;see cref=&quot;T:System.OutOfMemoryException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est exécutée avec succès ; <see cref="T:System.OutOfMemoryException" /> est levée si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+      <exception cref="T:System.ApplicationException" vsli:raw="An out-of-memory condition was encountered.">Une condition de mémoire insuffisante a été rencontrée.</exception>
+      <exception cref="T:System.OutOfMemoryException" vsli:raw="The work item could not be queued.">L'élément de travail n'a pas pu être placé en file d'attente.</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem``1(System.Action{``0},``0,System.Boolean)">
+      <summary vsli:raw="Queues a method specified by an &lt;see cref=&quot;T:System.Action`1&quot; /&gt; delegate for execution, and specifies an object containing data to be used by the method. The method executes when a thread pool thread becomes available.">Place en file d'attente une méthode spécifiée par un délégué <see cref="T:System.Action`1" /> pour exécution et spécifie un objet contenant les données que la méthode doit utiliser. La méthode s'exécute lorsqu'un thread du pool devient disponible.</summary>
+      <param name="callBack" vsli:raw="A delegate representing the method to execute.">Délégué représentant la méthode à exécuter.</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">Objet contenant les données que la méthode doit utiliser.</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">
+        <see langword="true" /> pour placer l’élément de travail dans une file d’attente à proximité du thread actuel ; <see langword="false" /> pour placer l’élément de travail dans la file d’attente partagée du pool de threads.</param>
+      <typeparam name="TState" vsli:raw="The type of elements of &lt;paramref name=&quot;state&quot; /&gt;.">Le type des éléments de <paramref name="state" />.</typeparam>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">
+        <see langword="true" /> si la méthode est placée en file d'attente avec succès ; <see cref="T:System.NotSupportedException" /> est levé si l'élément de travail n'a pas pu être placé en file d'attente.</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The work item could not be queued.">L'élément de travail n'a pas pu être placé en file d'attente.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, using a 32-bit signed integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier signé 32 bits. Cette méthode ne propage pas la pile appelante vers le thread de travail.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">Objet <see cref="T:System.Threading.RegisteredWaitHandle" /> pouvant être utilisé pour annuler l'opération d'attente inscrite.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="millisecondsTimeOutInterval" /> est inférieur à -1.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int64,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 64-bit signed integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier 64 bits signé. Cette méthode ne propage pas la pile appelante vers le thread de travail.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">Objet <see cref="T:System.Threading.RegisteredWaitHandle" /> pouvant être utilisé pour annuler l'opération d'attente inscrite.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="millisecondsTimeOutInterval" /> est inférieur à -1.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.TimeSpan,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value for the time-out. This method does not propagate the calling stack to the worker thread.">Inscrit un délégué en attente de <see cref="T:System.Threading.WaitHandle" />, en spécifiant une valeur <see cref="T:System.TimeSpan" /> pour indiquer le délai. Cette méthode ne propage pas la pile appelante vers le thread de travail.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">Objet passé au délégué.</param>
+      <param name="timeout" vsli:raw="The time-out represented by a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt;. If &lt;paramref name=&quot;timeout&quot; /&gt; is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;timeout&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai représenté par <see cref="T:System.TimeSpan" />. Si le paramètre <paramref name="timeout" /> a la valeur zéro, la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="timeout" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">Objet <see cref="T:System.Threading.RegisteredWaitHandle" /> pouvant être utilisé pour annuler l'opération d'attente inscrite.</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is less than -1.">Le paramètre <paramref name="timeout" /> est inférieur à -1.</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is greater than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">Le paramètre <paramref name="timeout" /> est supérieur à <see cref="F:System.Int32.MaxValue" />.</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit unsigned integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">Inscrit un délégué pour attendre un <see cref="T:System.Threading.WaitHandle" />, en utilisant, pour indiquer le délai en millisecondes, un entier 32 bits non signé. Cette méthode ne propage pas la pile appelante vers le thread de travail.</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">
+        <see cref="T:System.Threading.WaitHandle" /> à inscrire. Utilisez un <see cref="T:System.Threading.WaitHandle" /> autre que <see cref="T:System.Threading.Mutex" />.</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">Délégué à appeler lorsque le paramètre <paramref name="waitObject" /> est signalé.</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">Objet passé au délégué.</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">Délai en millisecondes. Si le paramètre <paramref name="millisecondsTimeOutInterval" /> a la valeur zéro (0), la fonction teste l'état de l'objet et procède à un retour immédiat. Si <paramref name="millisecondsTimeOutInterval" /> a la valeur -1, le délai d'expiration de la fonction ne prend jamais fin.</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">
+        <see langword="true" /> pour indiquer que le thread ne tiendra plus compte du paramètre <paramref name="waitObject" /> une fois le délégué appelé ; <see langword="false" /> pour indiquer que la minuterie sera réinitialisée à chaque achèvement d'opération d'attente, jusqu'à annulation de l'inscription de l'attente.</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">Objet <see cref="T:System.Threading.RegisteredWaitHandle" /> pouvant être utilisé pour annuler l'opération d'attente inscrite.</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">L'appelant n'a pas l'autorisation requise.</exception>
+    </member>
+    <member name="T:System.Threading.WaitCallback">
+      <summary vsli:raw="Represents a callback method to be executed by a thread pool thread.">Représente une méthode de rappel qu'un thread du pool doit exécuter.</summary>
+      <param name="state" vsli:raw="An object containing information to be used by the callback method.">Objet contenant les informations que la méthode de rappel doit utiliser.</param>
+    </member>
+    <member name="T:System.Threading.WaitOrTimerCallback">
+      <summary vsli:raw="Represents a method to be called when a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; is signaled or times out.">Représente une méthode à appeler lorsqu'un <see cref="T:System.Threading.WaitHandle" /> est signalé ou expire.</summary>
+      <param name="state" vsli:raw="An object containing information to be used by the callback method each time it executes.">Objet contenant les informations que la méthode de rappel doit utiliser à chacune de ses exécutions.</param>
+      <param name="timedOut" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; timed out; &lt;see langword=&quot;false&quot; /&gt; if it was signaled.">
+        <see langword="true" /> si le <see cref="T:System.Threading.WaitHandle" /> a expiré ; <see langword="false" /> s'il a été signalé.</param>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,381 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Diagnostics.Debug</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.Debug">
+      <summary>コードのデバッグを支援するメソッドとプロパティのセットを提供します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Assert(System.Boolean)">
+      <summary>条件をチェックします。条件が <see langword="false" /> の場合、呼び出し履歴を見せるメッセージ ボックスを表示します。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、エラー メッセージは送信されず、メッセージ ボックスは表示されません。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String)">
+      <summary>条件をチェックします。条件が <see langword="false" /> の場合、指定したメッセージを出力し、コール スタックを示すメッセージ ボックスを表示します。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、指定したメッセージは送信されず、メッセージ ボックスは表示されません。</param>
+      <param name="message">
+        <see cref="P:System.Diagnostics.Trace.Listeners" /> コレクションに送信するメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String,System.String)">
+      <summary>条件をチェックします。条件が <see langword="false" /> の場合、指定した 2 つのメッセージを出力し、コール スタックを示すメッセージ ボックスを表示します。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、指定したメッセージは送信されず、メッセージ ボックスは表示されません。</param>
+      <param name="message">
+        <see cref="P:System.Diagnostics.Trace.Listeners" /> コレクションに送信するメッセージ。</param>
+      <param name="detailMessage">
+        <see cref="P:System.Diagnostics.Trace.Listeners" /> コレクションに送信する詳細なメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Assert(System.Boolean,System.String,System.String,System.Object[])">
+      <summary>条件をチェックし、その条件が <see langword="false" /> の場合は、2 つのメッセージ (単純なメッセージと書式設定されたメッセージ) を出力し、呼び出し履歴を表示するメッセージ ボックスを表示します。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、指定したメッセージは送信されず、メッセージ ボックスは表示されません。</param>
+      <param name="message">
+        <see cref="P:System.Diagnostics.Trace.Listeners" /> コレクションに送信するメッセージ。</param>
+      <param name="detailMessageFormat">
+        <see cref="P:System.Diagnostics.Trace.Listeners" /> コレクションに送信する複合書式指定文字列。 このメッセージのテキストには、<paramref name="args" /> 配列内のオブジェクトに対応する 0 個以上の書式項目を含めることができます。</param>
+      <param name="args">0 個以上の書式設定対象オブジェクトを含んだオブジェクト配列。</param>
+    </member>
+    <member name="P:System.Diagnostics.Debug.AutoFlush">
+      <summary>書き込むたびに、<see cref="M:System.Diagnostics.Debug.Flush" /> で <see cref="P:System.Diagnostics.Debug.Listeners" /> を呼び出すかどうかを示す値を取得または設定します。</summary>
+      <returns>すべての書き込み後に <see cref="P:System.Diagnostics.Debug.Listeners" /> で <see cref="M:System.Diagnostics.Debug.Flush" /> を呼び出す場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Close">
+      <summary>出力バッファーをフラッシュしてから、各 <see cref="P:System.Diagnostics.Debug.Listeners" /> で <see langword="Close" /> を呼び出します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Fail(System.String)">
+      <summary>指定されたエラー メッセージを出力します。</summary>
+      <param name="message">出力するメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Fail(System.String,System.String)">
+      <summary>エラー メッセージと詳細エラー メッセージを出力します。</summary>
+      <param name="message">出力するメッセージ。</param>
+      <param name="detailMessage">出力する詳細メッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Flush">
+      <summary>出力バッファーをフラッシュし、バッファー内のデータを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションに書き込みます。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Indent">
+      <summary>現在の <see cref="P:System.Diagnostics.Debug.IndentLevel" /> を 1 だけ大きくします。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Debug.IndentLevel">
+      <summary>インデント レベルを取得または設定します。</summary>
+      <returns>インデント レベル。 既定値は 0 です。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Debug.IndentSize">
+      <summary>1 つのインデントに含まれるスペースの数を取得または設定します。</summary>
+      <returns>インデントに含まれるスペースの数。 既定値は 4 です。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Print(System.String)">
+      <summary>
+        <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーにメッセージを書き込み、続けて行終端記号を書き込みます。</summary>
+      <param name="message">書き込むメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Print(System.String,System.Object[])">
+      <summary>
+        <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書式指定された文字列を書き込み、続けて行終端記号を書き込みます。</summary>
+      <param name="format">0 個以上の書式項目が混在したテキストを含む複合書式指定文字列。各書式項目は、<paramref name="args" /> 配列内のオブジェクトに対応します。</param>
+      <param name="args">0 個以上の書式設定対象オブジェクトを含んだオブジェクト配列。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.FormatException">
+        <paramref name="format" /> が無効です。
+または
+書式設定する引数を示す数が 0 より小さいか、書式設定する指定されたオブジェクトの数以上です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Unindent">
+      <summary>現在の <see cref="P:System.Diagnostics.Debug.IndentLevel" /> を 1 だけ減らします。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Write(System.Object)">
+      <summary>オブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Write(System.Object,System.String)">
+      <summary>カテゴリ名とオブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Write(System.String)">
+      <summary>
+        <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーにメッセージを書き込みます。</summary>
+      <param name="message">書き込むメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.Write(System.String,System.String)">
+      <summary>カテゴリ名とメッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="message">書き込むメッセージ。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteIf(System.Boolean,System.Object)">
+      <summary>条件が <see langword="true" /> の場合、オブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーに値が書き込まれます。</param>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteIf(System.Boolean,System.Object,System.String)">
+      <summary>条件が <see langword="true" /> の場合は、カテゴリ名とオブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーにカテゴリ名と値が書き込まれます。</param>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteIf(System.Boolean,System.String)">
+      <summary>条件が <see langword="true" /> である場合、メッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーにメッセージが書き込まれます。</param>
+      <param name="message">書き込むメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteIf(System.Boolean,System.String,System.String)">
+      <summary>条件が <see langword="true" /> である場合、カテゴリ名とメッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーにカテゴリ名とメッセージが書き込まれます。</param>
+      <param name="message">書き込むメッセージ。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLine(System.Object)">
+      <summary>オブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLine(System.Object,System.String)">
+      <summary>カテゴリ名とオブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLine(System.String)">
+      <summary>
+        <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーにメッセージを書き込み、続けて行終端記号を書き込みます。</summary>
+      <param name="message">書き込むメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLine(System.String,System.Object[])">
+      <summary>
+        <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書式指定されたメッセージを書き込み、続けて行終端記号を書き込みます。</summary>
+      <param name="format">0 個以上の書式項目が混在したテキストを含む複合書式指定文字列。各書式項目は、<paramref name="args" /> 配列内のオブジェクトに対応します。</param>
+      <param name="args">0 個以上の書式設定対象オブジェクトを含んだオブジェクト配列。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLine(System.String,System.String)">
+      <summary>カテゴリ名とメッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="message">書き込むメッセージ。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLineIf(System.Boolean,System.Object)">
+      <summary>条件が <see langword="true" /> の場合、オブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーに値が書き込まれます。</param>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLineIf(System.Boolean,System.Object,System.String)">
+      <summary>条件が <see langword="true" /> の場合は、カテゴリ名とオブジェクトの <see cref="M:System.Object.ToString" /> メソッドの値を <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーにカテゴリ名と値が書き込まれます。</param>
+      <param name="value">名前が <see cref="P:System.Diagnostics.Debug.Listeners" /> に送信されるオブジェクト。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLineIf(System.Boolean,System.String)">
+      <summary>条件が <see langword="true" /> である場合、メッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">評価する条件式。 条件が <see langword="true" /> の場合、コレクションのトレース リスナーにメッセージが書き込まれます。</param>
+      <param name="message">書き込むメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debug.WriteLineIf(System.Boolean,System.String,System.String)">
+      <summary>条件が <see langword="true" /> である場合、カテゴリ名とメッセージを <see cref="P:System.Diagnostics.Debug.Listeners" /> コレクションのトレース リスナーに書き込みます。</summary>
+      <param name="condition">メッセージが書き込まれるようにするには <see langword="true" />。それ以外の場合は <see langword="false" />。</param>
+      <param name="message">書き込むメッセージ。</param>
+      <param name="category">出力を編成するために使用するカテゴリ名。</param>
+    </member>
+    <member name="T:System.Diagnostics.Debugger">
+      <summary>デバッガーとの通信を有効にします。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Debugger.Break">
+      <summary>アタッチされたデバッガーにブレークポイントを示します。</summary>
+      <exception cref="T:System.Security.SecurityException">デバッガーに割り込むために <see cref="T:System.Security.Permissions.UIPermission" /> が設定されていません。</exception>
+    </member>
+    <member name="F:System.Diagnostics.Debugger.DefaultCategory">
+      <summary>定数を持つメッセージの既定のカテゴリを表します。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Debugger.IsAttached">
+      <summary>デバッガーがプロセスにアタッチされているかどうかを示す値を取得します。</summary>
+      <returns>デバッガーがアタッチされた場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Debugger.IsLogging">
+      <summary>アタッチされたデバッガーによってログ記録が有効になっているかどうかを確認します。</summary>
+      <returns>デバッガーがアタッチされ、ログ記録が有効の場合は <see langword="true" />。それ以外の場合は <see langword="false" />。 アタッチされたデバッガーは、<see langword="DbgManagedDebugger" /> レジストリ キー内に登録されたマネージド デバッガーです。 このキーの詳細については、「Enabling JIT-Attach Debugging (JIT アタッチ デバッグの有効化)」をご覧ください。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Debugger.Launch">
+      <summary>デバッガーを起動し、プロセスにアタッチします。</summary>
+      <returns>起動に成功した場合、またはデバッガーが既にアタッチされている場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.Security.SecurityException">デバッガーを起動する <see cref="T:System.Security.Permissions.UIPermission" /> が設定されていません。</exception>
+    </member>
+    <member name="M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)">
+      <summary>アタッチされたデバッガーのメッセージをポストします。</summary>
+      <param name="level">メッセージの重要性の記述。</param>
+      <param name="category">メッセージのカテゴリ。</param>
+      <param name="message">表示するメッセージ。</param>
+    </member>
+    <member name="M:System.Diagnostics.Debugger.NotifyOfCrossThreadDependency">
+      <summary>スレッド間の依存関係を伴う実行パスに入ろうとしていることをデバッガーに通知します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerBrowsableAttribute">
+      <summary>デバッガー変数ウィンドウ内でメンバーを表示するかどうかと、表示方法を決定します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerBrowsableAttribute.#ctor(System.Diagnostics.DebuggerBrowsableState)">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerBrowsableAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="state">メンバーを表示する方法を指定する <see cref="T:System.Diagnostics.DebuggerBrowsableState" /> 値の 1 つ。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="state" /> は <see cref="T:System.Diagnostics.DebuggerBrowsableState" /> 値のいずれでもありません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerBrowsableAttribute.State">
+      <summary>属性の表示状態を取得します。</summary>
+      <returns>
+        <see cref="T:System.Diagnostics.DebuggerBrowsableState" /> 値のいずれか 1 つ。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerBrowsableState">
+      <summary>デバッガーに対する表示命令を提供します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.DebuggerBrowsableState.Collapsed">
+      <summary>折りたたまれたときの要素を表示します。</summary>
+    </member>
+    <member name="F:System.Diagnostics.DebuggerBrowsableState.Never">
+      <summary>要素を表示しません。</summary>
+    </member>
+    <member name="F:System.Diagnostics.DebuggerBrowsableState.RootHidden">
+      <summary>ルート要素を表示しません。要素が項目のコレクションまたは配列である場合は子要素を表示します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerDisplayAttribute">
+      <summary>デバッガー変数ウィンドウ内でクラスまたはフィールドを表示する方法を決定します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerDisplayAttribute.#ctor(System.String)">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerDisplayAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="value">型のインスタンスの値列に表示される文字列。 空の文字列 ("") を指定すると、値列が非表示となります。</param>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerDisplayAttribute.Name">
+      <summary>デバッガー変数ウィンドウ内に表示する名前を取得または設定します。</summary>
+      <returns>デバッガー変数ウィンドウに表示する名前。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerDisplayAttribute.Target">
+      <summary>属性の対象の型を取得または設定します。</summary>
+      <returns>属性のターゲット型。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="P:System.Diagnostics.DebuggerDisplayAttribute.Target" /> が <see langword="null" /> に設定されます。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerDisplayAttribute.TargetTypeName">
+      <summary>属性の対象の型名を取得または設定します。</summary>
+      <returns>属性の対象の型の名前。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerDisplayAttribute.Type">
+      <summary>デバッガー変数ウィンドウ内の型列に表示する文字列を取得または設定します。</summary>
+      <returns>デバッガー変数ウィンドウの型列に表示する文字列。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerDisplayAttribute.Value">
+      <summary>デバッガー変数ウィンドウの値列に表示する文字列を取得します。</summary>
+      <returns>デバッガー変数の値列に表示する文字列。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerHiddenAttribute">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerHiddenAttribute" /> を指定します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerHiddenAttribute.#ctor">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerHiddenAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerNonUserCodeAttribute">
+      <summary>型またはメンバーが、アプリケーションのユーザー コードの一部でないことを識別します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerNonUserCodeAttribute.#ctor">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerNonUserCodeAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerStepperBoundaryAttribute">
+      <summary>属性の後に続くコードがステップ モードではなく実行モードで実行されることを示します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerStepperBoundaryAttribute.#ctor">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerStepperBoundaryAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerStepThroughAttribute">
+      <summary>デバッガーに対してコードのステップ インではなくステップ実行を指示します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerStepThroughAttribute.#ctor">
+      <summary>
+        <see cref="T:System.Diagnostics.DebuggerStepThroughAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerTypeProxyAttribute">
+      <summary>型の表示プロキシを指定します。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.String)">
+      <summary>プロキシの型名を使用して、<see cref="T:System.Diagnostics.DebuggerTypeProxyAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="typeName">プロキシ型の型名。</param>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerTypeProxyAttribute.#ctor(System.Type)">
+      <summary>プロキシの型を使用して、<see cref="T:System.Diagnostics.DebuggerTypeProxyAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="type">プロキシ型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="type" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerTypeProxyAttribute.ProxyTypeName">
+      <summary>プロキシ型の型名を取得します。</summary>
+      <returns>プロキシ型の型名。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerTypeProxyAttribute.Target">
+      <summary>属性の対象の型を取得または設定します。</summary>
+      <returns>属性の対象の型。</returns>
+      <exception cref="T:System.ArgumentNullException">
+        <see cref="P:System.Diagnostics.DebuggerTypeProxyAttribute.Target" /> が <see langword="null" /> に設定されます。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerTypeProxyAttribute.TargetTypeName">
+      <summary>対象の型の名前を取得または設定します。</summary>
+      <returns>対象の型の名前。</returns>
+    </member>
+    <member name="T:System.Diagnostics.DebuggerVisualizerAttribute">
+      <summary>型がビジュアライザーを持つことを指定します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.String)">
+      <summary>ビジュアライザーの型名を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> の新しいインスタンスを初期化します。</summary>
+      <param name="visualizerTypeName">ビジュアライザーの完全修飾型名。</param>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.String,System.String)">
+      <summary>ビジュアライザーの型名およびビジュアライザー オブジェクト ソースの型名を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="visualizerTypeName">ビジュアライザーの完全修飾型名。</param>
+      <param name="visualizerObjectSourceTypeName">ビジュアライザー オブジェクト ソースの完全修飾型名。</param>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.String,System.Type)">
+      <summary>ビジュアライザーの型名およびビジュアライザー オブジェクト ソースの型を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="visualizerTypeName">ビジュアライザーの完全修飾型名。</param>
+      <param name="visualizerObjectSource">ビジュアライザー オブジェクト ソースの型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="visualizerObjectSource" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.Type)">
+      <summary>ビジュアライザーの型を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="visualizer">ビジュアライザーの型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="visualizer" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.Type,System.String)">
+      <summary>ビジュアライザーの型とビジュアライザー オブジェクト ソースの型名を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="visualizer">ビジュアライザーの型。</param>
+      <param name="visualizerObjectSourceTypeName">ビジュアライザー オブジェクト ソースの完全修飾型名。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="visualizer" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Diagnostics.DebuggerVisualizerAttribute.#ctor(System.Type,System.Type)">
+      <summary>ビジュアライザーの型とビジュアライザー オブジェクト ソースの型を指定して、<see cref="T:System.Diagnostics.DebuggerVisualizerAttribute" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="visualizer">ビジュアライザーの型。</param>
+      <param name="visualizerObjectSource">ビジュアライザー オブジェクト ソースの型。</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="visualizerObjectSource" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerVisualizerAttribute.Description">
+      <summary>ビジュアライザーの説明を取得または設定します。</summary>
+      <returns>ビジュアライザーの説明。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerVisualizerAttribute.Target">
+      <summary>属性がアセンブリ レベルで適用される場合の対象の型を取得または設定します。</summary>
+      <returns>ビジュアライザーの対象の型。</returns>
+      <exception cref="T:System.ArgumentNullException">値が <see langword="null" /> のため、設定できません。</exception>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerVisualizerAttribute.TargetTypeName">
+      <summary>属性がアセンブリ レベルで適用される場合の完全修飾型名を取得または設定します。</summary>
+      <returns>対象の型の完全修飾型名。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerVisualizerAttribute.VisualizerObjectSourceTypeName">
+      <summary>ビジュアライザー オブジェクト ソースの完全修飾型名を取得します。</summary>
+      <returns>ビジュアライザー オブジェクト ソースの完全修飾型名。</returns>
+    </member>
+    <member name="P:System.Diagnostics.DebuggerVisualizerAttribute.VisualizerTypeName">
+      <summary>ビジュアライザーの完全修飾型名を取得します。</summary>
+      <returns>ビジュアライザーの完全修飾型名。</returns>
+    </member>
+  </members>
+</doc>

@@ -1,0 +1,989 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Diagnostics.Tracing</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.Tracing.DiagnosticCounter">
+      <summary vsli:raw="&lt;see cref=&quot;T:System.Diagnostics.Tracing.DiagnosticCounter&quot; /&gt; is an abstract class that serves as the parent class for various Counter* classes, namely &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt;, and &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.DiagnosticCounter" />는 다양한 Counter* 클래스에 대한 부모 클래스(즉 <see cref="T:System.Diagnostics.Tracing.EventCounter" />, <see cref="T:System.Diagnostics.Tracing.PollingCounter" />, <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 및 <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" />) 역할을 하는 추상 클래스입니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.AddMetadata(System.String,System.String)">
+      <summary vsli:raw="Adds key-value metadata to the counter that will be included as a part of the payload.">페이로드의 일부분으로 포함되는 카운터에 키-값 메타데이터를 추가합니다.</summary>
+      <param name="key" vsli:raw="The metadata key.">메타데이터 키입니다.</param>
+      <param name="value" vsli:raw="The metadata value.">메타데이터 값입니다.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayName">
+      <summary vsli:raw="Gets or sets the display name of the counter.">카운터의 표시 이름을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The display name of the counter.">카운터의 표시 이름입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.DisplayUnits">
+      <summary vsli:raw="Gets or sets the display units of the counter.">카운터의 표시 단위를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The display units of the counter.">카운터의 표시 단위입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.DiagnosticCounter.Dispose">
+      <summary vsli:raw="Removes the counter from the set that the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; will report on.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" />가 보고할 집합에서 카운터를 제거합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.EventSource">
+      <summary vsli:raw="Gets the EventSource that this counter is attached to.">이 카운터가 연결된 EventSource를 가져옵니다.</summary>
+      <returns vsli:raw="The EventSource that this counter is attached to.">이 카운터가 연결 된 EventSource입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.DiagnosticCounter.Name">
+      <summary vsli:raw="Gets the name of this counter.">이 카운터의 이름을 가져옵니다.</summary>
+      <returns vsli:raw="The name of this counter.">이 카운터의 이름입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventActivityOptions">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events.">작업 시작 및 중지 이벤트의 추적을 지정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Detachable">
+      <summary vsli:raw="Allow overlapping activities. By default, activity starts and stops must be property nested. That is, a sequence of Start A, Start B, Stop A, Stop B is not allowed will result in B stopping at the same time as A.">겹치는 작업을 허용합니다. 기본적으로 작업 시작 및 중지는 중첩된 속성이어야 합니다. 즉, 시작 A, 시작 B, 중지 A, 중지 B라는 시퀀스는 A와 동시에 B를 중지하지 않습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Disable">
+      <summary vsli:raw="Turn off start and stop tracking.">시작 및 중지 추적을 해제합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.None">
+      <summary vsli:raw="Use the default behavior for start and stop tracking.">시작 및 중지 추적에 기본 동작을 사용합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventActivityOptions.Recursive">
+      <summary vsli:raw="Allow recursive activity starts. By default, an activity cannot be recursive. That is, a sequence of Start A, Start A, Stop A, Stop A is not allowed. Unintentional recursive activities can occur if the app executes and for some the stop is not reached before another start is called.">재귀 작업이 시작하도록 합니다. 기본적으로 작업은 재귀적일 수 없습니다. 즉, 시작 A, 시작 A, 중지 A, 중지 A라는 시퀀스는 허용되지 않습니다. 다른 시작을 호출하기 전에 일부 중지가 완료되지 않았기 때문에 앱을 실행할 때 의도하지 않은 재귀 작업이 발생할 수 있습니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventAttribute">
+      <summary vsli:raw="Specifies additional event schema information for an event.">이벤트에 대한 추가 이벤트 스키마 정보를 지정합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventAttribute.#ctor(System.Int32)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; class with the specified event identifier.">지정된 이벤트 식별자를 사용하여 <see cref="T:System.Diagnostics.Tracing.EventAttribute" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier for the event.">이벤트의 이벤트 식별자입니다.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.ActivityOptions">
+      <summary vsli:raw="Specifies the behavior of the start and stop events of an activity. An activity is the region of time in an app between the start and the stop.">작업의 시작 및 중지 이벤트라는 동작을 정의합니다. 작업은 시작과 중지 사이의 앱의 시간 영역입니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />을 반환합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Channel">
+      <summary vsli:raw="Gets or sets an additional event log where the event should be written.">이벤트를 작성해야 하는 추가 이벤트 로그를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="An additional event log where the event should be written.">이벤트를 작성해야 하는 추가 이벤트 로그입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.EventId">
+      <summary vsli:raw="Gets or sets the identifier for the event.">이벤트의 식별자를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The event identifier. This value should be between 0 and 65535.">이벤트 식별자입니다. 이 값은 0에서 65535 사이여야 합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Keywords">
+      <summary vsli:raw="Gets or sets the keywords for the event.">이벤트에 대한 키워드를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="A bitwise combination of the enumeration values.">열거형 값의 비트 조합입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Level">
+      <summary vsli:raw="Gets or sets the level for the event.">이벤트의 수준을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the level for the event.">이벤트 수준을 지정하는 열거형 값 중 하나입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Message">
+      <summary vsli:raw="Gets or sets the message for the event.">이벤트에 대한 메시지를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The message for the event.">이벤트의 메시지입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Opcode">
+      <summary vsli:raw="Gets or sets the operation code for the event.">이벤트의 작업 코드를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="One of the enumeration values that specifies the operation code.">작업 코드를 지정하는 열거형 값 중 하나입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Tags">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">이 <see cref="T:System.Diagnostics.Tracing.EventAttribute" /> 개체의 <see cref="T:System.Diagnostics.Tracing.EventTags" /> 값을 가져오거나 설정합니다. 이벤트 태그는 이벤트를 기록하는 경우 전달되는 사용자 정의 값입니다.</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt; value for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventAttribute&quot; /&gt; object. An event tag is a user-defined value that is passed through when the event is logged.">
+        <see cref="T:System.Diagnostics.Tracing.EventTags" /> 이<see cref="T:System.Diagnostics.Tracing.EventAttribute" /> 개체의 값입니다. 이벤트 태그는 이벤트를 기록하는 경우 전달되는 사용자 정의 값입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Task">
+      <summary vsli:raw="Gets or sets the task for the event.">이벤트의 작업을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The task for the event.">이벤트에 대한 작업입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventAttribute.Version">
+      <summary vsli:raw="Gets or sets the version of the event.">이벤트 버전을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The version of the event.">이벤트의 버전입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventChannel">
+      <summary vsli:raw="Specifies the event log channel for the event.">이벤트의 이벤트 로그 채널을 지정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Admin">
+      <summary vsli:raw="The administrator log channel.">관리자 로그 채널.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Analytic">
+      <summary vsli:raw="The analytic channel.">분석 채널.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Debug">
+      <summary vsli:raw="The debug channel.">디버그 채널.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.None">
+      <summary vsli:raw="No channel specified.">지정된 채널이 없습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventChannel.Operational">
+      <summary vsli:raw="The operational channel.">운영 채널.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommand">
+      <summary vsli:raw="Describes the command (&lt;see cref=&quot;P:System.Diagnostics.Tracing.EventCommandEventArgs.Command&quot; /&gt; property) that is passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">
+        <see cref="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command" /> 콜백에 전달되는 명령(<see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" /> 속성)에 대해 설명합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Disable">
+      <summary vsli:raw="Disable the event.">이벤트를 사용하지 않도록 설정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Enable">
+      <summary vsli:raw="Enable the event.">이벤트를 사용하도록 설정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.SendManifest">
+      <summary vsli:raw="Send the manifest.">매니페스트를 보냅니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventCommand.Update">
+      <summary vsli:raw="Update the event.">이벤트를 업데이트합니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCommandEventArgs">
+      <summary vsli:raw="Provides the arguments for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)&quot; /&gt; callback.">
+        <see cref="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)" /> 콜백의 인수를 제공합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Arguments">
+      <summary vsli:raw="Gets the array of arguments for the callback.">콜백에 대한 인수 배열을 가져옵니다.</summary>
+      <returns vsli:raw="An array of callback arguments.">콜백 인수의 배열입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventCommandEventArgs.Command">
+      <summary vsli:raw="Gets the command for the callback.">콜백 명령을 가져옵니다.</summary>
+      <returns vsli:raw="The callback command.">콜백 명령입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.DisableEvent(System.Int32)">
+      <summary vsli:raw="Disables the event that have the specified identifier.">지정된 식별자가 있는 이벤트를 사용하지 않도록 설정합니다.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to disable.">사용하지 않도록 설정할 이벤트의 식별자입니다.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <paramref name="eventId" />가 범위에 있으면 <see langword="true" />이고, 그렇지 않으면 <see langword="false" />입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCommandEventArgs.EnableEvent(System.Int32)">
+      <summary vsli:raw="Enables the event that has the specified identifier.">지정된 식별자가 있는 이벤트를 사용하도록 설정합니다.</summary>
+      <param name="eventId" vsli:raw="The identifier of the event to enable.">사용하도록 설정할 이벤트의 식별자입니다.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;paramref name=&quot;eventId&quot; /&gt; is in range; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">
+        <paramref name="eventId" />가 범위에 있으면 <see langword="true" />이고, 그렇지 않으면 <see langword="false" />입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventCounter">
+      <summary vsli:raw="Provides the ability to collect statistics for very frequent events through the  &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스를 통해 아주 자주 발생하는 이벤트에 대한 통계를 수집하는 기능을 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventCounter" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="name" vsli:raw="The event counter name.">이벤트 카운터 이름입니다.</param>
+      <param name="eventSource" vsli:raw="The event source.">이벤트 소스입니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;eventSource&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" />가 <see langword="null" />입니다.  
+또는 
+ <paramref name="eventSource" />가 <see langword="null" />입니다.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current event counter instance.">현재 이벤트 카운터 인스턴스에 대한 문자열 표현을 반환합니다.</summary>
+      <returns vsli:raw="The name, count and mean of the current event counter.">현재 이벤트 카운터의 이름, 개수 및 평균입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Double)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">성능 카운터를 사용하는 경우 메트릭을 씁니다.</summary>
+      <param name="value" vsli:raw="The value to be written.">쓸 값입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventCounter.WriteMetric(System.Single)">
+      <summary vsli:raw="Writes the metric if performance counters are on.">성능 카운터를 사용하는 경우 메트릭을 씁니다.</summary>
+      <param name="value" vsli:raw="The value to be written.">쓸 값입니다.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventDataAttribute">
+      <summary vsli:raw="Specifies a type to be passed to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method.">
+        <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" /> 메서드로 전달될 형식을 지정합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventDataAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventDataAttribute.Name">
+      <summary vsli:raw="Gets or sets the name to apply to an event if the event type or property is not explicitly named.">이벤트 형식 또는 속성이 명시적으로 명명될 경우 이벤트에 적용할 이름을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The name to apply to the event or property.">이벤트 또는 속성에 적용할 이름입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldAttribute">
+      <summary vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads.">
+        <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" />는 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 페이로드로 전달되는 사용자 정의 형식의 필드에 배치됩니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventFieldAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Format">
+      <summary vsli:raw="Gets or sets the value that specifies how to format the value of a user-defined type.">사용자 정의 형식 값의 형식을 지정하는 방법을 지정하는 값을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The value that specifies how to format the value of a user-defined type.">사용자 정의 형식의 값에 형식을 지정 하는 방법을 지정 하는 값입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventFieldAttribute.Tags">
+      <summary vsli:raw="Gets or sets the user-defined &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt; value that is required for fields that contain data that isn't one of the supported types.">지원되는 형식이 아닌 데이터를 포함하는 필드에 필요한 사용자 정의 <see cref="T:System.Diagnostics.Tracing.EventFieldTags" /> 값을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldTags&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventFieldTags" />을 반환합니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldFormat">
+      <summary vsli:raw="Specifies how to format the value of a user-defined type and can be used to override the default formatting for a field.">사용자 정의 형식의 값에 형식을 지정하는 방법을 지정하며, 필드에 대한 기본 서식을 재정의하는 데 사용할 수 있습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Boolean">
+      <summary vsli:raw="Boolean.">부울</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Default">
+      <summary vsli:raw="Default.">기본.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Hexadecimal">
+      <summary vsli:raw="Hexadecimal.">16진수.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.HResult">
+      <summary vsli:raw="HResult.">HResult.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Json">
+      <summary vsli:raw="JSON.">JSON.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.String">
+      <summary vsli:raw="String.">문자열.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldFormat.Xml">
+      <summary vsli:raw="XML.">XML.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventFieldTags">
+      <summary vsli:raw="Specifies the user-defined tag that is placed on fields of user-defined types that are passed as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; payloads through the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventFieldAttribute&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventFieldAttribute" />를 통해 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 페이로드로 전달되는 사용자 정의 형식의 필드에 배치되는 사용자 정의 태그를 지정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventFieldTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">태그를 지정하지 않으며 0과 같습니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventIgnoreAttribute">
+      <summary vsli:raw="Specifies a property should be ignored when writing an event type with the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)&quot; /&gt; method.">
+        <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)" /> 메서드로 이벤트 형식을 쓸 때 무시해야 할 속성을 지정합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventIgnoreAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventIgnoreAttribute&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventIgnoreAttribute" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventKeywords">
+      <summary vsli:raw="Defines the standard keywords that apply to events.">이벤트에 적용되는 표준 키워드를 정의합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.All">
+      <summary vsli:raw="All the bits are set to 1, representing every possible group of events.">모든 비트는 이벤트에서 가능한 모든 그룹을 나타내는 1로 설정됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditFailure">
+      <summary vsli:raw="Attached to all failed security audit events. Use this keyword only  for events in the security log.">모든 실패한 보안 감사 이벤트에 연결됩니다. 이 키워드는 보안 로그의 이벤트에 사용합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.AuditSuccess">
+      <summary vsli:raw="Attached to all successful security audit events. Use this keyword only for events in the security log.">모든 성공적인 보안 감사 이벤트에 연결됩니다. 이 키워드는 보안 로그의 이벤트에 사용합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.CorrelationHint">
+      <summary vsli:raw="Attached to transfer events where the related activity ID (correlation ID) is a computed value and is not guaranteed to be unique (that is, it is not a real GUID).">관련 작업 ID(상관 관계 ID)가 계산된 값이고 실제 GUID가 아니므로 고유하지 않을 수 있는 경우 전송 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.EventLogClassic">
+      <summary vsli:raw="Attached to events that are raised by using the &lt;see langword=&quot;RaiseEvent&quot; /&gt; function.">
+        <see langword="RaiseEvent" /> 함수를 사용하여 발생한 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.MicrosoftTelemetry">
+      <summary vsli:raw="Attached to all Microsoft telemetry events.">모든 Microsoft 원격 분석 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.None">
+      <summary vsli:raw="No filtering on keywords is performed when the event is published.">이벤트를 게시할 때 키워드에 따라 필터링하지 않습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.Sqm">
+      <summary vsli:raw="Attached to all Service Quality Mechanism (SQM) events.">모든 SQM(Service Quality Mechanism) 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiContext">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) context events.">모든 WDI(Windows Diagnostic Infrastructure) 컨텍스트 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventKeywords.WdiDiagnostic">
+      <summary vsli:raw="Attached to all Windows Diagnostics Infrastructure (WDI) diagnostic events.">모든 WDI(Windows Diagnostic Infrastructure) 진단 이벤트에 연결됩니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventLevel">
+      <summary vsli:raw="Identifies the level of an event.">이벤트의 수준을 식별합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Critical">
+      <summary vsli:raw="This level corresponds to a critical error, which is a serious error that has caused a major failure.">이 수준은 중대한 작업 실패를 일으킨 심각한 오류에 해당합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Error">
+      <summary vsli:raw="This level adds standard errors that signify a problem.">이 수준은 문제를 알리는 표준 오류를 추가합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Informational">
+      <summary vsli:raw="This level adds informational events or messages that are not errors. These events can help trace the progress or state of an application.">이 수준은 오류가 아닌 정보 이벤트 또는 메시지를 추가합니다. 이러한 이벤트를 통해 애플리케이션의 진행률이나 상태를 추적할 수 있습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.LogAlways">
+      <summary vsli:raw="No level filtering is done on the event. When used as a level filter for enabling events, for example in EventListener.EnableEvents(), events of all levels will be included.">이벤트에서 수준 필터링을 수행하지 않습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Verbose">
+      <summary vsli:raw="This level adds lengthy events or messages. It causes all events to be logged.">이 수준은 길이가 긴 이벤트 또는 메시지를 추가합니다. 모든 이벤트가 기록되도록 합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventLevel.Warning">
+      <summary vsli:raw="This level adds warning events (for example, events that are published because a disk is nearing full capacity).">이 수준은 경고 이벤트를 추가합니다(예: 디스크 용량이 거의 꽉 찰 때 게시되는 이벤트).</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventListener">
+      <summary vsli:raw="Provides methods for enabling and disabling events from event sources.">이벤트 소스에서 이벤트를 활성화 및 비활성화하기 위한 메서드를 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventListener" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.DisableEvents(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Disables all events for the specified event source.">지정된 이벤트 소스에 대한 모든 이벤트를 사용하지 않도록 설정합니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to disable events for.">이벤트를 사용하지 않도록 설정하는 이벤트 소스입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.Dispose">
+      <summary vsli:raw="Releases the resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventListener&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventListener" /> 클래스의 현재 인스턴스에서 사용하는 리소스를 해제합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower.">지정된 자세한 정도 수준 이하인 지정된 이벤트 소스에 대한 이벤트를 사용하도록 설정합니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">이벤트를 사용하도록 설정하는 이벤트 소스입니다.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">사용할 수 있는 이벤트 수준입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, and matching keyword flags.">지정된 자세한 정도 수준 이하이고 일치하는 키워드 플래그가 있는 지정된 이벤트 소스에 대한 이벤트를 사용하도록 설정합니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">이벤트를 사용하도록 설정하는 이벤트 소스입니다.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">사용할 수 있는 이벤트 수준입니다.</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">이벤트를 사용하는 데 필요한 키워드 플래그입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EnableEvents(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Enables events for the specified event source that has the specified verbosity level or lower, matching event keyword flag, and matching arguments.">지정된 자세한 정도 수준 이하이고 일치하는 이벤트 키워드 플래그 및 일치하는 인수가 있는 지정된 이벤트 소스에 대한 이벤트를 사용하도록 설정합니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to enable events for.">이벤트를 사용하도록 설정하는 이벤트 소스입니다.</param>
+      <param name="level" vsli:raw="The level of events to enable. Using EventLevel.LogAlways includes events of all levels.">사용할 수 있는 이벤트 수준입니다.</param>
+      <param name="matchAnyKeyword" vsli:raw="The keyword flags necessary to enable the events.">이벤트를 사용하는 데 필요한 키워드 플래그입니다.</param>
+      <param name="arguments" vsli:raw="The arguments to be matched to enable the events.">이벤트를 사용하기 위해 일치해야 하는 인수입니다.</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated">
+      <summary vsli:raw="Occurs when an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) is attached to the dispatcher.">이벤트 소스(<see cref="T:System.Diagnostics.Tracing.EventSource" /> 개체)가 발송자에 연결되면 발생합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.EventSourceIndex(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Gets a small non-negative number that represents the specified event source.">지정된 이벤트 소스를 나타내는 음수가 아닌 작은 숫자를 가져옵니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to find the index for.">인덱스를 찾을 이벤트 소스입니다.</param>
+      <returns vsli:raw="A small non-negative number that represents the specified event source.">지정된 이벤트 소스를 나타내는 음수가 아닌 작은 숫자입니다.</returns>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventListener.EventWritten">
+      <summary vsli:raw="Occurs when an event has been written by an event source (&lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object) for which the event listener has enabled events.">이벤트 수신기가 이벤트를 설정한 이벤트 소스(<see cref="T:System.Diagnostics.Tracing.EventSource" /> 개체)에 의해 이벤트가 작성될 때 호출됩니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventSourceCreated(System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Called for all existing event sources when the event listener is created and when a new event source is attached to the listener.">이벤트 수신기가 만들어질 때와 새 이벤트 소스가 수신기에 연결될 때 모든 기존 이벤트 소스에 대해 호출됩니다.</summary>
+      <param name="eventSource" vsli:raw="The event source.">이벤트 소스입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)">
+      <summary vsli:raw="Called whenever an event has been written by an event source for which the event listener has enabled events.">이벤트 수신기가 이벤트를 설정한 이벤트 소스에 의해 이벤트가 작성될 때마다 호출됩니다.</summary>
+      <param name="eventData" vsli:raw="The event arguments that describe the event.">이벤트를 설명하는 이벤트 인수입니다.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventManifestOptions">
+      <summary vsli:raw="Specifies how the ETW manifest for the event source is generated.">이벤트 소스에 대한 ETW 메니페이스트를 생성하는 방법을 지정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllCultures">
+      <summary vsli:raw="Generates a resources node under the localization folder for every satellite assembly provided.">제공된 모든 위성 어셈블리에 대한 지역화 폴더에 리소스 노드를 생성합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.AllowEventSourceOverride">
+      <summary vsli:raw="Overrides the default behavior that the current &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; must be the base class of the user-defined type passed to the write method. This enables the validation of .NET event sources.">현재 <see cref="T:System.Diagnostics.Tracing.EventSource" />가 write 메서드에 전달된 사용자 정의 형식의 기본 클래스여야 하는 기본 동작을 재정의합니다. 이를 통해 .NET 이벤트 소스의 유효성 검사를 수행할 수 있습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.None">
+      <summary vsli:raw="No options are specified.">지정된 옵션이 없습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.OnlyIfNeededForRegistration">
+      <summary vsli:raw="A manifest is generated only the event source must be registered on the host computer.">호스트 컴퓨터에 등록해야 하는 이벤트 소스에만 메니페스트가 생성됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventManifestOptions.Strict">
+      <summary vsli:raw="Causes an exception to be raised if any inconsistencies occur when writing the manifest file.">메니페스트 파일을 쓸 때 불일치가 일어날 경우에 예외가 발생하도록 합니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventOpcode">
+      <summary vsli:raw="Defines the standard operation codes that the event source attaches to events.">이벤트 소스가 이벤트에 추가하는 표준 작업 코드를 정의합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStart">
+      <summary vsli:raw="A trace collection start event.">추적 컬렉션 시작 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.DataCollectionStop">
+      <summary vsli:raw="A trace collection stop event.">추적 컬렉션 중지 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Extension">
+      <summary vsli:raw="An extension event.">확장 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Info">
+      <summary vsli:raw="An informational event.">정보 이벤트로,</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Receive">
+      <summary vsli:raw="An event that is published when one activity in an application receives data.">애플리케이션의 작업 중 하나가 데이터를 받을 때 게시되는 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Reply">
+      <summary vsli:raw="An event that is published after an activity in an application replies to an event.">애플리케이션의 작업이 이벤트에 응답한 후 게시되는 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Resume">
+      <summary vsli:raw="An event that is published after an activity in an application resumes from a suspended state. The event should follow an event that has the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Suspend&quot; /&gt; operation code.">애플리케이션에서 일시 중단된 작업이 다시 시작될 때 게시되는 이벤트입니다. 이벤트는 <see cref="F:System.Diagnostics.Tracing.EventOpcode.Suspend" /> 작업 코드가 있는 이벤트 다음에 나와야 합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Send">
+      <summary vsli:raw="An event that is published when one activity in an application transfers data or system resources to another activity.">애플리케이션의 작업 중 하나에서 데이터 또는 시스템 리소스를 다른 작업에 전송할 때 게시되는 이벤트입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Start">
+      <summary vsli:raw="An event that is published when an application starts a new transaction or activity. This operation code can be embedded within another transaction or activity when multiple events that have the &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; code follow each other without an intervening event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Stop&quot; /&gt; code.">애플리케이션에서 새 트랜잭션 또는 작업을 시작할 때 게시되는 이벤트입니다. <see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" /> 코드가 있는 이벤트를 방해하지 않으면서 <see cref="F:System.Diagnostics.Tracing.EventOpcode.Stop" /> 코드가 있는 여러 이벤트가 서로를 따르는 경우에는 이 작업 코드를 다른 트랜잭션이나 동작 안에 포함할 수 있습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Stop">
+      <summary vsli:raw="An event that is published when an activity or a transaction in an application ends. The event corresponds to the last unpaired event that has a &lt;see cref=&quot;F:System.Diagnostics.Tracing.EventOpcode.Start&quot; /&gt; operation code.">애플리케이션에서 작업 또는 트랜잭션이 종료될 때 게시되는 이벤트입니다. 이벤트는 <see cref="F:System.Diagnostics.Tracing.EventOpcode.Start" /> 작업 코드가 있는 이벤트 중 짝이 없는 마지막 이벤트에 대응됩니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventOpcode.Suspend">
+      <summary vsli:raw="An event that is published when an activity in an application is suspended.">애플리케이션의 작업이 일시 중지될 때 게시되는 이벤트입니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource">
+      <summary vsli:raw="Provides the ability to create events for event tracing across platforms.">ETW(Windows용 이벤트 추적) 이벤트를 만들 수 있는 기능을 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Boolean)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and specifies whether to throw an exception when an error occurs in the underlying Windows code.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만들고 기본 Windows 코드에서 오류가 발생할 때 예외를 throw할지 여부를 지정합니다.</summary>
+      <param name="throwOnEventWriteErrors" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to throw an exception when an error occurs in the underlying Windows code; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">기본 Windows 코드에서 오류가 발생할 때 예외를 throw하려면 <see langword="true" />이고, 그렇지 않으면 <see langword="false" />입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">지정된 구성 설정을 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">구성 설정을 지정하여 이벤트 소스에 적용하는 열거형 값의 비트 조합입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; to be used with non-contract events that contains the specified settings and traits.">지정된 설정 및 특성을 포함하는 비 계약 이벤트와 함께 사용되는 <see cref="T:System.Diagnostics.Tracing.EventSource" />의 새 인스턴스를 초기화합니다.</summary>
+      <param name="settings" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">구성 설정을 지정하여 이벤트 소스에 적용하는 열거형 값의 비트 조합입니다.</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">이벤트 원본에 대한 특성을 지정하는 키-값 쌍입니다.</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">
+        <paramref name="traits" />가 키-값 쌍으로 지정되지 않습니다.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name.">지정된 이름을 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">이벤트 소스에 적용할 이름입니다. <see langword="null" />이 아니어야 합니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" />가 <see langword="null" />입니다.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings)">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified name and settings.">지정된 이름 및 설정을 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">이벤트 소스에 적용할 이름입니다. <see langword="null" />이 아니어야 합니다.</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">구성 설정을 지정하여 이벤트 소스에 적용하는 열거형 값의 비트 조합입니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" />가 <see langword="null" />입니다.</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.#ctor(System.String,System.Diagnostics.Tracing.EventSourceSettings,System.String[])">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class with the specified configuration settings.">지정된 구성 설정을 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+      <param name="eventSourceName" vsli:raw="The name to apply to the event source. Must not be &lt;see langword=&quot;null&quot; /&gt;.">이벤트 소스에 적용할 이름입니다. <see langword="null" />이 아니어야 합니다.</param>
+      <param name="config" vsli:raw="A bitwise combination of the enumeration values that specify the configuration settings to apply to the event source.">구성 설정을 지정하여 이벤트 소스에 적용하는 열거형 값의 비트 조합입니다.</param>
+      <param name="traits" vsli:raw="The key-value pairs that specify traits for the event source.">이벤트 원본에 대한 특성을 지정하는 키-값 쌍입니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventSourceName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventSourceName" />가 <see langword="null" />입니다.</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;traits&quot; /&gt; is not specified in key-value pairs.">
+        <paramref name="traits" />가 키-값 쌍으로 지정되지 않습니다.</exception>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.ConstructionException">
+      <summary vsli:raw="Gets any exception that was thrown during the construction of the event source.">이벤트 소스 생성 중에 throw된 모든 예외를 가져옵니다.</summary>
+      <returns vsli:raw="The exception that was thrown during the construction of the event source, or &lt;see langword=&quot;null&quot; /&gt; if no exception was thrown.">이벤트 소스 생성 중에 throw된 예외 또는 예외가 throw되지 않은 경우 <see langword="null" />입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.CurrentThreadActivityId">
+      <summary vsli:raw="Gets the activity ID of the current thread.">현재 스레드의 작업 ID를 가져옵니다.</summary>
+      <returns vsli:raw="The activity ID of the current thread.">현재 스레드의 작업 ID입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose">
+      <summary vsli:raw="Releases all resources used by the current instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스의 현재 인스턴스에서 사용하는 모든 리소스를 해제합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Dispose(System.Boolean)">
+      <summary vsli:raw="Releases the unmanaged resources used by the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; class and optionally releases the managed resources.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 클래스에 사용되는 관리되지 않는 리소스를 해제하고, 필요에 따라 관리되는 리소스를 해제합니다.</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">관리되는 리소스와 관리되지 않는 리소스를 모두 해제하려면 <see langword="true" />로 설정하고, 관리되지 않는 리소스만 해제하려면 <see langword="false" />로 설정합니다.</param>
+    </member>
+    <member name="E:System.Diagnostics.Tracing.EventSource.EventCommandExecuted">
+      <summary vsli:raw="Occurs when a command comes from an event listener.">이벤트 수신기에서 명령을 가져올 때 발생합니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSource.EventData">
+      <summary vsli:raw="Provides the event data for creating fast &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overloads by using the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)&quot; /&gt; method.">
+        <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 메서드를 사용하여 빠른 <see cref="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)" /> 오버로드를 만들기 위한 이벤트 데이터를 제공합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.DataPointer">
+      <summary vsli:raw="Gets or sets the pointer to the data for the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">새 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 오버로드의 데이터에 대한 포인터를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The pointer to the data.">데이터에 대한 포인터입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.EventData.Size">
+      <summary vsli:raw="Gets or sets the number of payload items in the new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload.">새 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 오버로드의 페이로드 항목 수를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The number of payload items in the new overload.">새 오버로드의 페이로드 항목 수입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Finalize">
+      <summary vsli:raw="Allows the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; object to attempt to free resources and perform other cleanup operations before the object is reclaimed by garbage collection.">가비지 컬렉션기에서 개체 회수하기 전에 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 개체에서 리소스를 해제하고 다른 정리 작업을 수행할 수 있게 합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">현재 이벤트 소스와 연결된 XML 매니페스트의 문자열을 반환합니다.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">이벤트 소스의 형식입니다.</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) to include in the provider element of the manifest.">매니페스트의 공급자 요소에 포함될 어셈블리 파일(.dll)의 경로입니다.</param>
+      <returns vsli:raw="The XML data string.">XML 데이터 문자열입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GenerateManifest(System.Type,System.String,System.Diagnostics.Tracing.EventManifestOptions)">
+      <summary vsli:raw="Returns a string of the XML manifest that is associated with the current event source.">현재 이벤트 소스와 연결된 XML 매니페스트의 문자열을 반환합니다.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">이벤트 소스의 형식입니다.</param>
+      <param name="assemblyPathToIncludeInManifest" vsli:raw="The path to the assembly file (.dll) file to include in the provider element of the manifest.">매니페스트의 공급자 요소에 포함될 어셈블리 파일(.dll)의 경로입니다.</param>
+      <param name="flags" vsli:raw="A bitwise combination of the enumeration values that specify how the manifest is generated.">메니페스트가 생성되는 방법을 지정하는 열거형 값의 비트 조합입니다.</param>
+      <returns vsli:raw="The XML data string or &lt;see langword=&quot;null&quot; /&gt;.">XML 데이터 문자열 또는 <see langword="null" />입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetGuid(System.Type)">
+      <summary vsli:raw="Gets the unique identifier for this implementation of the event source.">이 이벤트 소스 구현에 대한 고유 식별자를 가져옵니다.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">이벤트 소스의 형식입니다.</param>
+      <returns vsli:raw="A unique identifier for this event source type.">이 이벤트 소스 유형에 대한 고유 식별자입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetName(System.Type)">
+      <summary vsli:raw="Gets the friendly name of the event source.">이벤트 소스의 이름을 가져옵니다.</summary>
+      <param name="eventSourceType" vsli:raw="The type of the event source.">이벤트 소스의 형식입니다.</param>
+      <returns vsli:raw="The friendly name of the event source. The default is the simple name of the class.">이벤트 소스의 이름입니다. 기본값은 클래스의 단순한 이름입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetSources">
+      <summary vsli:raw="Gets a snapshot of all the event sources for the application domain.">애플리케이션 도메인에 대한 모든 이벤트 소스의 스냅샷을 가져옵니다.</summary>
+      <returns vsli:raw="An enumeration of all the event sources in the application domain.">애플리케이션 도메인에 있는 모든 이벤트 소스의 열거형입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.GetTrait(System.String)">
+      <summary vsli:raw="Gets the trait value associated with the specified key.">지정한 키와 연결된 특성 값을 가져옵니다.</summary>
+      <param name="key" vsli:raw="The key of the trait to get.">가져올 특성의 키입니다.</param>
+      <returns vsli:raw="The trait value associated with the specified key. If the key is not found, returns &lt;see langword=&quot;null&quot; /&gt;.">지정한 키와 연결된 특성 값입니다. 키를 찾을 수 없으면 <see langword="null" />을 반환합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Guid">
+      <summary vsli:raw="The unique identifier for the event source.">이벤트 소스에 대한 고유 식별자입니다.</summary>
+      <returns vsli:raw="A unique identifier for the event source.">이벤트 소스에 대한 고유 식별자입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled">
+      <summary vsli:raw="Determines whether the current event source is enabled.">현재 이벤트 소스를 사용할 수 있는지 여부를 확인합니다.</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the current event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">현재 이벤트 소스를 사용할 수 있으면 <see langword="true" />이고, 그렇지 않으면 <see langword="false" />입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords)">
+      <summary vsli:raw="Determines whether the current event source that has the specified level and keyword is enabled.">지정된 수준 및 키워드가 있는 현재 이벤트 소스를 사용할 수 있는지 여부를 확인합니다.</summary>
+      <param name="level" vsli:raw="The level of the event source.">이벤트 소스의 수준입니다.</param>
+      <param name="keywords" vsli:raw="The keyword of the event source.">이벤트 소스의 키워드입니다.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">이벤트 소스를 사용할 수 있으면 <see langword="true" />이고, 그렇지 않으면 <see langword="false" />입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.IsEnabled(System.Diagnostics.Tracing.EventLevel,System.Diagnostics.Tracing.EventKeywords,System.Diagnostics.Tracing.EventChannel)">
+      <summary vsli:raw="Determines whether the current event source is enabled for events with the specified level, keywords and channel.">지정된 수준, 키워드 및 채널의 이벤트에 현재 이벤트 소스를 사용할 수 있는지 여부를 결정합니다.</summary>
+      <param name="level" vsli:raw="The event level to check. An event source will be considered enabled when its level is greater than or equal to &lt;paramref name=&quot;level&quot; /&gt;.">확인할 이벤트 수준입니다. 해당 수준이 <paramref name="level" /> 이상일 때 사용하도록 고려할 이벤트 소스입니다.</param>
+      <param name="keywords" vsli:raw="The event keywords to check.">확인할 이벤트 키워드입니다.</param>
+      <param name="channel" vsli:raw="The event channel to check.">확인할 이벤트 채널입니다.</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the event source is enabled for the specified event level, keywords and channel; otherwise, &lt;see langword=&quot;false&quot; /&gt;.&#xA;&#xA; The result of this method is only an approximation of whether a particular event is active.  Use it to avoid expensive computation for logging when logging is disabled. Event sources may have additional filtering that determines their activity.">지정된 이벤트 수준, 키워드 및 채널에 이벤트 소스를 사용하도록 설정되면 <see langword="true" />이고, 그러지 않으면 <see langword="false" />입니다.  
+이 메서드의 결과는 특정 이벤트가 활성 상태인지 여부에 대한 근사값만으로 나타납니다.  이를 통해 로깅이 비활성화된 경우 비용이 많이 드는 계산을 피합니다. 이벤트 소스에는 해당 활동을 결정하는 추가 필터링이 있을 수 있습니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Name">
+      <summary vsli:raw="The friendly name of the class that is derived from the event source.">이벤트 소스에서 파생되는 클래스의 이름입니다.</summary>
+      <returns vsli:raw="The friendly name of the derived class.  The default is the simple name of the class.">파생된 클래스의 이름입니다.  기본값은 클래스의 단순한 이름입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.OnEventCommand(System.Diagnostics.Tracing.EventCommandEventArgs)">
+      <summary vsli:raw="Called when the current event source is updated by the controller.">현재 이벤트 소스가 컨트롤러에 의해 업데이트되면 호출됩니다.</summary>
+      <param name="command" vsli:raw="The arguments for the event.">이벤트에 대한 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SendCommand(System.Diagnostics.Tracing.EventSource,System.Diagnostics.Tracing.EventCommand,System.Collections.Generic.IDictionary{System.String,System.String})">
+      <summary vsli:raw="Sends a command to a specified event source.">명령을 지정된 이벤트 소스로 보냅니다.</summary>
+      <param name="eventSource" vsli:raw="The event source to send the command to.">명령을 보낼 이벤트 소스입니다.</param>
+      <param name="command" vsli:raw="The event command to send.">보낼 이벤트 명령입니다.</param>
+      <param name="commandArguments" vsli:raw="The arguments for the event command.">이벤트 명령에 대한 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid)">
+      <summary vsli:raw="Sets the activity ID on the current thread.">현재 스레드의 작업 ID를 설정합니다.</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">현재 스레드의 새 작업 ID 또는 현재 스레드에 대한 작업이 다른 작업과 연결되지 않았음을 나타내는 <see cref="F:System.Guid.Empty" />입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.SetCurrentThreadActivityId(System.Guid,System.Guid@)">
+      <summary vsli:raw="Sets the activity ID on the current thread, and returns the previous activity ID.">현재 스레드에서 작업 ID를 설정하고 이전 작업 ID를 반환합니다.</summary>
+      <param name="activityId" vsli:raw="The current thread's new activity ID, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; to indicate that work on the current thread is not associated with any activity.">현재 스레드의 새 작업 ID 또는 현재 스레드에 대한 작업이 다른 작업과 연결되지 않았음을 나타내는 <see cref="F:System.Guid.Empty" />입니다.</param>
+      <param name="oldActivityThatWillContinue" vsli:raw="When this method returns, contains the previous activity ID on the current thread.">이 메서드가 결과를 반환할 때는 현재 스레드의 이전 작업 ID가 포함됩니다.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSource.Settings">
+      <summary vsli:raw="Gets the settings applied to this event source.">이 이벤트 소스에 적용된 설정을 가져옵니다.</summary>
+      <returns vsli:raw="The settings applied to this event source.">이 이벤트 소스에 적용된 설정입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.ToString">
+      <summary vsli:raw="Obtains a string representation of the current event source instance.">현재 이벤트 소스 인스턴스에 대한 문자열 표현을 가져옵니다.</summary>
+      <returns vsli:raw="The name and unique identifier that identify the current event source.">현재 이벤트 소스를 식별하는 이름 및 고유 식별자입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and default options.">필드는 없지만 지정된 이름 및 기본 옵션이 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">쓸 이벤트의 이름입니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" />가 <see langword="null" />인 경우</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)">
+      <summary vsli:raw="Writes an event without fields, but with the specified name and options.">필드는 없지만 지정된 이름 및 옵션이 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event to write.">쓸 이벤트의 이름입니다.</param>
+      <param name="options" vsli:raw="The options such as level, keywords and operation code for the event.">레벨, 키워드, 이벤트의 작업 코드 등의 옵션입니다.</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;eventName&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="eventName" />가 <see langword="null" />인 경우</exception>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,``0)">
+      <summary vsli:raw="Writes an event with the specified name and data.">지정된 이름과 데이터가 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">이벤트의 이름입니다.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">이벤트 데이터입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 특성으로 표시되어야 합니다.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">이벤트 및 해당 연결된 데이터를 정의하는 형식입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 특성으로 표시되어야 합니다.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)">
+      <summary vsli:raw="Writes an event with the specified name, event data and options.">지정된 이름, 이벤트 데이터 및 옵션이 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">이벤트의 이름입니다.</param>
+      <param name="options" vsli:raw="The event options.">이벤트 옵션입니다.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">이벤트 데이터입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 특성으로 표시되어야 합니다.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">이벤트 및 해당 연결된 데이터를 정의하는 형식입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 특성으로 표시되어야 합니다.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options and event data.">지정된 이름, 옵션 및 이벤트 데이터가 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">이벤트의 이름입니다.</param>
+      <param name="options" vsli:raw="The event options.">이벤트 옵션입니다.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">이벤트 데이터입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 특성으로 표시되어야 합니다.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">이벤트 및 해당 연결된 데이터를 정의하는 형식입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 특성으로 표시되어야 합니다.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions@,System.Guid@,System.Guid@,``0@)">
+      <summary vsli:raw="Writes an event with the specified name, options, related activity and event data.">지정된 이름, 옵션, 관련 활동 및 이벤트 데이터가 있는 이벤트를 씁니다.</summary>
+      <param name="eventName" vsli:raw="The name of the event.">이벤트의 이름입니다.</param>
+      <param name="options" vsli:raw="The event options.">이벤트 옵션입니다.</param>
+      <param name="activityId" vsli:raw="The ID of the activity associated with the event.">이벤트와 연결된 활동의 ID입니다.</param>
+      <param name="relatedActivityId" vsli:raw="The ID of an associated activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no associated activity.">연결된 활동의 ID이거나 연결된 활동이 없으면 <see cref="F:System.Guid.Empty" />입니다.</param>
+      <param name="data" vsli:raw="The event data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventDataAttribute&quot; /&gt; attribute.">이벤트 데이터입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventDataAttribute" /> 특성으로 표시되어야 합니다.</param>
+      <typeparam name="T" vsli:raw="The type that defines the event and its associated data. This type must be an anonymous type or marked with the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; attribute.">이벤트 및 해당 연결된 데이터를 정의하는 형식입니다. 이 형식은 익명 형식이거나 <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 특성으로 표시되어야 합니다.</typeparam>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier.">제공된 이벤트 식별자를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">이벤트 식별자입니다. 이 값은 0에서 65535 사이여야 합니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Byte[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and byte array argument.">제공된 이벤트 식별자와 바이트 배열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A byte array argument.">바이트 배열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer argument.">제공된 이벤트 식별자와 32비트 정수 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="An integer argument.">정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">제공된 이벤트 식별자와 32비트 정수 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="An integer argument.">정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="An integer argument.">정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer arguments.">제공된 이벤트 식별자와 32비트 정수 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="An integer argument.">정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="An integer argument.">정수 인수입니다.</param>
+      <param name="arg3" vsli:raw="An integer argument.">정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 32-bit integer and string arguments.">제공된 이벤트 식별자와 32비트 정수 및 문자열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier. This value should be between 0 and 65535.">이벤트 식별자입니다. 이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 32-bit integer argument.">32비트 정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="A string argument.">문자열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer argument.">제공된 이벤트 식별자와 64비트 정수 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Byte[])">
+      <summary vsli:raw="Writes the event data using the specified identifier and 64-bit integer and byte array arguments.">지정된 식별자 및 64비트 정수와 바이트 배열 인수를 사용하여 이벤트 데이터를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">64비트 정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="A byte array argument.">바이트 배열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">제공된 이벤트 식별자와 64비트 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.Int64,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit arguments.">제공된 이벤트 식별자와 64비트 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+      <param name="arg3" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Int64,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and 64-bit integer, and string arguments.">제공된 이벤트 식별자와 64비트 정수 및 문자열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A 64-bit integer argument.">64비트 정수 인수입니다.</param>
+      <param name="arg2" vsli:raw="A string argument.">문자열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.Object[])">
+      <summary vsli:raw="Writes an event by using the provided event identifier and array of arguments.">제공된 이벤트 식별자와 인수 배열을 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="args" vsli:raw="An array of objects.">개체의 배열입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string argument.">제공된 이벤트 식별자와 문자열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">제공된 이벤트 식별자와 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">32비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int32,System.Int32)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">제공된 이벤트 식별자와 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg2" vsli:raw="A 32 bit integer argument.">32비트 정수 인수입니다.</param>
+      <param name="arg3" vsli:raw="A 32 bit integer argument.">32비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.Int64)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and arguments.">제공된 이벤트 식별자와 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg2" vsli:raw="A 64 bit integer argument.">64비트 정수 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">제공된 이벤트 식별자와 문자열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg2" vsli:raw="A string argument.">문자열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEvent(System.Int32,System.String,System.String,System.String)">
+      <summary vsli:raw="Writes an event by using the provided event identifier and string arguments.">제공된 이벤트 식별자와 문자열 인수를 사용하여 이벤트를 씁니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.  This value should be between 0 and 65535.">이벤트 식별자입니다.  이 값은 0에서 65535 사이여야 합니다.</param>
+      <param name="arg1" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg2" vsli:raw="A string argument.">문자열 인수입니다.</param>
+      <param name="arg3" vsli:raw="A string argument.">문자열 인수입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventCore(System.Int32,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;Overload:System.Diagnostics.Tracing.EventSource.WriteEvent&quot; /&gt; overload by using the provided event identifier and event data.">제공된 이벤트 식별자 및 이벤트 데이터를 사용하여 새 <see cref="Overload:System.Diagnostics.Tracing.EventSource.WriteEvent" /> 오버로드를 만듭니다.</summary>
+      <param name="eventId" vsli:raw="The event identifier.">이벤트 식별자입니다.</param>
+      <param name="eventDataCount" vsli:raw="The number of event data items.">이벤트 데이터 항목의 수입니다.</param>
+      <param name="data" vsli:raw="The structure that contains the event data.">이벤트 데이터가 들어 있는 구조체입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityId(System.Int32,System.Guid,System.Object[])">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">현재 작업이 다른 작업과 연관되어 있음을 나타내는 이벤트를 기록합니다.</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 내에서 이 이벤트를 고유하게 식별하는 식별자입니다.</param>
+      <param name="relatedActivityId" vsli:raw="The related activity identifier.">관련 작업 식별자입니다.</param>
+      <param name="args" vsli:raw="An array of objects that contain data about the event.">이벤트에 대한 데이터가 포함된 개체 배열입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSource.WriteEventWithRelatedActivityIdCore(System.Int32,System.Guid*,System.Int32,System.Diagnostics.Tracing.EventSource.EventData*)">
+      <summary vsli:raw="Writes an event that indicates that the current activity is related to another activity.">현재 작업이 다른 작업과 연관되어 있음을 나타내는 이벤트를 기록합니다.</summary>
+      <param name="eventId" vsli:raw="An identifier that uniquely identifies this event within the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventSource" /> 내에서 이 이벤트를 고유하게 식별하는 식별자입니다.</param>
+      <param name="relatedActivityId" vsli:raw="A pointer to the GUID of the related activity ID.">관련 작업 ID의 GUID에 대한 포인터입니다.</param>
+      <param name="eventDataCount" vsli:raw="The number of items in the &lt;paramref name=&quot;data&quot; /&gt; field.">
+        <paramref name="data" /> 필드의 항목 수입니다.</param>
+      <param name="data" vsli:raw="A pointer to the first item in the event data field.">이벤트 데이터 필드에서 첫 번째 항목에 대한 포인터입니다.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceAttribute">
+      <summary vsli:raw="Allows the event tracing for Windows (ETW) name to be defined independently of the name of the event source class.">ETW(Windows용 이벤트 추적) 이름이 이벤트 소스 클래스의 이름과 독립적으로 정의될 수 있도록 합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceAttribute.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceAttribute&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSourceAttribute" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Guid">
+      <summary vsli:raw="Gets or sets the event source identifier.">이벤트 소스 식별자 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The event source identifier.">이벤트 소스 식별자입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.LocalizationResources">
+      <summary vsli:raw="Gets or sets the name of the localization resource file.">지역화 리소스 파일의 이름을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The name of the localization resource file, or &lt;see langword=&quot;null&quot; /&gt; if the localization resource file does not exist.">지역화된 리소스 파일의 이름이거나, 지역화 리소스 파일이 없을 경우 <see langword="null" />입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceAttribute.Name">
+      <summary vsli:raw="Gets or sets the name of the event source.">이벤트 소스의 이름을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The name of the event source.">이벤트 원본의 이름입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;E:System.Diagnostics.Tracing.EventListener.EventSourceCreated&quot; /&gt; event.">
+        <see cref="E:System.Diagnostics.Tracing.EventListener.EventSourceCreated" /> 이벤트에 대한 데이터를 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSourceCreatedEventArgs" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceCreatedEventArgs.EventSource">
+      <summary vsli:raw="Get the event source that is attaching to the listener.">수신기에 연결된 이벤트 소스를 가져옵니다.</summary>
+      <returns vsli:raw="The event source that is attaching to the listener.">수신기에 연결된 이벤트 소스입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceException">
+      <summary vsli:raw="The exception that is thrown when an error occurs during event tracing for Windows (ETW).">ETW(Windows용 이벤트 추적) 중 오류가 발생한 경우 throw되는 예외입니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.Runtime.Serialization.SerializationInfo,System.Runtime.Serialization.StreamingContext)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with serialized data.">serialize된 데이터를 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="info" vsli:raw="The object that holds the serialized object data.">serialize된 개체 데이터를 보유하는 개체입니다.</param>
+      <param name="context" vsli:raw="The contextual information about the source or destination.">원본 또는 대상에 대한 컨텍스트 정보입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message.">지정된 오류 메시지를 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="message" vsli:raw="The message that describes the error.">오류를 설명하는 메시지입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.EventSourceException.#ctor(System.String,System.Exception)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceException&quot; /&gt; class with a specified error message and a reference to the inner exception that is the cause of this exception.">지정된 오류 메시지와 해당 예외의 원인인 내부 예외에 대한 참조를 사용하여 <see cref="T:System.Diagnostics.Tracing.EventSourceException" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="message" vsli:raw="The error message that explains the reason for the exception.">예외에 대한 이유를 설명하는 오류 메시지입니다.</param>
+      <param name="innerException" vsli:raw="The exception that is the cause of the current exception, or &lt;see langword=&quot;null&quot; /&gt; if no inner exception is specified.">현재 예외의 원인이 되는 예외이거나, 내부 예외를 지정하지 않았으면 <see langword="null" />입니다.</param>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceOptions">
+      <summary vsli:raw="Specifies overrides of default event settings such as the log level, keywords and operation code when the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)&quot; /&gt; method is called.">
+        <see cref="M:System.Diagnostics.Tracing.EventSource.Write``1(System.String,System.Diagnostics.Tracing.EventSourceOptions,``0)" /> 메서드가 호출될 때 로그 수준, 키워드 및 작업 코드와 같은 기본 이벤트 설정의 재정의를 지정합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.ActivityOptions">
+      <summary vsli:raw="The activity options defined for this event source.">이 이벤트 소스에 대해 정의된 작업 옵션입니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventActivityOptions&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventActivityOptions" />를 반환합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Keywords">
+      <summary vsli:raw="Gets or sets the keywords applied to the event. If this property is not set, the event's keywords will be &lt;see langword=&quot;None&quot; /&gt;.">이벤트에 적용되는 키워드를 가져오거나 설정합니다. 이 속성이 설정되지 않으면 이벤트의 키워드는 <see langword="None" />입니다.</summary>
+      <returns vsli:raw="The keywords applied to the event, or &lt;see langword=&quot;None&quot; /&gt; if no keywords are set.">이벤트에 키워드가 적용되었거나, 키워드가 설정되지 않으면 <see langword="None" />입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Level">
+      <summary vsli:raw="Gets or sets the event level applied to the event.">이벤트에 적용되는 이벤트 수준을 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The event level for the event. If not set, the default is Verbose (5).">이벤트에 대한 이벤트 수준입니다. 기본값은 설정하지 않으면 Verbose (5)가 됩니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Opcode">
+      <summary vsli:raw="Gets or sets the operation code to use for the specified event.">지정된 이벤트에 사용할 작업 코드를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The operation code to use for the specified event. If not set, the default is &lt;see langword=&quot;Info&quot; /&gt; (0).">지정된 이벤트에 사용할 작업 코드입니다. 기본값은 설정하지 않으면 <see langword="Info" />(0)입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventSourceOptions.Tags">
+      <summary vsli:raw="The event tags defined for this event source.">이 이벤트 소스에 대해 정의된 이벤트 태그입니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventTags" />를 반환합니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventSourceSettings">
+      <summary vsli:raw="Specifies configuration options for an event source.">이벤트 소스에 대한 구성 옵션을 지정합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.Default">
+      <summary vsli:raw="None of the special configuration options are enabled.">사용할 수 있는 특수 구성 옵션이 없습니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwManifestEventFormat">
+      <summary vsli:raw="The ETW listener should use a manifest-based format when raising events. Setting this option is a directive to the ETW listener should use manifest-based format when raising events. This is the default option when defining a type derived from &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the protected &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">ETW 수신기는 이벤트를 시킬 때 메니페스트 기반 형식을 사용해야 합니다. 이 옵션 설정은 이벤트를 발생시킬 때 메니페스트 기반 형식을 사용해야 하는 ETW 수신기에 대한 지시문입니다. 이는 <see cref="T:System.Diagnostics.Tracing.EventSource" />에서 유래된 형식을 보호된 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 생성자 중 하나를 사용하여 정의할 때 적용되는 기본 옵션입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.EtwSelfDescribingEventFormat">
+      <summary vsli:raw="The ETW listener should use self-describing event format. This is the default option when creating a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; using one of the public &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSource&quot; /&gt; constructors.">ETW 수신기는 자체 설명 이벤트 형식을 사용해야 합니다. 이는 <see cref="T:System.Diagnostics.Tracing.EventSource" />의 새 인스턴스를 공용 <see cref="T:System.Diagnostics.Tracing.EventSource" /> 생성자 중 하나를 사용하여 만들 때 적용되는 기본 옵션입니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventSourceSettings.ThrowOnEventWriteErrors">
+      <summary vsli:raw="The event source throws an exception when an error occurs.">이벤트 소스는 오류가 발생하면 예외를 throw합니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTags">
+      <summary vsli:raw="Specifies the tracking of activity start and stop events. You should only use the lower 24 bits. For more information, see &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventSourceOptions&quot; /&gt; and &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt;.">작업 시작 및 중지 이벤트의 추적을 지정합니다. 하위 24비트만 사용해야 합니다. 자세한 내용은 <see cref="T:System.Diagnostics.Tracing.EventSourceOptions" /> 및 <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" />를 참조하세요.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTags.None">
+      <summary vsli:raw="Specifies no tag and is equal to zero.">태그를 지정하지 않으며 0과 같습니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventTask">
+      <summary vsli:raw="Defines the tasks that apply to events.">이벤트에 적용되는 작업을 정의합니다.</summary>
+    </member>
+    <member name="F:System.Diagnostics.Tracing.EventTask.None">
+      <summary vsli:raw="Undefined task.">정의되어 있지 않은 작업입니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.EventWrittenEventArgs">
+      <summary vsli:raw="Provides data for the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)&quot; /&gt; callback.">
+        <see cref="M:System.Diagnostics.Tracing.EventListener.OnEventWritten(System.Diagnostics.Tracing.EventWrittenEventArgs)" /> 콜백에 데이터를 제공합니다.</summary>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.ActivityId">
+      <summary vsli:raw="Gets the activity ID on the thread that the event was written to.">이벤트를 쓴 스레드의 작업 ID를 가져옵니다.</summary>
+      <returns vsli:raw="The activity ID on the thread that the event was written to.">이벤트를 쓴 스레드의 작업 ID입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Channel">
+      <summary vsli:raw="Gets the channel for the event.">이벤트의 채널을 가져옵니다.</summary>
+      <returns vsli:raw="The channel for the event.">이벤트 채널입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventId">
+      <summary vsli:raw="Gets the event identifier.">이벤트 식별자를 가져옵니다.</summary>
+      <returns vsli:raw="The event identifier.">이벤트 식별자입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventName">
+      <summary vsli:raw="Gets the name of the event.">이벤트의 이름을 가져옵니다.</summary>
+      <returns vsli:raw="The name of the event.">이벤트의 이름입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.EventSource">
+      <summary vsli:raw="Gets the event source object.">이벤트 소스 개체를 가져옵니다.</summary>
+      <returns vsli:raw="The event source object.">이벤트 소스 개체입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Keywords">
+      <summary vsli:raw="Gets the keywords for the event.">이벤트에 대한 키워드를 가져옵니다.</summary>
+      <returns vsli:raw="The keywords for the event.">이벤트에 대한 키워드입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Level">
+      <summary vsli:raw="Gets the level of the event.">이벤트의 수준을 가져옵니다.</summary>
+      <returns vsli:raw="The level of the event.">이벤트의 수준입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Message">
+      <summary vsli:raw="Gets the message for the event.">이벤트의 메시지를 가져옵니다.</summary>
+      <returns vsli:raw="The message for the event.">이벤트의 메시지입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Opcode">
+      <summary vsli:raw="Gets the operation code for the event.">이벤트의 작업 코드를 가져옵니다.</summary>
+      <returns vsli:raw="The operation code for the event.">이벤트의 작업 코드입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.OSThreadId">
+      <summary vsli:raw="Gets the thread identifier for the OS thread that wrote the event. (.NET Core 2.2 and later only.)">이벤트를 작성한 OS 스레드에 대한 스레드 식별자를 가져옵니다. (.NET Core 2.2 이상만 해당)</summary>
+      <returns vsli:raw="The thread identifier for the OS thread that wrote the event.">이벤트를 작성 하는 OS 스레드의 스레드 식별자입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Payload">
+      <summary vsli:raw="Gets the payload for the event.">이벤트의 페이로드를 가져옵니다.</summary>
+      <returns vsli:raw="The payload for the event.">이벤트에 대한 페이로드입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.PayloadNames">
+      <summary vsli:raw="Returns a list of strings that represent the property names of the event.">이 이벤트의 속성 이름을 나타내는 문자열 목록을 반환합니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Collections.ObjectModel.ReadOnlyCollection`1&quot; /&gt;.">
+        <see cref="T:System.Collections.ObjectModel.ReadOnlyCollection`1" />를 반환합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.RelatedActivityId">
+      <summary vsli:raw="Gets the identifier of an activity that is related to the activity represented by the current instance.">현재 인스턴스에서 나타내는 작업과 관련된 작업의 식별자를 가져옵니다.</summary>
+      <returns vsli:raw="The identifier of the related activity, or &lt;see cref=&quot;F:System.Guid.Empty&quot; /&gt; if there is no related activity.">관련 동작의 식별자이며, 관련 동작이 없는 경우 <see cref="F:System.Guid.Empty" />입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Tags">
+      <summary vsli:raw="Returns the tags specified in the call to the &lt;see cref=&quot;M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)&quot; /&gt; method.">호출에 지정된 태그를 <see cref="M:System.Diagnostics.Tracing.EventSource.Write(System.String,System.Diagnostics.Tracing.EventSourceOptions)" /> 메서드로 반환합니다.</summary>
+      <returns vsli:raw="Returns &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventTags&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventTags" />를 반환합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Task">
+      <summary vsli:raw="Gets the task for the event.">이벤트의 작업을 가져옵니다.</summary>
+      <returns vsli:raw="The task for the event.">이벤트에 대한 작업입니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.TimeStamp">
+      <summary vsli:raw="Gets the time that the event was originally generated as a &lt;see cref=&quot;T:System.DateTime&quot; /&gt; timestamp. (.NET Core 2.2 and later only.)">이벤트가 처음 생성된 시간을 <see cref="T:System.DateTime" /> 타임스탬프로 가져옵니다. (.NET Core 2.2 이상만 해당)</summary>
+      <returns vsli:raw="The date and time when the event was logged. The system tries to be as precise as possible.">날짜 및 시간 이벤트가 기록 된 경우. 시스템을 최대한으로 정확 하 게 시도 합니다.</returns>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.EventWrittenEventArgs.Version">
+      <summary vsli:raw="Gets the version of the event.">이벤트의 버전을 가져옵니다.</summary>
+      <returns vsli:raw="The version of the event.">이벤트의 버전입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingEventCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">런타임 시 예외 수와 같이 계속 증가하는 변수에 대해 <see cref="T:System.Diagnostics.Tracing.EventCounter" />의 변형을 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingEventCounter&quot; /&gt; instance.">이 <see cref="T:System.Diagnostics.Tracing.IncrementingEventCounter" /> 인스턴스의 이름입니다.</param>
+      <param name="eventSource" vsli:raw="The event source.">이벤트 소스입니다.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingEventCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets the rate at which this metric should be displayed as.">이 메트릭이 표시되어야 하는 속도를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="Gets or sets the rate at which this metric should be displayed.">이 메트릭이 표시 되는 속도를 가져오거나 설정 합니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.Increment(System.Double)">
+      <summary vsli:raw="Adds a value to a running total that will be published by the counter at the next timer interval.">다음 타이머 간격에 카운터가 게시할 실행 총계에 값을 추가합니다.</summary>
+      <param name="increment" vsli:raw="The value to increment the running total by.">실행 총계를 증가시키는 값입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingEventCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing event counter instance.">현재 증분 이벤트 카운터 인스턴스의 문자열 표현을 반환합니다.</summary>
+      <returns vsli:raw="The name and increment of the current incrementing event counter.">현재 증분 이벤트 카운터의 이름과 증분 값입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.IncrementingPollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; for variables that are ever-increasing, such as the number of exceptions in the runtime.">런타임 시 예외 수와 같이 계속 증가하는 변수에 대해 <see cref="T:System.Diagnostics.Tracing.EventCounter" />의 변형을 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.IncrementingPollingCounter&quot; /&gt; instance.">이 <see cref="T:System.Diagnostics.Tracing.IncrementingPollingCounter" /> 인스턴스의 이름입니다.</param>
+      <param name="eventSource" vsli:raw="The event source this instance is a part of.">이 인스턴스가 속한 이벤트 소스입니다.</param>
+      <param name="totalValueProvider" vsli:raw="A method that will be used to poll the value.">값을 폴링하는 데 사용되는 메서드입니다.</param>
+    </member>
+    <member name="P:System.Diagnostics.Tracing.IncrementingPollingCounter.DisplayRateTimeScale">
+      <summary vsli:raw="Gets or sets rate at which this metric should be displayed as.">이 메트릭이 표시되어야 하는 속도를 가져오거나 설정합니다.</summary>
+      <returns vsli:raw="The rate at which this metric should be displayed.">이 메트릭이 표시 되는 속도입니다.</returns>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.IncrementingPollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current incrementing polling counter instance.">현재 증분 폴링 카운터 인스턴스의 문자열 표현을 반환합니다.</summary>
+      <returns vsli:raw="The name and increment of the current incrementing polling counter.">현재 증분 폴링 카운터의 이름과 증분 값입니다.</returns>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.NonEventAttribute">
+      <summary vsli:raw="Identifies a method that is not generating an event.">이벤트를 생성하지 않는 메서드를 식별합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.NonEventAttribute.#ctor">
+      <summary vsli:raw="Creates a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.NonEventAttribute&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.NonEventAttribute" /> 클래스의 새 인스턴스를 만듭니다.</summary>
+    </member>
+    <member name="T:System.Diagnostics.Tracing.PollingCounter">
+      <summary vsli:raw="Provides a variant of &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt; that collects and calculates similar statistics as &lt;see cref=&quot;T:System.Diagnostics.Tracing.EventCounter&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.Tracing.EventCounter" />와 유사한 통계를 수집하고 계산하는 <see cref="T:System.Diagnostics.Tracing.EventCounter" />의 변형을 제공합니다.</summary>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.#ctor(System.String,System.Diagnostics.Tracing.EventSource,System.Func{System.Double})">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; class.">
+        <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 클래스의 새 인스턴스를 초기화합니다.</summary>
+      <param name="name" vsli:raw="The name for this &lt;see cref=&quot;T:System.Diagnostics.Tracing.PollingCounter&quot; /&gt; instance.">이 <see cref="T:System.Diagnostics.Tracing.PollingCounter" /> 인스턴스의 이름입니다.</param>
+      <param name="eventSource" vsli:raw="The event source.">이벤트 소스입니다.</param>
+      <param name="metricProvider" vsli:raw="A method that will be used to poll the value.">값을 폴링하는 데 사용되는 메서드입니다.</param>
+    </member>
+    <member name="M:System.Diagnostics.Tracing.PollingCounter.ToString">
+      <summary vsli:raw="Returns a string representation of the current polling counter instance.">현재 폴링 카운터 인스턴스에 대한 문자열 표현을 반환합니다.</summary>
+      <returns vsli:raw="The name and mean of the current polling counter.">현재 폴링 카운터의 이름과 평균입니다.</returns>
+    </member>
+  </members>
+</doc>

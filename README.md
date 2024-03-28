@@ -10,6 +10,20 @@
   * メジャーバージョンでの履歴はどうでもいい
 * とりま VsLocalizedIntellisense.App が何世代か動くの確認して diff 考える
 
+## ディレクトリ
+
+* `raw-intellisense`
+  * インテリセンスの原文
+* `work-intellisense`
+  * 編集対象
+  * これをローカライズ版の原本とする
+* `intellisense`
+  * ダウンロード対象
+  * 基本的にさわらない
+    * 完全な設計ミスで合った
+      * pages で `work-intellisense` を整形して配布したほうがいいかも感すごい
+        * 気が向いたら対応する
+
 ## VsLocalizedIntellisense.App
 
 * .NET Framework 4.8 で動かす
@@ -27,3 +41,14 @@
   * Microsoft.WindowsDesktop.App.Ref
 * 取得した XML を生データとしてリポジトリに突っ込む
   * 手動前提
+* XML 壊れてるので Visual Studio 更新時の XML を信じた方がいいかも
+  * ライセンスがほんと分からん
+  * たぶんこのアプリを使うことはないと思われる
+
+## VsLocalizedIntellisense.Xml
+
+* 各ローカライズXMLに原文を付与する
+* 付与した XML をリポジトリに突っ込む
+  * 手動前提
+* 原文更新からローカライズファイルが差分検知できるようにすることが目的であるためすでに設定されている原文の上書きは行わない
+* 名前空間付与で行けるだろうと思ったらだめだった悲しみすごい

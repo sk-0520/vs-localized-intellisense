@@ -1,0 +1,1683 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>System.Security.Cryptography.Cng</name>
+  </assembly>
+  <members>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle">
+      <summary>Fournit un handle sécurisé qui peut être utilisé par les objets CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>Instancie une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</summary>
+      <param name="handle">Handle préexistant à utiliser. L'utilisation de <see cref="F:System.IntPtr.Zero" /> retourne un handle non valide.</param>
+      <param name="parentHandle">Handle parent de ce <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptHandle" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> est fermé.  
+  
+- ou - 
+ <paramref name="parentHandle" /> n'est pas valide.</exception>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseHandle">
+      <summary>Diffuse un handle utilisé par un objet CNG (Cryptography Next Generation).</summary>
+      <returns>
+        <see langword="true" /> si la diffusion du handle a réussi ; sinon <see langword="false" />.</returns>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptHandle.ReleaseNativeHandle">
+      <summary>Diffuse un handle natif utilisé par un objet CNG (Cryptography Next Generation).</summary>
+      <returns>
+        <see langword="true" /> si la diffusion du handle a réussi ; sinon <see langword="false" />.</returns>
+    </member>
+    <member name="P:Microsoft.Win32.SafeHandles.SafeNCryptHandle.IsInvalid">
+      <summary>Obtient une valeur qui indique si le handle n'est pas valide.</summary>
+      <returns>
+        <see langword="true" /> si le handle n'est pas valide ; sinon <see langword="false" />.</returns>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle">
+      <summary>Fournit un handle sécurisé qui représente une clé (NCRYPT_KEY_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle.#ctor(System.IntPtr,System.Runtime.InteropServices.SafeHandle)">
+      <summary>Instancie une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</summary>
+      <param name="handle">Handle préexistant à utiliser. L'utilisation de <see cref="F:System.IntPtr.Zero" /> retourne un handle non valide.</param>
+      <param name="parentHandle">Handle parent de ce <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="parentHandle" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parentHandle" /> est fermé.  
+  
+- ou - 
+ <paramref name="parentHandle" /> n'est pas valide.</exception>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle">
+      <summary>Fournit un handle sécurisé qui représente un fournisseur de stockage de clés (NCRYPT_PROV_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptProviderHandle" />.</summary>
+    </member>
+    <member name="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle">
+      <summary>Fournit un handle sécurisé qui représente une valeur d’accord secret (NCRYPT_SECRET_HANDLE).</summary>
+    </member>
+    <member name="M:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:Microsoft.Win32.SafeHandles.SafeNCryptSecretHandle" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.AesCng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l’algorithme AES (Advanced Encryption Standard).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.AesCng" /> avec une clé éphémère.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.AesCng" /> avec le nom de clé spécifié, qui représente une clé AES persistante.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.AesCng" /> avec le nom de clé spécifié, qui représente une clé AES persistante, et le fournisseur de stockage de clés (KSP) spécifié.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="provider" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.AesCng" /> avec le nom de clé spécifié, qui représente une clé AES persistante, le fournisseur de stockage de clés (KSP) spécifié, et les options d’ouverture de clé.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <param name="openOptions">Combinaison de bits des valeurs d’énumération qui spécifient des options d’ouverture de la clé, par exemple d’où la clé est ouverte (stockage de machine ou utilisateur) et s’il faut supprimer l’invite de l’interface utilisateur.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="provider" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor">
+      <summary>Crée un objet déchiffreur AES symétrique avec la clé et le vecteur d’initialisation (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuels.</summary>
+      <returns>Objet déchiffreur AES symétrique.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crée un objet déchiffreur AES symétrique avec la clé spécifiée et le vecteur d’initialisation (IV).</summary>
+      <param name="rgbKey">La clé secrète à utiliser pour l’algorithme AES. La taille de la clé doit être de 128, 192 ou 256 bits.</param>
+      <param name="rgbIV">Le vecteur d’initialisation à utiliser pour l’algorithme AES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> n’est pas d'une taille valide pour cet algorithme.  
+  
+- ou - 
+ La taille <paramref name="rgbIV" /> ne correspond pas à la taille de bloc de cet algorithme.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> est une clé faible connue pour cet algorithme et ne peut pas être utilisée.  
+  
+- ou - 
+ <paramref name="rgbIV" /> a la valeur <see langword="null" />.</exception>
+      <returns>Objet déchiffreur AES symétrique.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor">
+      <summary>Crée un objet chiffreur AES symétrique avec la clé et le vecteur d'initialisation (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuels.</summary>
+      <returns>Un objet chiffreur symétrique AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crée un objet chiffreur AES symétrique avec la clé et le vecteur d’initialisation (IV) spécifiés.</summary>
+      <param name="rgbKey">La clé secrète à utiliser pour l’algorithme AES. La taille de la clé doit être de 128, 192 ou 256 bits.</param>
+      <param name="rgbIV">Le vecteur d’initialisation à utiliser pour l’algorithme AES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> n’est pas d'une taille valide pour cet algorithme.  
+  
+- ou - 
+ La taille <paramref name="rgbIV" /> ne correspond pas à la taille de bloc de cet algorithme.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> est une clé faible connue pour cet algorithme et ne peut pas être utilisée.  
+  
+- ou - 
+ <paramref name="rgbIV" /> a la valeur <see langword="null" />.</exception>
+      <returns>Un objet chiffreur symétrique AES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateIV">
+      <summary>Génère un vecteur d’initialisation aléatoire à utiliser pour l’algorithme AES.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.AesCng.GenerateKey">
+      <summary>Génère une clé aléatoire à utiliser pour l’algorithme AES.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.Key">
+      <summary>Obtient ou définit la clé pour l’algorithme <see cref="T:System.Security.Cryptography.AesCng" />.</summary>
+      <returns>Clé pour l’algorithme <see cref="T:System.Security.Cryptography.AesCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.AesCng.KeySize">
+      <summary>Obtient ou définit la taille en bits de la clé secrète utilisée par l’algorithme <see cref="T:System.Security.Cryptography.AesCng" />.</summary>
+      <returns>La taille en bits de la clé secrète utilisée par l’algorithme <see cref="T:System.Security.Cryptography.AesCng" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithm">
+      <summary>Encapsule le nom d'un algorithme de chiffrement.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngAlgorithm" />.</summary>
+      <param name="algorithm">Nom de l'algorithme à initialiser.</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="algorithm" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La longueur du paramètre <paramref name="algorithm" /> est 0 (zéro).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Object)">
+      <summary>Compare l'objet spécifié à l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</summary>
+      <param name="obj">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="obj" /> est un <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie le même algorithme que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.Equals(System.Security.Cryptography.CngAlgorithm)">
+      <summary>Compare l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> spécifié à l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</summary>
+      <param name="other">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="other" /> spécifie le même algorithme que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.GetHashCode">
+      <summary>Génère une valeur de hachage pour le nom de l'algorithme incorporé dans l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</summary>
+      <returns>Valeur de hachage du nom de l'algorithme incorporé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Equality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngAlgorithm" /> spécifient le même nom d'algorithme.</summary>
+      <param name="left">Objet qui spécifie un nom d'algorithme.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets spécifient le même nom d'algorithme ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.op_Inequality(System.Security.Cryptography.CngAlgorithm,System.Security.Cryptography.CngAlgorithm)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngAlgorithm" /> ne spécifient pas le même nom d'algorithme.</summary>
+      <param name="left">Objet qui spécifie un nom d'algorithme.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets ne spécifient pas le même nom d'algorithme ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithm.ToString">
+      <summary>Obtient le nom de l'algorithme spécifié par l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</summary>
+      <returns>Nom de l'algorithme incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Algorithm">
+      <summary>Obtient le nom de l'algorithme spécifié par l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel.</summary>
+      <returns>Nom de l'algorithme incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellman">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme d'échange de clé ECDH (Elliptic Curve Diffie-Hellman) dont la courbe est décrite par une propriété de clé.</summary>
+      <returns>Un objet qui spécifie un algorithme d'échange de clé ECDH dont la courbe est décrite par une propriété de clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP256">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme d'échange de clé ECDH (Elliptic Curve Diffie-Hellman) qui utilise la courbe P-256.</summary>
+      <returns>Objet qui spécifie un algorithme ECDH qui utilise la courbe P-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP384">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme d'échange de clé ECDH (Elliptic Curve Diffie-Hellman) qui utilise la courbe P-384.</summary>
+      <returns>Objet qui spécifie un algorithme ECDH qui utilise la courbe P-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDiffieHellmanP521">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme d'échange de clé ECDH (Elliptic Curve Diffie-Hellman) qui utilise la courbe P-521.</summary>
+      <returns>Objet qui spécifie un algorithme ECDH qui utilise la courbe P-521.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsa">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie un algorithme Elliptic Curve Digital Signature Algorithm (ECDSA) dont la courbe est décrite par une propriété de clé.</summary>
+      <returns>Un objet qui spécifie un algorithme ECDSA dont la courbe est décrite par une propriété de clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP256">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme ECDSA (Elliptic Curve Digital Signature Algorithm) qui utilise la courbe P-256.</summary>
+      <returns>Objet qui spécifie un algorithme ECDSA qui utilise la courbe P-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP384">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme ECDSA (Elliptic Curve Digital Signature Algorithm) qui utilise la courbe P-384.</summary>
+      <returns>Objet qui spécifie un algorithme ECDSA qui utilise la courbe P-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.ECDsaP521">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme ECDSA (Elliptic Curve Digital Signature Algorithm) qui utilise la courbe P-521.</summary>
+      <returns>Objet qui spécifie un algorithme ECDSA qui utilise la courbe P-521.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.MD5">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l’algorithme de hachage MD5 (Message Digest 5).</summary>
+      <returns>Objet qui spécifie l'algorithme MD5.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Rsa">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme de hachage RSA.</summary>
+      <returns>Objet qui spécifie l'algorithme RSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha1">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme SHA-1 (Secure Hash Algorithm 1).</summary>
+      <returns>Objet qui spécifie l'algorithme SHA-1.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha256">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme SHA-256 (Secure Hash Algorithm 256).</summary>
+      <returns>Objet qui spécifie l'algorithme SHA-256.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha384">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme SHA-384 (Secure Hash Algorithm 384).</summary>
+      <returns>Objet qui spécifie l'algorithme SHA-384.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithm.Sha512">
+      <summary>Obtient un nouvel objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> qui spécifie l'algorithme SHA-512 (Secure Hash Algorithm 512).</summary>
+      <returns>Objet qui spécifie l'algorithme SHA-512.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngAlgorithmGroup">
+      <summary>Encapsule le nom d’un groupe d’algorithmes de chiffrement.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" />.</summary>
+      <param name="algorithmGroup">Nom du groupe d'algorithmes à initialiser.</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="algorithmGroup" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La longueur du paramètre <paramref name="algorithmGroup" /> est 0 (zéro).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Object)">
+      <summary>Compare l'objet spécifié à l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> actuel.</summary>
+      <param name="obj">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="obj" /> est un <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie le même groupe d'algorithmes que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.Equals(System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Compare l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> spécifié à l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> actuel.</summary>
+      <param name="other">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="other" /> spécifie le même groupe d'algorithmes que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.GetHashCode">
+      <summary>Génère une valeur de hachage pour le nom du groupe d'algorithmes incorporé dans l'objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> actuel.</summary>
+      <returns>La valeur de hachage du nom du groupe d'algorithmes incorporé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Equality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> spécifient le même groupe d'algorithmes.</summary>
+      <param name="left">Un objet qui spécifie un groupe d'algorithmes.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets spécifient le même groupe d'algorithmes ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.op_Inequality(System.Security.Cryptography.CngAlgorithmGroup,System.Security.Cryptography.CngAlgorithmGroup)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> ne spécifient pas le même groupe d'algorithmes.</summary>
+      <param name="left">Un objet qui spécifie un groupe d'algorithmes.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets ne spécifient pas le même groupe d'algorithmes ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngAlgorithmGroup.ToString">
+      <summary>Obtient le nom du groupe d'algorithmes que l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel spécifie.</summary>
+      <returns>Nom du groupe d'algorithmes incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.AlgorithmGroup">
+      <summary>Obtient le nom du groupe d'algorithmes que l'objet <see cref="T:System.Security.Cryptography.CngAlgorithm" /> actuel spécifie.</summary>
+      <returns>Nom du groupe d'algorithmes incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.DiffieHellman">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie la famille d'algorithmes Diffie-Hellman.</summary>
+      <returns>Un objet qui spécifie la famille d'algorithmes Diffie-Hellman.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Dsa">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie la famille d'algorithmes DSA (Digital Signature Algorithm).</summary>
+      <returns>Un objet qui spécifie la famille d'algorithmes DSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie la famille d'algorithmes ECDH (Elliptic Curve Diffie-Hellman).</summary>
+      <returns>Un objet qui spécifie la famille d'algorithmes ECDH.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.ECDsa">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie la famille d'algorithmes ECDSA (Elliptic Curve Digital Signature Algorithm).</summary>
+      <returns>Un objet qui spécifie la famille d'algorithmes ECDSA.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngAlgorithmGroup.Rsa">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngAlgorithmGroup" /> qui spécifie la famille d'algorithmes RSA (Rivest-Shamir-Adleman).</summary>
+      <returns>Un objet qui spécifie la famille d'algorithmes RSA.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngExportPolicies">
+      <summary>Spécifie les stratégies d’exportation de clés pour une clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowArchiving">
+      <summary>La clé privée peut être exportée une fois à des fins d'archivage.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowExport">
+      <summary>La clé privée peut être exportée plusieurs fois.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextArchiving">
+      <summary>La clé privée peut être exportée une fois sous forme de texte en clair.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.AllowPlaintextExport">
+      <summary>La clé privée peut être exportée plusieurs fois sous forme de texte en clair.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngExportPolicies.None">
+      <summary>Aucune stratégie d'exportation n'est définie. L'exportation de clé est autorisée sans restriction.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKey">
+      <summary>Définit la fonctionnalité principale pour les clés utilisées avec les objets CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm)">
+      <summary>Crée un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui peut être utilisé avec l'algorithme spécifié.</summary>
+      <param name="algorithm">Algorithme avec lequel la clé sera utilisée.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Une clé éphémère.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String)">
+      <summary>Crée un objet <see cref="T:System.Security.Cryptography.CngKey" /> nommé qui fournit l'algorithme spécifié.</summary>
+      <param name="algorithm">Algorithme avec lequel la clé sera utilisée.</param>
+      <param name="keyName">Nom de la clé. Si aucun nom n'est fourni, la clé ne sera pas rendue persistante.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Une clé éphémère ou persistante qui fournit l'algorithme spécifié.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Create(System.Security.Cryptography.CngAlgorithm,System.String,System.Security.Cryptography.CngKeyCreationParameters)">
+      <summary>Crée un objet <see cref="T:System.Security.Cryptography.CngKey" /> nommé qui fournit l'algorithme spécifié, à l'aide des paramètres de création de clé fournis.</summary>
+      <param name="algorithm">Algorithme avec lequel la clé sera utilisée.</param>
+      <param name="keyName">Nom de la clé. Si aucun nom n'est fourni, la clé ne sera pas rendue persistante.</param>
+      <param name="creationParameters">Un objet qui spécifie des paramètres avancés pour la méthode, notamment <see cref="T:System.Security.Cryptography.CngProvider" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="algorithm" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Une clé éphémère ou persistante qui fournit l'algorithme spécifié.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Delete">
+      <summary>Supprime la clé associée à l'objet.</summary>
+      <exception cref="T:System.ObjectDisposedException">Une tentative a été faite pour accéder à une clé supprimée.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Dispose">
+      <summary>Libère toutes les ressources utilisées par l'instance actuelle de la classe <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String)">
+      <summary>Vérifie s'il existe une clé nommée dans le fournisseur de stockage de clés (KSP) par défaut.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>
+        <see langword="true" /> si la clé nommée existe dans le KSP par défaut ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Vérifie s'il existe une clé nommée dans le fournisseur de stockage de clés (KSP) spécifié.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le KSP à vérifier pour la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> ou <paramref name="provider" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>
+        <see langword="true" /> si la clé nommée existe dans le fournisseur spécifié ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Exists(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Vérifie si une clé nommée existe dans le fournisseur de stockage de clés (KSP) spécifié, conformément aux options spécifiées.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">KSP dans lequel rechercher la clé.</param>
+      <param name="options">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient les options d'ouverture d'une clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> ou <paramref name="provider" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>
+        <see langword="true" /> si la clé nommée existe dans le fournisseur spécifié ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Export(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Exporte le matériel clé dans un BLOB, au format spécifié.</summary>
+      <param name="format">Objet qui spécifie le format du BLOB de clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="format" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs. En général, <see cref="P:System.Security.Cryptography.CngKey.ExportPolicy" /> n'autorise pas l'exportation de la clé.</exception>
+      <returns>Un BLOB qui contient le matériel clé au format spécifié.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Obtient une propriété, étant donné un nom et un jeu d'options de propriété.</summary>
+      <param name="name">Nom de la propriété souhaitée.</param>
+      <param name="options">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient les options pour la propriété nommée.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Objet qui contient la valeur brute de la propriété spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.HasProperty(System.String,System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Vérifie si la propriété spécifiée existe sur la clé.</summary>
+      <param name="name">Le nom de propriété à vérifier.</param>
+      <param name="options">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient les options pour la propriété nommée.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> a la valeur <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si la propriété spécifiée est trouvée ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Crée une clé en important le matériel clé spécifié dans le fournisseur de stockage de clés par défaut (KSP) et en utilisant le format spécifié.</summary>
+      <param name="keyBlob">Tableau qui contient les informations de clé.</param>
+      <param name="format">Objet qui spécifie le format du tableau de <paramref name="keyBlob" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" /> ou <paramref name="format" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Nouvelle clé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Import(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngProvider)">
+      <summary>Crée une clé en important le matériel clé indiqué dans le fournisseur de stockage de clés (KSP) spécifié, à l’aide du format spécifié.</summary>
+      <param name="keyBlob">Tableau qui contient les informations de clé.</param>
+      <param name="format">Objet qui spécifie le format du tableau de <paramref name="keyBlob" />.</param>
+      <param name="provider">KSP.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyBlob" />, <paramref name="format" /> ou <paramref name="provider" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Nouvelle clé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(Microsoft.Win32.SafeHandles.SafeNCryptKeyHandle,System.Security.Cryptography.CngKeyHandleOpenOptions)">
+      <summary>Crée une instance d'un objet <see cref="T:System.Security.Cryptography.CngKey" /> en utilisant un handle pour une clé existante.</summary>
+      <param name="keyHandle">Handle d'une clé existante.</param>
+      <param name="keyHandleOpenOptions">Valeur de l'énumération (parmi d'autres) qui indique si <paramref name="keyHandle" /> représente une clé éphémère ou une clé nommée.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyHandle" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keyHandle" /> n'est pas valide ou est incorrect, ou est déjà fermé. Cette exception est également levée si la clé est une clé éphémère créée par le langage CLR (common language runtime), mais que la valeur <see cref="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey" /> n'est pas spécifiée.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Clé existante.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String)">
+      <summary>Crée une instance d'un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui représente une clé nommée existante.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Clé existante.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Crée une instance d'un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui représente une clé nommée existante, à l'aide du fournisseur de stockage de clés (KSP) spécifié.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> ou <paramref name="provider" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Clé existante.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.Open(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Crée une instance d'un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui représente une clé nommée existante, à l'aide du fournisseur de stockage de clés (KSP) et des options d'ouverture de clé spécifiées.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <param name="openOptions">Combinaison de bits des valeurs d’énumération qui spécifient des options d’ouverture de la clé, par exemple d’où la clé est ouverte (stockage de machine ou utilisateur) et s’il faut supprimer l’invite de l’interface utilisateur.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> ou <paramref name="provider" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Clé existante.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKey.SetProperty(System.Security.Cryptography.CngProperty)">
+      <summary>Définit une propriété nommée sur la clé.</summary>
+      <param name="property">Propriété de clé à définir.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Algorithm">
+      <summary>Obtient l'algorithme utilisé par la clé.</summary>
+      <returns>Objet qui spécifie le nom d'un algorithme de chiffrement.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.AlgorithmGroup">
+      <summary>Obtient le groupe d'algorithmes utilisé par la clé.</summary>
+      <returns>Objet qui spécifie le nom d'un groupe d'algorithmes de chiffrement.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ExportPolicy">
+      <summary>Obtient la stratégie d'exportation utilisée par la clé.</summary>
+      <returns>Objet qui spécifie la stratégie d'exportation pour la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Handle">
+      <summary>Obtient un handle sécurisé qui représente une clé native (NCRYPT_KEY_HANDLE).</summary>
+      <returns>Handle sécurisé qui représente la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsEphemeral">
+      <summary>Obtient l'état de persistance de la clé.</summary>
+      <returns>
+        <see langword="true" /> si la clé est éphémère ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.IsMachineKey">
+      <summary>Obtient la portée (ordinateur ou utilisateur) de la clé.</summary>
+      <returns>
+        <see langword="true" /> si la clé est disponible sur l'ensemble de l'ordinateur ; <see langword="false" /> si la clé est destinée uniquement à l'utilisateur actuel.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyName">
+      <summary>Obtient le nom de la clé.</summary>
+      <returns>Nom de la clé. Si la clé est éphémère, la valeur est <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeySize">
+      <summary>Obtient la taille de clé en bits.</summary>
+      <returns>Taille de la clé en bits.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.KeyUsage">
+      <summary>Obtient les opérations de chiffrement spécifiées par la clé.</summary>
+      <returns>Combinaison d'opérations de bits des valeurs d'énumération qui spécifient les utilisations autorisées de la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ParentWindowHandle">
+      <summary>Obtient ou définit le handle de fenêtre (HWND) qui doit être utilisé pour les invites d'interface utilisateur provoquées par les accès à la clé.</summary>
+      <returns>Handle de fenêtre parente pour la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.Provider">
+      <summary>Obtient le fournisseur de stockage de clés (KSP) qui gère la clé.</summary>
+      <returns>KSP qui gère la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.ProviderHandle">
+      <summary>Obtient un handle natif (NCRYPT_PROV_HANDLE) pour le fournisseur de stockage de clés (KSP).</summary>
+      <returns>Handle pour le KSP.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UIPolicy">
+      <summary>Obtient des paramètres qui contrôlent l'interface utilisateur pour accéder à la clé.</summary>
+      <returns>Un objet qui contient des paramètres de configuration pour afficher l'interface utilisateur.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKey.UniqueName">
+      <summary>Obtient le nom unique pour la clé.</summary>
+      <returns>Autre nom pour la clé. Si la clé est éphémère, la valeur est <see langword="null" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyBlobFormat">
+      <summary>Spécifie un format BLOB de clé pour une utilisation avec les objets CNG (Cryptography Next Generation) de Microsoft.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> à l'aide du format spécifié.</summary>
+      <param name="format">Format BLOB de clé à initialiser.</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="format" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La longueur du paramètre <paramref name="format" /> est 0 (zéro).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Object)">
+      <summary>Compare l'objet spécifié à l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel.</summary>
+      <param name="obj">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="obj" /> est un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie le même format BLOB de clé que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.Equals(System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Compare l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> spécifié à l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel.</summary>
+      <param name="other">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="other" /> spécifie le même format BLOB de clé que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.GetHashCode">
+      <summary>Génère une valeur de hachage pour le format BLOB de clé incorporé dans l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel.</summary>
+      <returns>Valeur de hachage du format BLOB de clé incorporé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Equality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> spécifient le même format BLOB de clé.</summary>
+      <param name="left">Objet qui spécifie un format BLOB de clé.</param>
+      <param name="right">Deuxième objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets spécifient le même format BLOB de clé ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.op_Inequality(System.Security.Cryptography.CngKeyBlobFormat,System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> ne spécifient pas le même format BLOB de clé.</summary>
+      <param name="left">Objet qui spécifie un format BLOB de clé.</param>
+      <param name="right">Deuxième objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets ne spécifient pas le même format BLOB de clé ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyBlobFormat.ToString">
+      <summary>Obtient le nom du format BLOB de clé que l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel spécifie.</summary>
+      <returns>Nom du format BLOB de clé incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPrivateBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un objet BLOB de clé privée pour une clé ECC qui contient les paramètres de courbe explicite.</summary>
+      <returns>Objet décrivant un objet BLOB de clé privée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccFullPublicBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un objet BLOB de clé publique pour une clé ECC qui contient les paramètres de courbe explicite.</summary>
+      <returns>Objet décrivant un objet BLOB de clé publique.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPrivateBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé privée pour une clé ECC (elliptic curve cryptography).</summary>
+      <returns>Objet qui spécifie un BLOB de clé privée ECC.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.EccPublicBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé publique pour une clé ECC (elliptic curve cryptography).</summary>
+      <returns>Objet qui spécifie un BLOB de clé publique ECC.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Format">
+      <summary>Obtient le nom du format BLOB de clé que l'objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> actuel spécifie.</summary>
+      <returns>Nom du format BLOB de clé incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPrivateBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé privée générique.</summary>
+      <returns>Objet qui spécifie un BLOB de clé privée générique.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.GenericPublicBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé publique générique.</summary>
+      <returns>Objet qui spécifie un BLOB de clé publique générique.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.OpaqueTransportBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé de transport opaque.</summary>
+      <returns>Objet qui spécifie un BLOB de clé de transport opaque.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyBlobFormat.Pkcs8PrivateBlob">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngKeyBlobFormat" /> qui spécifie un BLOB de clé PKCS #8 (Private Key Information Syntax Standard).</summary>
+      <returns>Objet qui spécifie un BLOB de clé privée PKCS #8.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationOptions">
+      <summary>Spécifie les options utilisées pour la création de clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.MachineKey">
+      <summary>Une clé est créée au niveau de l'ordinateur.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.None">
+      <summary>Aucune option de création de clé n'est utilisée.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyCreationOptions.OverwriteExistingKey">
+      <summary>La clé existante est remplacée pendant la création de clé.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyCreationParameters">
+      <summary>Contient des propriétés avancées pour la création de clé.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngKeyCreationParameters.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngKeyCreationParameters" />.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ExportPolicy">
+      <summary>Obtient ou définit la stratégie d'exportation de clé.</summary>
+      <returns>Un objet qui spécifie une stratégie d'exportation de clé. La valeur par défaut est <see langword="null" />, qui indique que la stratégie d'exportation par défaut du fournisseur de stockage de clés est utilisée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyCreationOptions">
+      <summary>Obtient ou définit les options de création de clé.</summary>
+      <returns>Un objet qui spécifie des options de création de clés. La valeur par défaut est <see langword="null" />, qui indique que les options de création de clé par défaut du fournisseur de stockage de clés sont utilisées.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.KeyUsage">
+      <summary>Obtient ou définit les opérations de chiffrement qui s'appliquent à la clé actuelle.</summary>
+      <returns>Une combinaison d'opérations de bits d'un ou plusieurs valeurs d'énumération qui spécifient l'utilisation de la clé. La valeur par défaut est <see langword="null" />, qui indique que l'utilisation par défaut du fournisseur de stockage de clés est utilisée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Parameters">
+      <summary>Permet de créer un objet <see cref="T:System.Security.Cryptography.CngKey" /> avec les propriétés supplémentaires définies avant la finalisation de la clé.</summary>
+      <returns>Un objet de collection qui contient les paramètres supplémentaires que vous devez définir sur un objet <see cref="T:System.Security.Cryptography.CngKey" /> pendant la création de la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.ParentWindowHandle">
+      <summary>Obtient ou définit le handle de fenêtre qui doit être utilisé comme fenêtre parente pour les boîtes de dialogue créées par les classes CNG (Cryptography Next Generation).</summary>
+      <returns>Le HWND de la fenêtre parente utilisée pour les boîtes de dialogue CNG.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.Provider">
+      <summary>Obtient ou définit le fournisseur de stockage de clés (KSP) pour y créer une clé.</summary>
+      <exception cref="T:System.ArgumentNullException">La propriété <see cref="P:System.Security.Cryptography.CngKeyCreationParameters.Provider" /> a la valeur <see langword="null" />.</exception>
+      <returns>Un objet qui spécifie le KSP dans lequel une nouvelle clé sera créée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngKeyCreationParameters.UIPolicy">
+      <summary>Obtient ou définit des informations à propos de l'interface utilisateur à afficher lorsqu'une clé est créée ou accédée.</summary>
+      <returns>Un objet qui contient des détails à propos de l'interface utilisateur affichée par les classes CNG (Cryptography Next Generation) lorsqu'une clé est créée ou accédée. Une valeur <see langword="null" /> indique que la stratégie d'interface utilisateur par défaut du fournisseur de stockage de clés est définie.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyHandleOpenOptions">
+      <summary>Spécifie des options d’ouverture des handles de clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.EphemeralKey">
+      <summary>Le handle de clé qui s'ouvre spécifie une clé éphémère.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyHandleOpenOptions.None">
+      <summary>Le handle de clé qui s'ouvre ne spécifie pas de clé éphémère.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyOpenOptions">
+      <summary>Spécifie des options d’ouverture d’une clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey">
+      <summary>Une clé est ouverte au niveau de l'ordinateur.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.None">
+      <summary>Aucune option d'ouverture de clé n'est spécifiée.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.Silent">
+      <summary>L'invite de l'interface utilisateur est supprimée.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyOpenOptions.UserKey">
+      <summary>Si la valeur <see cref="F:System.Security.Cryptography.CngKeyOpenOptions.MachineKey" /> n'est pas spécifiée, une clé d'utilisateur est ouverte à la place.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngKeyUsages">
+      <summary>Spécifie les opérations de chiffrement qui peuvent être utilisées avec une clé CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.AllUsages">
+      <summary>La clé peut être utilisée pour toutes les opérations.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Decryption">
+      <summary>La clé ne peut être utilisée que pour le chiffrement et le déchiffrement.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.KeyAgreement">
+      <summary>La clé peut être utilisée pour la génération d'accord secret et l'échange de clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.None">
+      <summary>Aucune valeur d'utilisation n'est assignée à la clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngKeyUsages.Signing">
+      <summary>La clé peut être utilisée pour la signature et la vérification.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProperty">
+      <summary>Encapsule une propriété d’une clé CNG (Cryptography Next Generation) ou d’un fournisseur.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.#ctor(System.String,System.Byte[],System.Security.Cryptography.CngPropertyOptions)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngProperty" />.</summary>
+      <param name="name">Le nom de propriété à initialiser.</param>
+      <param name="value">La valeur de propriété à initialiser.</param>
+      <param name="options">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le mode de stockage de la propriété.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="name" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Object)">
+      <summary>Compare l'objet spécifié à l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <param name="obj">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="obj" /> est un objet <see cref="T:System.Security.Cryptography.CngProperty" /> qui spécifie la même propriété que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.Equals(System.Security.Cryptography.CngProperty)">
+      <summary>Compare l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> spécifié à l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <param name="other">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="other" /> représente la même propriété que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetHashCode">
+      <summary>Génère une valeur de hachage pour l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <returns>La valeur de hachage de l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.GetValue">
+      <summary>Obtient la valeur de propriété spécifiée par l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <returns>Un tableau qui représente la valeur stockée dans la propriété.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Equality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngProperty" /> spécifient les mêmes noms, valeurs et options de propriété.</summary>
+      <param name="left">Un objet qui spécifie une propriété d'une clé CNG (Cryptography Next Generation) ou d'un fournisseur.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets spécifient la même propriété ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProperty.op_Inequality(System.Security.Cryptography.CngProperty,System.Security.Cryptography.CngProperty)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngProperty" /> ne spécifient pas les mêmes noms, valeurs et options de propriété.</summary>
+      <param name="left">Un objet qui spécifie une propriété d'une clé CNG (Cryptography Next Generation) ou d'un fournisseur.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets ne spécifient pas la même propriété ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Name">
+      <summary>Obtient le nom de propriété spécifié par l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <returns>Le nom de propriété défini dans l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProperty.Options">
+      <summary>Obtient les options de propriété spécifiées par l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</summary>
+      <returns>Un objet qui spécifie les options définies dans l'objet <see cref="T:System.Security.Cryptography.CngProperty" /> actuel.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyCollection">
+      <summary>Fournit une collection fortement typée de propriétés CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngPropertyCollection.#ctor">
+      <summary>Initialise un nouvel objet <see cref="T:System.Security.Cryptography.CngPropertyCollection" />.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngPropertyOptions">
+      <summary>Spécifie les options de propriété de la clé CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.CustomProperty">
+      <summary>La propriété n'est pas spécifiée par CNG. Utilisez cette option pour éviter de futurs conflits de nom avec des propriétés CNG.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.None">
+      <summary>La propriété référencée n'a pas d'options.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngPropertyOptions.Persist">
+      <summary>La propriété doit être rendue persistante.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.CngProvider">
+      <summary>Encapsule le nom d’un fournisseur de stockage de clés (KSP) pour une utilisation avec les objets CNG (Cryptography Next Generation).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngProvider" />.</summary>
+      <param name="provider">Le nom du fournisseur de stockage de clés (KSP) à initialiser.</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="provider" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La longueur du paramètre <paramref name="provider" /> est 0 (zéro).</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Object)">
+      <summary>Compare l'objet spécifié à l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</summary>
+      <param name="obj">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="obj" /> est un <see cref="T:System.Security.Cryptography.CngProvider" /> qui spécifie le même fournisseur de stockage de clés (KSP) que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.Equals(System.Security.Cryptography.CngProvider)">
+      <summary>Compare l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> spécifié à l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</summary>
+      <param name="other">Objet à comparer avec l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</param>
+      <returns>
+        <see langword="true" /> si le paramètre <paramref name="other" /> spécifie le même fournisseur de stockage de clés (KSP) que l'objet actuel ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.GetHashCode">
+      <summary>Génère une valeur de hachage pour le nom du fournisseur de stockage de clés (KSP) incorporé dans l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</summary>
+      <returns>La valeur de hachage du nom KSP incorporé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Equality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngProvider" /> spécifient le même fournisseur de stockage de clés (KSP).</summary>
+      <param name="left">Un objet qui spécifie un KSP.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets représentent le même KSP ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.op_Inequality(System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngProvider)">
+      <summary>Détermine si deux objets <see cref="T:System.Security.Cryptography.CngProvider" /> ne représentent pas le même fournisseur de stockage de clés (KSP).</summary>
+      <param name="left">Un objet qui spécifie un KSP.</param>
+      <param name="right">Second objet, à comparer avec l'objet identifié par le paramètre <paramref name="left" />.</param>
+      <returns>
+        <see langword="true" /> si les deux objets ne représentent pas le même KSP ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.CngProvider.ToString">
+      <summary>Obtient le nom du fournisseur de stockage de clés (KSP) spécifié par l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</summary>
+      <returns>Le nom KSP incorporé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSmartCardKeyStorageProvider">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngProvider" /> qui spécifie le fournisseur de stockage de clés de carte à puce Microsoft.</summary>
+      <returns>Un objet qui spécifie le fournisseur de stockage de clés de carte à puce Microsoft.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.MicrosoftSoftwareKeyStorageProvider">
+      <summary>Obtient un objet <see cref="T:System.Security.Cryptography.CngProvider" /> qui spécifie le fournisseur de stockage de clés logicielles Microsoft.</summary>
+      <returns>Un objet qui spécifie le fournisseur de stockage de clés logicielles Microsoft.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngProvider.Provider">
+      <summary>Obtient le nom du fournisseur de stockage de clés (KSP) spécifié par l'objet <see cref="T:System.Security.Cryptography.CngProvider" /> actuel.</summary>
+      <returns>Le nom KSP incorporé.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIPolicy">
+      <summary>Encapsule les paramètres de configuration facultatifs pour l’interface utilisateur que CNG (Cryptography Next Generation) affiche quand vous accédez à une clé protégée.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngUIPolicy" /> à l'aide du niveau de protection spécifié.</summary>
+      <param name="protectionLevel">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le niveau de protection.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngUIPolicy" /> à l'aide du niveau de protection et du nom convivial spécifiés.</summary>
+      <param name="protectionLevel">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le niveau de protection.</param>
+      <param name="friendlyName">Nom convivial de la clé à utiliser dans l'invite d'interface utilisateur. Spécifiez une chaîne null pour utiliser le nom par défaut.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngUIPolicy" /> à l'aide du niveau de protection, du nom convivial et de la description spécifiés.</summary>
+      <param name="protectionLevel">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le niveau de protection.</param>
+      <param name="friendlyName">Nom convivial de la clé à utiliser dans l'invite d'interface utilisateur. Spécifiez une chaîne null pour utiliser le nom par défaut.</param>
+      <param name="description">Description en texte intégral de la clé. Spécifiez une chaîne null pour utiliser la description par défaut.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngUIPolicy" /> à l'aide du niveau de protection, du nom convivial, de la chaîne de description et du contexte d'utilisation spécifiés.</summary>
+      <param name="protectionLevel">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le niveau de protection.</param>
+      <param name="friendlyName">Nom convivial de la clé à utiliser dans l'invite d'interface utilisateur. Spécifiez une chaîne null pour utiliser le nom par défaut.</param>
+      <param name="description">Description en texte intégral de la clé. Spécifiez une chaîne null pour utiliser la description par défaut.</param>
+      <param name="useContext">Description indiquant comment la clé doit être utilisée. Spécifiez une chaîne null pour utiliser la description par défaut.</param>
+    </member>
+    <member name="M:System.Security.Cryptography.CngUIPolicy.#ctor(System.Security.Cryptography.CngUIProtectionLevels,System.String,System.String,System.String,System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.CngUIPolicy" /> à l'aide du niveau de protection, du nom convivial, de la chaîne de description, du contexte d'utilisation et du titre spécifiés.</summary>
+      <param name="protectionLevel">Combinaison d'opérations de bits des valeurs d'énumération qui spécifient le niveau de protection.</param>
+      <param name="friendlyName">Nom convivial de la clé à utiliser dans l'invite d'interface utilisateur. Spécifiez une chaîne null pour utiliser le nom par défaut.</param>
+      <param name="description">Description en texte intégral de la clé. Spécifiez une chaîne null pour utiliser la description par défaut.</param>
+      <param name="useContext">Description indiquant comment la clé doit être utilisée. Spécifiez une chaîne null pour utiliser la description par défaut.</param>
+      <param name="creationTitle">Titre de la boîte de dialogue qui fournit l'invite d'interface utilisateur. Spécifiez une chaîne null pour utiliser le titre par défaut.</param>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.CreationTitle">
+      <summary>Obtient le titre affiché par l'invite d'interface utilisateur.</summary>
+      <returns>Titre de la boîte de dialogue qui apparaît lorsque la clé est accédée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.Description">
+      <summary>Obtient la chaîne de description affichée par l'invite d'interface utilisateur.</summary>
+      <returns>Texte de description pour la boîte de dialogue qui apparaît lorsque la clé est accédée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.FriendlyName">
+      <summary>Obtient le nom convivial affiché par l'invite d'interface utilisateur.</summary>
+      <returns>Nom convivial utilisé pour décrire la clé dans la boîte de dialogue qui apparaît lorsque la clé est accédée.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.ProtectionLevel">
+      <summary>Obtient le niveau de protection de l'interface utilisateur pour la clé.</summary>
+      <returns>Objet qui décrit le niveau de protection de l'interface utilisateur à appliquer à la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.CngUIPolicy.UseContext">
+      <summary>Obtient la description indiquant comment la clé doit être utilisée.</summary>
+      <returns>Description indiquant comment la clé doit être utilisée.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.CngUIProtectionLevels">
+      <summary>Spécifie le niveau de protection pour la clé dans les scénarios d’invite de l’interface utilisateur.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ForceHighProtection">
+      <summary>Une invite d'interface utilisateur est affichée chaque fois que la clé est accédée.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.None">
+      <summary>Aucune invite d'interface utilisateur n'est affichée lorsque la clé est accédée.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.CngUIProtectionLevels.ProtectKey">
+      <summary>Une invite d'interface utilisateur est affichée la première fois que la clé est accédée dans un processus.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.DSACng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l’algorithme DSA (Digital Signature Algorithm).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.DSACng" /> avec une paire de clés de 2 048 bits générée de manière aléatoire.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Int32)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.DSACng" /> avec une clé de la taille spécifiée générée de manière aléatoire.</summary>
+      <param name="keySize">Taille de la clé à générer, en bits.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> n'est pas valide.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.DSACng" /> avec la clé spécifiée.</summary>
+      <param name="key">Clé à utiliser pour les opérations DSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> n’est pas une clé DSA valide.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.CreateSignature(System.Byte[])">
+      <summary>Crée la signature <see cref="T:System.Security.Cryptography.DSA" /> pour les données spécifiées.</summary>
+      <param name="rgbHash">Valeur de hachage à signer.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbHash" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Cette instance représente uniquement une clé publique.
+
+- ou -
+
+Une erreur s’est produite lors de la création de la signature.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="rgbHash" /> est moins long que la valeur Q de la clé DSA.</exception>
+      <returns>Signature numérique pour les données spécifiées.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ExportParameters(System.Boolean)">
+      <summary>Exporte les paramètres d’algorithme DSA.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La clé DSA n'est pas une clé publique ou privée valide.</exception>
+      <returns>Paramètres d’algorithme DSA.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.ImportParameters(System.Security.Cryptography.DSAParameters)">
+      <summary>Remplace la clé existante utilisée par l'instance actuelle en créant un <see cref="T:System.Security.Cryptography.CngKey" /> pour la structure des paramètres.</summary>
+      <param name="parameters">Paramètres DSA.</param>
+      <exception cref="T:System.ArgumentException">Les paramètres DSA spécifiés ne sont pas valides.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.DSACng.VerifySignature(System.Byte[],System.Byte[])">
+      <summary>Vérifie si la signature numérique spécifiée correspond au code de hachage spécifié.</summary>
+      <param name="rgbHash">Code de hachage signé.</param>
+      <param name="rgbSignature">Signature numérique à vérifier.</param>
+      <exception cref="T:System.ArgumentNullException">Les paramètres <paramref name="rgbHash" /> ou <paramref name="rgbSignature" /> ont la valeur <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si <paramref name="rgbSignature" /> correspond à la signature calculée à l’aide du code de hachage spécifié ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.Key">
+      <summary>Obtient la clé que l'objet <see cref="T:System.Security.Cryptography.DSACng" /> utilisera pour toutes ses opérations de chiffrement.</summary>
+      <returns>La clé utilisée par l’objet <see cref="T:System.Security.Cryptography.DSACng" /> pour effectuer des opérations de chiffrement.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.KeyExchangeAlgorithm">
+      <summary>Obtient le nom de l'algorithme d'échange de clés.</summary>
+      <returns>Toujours <see langword="null" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.LegalKeySizes">
+      <summary>Obtient les tailles de clé, en octets, prises en charge par l'algorithme DSA.</summary>
+      <returns>Tableau qui contient les tailles de clé prises en charge par l'algorithme.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.DSACng.SignatureAlgorithm">
+      <summary>Obtient le nom de l'algorithme de signature.</summary>
+      <returns>Le « DSA » de la chaîne.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l'algorithme ECDH (Elliptic Curve Diffie-Hellman). Cette classe est utilisée pour exécuter des opérations de chiffrement.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> avec une paire de clés aléatoire.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Int32)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> avec une paire de clés aléatoire, à l’aide de la taille de clé spécifiée.</summary>
+      <param name="keySize">Taille de la clé. Les tailles de clé valides sont 256, 384 et 521 bits.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="keySize" /> spécifie une longueur non valide.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Les classes CNG (Cryptography Next Generation) ne sont pas prises en charge sur ce système.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> à l'aide de l'objet <see cref="T:System.Security.Cryptography.CngKey" /> spécifié.</summary>
+      <param name="key">Clé utilisée comme entrée pour les opérations de chiffrement effectuées par l’objet actif.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> ne spécifie pas un groupe d'algorithmes ECDH (Elliptic Curve Diffie-Hellman).</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Les classes CNG (Cryptography Next Generation) ne sont pas prises en charge sur ce système.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>Crée une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> dont la paire de clés publique/privée est générée sur la courbe spécifiée.</summary>
+      <param name="curve">La courbe utilisée pour générer la paire de clés publique/privée.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> ne valide pas.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHash(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[])">
+      <summary>Effectue une dérivation de clés à l’aide d’un algorithme de hachage spécifié avec des données facultatives ajoutées au début ou à la fin.</summary>
+      <param name="otherPartyPublicKey">La clé publique de l’autre partie.</param>
+      <param name="hashAlgorithm">L’algorithme de hachage à utiliser pour dériver la clé.</param>
+      <param name="secretPrepend">Valeur à ajouter avant la clé secrète dérivée avant le hachage.</param>
+      <param name="secretAppend">Valeur à ajouter après la clé secrète dérivée avant le hachage.</param>
+      <exception cref="T:System.NotImplementedException">Une classe dérivée doit remplacer cette méthode.</exception>
+      <exception cref="T:System.ArgumentException">La courbe utilisée par <paramref name="otherPartyPublicKey" /> a une taille différente de celle de cette clé.
+
+- ou -
+
+Le paramètre <paramref name="hashAlgorithm" /> ne spécifie pas de hachage.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La courbe utilisée par <paramref name="otherPartyPublicKey" /> est différente de celle de cette clé.
+
+- ou -
+
+Cette instance représente uniquement une clé publique.</exception>
+      <returns>Hachage du secret partagé après l’ajout au début ou à la fin de données comme demandé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyFromHmac(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Security.Cryptography.HashAlgorithmName,System.Byte[],System.Byte[],System.Byte[])">
+      <summary>Effectue une dérivation de clés à l’aide d’un algorithme HMAC (Hash-based Message Authentication Code) spécifié avec des données facultatives ajoutées au début ou à la fin.</summary>
+      <param name="otherPartyPublicKey">La clé publique de l’autre partie.</param>
+      <param name="hashAlgorithm">L’algorithme de hachage à utiliser pour dériver la clé.</param>
+      <param name="hmacKey">La clé du HMAC.</param>
+      <param name="secretPrepend">Valeur à ajouter avant la clé secrète dérivée avant le hachage.</param>
+      <param name="secretAppend">Valeur à ajouter après la clé secrète dérivée avant le hachage.</param>
+      <exception cref="T:System.ArgumentException">La courbe utilisée par <paramref name="otherPartyPublicKey" /> a une taille différente de celle de cette clé.
+
+- ou -
+
+Le paramètre <paramref name="hashAlgorithm" /> ne spécifie pas de hachage.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La courbe utilisée par <paramref name="otherPartyPublicKey" /> est différente de celle de cette clé.
+
+- ou -
+
+Cette instance représente uniquement une clé publique.</exception>
+      <returns>HMAC du secret partagé après l’ajout au début ou à la fin de données comme demandé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.CngKey)">
+      <summary>Dérive le matériel de clé généré par l'accord secret entre deux correspondants, étant donné un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui contient la clé publique du deuxième correspondant.</summary>
+      <param name="otherPartyPublicKey">Un objet qui contient la partie publique de la clé ECDH (Elliptic Curve Diffie-Hellman) de l'autre correspondant dans l'échange de clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> n'est pas valide. Soit la propriété <see cref="P:System.Security.Cryptography.CngKey.AlgorithmGroup" /> ne spécifie pas <see cref="P:System.Security.Cryptography.CngAlgorithmGroup.ECDiffieHellman" /> soit sa taille de clé ne correspond pas à la taille de clé de cette instance.</exception>
+      <exception cref="T:System.InvalidOperationException">La propriété <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction" /> de cet objet spécifie la fonction de dérivation de clés <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />, mais <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> ou <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> a une valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Tableau d'octets qui contient le matériel de clé. Ces informations sont générées à partir de l'accord secret calculé au moyen de la clé privée de l'objet actuel et de la clé publique spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyMaterial(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>Dérive le matériel de clé généré par l'accord secret entre deux correspondants, étant donné un objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> qui contient la clé publique du deuxième correspondant.</summary>
+      <param name="otherPartyPublicKey">La clé publique de l'autre correspondant dans l'échange de clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> n'est pas une clé <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</exception>
+      <returns>Tableau d'octets qui contient le matériel de clé. Ces informations sont générées à partir de l'accord secret calculé au moyen de la clé privée de l'objet actuel et de la clé publique spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveKeyTls(System.Security.Cryptography.ECDiffieHellmanPublicKey,System.Byte[],System.Byte[])">
+      <summary>Effectue une dérivation de clés à l’aide de la fonction pseudo-aléatoire (PRF) du protocole TLS (Transport Layer Security) 1.1.</summary>
+      <param name="otherPartyPublicKey">La clé publique de l’autre partie.</param>
+      <param name="prfLabel">L’étiquette PRF encodée en ASCII.</param>
+      <param name="prfSeed">La valeur de départ PRF à 64 octets.</param>
+      <exception cref="T:System.NotImplementedException">Une classe dérivée doit remplacer cette méthode.</exception>
+      <exception cref="T:System.ArgumentException">La courbe utilisée par <paramref name="otherPartyPublicKey" /> a une taille différente de celle de cette clé.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" />, <paramref name="prfLabel" /> ou <paramref name="prfSeed" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="prfSeed" /> ne compte pas exactement 64 octets.
+
+- ou -
+
+La courbe utilisée par <paramref name="otherPartyPublicKey" /> est différente de celle de cette clé.
+
+- ou -
+
+Cette instance représente uniquement une clé publique.</exception>
+      <returns>48 premiers octets de la fonction pseudo-aléatoire (PRF) du protocole TLS 1.1, utilisant le secret partagé comme clé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.CngKey)">
+      <summary>Obtient un handle pour l'accord secret généré entre deux correspondants, étant donné un objet <see cref="T:System.Security.Cryptography.CngKey" /> qui contient la clé publique du deuxième correspondant.</summary>
+      <param name="otherPartyPublicKey">Un objet qui contient la partie publique de la clé ECDH (Elliptic Curve Diffie-Hellman) de l'autre correspondant dans l'échange de clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> n’est pas une clé ECDH ou n’a pas la taille correcte.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Un handle pour l'accord secret. Ces informations sont calculées à partir de la clé privée de l'objet actuel et de la clé publique spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.DeriveSecretAgreementHandle(System.Security.Cryptography.ECDiffieHellmanPublicKey)">
+      <summary>Obtient un handle pour l'accord secret généré entre deux correspondants, étant donné un objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" /> qui contient la clé publique du deuxième correspondant.</summary>
+      <param name="otherPartyPublicKey">La clé publique de l'autre correspondant dans l'échange de clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="otherPartyPublicKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="otherPartyPublicKey" /> n'est pas une clé <see cref="T:System.Security.Cryptography.ECDiffieHellmanPublicKey" />.</exception>
+      <returns>Un handle pour l'accord secret. Ces informations sont calculées à partir de la clé privée de l'objet actuel et de la clé publique spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportExplicitParameters(System.Boolean)">
+      <summary>Exporte les paramètres de clé et de courbe explicite utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" /> dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La méthode ne peut pas obtenir les valeurs de la courbe.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">L’exportation explicite n’est pas prise en charge par cette plateforme. Windows 10 ou version ultérieure requis.</exception>
+      <returns>Les paramètres de clé et de courbe explicite utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ExportParameters(System.Boolean)">
+      <summary>Exporte la clé utilisée par l'objet <see cref="T:System.Security.Cryptography.ECCurve" /> dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La méthode ne peut pas obtenir les valeurs de la courbe.</exception>
+      <returns>Les paramètres de clé et de courbe nommée utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Désérialise les informations de clés d'une chaîne XML en utilisant le format spécifié.</summary>
+      <param name="xml">Les informations de clés basées sur XML à désérialiser.</param>
+      <param name="format">L'une des valeurs d'énumération qui spécifie le format de la chaîne XML. Le seul format accepté actuellement est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="xml" /> est formé de manière incorrecte.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> spécifie un format non valide. La seule valeur acceptée est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>Génère une nouvelle paire de clés publique/privée éphémère pour la courbe spécifiée.</summary>
+      <param name="curve">La courbe utilisée pour générer une paire de clés publique/privée éphémère.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> ne valide pas.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>Importe les paramètres spécifiés pour un objet <see cref="T:System.Security.Cryptography.ECCurve" /> comme clé dans l’instance actuelle.</summary>
+      <param name="parameters">Paramètres de la courbe à importer.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> ne valide pas.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> fait référence à une courbe qui ne peut pas être importée.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> fait référence à une courbe qui n’est pas prise en charge par cette plateforme.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Sérialise les informations de clés en une chaîne XML en utilisant le format spécifié.</summary>
+      <param name="format">L'une des valeurs d'énumération qui spécifie le format de la chaîne XML. Le seul format accepté actuellement est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> spécifie un format non valide. La seule valeur acceptée est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <returns>Un objet chaîne qui contient les informations de clés, sérialisées en une chaîne XML, conformément au format demandé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm">
+      <summary>Obtient ou définit l'algorithme de hachage à utiliser lors de la génération du matériel de clé.</summary>
+      <exception cref="T:System.ArgumentNullException">La valeur est <see langword="null" />.</exception>
+      <returns>Objet qui spécifie l'algorithme de hachage.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey">
+      <summary>Obtient ou définit la clé HMAC (Hash-based Message Authentication Code) à utiliser lorsque le matériel de clé est dérivé.</summary>
+      <returns>Clé HMAC (Hash-based Message Authentication Code) à utiliser lorsque le matériel de clé est dérivé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Key">
+      <summary>Spécifie le <see cref="T:System.Security.Cryptography.CngKey" /> utilisé par l'objet actuel pour les opérations de chiffrement.</summary>
+      <returns>La paire de clés utilisée par cet objet pour exécuter les opérations de chiffrement.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeyDerivationFunction">
+      <summary>Obtient ou définit la fonction de dérivation de clés pour la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException">La valeur d'énumération est hors limites.</exception>
+      <returns>Une des valeurs d'énumération de <see cref="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction" /> : <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />, <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" /> ou <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />. La valeur par défaut est <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.KeySize">
+      <summary>Obtient ou définit la taille, en bits, du modulo de clé utilisé par l'algorithme asymétrique.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="value" /> n’est pas autorisé par <see cref="P:System.Security.Cryptography.AsymmetricAlgorithm.LegalKeySizes" />.</exception>
+      <returns>Taille, en bits, du modulo de clé utilisé par l'algorithme asymétrique.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Label">
+      <summary>Obtient ou définit la valeur d'étiquette utilisée pour la dérivation de clés.</summary>
+      <returns>Valeur de l'étiquette.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.PublicKey">
+      <summary>Obtient la clé publique qui peut être utilisée par un autre objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> pour générer un accord secret partagé.</summary>
+      <returns>La clé publique associée à cette instance de l'objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend">
+      <summary>Obtient ou définit une valeur qui sera ajoutée à l'accord secret lors de la génération du matériel de clé.</summary>
+      <returns>La valeur ajoutée à l'accord secret.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend">
+      <summary>Obtient ou définit une valeur qui sera ajoutée au début de l'accord secret lors de la dérivation du matériel de clé.</summary>
+      <returns>La valeur ajoutée au début de l'accord secret pendant la dérivation de clés.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed">
+      <summary>Obtient ou définit la valeur initiale qui sera utilisée lors de la dérivation du matériel de clé.</summary>
+      <returns>La valeur initiale.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey">
+      <summary>Obtient une valeur qui indique si l'accord secret est utilisé comme une clé HMAC (Hash-based Message Authentication Code) pour dériver le matériel de clé.</summary>
+      <returns>
+        <see langword="true" /> si l'accord secret est utilisé comme une clé HMAC pour dériver le matériel de clé ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey">
+      <summary>Spécifie une clé publique ECDH (Elliptic Curve Diffie-Hellman) à utiliser avec la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" />.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportExplicitParameters">
+      <summary>Exporte les paramètres de clé et de courbe explicite utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" /> dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La méthode ne peut pas obtenir les valeurs de la courbe.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">L’exportation explicite n’est pas prise en charge par cette plateforme. Windows 10 ou version ultérieure requis.</exception>
+      <returns>Les paramètres de clé et de courbe explicite utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ExportParameters">
+      <summary>Exporte la clé utilisée par l'objet <see cref="T:System.Security.Cryptography.ECCurve" /> dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">La méthode ne peut pas obtenir les valeurs de la courbe.</exception>
+      <returns>Les paramètres de clé et de courbe nommée utilisés par l’objet <see cref="T:System.Security.Cryptography.ECCurve" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromByteArray(System.Byte[],System.Security.Cryptography.CngKeyBlobFormat)">
+      <summary>Convertit un tableau d'octets qui contient une clé publique en un objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> d'après le format spécifié.</summary>
+      <param name="publicKeyBlob">Tableau d'octets qui contient une clé publique ECDH (Elliptic Curve Diffie-Hellman).</param>
+      <param name="format">Objet qui spécifie le format du BLOB de clé.</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="publicKeyBlob" /> ou <paramref name="format" /> est <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Le paramètre <paramref name="publicKeyBlob" /> ne contient pas de clé <see cref="T:System.Security.Cryptography.ECDiffieHellman" />.</exception>
+      <returns>Objet qui contient la clé publique ECDH sérialisée dans le tableau d'octets.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.FromXmlString(System.String)">
+      <summary>Convertit une chaîne XML en un objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</summary>
+      <param name="xml">Chaîne XML qui contient une clé ECDH (Elliptic Curve Diffie-Hellman).</param>
+      <exception cref="T:System.ArgumentNullException">Le paramètre <paramref name="xml" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">Le paramètre <paramref name="xml" /> ne spécifie pas une clé <see cref="T:System.Security.Cryptography.ECDiffieHellman" />.</exception>
+      <returns>Objet qui contient la clé publique ECDH spécifiée par le XML donné.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.Import">
+      <summary>Convertit l'objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> en objet <see cref="T:System.Security.Cryptography.CngKey" />.</summary>
+      <returns>Objet qui contient la clé représentée par l'objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.ToXmlString">
+      <summary>Sérialise la clé publique <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" /> en une chaîne XML au format RFC 4050.</summary>
+      <returns>Chaîne XML qui contient la clé publique sérialisée <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDiffieHellmanCngPublicKey.BlobFormat">
+      <summary>Obtient le format BLOB de clé pour un objet <see cref="T:System.Security.Cryptography.ECDiffieHellmanCngPublicKey" />.</summary>
+      <returns>Format dans lequel est exprimé le BLOB de clé.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction">
+      <summary>Spécifie la fonction de dérivation de clés que la classe <see cref="T:System.Security.Cryptography.ECDiffieHellmanCng" /> utilisera pour convertir des accords secrets en matériel clé.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hash">
+      <summary>Un algorithme de hachage est utilisé pour générer le matériel clé. La propriété <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HashAlgorithm" /> spécifie le nom de l'algorithme à utiliser. Si le nom de l'algorithme n'est pas spécifié, <see cref="T:System.Security.Cryptography.SHA256" /> est utilisé comme algorithme par défaut. Vous pouvez également spécifier les propriétés <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> et <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> , mais elles ne sont pas obligatoires. La quantité de matériel clé généré est équivalente à la taille de la valeur de hachage pour l’algorithme spécifié.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac">
+      <summary>Un algorithme HMAC (Hash-based Message Authentication Code) est utilisé pour générer le matériel clé. La propriété <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.HmacKey" /> spécifie la clé à utiliser. Soit cette propriété doit être définie, soit la propriété <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.UseSecretAgreementAsHmacKey" /> doit être définie sur <see langword="true" /> ; sinon, une exception <see cref="T:System.Security.Cryptography.CryptographicException" /> est levée lorsque vous utilisez <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Hmac" />. Si les deux propriétés sont définies, l'accord secret est utilisé comme clé HMAC. Vous pouvez également spécifier les propriétés <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretPrepend" /> et <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.SecretAppend" /> , mais elles ne sont pas obligatoires. La quantité de matériel clé généré est équivalente à la taille de la valeur HMAC.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls">
+      <summary>Le protocole TLS est utilisé pour générer le matériel clé. Les propriétés <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Seed" /> et <see cref="P:System.Security.Cryptography.ECDiffieHellmanCng.Label" /> doivent être définies ; sinon, une exception <see cref="T:System.Security.Cryptography.CryptographicException" /> est levée lorsque vous utilisez <see cref="F:System.Security.Cryptography.ECDiffieHellmanKeyDerivationFunction.Tls" />. Cette valeur génère 160 bits de matériel clé.</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.ECDsaCng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l’algorithme ECDSA (Elliptic Curve Digital Signature Algorithm).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDsaCng" /> avec une paire de clés aléatoire.</summary>
+      <exception cref="T:System.PlatformNotSupportedException">Les classes CNG (Cryptography Next Generation) ne sont pas prises en charge sur ce système.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Int32)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDsaCng" /> avec une taille de clé cible spécifiée.</summary>
+      <param name="keySize">Taille de la clé. Les tailles de clé valides sont 256, 384 et 521 bits.</param>
+      <exception cref="T:System.PlatformNotSupportedException">Les classes CNG (Cryptography Next Generation) ne sont pas prises en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> spécifie une longueur non valide.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDsaCng" /> à l'aide de l'objet <see cref="T:System.Security.Cryptography.CngKey" /> spécifié.</summary>
+      <param name="key">Clé utilisée comme entrée pour les opérations de chiffrement effectuées par l’objet actif.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> ne spécifie pas un groupe ECDSA (Elliptic Curve Digital Signature Algorithm).</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Les classes CNG (Cryptography Next Generation) ne sont pas prises en charge sur ce système.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.#ctor(System.Security.Cryptography.ECCurve)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.ECDsaCng" /> dont la paire de clés publique/privée est générée sur la courbe spécifiée.</summary>
+      <param name="curve">La courbe utilisée pour générer la paire de clés publique/privée.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> ne valide pas.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="curve" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">Si <paramref name="curve" /> ne contient pas d’Oid avec un FriendlyName.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportExplicitParameters(System.Boolean)">
+      <summary>Exporte les paramètres de clé et de courbe explicite utilisés par l’objet ECC dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Une erreur s'est produite pendant la recherche des valeurs de courbe.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">L’exportation explicite n’est pas prise en charge par cette plateforme. Windows 10 ou version ultérieure requis.</exception>
+      <returns>Les paramètres de clé et de courbe explicite utilisés par l’objet ECC.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ExportParameters(System.Boolean)">
+      <summary>Exporte la clé utilisée par l’objet ECC dans un objet <see cref="T:System.Security.Cryptography.ECParameters" />. Si la clé a été créée en tant que courbe nommée, le champ <see cref="F:System.Security.Cryptography.ECParameters.Curve" /> contient les paramètres de la courbe nommée, sinon il contient des paramètres explicites.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Une erreur s'est produite pendant la recherche des valeurs de courbe.</exception>
+      <returns>Les paramètres de clé et de courbe nommée utilisés par l’objet ECC.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.FromXmlString(System.String,System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Désérialise les informations de clés d'une chaîne XML en utilisant le format spécifié.</summary>
+      <param name="xml">Les informations de clés basées sur XML à désérialiser.</param>
+      <param name="format">L'une des valeurs d'énumération qui spécifie le format de la chaîne XML. Le seul format accepté actuellement est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="xml" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> spécifie un format non valide. La seule valeur acceptée est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.GenerateKey(System.Security.Cryptography.ECCurve)">
+      <summary>Génère une nouvelle paire de clés publique/privée éphémère pour la courbe spécifiée, remplaçant la clé actuelle.</summary>
+      <param name="curve">La courbe à utiliser pour générer la clé.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="curve" /> ne valide pas.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ImportParameters(System.Security.Cryptography.ECParameters)">
+      <summary>Remplace la clé existante utilisée par l'instance actuelle en créant un <see cref="T:System.Security.Cryptography.CngKey" /> pour la structure des paramètres.</summary>
+      <param name="parameters">Les paramètres de la courbe.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> ne contient pas de valeurs valides.</exception>
+      <exception cref="T:System.NotSupportedException">
+        <paramref name="parameters" /> fait référence à une courbe qui ne peut pas être importée.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">
+        <paramref name="parameters" /> fait référence à une courbe qui n’est pas prise en charge par cette plateforme.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[])">
+      <summary>Génère une signature pour les données spécifiées.</summary>
+      <param name="data">Les données de message à signer.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Les informations de clé associées à l’instance n’ont pas de clé privée.</exception>
+      <returns>Une signature numérique pour les données spécifiées.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.Byte[],System.Int32,System.Int32)">
+      <summary>Génère une signature numérique pour la longueur spécifiée de données, en commençant à l'offset spécifié.</summary>
+      <param name="data">Les données de message à signer.</param>
+      <param name="offset">L'emplacement dans la chaîne à partir duquel démarrer la signature.</param>
+      <param name="count">La longueur de la chaîne, en caractères, à partir de <paramref name="offset" /> qui sera signée.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="count" /> ou <paramref name="offset" /> a provoqué la lecture au delà des limites de la chaîne de données.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Les informations de clé associées à l’instance n’ont pas de clé privée.</exception>
+      <returns>Une signature numérique pour la longueur de données spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignData(System.IO.Stream)">
+      <summary>Génère une signature pour le flux de données spécifié, en lisant jusqu'à la fin le flux de données.</summary>
+      <param name="data">Le flux de données à signer.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Les informations de clé associées à l’instance n’ont pas de clé privée.</exception>
+      <returns>Une signature numérique pour le flux de données spécifié.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.SignHash(System.Byte[])">
+      <summary>Génère une signature pour la valeur de hachage spécifiée.</summary>
+      <param name="hash">Valeur de hachage des données à signer.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Les informations de clé associées à l’instance n’ont pas de clé privée.</exception>
+      <returns>Signature numérique pour la valeur de hachage spécifiée.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.ToXmlString(System.Security.Cryptography.ECKeyXmlFormat)">
+      <summary>Sérialise les informations de clés en une chaîne XML en utilisant le format spécifié.</summary>
+      <param name="format">L'une des valeurs d'énumération qui spécifie le format de la chaîne XML. Le seul format accepté actuellement est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="format" /> spécifie un format non valide. La seule valeur acceptée est <see cref="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+      <returns>Un objet chaîne qui contient les informations de clés, sérialisées en une chaîne XML, conformément au format demandé.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Byte[])">
+      <summary>Vérifie la signature numérique des données spécifiées.</summary>
+      <param name="data">les données qui ont été signées ;</param>
+      <param name="signature">Signature à vérifier.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> ou <paramref name="signature" /> est <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si la signature est valide ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[])">
+      <summary>Vérifie une signature pour la longueur spécifiée de données, en commençant à l'offset spécifié.</summary>
+      <param name="data">les données qui ont été signées ;</param>
+      <param name="offset">L'emplacement dans les données où les données signées commencent.</param>
+      <param name="count">La longueur des données, en caractères, à partir de <paramref name="offset" /> qui sera signée.</param>
+      <param name="signature">Signature à vérifier.</param>
+      <exception cref="T:System.ArgumentOutOfRangeException">
+        <paramref name="offset" /> ou <paramref name="count" /> est inférieur à zéro.  
+  
+- ou - 
+ <paramref name="offset" /> ou <paramref name="count" /> est supérieur à la longueur du tableau d'octets transmis dans le paramètre <paramref name="data" />.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> ou <paramref name="signature" /> est <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si la signature est valide ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyData(System.IO.Stream,System.Byte[])">
+      <summary>Vérifie la signature numérique du flux de données spécifié, en lisant jusqu'à la fin le flux de données.</summary>
+      <param name="data">Le flux de données qui a été signé.</param>
+      <param name="signature">Signature à vérifier.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> ou <paramref name="signature" /> est <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si la signature est valide ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.ECDsaCng.VerifyHash(System.Byte[],System.Byte[])">
+      <summary>Vérifie qu’une signature numérique est adaptée à la clé actuelle et au hachage de données fourni.</summary>
+      <param name="hash">Valeur de hachage des données à vérifier.</param>
+      <param name="signature">Signature numérique des données à vérifier par rapport à la valeur de hachage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> ou <paramref name="signature" /> est <see langword="null" />.</exception>
+      <returns>
+        <see langword="true" /> si la signature est valide ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.HashAlgorithm">
+      <summary>Obtient ou définit l'algorithme de hachage à utiliser pour la signature et la vérification des données.</summary>
+      <exception cref="T:System.ArgumentNullException">La valeur est <see langword="null" />.</exception>
+      <returns>Objet qui spécifie l'algorithme de hachage.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.Key">
+      <summary>Obtient ou définit la clé à utiliser lors de la signature et de la vérification des données.</summary>
+      <returns>Objet qui spécifie la clé.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.KeySize">
+      <summary>Obtient ou définit la taille, en bits, du modulo de clé utilisé par l'algorithme asymétrique.</summary>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="value" /> n’est pas autorisé par <see cref="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes" />.</exception>
+      <returns>Taille, en bits, du modulo de clé utilisé par l'algorithme asymétrique.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.ECDsaCng.LegalKeySizes">
+      <summary>Obtient les tailles de clé, en bits, prises en charge par la méthode setter de propriété <see cref="P:System.Security.Cryptography.ECDsaCng.KeySize" />.</summary>
+      <returns>Tableau qui contient les tailles de clé prises en charge par l' <see cref="P:System.Security.Cryptography.ECDsaCng.KeySize" /> accesseur Set de propriété.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.ECKeyXmlFormat">
+      <summary>Définit des formats de sérialisation XML pour les clés de courbe elliptique.</summary>
+    </member>
+    <member name="F:System.Security.Cryptography.ECKeyXmlFormat.Rfc4050">
+      <summary>Format de sérialisation XML décrit dans la RFC 4050, « Using the Elliptic Curve Signature Algorithm (ECDSA) for XML Digital Signatures ».</summary>
+    </member>
+    <member name="T:System.Security.Cryptography.RSACng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l'algorithme RSA.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.RSACng" /> avec une paire de clés de 2 048 bits générée de manière aléatoire.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Int32)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.RSACng" /> avec une clé de la taille spécifiée générée de manière aléatoire.</summary>
+      <param name="keySize">Taille de la clé à générer, en bits.</param>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="keySize" /> n'est pas valide.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.#ctor(System.Security.Cryptography.CngKey)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.RSACng" /> avec la clé spécifiée.</summary>
+      <param name="key">Clé à utiliser pour les opérations RSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="key" /> n’est pas une clé RSA valide.</exception>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="key" /> a la valeur <see langword="null" />.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Déchiffre les données d’entrée en utilisant le mode de remplissage spécifié.</summary>
+      <param name="data">Données à déchiffrer.</param>
+      <param name="padding">Mode de remplissage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> a la valeur <see langword="null" />.
+  
+- ou - 
+ <paramref name="padding" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" />.<see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> n’est pas égal à <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Pkcs1" /> ou <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" /> .</exception>
+      <returns>Données déchiffrées.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)">
+      <summary>Chiffre les données d’entrée en utilisant le remplissage spécifié.</summary>
+      <param name="data">Données à chiffrer.</param>
+      <param name="padding">Mode de remplissage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="data" /> a la valeur <see langword="null" />.
+  
+- ou - 
+ <paramref name="padding" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" />.<see cref="P:System.Security.Cryptography.RSAEncryptionPadding.Mode" /> n’est pas égal à <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Pkcs1" /> ou <see cref="F:System.Security.Cryptography.RSAEncryptionPaddingMode.Oaep" /> .</exception>
+      <returns>Données chiffrées.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ExportParameters(System.Boolean)">
+      <summary>Exporte la clé utilisée par l’objet RSA dans un objet <see cref="T:System.Security.Cryptography.RSAParameters" />.</summary>
+      <param name="includePrivateParameters">
+        <see langword="true" /> pour inclure les paramètres privés ; sinon <see langword="false" />.</param>
+      <returns>Clé utilisée par l'objet RSA.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.ImportParameters(System.Security.Cryptography.RSAParameters)">
+      <summary>Remplace la clé existante utilisée par l'instance actuelle en créant un <see cref="T:System.Security.Cryptography.CngKey" /> pour la structure des paramètres.</summary>
+      <param name="parameters">Paramètres RSA.</param>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="parameters" /> ne contient ni un exposant ni un modulo.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="parameters" /> n’est pas une clé RSA valide.  
+  
+- ou - 
+ <paramref name="parameters" /> est une paire de clés complète et le fournisseur de stockage de clés (KSP) par défaut est utilisé.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Signe les données qui ont été hachées à l’aide de l’algorithme de hachage et du mode de remplissage spécifiés.</summary>
+      <param name="hash">Hachage à signer.</param>
+      <param name="hashAlgorithm">Le nom de l’algorithme de hachage.</param>
+      <param name="padding">Mode de remplissage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="padding" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La valeur de la propriété <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> de <paramref name="hashAlgorithm" /> est <see langword="null" /> ou <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> n’est pas égal à <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> ou à <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />.</exception>
+      <returns>Données signées.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.RSACng.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)">
+      <summary>Vérifie les données qui ont été signées et qui ont déjà été hachées avec l’algorithme et le mode de remplissage spécifiés.</summary>
+      <param name="hash">Hachage à vérifier.</param>
+      <param name="signature">Signature des données.</param>
+      <param name="hashAlgorithm">Le nom de l’algorithme de hachage.</param>
+      <param name="padding">Mode de remplissage.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="hash" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="signature" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="padding" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">La valeur de la propriété <see cref="P:System.Security.Cryptography.HashAlgorithmName.Name" /> de <paramref name="hashAlgorithm" /> est <see langword="null" /> ou <see cref="F:System.String.Empty" />.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="padding" /> n’est pas égal à <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pkcs1" /> ou à <see cref="P:System.Security.Cryptography.RSASignaturePadding.Pss" />.  
+  
+- ou - 
+La signature est mal formatée. (Dans .NET Framework 4.6 et version 4.6.1 uniquement, à compter de .NET Framework 4.6.2, la méthode renvoie <see langword="false" /> si une signature est mal formatée.</exception>
+      <returns>
+        <see langword="true" /> si la signature vérifie le hachage ; sinon, <see langword="false" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.Key">
+      <summary>Obtient la clé que l'objet <see cref="T:System.Security.Cryptography.RSACng" /> utilisera pour toutes ses opérations de chiffrement.</summary>
+      <returns>Clé utilisée par l'objet <see cref="T:System.Security.Cryptography.RSACng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.RSACng.LegalKeySizes">
+      <summary>Obtient les tailles de clé, en bits, prises en charge par cette implémentation de RSA.</summary>
+      <returns>Tableau qui contient les tailles de clé prises en charge par l'algorithme.</returns>
+    </member>
+    <member name="T:System.Security.Cryptography.TripleDESCng">
+      <summary>Fournit une implémentation CNG (Cryptography Next Generation) de l’algorithme 3DES (Triple Data Encryption Standard).</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.TripleDESCng" /> avec une clé éphémère.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.TripleDESCng" /> avec le nom de clé spécifié, qui représente une clé 3DES persistante.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.TripleDESCng" /> avec le nom de clé spécifié, qui représente une clé 3DES persistante, et le fournisseur de stockage de clés (KSP) spécifié.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="provider" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.#ctor(System.String,System.Security.Cryptography.CngProvider,System.Security.Cryptography.CngKeyOpenOptions)">
+      <summary>Initialise une nouvelle instance de la classe <see cref="T:System.Security.Cryptography.TripleDESCng" /> avec le nom de clé spécifié, qui représente une clé 3DES persistante, le fournisseur de stockage de clés (KSP) spécifié, et les options d’ouverture de clé.</summary>
+      <param name="keyName">Nom de la clé.</param>
+      <param name="provider">Le fournisseur de stockage de clés qui contient la clé.</param>
+      <param name="openOptions">Combinaison de bits des valeurs d’énumération qui spécifient des options d’ouverture de la clé, par exemple d’où la clé est ouverte (stockage de machine ou utilisateur) et s’il faut supprimer l’invite de l’interface utilisateur.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="keyName" /> a la valeur <see langword="null" />.  
+  
+- ou - 
+ <paramref name="provider" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.PlatformNotSupportedException">CNG (Cryptography Next Generation) n’est pas pris en charge sur ce système.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">Toutes les autres erreurs.</exception>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor">
+      <summary>Crée un objet déchiffreur 3DES symétrique avec la clé et le vecteur d'initialisation (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuels.</summary>
+      <returns>Objet déchiffreur 3DES symétrique.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateDecryptor(System.Byte[],System.Byte[])">
+      <summary>Crée un objet déchiffreur 3DES symétrique avec la clé spécifiée et le vecteur d'initialisation (IV).</summary>
+      <param name="rgbKey">Clé secrète à utiliser pour l'algorithme 3DES. La taille de la clé doit être de 192 bits.</param>
+      <param name="rgbIV">Vecteur d'initialisation à utiliser pour l'algorithme 3DES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> n’est pas d'une taille valide pour cet algorithme.  
+  
+- ou - 
+ La taille <paramref name="rgbIV" /> ne correspond pas à la taille de bloc de cet algorithme.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> est une clé faible connue pour cet algorithme et ne peut pas être utilisée.  
+  
+- ou - 
+ <paramref name="rgbIV" /> a la valeur <see langword="null" />.</exception>
+      <returns>Objet déchiffreur 3DES symétrique.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor">
+      <summary>Crée un objet chiffreur 3DES symétrique avec la clé et le vecteur d'initialisation (<see cref="P:System.Security.Cryptography.SymmetricAlgorithm.IV" />) actuels.</summary>
+      <returns>Un objet chiffreur symétrique 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.CreateEncryptor(System.Byte[],System.Byte[])">
+      <summary>Crée un objet chiffreur 3DES symétrique avec la clé spécifiée et le vecteur d'initialisation (IV).</summary>
+      <param name="rgbKey">Clé secrète à utiliser pour l'algorithme 3DES. La taille de la clé doit être de 192 bits.</param>
+      <param name="rgbIV">Vecteur d'initialisation à utiliser pour l'algorithme 3DES.</param>
+      <exception cref="T:System.ArgumentNullException">
+        <paramref name="rgbKey" /> a la valeur <see langword="null" />.</exception>
+      <exception cref="T:System.ArgumentException">
+        <paramref name="rgbKey" /> n’est pas d'une taille valide pour cet algorithme.  
+  
+- ou - 
+ La taille <paramref name="rgbIV" /> ne correspond pas à la taille de bloc de cet algorithme.</exception>
+      <exception cref="T:System.Security.Cryptography.CryptographicException">
+        <paramref name="rgbKey" /> est une clé faible connue pour cet algorithme et ne peut pas être utilisée.  
+  
+- ou - 
+ <paramref name="rgbIV" /> a la valeur <see langword="null" />.</exception>
+      <returns>Un objet chiffreur symétrique 3DES.</returns>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateIV">
+      <summary>Génère un vecteur d’initialisation aléatoire à utiliser pour l’algorithme 3DES.</summary>
+    </member>
+    <member name="M:System.Security.Cryptography.TripleDESCng.GenerateKey">
+      <summary>Génère une clé aléatoire à utiliser pour l’algorithme 3DES.</summary>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.Key">
+      <summary>Obtient ou définit la clé pour l’algorithme <see cref="T:System.Security.Cryptography.TripleDESCng" />.</summary>
+      <returns>Clé pour l’algorithme <see cref="T:System.Security.Cryptography.TripleDESCng" />.</returns>
+    </member>
+    <member name="P:System.Security.Cryptography.TripleDESCng.KeySize">
+      <summary>Obtient ou définit la taille en bits de la clé secrète utilisée par l’algorithme <see cref="T:System.Security.Cryptography.TripleDESCng" />.</summary>
+      <returns>La taille en bits de la clé secrète utilisée par l’algorithme <see cref="T:System.Security.Cryptography.TripleDESCng" />.</returns>
+    </member>
+  </members>
+</doc>

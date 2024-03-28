@@ -1,0 +1,1043 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Diagnostics.TraceSource</name>
+  </assembly>
+  <members>
+    <member name="T:System.Diagnostics.BooleanSwitch">
+      <summary vsli:raw="Provides a simple on/off switch that controls debugging and tracing output.">提供一个简单的 On/Off 开关，用于控制调试和跟踪输出。</summary>
+    </member>
+    <member name="M:System.Diagnostics.BooleanSwitch.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.BooleanSwitch&quot; /&gt; class with the specified display name and description.">用指定的显示名称和说明初始化 <see cref="T:System.Diagnostics.BooleanSwitch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name to display on a user interface.">要显示在用户界面上的名称。</param>
+      <param name="description" vsli:raw="The description of the switch.">切换描述。</param>
+    </member>
+    <member name="M:System.Diagnostics.BooleanSwitch.#ctor(System.String,System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.BooleanSwitch&quot; /&gt; class with the specified display name, description, and default switch value.">用指定的显示名称、说明和默认开关值初始化 <see cref="T:System.Diagnostics.BooleanSwitch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name to display on the user interface.">要显示在用户界面上的名称。</param>
+      <param name="description" vsli:raw="The description of the switch.">切换描述。</param>
+      <param name="defaultSwitchValue" vsli:raw="The default value of the switch.">开关的默认值。</param>
+    </member>
+    <member name="P:System.Diagnostics.BooleanSwitch.Enabled">
+      <summary vsli:raw="Gets or sets a value indicating whether the switch is enabled or disabled.">获取或设置一个指示开关已启用还是已禁用的值。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the switch is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">如果启用此开关，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the correct permission.">调用方没有正确的权限。</exception>
+    </member>
+    <member name="M:System.Diagnostics.BooleanSwitch.OnValueChanged">
+      <summary vsli:raw="Determines whether the new value of the &lt;see cref=&quot;P:System.Diagnostics.Switch.Value&quot; /&gt; property can be parsed as a Boolean value.">确定 <see cref="P:System.Diagnostics.Switch.Value" /> 属性的新值是否可分析为布尔值。</summary>
+    </member>
+    <member name="T:System.Diagnostics.CorrelationManager">
+      <summary vsli:raw="Correlates traces that are part of a logical transaction.">关联同属于某个逻辑事务的多个跟踪。</summary>
+    </member>
+    <member name="P:System.Diagnostics.CorrelationManager.ActivityId">
+      <summary vsli:raw="Gets or sets the identity for a global activity.">获取或设置全局活动的标识。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; structure that identifies the global activity.">标识全局活动的 <see cref="T:System.Guid" /> 结构。</returns>
+    </member>
+    <member name="P:System.Diagnostics.CorrelationManager.LogicalOperationStack">
+      <summary vsli:raw="Gets the logical operation stack from the call context.">从调用上下文中获取逻辑操作堆栈。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Stack&quot; /&gt; object that represents the logical operation stack for the call context.">表示调用上下文的逻辑操作堆栈的 <see cref="T:System.Collections.Stack" /> 对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.CorrelationManager.StartLogicalOperation">
+      <summary vsli:raw="Starts a logical operation on a thread.">启动线程上的逻辑操作。</summary>
+    </member>
+    <member name="M:System.Diagnostics.CorrelationManager.StartLogicalOperation(System.Object)">
+      <summary vsli:raw="Starts a logical operation with the specified identity on a thread.">启动线程上具有指定标识的逻辑操作。</summary>
+      <param name="operationId" vsli:raw="An object identifying the operation.">用于标识操作的对象。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The &lt;paramref name=&quot;operationId&quot; /&gt; parameter is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="operationId" /> 参数为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.CorrelationManager.StopLogicalOperation">
+      <summary vsli:raw="Stops the current logical operation.">停止当前的逻辑操作。</summary>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The &lt;see cref=&quot;P:System.Diagnostics.CorrelationManager.LogicalOperationStack&quot; /&gt; property is an empty stack.">
+        <see cref="P:System.Diagnostics.CorrelationManager.LogicalOperationStack" /> 属性为空堆栈。</exception>
+    </member>
+    <member name="T:System.Diagnostics.DefaultTraceListener">
+      <summary vsli:raw="Provides the default output methods and behavior for tracing.">提供用于跟踪的默认输出方法和行为。</summary>
+    </member>
+    <member name="M:System.Diagnostics.DefaultTraceListener.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.DefaultTraceListener&quot; /&gt; class with &quot;Default&quot; as its &lt;see cref=&quot;P:System.Diagnostics.TraceListener.Name&quot; /&gt; property value.">在将 <see cref="T:System.Diagnostics.DefaultTraceListener" /> 属性值设置为其默认值的情况下，初始化 <see cref="P:System.Diagnostics.TraceListener.Name" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Diagnostics.DefaultTraceListener.AssertUiEnabled">
+      <summary vsli:raw="Gets or sets a value indicating whether the application is running in user-interface mode.">获取或设置一个值，该值指示应用程序是否以用户界面模式运行。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if user-interface mode is enabled; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果启用了用户界面模式，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DefaultTraceListener.Fail(System.String)">
+      <summary vsli:raw="Emits or displays a message and a stack trace for an assertion that always fails.">为总是失败的断言发出或显示消息和堆栈跟踪。</summary>
+      <param name="message" vsli:raw="The message to emit or display.">要发出或显示的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.DefaultTraceListener.Fail(System.String,System.String)">
+      <summary vsli:raw="Emits or displays detailed messages and a stack trace for an assertion that always fails.">为总是失败的断言发出或显示详细消息和堆栈跟踪。</summary>
+      <param name="message" vsli:raw="The message to emit or display.">要发出或显示的消息。</param>
+      <param name="detailMessage" vsli:raw="The detailed message to emit or display.">要发出或显示的详细消息。</param>
+    </member>
+    <member name="P:System.Diagnostics.DefaultTraceListener.LogFileName">
+      <summary vsli:raw="Gets or sets the name of a log file to write trace or debug messages to.">获取或设置要在其中写入跟踪或调试消息的日志文件的名称。</summary>
+      <returns vsli:raw="The name of a log file to write trace or debug messages to.">要写入跟踪或调试消息的日志文件名。</returns>
+    </member>
+    <member name="M:System.Diagnostics.DefaultTraceListener.Write(System.String)">
+      <summary vsli:raw="Writes the output to the &lt;see langword=&quot;OutputDebugString&quot; /&gt; function and to the &lt;see cref=&quot;M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)&quot; /&gt; method.">将输出写入 <see langword="OutputDebugString" /> 函数和 <see cref="M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)" /> 方法。</summary>
+      <param name="message" vsli:raw="The message to write to &lt;see langword=&quot;OutputDebugString&quot; /&gt; and &lt;see cref=&quot;M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)&quot; /&gt;.">要写入 <see langword="OutputDebugString" /> 和 <see cref="M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)" /> 的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.DefaultTraceListener.WriteLine(System.String)">
+      <summary vsli:raw="Writes the output to the &lt;see langword=&quot;OutputDebugString&quot; /&gt; function and to the &lt;see cref=&quot;M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)&quot; /&gt; method, followed by a carriage return and line feed (\r\n).">将输出写入 <see langword="OutputDebugString" /> 函数和 <see cref="M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)" /> 方法，后接回车符和换行符 (\r\n)。</summary>
+      <param name="message" vsli:raw="The message to write to &lt;see langword=&quot;OutputDebugString&quot; /&gt; and &lt;see cref=&quot;M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)&quot; /&gt;.">要写入 <see langword="OutputDebugString" /> 和 <see cref="M:System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)" /> 的消息。</param>
+    </member>
+    <member name="T:System.Diagnostics.EventTypeFilter">
+      <summary vsli:raw="Indicates whether a listener should trace based on the event type.">指示侦听器是否应该基于事件类型进行跟踪。</summary>
+    </member>
+    <member name="M:System.Diagnostics.EventTypeFilter.#ctor(System.Diagnostics.SourceLevels)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.EventTypeFilter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.EventTypeFilter" /> 类的新实例。</summary>
+      <param name="level" vsli:raw="A bitwise combination of the &lt;see cref=&quot;T:System.Diagnostics.SourceLevels&quot; /&gt; values that specifies the event type of the messages to trace.">
+        <see cref="T:System.Diagnostics.SourceLevels" /> 值的一个按位组合，指定要跟踪的消息的事件类型。</param>
+    </member>
+    <member name="P:System.Diagnostics.EventTypeFilter.EventType">
+      <summary vsli:raw="Gets or sets the event type of the messages to trace.">获取或设置要跟踪的消息的事件类型。</summary>
+      <returns vsli:raw="A bitwise combination of the &lt;see cref=&quot;T:System.Diagnostics.SourceLevels&quot; /&gt; values.">
+        <see cref="T:System.Diagnostics.SourceLevels" /> 值的按位组合。</returns>
+    </member>
+    <member name="M:System.Diagnostics.EventTypeFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])">
+      <summary vsli:raw="Determines whether the trace listener should trace the event.">确定跟踪侦听器是否应跟踪该事件。</summary>
+      <param name="cache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; that represents the information cache for the trace event.">表示跟踪事件的信息缓存的 <see cref="T:System.Diagnostics.TraceEventCache" />。</param>
+      <param name="source" vsli:raw="The name of the source.">源的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一。</param>
+      <param name="id" vsli:raw="A trace identifier number.">跟踪标识符编号。</param>
+      <param name="formatOrMessage" vsli:raw="The format to use for writing an array of arguments, or a message to write.">用于编写参数数组的格式，或者要编写的消息。</param>
+      <param name="args" vsli:raw="An array of argument objects.">参数对象的数组。</param>
+      <param name="data1" vsli:raw="A trace data object.">跟踪数据对象。</param>
+      <param name="data" vsli:raw="An array of trace data objects.">跟踪数据对象的数组。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the trace should be produced; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果应产生跟踪，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.SourceFilter">
+      <summary vsli:raw="Indicates whether a listener should trace a message based on the source of a trace.">指示侦听器是否应基于跟踪源跟踪消息。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SourceFilter.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.SourceFilter&quot; /&gt; class, specifying the name of the trace source.">初始化 <see cref="T:System.Diagnostics.SourceFilter" /> 类的新实例，并且指定跟踪源的名称。</summary>
+      <param name="source" vsli:raw="The name of the trace source.">跟踪源的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.SourceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])">
+      <summary vsli:raw="Determines whether the trace listener should trace the event.">确定跟踪侦听器是否应跟踪该事件。</summary>
+      <param name="cache" vsli:raw="An object that represents the information cache for the trace event.">一个对象，表示跟踪事件的信息缓存。</param>
+      <param name="source" vsli:raw="The name of the source.">源的名称。</param>
+      <param name="eventType" vsli:raw="One of the enumeration values that identifies the event type.">标识事件类型的枚举值之一。</param>
+      <param name="id" vsli:raw="A trace identifier number.">跟踪标识符编号。</param>
+      <param name="formatOrMessage" vsli:raw="The format to use for writing an array of arguments or a message to write.">写入参数数组时要使用的格式，或要写入的消息。</param>
+      <param name="args" vsli:raw="An array of argument objects.">参数对象的数组。</param>
+      <param name="data1" vsli:raw="A trace data object.">跟踪数据对象。</param>
+      <param name="data" vsli:raw="An array of trace data objects.">跟踪数据对象的数组。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the trace should be produced; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果应产生跟踪，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;source&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="source" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.Diagnostics.SourceFilter.Source">
+      <summary vsli:raw="Gets or sets the name of the trace source.">获取或设置跟踪源的名称。</summary>
+      <returns vsli:raw="The name of the trace source.">跟踪源的名称。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value is &lt;see langword=&quot;null&quot; /&gt;.">该值为 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Diagnostics.SourceLevels">
+      <summary vsli:raw="Specifies the levels of trace messages filtered by the source switch and event type filter.">指定由源开关和事件类型筛选器筛选的跟踪消息的级别。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.ActivityTracing">
+      <summary vsli:raw="Allows the &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Stop&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Start&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Suspend&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Transfer&quot; /&gt;, and &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Resume&quot; /&gt; events through.">允许 <see cref="F:System.Diagnostics.TraceEventType.Stop" />、<see cref="F:System.Diagnostics.TraceEventType.Start" />、<see cref="F:System.Diagnostics.TraceEventType.Suspend" />、<see cref="F:System.Diagnostics.TraceEventType.Transfer" /> 和 <see cref="F:System.Diagnostics.TraceEventType.Resume" /> 事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.All">
+      <summary vsli:raw="Allows all events through.">允许所有事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Critical">
+      <summary vsli:raw="Allows only &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Critical&quot; /&gt; events through.">只允许 <see cref="F:System.Diagnostics.TraceEventType.Critical" /> 事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Error">
+      <summary vsli:raw="Allows &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Critical&quot; /&gt; and &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Error&quot; /&gt; events through.">允许 <see cref="F:System.Diagnostics.TraceEventType.Critical" /> 和 <see cref="F:System.Diagnostics.TraceEventType.Error" /> 事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Information">
+      <summary vsli:raw="Allows &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Critical&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Error&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Warning&quot; /&gt;, and &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Information&quot; /&gt; events through.">允许 <see cref="F:System.Diagnostics.TraceEventType.Critical" />、<see cref="F:System.Diagnostics.TraceEventType.Error" />、<see cref="F:System.Diagnostics.TraceEventType.Warning" /> 和 <see cref="F:System.Diagnostics.TraceEventType.Information" /> 事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Off">
+      <summary vsli:raw="Does not allow any events through.">不允许任何事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Verbose">
+      <summary vsli:raw="Allows &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Critical&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Error&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Warning&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Information&quot; /&gt;, and &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Verbose&quot; /&gt; events through.">允许 <see cref="F:System.Diagnostics.TraceEventType.Critical" />、<see cref="F:System.Diagnostics.TraceEventType.Error" />、<see cref="F:System.Diagnostics.TraceEventType.Warning" />、<see cref="F:System.Diagnostics.TraceEventType.Information" /> 和 <see cref="F:System.Diagnostics.TraceEventType.Verbose" /> 事件通过。</summary>
+    </member>
+    <member name="F:System.Diagnostics.SourceLevels.Warning">
+      <summary vsli:raw="Allows &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Critical&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Error&quot; /&gt;, and &lt;see cref=&quot;F:System.Diagnostics.TraceEventType.Warning&quot; /&gt; events through.">允许 <see cref="F:System.Diagnostics.TraceEventType.Critical" />、<see cref="F:System.Diagnostics.TraceEventType.Error" /> 和 <see cref="F:System.Diagnostics.TraceEventType.Warning" /> 事件通过。</summary>
+    </member>
+    <member name="T:System.Diagnostics.SourceSwitch">
+      <summary vsli:raw="Provides a multilevel switch to control tracing and debug output without recompiling your code.">提供多级开关，用于控制跟踪和调试输出，而无需重新编译代码。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SourceSwitch.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.SourceSwitch&quot; /&gt; class, specifying the name of the source.">初始化 <see cref="T:System.Diagnostics.SourceSwitch" /> 类的新实例，并且指定源的名称。</summary>
+      <param name="name" vsli:raw="The name of the source.">源的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.SourceSwitch.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.SourceSwitch&quot; /&gt; class, specifying the display name and the default value for the source switch.">初始化 <see cref="T:System.Diagnostics.SourceSwitch" /> 类的新实例，并且指定源开关的显示名称和默认值。</summary>
+      <param name="displayName" vsli:raw="The name of the source switch.">源开关的名称。</param>
+      <param name="defaultSwitchValue" vsli:raw="The default value for the switch.">开关的默认值。</param>
+    </member>
+    <member name="P:System.Diagnostics.SourceSwitch.Level">
+      <summary vsli:raw="Gets or sets the level of the switch.">获取或设置开关级别。</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.SourceLevels&quot; /&gt; values that represents the event level of the switch.">
+        <see cref="T:System.Diagnostics.SourceLevels" /> 值之一，表示开关的事件级别。</returns>
+    </member>
+    <member name="M:System.Diagnostics.SourceSwitch.OnValueChanged">
+      <summary vsli:raw="Invoked when the value of the &lt;see cref=&quot;P:System.Diagnostics.Switch.Value&quot; /&gt; property changes.">当 <see cref="P:System.Diagnostics.Switch.Value" /> 属性的值发生更改时调用。</summary>
+      <exception cref="T:System.ArgumentException" vsli:raw="The new value of &lt;see cref=&quot;P:System.Diagnostics.Switch.Value&quot; /&gt; is not one of the &lt;see cref=&quot;T:System.Diagnostics.SourceLevels&quot; /&gt; values.">
+        <see cref="P:System.Diagnostics.Switch.Value" /> 的新值不是 <see cref="T:System.Diagnostics.SourceLevels" /> 值之一。</exception>
+    </member>
+    <member name="M:System.Diagnostics.SourceSwitch.ShouldTrace(System.Diagnostics.TraceEventType)">
+      <summary vsli:raw="Determines if trace listeners should be called, based on the trace event type.">确定是否应该根据跟踪事件的类型调用跟踪侦听器。</summary>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the trace listeners should be called; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果应该调用跟踪侦听器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.Switch">
+      <summary vsli:raw="Provides an abstract base class to create new debugging and tracing switches.">提供一个用于创建新的调试和跟踪开关的抽象基类。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Switch.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Switch&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.Switch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name of the switch.">开关的名称。</param>
+      <param name="description" vsli:raw="The description for the switch.">开关说明。</param>
+    </member>
+    <member name="M:System.Diagnostics.Switch.#ctor(System.String,System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.Switch&quot; /&gt; class, specifying the display name, description, and default value for the switch.">通过指定开关的显示名称、说明和默认值来初始化 <see cref="T:System.Diagnostics.Switch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name of the switch.">开关的名称。</param>
+      <param name="description" vsli:raw="The description of the switch.">切换描述。</param>
+      <param name="defaultSwitchValue" vsli:raw="The default value for the switch.">开关的默认值。</param>
+    </member>
+    <member name="P:System.Diagnostics.Switch.Attributes">
+      <summary vsli:raw="Gets the custom switch attributes defined in the application configuration file.">获取在应用程序配置文件中定义的自定义开关特性。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.StringDictionary&quot; /&gt; containing the case-insensitive custom attributes for the trace switch.">一个 <see cref="T:System.Collections.Specialized.StringDictionary" />，包含跟踪开关的自定义特性（不区分大小写）。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Switch.Description">
+      <summary vsli:raw="Gets a description of the switch.">获取开关说明。</summary>
+      <returns vsli:raw="The description of the switch. The default value is an empty string (&quot;&quot;).">切换描述。 默认值为空字符串 ("")。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Switch.DisplayName">
+      <summary vsli:raw="Gets a name used to identify the switch.">获取用于标识该开关的名称。</summary>
+      <returns vsli:raw="The name used to identify the switch. The default value is an empty string (&quot;&quot;).">用于标识该开关的名称。 默认值为空字符串 ("")。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Switch.GetSupportedAttributes">
+      <summary vsli:raw="Gets the custom attributes supported by the switch.">获取开关支持的自定义特性。</summary>
+      <returns vsli:raw="A string array that contains the names of the custom attributes supported by the switch, or &lt;see langword=&quot;null&quot; /&gt; if there no custom attributes are supported.">一个字符串数组，包含开关所支持的自定义特性的名称；如果该开关不支持任何自定义特性，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Switch.OnSwitchSettingChanged">
+      <summary vsli:raw="Invoked when the &lt;see cref=&quot;P:System.Diagnostics.Switch.SwitchSetting&quot; /&gt; property is changed.">当 <see cref="P:System.Diagnostics.Switch.SwitchSetting" /> 属性更改时调用。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Switch.OnValueChanged">
+      <summary vsli:raw="Invoked when the &lt;see cref=&quot;P:System.Diagnostics.Switch.Value&quot; /&gt; property is changed.">当 <see cref="P:System.Diagnostics.Switch.Value" /> 属性更改时调用。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Switch.SwitchSetting">
+      <summary vsli:raw="Gets or sets the current setting for this switch.">获取或设置此开关的当前设置。</summary>
+      <returns vsli:raw="The current setting for this switch. The default is zero.">此开关的当前设置。 默认值为零。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Switch.Value">
+      <summary vsli:raw="Gets or sets the value of the switch.">获取或设置开关的值。</summary>
+      <returns vsli:raw="A string representing the value of the switch.">一个表示开关的值的字符串。</returns>
+      <exception cref="T:System.Configuration.ConfigurationErrorsException" vsli:raw="The value is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; The value does not consist solely of an optional negative sign followed by a sequence of digits ranging from 0 to 9.  &#xA;  &#xA; -or-  &#xA;  &#xA; The value represents a number less than &lt;see cref=&quot;F:System.Int32.MinValue&quot;&gt;Int32.MinValue&lt;/see&gt; or greater than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">该值为 <see langword="null" />。
+或
+该值不是仅由一个可选负号后跟一系列从 0 到 9 的数字组成的。
+或
+该值表示小于 <see cref="F:System.Int32.MinValue" /> 或大于 <see cref="F:System.Int32.MaxValue" /> 的数字。</exception>
+    </member>
+    <member name="T:System.Diagnostics.SwitchAttribute">
+      <summary vsli:raw="Identifies a switch used in an assembly, class, or member.">标识程序集、类或成员中使用的开关。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SwitchAttribute.#ctor(System.String,System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.SwitchAttribute&quot; /&gt; class, specifying the name and the type of the switch.">通过指定开关的名称和类型来初始化 <see cref="T:System.Diagnostics.SwitchAttribute" /> 类的新实例。</summary>
+      <param name="switchName" vsli:raw="The display name of the switch.">开关的显示名称。</param>
+      <param name="switchType" vsli:raw="The type of the switch.">开关的类型。</param>
+    </member>
+    <member name="M:System.Diagnostics.SwitchAttribute.GetAll(System.Reflection.Assembly)">
+      <summary vsli:raw="Returns all switch attributes for the specified assembly.">为指定的程序集返回所有开关特性。</summary>
+      <param name="assembly" vsli:raw="The assembly to check for switch attributes.">要检查其开关特性的程序集 。</param>
+      <returns vsli:raw="An array that contains all the switch attributes for the assembly.">数组，包含程序集的所有开关特性。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;assembly&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="assembly" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.Diagnostics.SwitchAttribute.SwitchDescription">
+      <summary vsli:raw="Gets or sets the description of the switch.">获取或设置开关说明。</summary>
+      <returns vsli:raw="The description of the switch.">切换描述。</returns>
+    </member>
+    <member name="P:System.Diagnostics.SwitchAttribute.SwitchName">
+      <summary vsli:raw="Gets or sets the display name of the switch.">获取或设置开关的显示名称。</summary>
+      <returns vsli:raw="The display name of the switch.">开关的显示名称。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.SwitchAttribute.SwitchName&quot; /&gt; is set to &lt;see langword=&quot;null&quot; /&gt;.">将 <see cref="P:System.Diagnostics.SwitchAttribute.SwitchName" /> 设置为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.SwitchAttribute.SwitchName&quot; /&gt; is set to an empty string.">
+        <see cref="P:System.Diagnostics.SwitchAttribute.SwitchName" /> 被设置为空字符串。</exception>
+    </member>
+    <member name="P:System.Diagnostics.SwitchAttribute.SwitchType">
+      <summary vsli:raw="Gets or sets the type of the switch.">获取或设置开关的类型。</summary>
+      <returns vsli:raw="The type of the switch.">开关的类型。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.SwitchAttribute.SwitchType&quot; /&gt; is set to &lt;see langword=&quot;null&quot; /&gt;.">将 <see cref="P:System.Diagnostics.SwitchAttribute.SwitchType" /> 设置为 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Diagnostics.SwitchLevelAttribute">
+      <summary vsli:raw="Identifies the level type for a switch.">标识开关的级别类型。</summary>
+    </member>
+    <member name="M:System.Diagnostics.SwitchLevelAttribute.#ctor(System.Type)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.SwitchLevelAttribute&quot; /&gt; class, specifying the type that determines whether a trace should be written.">初始化 <see cref="T:System.Diagnostics.SwitchLevelAttribute" /> 类的新实例，并且指定用来确定是否应该写入跟踪的类型。</summary>
+      <param name="switchLevelType" vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; that determines whether a trace should be written.">用于确定是否应该写入跟踪的 <see cref="T:System.Type" />。</param>
+    </member>
+    <member name="P:System.Diagnostics.SwitchLevelAttribute.SwitchLevelType">
+      <summary vsli:raw="Gets or sets the type that determines whether a trace should be written.">获取或设置用于确定是否应该写入跟踪的类型。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Type&quot; /&gt; that determines whether a trace should be written.">用于确定是否应该写入跟踪的 <see cref="T:System.Type" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The set operation failed because the value is &lt;see langword=&quot;null&quot; /&gt;.">设置操作失败，原因是值为 <see langword="null" />。</exception>
+    </member>
+    <member name="T:System.Diagnostics.Trace">
+      <summary vsli:raw="Provides a set of methods and properties that help you trace the execution of your code. This class cannot be inherited.">提供一组方法和属性，帮助您跟踪代码的执行。 此类不能被继承。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Assert(System.Boolean)">
+      <summary vsli:raw="Checks for a condition; if the condition is &lt;see langword=&quot;false&quot; /&gt;, displays a message box that shows the call stack.">检查条件 ；如果条件为 <see langword="false" />，则显示一个消息框，其中显示调用堆栈。</summary>
+      <param name="condition" vsli:raw="The conditional expression to evaluate. If the condition is &lt;see langword=&quot;true&quot; /&gt;, a failure message is not sent and the message box is not displayed.">要计算的条件表达式。 如果条件为 <see langword="true" />，则不会发送失败消息，也不显示消息框。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Assert(System.Boolean,System.String)">
+      <summary vsli:raw="Checks for a condition; if the condition is &lt;see langword=&quot;false&quot; /&gt;, outputs a specified message and displays a message box that shows the call stack.">检查条件；如果条件为 <see langword="false" />，则输出指定消息并显示指示调用堆栈的消息框。</summary>
+      <param name="condition" vsli:raw="The conditional expression to evaluate. If the condition is &lt;see langword=&quot;true&quot; /&gt;, the specified message is not sent and the message box is not displayed.">要计算的条件表达式。 如果条件为 <see langword="true" />，则不会发送指定消息，也不显示消息框。</param>
+      <param name="message" vsli:raw="The message to send to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">要发送到 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Assert(System.Boolean,System.String,System.String)">
+      <summary vsli:raw="Checks for a condition; if the condition is &lt;see langword=&quot;false&quot; /&gt;, outputs two specified messages and displays a message box that shows the call stack.">检查条件 ；如果条件为 <see langword="false" />，则输出两条指定消息，并显示一个消息框，其中显示调用堆栈。</summary>
+      <param name="condition" vsli:raw="The conditional expression to evaluate. If the condition is &lt;see langword=&quot;true&quot; /&gt;, the specified messages are not sent and the message box is not displayed.">要计算的条件表达式。 如果条件为 <see langword="true" />，则不会发送指定的消息，也不显示消息框。</param>
+      <param name="message" vsli:raw="The message to send to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">要发送到 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合的消息。</param>
+      <param name="detailMessage" vsli:raw="The detailed message to send to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">要发送到 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合的详细消息。</param>
+    </member>
+    <member name="P:System.Diagnostics.Trace.AutoFlush">
+      <summary vsli:raw="Gets or sets whether &lt;see cref=&quot;M:System.Diagnostics.Trace.Flush&quot; /&gt; should be called on the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; after every write.">获取或设置是否在每次写入后都在 <see cref="M:System.Diagnostics.Trace.Flush" /> 上调用 <see cref="P:System.Diagnostics.Trace.Listeners" />。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if &lt;see cref=&quot;M:System.Diagnostics.Trace.Flush&quot; /&gt; is called on the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; after every write; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果每次写入后都在 <see cref="M:System.Diagnostics.Trace.Flush" /> 上调用 <see cref="P:System.Diagnostics.Trace.Listeners" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Close">
+      <summary vsli:raw="Flushes the output buffer, and then closes the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">刷新输出缓冲区，然后关闭 <see cref="P:System.Diagnostics.Trace.Listeners" />。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Trace.CorrelationManager">
+      <summary vsli:raw="Gets the correlation manager for the thread for this trace.">获取此跟踪线程的相关管理器。</summary>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.CorrelationManager&quot; /&gt; object associated with the thread for this trace.">与此跟踪线程关联的 <see cref="T:System.Diagnostics.CorrelationManager" /> 对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Fail(System.String)">
+      <summary vsli:raw="Emits the specified error message.">发出指定的错误消息。</summary>
+      <param name="message" vsli:raw="A message to emit.">要发出的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Fail(System.String,System.String)">
+      <summary vsli:raw="Emits an error message, and a detailed error message.">发出错误消息和详细错误消息。</summary>
+      <param name="message" vsli:raw="A message to emit.">要发出的消息。</param>
+      <param name="detailMessage" vsli:raw="A detailed message to emit.">要发出的详细消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Flush">
+      <summary vsli:raw="Flushes the output buffer, and causes buffered data to be written to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">刷新输出缓冲区，并使放入缓冲区中的数据写入 <see cref="P:System.Diagnostics.Trace.Listeners" />。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Indent">
+      <summary vsli:raw="Increases the current &lt;see cref=&quot;P:System.Diagnostics.Trace.IndentLevel&quot; /&gt; by one.">将当前的 <see cref="P:System.Diagnostics.Trace.IndentLevel" /> 增加 1。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Trace.IndentLevel">
+      <summary vsli:raw="Gets or sets the indent level.">获取或设置缩进级别。</summary>
+      <returns vsli:raw="The indent level. The default is zero.">缩进级别。 默认值为零。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Trace.IndentSize">
+      <summary vsli:raw="Gets or sets the number of spaces in an indent.">获取或设置缩进的空格数。</summary>
+      <returns vsli:raw="The number of spaces in an indent. The default is four.">缩进的空格数。 默认值为四。</returns>
+    </member>
+    <member name="P:System.Diagnostics.Trace.Listeners">
+      <summary vsli:raw="Gets the collection of listeners that is monitoring the trace output.">获取监视跟踪输出的侦听器集合。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; that represents a collection of type &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; monitoring the trace output.">
+        <see cref="T:System.Diagnostics.TraceListenerCollection" />，它表示监视跟踪输出的 <see cref="T:System.Diagnostics.TraceListener" /> 类型的集合。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Refresh">
+      <summary vsli:raw="Refreshes the trace configuration data.">刷新跟踪配置数据。</summary>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceError(System.String)">
+      <summary vsli:raw="Writes an error message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified message.">使用指定的消息向 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中写入错误消息。</summary>
+      <param name="message" vsli:raw="The informative message to write.">要写入的信息性消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceError(System.String,System.Object[])">
+      <summary vsli:raw="Writes an error message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified array of objects and formatting information.">使用指定的对象数组和格式设置信息向 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中写入错误消息。</summary>
+      <param name="format" vsli:raw="A format string that contains zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">包含零个或多个格式项的格式字符串，这些项与 <paramref name="args" /> 数组中的对象相对应。</param>
+      <param name="args" vsli:raw="An &lt;see langword=&quot;object&quot; /&gt; array containing zero or more objects to format.">包含零个或多个要格式化的对象的 <see langword="object" /> 数组。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceInformation(System.String)">
+      <summary vsli:raw="Writes an informational message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified message.">使用指定消息，将信息性消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="message" vsli:raw="The informative message to write.">要写入的信息性消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceInformation(System.String,System.Object[])">
+      <summary vsli:raw="Writes an informational message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified array of objects and formatting information.">使用指定的对象数组和格式设置信息向 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中写入信息性消息。</summary>
+      <param name="format" vsli:raw="A format string that contains zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">包含零个或多个格式项的格式字符串，这些项与 <paramref name="args" /> 数组中的对象相对应。</param>
+      <param name="args" vsli:raw="An &lt;see langword=&quot;object&quot; /&gt; array containing zero or more objects to format.">包含零个或多个要格式化的对象的 <see langword="object" /> 数组。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceWarning(System.String)">
+      <summary vsli:raw="Writes a warning message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified message.">使用指定的消息向 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中写入警告消息。</summary>
+      <param name="message" vsli:raw="The informative message to write.">要写入的信息性消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.TraceWarning(System.String,System.Object[])">
+      <summary vsli:raw="Writes a warning message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection using the specified array of objects and formatting information.">使用指定的对象数组和格式设置信息向 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中写入警告信息。</summary>
+      <param name="format" vsli:raw="A format string that contains zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">包含零个或多个格式项的格式字符串，这些项与 <paramref name="args" /> 数组中的对象相对应。</param>
+      <param name="args" vsli:raw="An &lt;see langword=&quot;object&quot; /&gt; array containing zero or more objects to format.">包含零个或多个要格式化的对象的 <see langword="object" /> 数组。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Unindent">
+      <summary vsli:raw="Decreases the current &lt;see cref=&quot;P:System.Diagnostics.Trace.IndentLevel&quot; /&gt; by one.">将当前的 <see cref="P:System.Diagnostics.Trace.IndentLevel" /> 减少 1。</summary>
+    </member>
+    <member name="P:System.Diagnostics.Trace.UseGlobalLock">
+      <summary vsli:raw="Gets or sets a value indicating whether the global lock should be used.">获取或设置一个值，该值指示是否应当使用全局锁。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the global lock is to be used; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;true&quot; /&gt;.">如果要使用全局锁，则为<see langword="true" /> ；否则为 <see langword="false" />。 默认值为 <see langword="true" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Write(System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将对象的 <see cref="M:System.Object.ToString" /> 方法的值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Write(System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将类别名称和对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" /> 名被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Write(System.String)">
+      <summary vsli:raw="Writes a message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.Write(System.String,System.String)">
+      <summary vsli:raw="Writes a category name and a message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将类别名称和消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将类别名称和对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.String)">
+      <summary vsli:raw="Writes a message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteIf(System.Boolean,System.String,System.String)">
+      <summary vsli:raw="Writes a category name and message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将类别名称和消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLine(System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将对象的 <see cref="M:System.Object.ToString" /> 方法的值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLine(System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将类别名称和对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLine(System.String)">
+      <summary vsli:raw="Writes a message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLine(System.String,System.String)">
+      <summary vsli:raw="Writes a category name and message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection.">将类别名称和消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将类别名称和对象的 <see cref="M:System.Object.ToString" /> 方法值写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="value" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose name is sent to the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt;.">一个 <see cref="T:System.Object" />，其名称被发送到 <see cref="P:System.Diagnostics.Trace.Listeners" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.String)">
+      <summary vsli:raw="Writes a message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.String,System.String)">
+      <summary vsli:raw="Writes a category name and message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.Trace.Listeners&quot; /&gt; collection if a condition is &lt;see langword=&quot;true&quot; /&gt;.">如果条件为 <see langword="true" />，则将类别名称和消息写入 <see cref="P:System.Diagnostics.Trace.Listeners" /> 集合中的跟踪侦听器。</summary>
+      <param name="condition" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to cause a message to be written; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要使消息被写入，则为 <see langword="true" />；否则为 <see langword="false" />。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="T:System.Diagnostics.TraceEventCache">
+      <summary vsli:raw="Provides trace event data specific to a thread and a process.">提供特定于线程和进程的跟踪事件数据。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceEventCache.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.TraceEventCache" /> 类的新实例。</summary>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.Callstack">
+      <summary vsli:raw="Gets the call stack for the current thread.">获取当前线程的调用堆栈。</summary>
+      <returns vsli:raw="A string containing stack trace information. This value can be an empty string (&quot;&quot;).">包含堆栈跟踪信息的字符串。 此值可以是空字符串 ("")。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.DateTime">
+      <summary vsli:raw="Gets the date and time at which the event trace occurred.">获取事件跟踪发生的日期和时间。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.DateTime&quot; /&gt; structure whose value is a date and time expressed in Coordinated Universal Time (UTC).">
+        <see cref="T:System.DateTime" /> 结构，其值是以协调通用时间 (UTC) 格式表示的日期和时间。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.LogicalOperationStack">
+      <summary vsli:raw="Gets the correlation data, contained in a stack.">获取堆栈中包含的关联数据。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Stack&quot; /&gt; containing correlation data.">包含相关数据的 <see cref="T:System.Collections.Stack" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.ProcessId">
+      <summary vsli:raw="Gets the unique identifier of the current process.">获取当前进程的唯一标识符。</summary>
+      <returns vsli:raw="The system-generated unique identifier of the current process.">系统生成的当前进程的唯一标识符。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.ThreadId">
+      <summary vsli:raw="Gets a unique identifier for the current managed thread.">获取当前托管线程的唯一标识符。</summary>
+      <returns vsli:raw="A string that represents a unique integer identifier for this managed thread.">表示此托管线程的唯一整数标识符的字符串。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceEventCache.Timestamp">
+      <summary vsli:raw="Gets the current number of ticks in the timer mechanism.">获取计时器机制中的当前最小时间单位数。</summary>
+      <returns vsli:raw="The tick counter value of the underlying timer mechanism.">基础计时器机制的最小时间单位计数值。</returns>
+    </member>
+    <member name="T:System.Diagnostics.TraceEventType">
+      <summary vsli:raw="Identifies the type of event that has caused the trace.">标识引起跟踪的事件的类型。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Critical">
+      <summary vsli:raw="Fatal error or application crash.">致命错误或应用程序崩溃。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Error">
+      <summary vsli:raw="Recoverable error.">可恢复的错误。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Information">
+      <summary vsli:raw="Informational message.">信息性消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Resume">
+      <summary vsli:raw="Resumption of a logical operation.">逻辑操作的恢复。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Start">
+      <summary vsli:raw="Starting of a logical operation.">逻辑操作的开始。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Stop">
+      <summary vsli:raw="Stopping of a logical operation.">逻辑操作的停止。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Suspend">
+      <summary vsli:raw="Suspension of a logical operation.">逻辑操作的挂起。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Transfer">
+      <summary vsli:raw="Changing of correlation identity.">更改相关标识。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Verbose">
+      <summary vsli:raw="Debugging trace.">调试跟踪。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceEventType.Warning">
+      <summary vsli:raw="Noncritical problem.">非关键性问题。</summary>
+    </member>
+    <member name="T:System.Diagnostics.TraceFilter">
+      <summary vsli:raw="Provides the base class for trace filter implementations.">为跟踪筛选器实现提供基类。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceFilter.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceFilter&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.TraceFilter" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])">
+      <summary vsli:raw="When overridden in a derived class, determines whether the trace listener should trace the event.">在派生的类中进行重写时，确定跟踪侦听器是否应跟踪事件。</summary>
+      <param name="cache" vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; that contains information for the trace event.">包含跟踪事件的信息的 <see cref="T:System.Diagnostics.TraceEventCache" />。</param>
+      <param name="source" vsli:raw="The name of the source.">源的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A trace identifier number.">跟踪标识符编号。</param>
+      <param name="formatOrMessage" vsli:raw="Either the format to use for writing an array of arguments specified by the &lt;paramref name=&quot;args&quot; /&gt; parameter, or a message to write.">写入由 <paramref name="args" /> 参数指定的变量数组时使用的格式，或者要写入的消息。</param>
+      <param name="args" vsli:raw="An array of argument objects.">参数对象的数组。</param>
+      <param name="data1" vsli:raw="A trace data object.">跟踪数据对象。</param>
+      <param name="data" vsli:raw="An array of trace data objects.">跟踪数据对象的数组。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to trace the specified event; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">若要跟踪指定的事件，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Diagnostics.TraceLevel">
+      <summary vsli:raw="Specifies what messages to output for the &lt;see cref=&quot;T:System.Diagnostics.Debug&quot; /&gt;, &lt;see cref=&quot;T:System.Diagnostics.Trace&quot; /&gt; and &lt;see cref=&quot;T:System.Diagnostics.TraceSwitch&quot; /&gt; classes.">指定为 <see cref="T:System.Diagnostics.Debug" />、<see cref="T:System.Diagnostics.Trace" /> 和 <see cref="T:System.Diagnostics.TraceSwitch" /> 类输出的消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceLevel.Error">
+      <summary vsli:raw="Output error-handling messages.">输出错误处理消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceLevel.Info">
+      <summary vsli:raw="Output informational messages, warnings, and error-handling messages.">输出信息性消息、警告和错误处理消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceLevel.Off">
+      <summary vsli:raw="Output no tracing and debugging messages.">不输出跟踪和调试消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceLevel.Verbose">
+      <summary vsli:raw="Output all debugging and tracing messages.">输出所有调试和跟踪消息。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceLevel.Warning">
+      <summary vsli:raw="Output warnings and error-handling messages.">输出警告和错误处理消息。</summary>
+    </member>
+    <member name="T:System.Diagnostics.TraceListener">
+      <summary vsli:raw="Provides the &lt;see langword=&quot;abstract&quot; /&gt; base class for the listeners who monitor trace and debug output.">为监视跟踪和调试输出的侦听器提供 <see langword="abstract" /> 基类。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">初始化 <see cref="T:System.Diagnostics.TraceListener" /> 类的新实例。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class using the specified name as the listener.">用指定的名称作为侦听器来初始化 <see cref="T:System.Diagnostics.TraceListener" /> 类的新实例。</summary>
+      <param name="name" vsli:raw="The name of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">
+        <see cref="T:System.Diagnostics.TraceListener" /> 的名称。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.Attributes">
+      <summary vsli:raw="Gets the custom trace listener attributes defined in the application configuration file.">获取应用程序配置文件中定义的自定义跟踪侦听器特性。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.StringDictionary&quot; /&gt; containing the custom attributes for the trace listener.">包含自定义跟踪侦听器特性的 <see cref="T:System.Collections.Specialized.StringDictionary" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Close">
+      <summary vsli:raw="When overridden in a derived class, closes the output stream so it no longer receives tracing or debugging output.">在派生类中被重写时，关闭输出流以使它不再接收跟踪或调试输出。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Dispose">
+      <summary vsli:raw="Releases all resources used by the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">释放由 <see cref="T:System.Diagnostics.TraceListener" /> 使用的所有资源。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Dispose(System.Boolean)">
+      <summary vsli:raw="Releases the unmanaged resources used by the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; and optionally releases the managed resources.">释放由 <see cref="T:System.Diagnostics.TraceListener" /> 占用的非托管资源，还可以另外再释放托管资源。</summary>
+      <param name="disposing" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to release both managed and unmanaged resources; &lt;see langword=&quot;false&quot; /&gt; to release only unmanaged resources.">
+        <see langword="true" /> 表示释放托管资源和非托管资源；<see langword="false" /> 表示仅释放非托管资源。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Fail(System.String)">
+      <summary vsli:raw="Emits an error message to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器发出错误信息。</summary>
+      <param name="message" vsli:raw="A message to emit.">要发出的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Fail(System.String,System.String)">
+      <summary vsli:raw="Emits an error message and a detailed error message to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器发出错误信息和详细错误信息。</summary>
+      <param name="message" vsli:raw="A message to emit.">要发出的消息。</param>
+      <param name="detailMessage" vsli:raw="A detailed message to emit.">要发出的详细消息。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.Filter">
+      <summary vsli:raw="Gets or sets the trace filter for the trace listener.">获取或设置跟踪侦听器的跟踪筛选器。</summary>
+      <returns vsli:raw="An object derived from the &lt;see cref=&quot;T:System.Diagnostics.TraceFilter&quot; /&gt; base class.">一个派生自 <see cref="T:System.Diagnostics.TraceFilter" /> 基类的对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Flush">
+      <summary vsli:raw="When overridden in a derived class, flushes the output buffer.">在派生类中被重写时，刷新输出缓冲区。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.GetSupportedAttributes">
+      <summary vsli:raw="Gets the custom attributes supported by the trace listener.">获取跟踪侦听器支持的自定义特性。</summary>
+      <returns vsli:raw="A string array naming the custom attributes supported by the trace listener, or &lt;see langword=&quot;null&quot; /&gt; if there are no custom attributes.">为跟踪侦听器支持的自定义特性命名的字符串数组；或者如果没有自定义特性，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.IndentLevel">
+      <summary vsli:raw="Gets or sets the indent level.">获取或设置缩进级别。</summary>
+      <returns vsli:raw="The indent level. The default is zero.">缩进级别。 默认值为零。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.IndentSize">
+      <summary vsli:raw="Gets or sets the number of spaces in an indent.">获取或设置缩进的空格数。</summary>
+      <returns vsli:raw="The number of spaces in an indent. The default is four spaces.">缩进的空格数。 默认值为 4 个空格。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="Set operation failed because the value is less than zero.">Set 操作失败，因为值小于零。</exception>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.IsThreadSafe">
+      <summary vsli:raw="Gets a value indicating whether the trace listener is thread safe.">获取一个值，该值指示跟踪侦听器是否是线程安全的。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the trace listener is thread safe; otherwise, &lt;see langword=&quot;false&quot; /&gt;. The default is &lt;see langword=&quot;false&quot; /&gt;.">如果跟踪侦听器是线程安全的，则为 <see langword="true" />；否则为 <see langword="false" />。 默认值为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.Name">
+      <summary vsli:raw="Gets or sets a name for this &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">获取或设置此 <see cref="T:System.Diagnostics.TraceListener" /> 的名称。</summary>
+      <returns vsli:raw="A name for this &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;. The default is an empty string (&quot;&quot;).">此 <see cref="T:System.Diagnostics.TraceListener" /> 的名称。 默认值为空字符串("")。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.NeedIndent">
+      <summary vsli:raw="Gets or sets a value indicating whether to indent the output.">获取或设置一个值，该值指示是否缩进输出。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the output should be indented; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果应缩进输出，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+      <summary vsli:raw="Writes trace information, a data object and event information to the listener specific output.">向特定于侦听器的输出中写入跟踪信息、数据对象和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="data" vsli:raw="The trace data to emit.">要发出的跟踪数据。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceData(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+      <summary vsli:raw="Writes trace information, an array of data objects and event information to the listener specific output.">向特定于侦听器的输出中写入跟踪信息、数据对象的数组和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="data" vsli:raw="An array of objects to emit as data.">要作为数据发出的对象数组。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32)">
+      <summary vsli:raw="Writes trace and event information to the listener specific output.">向特定于侦听器的输出写入跟踪和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String)">
+      <summary vsli:raw="Writes trace information, a message, and event information to the listener specific output.">向特定于侦听器的输出中写入跟踪信息、消息和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceEvent(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+      <summary vsli:raw="Writes trace information, a formatted array of objects and event information to the listener specific output.">向特定于侦听器的输出中写入跟踪信息、格式化对象数组和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="eventType" vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceEventType&quot; /&gt; values specifying the type of event that has caused the trace.">
+        <see cref="T:System.Diagnostics.TraceEventType" /> 值之一，指定引发跟踪的事件类型。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="format" vsli:raw="A format string that contains zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">一个格式字符串，其中包含零个或多个格式项，它们对应于 <paramref name="args" /> 数组中的对象。</param>
+      <param name="args" vsli:raw="An &lt;see langword=&quot;object&quot; /&gt; array containing zero or more objects to format.">包含零个或多个要格式化的对象的 <see langword="object" /> 数组。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceListener.TraceOutputOptions">
+      <summary vsli:raw="Gets or sets the trace output options.">获取或设置跟踪输出选项。</summary>
+      <returns vsli:raw="A bitwise combination of the enumeration values. The default is &lt;see cref=&quot;F:System.Diagnostics.TraceOptions.None&quot; /&gt;.">枚举值的按位组合。 默认值为 <see cref="F:System.Diagnostics.TraceOptions.None" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="Set operation failed because the value is invalid.">Set 操作失败，因为值无效。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.TraceTransfer(System.Diagnostics.TraceEventCache,System.String,System.Int32,System.String,System.Guid)">
+      <summary vsli:raw="Writes trace information, a message, a related activity identity and event information to the listener specific output.">向侦听器特定的输出中写入跟踪信息、消息、相关活动标识和事件信息。</summary>
+      <param name="eventCache" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceEventCache&quot; /&gt; object that contains the current process ID, thread ID, and stack trace information.">包含当前进程 ID、线程 ID 以及堆栈跟踪信息的 <see cref="T:System.Diagnostics.TraceEventCache" /> 对象。</param>
+      <param name="source" vsli:raw="A name used to identify the output, typically the name of the application that generated the trace event.">标识输出时使用的名称，通常为生成跟踪事件的应用程序的名称。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="relatedActivityId" vsli:raw="A &lt;see cref=&quot;T:System.Guid&quot; /&gt; object identifying a related activity.">
+        <see cref="T:System.Guid" /> 对象标识相关活动。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Write(System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">实现 <see cref="M:System.Object.ToString" /> 类时，向所创建的侦听器写入对象的 <see cref="T:System.Diagnostics.TraceListener" /> 方法值。</summary>
+      <param name="o" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose fully qualified class name you want to write.">要为其编写完全限定类名的 <see cref="T:System.Object" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Write(System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">实现 <see cref="M:System.Object.ToString" /> 类时，向所创建的侦听器写入类别名称和对象的 <see cref="T:System.Diagnostics.TraceListener" /> 方法值。</summary>
+      <param name="o" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose fully qualified class name you want to write.">要为其编写完全限定类名的 <see cref="T:System.Object" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Write(System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes the specified message to the listener you create in the derived class.">在派生类中被重写时，向在该派生类中所创建的侦听器写入指定消息。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.Write(System.String,System.String)">
+      <summary vsli:raw="Writes a category name and a message to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器写入类别名称和消息。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.WriteIndent">
+      <summary vsli:raw="Writes the indent to the listener you create when you implement this class, and resets the &lt;see cref=&quot;P:System.Diagnostics.TraceListener.NeedIndent&quot; /&gt; property to &lt;see langword=&quot;false&quot; /&gt;.">实现此类时，向所创建的侦听器写入缩进，并将 <see cref="P:System.Diagnostics.TraceListener.NeedIndent" /> 属性重置为 <see langword="false" />。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.WriteLine(System.Object)">
+      <summary vsli:raw="Writes the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class, followed by a line terminator.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器写入对象的 <see cref="M:System.Object.ToString" /> 方法值，后跟行结束符。</summary>
+      <param name="o" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose fully qualified class name you want to write.">要为其编写完全限定类名的 <see cref="T:System.Object" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.WriteLine(System.Object,System.String)">
+      <summary vsli:raw="Writes a category name and the value of the object's &lt;see cref=&quot;M:System.Object.ToString&quot; /&gt; method to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class, followed by a line terminator.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器写入类别名称和对象的 <see cref="M:System.Object.ToString" /> 方法值，后跟行结束符。</summary>
+      <param name="o" vsli:raw="An &lt;see cref=&quot;T:System.Object&quot; /&gt; whose fully qualified class name you want to write.">要为其编写完全限定类名的 <see cref="T:System.Object" />。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.WriteLine(System.String)">
+      <summary vsli:raw="When overridden in a derived class, writes a message to the listener you create in the derived class, followed by a line terminator.">在派生类中被重写时，向在该派生类中所创建的侦听器写入消息，后跟行结束符。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListener.WriteLine(System.String,System.String)">
+      <summary vsli:raw="Writes a category name and a message to the listener you create when you implement the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; class, followed by a line terminator.">实现 <see cref="T:System.Diagnostics.TraceListener" /> 类时，向所创建的侦听器写入类别名称和消息，后跟行结束符。</summary>
+      <param name="message" vsli:raw="A message to write.">要写入的消息。</param>
+      <param name="category" vsli:raw="A category name used to organize the output.">用于组织输出的类别名称。</param>
+    </member>
+    <member name="T:System.Diagnostics.TraceListenerCollection">
+      <summary vsli:raw="Provides a thread-safe list of &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; objects.">提供 <see cref="T:System.Diagnostics.TraceListener" /> 对象的线程安全列表。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Add(System.Diagnostics.TraceListener)">
+      <summary vsli:raw="Adds a &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to the list.">将 <see cref="T:System.Diagnostics.TraceListener" /> 添加到列表。</summary>
+      <param name="listener" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to add to the list.">要添加到列表的 <see cref="T:System.Diagnostics.TraceListener" />。</param>
+      <returns vsli:raw="The position at which the new listener was inserted.">插入新侦听器的位置。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.AddRange(System.Diagnostics.TraceListener[])">
+      <summary vsli:raw="Adds an array of &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; objects to the list.">将 <see cref="T:System.Diagnostics.TraceListener" /> 对象的数组添加到列表。</summary>
+      <param name="value" vsli:raw="An array of &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; objects to add to the list.">要添加到列表的 <see cref="T:System.Diagnostics.TraceListener" /> 对象的数组。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;value&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.AddRange(System.Diagnostics.TraceListenerCollection)">
+      <summary vsli:raw="Adds the contents of another &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; to the list.">将另一个 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 的内容添加到列表。</summary>
+      <param name="value" vsli:raw="Another &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; whose contents are added to the list.">内容被添加到列表的另一个 <see cref="T:System.Diagnostics.TraceListenerCollection" />。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;value&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="value" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Clear">
+      <summary vsli:raw="Clears all the listeners from the list.">从列表中清除所有侦听器。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Contains(System.Diagnostics.TraceListener)">
+      <summary vsli:raw="Checks whether the list contains the specified listener.">检查列表是否包含指定的侦听器。</summary>
+      <param name="listener" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to find in the list.">要在列表中查找的 <see cref="T:System.Diagnostics.TraceListener" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the listener is in the list; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果列表包含该侦听器，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.CopyTo(System.Diagnostics.TraceListener[],System.Int32)">
+      <summary vsli:raw="Copies a section of the current &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; list to the specified array at the specified index.">将当前 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 列表的一部分复制到指定索引处的指定数组。</summary>
+      <param name="listeners" vsli:raw="An array of type &lt;see cref=&quot;T:System.Array&quot; /&gt; to copy the elements into.">将元素复制到其中的 <see cref="T:System.Array" /> 类型的数组。</param>
+      <param name="index" vsli:raw="The starting index number in the current list to copy from.">当前列表中要进行复制的起始索引号。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.Count">
+      <summary vsli:raw="Gets the number of listeners in the list.">获取列表中的侦听器数。</summary>
+      <returns vsli:raw="The number of listeners in the list.">该列表中的侦听器数。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.GetEnumerator">
+      <summary vsli:raw="Gets an enumerator for this list.">获取此列表的枚举数。</summary>
+      <returns vsli:raw="An enumerator of type &lt;see cref=&quot;T:System.Collections.IEnumerator&quot; /&gt;.">
+        <see cref="T:System.Collections.IEnumerator" /> 类型的枚举数。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.IndexOf(System.Diagnostics.TraceListener)">
+      <summary vsli:raw="Gets the index of the specified listener.">获取指定侦听器的索引。</summary>
+      <param name="listener" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to find in the list.">要在列表中查找的 <see cref="T:System.Diagnostics.TraceListener" />。</param>
+      <returns vsli:raw="The index of the listener, if it can be found in the list; otherwise, -1.">侦听器的索引（如果可在列表中找到）；否则为 -1。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Insert(System.Int32,System.Diagnostics.TraceListener)">
+      <summary vsli:raw="Inserts the listener at the specified index.">将侦听器插入指定的索引位置。</summary>
+      <param name="index" vsli:raw="The position in the list to insert the new &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">列表中要插入新 <see cref="T:System.Diagnostics.TraceListener" /> 的位置。</param>
+      <param name="listener" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to insert in the list.">要插入列表的 <see cref="T:System.Diagnostics.TraceListener" />。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;index&quot; /&gt; is not a valid index in the list.">
+        <paramref name="index" /> 不是列表中的有效索引。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;listener&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="listener" /> 为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.Item(System.Int32)">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; at the specified index.">获取或设置指定索引处的 <see cref="T:System.Diagnostics.TraceListener" />。</summary>
+      <param name="i" vsli:raw="The zero-based index of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to get from the list.">从列表获取的 <see cref="T:System.Diagnostics.TraceListener" /> 的从零开始的索引。</param>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; with the specified index.">具有指定索引的 <see cref="T:System.Diagnostics.TraceListener" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="The value is &lt;see langword=&quot;null&quot; /&gt;.">该值为 <see langword="null" />。</exception>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.Item(System.String)">
+      <summary vsli:raw="Gets the first &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; in the list with the specified name.">获取列表中具有指定名称的第一个 <see cref="T:System.Diagnostics.TraceListener" />。</summary>
+      <param name="name" vsli:raw="The name of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to get from the list.">要从列表中获取的 <see cref="T:System.Diagnostics.TraceListener" /> 的名称。</param>
+      <returns vsli:raw="The first &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; in the list with the given &lt;see cref=&quot;P:System.Diagnostics.TraceListener.Name&quot; /&gt;. This item returns &lt;see langword=&quot;null&quot; /&gt; if no &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; with the given name can be found.">列表中具有给定 <see cref="T:System.Diagnostics.TraceListener" /> 的第一个 <see cref="P:System.Diagnostics.TraceListener.Name" />。 如果找不到任何具有给定名称的 <see cref="T:System.Diagnostics.TraceListener" />，则此项返回 <see langword="null" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Remove(System.Diagnostics.TraceListener)">
+      <summary vsli:raw="Removes from the collection the specified &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">从集合中移除指定的 <see cref="T:System.Diagnostics.TraceListener" />。</summary>
+      <param name="listener" vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to remove from the list.">要从列表中移除的 <see cref="T:System.Diagnostics.TraceListener" />。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.Remove(System.String)">
+      <summary vsli:raw="Removes from the collection the first &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; with the specified name.">从集合中移除具有指定名称的第一个 <see cref="T:System.Diagnostics.TraceListener" />。</summary>
+      <param name="name" vsli:raw="The name of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to remove from the list.">要从列表中移除的 <see cref="T:System.Diagnostics.TraceListener" /> 的名称。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.RemoveAt(System.Int32)">
+      <summary vsli:raw="Removes from the collection the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; at the specified index.">从集合中移除指定索引处的 <see cref="T:System.Diagnostics.TraceListener" />。</summary>
+      <param name="index" vsli:raw="The zero-based index of the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; to remove from the list.">要从列表中移除的 <see cref="T:System.Diagnostics.TraceListener" /> 的从零开始的索引。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;index&quot; /&gt; is not a valid index in the list.">
+        <paramref name="index" /> 不是列表中的有效索引。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)">
+      <summary vsli:raw="Copies a section of the current &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; to the specified array of &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; objects.">将当前 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 的一部分复制到指定的 <see cref="T:System.Diagnostics.TraceListener" /> 对象数组中。</summary>
+      <param name="array" vsli:raw="The one-dimensional array of &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; objects that is the destination of the elements copied from the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;. The array must have zero-based indexing.">
+        <see cref="T:System.Diagnostics.TraceListener" /> 对象的一维数组，是从 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 复制的元素的目标数组。 该数组的索引必须从零开始。</param>
+      <param name="index" vsli:raw="The zero-based index in &lt;paramref name=&quot;array&quot; /&gt; at which copying begins.">
+        <paramref name="array" /> 中从零开始的索引，从此处开始复制。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#IsSynchronized">
+      <summary vsli:raw="Gets a value indicating whether access to the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; is synchronized (thread safe).">获取一个值，该值指示是否同步对 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 的访问（线程安全）。</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;true&quot; /&gt;.">总是为 <see langword="true" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#ICollection#SyncRoot">
+      <summary vsli:raw="Gets an object that can be used to synchronize access to the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">获取可用于同步对 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 的访问的对象。</summary>
+      <returns vsli:raw="The current &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; object.">当前的 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 对象。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Add(System.Object)">
+      <summary vsli:raw="Adds a trace listener to the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">向 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中添加一个跟踪侦听器。</summary>
+      <param name="value" vsli:raw="The object to add to the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">要添加到 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 的对象。</param>
+      <returns vsli:raw="The position into which the new trace listener was inserted.">新跟踪侦听器的插入位置。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;value&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;value&quot; /&gt; is not a &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt;.">
+        <paramref name="value" /> 为 <see langword="null" />。
+或
+<paramref name="value" /> 不是 <see cref="T:System.Diagnostics.TraceListener" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Contains(System.Object)">
+      <summary vsli:raw="Determines whether the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; contains a specific object.">确定 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 是否包含特定对象。</summary>
+      <param name="value" vsli:raw="The object to locate in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">要在 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中定位的对象。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Object&quot; /&gt; is found in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果在 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中找到了 <see cref="T:System.Object" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IndexOf(System.Object)">
+      <summary vsli:raw="Determines the index of a specific object in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">确定 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中特定对象的索引。</summary>
+      <param name="value" vsli:raw="The object to locate in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">要在 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中定位的对象。</param>
+      <returns vsli:raw="The index of &lt;paramref name=&quot;value&quot; /&gt; if found in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;; otherwise, -1.">如果在 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中找到，则为 <paramref name="value" /> 的索引；否则为 -1。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Insert(System.Int32,System.Object)">
+      <summary vsli:raw="Inserts a &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; object at the specified position in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">在 <see cref="T:System.Diagnostics.TraceListener" /> 中的指定位置插入一个 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 对象。</summary>
+      <param name="index" vsli:raw="The zero-based index at which &lt;paramref name=&quot;value&quot; /&gt; should be inserted.">应插入 <paramref name="value" /> 的从零开始的索引。</param>
+      <param name="value" vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; object to insert into the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">要插入到 <see cref="T:System.Diagnostics.TraceListener" /> 中的 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 对象。</param>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;value&quot; /&gt; is not a &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; object.">
+        <paramref name="value" /> 不是 <see cref="T:System.Diagnostics.TraceListener" /> 对象。</exception>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IsFixedSize">
+      <summary vsli:raw="Gets a value indicating whether the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; has a fixed size.">获取一个值，该值指示 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 是否具有固定大小。</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;false&quot; /&gt;.">总是为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#IsReadOnly">
+      <summary vsli:raw="Gets a value indicating whether the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; is read-only.">获取一个值，该值指示 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 是否为只读。</summary>
+      <returns vsli:raw="Always &lt;see langword=&quot;false&quot; /&gt;.">总是为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Item(System.Int32)">
+      <summary vsli:raw="Gets or sets the &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; at the specified index in the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">获取或设置 <see cref="T:System.Diagnostics.TraceListener" /> 的指定索引处的 <see cref="T:System.Diagnostics.TraceListenerCollection" />。</summary>
+      <param name="index" vsli:raw="The zero-based index of the &lt;paramref name=&quot;value&quot; /&gt; to get.">要获取的 <paramref name="value" /> 的从零开始的索引。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Diagnostics.TraceListener&quot; /&gt; at the specified index.">位于指定索引处的 <see cref="T:System.Diagnostics.TraceListener" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceListenerCollection.System#Collections#IList#Remove(System.Object)">
+      <summary vsli:raw="Removes an object from the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">从 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中移除一个对象。</summary>
+      <param name="value" vsli:raw="The object to remove from the &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt;.">要从 <see cref="T:System.Diagnostics.TraceListenerCollection" /> 中删除的对象。</param>
+    </member>
+    <member name="T:System.Diagnostics.TraceOptions">
+      <summary vsli:raw="Specifies trace data options to be written to the trace output.">指定要写入跟踪输出中的跟踪数据选项。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.Callstack">
+      <summary vsli:raw="Write the call stack, which is represented by the return value of the &lt;see cref=&quot;P:System.Environment.StackTrace&quot; /&gt; property.">写入调用堆栈，该堆栈由 <see cref="P:System.Environment.StackTrace" /> 属性的返回值表示。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.DateTime">
+      <summary vsli:raw="Write the date and time.">写入日期和时间。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.LogicalOperationStack">
+      <summary vsli:raw="Write the logical operation stack, which is represented by the return value of the &lt;see cref=&quot;P:System.Diagnostics.CorrelationManager.LogicalOperationStack&quot; /&gt; property.">写入逻辑操作堆栈，该堆栈由 <see cref="P:System.Diagnostics.CorrelationManager.LogicalOperationStack" /> 属性的返回值表示。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.None">
+      <summary vsli:raw="Do not write any elements.">不写入任何元素。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.ProcessId">
+      <summary vsli:raw="Write the process identity, which is represented by the return value of the &lt;see cref=&quot;P:System.Diagnostics.Process.Id&quot; /&gt; property.">写入进程标识，该标识由 <see cref="P:System.Diagnostics.Process.Id" /> 属性的返回值表示。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.ThreadId">
+      <summary vsli:raw="Write the thread identity, which is represented by the return value of the &lt;see cref=&quot;P:System.Threading.Thread.ManagedThreadId&quot; /&gt; property for the current thread.">写入线程标识，该标识由当前线程的 <see cref="P:System.Threading.Thread.ManagedThreadId" /> 属性的返回值表示。</summary>
+    </member>
+    <member name="F:System.Diagnostics.TraceOptions.Timestamp">
+      <summary vsli:raw="Write the timestamp, which is represented by the return value of the &lt;see cref=&quot;M:System.Diagnostics.Stopwatch.GetTimestamp&quot; /&gt; method.">写入时间戳，该时间戳由 <see cref="M:System.Diagnostics.Stopwatch.GetTimestamp" /> 方法的返回值表示。</summary>
+    </member>
+    <member name="T:System.Diagnostics.TraceSource">
+      <summary vsli:raw="Provides a set of methods and properties that enable applications to trace the execution of code and associate trace messages with their source.">提供一组方法和属性，利用这些方法和属性，应用程序可以跟踪代码的执行并将跟踪消息和它们的源关联起来。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.#ctor(System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceSource&quot; /&gt; class, using the specified name for the source.">使用指定的源名称初始化 <see cref="T:System.Diagnostics.TraceSource" /> 类的新实例。</summary>
+      <param name="name" vsli:raw="The name of the source (typically, the name of the application).">源的名称，（通常为应用程序的名称）。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is an empty string (&quot;&quot;).">
+        <paramref name="name" /> 为空字符串 ("")。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.#ctor(System.String,System.Diagnostics.SourceLevels)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceSource&quot; /&gt; class, using the specified name for the source and the default source level at which tracing is to occur.">使用源的指定名称和执行跟踪的默认源级别初始化 <see cref="T:System.Diagnostics.TraceSource" /> 类的新实例。</summary>
+      <param name="name" vsli:raw="The name of the source, typically the name of the application.">源的名称，通常为应用程序的名称。</param>
+      <param name="defaultLevel" vsli:raw="A bitwise combination of the enumeration values that specifies the default source level at which to trace.">枚举的按位组合，指定要跟踪的默认源级别。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="name" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;name&quot; /&gt; is an empty string (&quot;&quot;).">
+        <paramref name="name" /> 为空字符串 ("")。</exception>
+    </member>
+    <member name="P:System.Diagnostics.TraceSource.Attributes">
+      <summary vsli:raw="Gets the custom switch attributes defined in the application configuration file.">获取在应用程序配置文件中定义的自定义开关特性。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Collections.Specialized.StringDictionary&quot; /&gt; containing the custom attributes for the trace switch.">包含跟踪开关的自定义特性的 <see cref="T:System.Collections.Specialized.StringDictionary" />。</returns>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.Close">
+      <summary vsli:raw="Closes all the trace listeners in the trace listener collection.">关闭跟踪侦听器集合中的所有跟踪侦听器。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.Flush">
+      <summary vsli:raw="Flushes all the trace listeners in the trace listener collection.">刷新跟踪侦听器集合中的所有跟踪侦听器。</summary>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.GetSupportedAttributes">
+      <summary vsli:raw="Gets the custom attributes supported by the trace source.">获取跟踪源所支持的自定义特性。</summary>
+      <returns vsli:raw="A string array naming the custom attributes supported by the trace source, or &lt;see langword=&quot;null&quot; /&gt; if there are no custom attributes.">对跟踪源支持的自定义特性进行命名的字符串数组；如果不存在自定义特性，则为 <see langword="null" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSource.Listeners">
+      <summary vsli:raw="Gets the collection of trace listeners for the trace source.">获取跟踪源的跟踪侦听器集合。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.TraceListenerCollection&quot; /&gt; that contains the active trace listeners associated with the source.">包含与源关联的活动跟踪侦听器的 <see cref="T:System.Diagnostics.TraceListenerCollection" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSource.Name">
+      <summary vsli:raw="Gets the name of the trace source.">获取跟踪源的名称。</summary>
+      <returns vsli:raw="The name of the trace source.">跟踪源的名称。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSource.Switch">
+      <summary vsli:raw="Gets or sets the source switch value.">获取或设置源开关的值。</summary>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Diagnostics.SourceSwitch&quot; /&gt; object representing the source switch value.">表示源开关值的 <see cref="T:System.Diagnostics.SourceSwitch" /> 对象。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.TraceSource.Switch&quot; /&gt; is set to &lt;see langword=&quot;null&quot; /&gt;.">将 <see cref="P:System.Diagnostics.TraceSource.Switch" /> 设置为 <see langword="null" />。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceData(System.Diagnostics.TraceEventType,System.Int32,System.Object)">
+      <summary vsli:raw="Writes trace data to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified event type, event identifier, and trace data.">使用指定的事件类型、事件标识符和跟踪数据，将跟踪数据写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="eventType" vsli:raw="One of the enumeration values that specifies the event type of the trace data.">指定跟踪数据的事件类型的其中一个枚举值。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="data" vsli:raw="The trace data.">跟踪数据。</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceData(System.Diagnostics.TraceEventType,System.Int32,System.Object[])">
+      <summary vsli:raw="Writes trace data to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified event type, event identifier, and trace data array.">使用指定的事件类型、事件标识符和跟踪数据数组，将跟踪数据写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="eventType" vsli:raw="One of the enumeration values that specifies the event type of the trace data.">指定跟踪数据的事件类型的其中一个枚举值。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="data" vsli:raw="An object array containing the trace data.">包含跟踪数据的对象数组。</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32)">
+      <summary vsli:raw="Writes a trace event message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified event type and event identifier.">使用指定的事件类型和事件标识符，将跟踪事件消息写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="eventType" vsli:raw="One of the enumeration values that specifies the event type of the trace data.">指定跟踪数据的事件类型的其中一个枚举值。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String)">
+      <summary vsli:raw="Writes a trace event message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified event type, event identifier, and message.">使用指定的事件类型、事件标识符和消息，将跟踪事件消息写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="eventType" vsli:raw="One of the enumeration values that specifies the event type of the trace data.">指定跟踪数据的事件类型的其中一个枚举值。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="message" vsli:raw="The trace message to write.">要写入的跟踪消息。</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceEvent(System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[])">
+      <summary vsli:raw="Writes a trace event to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified event type, event identifier, and argument array and format.">使用指定的事件类型、事件标识符以及自变量数组和格式，将跟踪事件写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="eventType" vsli:raw="One of the enumeration values that specifies the event type of the trace data.">指定跟踪数据的事件类型的其中一个枚举值。</param>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="format" vsli:raw="A composite format string that contains text intermixed with zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">包含与零个或多个格式项混合的文本的一个复合格式字符串，与 <paramref name="args" /> 数组中的对象相对应。</param>
+      <param name="args" vsli:raw="An &lt;see langword=&quot;object&quot; /&gt; array containing zero or more objects to format.">包含零个或多个要格式化的对象的 <see langword="object" /> 数组。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;format&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="format" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException" vsli:raw="&lt;paramref name=&quot;format&quot; /&gt; is invalid.  &#xA;  &#xA; -or-  &#xA;  &#xA; The number that indicates an argument to format is less than zero, or greater than or equal to the number of specified objects to format.">
+        <paramref name="format" /> 无效。
+或
+表示要设置格式的参数的数字小于零，或者大于等于要设置格式的指定对象的数目。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceInformation(System.String)">
+      <summary vsli:raw="Writes an informational message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified message.">使用指定消息，将信息性消息写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="message" vsli:raw="The informative message to write.">要写入的信息性消息。</param>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceInformation(System.String,System.Object[])">
+      <summary vsli:raw="Writes an informational message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified object array and formatting information.">使用指定的对象数组和格式化信息，将信息性消息写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合中的跟踪侦听器中。</summary>
+      <param name="format" vsli:raw="A composite format string that contains text intermixed with zero or more format items, which correspond to objects in the &lt;paramref name=&quot;args&quot; /&gt; array.">包含与零个或多个格式项混合的文本的一个复合格式字符串，与 <paramref name="args" /> 数组中的对象相对应。</param>
+      <param name="args" vsli:raw="An array containing zero or more objects to format.">包含零个或多个要格式化的对象的数组。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;format&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="format" /> 为 <see langword="null" />。</exception>
+      <exception cref="T:System.FormatException" vsli:raw="&lt;paramref name=&quot;format&quot; /&gt; is invalid.  &#xA;  &#xA; -or-  &#xA;  &#xA; The number that indicates an argument to format is less than zero, or greater than or equal to the number of specified objects to format.">
+        <paramref name="format" /> 无效。
+或
+表示要设置格式的参数的数字小于零，或者大于等于要设置格式的指定对象的数目。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="An attempt was made to trace an event during finalization.">终止期间尝试跟踪事件。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSource.TraceTransfer(System.Int32,System.String,System.Guid)">
+      <summary vsli:raw="Writes a trace transfer message to the trace listeners in the &lt;see cref=&quot;P:System.Diagnostics.TraceSource.Listeners&quot; /&gt; collection using the specified numeric identifier, message, and related activity identifier.">使用指定的数字标识符、消息和相关活动标识符，将跟踪传输消息写入 <see cref="P:System.Diagnostics.TraceSource.Listeners" /> 集合的跟踪侦听器中。</summary>
+      <param name="id" vsli:raw="A numeric identifier for the event.">事件的数值标识符。</param>
+      <param name="message" vsli:raw="The trace message to write.">要写入的跟踪消息。</param>
+      <param name="relatedActivityId" vsli:raw="A structure that identifies the related activity.">标识相关活动的结构。</param>
+    </member>
+    <member name="T:System.Diagnostics.TraceSwitch">
+      <summary vsli:raw="Provides a multilevel switch to control tracing and debug output without recompiling your code.">提供多级开关，用于控制跟踪和调试输出，而无需重新编译代码。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceSwitch.#ctor(System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceSwitch&quot; /&gt; class, using the specified display name and description.">使用指定的显示名称和说明初始化 <see cref="T:System.Diagnostics.TraceSwitch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name to display on a user interface.">要显示在用户界面上的名称。</param>
+      <param name="description" vsli:raw="The description of the switch.">切换描述。</param>
+    </member>
+    <member name="M:System.Diagnostics.TraceSwitch.#ctor(System.String,System.String,System.String)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Diagnostics.TraceSwitch&quot; /&gt; class, using the specified display name, description, and default value for the switch.">使用开关的指定显示名称、说明和默认值来初始化 <see cref="T:System.Diagnostics.TraceSwitch" /> 类的新实例。</summary>
+      <param name="displayName" vsli:raw="The name to display on a user interface.">要显示在用户界面上的名称。</param>
+      <param name="description" vsli:raw="The description of the switch.">切换描述。</param>
+      <param name="defaultSwitchValue" vsli:raw="The default value of the switch.">开关的默认值。</param>
+    </member>
+    <member name="P:System.Diagnostics.TraceSwitch.Level">
+      <summary vsli:raw="Gets or sets the trace level that determines the messages the switch allows.">获取或设置跟踪级别，它将确定开关所允许的消息。</summary>
+      <returns vsli:raw="One of the &lt;see cref=&quot;T:System.Diagnostics.TraceLevel&quot; /&gt; values that specifies the level of messages that are allowed by the switch.">
+        <see cref="T:System.Diagnostics.TraceLevel" />值之一，指定开关允许的消息级别。</returns>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;see cref=&quot;P:System.Diagnostics.TraceSwitch.Level&quot; /&gt; is set to a value that is not one of the &lt;see cref=&quot;T:System.Diagnostics.TraceLevel&quot; /&gt; values.">
+        <see cref="P:System.Diagnostics.TraceSwitch.Level" /> 设置为非 <see cref="T:System.Diagnostics.TraceLevel" /> 值。</exception>
+    </member>
+    <member name="M:System.Diagnostics.TraceSwitch.OnSwitchSettingChanged">
+      <summary vsli:raw="Updates and corrects the level for this switch.">更新并更正此开关的级别。</summary>
+    </member>
+    <member name="M:System.Diagnostics.TraceSwitch.OnValueChanged">
+      <summary vsli:raw="Sets the &lt;see cref=&quot;P:System.Diagnostics.Switch.SwitchSetting&quot; /&gt; property to the integer equivalent of the &lt;see cref=&quot;P:System.Diagnostics.Switch.Value&quot; /&gt; property.">将 <see cref="P:System.Diagnostics.Switch.SwitchSetting" /> 属性设置为 <see cref="P:System.Diagnostics.Switch.Value" /> 属性的整数等效值。</summary>
+    </member>
+    <member name="P:System.Diagnostics.TraceSwitch.TraceError">
+      <summary vsli:raw="Gets a value indicating whether the switch allows error-handling messages.">获取一个值，它指示开关是否允许错误处理消息。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;P:System.Diagnostics.TraceSwitch.Level&quot; /&gt; property is set to &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Error&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Warning&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Info&quot; /&gt;, or &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Verbose&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <see cref="P:System.Diagnostics.TraceSwitch.Level" /> 设置为 <see cref="F:System.Diagnostics.TraceLevel.Error" />、<see cref="F:System.Diagnostics.TraceLevel.Warning" />、<see cref="F:System.Diagnostics.TraceLevel.Info" /> 或 <see cref="F:System.Diagnostics.TraceLevel.Verbose" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSwitch.TraceInfo">
+      <summary vsli:raw="Gets a value indicating whether the switch allows informational messages.">获取一个值，它指示开关是否允许信息性消息。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;P:System.Diagnostics.TraceSwitch.Level&quot; /&gt; property is set to &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Info&quot; /&gt; or &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Verbose&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <see cref="P:System.Diagnostics.TraceSwitch.Level" /> 属性设置为 <see cref="F:System.Diagnostics.TraceLevel.Info" /> 或 <see cref="F:System.Diagnostics.TraceLevel.Verbose" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSwitch.TraceVerbose">
+      <summary vsli:raw="Gets a value indicating whether the switch allows all messages.">获取一个值，它指示开关是否允许所有消息。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;P:System.Diagnostics.TraceSwitch.Level&quot; /&gt; property is set to &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Verbose&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <see cref="P:System.Diagnostics.TraceSwitch.Level" /> 属性设置为 <see cref="F:System.Diagnostics.TraceLevel.Verbose" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Diagnostics.TraceSwitch.TraceWarning">
+      <summary vsli:raw="Gets a value indicating whether the switch allows warning messages.">获取一个值，它指示开关是否允许警告消息。</summary>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;P:System.Diagnostics.TraceSwitch.Level&quot; /&gt; property is set to &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Warning&quot; /&gt;, &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Info&quot; /&gt;, or &lt;see cref=&quot;F:System.Diagnostics.TraceLevel.Verbose&quot; /&gt;; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果 <see cref="P:System.Diagnostics.TraceSwitch.Level" /> 属性设置为 <see cref="F:System.Diagnostics.TraceLevel.Warning" />、<see cref="F:System.Diagnostics.TraceLevel.Info" /> 或 <see cref="F:System.Diagnostics.TraceLevel.Verbose" />，则为 <see langword="true" />；否则为 <see langword="false" />。</returns>
+    </member>
+  </members>
+</doc>

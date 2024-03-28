@@ -1,0 +1,261 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Threading.ThreadPool</name>
+  </assembly>
+  <members>
+    <member name="T:System.Threading.IThreadPoolWorkItem">
+      <summary vsli:raw="Represents a work item that can be executed by the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">
+        <see cref="T:System.Threading.ThreadPool" /> で実行できる作業項目を表します。</summary>
+    </member>
+    <member name="M:System.Threading.IThreadPoolWorkItem.Execute">
+      <summary vsli:raw="Executes the work item on the thread pool.">スレッド プールの作業項目を実行します。</summary>
+    </member>
+    <member name="T:System.Threading.RegisteredWaitHandle">
+      <summary vsli:raw="Represents a handle that has been registered when calling &lt;see cref=&quot;M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)&quot; /&gt;. This class cannot be inherited.">
+        <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" /> を呼び出すときに登録されたハンドルを表します。 このクラスは継承できません。</summary>
+    </member>
+    <member name="M:System.Threading.RegisteredWaitHandle.Unregister(System.Threading.WaitHandle)">
+      <summary vsli:raw="Cancels a registered wait operation issued by the &lt;see cref=&quot;M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)&quot; /&gt; method.">
+        <see cref="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)" /> メソッドで実行した登録済みの待機操作を取り消します。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to be signaled.">シグナル状態になる <see cref="T:System.Threading.WaitHandle" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the function succeeds; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">関数が成功した場合は <see langword="true" />。それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="T:System.Threading.ThreadPool">
+      <summary vsli:raw="Provides a pool of threads that can be used to execute tasks, post work items, process asynchronous I/O, wait on behalf of other threads, and process timers.">タスクの実行、作業項目のポスト、非同期 I/O の処理、他のスレッドの代理で行う待機、およびタイマーの処理に使用できるスレッドのプールを提供します。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadPool.BindHandle(System.IntPtr)">
+      <summary vsli:raw="Binds an operating system handle to the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">オペレーティング システム ハンドルを <see cref="T:System.Threading.ThreadPool" /> にバインドします。</summary>
+      <param name="osHandle" vsli:raw="An &lt;see cref=&quot;T:System.IntPtr&quot; /&gt; that holds the handle. The handle must have been opened for overlapped I/O on the unmanaged side.">ハンドルを保持する <see cref="T:System.IntPtr" />。 ハンドルは、アンマネージ側の重複 I/O 用に開かれている必要があります。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the handle is bound; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">ハンドルがバインドされている場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.BindHandle(System.Runtime.InteropServices.SafeHandle)">
+      <summary vsli:raw="Binds an operating system handle to the &lt;see cref=&quot;T:System.Threading.ThreadPool&quot; /&gt;.">オペレーティング システム ハンドルを <see cref="T:System.Threading.ThreadPool" /> にバインドします。</summary>
+      <param name="osHandle" vsli:raw="A &lt;see cref=&quot;T:System.Runtime.InteropServices.SafeHandle&quot; /&gt; that holds the operating system handle. The handle must have been opened for overlapped I/O on the unmanaged side.">オペレーティング システム ハンドルを保持する <see cref="T:System.Runtime.InteropServices.SafeHandle" />。 ハンドルは、アンマネージ側の重複 I/O 用に開かれている必要があります。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the handle is bound; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">ハンドルがバインドされている場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;osHandle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="osHandle" /> が <see langword="null" /> です。</exception>
+    </member>
+    <member name="P:System.Threading.ThreadPool.CompletedWorkItemCount">
+      <summary vsli:raw="Gets the number of work items that have been processed so far.">これまでに処理された作業項目の数を取得します。</summary>
+      <returns vsli:raw="The number of work items that have been processed so far.">これまでに処理された作業項目の数。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetAvailableThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the difference between the maximum number of thread pool threads returned by the &lt;see cref=&quot;M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)&quot; /&gt; method, and the number currently active.">スレッド プール スレッドの最大数 (<see cref="M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)" /> メソッドから返される) と現在アクティブなスレッドの数との差を取得します。</summary>
+      <param name="workerThreads" vsli:raw="The number of available worker threads.">使用できるワーカー スレッドの数。</param>
+      <param name="completionPortThreads" vsli:raw="The number of available asynchronous I/O threads.">使用できる非同期 I/O スレッドの数。</param>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetMaxThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the number of requests to the thread pool that can be active concurrently. All requests above that number remain queued until thread pool threads become available.">同時にアクティブにできるスレッド プールへの要求の数を取得します。 この数を超える要求はすべて、スレッド プール スレッドが使用可能になるまでキューに置かれたままになります。</summary>
+      <param name="workerThreads" vsli:raw="The maximum number of worker threads in the thread pool.">スレッド プール内のワーカー スレッドの最大数。</param>
+      <param name="completionPortThreads" vsli:raw="The maximum number of asynchronous I/O threads in the thread pool.">スレッド プール内の非同期 I/O スレッドの最大数。</param>
+    </member>
+    <member name="M:System.Threading.ThreadPool.GetMinThreads(System.Int32@,System.Int32@)">
+      <summary vsli:raw="Retrieves the minimum number of threads the thread pool creates on demand, as new requests are made, before switching to an algorithm for managing thread creation and destruction.">スレッドがオンデマンドで (新しい要求の発生ごとに) 作成するスレッド プールの数を取得します。この数を超えると、スレッドの作成と破棄を管理するためのアルゴリズムに切り替わります。</summary>
+      <param name="workerThreads" vsli:raw="When this method returns, contains the minimum number of worker threads that the thread pool creates on demand.">このメソッドが戻るとき、スレッド プールがオンデマンドで作成するワーカー スレッドの最小数が含まれています。</param>
+      <param name="completionPortThreads" vsli:raw="When this method returns, contains the minimum number of asynchronous I/O threads that the thread pool creates on demand.">このメソッドが戻るとき、スレッド プールがオンデマンドで作成する非同期 I/O スレッドの最小数が含まれています。</param>
+    </member>
+    <member name="P:System.Threading.ThreadPool.PendingWorkItemCount">
+      <summary vsli:raw="Gets the number of work items that are currently queued to be processed.">処理するキューに置かれた現在の作業項目の数を取得します。</summary>
+      <returns vsli:raw="The number of work items that are currently queued to be processed.">処理のために現在キューに登録されている作業項目の数。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback)">
+      <summary vsli:raw="Queues a method for execution. The method executes when a thread pool thread becomes available.">メソッドを実行するためのキューに置きます。 メソッドは、スレッド プール スレッドが使用可能になったときに実行されます。</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; that represents the method to be executed.">実行するメソッドを表す <see cref="T:System.Threading.WaitCallback" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが正常にキューに配置された場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.NotSupportedException" /> がスローされます。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The common language runtime (CLR) is hosted, and the host does not support this action.">共通言語ランタイム (CLR) がホストされており、ホストではこのアクションがサポートされていません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem(System.Threading.WaitCallback,System.Object)">
+      <summary vsli:raw="Queues a method for execution, and specifies an object containing data to be used by the method. The method executes when a thread pool thread becomes available.">実行するためのキューにメソッドを置き、そのメソッドが使用するデータを含んだオブジェクトを指定します。 メソッドは、スレッド プール スレッドが使用可能になったときに実行されます。</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; representing the method to execute.">実行するメソッドを表す <see cref="T:System.Threading.WaitCallback" />。</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">メソッドが使用するデータを格納したオブジェクト。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが正常にキューに配置された場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.NotSupportedException" /> がスローされます。</returns>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The common language runtime (CLR) is hosted, and the host does not support this action.">共通言語ランタイム (CLR) がホストされており、ホストではこのアクションがサポートされていません。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.QueueUserWorkItem``1(System.Action{``0},``0,System.Boolean)">
+      <summary vsli:raw="Queues a method specified by an &lt;see cref=&quot;T:System.Action`1&quot; /&gt; delegate for execution, and provides data to be used by the method. The method executes when a thread pool thread becomes available.">実行用に <see cref="T:System.Action`1" /> デリゲートで指定したメソッドをキューに入れ、メソッドで使うデータを指定します。 メソッドは、スレッド プール スレッドが使用可能になったときに実行されます。</summary>
+      <param name="callBack" vsli:raw="An &lt;see cref=&quot;T:System.Action`1&quot; /&gt; representing the method to execute.">実行するメソッドを表す <see cref="T:System.Action`1" />。</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">メソッドが使用するデータを格納したオブジェクト。</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">現在のスレッドに近いキューに作業項目を入れる場合は <see langword="true" />。スレッド プールの共有キューに作業項目を入れる場合は <see langword="false" />。</param>
+      <typeparam name="TState" vsli:raw="The type of elements of &lt;paramref name=&quot;state&quot; /&gt;.">
+        <paramref name="state" /> の要素の型。</typeparam>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが正常にキューに配置された場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.NotSupportedException" /> がスローされます。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit signed integer for the time-out in milliseconds.">ミリ秒単位のタイムアウトとして 32 ビット符号付き整数を指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出す <see cref="T:System.Threading.WaitOrTimerCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">デリゲートに渡されるオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">ネイティブ ハンドルをカプセル化する <see cref="T:System.Threading.RegisteredWaitHandle" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">
+        <paramref name="millisecondsTimeOutInterval" /> パラメーターが -1 未満。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int64,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 64-bit signed integer for the time-out in milliseconds.">64 ビット符号付き整数でミリ秒単位のタイムアウトを指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出す <see cref="T:System.Threading.WaitOrTimerCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">デリゲートに渡されたオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">ネイティブ ハンドルをカプセル化する <see cref="T:System.Threading.RegisteredWaitHandle" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">
+        <paramref name="millisecondsTimeOutInterval" /> パラメーターが -1 未満。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.TimeSpan,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value for the time-out.">
+        <see cref="T:System.TimeSpan" /> 値をタイムアウトとして指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出す <see cref="T:System.Threading.WaitOrTimerCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">デリゲートに渡されたオブジェクト。</param>
+      <param name="timeout" vsli:raw="The time-out represented by a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt;. If &lt;paramref name=&quot;timeout&quot; /&gt; is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;timeout&quot; /&gt; is -1, the function's time-out interval never elapses.">
+        <see cref="T:System.TimeSpan" /> で表されるタイムアウト。 <paramref name="timeout" /> が 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="timeout" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that encapsulates the native handle.">ネイティブ ハンドルをカプセル化する <see cref="T:System.Threading.RegisteredWaitHandle" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is less than -1.">
+        <paramref name="timeout" /> パラメーターが -1 未満。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is greater than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">
+        <paramref name="timeout" /> パラメーターが <see cref="F:System.Int32.MaxValue" /> より大きい値です。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.RegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit unsigned integer for the time-out in milliseconds.">32 ビット符号なし整数でミリ秒単位のタイムアウトを指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitOrTimerCallback&quot; /&gt; delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出す <see cref="T:System.Threading.WaitOrTimerCallback" /> デリゲート。</param>
+      <param name="state" vsli:raw="The object passed to the delegate.">デリゲートに渡されたオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; that can be used to cancel the registered wait operation.">登録された待機操作をキャンセルするために使用できる <see cref="T:System.Threading.RegisteredWaitHandle" />。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">
+        <paramref name="millisecondsTimeOutInterval" /> パラメーターが -1 未満。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.SetMaxThreads(System.Int32,System.Int32)">
+      <summary vsli:raw="Sets the number of requests to the thread pool that can be active concurrently. All requests above that number remain queued until thread pool threads become available.">同時にアクティブにできるスレッド プールへの要求の数を設定します。 この数を超える要求はすべて、スレッド プール スレッドが使用可能になるまでキューに置かれたままになります。</summary>
+      <param name="workerThreads" vsli:raw="The maximum number of worker threads in the thread pool.">スレッド プール内のワーカー スレッドの最大数。</param>
+      <param name="completionPortThreads" vsli:raw="The maximum number of asynchronous I/O threads in the thread pool.">スレッド プール内の非同期 I/O スレッドの最大数。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the change is successful; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">変更が成功した場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.SetMinThreads(System.Int32,System.Int32)">
+      <summary vsli:raw="Sets the minimum number of threads the thread pool creates on demand, as new requests are made, before switching to an algorithm for managing thread creation and destruction.">スレッドがオンデマンドで (新しい要求の発生ごとに) 作成するスレッド プールの数を設定します。この数を超えると、スレッドの作成と破棄を管理するためのアルゴリズムに切り替わります。</summary>
+      <param name="workerThreads" vsli:raw="The minimum number of worker threads that the thread pool creates on demand.">スレッド プールがオンデマンドで作成するワーカー スレッドの最小数。</param>
+      <param name="completionPortThreads" vsli:raw="The minimum number of asynchronous I/O threads that the thread pool creates on demand.">スレッド プールがオンデマンドで作成する非同期 I/O スレッドの最小数。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the change is successful; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">変更が成功した場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Threading.ThreadPool.ThreadCount">
+      <summary vsli:raw="Gets the number of thread pool threads that currently exist.">現在存在しているスレッド プールのスレッド数を取得します。</summary>
+      <returns vsli:raw="The number of thread pool threads that currently exist.">現在存在しているスレッドプールスレッドの数。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueNativeOverlapped(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Queues an overlapped I/O operation for execution.">重複した I/O 操作を、実行するためのキューに置きます。</summary>
+      <param name="overlapped" vsli:raw="The &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure to queue.">キューに置く <see cref="T:System.Threading.NativeOverlapped" /> 構造体。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the operation was successfully queued to an I/O completion port; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">操作が I/O 完了ポートのキューに正常に置かれた場合は <see langword="true" />、それ以外の場合は <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem(System.Threading.IThreadPoolWorkItem,System.Boolean)">
+      <summary vsli:raw="Queues the specified work item object to the thread pool.">指定された作業項目オブジェクトをスレッド プールのキューに入れます。</summary>
+      <param name="callBack" vsli:raw="The work item to invoke when a thread in the thread pool picks up the work item.">スレッド プールのスレッドが作業項目を選択したときに呼び出される作業項目。</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">現在のスレッドに近いキューに作業項目を入れる場合は <see langword="true" />。スレッド プールの共有キューに作業項目を入れる場合は <see langword="false" />。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method succeeds; &lt;see cref=&quot;T:System.OutOfMemoryException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが成功した場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.OutOfMemoryException" /> がスローされます。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> が <see langword="null" /> です。</exception>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The work item is a &lt;see cref=&quot;T:System.Threading.Tasks.Task&quot; /&gt;.">作業項目は <see cref="T:System.Threading.Tasks.Task" /> です。</exception>
+      <exception cref="T:System.OutOfMemoryException" vsli:raw="The work item could not be queued.">作業項目をキューに配置できません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem(System.Threading.WaitCallback,System.Object)">
+      <summary vsli:raw="Queues the specified delegate to the thread pool, but does not propagate the calling stack to the worker thread.">指定したデリゲートをスレッド プールのキューに置きます。ただし、コール スタックをワーカー スレッドに反映しません。</summary>
+      <param name="callBack" vsli:raw="A &lt;see cref=&quot;T:System.Threading.WaitCallback&quot; /&gt; that represents the delegate to invoke when a thread in the thread pool picks up the work item.">スレッド プール内のスレッドが作業項目をピック アップするときに呼び出すデリゲートを表す <see cref="T:System.Threading.WaitCallback" />。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate when serviced from the thread pool.">スレッド プールから処理されるときにデリゲートに渡されるオブジェクト。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method succeeds; &lt;see cref=&quot;T:System.OutOfMemoryException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが成功した場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.OutOfMemoryException" /> がスローされます。</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+      <exception cref="T:System.ApplicationException" vsli:raw="An out-of-memory condition was encountered.">メモリが不足しています。</exception>
+      <exception cref="T:System.OutOfMemoryException" vsli:raw="The work item could not be queued.">作業項目をキューに配置できません。</exception>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callBack&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callBack" /> は <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeQueueUserWorkItem``1(System.Action{``0},``0,System.Boolean)">
+      <summary vsli:raw="Queues a method specified by an &lt;see cref=&quot;T:System.Action`1&quot; /&gt; delegate for execution, and specifies an object containing data to be used by the method. The method executes when a thread pool thread becomes available.">実行用に <see cref="T:System.Action`1" /> デリゲートで指定したメソッドをキューに入れ、そのメソッドで使用するデータを含んだオブジェクトを指定します。 メソッドは、スレッド プール スレッドが使用可能になったときに実行されます。</summary>
+      <param name="callBack" vsli:raw="A delegate representing the method to execute.">実行するメソッドを表すデリゲート。</param>
+      <param name="state" vsli:raw="An object containing data to be used by the method.">メソッドが使用するデータを格納したオブジェクト。</param>
+      <param name="preferLocal" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to prefer queueing the work item in a queue close to the current thread; &lt;see langword=&quot;false&quot; /&gt; to prefer queueing the work item to the thread pool's shared queue.">現在のスレッドに近いキューに作業項目を入れる場合は <see langword="true" />。スレッド プールの共有キューに作業項目を入れる場合は <see langword="false" />。</param>
+      <typeparam name="TState" vsli:raw="The type of elements of &lt;paramref name=&quot;state&quot; /&gt;.">
+        <paramref name="state" /> の要素の型。</typeparam>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the method is successfully queued; &lt;see cref=&quot;T:System.NotSupportedException&quot; /&gt; is thrown if the work item could not be queued.">メソッドが正常にキューに配置された場合は <see langword="true" />。作業項目をキューに配置できなかった場合は <see cref="T:System.NotSupportedException" /> がスローされます。</returns>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> は <see langword="null" />です。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The work item could not be queued.">作業項目をキューに配置できません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, using a 32-bit signed integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">ミリ秒単位のタイムアウトとして 32 ビット符号付き整数を使用して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。 このメソッドはコール スタックをワーカー スレッドに反映しません。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出すデリゲート。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">デリゲートに渡されるオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">登録された待機操作をキャンセルするために使用できる <see cref="T:System.Threading.RegisteredWaitHandle" /> オブジェクト。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">
+        <paramref name="millisecondsTimeOutInterval" /> パラメーターが -1 未満。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.Int64,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 64-bit signed integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">64 ビット符号付き整数でミリ秒単位のタイムアウトを指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。 このメソッドはコール スタックをワーカー スレッドに反映しません。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出すデリゲート。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">デリゲートに渡されるオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">登録された待機操作をキャンセルするために使用できる <see cref="T:System.Threading.RegisteredWaitHandle" /> オブジェクト。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is less than -1.">
+        <paramref name="millisecondsTimeOutInterval" /> パラメーターが -1 未満。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.TimeSpan,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt; value for the time-out. This method does not propagate the calling stack to the worker thread.">
+        <see cref="T:System.TimeSpan" /> 値をタイムアウトとして指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。このメソッドはコール スタックをワーカー スレッドに反映しません。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出すデリゲート。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">デリゲートに渡されるオブジェクト。</param>
+      <param name="timeout" vsli:raw="The time-out represented by a &lt;see cref=&quot;T:System.TimeSpan&quot; /&gt;. If &lt;paramref name=&quot;timeout&quot; /&gt; is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;timeout&quot; /&gt; is -1, the function's time-out interval never elapses.">
+        <see cref="T:System.TimeSpan" /> で表されるタイムアウト。 <paramref name="timeout" /> が 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="timeout" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">登録された待機操作をキャンセルするために使用できる <see cref="T:System.Threading.RegisteredWaitHandle" /> オブジェクト。</returns>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is less than -1.">
+        <paramref name="timeout" /> パラメーターが -1 未満。</exception>
+      <exception cref="T:System.NotSupportedException" vsli:raw="The &lt;paramref name=&quot;timeout&quot; /&gt; parameter is greater than &lt;see cref=&quot;F:System.Int32.MaxValue&quot;&gt;Int32.MaxValue&lt;/see&gt;.">
+        <paramref name="timeout" /> パラメーターが <see cref="F:System.Int32.MaxValue" /> より大きい値です。</exception>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPool.UnsafeRegisterWaitForSingleObject(System.Threading.WaitHandle,System.Threading.WaitOrTimerCallback,System.Object,System.UInt32,System.Boolean)">
+      <summary vsli:raw="Registers a delegate to wait for a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt;, specifying a 32-bit unsigned integer for the time-out in milliseconds. This method does not propagate the calling stack to the worker thread.">32 ビット符号なし整数でミリ秒単位のタイムアウトを指定して、<see cref="T:System.Threading.WaitHandle" /> を待機するデリゲートを登録します。 このメソッドはコール スタックをワーカー スレッドに反映しません。</summary>
+      <param name="waitObject" vsli:raw="The &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; to register. Use a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; other than &lt;see cref=&quot;T:System.Threading.Mutex&quot; /&gt;.">登録する <see cref="T:System.Threading.WaitHandle" />。 <see cref="T:System.Threading.Mutex" /> 以外の <see cref="T:System.Threading.WaitHandle" /> を使用します。</param>
+      <param name="callBack" vsli:raw="The delegate to call when the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter is signaled.">
+        <paramref name="waitObject" /> パラメーターがシグナル通知されたときに呼び出すデリゲート。</param>
+      <param name="state" vsli:raw="The object that is passed to the delegate.">デリゲートに渡されるオブジェクト。</param>
+      <param name="millisecondsTimeOutInterval" vsli:raw="The time-out in milliseconds. If the &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; parameter is 0 (zero), the function tests the object's state and returns immediately. If &lt;paramref name=&quot;millisecondsTimeOutInterval&quot; /&gt; is -1, the function's time-out interval never elapses.">ミリ秒単位のタイムアウト。 <paramref name="millisecondsTimeOutInterval" /> パラメーターが 0 (ゼロ) の場合、関数はオブジェクトの状態をテストして、すぐに制御を戻します。 <paramref name="millisecondsTimeOutInterval" /> が -1 の場合、関数はタイムアウトしません。</param>
+      <param name="executeOnlyOnce" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; to indicate that the thread will no longer wait on the &lt;paramref name=&quot;waitObject&quot; /&gt; parameter after the delegate has been called; &lt;see langword=&quot;false&quot; /&gt; to indicate that the timer is reset every time the wait operation completes until the wait is unregistered.">デリゲートの呼び出し後、スレッドが <paramref name="waitObject" /> パラメーターを待機しなくなる場合は <see langword="true" />。待機が登録解除されるまでは、待機操作が完了するたびにタイマーをリセットする場合は <see langword="false" />。</param>
+      <returns vsli:raw="The &lt;see cref=&quot;T:System.Threading.RegisteredWaitHandle&quot; /&gt; object that can be used to cancel the registered wait operation.">登録された待機操作をキャンセルするために使用できる <see cref="T:System.Threading.RegisteredWaitHandle" /> オブジェクト。</returns>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+    </member>
+    <member name="T:System.Threading.WaitCallback">
+      <summary vsli:raw="Represents a callback method to be executed by a thread pool thread.">スレッド プール スレッドが実行するコールバック メソッドを表します。</summary>
+      <param name="state" vsli:raw="An object containing information to be used by the callback method.">コールバック メソッドが使用する情報を格納したオブジェクト。</param>
+    </member>
+    <member name="T:System.Threading.WaitOrTimerCallback">
+      <summary vsli:raw="Represents a method to be called when a &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; is signaled or times out.">
+        <see cref="T:System.Threading.WaitHandle" /> がシグナル通知されたとき、またはタイムアウトしたときに呼び出されるメソッドを表します。</summary>
+      <param name="state" vsli:raw="An object containing information to be used by the callback method each time it executes.">コールバック メソッドが実行されるたびに使用する情報を格納したオブジェクト。</param>
+      <param name="timedOut" vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the &lt;see cref=&quot;T:System.Threading.WaitHandle&quot; /&gt; timed out; &lt;see langword=&quot;false&quot; /&gt; if it was signaled.">
+        <see cref="T:System.Threading.WaitHandle" /> がタイムアウトした場合は <see langword="true" />。シグナル通知された場合は <see langword="false" />。</param>
+    </member>
+  </members>
+</doc>
