@@ -7,13 +7,8 @@ using System.Windows;
 // アセンブリに関連付けられている情報を変更するには、
 // これらの属性値を変更してください。
 [assembly: AssemblyTitle("VsLocalizedIntellisense")]
-[assembly: AssemblyDescription("")]
-[assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("VsLocalizedIntellisense")]
 [assembly: AssemblyCopyright("Copyright © 2024")]
-[assembly: AssemblyTrademark("")]
-[assembly: AssemblyCulture("")]
 
 // ComVisible を false に設定すると、このアセンブリ内の型は COM コンポーネントから
 // 参照できなくなります。COM からこのアセンブリ内の型にアクセスする必要がある場合は、
