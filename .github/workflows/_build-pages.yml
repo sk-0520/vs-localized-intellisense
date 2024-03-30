@@ -1,0 +1,62 @@
+on:
+  workflow_call:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: <Checkout>
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+            resources
+            work-intellisense
+
+      - name: <Setup> Pages
+        uses: actions/configure-pages@v4
+
+      - name: <Add> Node/NPM
+        uses: actions/setup-node@v4
+        with:
+          node-version-file: src/pages/.node-version
+          cache: npm
+          cache-dependency-path: src/pages/package-lock.json
+
+      - name: <NPM>
+        run: |
+          cd src/pages
+          npm ci
+
+      - name: <Test>
+        run: |
+          cd src/pages
+          npm run lint
+
+      - name: <Build>
+        run: |
+          cd src/pages
+          npm run pre-process
+          npm run build
+
+      - name: <Upload> Artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: 'src/pages/out'
+
+      - name: <Deploy> GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

@@ -37,16 +37,16 @@ namespace VsLocalizedIntellisense
             Logger.LogInformation("START");
 
             var appFileService = new AppFileService(appConfiguration, loggerFactory);
-            var appGitHubService = new AppGitHubService(appConfiguration, loggerFactory);
+            var appIntellisensePageService = new AppIntellisensePageService(appConfiguration, loggerFactory);
             var intellisenseVersionData = appFileService.GetIntellisenseVersionData();
             if(intellisenseVersionData != null) {
                 Logger.LogInformation("キャッシュからインテリセンスバージョンデータ取得");
             } else {
                 Logger.LogInformation("GitHubからインテリセンスバージョンデータ取得");
                 try {
-                    var intellisenseVersionItems = await appGitHubService.GetIntellisenseVersionItemsAsync(appConfiguration.GetRepositoryRevision());
+                    var intellisenseVersionItems = await appIntellisensePageService.GetDataListAsync("intellisense");
                     intellisenseVersionData = new IntellisenseVersionData {
-                        VersionItems = intellisenseVersionItems.ToArray()
+                        VersionItems = intellisenseVersionItems.Directories.ToArray()
                     };
                     appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
                 } catch(HttpRequestException ex) {
@@ -58,7 +58,7 @@ namespace VsLocalizedIntellisense
                 intellisenseVersionData = new IntellisenseVersionData();
             }
 
-            var mainElement = new MainElement(appConfiguration, intellisenseVersionData.VersionItems, appFileService, appGitHubService, loggerFactory);
+            var mainElement = new MainElement(appConfiguration, intellisenseVersionData.VersionItems, appFileService, appIntellisensePageService, loggerFactory);
 
             var mainViewModel = new MainViewModel(mainElement, stockLogItems, appConfiguration, loggerFactory);
             var mainView = new MainWindow();

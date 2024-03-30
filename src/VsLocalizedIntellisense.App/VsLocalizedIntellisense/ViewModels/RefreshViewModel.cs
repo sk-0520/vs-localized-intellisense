@@ -59,11 +59,11 @@ namespace VsLocalizedIntellisense.ViewModels
 
                 IsDownloading = true;
                 try {
-                    var appGitHubService = new AppGitHubService(Configuration, LoggerFactory);
+                    var appIntellisensePageService = new AppIntellisensePageService(Configuration, LoggerFactory);
                     var appFileService = new AppFileService(Configuration, LoggerFactory);
-                    var intellisenseVersionItems = await appGitHubService.GetIntellisenseVersionItemsAsync(Configuration.GetRepositoryRevision());
+                    var intellisenseVersionItems = await appIntellisensePageService.GetDataListAsync("intellisense");
                     var intellisenseVersionData = new IntellisenseVersionData {
-                        VersionItems = intellisenseVersionItems.ToArray()
+                        VersionItems = intellisenseVersionItems.Directories,
                     };
                     appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
 

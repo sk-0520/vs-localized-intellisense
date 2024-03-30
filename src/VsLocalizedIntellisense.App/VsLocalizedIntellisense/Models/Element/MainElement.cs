@@ -25,14 +25,14 @@ namespace VsLocalizedIntellisense.Models.Element
 
         #endregion
 
-        public MainElement(AppConfiguration configuration, IList<string> intellisenseVersionItems, AppFileService appFileService, AppGitHubService appGitHubService, ILoggerFactory loggerFactory)
+        public MainElement(AppConfiguration configuration, IList<string> intellisenseVersionItems, AppFileService appFileService, AppIntellisensePageService appIntellisensePageService, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
             Configuration = configuration;
             IntellisenseVersionItems = intellisenseVersionItems;
 
             AppFileService = appFileService;
-            AppGitHubService = appGitHubService;
+            AppIntellisensePageService = appIntellisensePageService;
 
             LanguageItems = new ObservableCollection<LanguageElement>(Configuration.GetLanguageItems().Select(a => new LanguageElement(a, LoggerFactory)));
             //TODO: 言語選定は要外部化
@@ -48,7 +48,7 @@ namespace VsLocalizedIntellisense.Models.Element
 
         private AppConfiguration Configuration { get; }
         private AppFileService AppFileService { get; }
-        private AppGitHubService AppGitHubService { get; }
+        private AppIntellisensePageService AppIntellisensePageService { get; }
 
         private IList<string> IntellisenseVersionItems { get; }
 
@@ -121,8 +121,6 @@ namespace VsLocalizedIntellisense.Models.Element
             IOHelper.DeleteDirectory(downloadRootDirPath);
             var downloadRootDirectory = Directory.CreateDirectory(downloadRootDirPath);
 
-            var revision = Configuration.GetRepositoryRevision();
-
             var result = new Dictionary<DirectoryElement, IList<FileInfo>>();
 
             var targetElements = IntellisenseDirectoryElements.Where(a => a.IsDownloadTarget).ToArray();
@@ -135,7 +133,7 @@ namespace VsLocalizedIntellisense.Models.Element
             foreach(var element in targetElements) {
                 var downloadBaseDirPath = Path.Combine(downloadRootDirectory.FullName, element.IntellisenseVersion.DirectoryName, element.Directory.Name);
                 var downloadBaseDirectory = Directory.CreateDirectory(downloadBaseDirPath);
-                var downloadFiles = await element.DownloadIntellisenseFilesAsync(revision, downloadBaseDirectory, AppFileService, AppGitHubService);
+                var downloadFiles = await element.DownloadIntellisenseFilesAsync(downloadBaseDirectory, AppFileService, AppIntellisensePageService);
                 result.Add(element, downloadFiles);
             }
 

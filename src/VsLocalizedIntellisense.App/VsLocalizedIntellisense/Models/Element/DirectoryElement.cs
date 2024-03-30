@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Service.Application;
-using VsLocalizedIntellisense.Models.Service.GitHub;
 
 namespace VsLocalizedIntellisense.Models.Element
 {
@@ -62,11 +61,12 @@ namespace VsLocalizedIntellisense.Models.Element
 
         #region function
 
-        private async Task<FileInfo> DownloadIntellisenseFileAsync(string revision, IntellisenseLanguageParts languageParts, string fileName, DirectoryInfo downloadDirectory, AppFileService fileService, GitHubService gitHubService, CancellationToken cancellationToken)
+        private async Task<FileInfo> DownloadIntellisenseFileAsync(IntellisenseLanguageParts languageParts, string fileName, DirectoryInfo downloadDirectory, AppFileService fileService, AppIntellisensePageService appIntellisensePageService, CancellationToken cancellationToken)
         {
             var physicalPath = Path.Combine(downloadDirectory.FullName, fileName);
-            var repositoryPath = gitHubService.BuildPath(languageParts, fileName);
-            using(var contentStream = await gitHubService.GetRawAsync(revision, repositoryPath, cancellationToken)) {
+            var repositoryPath = string.Join("/", "intellisense", languageParts.IntellisenseVersion, languageParts.LibraryName, languageParts.Language, fileName);
+
+            using(var contentStream = await appIntellisensePageService.GetDataStreamAsync(repositoryPath, cancellationToken)) {
                 using(var physicalStream = new FileStream(physicalPath, FileMode.Create, FileAccess.ReadWrite, FileShare.Read)) {
                     await contentStream.CopyToAsync(physicalStream, 1024 * 4, cancellationToken);
                 }
@@ -75,7 +75,7 @@ namespace VsLocalizedIntellisense.Models.Element
             return new FileInfo(physicalPath);
         }
 
-        private async Task<IList<FileInfo>> DownloadIntellisenseFilesCoreAsync(string revision, DirectoryInfo downloadDirectory, AppFileService fileService, GitHubService gitHubService, IProgress<double> progress, CancellationToken cancellationToken)
+        private async Task<IList<FileInfo>> DownloadIntellisenseFilesCoreAsync(DirectoryInfo downloadDirectory, AppFileService fileService, AppIntellisensePageService appIntellisensePageService, IProgress<double> progress, CancellationToken cancellationToken)
         {
             var languageParts = new IntellisenseLanguageParts(IntellisenseVersion.DirectoryName, Directory.Name, Language.Language);
             var languageData = fileService.GetIntellisenseLanguageData(languageParts);
@@ -83,10 +83,10 @@ namespace VsLocalizedIntellisense.Models.Element
                 Logger.LogInformation($"キャッシュからインテリセンス言語データ取得: {languageParts}");
             } else {
                 Logger.LogInformation($"GitHubからインテリセンス言語データ取得: {languageParts}");
-                var languageItems = await gitHubService.GetIntellisenseLanguageItemsAsync(revision, languageParts, cancellationToken);
+                var languageItems = await appIntellisensePageService.GetDataListAsync($"intellisense/{languageParts.IntellisenseVersion}/{languageParts.LibraryName}/{languageParts.Language}", cancellationToken);
 
                 languageData = new IntellisenseLanguageData();
-                languageData.LanguageItems = languageItems.ToArray();
+                languageData.LanguageItems = languageItems.Files;
                 fileService.SaveIntellisenseLanguageData(languageParts, languageData);
             }
 
@@ -94,7 +94,7 @@ namespace VsLocalizedIntellisense.Models.Element
             progress.Report(0);
             var percentProgress = new PercentProgress(languageData.LanguageItems.Length, progress);
             foreach(var languageItem in languageData.LanguageItems) {
-                var file = await DownloadIntellisenseFileAsync(revision, languageParts, languageItem, downloadDirectory, fileService, gitHubService, cancellationToken);
+                var file = await DownloadIntellisenseFileAsync(languageParts, languageItem, downloadDirectory, fileService, appIntellisensePageService, cancellationToken);
                 result.Add(file);
                 percentProgress.Increment();
             }
@@ -102,10 +102,10 @@ namespace VsLocalizedIntellisense.Models.Element
             return result;
         }
 
-        public async Task<IList<FileInfo>> DownloadIntellisenseFilesAsync(string revision, DirectoryInfo downloadDirectory, AppFileService fileService, GitHubService gitHubService, CancellationToken cancellationToken = default)
+        public async Task<IList<FileInfo>> DownloadIntellisenseFilesAsync(DirectoryInfo downloadDirectory, AppFileService fileService, AppIntellisensePageService appIntellisensePageService, CancellationToken cancellationToken = default)
         {
             var downloadProgress = new Progress<double>(p => DownloadPercent = p);
-            return await DownloadIntellisenseFilesCoreAsync(revision, downloadDirectory, fileService, gitHubService, downloadProgress, cancellationToken);
+            return await DownloadIntellisenseFilesCoreAsync(downloadDirectory, fileService, appIntellisensePageService, downloadProgress, cancellationToken);
         }
 
         #endregion
