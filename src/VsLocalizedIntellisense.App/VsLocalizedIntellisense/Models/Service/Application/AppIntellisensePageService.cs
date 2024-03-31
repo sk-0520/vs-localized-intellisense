@@ -22,7 +22,6 @@ namespace VsLocalizedIntellisense.Models.Service.Application
         {
             HttpClient = httpClient;
             Configuration = configuration;
-            LoggerFactory = loggerFactory;
             Logger = loggerFactory.CreateLogger(GetType());
         }
 
@@ -30,7 +29,6 @@ namespace VsLocalizedIntellisense.Models.Service.Application
 
         private HttpClient HttpClient { get; }
         private AppConfiguration Configuration { get; }
-        private ILoggerFactory LoggerFactory { get; }
         private ILogger Logger { get; }
 
         #endregion
@@ -84,6 +82,13 @@ namespace VsLocalizedIntellisense.Models.Service.Application
             );
             var request = CreateRequestMessage(HttpMethod.Get, url);
             var response = await RequestJsonAsync<IntellisensePageList>(request, cancellationToken);
+            if(response.Files == null) {
+                response.Files = Array.Empty<string>();
+            }
+            if(response.Directories == null) {
+                response.Directories = Array.Empty<string>();
+            }
+
             return response;
         }
 

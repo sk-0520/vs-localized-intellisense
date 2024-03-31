@@ -11,7 +11,7 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
     [TestClass]
     public class AppConfigurationExtensionsTest
     {
-        #region variable
+        #region property
 
         private System.Configuration.Configuration BaseConfiguration { get; set; }
 
