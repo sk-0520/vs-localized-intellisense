@@ -1,49 +1,48 @@
 using System.Threading.Tasks;
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
 {
-    [TestClass]
     public class DelegateCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void Constructor_throw_Test()
         {
-            var actual1 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(null, null));
-            Assert.AreEqual("executeAction", actual1.ParamName);
+            var actual1 = Assert.Throws<ArgumentNullException>(() => new DelegateCommand(null, null));
+            Assert.Equal("executeAction", actual1.ParamName);
 
-            var actual2 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(null));
-            Assert.AreEqual("executeAction", actual2.ParamName);
+            var actual2 = Assert.Throws<ArgumentNullException>(() => new DelegateCommand(null));
+            Assert.Equal("executeAction", actual2.ParamName);
 
-            var actual3 = Assert.ThrowsException<ArgumentNullException>(() => new DelegateCommand(o => { }, null));
-            Assert.AreEqual("canExecuteFunc", actual3.ParamName);
+            var actual3 = Assert.Throws<ArgumentNullException>(() => new DelegateCommand(o => { }, null));
+            Assert.Equal("canExecuteFunc", actual3.ParamName);
         }
 
-        [TestMethod]
+        [Fact]
         public void ExecuteTest()
         {
             DelegateCommand command = null;
             command = new DelegateCommand(
                 o => {
-                    Assert.AreEqual(1, command.ExecutingCount);
-                    Assert.IsFalse(command.CanExecute(null));
+                    Assert.Equal(1, command.ExecutingCount);
+                    Assert.False(command.CanExecute(null));
                 }
             );
             command.Execute(null);
         }
 
-        [TestMethod]
+        [Fact]
         public void SuppressCommandWhileExecutingTest()
         {
             DelegateCommand command = null;
             command = new DelegateCommand(
                 o => {
-                    Assert.AreEqual(1, command.ExecutingCount);
-                    Assert.IsTrue(command.CanExecute(null));
+                    Assert.Equal(1, command.ExecutingCount);
+                    Assert.True(command.CanExecute(null));
                 }
             ) {
                 SuppressCommandWhileExecuting = false,
@@ -51,48 +50,47 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             command.Execute(null);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanExecuteTest()
         {
             var command = new DelegateCommand(
                 o => { },
                 o => o != null
             );
-            Assert.IsFalse(command.CanExecute(null));
-            Assert.IsTrue(command.CanExecute(new object()));
+            Assert.False(command.CanExecute(null));
+            Assert.True(command.CanExecute(new object()));
         }
 
         #endregion
     }
 
-    [TestClass]
     public class DelegateCommand_T_Test
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void ExecuteTest()
         {
             DelegateCommand<int> command = null;
             command = new DelegateCommand<int>(
                 o => {
-                    Assert.AreEqual(1, command.ExecutingCount);
-                    Assert.AreEqual(100, o);
-                    Assert.IsFalse(command.CanExecute(o));
+                    Assert.Equal(1, command.ExecutingCount);
+                    Assert.Equal(100, o);
+                    Assert.False(command.CanExecute(o));
                 }
             );
             command.Execute(100);
         }
 
-        [TestMethod]
+        [Fact]
         public void SuppressCommandWhileExecutingTest()
         {
             DelegateCommand<int> command = null;
             command = new DelegateCommand<int>(
                 o => {
-                    Assert.AreEqual(1, command.ExecutingCount);
-                    Assert.AreEqual(100, o);
-                    Assert.IsTrue(command.CanExecute(o));
+                    Assert.Equal(1, command.ExecutingCount);
+                    Assert.Equal(100, o);
+                    Assert.True(command.CanExecute(o));
                 }
             ) {
                 SuppressCommandWhileExecuting = false,
@@ -100,18 +98,17 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             command.Execute(100);
         }
 
-        [TestMethod]
+        [Fact]
         public void CanExecuteTest()
         {
             var command = new DelegateCommand<int>(
                 o => { },
                 o => o != 0
             );
-            Assert.IsFalse(command.CanExecute(0));
-            Assert.IsTrue(command.CanExecute(1));
+            Assert.False(command.CanExecute(0));
+            Assert.True(command.CanExecute(1));
         }
 
         #endregion
     }
-
 }

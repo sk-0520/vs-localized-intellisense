@@ -4,54 +4,53 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 {
-    [TestClass]
     public class MessageItemTest
     {
-        [TestMethod]
+        [Fact]
         public void Constructor_messageId_throw_Test()
         {
-            var actual = Assert.ThrowsException<ArgumentNullException>(() => new MessageItem(null, GetType(), this, GetType().GetMethod(nameof(ToString))));
-            Assert.AreEqual("messageId", actual.ParamName);
+            var actual = Assert.Throws<ArgumentNullException>(() => new MessageItem(null, GetType(), this, GetType().GetMethod(nameof(ToString))));
+            Assert.Equal("messageId", actual.ParamName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Constructor_messageType_throw_Test()
         {
-            var actual = Assert.ThrowsException<ArgumentNullException>(() => new MessageItem("", null, this, GetType().GetMethod(nameof(ToString))));
-            Assert.AreEqual("messageType", actual.ParamName);
+            var actual = Assert.Throws<ArgumentNullException>(() => new MessageItem("", null, this, GetType().GetMethod(nameof(ToString))));
+            Assert.Equal("messageType", actual.ParamName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Constructor_callbackMethodInfo_throw_Test()
         {
-            var actual = Assert.ThrowsException<ArgumentNullException>(() => new MessageItem("", GetType(), this, null));
-            Assert.AreEqual("callbackMethodInfo", actual.ParamName);
+            var actual = Assert.Throws<ArgumentNullException>(() => new MessageItem("", GetType(), this, null));
+            Assert.Equal("callbackMethodInfo", actual.ParamName);
         }
 
-        [TestMethod]
+        [Fact]
         public void ConstructorTest()
         {
             var actual = new MessageItem("", GetType(), this, GetType().GetMethod(nameof(ToString)));
-            Assert.AreEqual("", actual.MessageId);
-            Assert.AreEqual(GetType(), actual.MessageType);
-            Assert.AreEqual(this, actual.CallbackInstance);
-            Assert.AreEqual(GetType().GetMethod(nameof(ToString)), actual.CallbackMethodInfo);
+            Assert.Equal("", actual.MessageId);
+            Assert.Equal(GetType(), actual.MessageType);
+            Assert.Equal(this, actual.CallbackInstance);
+            Assert.Equal(GetType().GetMethod(nameof(ToString)), actual.CallbackMethodInfo);
         }
 
-        [TestMethod]
+        [Fact]
         public void DisposeTest()
         {
             var actual = new MessageItem("", GetType(), this, GetType().GetMethod(nameof(ToString)));
             actual.Dispose();
-            Assert.AreEqual("", actual.MessageId);
-            Assert.AreEqual(GetType(), actual.MessageType);
-            Assert.IsNull(actual.CallbackInstance);
-            Assert.AreEqual(GetType().GetMethod(nameof(ToString)), actual.CallbackMethodInfo);
+            Assert.Equal("", actual.MessageId);
+            Assert.Equal(GetType(), actual.MessageType);
+            Assert.Null(actual.CallbackInstance);
+            Assert.Equal(GetType().GetMethod(nameof(ToString)), actual.CallbackMethodInfo);
             actual.Dispose();
         }
     }

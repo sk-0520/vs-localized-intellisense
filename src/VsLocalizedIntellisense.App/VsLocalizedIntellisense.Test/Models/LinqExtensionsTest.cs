@@ -2,23 +2,22 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models;
 
 namespace VsLocalizedIntellisense.Test.Models
 {
-    [TestClass]
     public class LinqExtensionsTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void IndexOf_IReadOnlyList_Test()
         {
             IReadOnlyList<int> items = new[] { 10, 20, 30 }.ToList();
             var actual = items.IndexOf(20);
-            Assert.AreEqual(1, actual);
-            Assert.AreEqual(-1, items.IndexOf(40));
+            Assert.Equal(1, actual);
+            Assert.Equal(-1, items.IndexOf(40));
         }
 
         private class Test_IndexOf_IReadOnlyCollection: IReadOnlyCollection<int>
@@ -38,14 +37,14 @@ namespace VsLocalizedIntellisense.Test.Models
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void IndexOf_IReadOnlyCollection_Test()
         {
             IReadOnlyCollection<int> items = new Test_IndexOf_IReadOnlyCollection();
             var actual = items.IndexOf(20);
-            Assert.AreEqual(1, actual);
+            Assert.Equal(1, actual);
 
-            Assert.AreEqual(-1, items.IndexOf(40));
+            Assert.Equal(-1, items.IndexOf(40));
         }
 
         #endregion

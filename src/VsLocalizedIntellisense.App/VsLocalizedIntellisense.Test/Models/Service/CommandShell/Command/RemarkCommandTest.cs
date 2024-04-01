@@ -1,23 +1,22 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class RemarkCommandTest
     {
         #region function
 
-        [TestMethod]
-        [DataRow("rem", "")]
-        [DataRow("rem a", "a")]
+        [Theory]
+        [InlineData("rem", "")]
+        [InlineData("rem a", "a")]
         public void Test(string expected, string value)
         {
             var command = new RemarkCommand() {
                 Comment = value,
             };
             var actual = command.GetStatement();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         #endregion

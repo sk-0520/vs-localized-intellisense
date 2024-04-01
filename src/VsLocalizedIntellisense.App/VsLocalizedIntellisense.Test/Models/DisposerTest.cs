@@ -1,10 +1,9 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models;
 
 namespace VsLocalizedIntellisense.Test.Models
 {
-    [TestClass]
     public class DisposerTest
     {
         private class TestDisposer: DisposerBase
@@ -23,18 +22,18 @@ namespace VsLocalizedIntellisense.Test.Models
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Test()
         {
             var disposer = new TestDisposer();
 
             disposer.Dispose();
 
-            Assert.IsTrue(disposer.IsDisposed);
-            Assert.IsTrue(disposer.Disposing);
+            Assert.True(disposer.IsDisposed);
+            Assert.True(disposer.Disposing);
         }
 
-        [TestMethod]
+        [Fact]
         public void Dispose2Test()
         {
             var disposer = new TestDisposer();
@@ -42,18 +41,18 @@ namespace VsLocalizedIntellisense.Test.Models
             disposer.Dispose();
             disposer.Dispose();
 
-            Assert.IsTrue(disposer.IsDisposed);
-            Assert.IsTrue(disposer.Disposing);
+            Assert.True(disposer.IsDisposed);
+            Assert.True(disposer.Disposing);
         }
 
-        [TestMethod]
+        [Fact]
         public void ThrowIfDisposedTest()
         {
             var disposer = new TestDisposer();
 
             disposer.Procedure();
             disposer.Dispose();
-            Assert.ThrowsException<ObjectDisposedException>(() => disposer.Procedure());
+            Assert.Throws<ObjectDisposedException>(() => disposer.Procedure());
         }
     }
 }

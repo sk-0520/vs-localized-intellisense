@@ -1,9 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 {
-    [TestClass]
     public class ScopedMessengerTest
     {
         #region function
@@ -25,7 +24,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             { }
         }
 
-        [TestMethod]
+        [Fact]
         public void Scenario_normal_Test()
         {
             var rootMessenger = new Messenger();
@@ -42,37 +41,37 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             var scopedMessageItemCanCall = scopedMessenger.Register<ActionMessage2>(m => scopedCallCountCanCall += 1);
 
             rootMessenger.Send(new ActionMessage());
-            Assert.AreEqual(1, rootCallCount);
-            Assert.AreEqual(0, scopedCallCountNotCall);
-            Assert.AreEqual(0, scopedCallCountCanCall);
+            Assert.Equal(1, rootCallCount);
+            Assert.Equal(0, scopedCallCountNotCall);
+            Assert.Equal(0, scopedCallCountCanCall);
 
             // rootMessenger に登録済みのものが呼び出される(既に登録されてるのでIDが必要パターン)
             scopedMessenger.Send(new ActionMessage());
-            Assert.AreEqual(2, rootCallCount);
-            Assert.AreEqual(0, scopedCallCountNotCall);
-            Assert.AreEqual(0, scopedCallCountCanCall);
+            Assert.Equal(2, rootCallCount);
+            Assert.Equal(0, scopedCallCountNotCall);
+            Assert.Equal(0, scopedCallCountCanCall);
 
             // スコープ側での登録処理は最終的に root に伝わる
             rootMessenger.Send(new ActionMessage2());
-            Assert.AreEqual(2, rootCallCount);
-            Assert.AreEqual(0, scopedCallCountNotCall);
-            Assert.AreEqual(1, scopedCallCountCanCall);
+            Assert.Equal(2, rootCallCount);
+            Assert.Equal(0, scopedCallCountNotCall);
+            Assert.Equal(1, scopedCallCountCanCall);
 
             // これはまぁふつう
             scopedMessenger.Send(new ActionMessage2());
-            Assert.AreEqual(2, rootCallCount);
-            Assert.AreEqual(0, scopedCallCountNotCall);
-            Assert.AreEqual(2, scopedCallCountCanCall);
+            Assert.Equal(2, rootCallCount);
+            Assert.Equal(0, scopedCallCountNotCall);
+            Assert.Equal(2, scopedCallCountCanCall);
 
             // 破棄したら root でも呼び出し無効
             scopedMessenger.Dispose();
-            Assert.IsTrue(scopedMessageItemNotCall.IsDisposed);
-            Assert.IsTrue(scopedMessageItemCanCall.IsDisposed);
+            Assert.True(scopedMessageItemNotCall.IsDisposed);
+            Assert.True(scopedMessageItemCanCall.IsDisposed);
 
             rootMessenger.Send(new ActionMessage2());
-            Assert.AreEqual(2, rootCallCount);
-            Assert.AreEqual(0, scopedCallCountNotCall);
-            Assert.AreEqual(2, scopedCallCountCanCall);
+            Assert.Equal(2, rootCallCount);
+            Assert.Equal(0, scopedCallCountNotCall);
+            Assert.Equal(2, scopedCallCountCanCall);
         }
 
         #endregion  

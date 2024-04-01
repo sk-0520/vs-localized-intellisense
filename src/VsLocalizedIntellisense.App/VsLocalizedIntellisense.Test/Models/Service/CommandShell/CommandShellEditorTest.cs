@@ -2,202 +2,201 @@ using System;
 using System.IO;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
 {
-    [TestClass]
     public class CommandShellEditorTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void CreateEmptyLineTest()
         {
             var test = new CommandShellEditor();
             test.CreateEmptyLine();
 
-            Assert.AreEqual(0, test.Actions.Count);
+            Assert.Equal(0, test.Actions.Count);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddEmptyLineTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddEmptyLine();
 
-            Assert.AreEqual(test.Actions[0], actual);
+            Assert.Equal(test.Actions[0], actual);
         }
 
-        [TestMethod]
-        [DataRow(0)]
-        [DataRow(1)]
-        [DataRow(2)]
+        [Theory]
+        [InlineData(0)]
+        [InlineData(1)]
+        [InlineData(2)]
         public void AddEmptyLinesTest(int length)
         {
             var test = new CommandShellEditor();
             var actual = test.AddEmptyLines(length);
 
-            Assert.AreEqual(test.Actions.Count, actual.Length);
+            Assert.Equal(test.Actions.Count, actual.Length);
             for(var i = 0; i < length; i++) {
-                Assert.AreEqual(test.Actions[i], actual[i]);
+                Assert.Equal(test.Actions[i], actual[i]);
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void AddEmptyLines_throw_Test()
         {
             var test = new CommandShellEditor();
-            Assert.ThrowsException<ArgumentOutOfRangeException>(() => test.AddEmptyLines(-1));
+            Assert.Throws<ArgumentOutOfRangeException>(() => test.AddEmptyLines(-1));
         }
 
 
         #region add-command
 
-        [TestMethod]
+        [Fact]
         public void AddChangeCodePageTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddChangeCodePage(Encoding.Default);
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual(Encoding.Default, actual.Encoding);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal(Encoding.Default, actual.Encoding);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddChangeDirectoryTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddChangeDirectory("dir");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("dir", actual.Path.Expression);
-            Assert.IsTrue(actual.WithDrive);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("dir", actual.Path.Expression);
+            Assert.True(actual.WithDrive);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddChangeSelfDirectoryTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddChangeSelfDirectory();
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("cd /d %~dp0", actual.GetStatement());
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("cd /d %~dp0", actual.GetStatement());
         }
 
-        [TestMethod]
+        [Fact]
         public void AddCopyTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddCopy("src", "dst");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("src", actual.Source.Expression);
-            Assert.AreEqual("dst", actual.Destination.Expression);
-            Assert.AreEqual(PromptMode.Default, actual.PromptMode);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("src", actual.Source.Expression);
+            Assert.Equal("dst", actual.Destination.Expression);
+            Assert.Equal(PromptMode.Default, actual.PromptMode);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddEchoTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddEcho("abc");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("abc", actual.Value.Expression);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("abc", actual.Value.Expression);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddIfErrorLevelTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddIfErrorLevel(123);
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual(123, actual.Level);
-            Assert.IsFalse(actual.IsNot);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal(123, actual.Level);
+            Assert.False(actual.IsNot);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddIfExpressTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddIfExpress("LEFT", "RIGHT");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("LEFT", actual.Left.Expression);
-            Assert.AreEqual("RIGHT", actual.Right.Expression);
-            Assert.IsFalse(actual.IsNot);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("LEFT", actual.Left.Expression);
+            Assert.Equal("RIGHT", actual.Right.Expression);
+            Assert.False(actual.IsNot);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddIfExistTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddIfExist("path");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("path", actual.Path.Expression);
-            Assert.IsFalse(actual.IsNot);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("path", actual.Path.Expression);
+            Assert.False(actual.IsNot);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddMakeDirectoryTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddMakeDirectory("abc");
 
-            Assert.AreEqual(test.Actions[0], actual);
+            Assert.Equal(test.Actions[0], actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddPauseTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddPause();
 
-            Assert.AreEqual(test.Actions[0], actual);
+            Assert.Equal(test.Actions[0], actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddRemarkTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddRemark("comment");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("comment", actual.Comment.Expression);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("comment", actual.Comment.Expression);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void AddSetVariableTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddSetVariable("var", "value");
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.AreEqual("var", actual.VariableName);
-            Assert.IsFalse(actual.IsExpress);
-            Assert.IsFalse(actual.Variable.IsReadOnly);
-            Assert.IsFalse(actual.Variable.DelayedExpansion);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.Equal("var", actual.VariableName);
+            Assert.False(actual.IsExpress);
+            Assert.False(actual.Variable.IsReadOnly);
+            Assert.False(actual.Variable.DelayedExpansion);
         }
 
-        [TestMethod]
+        [Fact]
         public void AddSwitchEchoTest()
         {
             var test = new CommandShellEditor();
             var actual = test.AddSwitchEcho(true);
 
-            Assert.AreEqual(test.Actions[0], actual);
-            Assert.IsTrue(actual.On);
+            Assert.Equal(test.Actions[0], actual);
+            Assert.True(actual.On);
         }
 
         #endregion
 
-        [TestMethod]
+        [Fact]
         public void ToSourceCodeTest()
         {
             var test = new CommandShellEditor();
@@ -228,10 +227,10 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
                 + Environment.NewLine
                 + "rem bye" + Environment.NewLine
                 ;
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task WriteAsyncTest()
         {
             var test = new CommandShellEditor();
@@ -253,7 +252,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell
             using(var dst = new MemoryStream()) {
                 await test.WriteAsync(dst);
                 var actual = unicode.GetString(dst.ToArray());
-                Assert.AreEqual(expected, actual);
+                Assert.Equal(expected, actual);
             }
         }
 

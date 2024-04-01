@@ -9,16 +9,12 @@ namespace VsLocalizedIntellisense.Test
 {
     internal class Test
     {
-        static Test()
-        {
-
-        }
-
         public static DirectoryInfo GetProjectDirectory()
         {
-            var projectTestPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location)/*!*/;
+            var path = new Uri(Assembly.GetExecutingAssembly().GetName().CodeBase).LocalPath;
+            var directoryPath = Path.GetDirectoryName(path);
 
-            return new DirectoryInfo(projectTestPath);
+            return new DirectoryInfo(directoryPath);
         }
 
         public static DirectoryInfo GetClassDirectory(object test)

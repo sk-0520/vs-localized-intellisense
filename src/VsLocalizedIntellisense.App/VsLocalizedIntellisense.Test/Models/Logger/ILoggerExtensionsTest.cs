@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Test.Models.Logger
 {
-    [TestClass]
     public class ILoggerExtensionsTest
     {
         #region function
@@ -32,123 +31,123 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, false)]
-        [DataRow(LogLevel.Information, false)]
-        [DataRow(LogLevel.Warning, false)]
-        [DataRow(LogLevel.Error, false)]
-        [DataRow(LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, false)]
+        [InlineData(LogLevel.Information, false)]
+        [InlineData(LogLevel.Warning, false)]
+        [InlineData(LogLevel.Error, false)]
+        [InlineData(LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, false)]
         public void LogTraceTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogTrace(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, true)]
-        [DataRow(LogLevel.Information, false)]
-        [DataRow(LogLevel.Warning, false)]
-        [DataRow(LogLevel.Error, false)]
-        [DataRow(LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, true)]
+        [InlineData(LogLevel.Information, false)]
+        [InlineData(LogLevel.Warning, false)]
+        [InlineData(LogLevel.Error, false)]
+        [InlineData(LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, false)]
         public void LogDebugTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogDebug(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, true)]
-        [DataRow(LogLevel.Information, true)]
-        [DataRow(LogLevel.Warning, false)]
-        [DataRow(LogLevel.Error, false)]
-        [DataRow(LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, true)]
+        [InlineData(LogLevel.Information, true)]
+        [InlineData(LogLevel.Warning, false)]
+        [InlineData(LogLevel.Error, false)]
+        [InlineData(LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, false)]
         public void LogInformationTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogInformation(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, true)]
-        [DataRow(LogLevel.Information, true)]
-        [DataRow(LogLevel.Warning, true)]
-        [DataRow(LogLevel.Error, false)]
-        [DataRow(LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, true)]
+        [InlineData(LogLevel.Information, true)]
+        [InlineData(LogLevel.Warning, true)]
+        [InlineData(LogLevel.Error, false)]
+        [InlineData(LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, false)]
         public void LogWarningTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogWarning(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, true)]
-        [DataRow(LogLevel.Information, true)]
-        [DataRow(LogLevel.Warning, true)]
-        [DataRow(LogLevel.Error, true)]
-        [DataRow(LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, true)]
+        [InlineData(LogLevel.Information, true)]
+        [InlineData(LogLevel.Warning, true)]
+        [InlineData(LogLevel.Error, true)]
+        [InlineData(LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, false)]
         public void LogErrorTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogError(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Trace, true)]
-        [DataRow(LogLevel.Debug, true)]
-        [DataRow(LogLevel.Information, true)]
-        [DataRow(LogLevel.Warning, true)]
-        [DataRow(LogLevel.Error, true)]
-        [DataRow(LogLevel.Critical, true)]
-        [DataRow(LogLevel.None, false)]
+        [Theory]
+        [InlineData(LogLevel.Trace, true)]
+        [InlineData(LogLevel.Debug, true)]
+        [InlineData(LogLevel.Information, true)]
+        [InlineData(LogLevel.Warning, true)]
+        [InlineData(LogLevel.Error, true)]
+        [InlineData(LogLevel.Critical, true)]
+        [InlineData(LogLevel.None, false)]
         public void LogCriticalTest(LogLevel defaultLevel, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.LogCritical(defaultLevel.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(defaultLevel.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(defaultLevel.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 

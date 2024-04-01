@@ -2,12 +2,11 @@ using System;
 using System.IO;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models;
 
 namespace VsLocalizedIntellisense.Test.Models
 {
-    [TestClass]
     public class CacheFileTest
     {
         #region define
@@ -33,17 +32,17 @@ namespace VsLocalizedIntellisense.Test.Models
             }
         }
 
-        [TestMethod]
-        [DataRow(null)]
-        [DataRow("")]
-        [DataRow(" ")]
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
         public void Constructor_throw_Test(string path)
         {
             var span = TimeSpan.FromSeconds(10);
-            Assert.ThrowsException<ArgumentException>(() => new CacheFile<Data>(path, span));
+            Assert.Throws<ArgumentException>(() => new CacheFile<Data>(path, span));
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_notFound_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -53,10 +52,10 @@ namespace VsLocalizedIntellisense.Test.Models
 
             var cf = new CacheFile<Data>(path, span);
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_empty1_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -68,10 +67,10 @@ namespace VsLocalizedIntellisense.Test.Models
 
             var cf = new CacheFile<Data>(path, span);
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_empty2_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -85,10 +84,10 @@ namespace VsLocalizedIntellisense.Test.Models
 
             var cf = new CacheFile<Data>(path, span);
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_EnabledTime_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -107,11 +106,11 @@ namespace VsLocalizedIntellisense.Test.Models
             var cf = new CacheFile<Data>(path, span);
 
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(nameof(Read_EnabledTime_Test), actual.Value);
+            Assert.NotNull(actual);
+            Assert.Equal(nameof(Read_EnabledTime_Test), actual.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_DisableTime_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -130,10 +129,10 @@ namespace VsLocalizedIntellisense.Test.Models
             var cf = new CacheFile<Data>(path, span);
 
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Read_old_Test()
         {
             var dir = Test.GetMethodDirectory(this);
@@ -152,8 +151,8 @@ namespace VsLocalizedIntellisense.Test.Models
             var cf = new CacheFile<Data>(path, span);
 
             var actual = cf.Read(currentTimestamp);
-            Assert.IsNotNull(actual);
-            Assert.AreEqual(nameof(Read_old_Test), actual.Value);
+            Assert.NotNull(actual);
+            Assert.Equal(nameof(Read_old_Test), actual.Value);
         }
 
         #endregion

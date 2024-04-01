@@ -2,13 +2,12 @@ using System;
 using System.Configuration;
 using System.IO;
 using System.Xml;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Logger;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Test.Models.Configuration
 {
-    [TestClass]
     public class AppConfigurationExtensionsTest
     {
         #region property
@@ -44,7 +43,7 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             return new AppConfiguration(BaseConfiguration, initializeParameters);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetUpdateCheckUriTest()
         {
             var expected = new Uri("http://example.com");
@@ -54,10 +53,10 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.GetUpdateCheckUri();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void GetInstallRootDirectoryPathTest()
         {
             var expected = "%ENV%\\dir";
@@ -67,13 +66,13 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.GetInstallRootDirectoryPath();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
-        [DataRow(new string[] { "" }, "")]
-        [DataRow(new string[] { "A" }, "A")]
-        [DataRow(new string[] { "A", "B" }, "A|B")]
+        [Theory]
+        [InlineData(new string[] { "" }, "")]
+        [InlineData(new string[] { "A" }, "A")]
+        [InlineData(new string[] { "A", "B" }, "A|B")]
         public void GetIntellisenseDirectoriesTest(string[] expected, string input)
         {
             var xml = $@"
@@ -82,14 +81,14 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.GetIntellisenseDirectories();
-            CollectionAssert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
-        [DataRow(LogLevel.Information, nameof(LogLevel.Information))]
-        [DataRow(LogLevel.Warning, "WARNING")]
-        [DataRow(LogLevel.Debug, "debug")]
-        [DataRow(LogLevel.Trace, "0")] // 使うべきじゃないけど一応
+        [Theory]
+        [InlineData(LogLevel.Information, nameof(LogLevel.Information))]
+        [InlineData(LogLevel.Warning, "WARNING")]
+        [InlineData(LogLevel.Debug, "debug")]
+        [InlineData(LogLevel.Trace, "0")] // 使うべきじゃないけど一応
         public void GetLogDefaultLevelTest(LogLevel expected, string level)
         {
             var xml = $@"
@@ -98,14 +97,14 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.GetLogDefaultLevel();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
-        [DataRow(false, "false")]
-        [DataRow(false, "False")]
-        [DataRow(true, "true")]
-        [DataRow(true, "True")]
+        [Theory]
+        [InlineData(false, "false")]
+        [InlineData(false, "False")]
+        [InlineData(true, "true")]
+        [InlineData(true, "True")]
         public void IsEnableDebugLog_normal_Test(bool expected, string value)
         {
             var xml = $@"
@@ -114,10 +113,10 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.IsEnableDebugLog();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsEnableDebugLog_none_Test()
         {
             var xml = $@"
@@ -125,7 +124,7 @@ namespace VsLocalizedIntellisense.Test.Models.Configuration
             </appSettings>";
             var config = Create(xml, new AppConfigurationInitializeParameters(DateTime.UtcNow));
             var actual = config.IsEnableDebugLog();
-            Assert.AreEqual(false, actual);
+            Assert.Equal(false, actual);
         }
 
 

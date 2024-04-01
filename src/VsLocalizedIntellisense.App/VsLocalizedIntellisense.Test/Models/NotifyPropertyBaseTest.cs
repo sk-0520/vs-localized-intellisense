@@ -1,9 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models;
 
 namespace VsLocalizedIntellisense.Test.Models
 {
-    [TestClass]
     public class NotifyPropertyBaseTest
     {
         #region function
@@ -41,7 +40,7 @@ namespace VsLocalizedIntellisense.Test.Models
             #endregion
         }
 
-        [TestMethod]
+        [Fact]
         public void SubscribeTest()
         {
             var ts = new TestClass();
@@ -49,21 +48,21 @@ namespace VsLocalizedIntellisense.Test.Models
             int count = 0;
 
             ts.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(TestClass.Value), e.PropertyName);
-                Assert.AreEqual(count, ts.Value);
+                Assert.Equal(nameof(TestClass.Value), e.PropertyName);
+                Assert.Equal(count, ts.Value);
             };
 
             ts.Value = ++count;
             ts.Value = ++count;
 
-            Assert.AreEqual(count, ts.Value);
+            Assert.Equal(count, ts.Value);
 
             count = 100;
             ts.CallRaisePropertyChanged(count);
-            Assert.AreEqual(count, ts.Value);
+            Assert.Equal(count, ts.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void UnsubscribeTest()
         {
             var ts = new TestClass();
@@ -73,12 +72,12 @@ namespace VsLocalizedIntellisense.Test.Models
             ts.Value = ++count;
             ts.Value = ++count;
 
-            Assert.AreEqual(count, ts.Value);
+            Assert.Equal(count, ts.Value);
 
 
             count = 100;
             ts.CallRaisePropertyChanged(count);
-            Assert.AreEqual(count, ts.Value);
+            Assert.Equal(count, ts.Value);
         }
 
         #endregion

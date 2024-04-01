@@ -1,11 +1,10 @@
 using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
 {
-    [TestClass]
     public class CommandExtensionsTest
     {
         #region function
@@ -23,25 +22,25 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void Invoke_command_Test()
         {
             var command = new TestCommand();
 
             command.Invoke();
-            Assert.AreEqual(1, command.ExecuteCount);
+            Assert.Equal(1, command.ExecuteCount);
 
             command.IsEnabled = false;
             command.Invoke();
-            Assert.AreEqual(1, command.ExecuteCount);
+            Assert.Equal(1, command.ExecuteCount);
 
             command.IsEnabled = true;
             command.Invoke();
-            Assert.AreEqual(2, command.ExecuteCount);
+            Assert.Equal(2, command.ExecuteCount);
         }
 
 
-        [TestMethod]
+        [Fact]
         public void Invoke_delegate_Test()
         {
             var executeCount = 0;
@@ -55,21 +54,21 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             );
 
             command.Invoke("exec");
-            Assert.AreEqual(1, executeCount);
-            Assert.AreEqual("exec", stockValue);
+            Assert.Equal(1, executeCount);
+            Assert.Equal("exec", stockValue);
 
             command.Invoke("exec");
-            Assert.AreEqual(1, executeCount);
-            Assert.AreEqual("exec", stockValue);
+            Assert.Equal(1, executeCount);
+            Assert.Equal("exec", stockValue);
 
             command.Invoke("run");
-            Assert.AreEqual(2, executeCount);
-            Assert.AreEqual("run", stockValue);
+            Assert.Equal(2, executeCount);
+            Assert.Equal("run", stockValue);
 
-            Assert.ThrowsException<InvalidCastException>(() => command.Invoke(123));
+            Assert.Throws<InvalidCastException>(() => command.Invoke(123));
         }
 
-        [TestMethod]
+        [Fact]
         public async Task Invoke_async_Test()
         {
             var executeCount = 0;
@@ -84,16 +83,16 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             );
 
             await command.Invoke("exec");
-            Assert.AreEqual(1, executeCount);
-            Assert.AreEqual("exec", stockValue);
+            Assert.Equal(1, executeCount);
+            Assert.Equal("exec", stockValue);
 
             await command.Invoke("exec");
-            Assert.AreEqual(1, executeCount);
-            Assert.AreEqual("exec", stockValue);
+            Assert.Equal(1, executeCount);
+            Assert.Equal("exec", stockValue);
 
             await command.Invoke("run");
-            Assert.AreEqual(2, executeCount);
-            Assert.AreEqual("run", stockValue);
+            Assert.Equal(2, executeCount);
+            Assert.Equal("run", stockValue);
         }
 
         #endregion

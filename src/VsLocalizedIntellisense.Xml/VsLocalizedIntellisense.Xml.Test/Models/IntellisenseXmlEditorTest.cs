@@ -5,16 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using VsLocalizedIntellisense.Xml.Models;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Xml.Test.Models
 {
-    [TestClass]
     public class IntellisenseXmlEditorTest
     {
         #region function
 
-
-        [TestMethod]
+        [Fact]
         public void UpdateElement_normal_Test()
         {
             var rawXml = XDocument.Parse("<root><element><child>abc</child></element></root>");
@@ -26,13 +25,13 @@ namespace VsLocalizedIntellisense.Xml.Test.Models
 
             var test = new IntellisenseXmlEditor();
             var actual = test.UpdateElement(rawElement, intellisenseNamespace, intellisenseElement);
-            Assert.IsTrue(actual);
+            Assert.True(actual);
 
             var attribute = intellisenseElement.Element("child")!.Attribute(intellisenseNamespace + test.RawAttributeName);
-            Assert.AreEqual("abc", attribute!.Value);
+            Assert.Equal("abc", attribute!.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void UpdateElement_content_Test()
         {
             var rawXml = XDocument.Parse("<root><element><child>abc<string>STRING</string> <number  value='123' /></child></element></root>");
@@ -44,14 +43,14 @@ namespace VsLocalizedIntellisense.Xml.Test.Models
 
             var test = new IntellisenseXmlEditor();
             var actual = test.UpdateElement(rawElement, intellisenseNamespace, intellisenseElement);
-            Assert.IsTrue(actual);
+            Assert.True(actual);
 
             // スペースが詰められたり ' が " になっているのはもういいでしょ(XMLパーサ側のあれこれまではどうでもいい)
             var attribute = intellisenseElement.Element("child")!.Attribute(intellisenseNamespace + test.RawAttributeName);
-            Assert.AreEqual("abc<string>STRING</string><number value=\"123\" />", attribute!.Value);
+            Assert.Equal("abc<string>STRING</string><number value=\"123\" />", attribute!.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void UpdateElement_not_found_Test()
         {
             var rawXml = XDocument.Parse("<root><element><child>abc</child></element></root>");
@@ -63,13 +62,13 @@ namespace VsLocalizedIntellisense.Xml.Test.Models
 
             var test = new IntellisenseXmlEditor();
             var actual = test.UpdateElement(rawElement, intellisenseNamespace, intellisenseElement);
-            Assert.IsFalse(actual);
+            Assert.False(actual);
 
             var attribute = intellisenseElement.Element("other")!.Attribute(intellisenseNamespace + test.RawAttributeName);
-            Assert.IsNull(attribute);
+            Assert.Null(attribute);
         }
 
-        [TestMethod]
+        [Fact]
         public void UpdateElement_multi_Test()
         {
             var rawXml = XDocument.Parse("<root><element><child>abc</child><child>def</child></element></root>");
@@ -81,14 +80,14 @@ namespace VsLocalizedIntellisense.Xml.Test.Models
 
             var test = new IntellisenseXmlEditor();
             var actual = test.UpdateElement(rawElement, intellisenseNamespace, intellisenseElement);
-            Assert.IsTrue(actual);
+            Assert.True(actual);
 
             var elements = intellisenseElement.Elements("child").ToArray();
-            Assert.AreEqual("abc", elements[0]!.Attribute(intellisenseNamespace + test.RawAttributeName)!.Value);
-            Assert.AreEqual("def", elements[1]!.Attribute(intellisenseNamespace + test.RawAttributeName)!.Value);
+            Assert.Equal("abc", elements[0]!.Attribute(intellisenseNamespace + test.RawAttributeName)!.Value);
+            Assert.Equal("def", elements[1]!.Attribute(intellisenseNamespace + test.RawAttributeName)!.Value);
         }
 
-        [TestMethod]
+        [Fact]
         public void UpdateElement_no_update_Test()
         {
             var rawXml = XDocument.Parse("<root><element><child>abc</child></element></root>");
@@ -100,10 +99,10 @@ namespace VsLocalizedIntellisense.Xml.Test.Models
 
             var test = new IntellisenseXmlEditor();
             var actual = test.UpdateElement(rawElement, intellisenseNamespace, intellisenseElement);
-            Assert.IsFalse(actual);
+            Assert.False(actual);
 
             var attribute = intellisenseElement.Element("child")!.Attribute(intellisenseNamespace + test.RawAttributeName);
-            Assert.AreEqual("ABC", attribute!.Value);
+            Assert.Equal("ABC", attribute!.Value);
         }
 
         #endregion

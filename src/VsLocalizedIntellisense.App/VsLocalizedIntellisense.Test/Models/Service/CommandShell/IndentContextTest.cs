@@ -1,22 +1,21 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandPrompt
 {
-    [TestClass]
     public class IndentContextTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void NestTest()
         {
             var root = new IndentContext();
             var child = root.Nest();
 
-            Assert.AreEqual(root.Space, child.Space);
-            Assert.AreEqual(0, root.Level);
-            Assert.AreEqual(1, child.Level);
+            Assert.Equal(root.Space, child.Space);
+            Assert.Equal(0, root.Level);
+            Assert.Equal(1, child.Level);
         }
 
         #endregion

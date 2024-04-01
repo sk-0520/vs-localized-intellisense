@@ -3,17 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Test.Models.Logger
 {
-    [TestClass]
     public class LogItemTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void Test()
         {
             var timestamp = DateTime.Now;
@@ -25,12 +24,12 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
                 "callerFilePath",
                 999
             );
-            Assert.AreEqual(timestamp, actual.Timestamp);
-            Assert.AreEqual(LogLevel.Critical, actual.Level);
-            Assert.AreEqual("message", actual.Message);
-            Assert.AreEqual("callerMemberName", actual.CallerMemberName);
-            Assert.AreEqual("callerFilePath", actual.CallerFilePath);
-            Assert.AreEqual(999, actual.CallerLineNumber);
+            Assert.Equal(timestamp, actual.Timestamp);
+            Assert.Equal(LogLevel.Critical, actual.Level);
+            Assert.Equal("message", actual.Message);
+            Assert.Equal("callerMemberName", actual.CallerMemberName);
+            Assert.Equal("callerFilePath", actual.CallerFilePath);
+            Assert.Equal(999, actual.CallerLineNumber);
         }
 
         #endregion

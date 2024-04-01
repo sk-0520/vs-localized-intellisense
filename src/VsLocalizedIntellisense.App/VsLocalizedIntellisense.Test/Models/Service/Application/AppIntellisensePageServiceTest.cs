@@ -6,7 +6,6 @@ using System.Net;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq.Protected;
 using Moq;
 using VsLocalizedIntellisense.Models.Service.Application;
@@ -18,10 +17,10 @@ using System.Xml;
 using System.IO;
 using System.Net.Http.Headers;
 using static Microsoft.ApplicationInsights.MetricDimensionNames.TelemetryContext;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.Application
 {
-    [TestClass]
     public class AppIntellisensePageServiceTest
     {
         #region property
@@ -68,7 +67,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.Application
             );
         }
 
-        [TestMethod]
+        [Fact]
         public async Task GetContentsAsync_member_null_Test()
         {
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -87,12 +86,12 @@ namespace VsLocalizedIntellisense.Test.Models.Service.Application
 
             var test = CreateAppIntellisensePageService(mockHttpMessageHandler);
             var actual = await test.GetDataListAsync("PATH");
-            Assert.AreEqual(0, actual.Files.Length);
-            Assert.AreEqual(0, actual.Directories.Length);
+            Assert.Equal(0, actual.Files.Length);
+            Assert.Equal(0, actual.Directories.Length);
         }
 
 
-        [TestMethod]
+        [Fact]
         public async Task GetContentsAsync_file_only_Test()
         {
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -115,11 +114,11 @@ namespace VsLocalizedIntellisense.Test.Models.Service.Application
 
             var test = CreateAppIntellisensePageService(mockHttpMessageHandler);
             var actual = await test.GetDataListAsync("PATH");
-            CollectionAssert.AreEqual(new string[] { "1" }, actual.Files);
-            Assert.AreEqual(0, actual.Directories.Length);
+            Assert.Equal(new string[] { "1" }, actual.Files);
+            Assert.Equal(0, actual.Directories.Length);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task GetContentsAsync_directory_only_Test()
         {
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -142,11 +141,11 @@ namespace VsLocalizedIntellisense.Test.Models.Service.Application
 
             var test = CreateAppIntellisensePageService(mockHttpMessageHandler);
             var actual = await test.GetDataListAsync("PATH");
-            Assert.AreEqual(0, actual.Files.Length);
-            CollectionAssert.AreEqual(new string[] { "A" }, actual.Directories);
+            Assert.Equal(0, actual.Files.Length);
+            Assert.Equal(new string[] { "A" }, actual.Directories);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task GetDataStreamAsyncTest()
         {
             var mockHttpMessageHandler = new Mock<HttpMessageHandler>();
@@ -170,7 +169,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.Application
             reader.Position = 0;
             var actual = reader.ToArray();
 
-            CollectionAssert.AreEqual(new byte[] { 1, 2, 3 }, actual);
+            Assert.Equal(new byte[] { 1, 2, 3 }, actual);
         }
 
         #endregion

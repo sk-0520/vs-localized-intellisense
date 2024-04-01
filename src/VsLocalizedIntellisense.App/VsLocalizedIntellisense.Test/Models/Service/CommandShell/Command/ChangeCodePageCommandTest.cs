@@ -1,38 +1,37 @@
 using System.Text;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandPrompt.Command
 {
-    [TestClass]
     public class ChangeCodePageCommandTest
     {
-        [TestMethod]
+        [Fact]
         public void Utf8_Test()
         {
             var chcp = new ChangeCodePageCommand {
                 Encoding = Encoding.UTF8
             };
             var actual = chcp.GetStatement();
-            Assert.AreEqual("chcp 65001", actual);
+            Assert.Equal("chcp 65001", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void ShiftJis_Test()
         {
             var chcp = new ChangeCodePageCommand() {
                 Encoding = Encoding.GetEncoding("Shift_JIS"),
             };
             var actual = chcp.GetStatement();
-            Assert.AreEqual("chcp 932", actual);
+            Assert.Equal("chcp 932", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void Default_Test()
         {
             var chcp = new ChangeCodePageCommand();
             var actual = chcp.GetStatement();
-            Assert.AreEqual($"chcp {Encoding.Default.CodePage}", actual);
+            Assert.Equal($"chcp {Encoding.Default.CodePage}", actual);
         }
 
     }

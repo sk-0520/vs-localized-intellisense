@@ -1,11 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VsLocalizedIntellisense.Models.Logger;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Test.Models.Logger
 {
-    [TestClass]
     public class LoggerBaseTest
     {
         #region function
@@ -32,136 +31,136 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             }
         }
 
-        [TestMethod]
+        [Theory]
         // Trace
-        [DataRow(true, LogLevel.Trace, LogLevel.Trace)]
-        [DataRow(true, LogLevel.Trace, LogLevel.Debug)]
-        [DataRow(true, LogLevel.Trace, LogLevel.Information)]
-        [DataRow(true, LogLevel.Trace, LogLevel.Warning)]
-        [DataRow(true, LogLevel.Trace, LogLevel.Error)]
-        [DataRow(true, LogLevel.Trace, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Trace, LogLevel.None)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Trace)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Debug)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Information)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Warning)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Error)]
+        [InlineData(true, LogLevel.Trace, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Trace, LogLevel.None)]
         // Debug
-        [DataRow(false, LogLevel.Debug, LogLevel.Trace)]
-        [DataRow(true, LogLevel.Debug, LogLevel.Debug)]
-        [DataRow(true, LogLevel.Debug, LogLevel.Information)]
-        [DataRow(true, LogLevel.Debug, LogLevel.Warning)]
-        [DataRow(true, LogLevel.Debug, LogLevel.Error)]
-        [DataRow(true, LogLevel.Debug, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Debug, LogLevel.None)]
+        [InlineData(false, LogLevel.Debug, LogLevel.Trace)]
+        [InlineData(true, LogLevel.Debug, LogLevel.Debug)]
+        [InlineData(true, LogLevel.Debug, LogLevel.Information)]
+        [InlineData(true, LogLevel.Debug, LogLevel.Warning)]
+        [InlineData(true, LogLevel.Debug, LogLevel.Error)]
+        [InlineData(true, LogLevel.Debug, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Debug, LogLevel.None)]
         // Information
-        [DataRow(false, LogLevel.Information, LogLevel.Trace)]
-        [DataRow(false, LogLevel.Information, LogLevel.Debug)]
-        [DataRow(true, LogLevel.Information, LogLevel.Information)]
-        [DataRow(true, LogLevel.Information, LogLevel.Warning)]
-        [DataRow(true, LogLevel.Information, LogLevel.Error)]
-        [DataRow(true, LogLevel.Information, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Information, LogLevel.None)]
+        [InlineData(false, LogLevel.Information, LogLevel.Trace)]
+        [InlineData(false, LogLevel.Information, LogLevel.Debug)]
+        [InlineData(true, LogLevel.Information, LogLevel.Information)]
+        [InlineData(true, LogLevel.Information, LogLevel.Warning)]
+        [InlineData(true, LogLevel.Information, LogLevel.Error)]
+        [InlineData(true, LogLevel.Information, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Information, LogLevel.None)]
         // Warning
-        [DataRow(false, LogLevel.Warning, LogLevel.Trace)]
-        [DataRow(false, LogLevel.Warning, LogLevel.Debug)]
-        [DataRow(false, LogLevel.Warning, LogLevel.Information)]
-        [DataRow(true, LogLevel.Warning, LogLevel.Warning)]
-        [DataRow(true, LogLevel.Warning, LogLevel.Error)]
-        [DataRow(true, LogLevel.Warning, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Warning, LogLevel.None)]
+        [InlineData(false, LogLevel.Warning, LogLevel.Trace)]
+        [InlineData(false, LogLevel.Warning, LogLevel.Debug)]
+        [InlineData(false, LogLevel.Warning, LogLevel.Information)]
+        [InlineData(true, LogLevel.Warning, LogLevel.Warning)]
+        [InlineData(true, LogLevel.Warning, LogLevel.Error)]
+        [InlineData(true, LogLevel.Warning, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Warning, LogLevel.None)]
         // Error
-        [DataRow(false, LogLevel.Error, LogLevel.Trace)]
-        [DataRow(false, LogLevel.Error, LogLevel.Debug)]
-        [DataRow(false, LogLevel.Error, LogLevel.Information)]
-        [DataRow(false, LogLevel.Error, LogLevel.Warning)]
-        [DataRow(true, LogLevel.Error, LogLevel.Error)]
-        [DataRow(true, LogLevel.Error, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Error, LogLevel.None)]
+        [InlineData(false, LogLevel.Error, LogLevel.Trace)]
+        [InlineData(false, LogLevel.Error, LogLevel.Debug)]
+        [InlineData(false, LogLevel.Error, LogLevel.Information)]
+        [InlineData(false, LogLevel.Error, LogLevel.Warning)]
+        [InlineData(true, LogLevel.Error, LogLevel.Error)]
+        [InlineData(true, LogLevel.Error, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Error, LogLevel.None)]
         // Critical
-        [DataRow(false, LogLevel.Critical, LogLevel.Trace)]
-        [DataRow(false, LogLevel.Critical, LogLevel.Debug)]
-        [DataRow(false, LogLevel.Critical, LogLevel.Information)]
-        [DataRow(false, LogLevel.Critical, LogLevel.Warning)]
-        [DataRow(false, LogLevel.Critical, LogLevel.Error)]
-        [DataRow(true, LogLevel.Critical, LogLevel.Critical)]
-        [DataRow(false, LogLevel.Critical, LogLevel.None)]
+        [InlineData(false, LogLevel.Critical, LogLevel.Trace)]
+        [InlineData(false, LogLevel.Critical, LogLevel.Debug)]
+        [InlineData(false, LogLevel.Critical, LogLevel.Information)]
+        [InlineData(false, LogLevel.Critical, LogLevel.Warning)]
+        [InlineData(false, LogLevel.Critical, LogLevel.Error)]
+        [InlineData(true, LogLevel.Critical, LogLevel.Critical)]
+        [InlineData(false, LogLevel.Critical, LogLevel.None)]
         // None
-        [DataRow(false, LogLevel.None, LogLevel.Trace)]
-        [DataRow(false, LogLevel.None, LogLevel.Debug)]
-        [DataRow(false, LogLevel.None, LogLevel.Information)]
-        [DataRow(false, LogLevel.None, LogLevel.Warning)]
-        [DataRow(false, LogLevel.None, LogLevel.Error)]
-        [DataRow(false, LogLevel.None, LogLevel.Critical)]
-        [DataRow(false, LogLevel.None, LogLevel.None)]
+        [InlineData(false, LogLevel.None, LogLevel.Trace)]
+        [InlineData(false, LogLevel.None, LogLevel.Debug)]
+        [InlineData(false, LogLevel.None, LogLevel.Information)]
+        [InlineData(false, LogLevel.None, LogLevel.Warning)]
+        [InlineData(false, LogLevel.None, LogLevel.Error)]
+        [InlineData(false, LogLevel.None, LogLevel.Critical)]
+        [InlineData(false, LogLevel.None, LogLevel.None)]
         public void IsEnabledTest(bool expected, LogLevel defaultLevel, LogLevel compareLevel)
         {
             var logger = new TestLogger(defaultLevel);
             var actual = logger.IsEnabled(compareLevel);
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
+        [Theory]
         // Trace
-        [DataRow(LogLevel.Trace, LogLevel.Trace, true)]
-        [DataRow(LogLevel.Trace, LogLevel.Debug, true)]
-        [DataRow(LogLevel.Trace, LogLevel.Information, true)]
-        [DataRow(LogLevel.Trace, LogLevel.Warning, true)]
-        [DataRow(LogLevel.Trace, LogLevel.Error, true)]
-        [DataRow(LogLevel.Trace, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Trace, LogLevel.None, false)]
+        [InlineData(LogLevel.Trace, LogLevel.Trace, true)]
+        [InlineData(LogLevel.Trace, LogLevel.Debug, true)]
+        [InlineData(LogLevel.Trace, LogLevel.Information, true)]
+        [InlineData(LogLevel.Trace, LogLevel.Warning, true)]
+        [InlineData(LogLevel.Trace, LogLevel.Error, true)]
+        [InlineData(LogLevel.Trace, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Trace, LogLevel.None, false)]
         // Debug
-        [DataRow(LogLevel.Debug, LogLevel.Trace, false)]
-        [DataRow(LogLevel.Debug, LogLevel.Debug, true)]
-        [DataRow(LogLevel.Debug, LogLevel.Information, true)]
-        [DataRow(LogLevel.Debug, LogLevel.Warning, true)]
-        [DataRow(LogLevel.Debug, LogLevel.Error, true)]
-        [DataRow(LogLevel.Debug, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Debug, LogLevel.None, false)]
+        [InlineData(LogLevel.Debug, LogLevel.Trace, false)]
+        [InlineData(LogLevel.Debug, LogLevel.Debug, true)]
+        [InlineData(LogLevel.Debug, LogLevel.Information, true)]
+        [InlineData(LogLevel.Debug, LogLevel.Warning, true)]
+        [InlineData(LogLevel.Debug, LogLevel.Error, true)]
+        [InlineData(LogLevel.Debug, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Debug, LogLevel.None, false)]
         // Information
-        [DataRow(LogLevel.Information, LogLevel.Trace, false)]
-        [DataRow(LogLevel.Information, LogLevel.Debug, false)]
-        [DataRow(LogLevel.Information, LogLevel.Information, true)]
-        [DataRow(LogLevel.Information, LogLevel.Warning, true)]
-        [DataRow(LogLevel.Information, LogLevel.Error, true)]
-        [DataRow(LogLevel.Information, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Information, LogLevel.None, false)]
+        [InlineData(LogLevel.Information, LogLevel.Trace, false)]
+        [InlineData(LogLevel.Information, LogLevel.Debug, false)]
+        [InlineData(LogLevel.Information, LogLevel.Information, true)]
+        [InlineData(LogLevel.Information, LogLevel.Warning, true)]
+        [InlineData(LogLevel.Information, LogLevel.Error, true)]
+        [InlineData(LogLevel.Information, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Information, LogLevel.None, false)]
         // Warning
-        [DataRow(LogLevel.Warning, LogLevel.Trace, false)]
-        [DataRow(LogLevel.Warning, LogLevel.Debug, false)]
-        [DataRow(LogLevel.Warning, LogLevel.Information, false)]
-        [DataRow(LogLevel.Warning, LogLevel.Warning, true)]
-        [DataRow(LogLevel.Warning, LogLevel.Error, true)]
-        [DataRow(LogLevel.Warning, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Warning, LogLevel.None, false)]
+        [InlineData(LogLevel.Warning, LogLevel.Trace, false)]
+        [InlineData(LogLevel.Warning, LogLevel.Debug, false)]
+        [InlineData(LogLevel.Warning, LogLevel.Information, false)]
+        [InlineData(LogLevel.Warning, LogLevel.Warning, true)]
+        [InlineData(LogLevel.Warning, LogLevel.Error, true)]
+        [InlineData(LogLevel.Warning, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Warning, LogLevel.None, false)]
         // Error
-        [DataRow(LogLevel.Error, LogLevel.Trace, false)]
-        [DataRow(LogLevel.Error, LogLevel.Debug, false)]
-        [DataRow(LogLevel.Error, LogLevel.Information, false)]
-        [DataRow(LogLevel.Error, LogLevel.Warning, false)]
-        [DataRow(LogLevel.Error, LogLevel.Error, true)]
-        [DataRow(LogLevel.Error, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Error, LogLevel.None, false)]
+        [InlineData(LogLevel.Error, LogLevel.Trace, false)]
+        [InlineData(LogLevel.Error, LogLevel.Debug, false)]
+        [InlineData(LogLevel.Error, LogLevel.Information, false)]
+        [InlineData(LogLevel.Error, LogLevel.Warning, false)]
+        [InlineData(LogLevel.Error, LogLevel.Error, true)]
+        [InlineData(LogLevel.Error, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Error, LogLevel.None, false)]
         // Critical
-        [DataRow(LogLevel.Critical, LogLevel.Trace, false)]
-        [DataRow(LogLevel.Critical, LogLevel.Debug, false)]
-        [DataRow(LogLevel.Critical, LogLevel.Information, false)]
-        [DataRow(LogLevel.Critical, LogLevel.Warning, false)]
-        [DataRow(LogLevel.Critical, LogLevel.Error, false)]
-        [DataRow(LogLevel.Critical, LogLevel.Critical, true)]
-        [DataRow(LogLevel.Critical, LogLevel.None, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Trace, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Debug, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Information, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Warning, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Error, false)]
+        [InlineData(LogLevel.Critical, LogLevel.Critical, true)]
+        [InlineData(LogLevel.Critical, LogLevel.None, false)]
         // None
-        [DataRow(LogLevel.None, LogLevel.Trace, false)]
-        [DataRow(LogLevel.None, LogLevel.Debug, false)]
-        [DataRow(LogLevel.None, LogLevel.Information, false)]
-        [DataRow(LogLevel.None, LogLevel.Warning, false)]
-        [DataRow(LogLevel.None, LogLevel.Error, false)]
-        [DataRow(LogLevel.None, LogLevel.Critical, false)]
-        [DataRow(LogLevel.None, LogLevel.None, false)]
+        [InlineData(LogLevel.None, LogLevel.Trace, false)]
+        [InlineData(LogLevel.None, LogLevel.Debug, false)]
+        [InlineData(LogLevel.None, LogLevel.Information, false)]
+        [InlineData(LogLevel.None, LogLevel.Warning, false)]
+        [InlineData(LogLevel.None, LogLevel.Error, false)]
+        [InlineData(LogLevel.None, LogLevel.Critical, false)]
+        [InlineData(LogLevel.None, LogLevel.None, false)]
         public void LogTest(LogLevel defaultLevel, LogLevel level, bool logging)
         {
             var logger = new TestLogger(defaultLevel);
             logger.Log(level, level.ToString());
             if(logging) {
-                Assert.AreEqual(1, logger.Items.Count);
-                Assert.AreEqual(level.ToString(), logger.Items.Last().Message);
+                Assert.Equal(1, logger.Items.Count);
+                Assert.Equal(level.ToString(), logger.Items.Last().Message);
             } else {
-                Assert.AreEqual(0, logger.Items.Count);
+                Assert.Equal(0, logger.Items.Count);
             }
         }
 

@@ -1,10 +1,9 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class CommandBaseTest
     {
         private class TestCommand: CommandBase
@@ -21,11 +20,11 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 
         #region function
 
-        [TestMethod]
-        [DataRow("test", false, false)]
-        [DataRow("TEST", true, false)]
-        [DataRow("@test", false, true)]
-        [DataRow("@TEST", true, true)]
+        [Theory]
+        [InlineData("test", false, false)]
+        [InlineData("TEST", true, false)]
+        [InlineData("@test", false, true)]
+        [InlineData("@TEST", true, true)]
         public void GetStatementCommandNameTest(string expected, bool commandNameIsUpper, bool suppressCommand)
         {
             var test = new TestCommand() {
@@ -33,15 +32,15 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
                 SuppressCommand = suppressCommand,
             };
             var actual = test.GetStatementCommandName();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void CommandNameTest()
         {
             var test = new TestCommand();
-            Assert.AreEqual("test", test.CommandName);
-            Assert.ThrowsException<NotSupportedException>(() => test.CommandName = "test");
+            Assert.Equal("test", test.CommandName);
+            Assert.Throws<NotSupportedException>(() => test.CommandName = "test");
         }
 
         #endregion

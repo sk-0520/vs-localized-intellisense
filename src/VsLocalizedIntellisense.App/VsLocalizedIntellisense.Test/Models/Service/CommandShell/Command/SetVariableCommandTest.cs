@@ -1,15 +1,14 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class SetVariableCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void NormalTest()
         {
             var test = new SetVariableCommand {
@@ -17,12 +16,12 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
                 Value = "abc",
             };
             var actual = test.GetStatement();
-            Assert.AreEqual("set var=abc", actual);
-            Assert.AreEqual("var", test.Variable.Name);
-            Assert.AreEqual("%var%", test.Variable.Expression);
+            Assert.Equal("set var=abc", actual);
+            Assert.Equal("var", test.Variable.Name);
+            Assert.Equal("%var%", test.Variable.Expression);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsExpressTest()
         {
             var test = new SetVariableCommand {
@@ -31,18 +30,18 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
                 IsExpress = true,
             };
             var actual = test.GetStatement();
-            Assert.AreEqual("set /a var=123", actual);
-            Assert.AreEqual("var", test.Variable.Name);
-            Assert.AreEqual("%var%", test.Variable.Expression);
+            Assert.Equal("set /a var=123", actual);
+            Assert.Equal("var", test.Variable.Name);
+            Assert.Equal("%var%", test.Variable.Expression);
         }
 
-        [TestMethod]
+        [Fact]
         public void VariableName_none_Test()
         {
             var test = new SetVariableCommand {
                 VariableName = "",
             };
-            Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());
+            Assert.Throws<InvalidOperationException>(() => test.GetStatement());
         }
 
         #endregion

@@ -1,24 +1,23 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class ChangeDirectoryCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void PathTest()
         {
             var test = new ChangeDirectoryCommand() {
                 Path = "C:\\Windows",
             };
             var actual = test.GetStatement();
-            Assert.AreEqual("cd C:\\Windows", actual);
+            Assert.Equal("cd C:\\Windows", actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void WithDriveTest()
         {
             var test = new ChangeDirectoryCommand() {
@@ -26,7 +25,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
                 WithDrive = true,
             };
             var actual = test.GetStatement();
-            Assert.AreEqual("cd /d Z:\\Windows", actual);
+            Assert.Equal("cd /d Z:\\Windows", actual);
         }
 
         #endregion

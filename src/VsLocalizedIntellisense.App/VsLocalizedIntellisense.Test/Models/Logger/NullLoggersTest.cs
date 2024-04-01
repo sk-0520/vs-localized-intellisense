@@ -3,41 +3,38 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Test.Models.Logger
 {
-    [TestClass]
     public class NullLoggerFactoryTest
     {
-        [TestMethod]
+        [Fact]
         public void ScenarioTest()
         {
             using var test = new NullLoggerFactory();
         }
     }
 
-    [TestClass]
     public class NullLoggerTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void Constructor_str_Test()
         {
             var test = new NullLogger("abc");
-            Assert.AreEqual("abc", test.CategoryName);
+            Assert.Equal("abc", test.CategoryName);
         }
 
-        [TestMethod]
+        [Fact]
         public void Constructor_none_Test()
         {
             var test = new NullLogger();
-            Assert.AreEqual(string.Empty, test.CategoryName);
+            Assert.Equal(string.Empty, test.CategoryName);
         }
 
         #endregion
     }
-
 }

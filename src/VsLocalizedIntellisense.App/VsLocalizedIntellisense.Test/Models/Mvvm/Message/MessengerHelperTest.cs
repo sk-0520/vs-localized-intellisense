@@ -1,10 +1,9 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 {
-    [TestClass]
     public class MessengerHelperTest
     {
         #region function
@@ -12,12 +11,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
         private class TestGetMessengerFromProperty_empty
         { }
 
-        [TestMethod]
+        [Fact]
         public void GetMessengerFromProperty_empty_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_empty();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
 
@@ -28,12 +27,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             private Messenger Messenger { get; } = new Messenger();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetMessengerFromProperty_private_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_private();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
         private class TestGetMessengerFromProperty_type1
@@ -42,12 +41,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             public Uri Messenger { get; } = new Uri("file://NUL");
         }
 
-        [TestMethod]
+        [Fact]
         public void GetMessengerFromProperty_type1_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_type1();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
         private class TestGetMessengerFromProperty_type2
@@ -56,12 +55,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             public object Messenger { get; } = new object();
         }
 
-        [TestMethod]
+        [Fact]
         public void GetMessengerFromProperty_type2_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_type2();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
         private class TestGetMessengerFromProperty_null
@@ -70,12 +69,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             public Messenger Messenger { get; } = null;
         }
 
-        [TestMethod]
+        [Fact]
         public void GetMessengerFromProperty_null_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_null();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNull(actual);
+            Assert.Null(actual);
         }
 
         private class TestGetMessengerFromProperty_success
@@ -84,22 +83,22 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             public Messenger Messenger { get; } = new Messenger();
         }
 
-        [TestMethod]
+        [Fact]
         public void TestGetMessengerFromProperty_success_scoped_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_success();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext);
-            Assert.IsNotNull(actual);
-            Assert.IsInstanceOfType(actual, typeof(ScopedMessenger));
+            Assert.NotNull(actual);
+            Assert.IsType<ScopedMessenger>(actual);
         }
 
-        [TestMethod]
+        [Fact]
         public void TestGetMessengerFromProperty_success_raw_Test()
         {
             var dataContext = new TestGetMessengerFromProperty_success();
             var actual = MessengerHelper.GetMessengerFromProperty(dataContext, true);
-            Assert.IsNotNull(actual);
-            Assert.IsInstanceOfType(actual, typeof(Messenger));
+            Assert.NotNull(actual);
+            Assert.IsType<Messenger>(actual);
         }
 
         #endregion

@@ -1,10 +1,9 @@
 using System.Windows;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 {
-    [TestClass]
     public class ViewMessengerTest
     {
         #region define
@@ -25,7 +24,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
 
         #region function
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_none_Test()
         {
             var ui = new Window();
@@ -34,7 +33,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             });
         }
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_DataContextIsNull_Test()
         {
             var ui = new TestWindow();
@@ -51,7 +50,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
         }
 
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_NotLoaded_Test()
         {
             var callCount = 0;
@@ -63,10 +62,10 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
                 callCount += 1;
             });
 
-            Assert.AreEqual(callCount, 1);
+            Assert.Equal(callCount, 1);
         }
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_Loaded_Test()
         {
             var callCount = 0;
@@ -80,10 +79,10 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
                 callCount += 1;
             });
 
-            Assert.AreEqual(callCount, 1);
+            Assert.Equal(callCount, 1);
         }
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_Change_Test()
         {
             var callCount = 0;
@@ -100,10 +99,10 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             var vm2 = new TestConstructor_NotLoaded_DataContextHasMessenger();
             ui.DataContext = vm2;
 
-            Assert.AreEqual(callCount, 2);
+            Assert.Equal(callCount, 2);
         }
 
-        [TestMethod]
+        [WpfFact]
         public void Constructor_Unload_Test()
         {
             var callCount = 0;
@@ -120,7 +119,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Message
             var vm2 = new TestConstructor_NotLoaded_DataContextHasMessenger();
             ui.DataContext = vm2;
 
-            Assert.AreEqual(callCount, 1);
+            Assert.Equal(callCount, 1);
         }
         #endregion
     }

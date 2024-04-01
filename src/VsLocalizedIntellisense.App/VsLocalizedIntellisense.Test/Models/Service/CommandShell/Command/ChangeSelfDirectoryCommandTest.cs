@@ -1,19 +1,18 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class ChangeSelfDirectoryCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void Test()
         {
             var test = new ChangeSelfDirectoryCommand();
             var actual = test.GetStatement();
-            Assert.AreEqual("cd /d %~dp0", actual);
+            Assert.Equal("cd /d %~dp0", actual);
         }
 
         #endregion

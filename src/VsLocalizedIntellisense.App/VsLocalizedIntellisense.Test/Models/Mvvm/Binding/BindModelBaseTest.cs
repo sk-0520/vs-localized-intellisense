@@ -1,9 +1,8 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 {
-    [TestClass]
     public class BindModelBaseTest
     {
         #region function
@@ -16,7 +15,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             public bool SetVariableTest(int value) => SetVariable(ref this.variable, value, nameof(this.variable));
         }
 
-        [TestMethod]
+        [Fact]
         public void SetVariableTest()
         {
             var tbm = new TestBindModel();
@@ -24,21 +23,21 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             var variableValue = 123;
             tbm.PropertyChanged += (s, e) => {
                 changeCount += 1;
-                Assert.AreEqual("variable", e.PropertyName);
-                Assert.AreEqual(variableValue, tbm.GetVariableTest());
+                Assert.Equal("variable", e.PropertyName);
+                Assert.Equal(variableValue, tbm.GetVariableTest());
             };
-            Assert.IsTrue(tbm.SetVariableTest(variableValue));
-            Assert.AreEqual(variableValue, tbm.GetVariableTest());
-            Assert.AreEqual(1, changeCount);
+            Assert.True(tbm.SetVariableTest(variableValue));
+            Assert.Equal(variableValue, tbm.GetVariableTest());
+            Assert.Equal(1, changeCount);
 
-            Assert.IsFalse(tbm.SetVariableTest(variableValue));
-            Assert.AreEqual(variableValue, tbm.GetVariableTest());
-            Assert.AreEqual(1, changeCount);
+            Assert.False(tbm.SetVariableTest(variableValue));
+            Assert.Equal(variableValue, tbm.GetVariableTest());
+            Assert.Equal(1, changeCount);
 
             variableValue = 456;
-            Assert.IsTrue(tbm.SetVariableTest(variableValue));
-            Assert.AreEqual(variableValue, tbm.GetVariableTest());
-            Assert.AreEqual(2, changeCount);
+            Assert.True(tbm.SetVariableTest(variableValue));
+            Assert.Equal(variableValue, tbm.GetVariableTest());
+            Assert.Equal(2, changeCount);
         }
 
         #endregion

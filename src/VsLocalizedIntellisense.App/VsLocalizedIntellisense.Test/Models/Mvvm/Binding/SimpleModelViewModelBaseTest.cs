@@ -1,10 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 {
-    [TestClass]
     public class SimpleModelViewModelBaseTest
     {
         #region function
@@ -34,38 +33,38 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void SetModel_a_Test()
         {
             var model = new TestModel();
             var vm = new TestSingleModelViewModel(model, NullLoggerFactory.Instance);
             bool called = false;
             vm.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(vm.PropertyA), e.PropertyName);
+                Assert.Equal(nameof(vm.PropertyA), e.PropertyName);
                 called = true;
             };
-            Assert.IsFalse(called);
+            Assert.False(called);
             vm.PropertyA = 123;
-            Assert.IsTrue(called);
-            Assert.AreEqual(123, vm.PropertyA);
-            Assert.AreEqual(model.PropertyA, vm.PropertyA);
+            Assert.True(called);
+            Assert.Equal(123, vm.PropertyA);
+            Assert.Equal(model.PropertyA, vm.PropertyA);
         }
 
-        [TestMethod]
+        [Fact]
         public void SetModel_b_Test()
         {
             var model = new TestModel();
             var vm = new TestSingleModelViewModel(model, NullLoggerFactory.Instance);
             bool called = false;
             vm.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(vm.PropertyB), e.PropertyName);
+                Assert.Equal(nameof(vm.PropertyB), e.PropertyName);
                 called = true;
             };
-            Assert.IsFalse(called);
+            Assert.False(called);
             vm.PropertyB = 123;
-            Assert.IsTrue(called);
-            Assert.AreEqual(123, vm.PropertyB);
-            Assert.AreEqual(model.PropertyANext, vm.PropertyB);
+            Assert.True(called);
+            Assert.Equal(123, vm.PropertyB);
+            Assert.Equal(model.PropertyANext, vm.PropertyB);
         }
 
         #endregion

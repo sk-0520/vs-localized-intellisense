@@ -1,80 +1,79 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class CopyCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void Source_throw_Test()
         {
             var test = new CopyCommand {
                 Destination = "dst"
             };
-            var e = Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());
-            Assert.AreEqual(nameof(test.Source), e.Message);
+            var e = Assert.Throws<InvalidOperationException>(() => test.GetStatement());
+            Assert.Equal(nameof(test.Source), e.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void Destination_throw_Test()
         {
             var test = new CopyCommand {
                 Source = "src",
             };
-            var e = Assert.ThrowsException<InvalidOperationException>(() => test.GetStatement());
-            Assert.AreEqual(nameof(test.Destination), e.Message);
+            var e = Assert.Throws<InvalidOperationException>(() => test.GetStatement());
+            Assert.Equal(nameof(test.Destination), e.Message);
         }
 
-        [TestMethod]
+        [Fact]
         public void IsDecryptionTest()
         {
             var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };
-            Assert.AreEqual("copy src dst", test.GetStatement());
+            Assert.Equal("copy src dst", test.GetStatement());
 
             test.IsDecryption = true;
-            Assert.AreEqual("copy /d src dst", test.GetStatement());
+            Assert.Equal("copy /d src dst", test.GetStatement());
         }
 
-        [TestMethod]
+        [Fact]
         public void IsVerifyTest()
         {
             var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };
-            Assert.AreEqual("copy src dst", test.GetStatement());
+            Assert.Equal("copy src dst", test.GetStatement());
 
             test.IsVerify = true;
-            Assert.AreEqual("copy /v src dst", test.GetStatement());
+            Assert.Equal("copy /v src dst", test.GetStatement());
         }
 
-        [TestMethod]
+        [Fact]
         public void PromptModeTest()
         {
             var test = new CopyCommand {
                 Source = "src",
                 Destination = "dst",
             };
-            Assert.AreEqual("copy src dst", test.GetStatement());
+            Assert.Equal("copy src dst", test.GetStatement());
 
             test.PromptMode = PromptMode.Confirm;
-            Assert.AreEqual("copy /-y src dst", test.GetStatement());
+            Assert.Equal("copy /-y src dst", test.GetStatement());
 
             test.PromptMode = PromptMode.Silent;
-            Assert.AreEqual("copy /y src dst", test.GetStatement());
+            Assert.Equal("copy /y src dst", test.GetStatement());
 
             test.PromptMode = PromptMode.Default;
-            Assert.AreEqual("copy src dst", test.GetStatement());
+            Assert.Equal("copy src dst", test.GetStatement());
 
             test.PromptMode = (PromptMode)(-1);
-            Assert.ThrowsException<NotImplementedException>(() => test.GetStatement());
+            Assert.Throws<NotImplementedException>(() => test.GetStatement());
         }
 
         #endregion

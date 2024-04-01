@@ -1,11 +1,10 @@
 using System.Threading;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
 {
-    [TestClass]
     public class CommandBaseTest
     {
         private class TestCommandA: CommandBase
@@ -36,25 +35,25 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
 
         #region function
 
-        [TestMethod]
+        [Fact]
         public void ExecuteTest()
         {
             var command = new TestCommandA();
 
-            Assert.IsTrue(command.CanExecute(null));
-            Assert.AreEqual(0, command.ExecuteCount);
+            Assert.True(command.CanExecute(null));
+            Assert.Equal(0, command.ExecuteCount);
 
             command.Execute(null);
-            Assert.AreEqual(1, command.ExecuteCount);
+            Assert.Equal(1, command.ExecuteCount);
 
             command.IsEnabled = false;
-            Assert.IsFalse(command.CanExecute(null));
+            Assert.False(command.CanExecute(null));
             // ICommand 直接実行は CanExecute がどうとかは制御されない
             command.Execute(null);
-            Assert.AreEqual(2, command.ExecuteCount);
+            Assert.Equal(2, command.ExecuteCount);
         }
 
-        [TestMethod]
+        [Fact]
         public async Task CanExecuteTest()
         {
             var command = new TestCommandA();
@@ -65,12 +64,12 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
                     command.IsEnabled = false;
                 }).ConfigureAwait(false);
 
-                Assert.IsTrue(command.CanExecute(null));
+                Assert.True(command.CanExecute(null));
 
                 ev.Set();
                 await task;
 
-                Assert.IsFalse(command.CanExecute(null));
+                Assert.False(command.CanExecute(null));
             }
         }
 

@@ -1,15 +1,14 @@
 using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
 {
-    [TestClass]
     public class IfErrorLevelCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void IfTest()
         {
             var test = new IfErrorLevelCommand {
@@ -18,7 +17,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if ERRORLEVEL 10 (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -26,7 +25,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfNotTest()
         {
             var test = new IfErrorLevelCommand {
@@ -36,7 +35,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if not ERRORLEVEL 10 (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -44,7 +43,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfElseTest()
         {
             var test = new IfErrorLevelCommand {
@@ -54,7 +53,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.FalseBlock.Add(new EchoCommand() { Value = "false" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if ERRORLEVEL 10 (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ") else (" + Environment.NewLine +
@@ -67,12 +66,11 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         #endregion
     }
 
-    [TestClass]
     public class IfExpressCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void IfTest()
         {
             var test = new IfExpressCommand() {
@@ -82,7 +80,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if l == r (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -90,7 +88,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfNotTest()
         {
             var test = new IfExpressCommand() {
@@ -101,7 +99,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if not l == r (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -109,7 +107,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfElseTest()
         {
             var test = new IfExpressCommand() {
@@ -120,7 +118,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.FalseBlock.Add(new EchoCommand() { Value = "false" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if l == r (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ") else (" + Environment.NewLine +
@@ -133,12 +131,11 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
         #endregion
     }
 
-    [TestClass]
     public class IfExistCommandTest
     {
         #region function
 
-        [TestMethod]
+        [Fact]
         public void IfTest()
         {
             var test = new IfExistCommand() {
@@ -147,7 +144,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if exist path (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -155,7 +152,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfNotTest()
         {
             var test = new IfExistCommand() {
@@ -165,7 +162,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.TrueBlock.Add(new EchoCommand() { Value = "true" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if not exist path (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ")",
@@ -173,7 +170,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             );
         }
 
-        [TestMethod]
+        [Fact]
         public void IfElseTest()
         {
             var test = new IfExistCommand() {
@@ -183,7 +180,7 @@ namespace VsLocalizedIntellisense.Test.Models.Service.CommandShell.Command
             test.FalseBlock.Add(new EchoCommand() { Value = "false" });
 
             var actual = test.GetStatement();
-            Assert.AreEqual(
+            Assert.Equal(
                 "if exist path (" + Environment.NewLine +
                 "\techo true" + Environment.NewLine +
                 ") else (" + Environment.NewLine +

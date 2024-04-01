@@ -1,10 +1,9 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 {
-    [TestClass]
     public class ViewModelBaseTest
     {
         #region function
@@ -50,52 +49,52 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             }
         }
 
-        [TestMethod]
+        [Fact]
         public void SetProperty_public_Test()
         {
             var tvm = new TestViewModel();
             bool called = false;
             tvm.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(TestViewModel.PublicValue), e.PropertyName);
+                Assert.Equal(nameof(TestViewModel.PublicValue), e.PropertyName);
                 called = true;
             };
-            Assert.IsFalse(called);
+            Assert.False(called);
             tvm.PublicValue = 123;
-            Assert.IsTrue(called);
-            Assert.AreEqual(123, tvm.PublicValue);
+            Assert.True(called);
+            Assert.Equal(123, tvm.PublicValue);
         }
 
-        [TestMethod]
+        [Fact]
         public void SetProperty_private_Test()
         {
             var tvm = new TestViewModel();
             bool called = false;
             tvm.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(TestViewModel.PrivateValue), e.PropertyName);
+                Assert.Equal(nameof(TestViewModel.PrivateValue), e.PropertyName);
                 called = true;
             };
-            Assert.IsFalse(called);
+            Assert.False(called);
             tvm.PrivateValue = 123;
-            Assert.IsTrue(called);
-            Assert.AreEqual(123, tvm.PrivateValue);
+            Assert.True(called);
+            Assert.Equal(123, tvm.PrivateValue);
         }
 
-        [TestMethod]
+        [Fact]
         public void SetProperty_alias_Test()
         {
             var tvm = new TestViewModel();
             bool called = false;
             tvm.PropertyChanged += (s, e) => {
-                Assert.AreEqual(nameof(TestViewModel.AliasValue), e.PropertyName);
+                Assert.Equal(nameof(TestViewModel.AliasValue), e.PropertyName);
                 called = true;
             };
-            Assert.IsFalse(called);
+            Assert.False(called);
             tvm.AliasValue = 123;
-            Assert.IsTrue(called);
-            Assert.AreEqual(123, tvm.AliasValue);
+            Assert.True(called);
+            Assert.Equal(123, tvm.AliasValue);
         }
 
-        [TestMethod]
+        [Fact]
         public void SetProperty_equal_Test()
         {
             var tvm = new TestViewModel();
@@ -104,16 +103,16 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
                 callCount += 1;
             };
             tvm.PublicValue = 123;
-            Assert.AreEqual(1, callCount);
-            Assert.AreEqual(123, tvm.PublicValue);
+            Assert.Equal(1, callCount);
+            Assert.Equal(123, tvm.PublicValue);
 
             tvm.PublicValue = 123;
-            Assert.AreEqual(1, callCount);
-            Assert.AreEqual(123, tvm.PublicValue);
+            Assert.Equal(1, callCount);
+            Assert.Equal(123, tvm.PublicValue);
 
             tvm.PublicValue = 456;
-            Assert.AreEqual(2, callCount);
-            Assert.AreEqual(456, tvm.PublicValue);
+            Assert.Equal(2, callCount);
+            Assert.Equal(456, tvm.PublicValue);
         }
 
         #endregion

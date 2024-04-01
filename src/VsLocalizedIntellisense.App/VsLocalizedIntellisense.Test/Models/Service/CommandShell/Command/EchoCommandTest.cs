@@ -1,23 +1,22 @@
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Xunit;
 using VsLocalizedIntellisense.Models.Service.CommandShell.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Service.CommandPrompt.Command
 {
-    [TestClass]
     public class EchoCommandTest
     {
         #region function
 
-        [TestMethod]
-        [DataRow("echo.", "")]
-        [DataRow("echo a", "a")]
+        [Theory]
+        [InlineData("echo.", "")]
+        [InlineData("echo a", "a")]
         public void Test(string expected, string value)
         {
             var command = new EchoCommand() {
                 Value = value,
             };
             var actual = command.GetStatement();
-            Assert.AreEqual(expected, actual);
+            Assert.Equal(expected, actual);
         }
 
         #endregion

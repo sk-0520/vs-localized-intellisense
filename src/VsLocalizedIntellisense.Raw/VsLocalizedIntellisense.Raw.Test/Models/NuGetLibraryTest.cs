@@ -7,12 +7,11 @@ using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestPlatform.PlatformAbstractions.Interfaces;
 using VsLocalizedIntellisense.Raw.Models;
+using Xunit;
 
 namespace VsLocalizedIntellisense.Raw.Test.Models
 {
-    [TestClass]
     public class NuGetLibraryTest
     {
         #region function
@@ -38,7 +37,6 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
             return archive;
         }
 
-        [TestMethod]
         public void GetXmlDocumentEntries_empty_Test()
         {
             var test = new NuGetLibrary();
@@ -46,10 +44,9 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
 
             var actual = test.GetXmlDocumentEntries(archive);
 
-            Assert.IsFalse(actual.Any());
+            Assert.False(actual.Any());
         }
 
-        [TestMethod]
         public void GetXmlDocumentEntries_0on1_Test()
         {
             var test = new NuGetLibrary();
@@ -57,10 +54,9 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
 
             var actual = test.GetXmlDocumentEntries(archive);
 
-            Assert.AreEqual(0, actual.Count());
+            Assert.Empty(actual);
         }
 
-        [TestMethod]
         public void GetXmlDocumentEntries_1on0_Test()
         {
             var test = new NuGetLibrary();
@@ -68,10 +64,9 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
 
             var actual = test.GetXmlDocumentEntries(archive);
 
-            Assert.AreEqual(0, actual.Count());
+            Assert.Empty(actual);
         }
 
-        [TestMethod]
         public void GetXmlDocumentEntries_1on1_Test()
         {
             var test = new NuGetLibrary();
@@ -79,11 +74,10 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
 
             var actual = test.GetXmlDocumentEntries(archive);
 
-            Assert.AreEqual(1, actual.Count());
-            Assert.AreEqual("library.xml", actual.ElementAt(0).FullName);
+            Assert.Single(actual);
+            Assert.Equal("library.xml", actual.ElementAt(0).FullName);
         }
 
-        [TestMethod]
         public void GetXmlDocumentEntries_tree_Test()
         {
             var test = new NuGetLibrary();
@@ -91,7 +85,7 @@ namespace VsLocalizedIntellisense.Raw.Test.Models
 
             var actual = test.GetXmlDocumentEntries(archive);
 
-            Assert.AreEqual(0, actual.Count());
+            Assert.Empty(actual);
         }
 
         #endregion
