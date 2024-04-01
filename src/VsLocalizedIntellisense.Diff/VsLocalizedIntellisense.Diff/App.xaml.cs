@@ -13,21 +13,6 @@ namespace VsLocalizedIntellisense.Diff
     public partial class App: Application
     {
         #region Application
-
-        protected override void OnStartup(StartupEventArgs e)
-        {
-            base.OnStartup(e);
-
-            var model = new MainElement();
-            var viewModel = new MainViewModel(model);
-
-            var view = new MainWindow() {
-                DataContext = viewModel,
-            };
-            MainWindow = view;
-            MainWindow.Show();
-        }
-
         #endregion
     }
 }
