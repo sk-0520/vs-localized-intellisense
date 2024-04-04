@@ -20,13 +20,26 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     public abstract class ViewModelBase: BindModelBase, INotifyDataErrorInfo
     {
         protected ViewModelBase()
-        { }
+        {
+            var type = GetType();
+            var properties = type.GetProperties();
+
+            ObserveProperties = properties
+                .Select(a => (property: a, attributes: a.GetCustomAttributes<ObservePropertyAttribute>().ToArray()))
+                .Where(a => a.attributes.Any())
+                .Select(a => new ObserveProperties(a.property, a.attributes))
+                .ToHashSet()
+            ;
+            if(ObserveProperties.Any()) {
+                PropertyChanged += ViewModelBase_PropertyChanged;
+            }
+        }
 
         #region property
 
         protected Dictionary<string, IList<ValidateMessage>> Errors { get; } = new Dictionary<string, IList<ValidateMessage>>();
 
-        private IDictionary<ICommand, ISet<string>> CommandHooks { get; } = new Dictionary<ICommand, ISet<string>>();
+        private IReadOnlyCollection<ObserveProperties> ObserveProperties { get; }
 
         #endregion
 
@@ -124,23 +137,12 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
             OnErrorsChanged(propertyName);
         }
 
-        protected void AddCommandHook(ICommand command, IEnumerable<string> propertyNames)
+        protected void RaiseCommandChanged(ICommand command)
         {
-            ThrowIfDisposed();
-
-            if(!propertyNames.Any()) {
-                throw new ArgumentException(nameof(propertyNames));
-            }
-            if(CommandHooks.Count == 0) {
-                PropertyChanged += ViewModelBase_PropertyChanged;
-            }
-
-            if(!CommandHooks.TryGetValue(command, out var props)) {
-                props = new HashSet<string>();
-                CommandHooks.Add(command, props);
-            }
-            foreach(var propertyName in propertyNames) {
-                props.Add(propertyName);
+            if(command is CommandBase commandBase) {
+                commandBase.RaiseCanExecuteChanged();
+            } else {
+                CommandManager.InvalidateRequerySuggested();
             }
         }
 
@@ -178,24 +180,15 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         private void ViewModelBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
-            var commands = new HashSet<ICommand>();
-
-            foreach(var pair in CommandHooks) {
-                if(pair.Value.Contains(e.PropertyName)) {
-                    commands.Add(pair.Key);
+            foreach(var props in ObserveProperties) {
+                if(props.Attributes.Any(a => a.PropertyName == e.PropertyName)) {
+                    if(typeof(ICommand).IsAssignableFrom(props.Property.PropertyType)) {
+                        var command = (ICommand)props.Property.GetValue(this);
+                        RaiseCommandChanged(command);
+                    } else {
+                        OnPropertyChanged(nameof(props.Property.Name));
+                    }
                 }
-            }
-
-            var needsCallInvalidateRequerySuggested = false;
-            foreach(var command in commands) {
-                if(command is CommandBase commandBase) {
-                    commandBase.RaiseCanExecuteChanged();
-                } else {
-                    needsCallInvalidateRequerySuggested = true;
-                }
-            }
-            if(needsCallInvalidateRequerySuggested) {
-                CommandManager.InvalidateRequerySuggested();
             }
         }
     }
