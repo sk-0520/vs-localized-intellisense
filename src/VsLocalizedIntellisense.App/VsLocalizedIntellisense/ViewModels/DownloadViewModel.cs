@@ -38,20 +38,6 @@ namespace VsLocalizedIntellisense.ViewModels
             DirectoryCollection = new ModelViewModelObservableCollectionManager<DirectoryElement, DirectoryViewModel>(Model.IntellisenseDirectoryElements, new ModelViewModelObservableCollectionOptions<DirectoryElement, DirectoryViewModel>() {
                 ToViewModel = m => new DirectoryViewModel(m, LoggerFactory),
             });
-
-            AddCommandHook(
-                SelectInstallRootDirectoryPathCommand,
-                new[] {
-                    nameof(IsDownloading),
-                }
-            );
-
-            AddCommandHook(
-                DownloadCommand,
-                new[] {
-                    nameof(IsDownloading),
-                }
-            );
         }
 
         #region property
@@ -79,6 +65,7 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #region command
 
+        [ObserveProperty(nameof(IsDownloading))]
         public ICommand SelectInstallRootDirectoryPathCommand => this._selectInstallRootDirectoryPathCommand ??= new DelegateCommand(
             o => {
                 var message = new OpenFileDialogMessage() {
@@ -94,6 +81,7 @@ namespace VsLocalizedIntellisense.ViewModels
             _ => !IsDownloading
         );
 
+        [ObserveProperty(nameof(IsDownloading))]
         public ICommand DownloadCommand => this._downloadCommand ??= new AsyncDelegateCommand(
             async _ => {
                 if(IsDownloading) {

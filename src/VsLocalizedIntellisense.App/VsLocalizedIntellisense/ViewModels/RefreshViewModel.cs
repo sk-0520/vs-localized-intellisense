@@ -10,6 +10,7 @@ using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Element;
 using VsLocalizedIntellisense.Models.Logger;
+using VsLocalizedIntellisense.Models.Mvvm.Binding;
 using VsLocalizedIntellisense.Models.Mvvm.Binding.Collection;
 using VsLocalizedIntellisense.Models.Mvvm.Command;
 using VsLocalizedIntellisense.Models.Mvvm.Message;
@@ -29,14 +30,7 @@ namespace VsLocalizedIntellisense.ViewModels
 
         public RefreshViewModel(MainElement model, IDictionary<DirectoryElement, IList<FileInfo>> installItems, Action<ContextMode> changedCallback, ISendableMessenger messenger, AppConfiguration configuration, ILoggerFactory loggerFactory)
             : base(model, changedCallback, messenger, configuration, loggerFactory)
-        {
-            AddCommandHook(
-                RefreshCommand,
-                new[] {
-                    nameof(IsDownloading),
-                }
-            );
-        }
+        { }
 
         #region property
 
@@ -50,6 +44,7 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #region command
 
+        [ObserveProperty(nameof(IsDownloading))]
         public ICommand RefreshCommand => this._refreshCommand ??= new AsyncDelegateCommand(
             async _ => {
                 if(IsDownloading) {

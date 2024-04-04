@@ -34,19 +34,6 @@ namespace VsLocalizedIntellisense.ViewModels
 
             GeneratedCommandShellEditor = Model.GenerateShellCommand(InstallItems);
             InstallCommand = GeneratedCommandShellEditor.ToSourceCode();
-
-            AddCommandHook(
-                BackCommand,
-                new[] {
-                    nameof(IsExecuting),
-                }
-            );
-            AddCommandHook(
-                ExecuteCommand,
-                new[] {
-                    nameof(IsExecuting),
-                }
-            );
         }
 
         #region property
@@ -70,6 +57,7 @@ namespace VsLocalizedIntellisense.ViewModels
 
         #region command
 
+        [ObserveProperty(nameof(IsExecuting))]
         public ICommand BackCommand => this._backCommand ??= new DelegateCommand(
            _ => {
                ChangeMode(ContextMode.Download);
@@ -77,6 +65,7 @@ namespace VsLocalizedIntellisense.ViewModels
             _ => !IsExecuting
        );
 
+        [ObserveProperty(nameof(IsExecuting))]
         public ICommand ExecuteCommand => this._executeCommand ??= new AsyncDelegateCommand(
             async _ => {
                 IsExecuting = true;
