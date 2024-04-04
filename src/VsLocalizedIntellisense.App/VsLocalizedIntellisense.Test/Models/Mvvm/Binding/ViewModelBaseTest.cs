@@ -115,6 +115,34 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
             Assert.Equal(456, tvm.PublicValue);
         }
 
+        //private class TestNotObserveViewModel: ViewModelBase
+        //{
+        //    int _prop = 0;
+
+        //    public int Prop
+        //    {
+        //        get => this._prop;
+        //        set => SetVariable(ref this._prop, value);
+        //    }
+
+        //    public bool PropIsEven => (this._prop % 2) == 0;
+        //}
+
+
+
+        //private class TestObserveViewModel: ViewModelBase
+        //{
+        //    int _prop = 0;
+
+        //    public int Prop
+        //    {
+        //        get => this._prop;
+        //        set => SetVariable(ref this._prop, value);
+        //    }
+
+        //    public bool PropIsEven => (this._prop % 2) == 0;
+        //}
+
         #endregion
     }
 }
