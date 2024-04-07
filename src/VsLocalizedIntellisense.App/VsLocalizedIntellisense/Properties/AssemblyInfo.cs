@@ -24,28 +24,10 @@ using System.Windows;
 
 //[assembly: NeutralResourcesLanguage("en-US", UltimateResourceFallbackLocation.Satellite)]
 
-
-[assembly: ThemeInfo(
-    ResourceDictionaryLocation.None, //テーマ固有のリソース ディクショナリが置かれている場所
-                                     //(リソースがページ、
-                                     // またはアプリケーション リソース ディクショナリに見つからない場合に使用されます)
-    ResourceDictionaryLocation.SourceAssembly //汎用リソース ディクショナリが置かれている場所
-                                              //(リソースがページ、
-                                              //アプリケーション、またはいずれのテーマ固有のリソース ディクショナリにも見つからない場合に使用されます)
-)]
+[assembly: ThemeInfo(ResourceDictionaryLocation.None,ResourceDictionaryLocation.SourceAssembly)]
 
 
-// アセンブリのバージョン情報は次の 4 つの値で構成されています:
-//
-//      メジャー バージョン
-//      マイナー バージョン
-//      ビルド番号
-//      リビジョン
-//
-// すべての値を指定するか、次を使用してビルド番号とリビジョン番号を既定に設定できます
-// 既定値にすることができます:
-// [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.11")]
+[assembly: AssemblyVersion("0.0.12")]
 [assembly: AssemblyInformationalVersion("REVISION")]
 
 [assembly: InternalsVisibleTo("VsLocalizedIntellisense.Test")]
