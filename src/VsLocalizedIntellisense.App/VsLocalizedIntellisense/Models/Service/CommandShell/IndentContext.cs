@@ -2,8 +2,10 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
 {
     /// <summary>
     /// 現在インデント。
-    /// <para>まぁきちんと動いてないけど使うこともないのでどうでもよさげ</para>
     /// </summary>
+    /// <remarks>
+    /// <para>まぁきちんと動いてないけど使うこともないのでどうでもよさげ</para>
+    /// </remarks>
     public class IndentContext
     {
         public IndentContext(string space = CommandShellHelper.IndentSpace, int level = 0)
@@ -20,8 +22,10 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
         public string Space { get; }
         /// <summary>
         /// インデントレベル。
-        /// <para>0 が最上位。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>0 が最上位。</para>
+        /// </remarks>
         public int Level { get; }
 
         #endregion

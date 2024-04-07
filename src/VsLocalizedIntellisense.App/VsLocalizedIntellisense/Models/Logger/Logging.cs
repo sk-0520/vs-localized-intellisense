@@ -31,8 +31,10 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         /// <summary>
         /// アプリケーション全体で保持する <see cref="ILoggerFactory"/> を取得。
-        /// <para><seealso cref="Initialize">初期化処理</seealso>が終わっていることが前提となる。</para>
         /// </summary>
+        /// <remarks>
+        /// <para><seealso cref="Initialize">初期化処理</seealso>が終わっていることが前提となる。</para>
+        /// </remarks>
         internal static ILoggerFactory Instance
         {
             get
@@ -48,8 +50,10 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         /// <summary>
         /// <see cref="Instance"/> を使用するための初期化処理。
-        /// <para>使い終わったら<seealso cref="Shutdown">片付ける</seealso>。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>使い終わったら<seealso cref="Shutdown">片付ける</seealso>。</para>
+        /// </remarks>
         /// <param name="configuration"></param>
         /// <returns>アプリケーション全体で使用可能な<see cref="ILoggerFactory"/></returns>
         internal static ILoggerFactory Initialize(AppConfiguration configuration, ObservableCollection<LogItemElement> stockLogItems = null)

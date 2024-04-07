@@ -23,8 +23,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         ;
         /// <summary>
         /// 対象となる TMessage(と<paramref name="messageId"/>)に対するメッセージ受信時の処理を登録。
-        /// <para>非同期版。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>非同期版。</para>
+        /// </remarks>
         /// <typeparam name="TMessage">メッセージ。</typeparam>
         /// <param name="callback">受信時の処理。</param>
         /// <param name="messageId">メッセージを特定するID。</param>
@@ -54,8 +56,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Message
         ;
         /// <summary>
         /// メッセージの送信。
-        /// <para>非同期版。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>非同期版。</para>
+        /// </remarks>
         /// <typeparam name="TMessage">メッセージ。</typeparam>
         /// <param name="message">送信メッセージ。</param>
         /// <param name="cancellationToken"></param>

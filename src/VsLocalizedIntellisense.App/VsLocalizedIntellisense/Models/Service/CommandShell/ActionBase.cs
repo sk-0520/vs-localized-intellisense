@@ -30,8 +30,10 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell
 
         /// <summary>
         /// コマンド内でのインデント文字列。
-        /// <para>通常のインデントとは異なり改行で付与したインデントとして使用する想定。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>通常のインデントとは異なり改行で付与したインデントとして使用する想定。</para>
+        /// </remarks>
         public string IndentSpace { get; set; } = "\t";
 
         #endregion

@@ -13,8 +13,10 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         /// <summary>
         /// デフォルトログレベル。
-        /// <para>このレベル未満はログ出力対象外となる。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>このレベル未満はログ出力対象外となる。</para>
+        /// </remarks>
         public LogLevel Level { get; set; }
 
         #endregion
@@ -22,8 +24,10 @@ namespace VsLocalizedIntellisense.Models.Logger
 
     /// <summary>
     /// ログ出力時のフォーマット指定。
-    /// <para>本インターフェイスを実装しない、もしくは空の場合、標準のフォーマットが使用される。</para>
     /// </summary>
+    /// <remarks>
+    /// <para>本インターフェイスを実装しない、もしくは空の場合、標準のフォーマットが使用される。</para>
+    /// </remarks>
     public interface ILogFormatOptions
     {
         #region property
@@ -78,8 +82,10 @@ namespace VsLocalizedIntellisense.Models.Logger
 
     /// <summary>
     /// 複数出力ログオプション。
-    /// <para>明示的に使用することはない。</para>
     /// </summary>
+    /// <remarks>
+    /// <para>明示的に使用することはない。</para>
+    /// </remarks>
     public sealed class MultiLogOptions
     {
         #region property

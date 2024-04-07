@@ -47,8 +47,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         /// <summary>
         /// オブジェクトのプロパティに値設定。
-        /// <para>変更があれば変更通知を行う。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>変更があれば変更通知を行う。</para>
+        /// </remarks>
         /// <typeparam name="TObject">対象オブジェクトの型。</typeparam>
         /// <typeparam name="TValue">設定値の型。</typeparam>
         /// <param name="obj">対象オブジェクト。</param>
@@ -72,8 +74,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         /// <summary>
         /// オブジェクトのプロパティに値設定。
-        /// <para>変更があれば変更通知を行う。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>変更があれば変更通知を行う。</para>
+        /// </remarks>
         /// <typeparam name="TObject">対象オブジェクトの型。</typeparam>
         /// <typeparam name="TValue">設定値の型。</typeparam>
         /// <param name="model">対象オブジェクト。</param>
@@ -180,15 +184,25 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         private void ViewModelBase_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            var properties = new HashSet<string>();
+            var commands = new HashSet<ICommand>();
+
             foreach(var props in ObserveProperties) {
                 if(props.Attributes.Any(a => a.PropertyName == e.PropertyName)) {
                     if(typeof(ICommand).IsAssignableFrom(props.Property.PropertyType)) {
                         var command = (ICommand)props.Property.GetValue(this);
-                        RaiseCommandChanged(command);
+                        commands.Add(command);
                     } else {
-                        OnPropertyChanged(nameof(props.Property.Name));
+                        properties.Add(nameof(props.Property.Name));
                     }
                 }
+            }
+
+            foreach(var property in properties) {
+                OnPropertyChanged(property);
+            }
+            foreach(var command in commands) {
+                RaiseCommandChanged(command);
             }
         }
     }

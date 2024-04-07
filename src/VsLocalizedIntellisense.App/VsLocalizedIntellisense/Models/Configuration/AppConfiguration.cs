@@ -21,14 +21,18 @@ namespace VsLocalizedIntellisense.Models.Configuration
 
     /// <summary>
     /// App.config のなんかそれっぽいの。
-    /// <para><see cref="ConfigurationManager"/>は直接使わない方針。</para>
     /// </summary>
+    /// <remarks>
+    /// <para><see cref="ConfigurationManager"/>は直接使わない方針。</para>
+    /// </remarks>
     public sealed class AppConfiguration
     {
         /// <summary>
         /// 生成。
-        /// <para>デフォルトの App.config が使用される。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>デフォルトの App.config が使用される。</para>
+        /// </remarks>
         public AppConfiguration(AppConfigurationInitializeParameters initializeParameters)
             : this(ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None), initializeParameters)
         { }

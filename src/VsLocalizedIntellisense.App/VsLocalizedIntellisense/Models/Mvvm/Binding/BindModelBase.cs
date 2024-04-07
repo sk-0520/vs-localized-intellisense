@@ -13,8 +13,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
     {
         /// <summary>
         /// プロパティ値変更処理。
-        /// <para>プロパティ対象となるフィールドを指定し、変更があれば変更通知を行う。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>プロパティ対象となるフィールドを指定し、変更があれば変更通知を行う。</para>
+        /// </remarks>
         /// <typeparam name="T">プロパティの型。</typeparam>
         /// <param name="variable">プロパティの実体となるフィールド。</param>
         /// <param name="value">設定する値。</param>
@@ -55,8 +57,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding
 
         /// <summary>
         /// <see cref="IDisposable.Dispose"/>の内部処理。
-        /// <para>継承先クラスでは本メソッドを呼び出す必要がある。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>継承先クラスでは本メソッドを呼び出す必要がある。</para>
+        /// </remarks>
         /// <param name="disposing">CLRの管理下か。</param>
         protected virtual void Dispose(bool disposing)
         {

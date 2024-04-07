@@ -53,8 +53,10 @@ namespace VsLocalizedIntellisense.Models
 
         /// <summary>
         /// <see cref="IDisposable.Dispose"/>の内部処理。
-        /// <para>継承先クラスでは本メソッドを呼び出す必要がある。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>継承先クラスでは本メソッドを呼び出す必要がある。</para>
+        /// </remarks>
         /// <param name="disposing">CLRの管理下か。</param>
         protected virtual void Dispose(bool disposing)
         {

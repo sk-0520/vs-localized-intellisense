@@ -26,9 +26,11 @@ namespace VsLocalizedIntellisense.Models.Logger
 
         /// <summary>
         /// ログ出力実装。
+        /// </summary>
+        /// <remarks>
         /// <para>ログレベル判定は行わない。</para>
         /// <para>他のロガーから呼ばれることを想定しているため<see langword="public"/>としているがユーザーコードで使用することは想定していない。<see cref="LoggerBase"/>自体ユーザーコードには出てこないからまぁなんでもいいけど。</para>
-        /// </summary>
+        /// </remarks>
         /// <param name="logItem"></param>
         public abstract void OutputLog(in LogItem logItem);
 

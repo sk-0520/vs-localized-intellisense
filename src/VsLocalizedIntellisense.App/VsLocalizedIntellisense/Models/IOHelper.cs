@@ -24,8 +24,10 @@ namespace VsLocalizedIntellisense.Models
 
         /// <summary>
         /// 指定したディレクトリっぽいパスから物理ディレクトリを取得する。
-        /// <para>環境変数の展開を行う。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>環境変数の展開を行う。</para>
+        /// </remarks>
         /// <param name="path">ディレクトリパス。</param>
         /// <returns>ディレクトリ。存在しない場合は<see langword="null" /></returns>
         public static DirectoryInfo GetPhysicalDirectory(string path)

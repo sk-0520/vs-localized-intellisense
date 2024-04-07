@@ -16,20 +16,26 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 
         /// <summary>
         /// 暗号化されたファイルをコピー先で暗号化解除されたファイルとして保存できるようにします。
-        /// <para>/d</para>
         /// </summary>
+        /// <remarks>
+        /// <para>/d</para>
+        /// </remarks>
         public bool IsDecryption { get; set; }
         /// <summary>
         /// 新しいファイルが正しく書き込まれたことを確認します。
-        /// <para>/v</para>
         /// </summary>
+        /// <remarks>
+        /// <para>/v</para>
+        /// </remarks>
         public bool IsVerify { get; set; }
         /// <summary>
         /// プロンプト状態。
+        /// </summary>
+        /// <remarks>
         /// <para>[<see cref="PromptMode.Silent"/>] /y: 既存の宛先ファイルを上書きするかどうかを確認するプロンプトを抑制します。</para>
         /// <para>[<see cref="PromptMode.Confirm"/>] /-y: 既存のリンク先ファイルを上書きするかどうかを確認するプロンプトを表示します。</para>
         /// <para>[<see cref="PromptMode.Default"/>] デフォルト。</para>
-        /// </summary>
+        /// </remarks>
         public PromptMode PromptMode { get; set; }
 
         public Express Source { get; set; }

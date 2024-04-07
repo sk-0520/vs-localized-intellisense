@@ -15,8 +15,10 @@ namespace VsLocalizedIntellisense.Models.Service.CommandShell.Command
 
         /// <summary>
         /// 現在のドライブだけでなく、ドライブの現在のディレクトリも変更します。
-        /// <para>/d</para>
         /// </summary>
+        /// <remarks>
+        /// <para>/d</para>
+        /// </remarks>
         public bool WithDrive { get; set; }
 
         public Express Path { get; set; }

@@ -20,8 +20,10 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         /// <summary>
         /// 同時実行を抑制するか。
-        /// <para>基本的に <see langword="init"/> であることを前提としてる。使えんけど。</para>
         /// </summary>
+        /// <remarks>
+        /// <para>基本的に <see langword="init"/> であることを前提としてる。使えんけど。</para>
+        /// </remarks>
         public bool SuppressCommandWhileExecuting { get; set; } = true;
 
         #endregion
