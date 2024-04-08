@@ -7,7 +7,7 @@ namespace VsLocalizedIntellisense.Models.Data
     {
         public IntellisenseLanguageParts(string intellisenseVersion, string libraryName, string language)
         {
-            static string AssignThrowIfIllegal(string value, string parameterName)
+            static string ThrowIfIllegal(string value, string parameterName)
             {
                 if(value == null) {
                     throw new ArgumentNullException(parameterName);
@@ -19,9 +19,9 @@ namespace VsLocalizedIntellisense.Models.Data
                 return value;
             }
 
-            IntellisenseVersion = AssignThrowIfIllegal(intellisenseVersion, nameof(intellisenseVersion));
-            LibraryName = AssignThrowIfIllegal(libraryName, nameof(libraryName));
-            Language = AssignThrowIfIllegal(language, nameof(language));
+            IntellisenseVersion = ThrowIfIllegal(intellisenseVersion, nameof(intellisenseVersion));
+            LibraryName = ThrowIfIllegal(libraryName, nameof(libraryName));
+            Language = ThrowIfIllegal(language, nameof(language));
         }
 
         #region property
