@@ -23,19 +23,6 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
         }
 
         [Fact]
-        public void ExecuteTest()
-        {
-            DelegateCommand command = null;
-            command = new DelegateCommand(
-                o => {
-                    Assert.Equal(1, command.ExecutingCount);
-                    Assert.False(command.CanExecute(null));
-                }
-            );
-            command.Execute(null);
-        }
-
-        [Fact]
         public void SuppressCommandWhileExecutingTest()
         {
             DelegateCommand command = null;
@@ -44,9 +31,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
                     Assert.Equal(1, command.ExecutingCount);
                     Assert.True(command.CanExecute(null));
                 }
-            ) {
-                SuppressCommandWhileExecuting = false,
-            };
+            );
             command.Execute(null);
         }
 
@@ -76,7 +61,6 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
                 o => {
                     Assert.Equal(1, command.ExecutingCount);
                     Assert.Equal(100, o);
-                    Assert.False(command.CanExecute(o));
                 }
             );
             command.Execute(100);
@@ -92,9 +76,7 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
                     Assert.Equal(100, o);
                     Assert.True(command.CanExecute(o));
                 }
-            ) {
-                SuppressCommandWhileExecuting = false,
-            };
+            );
             command.Execute(100);
         }
 

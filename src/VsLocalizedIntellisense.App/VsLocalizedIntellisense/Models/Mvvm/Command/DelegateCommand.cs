@@ -46,10 +46,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         public override bool CanExecute(object parameter)
         {
-            if(SuppressCommandWhileExecuting) {
-                return ExecutingCount == 0 && CanExecuteFunc((TParameter)parameter);
-            }
-
             return CanExecuteFunc((TParameter)parameter);
         }
 
