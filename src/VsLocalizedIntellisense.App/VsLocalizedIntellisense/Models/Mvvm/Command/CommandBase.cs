@@ -18,14 +18,6 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         protected SynchronizationContext SynchronizationContext { get; }
 
-        /// <summary>
-        /// 同時実行を抑制するか。
-        /// </summary>
-        /// <remarks>
-        /// <para>基本的に <see langword="init"/> であることを前提としてる。使えんけど。</para>
-        /// </remarks>
-        public bool SuppressCommandWhileExecuting { get; set; } = true;
-
         #endregion
 
         #region function

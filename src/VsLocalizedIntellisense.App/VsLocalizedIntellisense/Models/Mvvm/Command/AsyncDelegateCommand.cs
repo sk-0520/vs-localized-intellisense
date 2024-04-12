@@ -29,6 +29,14 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
         /// </summary>
         public int ExecutingCount => this._executingCount;
 
+        /// <summary>
+        /// 同時実行を抑制するか。
+        /// </summary>
+        /// <remarks>
+        /// <para>基本的に <see langword="init"/> であることを前提としてる。使えんけど。</para>
+        /// </remarks>
+        public bool SuppressCommandWhileExecuting { get; set; } = true;
+
         private Func<TParameter, Task> ExecuteAction { get; }
         private Func<TParameter, bool> CanExecuteFunc { get; }
 
