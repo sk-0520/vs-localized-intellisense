@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using VsLocalizedIntellisense.Models;
 using VsLocalizedIntellisense.Models.Configuration;
 using VsLocalizedIntellisense.Models.Data;
 using VsLocalizedIntellisense.Models.Element;
@@ -63,9 +64,7 @@ namespace VsLocalizedIntellisense.ViewModels
                     appFileService.SaveIntellisenseVersionData(intellisenseVersionData);
 
                     // ちょっとこのためにデータ詰め直しとか関係各所のモデルやらに伝搬するのしんどいので再起動
-                    System.Diagnostics.Process.Start(Application.ResourceAssembly.Location);
-                    Application.Current.Shutdown();
-                    //ChangeMode(ContextMode.Download);
+                    AppHelper.Reboot();
                 } catch(Exception ex) {
                     Logger.LogError(ex.ToString());
                 } finally {
