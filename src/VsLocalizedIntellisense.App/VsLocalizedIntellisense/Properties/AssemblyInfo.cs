@@ -27,7 +27,7 @@ using System.Windows;
 [assembly: ThemeInfo(ResourceDictionaryLocation.None,ResourceDictionaryLocation.SourceAssembly)]
 
 
-[assembly: AssemblyVersion("0.0.13")]
+[assembly: AssemblyVersion("0.0.14")]
 [assembly: AssemblyInformationalVersion("REVISION")]
 
 [assembly: InternalsVisibleTo("VsLocalizedIntellisense.Test")]
