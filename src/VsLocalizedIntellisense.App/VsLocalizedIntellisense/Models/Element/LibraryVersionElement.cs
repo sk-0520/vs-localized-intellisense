@@ -8,7 +8,7 @@ namespace VsLocalizedIntellisense.Models.Element
         public LibraryVersionElement(string rawVersion, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            RawVersion = rawVersion;
+            RawVersion = rawVersion ?? throw new ArgumentNullException(nameof(rawVersion));
             Version = new Version(RawVersion);
         }
 

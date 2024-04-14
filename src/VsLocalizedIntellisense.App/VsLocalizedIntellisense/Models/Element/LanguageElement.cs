@@ -1,3 +1,4 @@
+using System;
 using VsLocalizedIntellisense.Models.Logger;
 
 namespace VsLocalizedIntellisense.Models.Element
@@ -7,7 +8,7 @@ namespace VsLocalizedIntellisense.Models.Element
         public LanguageElement(string language, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            Language = language;
+            Language = language ?? throw new ArgumentNullException(nameof(language));
         }
 
         #region property

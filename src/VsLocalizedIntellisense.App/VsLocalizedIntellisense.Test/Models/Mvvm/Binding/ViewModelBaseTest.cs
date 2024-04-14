@@ -1,12 +1,15 @@
 using Xunit;
 using VsLocalizedIntellisense.Models.Logger;
 using VsLocalizedIntellisense.Models.Mvvm.Binding;
+using System.Runtime.InteropServices;
+using System.Windows.Input;
+using VsLocalizedIntellisense.Models.Mvvm.Command;
 
 namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 {
     public class ViewModelBaseTest
     {
-        #region function
+        #region define
 
         private class TestModel
         {
@@ -48,6 +51,42 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
                 set => SetProperty(TestNestedModel, value, nameof(TestNestedModel.Value));
             }
         }
+
+        private class TestObserveViewModel: ViewModelBase
+        {
+            #region variable
+
+            private int _value = 0;
+            private ICommand _commandBase;
+
+            #endregion
+
+            #region property
+
+            public int Value
+            {
+                get => this._value;
+                set => SetVariable(ref this._value, value);
+            }
+
+            [ObserveProperty(nameof(Value))]
+            public int DoubleValue => Value * 2;
+
+            #endregion
+
+            #region command
+
+            [ObserveProperty(nameof(Value))]
+            public ICommand CommandBase => this._commandBase ??= new DelegateCommand(
+                _ => { }
+            );
+
+            #endregion
+        }
+
+        #endregion
+
+        #region function
 
         [Fact]
         public void SetProperty_public_Test()
@@ -142,6 +181,22 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Binding
 
         //    public bool PropIsEven => (this._prop % 2) == 0;
         //}
+
+        [Fact]
+        public void ViewModelBase_PropertyChanged_none_Test()
+        {
+            var test = new TestViewModel();
+            test.PublicValue = 123;
+        }
+
+        [Fact]
+        public void TestObserveViewModelTest()
+        {
+            // カバレッジ以外意味ねぇなぁ
+            var test = new TestObserveViewModel();
+            test.Value = 123;
+            Assert.Equal(246, test.DoubleValue);
+        }
 
         #endregion
     }
