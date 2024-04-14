@@ -8,8 +8,8 @@ namespace VsLocalizedIntellisense.Models.Element
         public IntellisenseVersionElement(string name, Version version, ILoggerFactory loggerFactory)
             : base(loggerFactory)
         {
-            Name = name;
-            Version = version;
+            Name = name ?? throw new ArgumentNullException(nameof(name));
+            Version = version ?? throw new ArgumentNullException(nameof(version));
         }
 
         #region proeprty
