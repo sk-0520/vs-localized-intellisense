@@ -8,30 +8,19 @@ using Microsoft.Extensions.Configuration;
 
 namespace VsLocalizedIntellisense.Diff.Models.Element
 {
-    public class MainElement: ObservableObject
+    public class LanguageSelectElement: WorkElementBase
     {
-        #region variable
-
-        private WorkState _workState = WorkState.Language;
-
-        #endregion
-
-        public MainElement(IAppPath appPath, IConfiguration configuration)
+        public LanguageSelectElement(IConfiguration configuration)
         {
-            AppPath = appPath;
             Configuration = configuration;
+
+            Languages = Configuration.GetRequiredSection("languages").Get<string[]>()!;
         }
 
         #region property
 
-        public WorkState WorkState
-        {
-            get => this._workState;
-            private set => SetProperty(ref this._workState, value);
-        }
-
-        private IAppPath AppPath { get; }
         private IConfiguration Configuration { get; }
+        public IReadOnlyCollection<string> Languages { get; }
 
         #endregion
 
