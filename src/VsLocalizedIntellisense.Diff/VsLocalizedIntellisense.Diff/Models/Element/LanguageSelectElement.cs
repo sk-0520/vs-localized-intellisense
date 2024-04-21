@@ -27,5 +27,11 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
         #region function
 
         #endregion
+
+        #region WorkElementBase
+
+        public override WorkState CurrentState { get; } = WorkState.Language;
+
+        #endregion
     }
 }
