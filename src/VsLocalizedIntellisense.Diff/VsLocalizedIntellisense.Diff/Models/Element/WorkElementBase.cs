@@ -9,5 +9,10 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
 {
     public abstract class WorkElementBase: ObservableObject
     {
+        #region property
+
+        public abstract WorkState CurrentState { get; }
+
+        #endregion
     }
 }
