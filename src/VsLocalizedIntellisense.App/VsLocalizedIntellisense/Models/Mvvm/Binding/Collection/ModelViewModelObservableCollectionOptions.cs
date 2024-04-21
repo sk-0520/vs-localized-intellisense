@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Threading;
 
 namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
@@ -10,7 +11,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public class ModelViewModelObservableCollectionOptions<TModel, TViewModel>
-        where TViewModel : ViewModelBase
+        where TViewModel : INotifyPropertyChanged
     {
         #region define
 

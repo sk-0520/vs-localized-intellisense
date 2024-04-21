@@ -18,7 +18,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
     /// <typeparam name="TModel"></typeparam>
     /// <typeparam name="TViewModel"></typeparam>
     public class ModelViewModelObservableCollectionManager<TModel, TViewModel>: ObservableCollectionManagerBase<TModel>
-        where TViewModel : ViewModelBase
+        where TViewModel : INotifyPropertyChanged
     {
         #region variable
 
@@ -146,6 +146,17 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             return true;
         }
 
+        /// <summary>
+        /// ViewModel が <see cref="IDisposable"/> を実装している場合に破棄する。
+        /// </summary>
+        /// <param name="viewModel"></param>
+        private void DisposeIfViewModel(TViewModel viewModel)
+        {
+            if(viewModel is IDisposable disposable) {
+                disposable.Dispose();
+            }
+        }
+
         #endregion
 
         #region ObservableCollectionManagerBase
@@ -224,7 +235,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             }
             if(Options.AutoDisposeViewModel) {
                 foreach(var oldViewModel in oldViewModels) {
-                    oldViewModel.Dispose();
+                    DisposeIfViewModel(oldViewModel);
                 }
             }
 
@@ -305,7 +316,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
             EditableViewModels.Clear();
             if(Options.AutoDisposeViewModel) {
                 foreach(var viewModel in oldViewModels) {
-                    viewModel.Dispose();
+                    DisposeIfViewModel(viewModel);
                 }
             }
 
@@ -332,7 +343,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Binding.Collection
 
                     if(Options.AutoDisposeViewModel) {
                         foreach(var oldItem in oldItems) {
-                            oldItem.Dispose();
+                            DisposeIfViewModel(oldItem);
                         }
                     }
                 }
