@@ -4,12 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CommunityToolkit.Mvvm.ComponentModel;
+using VsLocalizedIntellisense.Diff.Models;
 using VsLocalizedIntellisense.Diff.Models.Element;
 
 namespace VsLocalizedIntellisense.Diff.ViewModels
 {
     public abstract class WorkViewModelBase: ObservableObject
-    { }
+    {
+        #region property
+
+        public abstract WorkState CurrentState { get; }
+
+        #endregion
+    }
 
     public abstract class WorkViewModelBase<TModel>: WorkViewModelBase
         where TModel : WorkElementBase
@@ -21,7 +28,13 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
 
         #region property
 
-        public TModel Model { get; }
+        protected TModel Model { get; }
+
+        #endregion
+
+        #region WorkViewModelBase
+
+        public sealed override WorkState CurrentState => Model.CurrentState;
 
         #endregion
     }

@@ -34,6 +34,12 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
         {
             get
             {
+                if(this._workViewModel is not null) {
+                    if(this._workViewModel.CurrentState == Model.WorkState) {
+                        return this._workViewModel;
+                    }
+                }
+
                 this._workViewModel = Model.WorkState switch {
                     WorkState.Language => new LanguageSelectViewModel(
                         new LanguageSelectElement(Configuration)
