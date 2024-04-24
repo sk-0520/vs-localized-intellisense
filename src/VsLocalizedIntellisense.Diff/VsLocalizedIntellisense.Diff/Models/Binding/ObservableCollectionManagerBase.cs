@@ -211,16 +211,13 @@ namespace VsLocalizedIntellisense.Diff.Models.Binding
                 return;
             }
 
-            if(disposing) {
-                GC.SuppressFinalize(this);
-            }
-
             IsDisposed = true;
         }
 
         public void Dispose()
         {
             Dispose(true);
+            GC.SuppressFinalize(this);
         }
 
         #endregion
