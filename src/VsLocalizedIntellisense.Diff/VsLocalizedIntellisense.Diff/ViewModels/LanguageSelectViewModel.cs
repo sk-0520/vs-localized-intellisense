@@ -6,6 +6,8 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using CommunityToolkit.Mvvm.Input;
 using VsLocalizedIntellisense.Diff.Models;
 using VsLocalizedIntellisense.Diff.Models.Binding;
 using VsLocalizedIntellisense.Diff.Models.Element;
@@ -49,7 +51,24 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
 
         #endregion
 
+        #region command
+
+        ICommand? _SelectLanguageCommand;
+        public ICommand SelectLanguageCommand => this._SelectLanguageCommand ?? new RelayCommand<LanguageItemViewModel>(
+            (o) => {
+                SelectedLanguage = o!;
+                ChangeState(WorkState.Library);
+            }
+        );
+
+        #endregion
+
         #region WorkViewModelBase
+
+        protected override void ChangeState(WorkState state)
+        {
+
+        }
 
         #endregion
     }

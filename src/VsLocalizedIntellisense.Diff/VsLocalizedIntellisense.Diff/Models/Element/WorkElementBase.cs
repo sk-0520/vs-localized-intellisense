@@ -24,7 +24,7 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
         protected IConfiguration Configuration { get; }
 
 
-        public abstract WorkState CurrentState { get; }
+        public abstract WorkState SelfState { get; }
 
         #endregion
     }

@@ -36,7 +36,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
             get
             {
                 if(this._workViewModel is not null) {
-                    if(this._workViewModel.CurrentState == Model.WorkState) {
+                    if(this._workViewModel.SelfState == Model.WorkState) {
                         return this._workViewModel;
                     }
                 }
