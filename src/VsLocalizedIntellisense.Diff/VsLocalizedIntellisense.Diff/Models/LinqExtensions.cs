@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -30,8 +31,14 @@ namespace VsLocalizedIntellisense.Diff.Models
                 }
                 index += 1;
             }
-
             return -1;
+        }
+
+        public static ObservableCollection<TSource> ToObservableCollection<TSource>(this IEnumerable<TSource> source)
+        {
+            ArgumentNullException.ThrowIfNull(source, nameof(source));
+
+            return new ObservableCollection<TSource>(source);
         }
 
         #endregion

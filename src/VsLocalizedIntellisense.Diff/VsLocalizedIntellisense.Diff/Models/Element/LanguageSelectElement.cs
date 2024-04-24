@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,17 +12,20 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
 {
     public class LanguageSelectElement: WorkElementBase
     {
-        public LanguageSelectElement(IConfiguration configuration)
+        public LanguageSelectElement(MainElement mainElement, IConfiguration configuration)
+            : base(mainElement, configuration)
         {
-            Configuration = configuration;
-
-            Languages = Configuration.GetRequiredSection("languages").Get<string[]>()!;
+            Languages = Configuration
+                .GetRequiredSection("languages").Get<string[]>()!
+                .Select(a => new CultureInfo(a))
+                .Select(a => new LanguageItemElement(a))
+                .ToObservableCollection();
+            ;
         }
 
         #region property
 
-        private IConfiguration Configuration { get; }
-        public IReadOnlyCollection<string> Languages { get; }
+        public ObservableCollection<LanguageItemElement> Languages { get; }
 
         #endregion
 

@@ -23,6 +23,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
         {
             Model = model;
             Configuration = configuration;
+
         }
 
         #region property
@@ -42,7 +43,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
 
                 this._workViewModel = Model.WorkState switch {
                     WorkState.Language => new LanguageSelectViewModel(
-                        new LanguageSelectElement(Configuration)
+                        new LanguageSelectElement(Model, Configuration)
                     ),
                     _ => throw new NotImplementedException(),
                 };
