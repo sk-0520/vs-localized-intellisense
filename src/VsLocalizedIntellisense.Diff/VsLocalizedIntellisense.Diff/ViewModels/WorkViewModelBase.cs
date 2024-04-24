@@ -13,7 +13,9 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
     {
         #region property
 
-        public abstract WorkState CurrentState { get; }
+        public abstract WorkState SelfState { get; }
+
+        protected abstract void ChangeState(WorkState state);
 
         #endregion
     }
@@ -34,7 +36,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
 
         #region WorkViewModelBase
 
-        public sealed override WorkState CurrentState => Model.CurrentState;
+        public sealed override WorkState SelfState => Model.SelfState;
 
         #endregion
     }
