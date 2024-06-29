@@ -12,13 +12,13 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         #endregion
 
-        public AsyncDelegateCommandBase(Func<TParameter, Task> executeAction, Func<TParameter, bool> canExecuteFunc)
+        protected AsyncDelegateCommandBase(Func<TParameter, Task> executeAction, Func<TParameter, bool> canExecuteFunc)
         {
             ExecuteAction = executeAction ?? throw new ArgumentNullException(nameof(executeAction));
             CanExecuteFunc = canExecuteFunc ?? throw new ArgumentNullException(nameof(canExecuteFunc));
         }
 
-        public AsyncDelegateCommandBase(Func<TParameter, Task> executeAction)
+        protected AsyncDelegateCommandBase(Func<TParameter, Task> executeAction)
             : this(executeAction, EmptyCanExecuteFunc)
         { }
 

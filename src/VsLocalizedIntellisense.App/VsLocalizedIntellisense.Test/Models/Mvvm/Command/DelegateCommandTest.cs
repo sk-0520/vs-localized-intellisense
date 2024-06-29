@@ -28,7 +28,6 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             DelegateCommand command = null;
             command = new DelegateCommand(
                 o => {
-                    Assert.Equal(1, command.ExecutingCount);
                     Assert.True(command.CanExecute(null));
                 }
             );
@@ -59,7 +58,6 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             DelegateCommand<int> command = null;
             command = new DelegateCommand<int>(
                 o => {
-                    Assert.Equal(1, command.ExecutingCount);
                     Assert.Equal(100, o);
                 }
             );
@@ -72,7 +70,6 @@ namespace VsLocalizedIntellisense.Test.Models.Mvvm.Command
             DelegateCommand<int> command = null;
             command = new DelegateCommand<int>(
                 o => {
-                    Assert.Equal(1, command.ExecutingCount);
                     Assert.Equal(100, o);
                     Assert.True(command.CanExecute(o));
                 }

@@ -4,22 +4,17 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 {
     public abstract class DelegateCommandBase<TParameter>: CommandBase
     {
-        public DelegateCommandBase(Action<TParameter> executeAction, Func<TParameter, bool> canExecuteFunc)
+        protected DelegateCommandBase(Action<TParameter> executeAction, Func<TParameter, bool> canExecuteFunc)
         {
             ExecuteAction = executeAction ?? throw new ArgumentNullException(nameof(executeAction));
             CanExecuteFunc = canExecuteFunc ?? throw new ArgumentNullException(nameof(canExecuteFunc));
         }
 
-        public DelegateCommandBase(Action<TParameter> executeAction)
+        protected DelegateCommandBase(Action<TParameter> executeAction)
             : this(executeAction, EmptyCanExecuteFunc)
         { }
 
         #region property
-
-        /// <summary>
-        /// 現在実行数。
-        /// </summary>
-        public int ExecutingCount { get; private set; }
 
         private Action<TParameter> ExecuteAction { get; }
         private Func<TParameter, bool> CanExecuteFunc { get; }
@@ -36,12 +31,7 @@ namespace VsLocalizedIntellisense.Models.Mvvm.Command
 
         public override void Execute(object parameter)
         {
-            ExecutingCount += 1;
-            try {
-                ExecuteAction((TParameter)parameter);
-            } finally {
-                ExecutingCount -= 1;
-            }
+            ExecuteAction((TParameter)parameter);
         }
 
         public override bool CanExecute(object parameter)
