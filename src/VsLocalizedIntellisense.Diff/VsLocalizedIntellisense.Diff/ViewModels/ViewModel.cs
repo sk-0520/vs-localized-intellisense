@@ -11,7 +11,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
 {
     public abstract class ViewModelBase: ObservableObject
     {
-        public ViewModelBase()
+        protected ViewModelBase()
             : base()
         { }
     }

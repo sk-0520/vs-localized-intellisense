@@ -11,7 +11,7 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
 {
     public abstract class WorkElementBase: ObservableObject
     {
-        public WorkElementBase(MainElement mainElement, IConfiguration configuration)
+        protected WorkElementBase(MainElement mainElement, IConfiguration configuration)
         {
             MainElement = mainElement;
             Configuration = configuration;

@@ -34,7 +34,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
             if(language is not null && LanguageCollection.TryGetViewModel(language, out var selectedLanguage)) {
                 this._selectedLanguage = selectedLanguage;
             } else {
-                this._selectedLanguage = LanguageCollection.ViewModels.First();
+                this._selectedLanguage = LanguageCollection.ViewModels[0];
             }
         }
 
@@ -54,7 +54,7 @@ namespace VsLocalizedIntellisense.Diff.ViewModels
         #region command
 
         ICommand? _SelectLanguageCommand;
-        public ICommand SelectLanguageCommand => this._SelectLanguageCommand ?? new RelayCommand<LanguageItemViewModel>(
+        public ICommand SelectLanguageCommand => this._SelectLanguageCommand ??= new RelayCommand<LanguageItemViewModel>(
             (o) => {
                 SelectedLanguage = o!;
                 ChangeState(WorkState.Library);

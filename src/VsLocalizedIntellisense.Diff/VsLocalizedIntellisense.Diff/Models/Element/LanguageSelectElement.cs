@@ -19,7 +19,7 @@ namespace VsLocalizedIntellisense.Diff.Models.Element
                 .GetRequiredSection("languages").Get<string[]>()!
                 .Select(a => new CultureInfo(a))
                 .Select(a => new LanguageItemElement(a))
-                .ToObservableCollection();
+                .ToObservableCollection()
             ;
         }
 
