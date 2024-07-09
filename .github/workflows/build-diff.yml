@@ -1,0 +1,43 @@
+name: Build Diff
+
+on:
+  push:
+    paths:
+      - 'src/VsLocalizedIntellisense.Diff/**/*'
+      - '.github/workflows/build-diff.yml'
+  pull_request:
+    paths:
+      - 'src/VsLocalizedIntellisense.Diff/**/*'
+      - '.github/workflows/build-diff.yml'
+
+env:
+  DOTNET_VERSION: 8.0.x
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: Build
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: <Checkout> Repository
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            .github
+            src
+
+      - name: <Setup> .NET ${{ env.DOTNET_VERSION }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: <Test> VsLocalizedIntellisense.Diff.Test
+        shell: bash
+        run: |
+          cd src/VsLocalizedIntellisense.Diff/VsLocalizedIntellisense.Diff.Test
+          dotnet test
