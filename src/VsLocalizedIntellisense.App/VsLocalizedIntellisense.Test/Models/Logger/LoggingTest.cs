@@ -111,15 +111,12 @@ namespace VsLocalizedIntellisense.Test.Models.Logger
             public int CallerLineNumber { get; set; } = Default?.CallerLineNumber ?? default;
         }
 
-        public static IEnumerable<object[]> FormatTestData => new object[][]
+        public static TheoryData<FormatTestItem> FormatTestData => new()
         {
-            new []
-            {
-                new FormatTestItem(
-                    $"2024-02-25T11:22:33.123 {FormatTestItem.Default.Level} {FormatTestItem.Default.Category} message {FormatTestItem.Default.CallerFilePath}({FormatTestItem.Default.CallerLineNumber})",
-                    "message"
-                ),
-            }
+            new FormatTestItem(
+                $"2024-02-25T11:22:33.123 {FormatTestItem.Default.Level} {FormatTestItem.Default.Category} message {FormatTestItem.Default.CallerFilePath}({FormatTestItem.Default.CallerLineNumber})",
+                "message"
+            ),
         };
 
         [Theory]
