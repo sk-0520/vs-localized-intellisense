@@ -36,7 +36,7 @@ namespace VsLocalizedIntellisense.Diff.Models
 
         public static ObservableCollection<TSource> ToObservableCollection<TSource>(this IEnumerable<TSource> source)
         {
-            ArgumentNullException.ThrowIfNull(source, nameof(source));
+            ArgumentNullException.ThrowIfNull(source);
 
             return new ObservableCollection<TSource>(source);
         }
