@@ -16,7 +16,7 @@ const baseDirectoryPath = path.join(__dirname, '..', 'public', 'data', 'intellis
 
 const updateTargetDirectoryNames: ReadonlySet<string> = new Set([
 	'netstandard2.1',
-	'net8.0',
+	'net9.0',
 ]);
 
 

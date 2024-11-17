@@ -1,0 +1,384 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Windows.Input.Manipulations</name>
+  </assembly>
+  <members>
+    <member name="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D">
+      <summary vsli:raw="Describes desired expansion behavior of an inertia processor.">描述慣性處理器所需的伸展行為。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D&quot; /&gt; class.">初始化 <see cref="T:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredDeceleration">
+      <summary vsli:raw="Gets or sets the desired expansion deceleration, in coordinate units per millisecond squared.">取得或設定所需的伸展減速程度 (以每毫秒平方的座標單位為單位)。</summary>
+      <returns vsli:raw="The desired expansion deceleration, in coordinate units per millisecond squared.">所需的伸展減速程度 (以每毫秒平方的座標單位為單位)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionX">
+      <summary vsli:raw="Gets or sets the desired expansion along the x-axis, in coordinate units.">取得或設定沿 X 軸的伸展量 (以座標單位為單位)。</summary>
+      <returns vsli:raw="The desired expansion along the x-axis, in coordinate units.">沿 X 軸的伸展量 (以座標單位為單位)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.DesiredExpansionY">
+      <summary vsli:raw="Gets or sets the desired expansion along the y-axis, in coordinate units.">取得或設定沿 Y 軸的伸展量 (以座標單位為單位)。</summary>
+      <returns vsli:raw="The desired expansion along the y-axis, in coordinate units.">沿 Y 軸的伸展量 (以座標單位為單位)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialRadius">
+      <summary vsli:raw="Gets or sets the initial average radius, in coordinate units.">取得或設定初始平均半徑 (以座標單位計)。</summary>
+      <returns vsli:raw="The initial average radius, in coordinate units.">初始平均半徑 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityX">
+      <summary vsli:raw="Gets or sets the initial expansion velocity along the x-axis, in coordinate units per millisecond.">取得或設定沿 X 軸的初始伸展速度 (以每毫秒的座標單位為單位)。</summary>
+      <returns vsli:raw="The initial expansion velocity along the x-axis, in coordinate units per millisecond.">沿 X 軸的初始伸展速度 (以每毫秒的座標單位為單位)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaExpansionBehavior2D.InitialVelocityY">
+      <summary vsli:raw="Gets or sets the initial expansion velocity along the y-axis, in coordinate units per millisecond.">取得或設定沿 Y 軸的初始伸展速度 (以每毫秒的座標單位為單位)。</summary>
+      <returns vsli:raw="The initial expansion velocity along the y-axis, in coordinate units per millisecond.">沿 Y 軸的初始伸展速度 (以每毫秒的座標單位為單位)。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.InertiaParameters2D">
+      <summary vsli:raw="Base class from which all inertia parameter classes are derived.">基底類別，從其中衍生所有的慣性參數類別。</summary>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.InertiaProcessor2D">
+      <summary vsli:raw="Implements the extrapolation of a manipulation's position, orientation, and average radius.">實作操作的位置、方向和平均半徑的外插補。</summary>
+    </member>
+    <member name="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed">
+      <summary vsli:raw="Occurs when extrapolation has completed.">發生於外插補已經完成時。</summary>
+    </member>
+    <member name="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta">
+      <summary vsli:raw="Occurs when the extrapolation origin has changed or when translation, scaling, or rotation have occurred.">發生於外插補原點已變更時，或是發生於已進行轉移、縮放或旋轉時。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaProcessor2D.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.InertiaProcessor2D&quot; /&gt; class.">初始化 <see cref="T:System.Windows.Input.Manipulations.InertiaProcessor2D" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Complete(System.Int64)">
+      <summary vsli:raw="Completes final extrapolation by using the specified timestamp and raises the &lt;see cref=&quot;E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed&quot; /&gt; event.">使用指定的時間戳記完成最終的外推，並引發 <see cref="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Completed" /> 事件。</summary>
+      <param name="timestamp" vsli:raw="The timestamp to complete extrapolation, in 100-nanosecond ticks.">完成外推的時間戳記 (以 100 奈秒為單位)。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The timestamp parameter is less than the initial or previous timestamp.">時間戳記參數小於初始或上一個時間戳記。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaProcessor2D.Process(System.Int64)">
+      <summary vsli:raw="Extrapolates the manipulation's position, orientation, and average radius at the specified time.">將操作在指定時間的位置、方向和平均半徑外推。</summary>
+      <param name="timestamp" vsli:raw="The timestamp to perform extrapolation, in 100-nanosecond ticks.">執行外推的時間戳記 (以 100 奈秒為單位)。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The timestamp parameter is less than the initial or previous timestamp.">時間戳記參數小於初始或上一個時間戳記。</exception>
+      <returns vsli:raw="The manipulation's position, orientation, and average radius at the specified time. &lt;see langword=&quot;true&quot; /&gt; if extrapolation is in progress; otherwise, &lt;see langword=&quot;false&quot; /&gt; if extrapolation has completed.">操作在指定時間的位置、方向和平均半徑。 如果外推正在進行則為 <see langword="true" />否則，如果外推已完成則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaProcessor2D.SetParameters(System.Windows.Input.Manipulations.InertiaParameters2D)">
+      <summary vsli:raw="Sets parameters on the inertia processor.">設定慣性處理器的參數。</summary>
+      <param name="parameters" vsli:raw="Parameters to set.">要設定的參數。</param>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.ExpansionBehavior">
+      <summary vsli:raw="Gets or sets the expansion behavior of the inertia processor.">取得或設定慣性處理器的膨脹行為。</summary>
+      <returns vsli:raw="The expansion behavior of the inertia processor.">慣性處理器的膨脹行為。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginX">
+      <summary vsli:raw="Gets or sets the x-coordinate for the initial origin, in coordinate units.">取得或設定初始原點的 X 座標 (以座標單位計)。</summary>
+      <returns vsli:raw="The x-coordinate for the initial origin, in coordinate units.">初始原點的 X 座標 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.InitialOriginY">
+      <summary vsli:raw="Gets or sets the y-coordinate for the initial origin, in coordinate units.">取得或設定初始原點的 Y 座標 (以座標單位計)。</summary>
+      <returns vsli:raw="The y-coordinate for the initial origin, in coordinate units.">初始原點的 Y 座標 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.IsRunning">
+      <summary vsli:raw="Gets whether inertia is currently in progress.">取得慣性是否仍在進行中的資訊。</summary>
+      <returns vsli:raw="A Boolean value indicating whether inertia is currently in progress.">布林值，指出慣性是否仍在進行中。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.RotationBehavior">
+      <summary vsli:raw="Gets or sets the rotation behavior of the inertia processor.">取得或設定慣性處理器的旋轉行為。</summary>
+      <returns vsli:raw="The rotation behavior of the inertia processor.">慣性處理器的旋轉行為。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaProcessor2D.TranslationBehavior">
+      <summary vsli:raw="Gets or sets the translation behavior of the inertia processor.">取得或設定慣性處理器的轉移行為。</summary>
+      <returns vsli:raw="The translation behavior of the inertia processor.">慣性處理器的轉移行為。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D">
+      <summary vsli:raw="Describes desired rotation behavior of an inertia processor.">描述慣性處理器所需的旋轉行為。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D&quot; /&gt; class.">初始化 <see cref="T:System.Windows.Input.Manipulations.InertiaRotationBehavior2D" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredDeceleration">
+      <summary vsli:raw="Gets or sets the desired angular deceleration, in radians per millisecond squared.">取得或設定所需的角減速程度 (以每毫秒平方的弧度計)。</summary>
+      <returns vsli:raw="The desired angular deceleration, in radians per millisecond squared.">所需的角減速程度 (以每毫秒平方的弧度計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.DesiredRotation">
+      <summary vsli:raw="Gets or sets the desired rotation, in radians.">取得或設定所需的旋轉弧度。</summary>
+      <returns vsli:raw="The desired rotation, in radians.">所需的旋轉弧度。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaRotationBehavior2D.InitialVelocity">
+      <summary vsli:raw="Gets or sets the initial rotational velocity, in radians per millisecond.">取得或設定初始旋轉速度 (以每毫秒的弧度計)。</summary>
+      <returns vsli:raw="The initial rotational velocity, in radians per millisecond.">初始旋轉速度 (以每毫秒的弧度計)。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D">
+      <summary vsli:raw="Describes desired translation behavior of an inertia processor.">描述慣性處理器所需的轉移行為。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D&quot; /&gt; class.">初始化 <see cref="T:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDeceleration">
+      <summary vsli:raw="Gets or sets the desired deceleration, in coordinate units per millisecond squared.">取得或設定所需的減速程度 (以每毫秒平方的座標單位計)。</summary>
+      <returns vsli:raw="The desired deceleration, in coordinate units per millisecond squared.">所需的減速程度 (以每毫秒平方的座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.DesiredDisplacement">
+      <summary vsli:raw="Gets or sets the absolute distance that the object needs to travel along the velocity vector, in coordinate units.">取得或設定物件沿速度向量移動所需的絕對距離 (以座標單位計)。</summary>
+      <returns vsli:raw="The absolute distance that the object needs to travel along the velocity vector, in coordinate units.">物件沿速度向量移動所需的絕對距離 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityX">
+      <summary vsli:raw="Gets or sets the initial velocity along the x-axis, in coordinate units per millisecond.">取得或設定沿 X 軸的初始速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The initial velocity along the x-axis, in coordinate units per millisecond.">沿 X 軸的初始速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.InertiaTranslationBehavior2D.InitialVelocityY">
+      <summary vsli:raw="Gets or sets the initial velocity along the y-axis, in coordinate units per millisecond.">取得或設定沿 Y 軸的初始速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The initial velocity along the y-axis, in coordinate units per millisecond.">沿 Y 軸的初始速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs">
+      <summary vsli:raw="Represents data that is sent with a ManipulationProcessor2D.Completed event or an InertiaProcessor2D.Completed event.">代表使用 ManipulationProcessor2D 或 InertiaProcessor2D 所傳送的資料。已完成事件或已 完成 的事件。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginX">
+      <summary vsli:raw="Gets the new x-coordinate of the composite position of the manipulation.">取得操作之複合位置的新 X 座標。</summary>
+      <returns vsli:raw="The new x-coordinate of the composite position of the manipulation.">操作之複合位置的新 X 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.OriginY">
+      <summary vsli:raw="Gets the new y-coordinate of the composite position of the manipulation.">取得操作之複合位置的新 Y 座標。</summary>
+      <returns vsli:raw="The new y-coordinate of the composite position of the manipulation.">操作之複合位置的新 Y 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Total">
+      <summary vsli:raw="Gets the total amount of change since the manipulation started.">取得自操作開始以來的總變更量。</summary>
+      <returns vsli:raw="The total amount of change since the manipulation started.">自操作開始以來的總變更量。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DCompletedEventArgs.Velocities">
+      <summary vsli:raw="Gets the current velocities of the manipulation.">取得操作的目前速度。</summary>
+      <returns vsli:raw="The current velocities of the manipulation.">操作的目前速度。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs">
+      <summary vsli:raw="Represents data that is sent with a &lt;see cref=&quot;E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta&quot; /&gt; event or &lt;see cref=&quot;E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta&quot; /&gt; event.">表示與 <see cref="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta" /> 事件或 <see cref="E:System.Windows.Input.Manipulations.InertiaProcessor2D.Delta" /> 事件一起傳送的資料。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Cumulative">
+      <summary vsli:raw="Gets the total amount of change since the manipulation started.">取得自操作開始以來的總變更量。</summary>
+      <returns vsli:raw="The total amount of change since the manipulation started.">自操作開始以來的總變更量。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Delta">
+      <summary vsli:raw="Gets the amount of change since the last event.">取得自上一個事件以來的變更量。</summary>
+      <returns vsli:raw="The amount of change since the last event.">自上一個事件以來的變更量。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginX">
+      <summary vsli:raw="Gets the new x-coordinate of the composite position of the manipulation.">取得操作之複合位置的新 X 座標。</summary>
+      <returns vsli:raw="The new x-coordinate of the composite position of the manipulation.">操作之複合位置的新 X 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.OriginY">
+      <summary vsli:raw="Gets the new y-coordinate of the composite position of the manipulation.">取得操作之複合位置的新 Y 座標。</summary>
+      <returns vsli:raw="The new y-coordinate of the composite position of the manipulation.">操作之複合位置的新 Y 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DDeltaEventArgs.Velocities">
+      <summary vsli:raw="Gets the current velocities of the manipulation.">取得操作的目前速度。</summary>
+      <returns vsli:raw="The current velocities of the manipulation.">操作的目前速度。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs">
+      <summary vsli:raw="Represents data that is sent with a &lt;see cref=&quot;E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started&quot; /&gt; event.">表示與 <see cref="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started" /> 事件一起傳送的資料。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginX">
+      <summary vsli:raw="Gets the x-coordinate of the origin.">取得原點的 X 座標。</summary>
+      <returns vsli:raw="The x-coordinate of the origin.">原點的 X 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulation2DStartedEventArgs.OriginY">
+      <summary vsli:raw="Gets the y-coordinate of the origin.">取得原點的 Y 座標。</summary>
+      <returns vsli:raw="The y-coordinate of the origin.">原點的 Y 座標。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.ManipulationDelta2D">
+      <summary vsli:raw="Represents the result of a 2D manipulation.">表示 2D 操作的結果。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionX">
+      <summary vsli:raw="Gets the amount of expansion along the x-axis, in coordinate units.">取得沿 X 軸的膨脹量 (以座標單位計)。</summary>
+      <returns vsli:raw="The amount of expansion along the x-axis, in coordinate units.">沿 X 軸的膨脹量 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ExpansionY">
+      <summary vsli:raw="Gets the amount of expansion along the y-axis, in coordinate units.">取得沿 Y 軸的膨脹量 (以座標單位計)。</summary>
+      <returns vsli:raw="The amount of expansion along the y-axis, in coordinate units.">沿 Y 軸的膨脹量 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.Rotation">
+      <summary vsli:raw="Gets the amount of rotation, in radians.">取得旋轉的弧度。</summary>
+      <returns vsli:raw="The amount of rotation, in radians.">旋轉的弧度。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleX">
+      <summary vsli:raw="Gets the scale factor along the x-axis.">取得 X 軸縮放比例。</summary>
+      <returns vsli:raw="The scale factor along the x-axis.">沿著 X 軸的縮放比例。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.ScaleY">
+      <summary vsli:raw="Gets the scale factor along the y-axis.">取得 Y 軸縮放比例。</summary>
+      <returns vsli:raw="The scale factor along the y-axis.">沿著 Y 軸的縮放比例。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationX">
+      <summary vsli:raw="Gets the translation along the x-axis, in coordinate units.">取得沿 X 軸的轉移 (以座標單位計)。</summary>
+      <returns vsli:raw="The translation along the x-axis, in coordinate units.">沿 X 軸的轉移 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationDelta2D.TranslationY">
+      <summary vsli:raw="Gets the translation along the y-axis, in coordinate units.">取得沿 Y 軸的轉移 (以座標單位計)。</summary>
+      <returns vsli:raw="The translation along the y-axis, in coordinate units.">沿 Y 軸的轉移 (以座標單位計)。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.ManipulationParameters2D">
+      <summary vsli:raw="Base class from which all manipulation parameter classes are derived.">基底類別，從其中衍生所有的操作參數類別。</summary>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.ManipulationPivot2D">
+      <summary vsli:raw="Represents pivot information used by a manipulation processor for single-manipulator rotations.">表示操作處理器用於單一操作工具旋轉的樞紐資訊。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationPivot2D.#ctor">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.ManipulationPivot2D&quot; /&gt; class.">初始化 <see cref="T:System.Windows.Input.Manipulations.ManipulationPivot2D" /> 類別的新執行個體。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Radius">
+      <summary vsli:raw="Gets or sets the distance from the pivot point to the edge of the manipulatable region.">取得或設定從樞紐點到可操作區域邊緣之間的距離。</summary>
+      <returns vsli:raw="The distance from the pivot point to the edge of the manipulatable region.">從樞紐點到可操作區域邊緣之間的距離。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationPivot2D.X">
+      <summary vsli:raw="Gets or sets the X position of the pivot.">取得或設定樞紐的 X 位置。</summary>
+      <returns vsli:raw="The X position of the pivot.">樞紐的 X 位置。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationPivot2D.Y">
+      <summary vsli:raw="Gets or sets the Y position of the pivot.">取得或設定樞紐的 Y 位置。</summary>
+      <returns vsli:raw="The Y position of the pivot.">樞紐的 Y 位置。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.ManipulationProcessor2D">
+      <summary vsli:raw="Implements a multiple-input, single-output compositor for two-dimensional (2-D) transformations in a shared coordinate space.">在共用座標空間中，實作二維 (2-D) 轉換的多重輸入單一輸出合成器。</summary>
+    </member>
+    <member name="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed">
+      <summary vsli:raw="Occurs when a manipulation has competed.">發生於操作已經完成時。</summary>
+    </member>
+    <member name="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Delta">
+      <summary vsli:raw="Occurs when the manipulation origin has changed or when translation, scaling, or rotation have occurred.">發生於操作原點已變更時，或是發生於已進行轉移、縮放或旋轉時。</summary>
+    </member>
+    <member name="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Started">
+      <summary vsli:raw="Occurs when a new manipulation has started.">發生於新的操作已經開始時。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;T:System.Windows.Input.Manipulations.ManipulationProcessor2D&quot; /&gt; object.">建立新的 <see cref="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" /> 物件。</summary>
+      <param name="supportedManipulations" vsli:raw="The initial set of supported manipulations.">最初的一組支援的操作。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;supportedManipulations&quot; /&gt; parameter is not a valid combination of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulations2D&quot; /&gt; enumeration values.">
+        <paramref name="supportedManipulations" /> 參數不是有效 <see cref="T:System.Windows.Input.Manipulations.Manipulations2D" /> 列舉值的結合。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.#ctor(System.Windows.Input.Manipulations.Manipulations2D,System.Windows.Input.Manipulations.ManipulationPivot2D)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;T:System.Windows.Input.Manipulations.ManipulationProcessor2D&quot; /&gt; object.">建立新的 <see cref="T:System.Windows.Input.Manipulations.ManipulationProcessor2D" /> 物件。</summary>
+      <param name="supportedManipulations" vsli:raw="The initial set of supported manipulations.">最初的一組支援的操作。</param>
+      <param name="pivot" vsli:raw="Pivot information for single-manipulator rotations.">單一操作工具旋轉的樞軸資訊。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;supportedManipulations&quot; /&gt; parameter is not a valid combination of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulations2D&quot; /&gt; enumeration values.">
+        <paramref name="supportedManipulations" /> 參數不是有效 <see cref="T:System.Windows.Input.Manipulations.Manipulations2D" /> 列舉值的結合。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.CompleteManipulation(System.Int64)">
+      <summary vsli:raw="Forces the current manipulation to complete and raises the &lt;see cref=&quot;E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed&quot; /&gt; event.">強制完成目前的操作並引發 <see cref="E:System.Windows.Input.Manipulations.ManipulationProcessor2D.Completed" /> 事件。</summary>
+      <param name="timestamp" vsli:raw="The timestamp to complete the manipulation, in 100-nanosecond ticks.">完成操作的時間戳記 (以 100 奈秒為計時單位)。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The timestamp is less than the previous timestamp for the current manipulation.">時間戳記小於目前操作的前一個時間戳記。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.ProcessManipulators(System.Int64,System.Collections.Generic.IEnumerable{System.Windows.Input.Manipulations.Manipulator2D})">
+      <summary vsli:raw="Processes the specified manipulators as a single batch action.">將指定的多項操作當做單一批次動作處理。</summary>
+      <param name="timestamp" vsli:raw="The timestamp for the batch, in 100-nanosecond ticks.">批次的時間戳記 (以 100 奈秒為計時單位)。</param>
+      <param name="manipulators" vsli:raw="The set of manipulators that are currently in scope.">目前在範圍中的一組操作工具。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The timestamp is less than the previous timestamp for the current manipulation.">時間戳記小於目前操作的前一個時間戳記。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.ManipulationProcessor2D.SetParameters(System.Windows.Input.Manipulations.ManipulationParameters2D)">
+      <summary vsli:raw="Sets parameters on the manipulation processor.">在操作處理器上設定參數。</summary>
+      <param name="parameters" vsli:raw="Parameters to set.">要設定的參數。</param>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.MinimumScaleRotateRadius">
+      <summary vsli:raw="Gets or sets the minimum radius, in coordinate units, necessary for a manipulator to participate in scaling and rotation.">取得或設定操作工具參與進行縮放和旋轉所需的最小半徑 (以座標單位計)。</summary>
+      <returns vsli:raw="The minimum radius, in coordinate units, necessary for a manipulator to participate in scaling and rotation.">操作工具參與進行縮放和旋轉所需的最小半徑 (以座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.Pivot">
+      <summary vsli:raw="Gets or sets the pivot information for the manipulation processor.">取得或設定操作處理器的樞軸資訊。</summary>
+      <returns vsli:raw="The pivot information for the manipulation processor.">操作處理器的樞軸資訊。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationProcessor2D.SupportedManipulations">
+      <summary vsli:raw="Gets or sets the current set of supported manipulations.">取得或設定目前的一組支援的操作。</summary>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The property tries to set a value that is not a valid combination of the &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulations2D&quot; /&gt; enumeration values.">屬性嘗試設定的值不是 <see cref="T:System.Windows.Input.Manipulations.Manipulations2D" /> 列舉值有效組合。</exception>
+      <returns vsli:raw="The current set of supported manipulations.">目前的一組支援的操作。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.Manipulations2D">
+      <summary vsli:raw="Represents the possible affine two-dimensional (2-D) manipulations.">表示可能的二維 (2-D) 仿射操作。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.All">
+      <summary vsli:raw="All available manipulations.">所有可用的操作。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.None">
+      <summary vsli:raw="No manipulations.">無操作。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.Rotate">
+      <summary vsli:raw="A rotation.">旋轉。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.Scale">
+      <summary vsli:raw="A scale in both directions.">在兩個方向上的縮放。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.Translate">
+      <summary vsli:raw="A translation in the x and/or y axes.">在 X 軸及/或 Y 軸上的轉移。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateX">
+      <summary vsli:raw="A translation in the x-axis.">在 X 軸上的轉移。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.Manipulations2D.TranslateY">
+      <summary vsli:raw="A translation in the y-axis.">在 Y 軸上的轉移。</summary>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.ManipulationVelocities2D">
+      <summary vsli:raw="Represents a set of velocities calculated by the manipulation and inertia processors.">表示由操作處理器和慣性處理器所計算出的一組速度。</summary>
+    </member>
+    <member name="F:System.Windows.Input.Manipulations.ManipulationVelocities2D.Zero">
+      <summary vsli:raw="Gets a &lt;see cref=&quot;T:System.Windows.Input.Manipulations.ManipulationVelocities2D&quot; /&gt; with all velocities set to zero.">取得各個速度都設為零的 <see cref="T:System.Windows.Input.Manipulations.ManipulationVelocities2D" />。</summary>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.AngularVelocity">
+      <summary vsli:raw="Gets the angular velocity, in radians per millisecond.">取得角速度 (以每毫秒的弧度計)。</summary>
+      <returns vsli:raw="The angular velocity, in radians per millisecond.">角速度 (以每毫秒的弧度計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityX">
+      <summary vsli:raw="Gets the expansion velocity along the x-axis, in coordinate units per millisecond.">取得沿 X 軸的膨脹速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The expansion velocity along the x-axis, in coordinate units per millisecond.">沿 X 軸的膨脹速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.ExpansionVelocityY">
+      <summary vsli:raw="Gets the expansion velocity along the y-axis, in coordinate units per millisecond.">取得沿 Y 軸的膨脹速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The expansion velocity along the y-axis, in coordinate units per millisecond.">沿 Y 軸的膨脹速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityX">
+      <summary vsli:raw="Gets the velocity along the x-axis, in coordinate units per millisecond.">取得沿 X 軸的速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The velocity along the x-axis, in coordinate units per millisecond.">沿 X 軸的速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.ManipulationVelocities2D.LinearVelocityY">
+      <summary vsli:raw="Gets the velocity along the y-axis, in coordinate units per millisecond.">取得沿 Y 軸的速度 (以每毫秒的座標單位計)。</summary>
+      <returns vsli:raw="The velocity along the y-axis, in coordinate units per millisecond.">沿 Y 軸的速度 (以每毫秒的座標單位計)。</returns>
+    </member>
+    <member name="T:System.Windows.Input.Manipulations.Manipulator2D">
+      <summary vsli:raw="Represents a 2D manipulator at an instant in time.">表示瞬間時間上的 2D 操作。</summary>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.Manipulator2D.#ctor(System.Int32,System.Single,System.Single)">
+      <summary vsli:raw="Creates a new &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object with the specified properties.">使用指定的屬性建立新的 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</summary>
+      <param name="id" vsli:raw="The unique ID for this manipulator.">這個操作工具的唯一識別碼。</param>
+      <param name="x" vsli:raw="The x-coordinate of the manipulator.">操作工具的 X 座標。</param>
+      <param name="y" vsli:raw="The y-coordinate of the manipulator.">操作工具的 Y 座標。</param>
+      <exception cref="T:System.ArgumentOutOfRangeException" vsli:raw="The &lt;paramref name=&quot;x&quot; /&gt;-coordinate or &lt;paramref name=&quot;y&quot; /&gt;-coordinate are &lt;see langword=&quot;float.NaN&quot; /&gt;, &lt;see langword=&quot;float.PositiveInfinity&quot; /&gt;, or &lt;see langword=&quot;float.NegativeInfinity&quot; /&gt;. These values are all invalid.">
+        <paramref name="x" />-座標或 <paramref name="y" />-座標可為 <see langword="float.NaN" />、 <see langword="float.PositiveInfinity" />或 <see langword="float.NegativeInfinity" />。 這些值全部無效。</exception>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.Manipulator2D.Equals(System.Object)">
+      <summary vsli:raw="Determines whether this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object has the same value as the specified &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">判斷這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件是否具有與指定的 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件相同的值。</summary>
+      <param name="obj" vsli:raw="The &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object to compare this object to.">要與這個物件比較的 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the two &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; objects are the same type and represent the same value; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果這兩個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件為同類型並表示相同的值，則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.Manipulator2D.GetHashCode">
+      <summary vsli:raw="Returns the hash code for this instance.">傳回這個執行個體的雜湊碼。</summary>
+      <returns vsli:raw="The hash code for this instance.">這個執行個體的雜湊碼。</returns>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.Manipulator2D.op_Equality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)">
+      <summary vsli:raw="Determines whether two specified &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; objects have the same value.">判斷兩個指定的 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件是否具有相同的值。</summary>
+      <param name="manipulator1" vsli:raw="The first &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object to compare.">要比較的第一個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</param>
+      <param name="manipulator2" vsli:raw="The second &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object to compare.">要比較的第二個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the two &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; objects have the same value; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果兩個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件具有相同的值則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="M:System.Windows.Input.Manipulations.Manipulator2D.op_Inequality(System.Windows.Input.Manipulations.Manipulator2D,System.Windows.Input.Manipulations.Manipulator2D)">
+      <summary vsli:raw="Determines whether two specified &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; objects have different values.">判斷兩個指定的 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件是否具有不同的值。</summary>
+      <param name="manipulator1" vsli:raw="The first &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object to compare.">要比較的第一個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</param>
+      <param name="manipulator2" vsli:raw="The second &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object to compare.">要比較的第二個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件。</param>
+      <returns vsli:raw="&lt;see langword=&quot;true&quot; /&gt; if the two &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; objects have different values; otherwise, &lt;see langword=&quot;false&quot; /&gt;.">如果兩個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件具有不同的值則為 <see langword="true" />，否則為 <see langword="false" />。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulator2D.Id">
+      <summary vsli:raw="Gets or sets the unique ID for this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">取得或設定這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的唯一識別碼。</summary>
+      <returns vsli:raw="The unique ID for this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的唯一識別碼。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulator2D.X">
+      <summary vsli:raw="Gets or sets the x-coordinate of this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">取得或設定這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的 X 座標。</summary>
+      <returns vsli:raw="The x-coordinate of this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的 X 座標。</returns>
+    </member>
+    <member name="P:System.Windows.Input.Manipulations.Manipulator2D.Y">
+      <summary vsli:raw="Gets or sets the y-coordinate of this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">取得或設定這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的 Y 座標。</summary>
+      <returns vsli:raw="The y-coordinate of this &lt;see cref=&quot;T:System.Windows.Input.Manipulations.Manipulator2D&quot; /&gt; object.">這個 <see cref="T:System.Windows.Input.Manipulations.Manipulator2D" /> 物件的 Y 座標。</returns>
+    </member>
+  </members>
+</doc>

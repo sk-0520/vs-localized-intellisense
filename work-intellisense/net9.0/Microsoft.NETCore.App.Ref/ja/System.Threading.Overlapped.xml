@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc xmlns:vsli="https://github.com/sk-0520/vs-localized-intellisense/tree/master/schema/2024">
+  <assembly>
+    <name>System.Threading.Overlapped</name>
+  </assembly>
+  <members>
+    <member name="T:System.Threading.IOCompletionCallback">
+      <summary vsli:raw="Receives the error code, number of bytes, and overlapped value type when an I/O operation completes on the thread pool.">I/O 操作がスレッド プールで完了すると、エラー コード、バイト数、および重複値型を受け取ります。</summary>
+      <param name="errorCode" vsli:raw="The error code.">エラー コード。</param>
+      <param name="numBytes" vsli:raw="The number of bytes that are transferred.">転送されるバイト数。</param>
+      <param name="pOVERLAP" vsli:raw="A &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; representing an unmanaged pointer to the native overlapped value type.">ネイティブな重複値型を指すアンマネージ ポインターを表す <see cref="T:System.Threading.NativeOverlapped" />。</param>
+    </member>
+    <member name="T:System.Threading.NativeOverlapped">
+      <summary vsli:raw="Provides an explicit layout that is visible from unmanaged code and that will have the same layout as the Win32 OVERLAPPED structure with additional reserved fields at the end.">アンマネージ コードから見えていて、OVERLAPPED 構造体の末尾にいくつかの予約フィールドを付加したものと同じレイアウトになる明示的レイアウトを提供します。</summary>
+    </member>
+    <member name="F:System.Threading.NativeOverlapped.EventHandle">
+      <summary vsli:raw="Specifies the handle to an event set to the signaled state when the operation is complete. The calling process must set this member either to zero or to a valid event handle before calling any overlapped functions.">操作の完了時にシグナル状態に設定されるイベントのハンドルを指定します。 呼び出し元のプロセスは、重複関数を呼び出す前には、このメンバーに 0 か有効なイベント ハンドルのいずれかを設定する必要があります。</summary>
+    </member>
+    <member name="F:System.Threading.NativeOverlapped.InternalHigh">
+      <summary vsli:raw="Specifies the length of the data transferred. Reserved for operating system use.">転送されるデータの長さを指定します。 オペレーティング システムで使用するために予約されています。</summary>
+    </member>
+    <member name="F:System.Threading.NativeOverlapped.InternalLow">
+      <summary vsli:raw="Specifies a system-dependent status. Reserved for operating system use.">システムに依存するステータスを指定します。 オペレーティング システムで使用するために予約されています。</summary>
+    </member>
+    <member name="F:System.Threading.NativeOverlapped.OffsetHigh">
+      <summary vsli:raw="Specifies the high word of the byte offset at which to start the transfer.">転送の開始位置を示すバイト オフセットの上位ワードを指定します。</summary>
+    </member>
+    <member name="F:System.Threading.NativeOverlapped.OffsetLow">
+      <summary vsli:raw="Specifies a file position at which to start the transfer.">転送を開始するファイルの位置を指定します。</summary>
+    </member>
+    <member name="T:System.Threading.Overlapped">
+      <summary vsli:raw="Provides a managed representation of a Win32 &lt;c&gt;OVERLAPPED&lt;/c&gt; structure, including methods to transfer information from an &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; instance to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.Overlapped" /> インスタンスから <see cref="T:System.Threading.NativeOverlapped" /> 構造体に情報を転送するメソッドを含む、Win32 <c>OVERLAPPED</c> 構造体のマネージド表現を提供します。</summary>
+    </member>
+    <member name="M:System.Threading.Overlapped.#ctor">
+      <summary vsli:raw="Initializes a new, empty instance of the &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; class.">
+        <see cref="T:System.Threading.Overlapped" /> クラスの新しい空のインスタンスを初期化します。</summary>
+    </member>
+    <member name="M:System.Threading.Overlapped.#ctor(System.Int32,System.Int32,System.Int32,System.IAsyncResult)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; class with the specified file position, the 32-bit integer handle to an event that is signaled when the I/O operation is complete, and an interface through which to return the results of the operation.">ファイル位置、I/O 操作が完了したときに通知されるイベントの 32 ビット整数ハンドル、および操作結果を返すためのインターフェイスを指定して、<see cref="T:System.Threading.Overlapped" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="offsetLo" vsli:raw="The low word of the file position at which to start the transfer.">転送を開始するファイル位置の下位ワード。</param>
+      <param name="offsetHi" vsli:raw="The high word of the file position at which to start the transfer.">転送を開始するファイル位置の上位ワード。</param>
+      <param name="hEvent" vsli:raw="The handle to an event that is signaled when the I/O operation is complete.">I/O 操作が完了したときに通知されるイベントのハンドル。</param>
+      <param name="ar" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; interface and provides status information on the I/O operation.">
+        <see cref="T:System.IAsyncResult" /> インターフェイスを実装し、I/O 操作に関するステータス情報を提供するオブジェクト。</param>
+    </member>
+    <member name="M:System.Threading.Overlapped.#ctor(System.Int32,System.Int32,System.IntPtr,System.IAsyncResult)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; class with the specified file position, the handle to an event that is signaled when the I/O operation is complete, and an interface through which to return the results of the operation.">ファイル位置、I/O 操作が完了したときに通知されるイベントのハンドル、および操作結果を返すためのインターフェイスを指定して、<see cref="T:System.Threading.Overlapped" /> クラスの新しいインスタンスを初期化します。</summary>
+      <param name="offsetLo" vsli:raw="The low word of the file position at which to start the transfer.">転送を開始するファイル位置の下位ワード。</param>
+      <param name="offsetHi" vsli:raw="The high word of the file position at which to start the transfer.">転送を開始するファイル位置の上位ワード。</param>
+      <param name="hEvent" vsli:raw="The handle to an event that is signaled when the I/O operation is complete.">I/O 操作が完了したときに通知されるイベントのハンドル。</param>
+      <param name="ar" vsli:raw="An object that implements the &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; interface and provides status information on the I/O operation.">
+        <see cref="T:System.IAsyncResult" /> インターフェイスを実装し、I/O 操作に関するステータス情報を提供するオブジェクト。</param>
+    </member>
+    <member name="M:System.Threading.Overlapped.Free(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Frees the unmanaged memory associated with a native overlapped structure allocated by the &lt;see cref=&quot;Overload:System.Threading.Overlapped.Pack&quot; /&gt; method.">
+        <see cref="Overload:System.Threading.Overlapped.Pack" /> メソッドによって割り当てられたネイティブなオーバーラップ構造体に関連付けられているアンマネージ メモリを解放します。</summary>
+      <param name="nativeOverlappedPtr" vsli:raw="A pointer to the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure to be freed.">解放する <see cref="T:System.Threading.NativeOverlapped" /> 構造体を指すポインター。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;nativeOverlappedPtr&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="nativeOverlappedPtr" /> が <see langword="null" />です。</exception>
+    </member>
+    <member name="M:System.Threading.Overlapped.Pack(System.Threading.IOCompletionCallback)">
+      <summary vsli:raw="Packs the current instance into a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure, specifying the delegate to be invoked when the asynchronous I/O operation is complete.">非同期 I/O 操作が完了したときに呼び出すデリゲートを指定して、現在のインスタンスを <see cref="T:System.Threading.NativeOverlapped" /> 構造体にパックします。</summary>
+      <param name="iocb" vsli:raw="An &lt;see cref=&quot;T:System.Threading.IOCompletionCallback&quot; /&gt; delegate that represents the callback method invoked when the asynchronous I/O operation completes.">非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表す <see cref="T:System.Threading.IOCompletionCallback" /> デリゲート。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The current &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; has already been packed.">現在の <see cref="T:System.Threading.Overlapped" /> は既にパックされています。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="M:System.Threading.Overlapped.Pack(System.Threading.IOCompletionCallback,System.Object)">
+      <summary vsli:raw="Packs the current instance into a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure, specifying a delegate that is invoked when the asynchronous I/O operation is complete and a managed object that serves as a buffer.">非同期 I/O 操作が完了したときに呼び出すデリゲートと、バッファーとして機能するマネージド オブジェクトを指定して、現在のインスタンスを <see cref="T:System.Threading.NativeOverlapped" /> 構造体にパックします。</summary>
+      <param name="iocb" vsli:raw="An &lt;see cref=&quot;T:System.Threading.IOCompletionCallback&quot; /&gt; delegate that represents the callback method invoked when the asynchronous I/O operation completes.">非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表す <see cref="T:System.Threading.IOCompletionCallback" /> デリゲート。</param>
+      <param name="userData" vsli:raw="An object or array of objects representing the input or output buffer for the operation. Each object represents a buffer, for example an array of bytes.">操作の入力バッファーまたは出力バッファーを表す、オブジェクトまたはオブジェクトの配列。 各オブジェクトが、バイトの配列などのバッファーを表します。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The current &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; has already been packed.">現在の <see cref="T:System.Threading.Overlapped" /> は既にパックされています。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="M:System.Threading.Overlapped.Unpack(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Unpacks the specified unmanaged &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure into a managed &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; object.">指定したアンマネージド <see cref="T:System.Threading.NativeOverlapped" /> 構造体をマネージド <see cref="T:System.Threading.Overlapped" /> オブジェクトに展開します。</summary>
+      <param name="nativeOverlappedPtr" vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;nativeOverlappedPtr&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="nativeOverlappedPtr" /> が <see langword="null" />です。</exception>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; object containing the information unpacked from the native structure.">ネイティブ構造体から展開された情報を含む <see cref="T:System.Threading.Overlapped" /> オブジェクト。</returns>
+    </member>
+    <member name="M:System.Threading.Overlapped.UnsafePack(System.Threading.IOCompletionCallback)">
+      <summary vsli:raw="Packs the current instance into a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure specifying the delegate to invoke when the asynchronous I/O operation is complete. Does not propagate the calling stack.">非同期 I/O 操作が完了したときに呼び出すデリゲートを指定して、現在のインスタンスを <see cref="T:System.Threading.NativeOverlapped" /> 構造体にパックします。 コール スタックは反映しません。</summary>
+      <param name="iocb" vsli:raw="An &lt;see cref=&quot;T:System.Threading.IOCompletionCallback&quot; /&gt; delegate that represents the callback method invoked when the asynchronous I/O operation completes.">非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表す <see cref="T:System.Threading.IOCompletionCallback" /> デリゲート。</param>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The current &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; has already been packed.">現在の <see cref="T:System.Threading.Overlapped" /> は既にパックされています。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="M:System.Threading.Overlapped.UnsafePack(System.Threading.IOCompletionCallback,System.Object)">
+      <summary vsli:raw="Packs the current instance into a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure, specifying the delegate to invoke when the asynchronous I/O operation is complete and the managed object that serves as a buffer. Does not propagate the calling stack.">非同期 I/O 操作が完了したときに呼び出すデリゲートと、バッファーとして機能するマネージド オブジェクトを指定して、現在のインスタンスを <see cref="T:System.Threading.NativeOverlapped" /> 構造体にパックします。 コール スタックは反映しません。</summary>
+      <param name="iocb" vsli:raw="An &lt;see cref=&quot;T:System.Threading.IOCompletionCallback&quot; /&gt; delegate that represents the callback method invoked when the asynchronous I/O operation completes.">非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表す <see cref="T:System.Threading.IOCompletionCallback" /> デリゲート。</param>
+      <param name="userData" vsli:raw="An object or array of objects representing the input or output buffer for the operation. Each object represents a buffer, for example an array of bytes.">操作の入力バッファーまたは出力バッファーを表す、オブジェクトまたはオブジェクトの配列。 各オブジェクトが、バイトの配列などのバッファーを表します。</param>
+      <exception cref="T:System.Security.SecurityException" vsli:raw="The caller does not have the required permission.">呼び出し元に、必要なアクセス許可がありません。</exception>
+      <exception cref="T:System.InvalidOperationException" vsli:raw="The current &lt;see cref=&quot;T:System.Threading.Overlapped&quot; /&gt; is already packed.">現在の <see cref="T:System.Threading.Overlapped" /> は既にパックされています。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="P:System.Threading.Overlapped.AsyncResult">
+      <summary vsli:raw="Gets or sets the object that provides status information on the I/O operation.">I/O 操作に関するステータス情報を提供するオブジェクトを取得または設定します。</summary>
+      <returns vsli:raw="An object that implements the &lt;see cref=&quot;T:System.IAsyncResult&quot; /&gt; interface.">
+        <see cref="T:System.IAsyncResult" /> インターフェイスを実装するオブジェクト。</returns>
+    </member>
+    <member name="P:System.Threading.Overlapped.EventHandle">
+      <summary vsli:raw="Gets or sets the 32-bit integer handle to a synchronization event that is signaled when the I/O operation is complete.">I/O 操作が完了したときに通知される同期イベントの 32 ビット整数ハンドルを取得または設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value representing the handle of the synchronization event.">同期イベントのハンドルを表す <see cref="T:System.Int32" /> 値。</returns>
+    </member>
+    <member name="P:System.Threading.Overlapped.EventHandleIntPtr">
+      <summary vsli:raw="Gets or sets the handle to the synchronization event that is signaled when the I/O operation is complete.">I/O 操作が完了したときに通知される同期イベントのハンドルを取得または設定します。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.IntPtr&quot; /&gt; representing the handle of the event.">イベントのハンドルを表す <see cref="T:System.IntPtr" />。</returns>
+    </member>
+    <member name="P:System.Threading.Overlapped.OffsetHigh">
+      <summary vsli:raw="Gets or sets the high-order word of the file position at which to start the transfer. The file position is a byte offset from the start of the file.">転送を開始するファイル位置の上位ワードを取得または設定します。 ファイル位置は、ファイルの開始位置からのバイト オフセットです。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value representing the high word of the file position.">ファイル位置の上位ワードを表す <see cref="T:System.Int32" /> 値。</returns>
+    </member>
+    <member name="P:System.Threading.Overlapped.OffsetLow">
+      <summary vsli:raw="Gets or sets the low-order word of the file position at which to start the transfer. The file position is a byte offset from the start of the file.">転送を開始するファイル位置の下位ワードを取得または設定します。 ファイル位置は、ファイルの開始位置からのバイト オフセットです。</summary>
+      <returns vsli:raw="An &lt;see cref=&quot;T:System.Int32&quot; /&gt; value representing the low word of the file position.">ファイル位置の下位ワードを表す <see cref="T:System.Int32" /> 値。</returns>
+    </member>
+    <member name="T:System.Threading.PreAllocatedOverlapped">
+      <summary vsli:raw="Represents pre-allocated state for native overlapped I/O operations.">ネイティブの重複 I/O 操作に事前に割り当てられている状態を表します。</summary>
+    </member>
+    <member name="M:System.Threading.PreAllocatedOverlapped.#ctor(System.Threading.IOCompletionCallback,System.Object,System.Object)">
+      <summary vsli:raw="Initializes a new instance of the &lt;see cref=&quot;T:System.Threading.PreAllocatedOverlapped&quot; /&gt; class and specifies a delegate to invoke when each asynchronous I/O operation is complete, a user-provided object that provides context, and managed objects that serve as buffers.">
+        <see cref="T:System.Threading.PreAllocatedOverlapped" /> クラスの新しいインスタンスを初期化し、各非同期 I/O 操作が完了したときに呼び出すデリゲート、コンテキストを提供するユーザー指定のオブジェクト、およびバッファーとして機能するマネージド オブジェクトを指定します。</summary>
+      <param name="callback" vsli:raw="A delegate that represents the callback method to invoke when each asynchronous I/O operation completes.">各非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表すデリゲート。</param>
+      <param name="state" vsli:raw="A user-supplied object that distinguishes the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instance produced from this object from other &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instances. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">このオブジェクトから生成された <see cref="T:System.Threading.NativeOverlapped" /> インスタンスと他の <see cref="T:System.Threading.NativeOverlapped" /> インスタンスを区別する、ユーザー指定のオブジェクト。 この値は <see langword="null" /> の場合もあります。</param>
+      <param name="pinData" vsli:raw="An object or array of objects that represent the input or output buffer for the operations. Each object represents a buffer, such as an array of bytes. Its value can be &lt;see langword=&quot;null&quot; /&gt;.">操作の入力バッファーまたは出力バッファーを表す、1 つのオブジェクトまたはオブジェクトの配列。 各オブジェクトは、バイト配列などのバッファーを表します。 この値は <see langword="null" /> の場合もあります。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> が <see langword="null" />です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This method was called after the &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; was disposed.">このメソッドは <see cref="T:System.Threading.ThreadPoolBoundHandle" /> が破棄された後に呼び出されました。</exception>
+    </member>
+    <member name="M:System.Threading.PreAllocatedOverlapped.Dispose">
+      <summary vsli:raw="Frees the resources associated with this &lt;see cref=&quot;T:System.Threading.PreAllocatedOverlapped&quot; /&gt; instance.">この <see cref="T:System.Threading.PreAllocatedOverlapped" /> インスタンスと関連付けられたリソースを解放します。</summary>
+    </member>
+    <member name="M:System.Threading.PreAllocatedOverlapped.Finalize">
+      <summary vsli:raw="Frees unmanaged resources before the current instance is reclaimed by garbage collection.">現在のインスタンスがガベージ コレクションによって解放される前に、アンマネージ リソースを解放します。</summary>
+    </member>
+    <member name="T:System.Threading.ThreadPoolBoundHandle">
+      <summary vsli:raw="Represents an I/O handle that is bound to the system thread pool and enables low-level components to receive notifications for asynchronous I/O operations.">システムのスレッド プールにバインドし、低レベルのコンポーネントが非同期 I/O 操作の通知を受信できるようにする I/O ハンドルを表します。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped(System.Threading.IOCompletionCallback,System.Object,System.Object)">
+      <summary vsli:raw="Returns an unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure, specifying a delegate that is invoked when the asynchronous I/O operation is complete, a user-provided object that supplies context, and managed objects that serve as buffers.">アンマネージド ポインターを <see cref="T:System.Threading.NativeOverlapped" /> 構造体に返し、各非同期 I/O 操作が完了したときに呼び出されるデリゲート、コンテキストを提供するユーザー指定のオブジェクト、およびバッファーとして機能するマネージド オブジェクトを指定します。</summary>
+      <param name="callback" vsli:raw="A delegate that represents the callback method to invoke when the asynchronous I/O operation completes.">非同期 I/O 操作が完了したときに呼び出すコールバック メソッドを表すデリゲート。</param>
+      <param name="state" vsli:raw="A user-provided object that distinguishes this &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instance from other &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instances.">この <see cref="T:System.Threading.NativeOverlapped" /> インスタンスを他の <see cref="T:System.Threading.NativeOverlapped" /> インスタンスと区別する、ユーザー指定のオブジェクト。</param>
+      <param name="pinData" vsli:raw="An object or array of objects that represent the input or output buffer for the operation, or &lt;see langword=&quot;null&quot; /&gt;. Each object represents a buffer, such an array of bytes.">操作の入力バッファーまたは出力バッファーを表す、1 つのオブジェクトまたはオブジェクトの配列、または <see langword="null" />。 各オブジェクトは、バイト配列などのバッファーを表します。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;callback&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="callback" /> が <see langword="null" />です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This method was called after the &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; object was disposed.">このメソッドは <see cref="T:System.Threading.ThreadPoolBoundHandle" /> オブジェクトが破棄された後に呼び出されました。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped(System.Threading.PreAllocatedOverlapped)">
+      <summary vsli:raw="Returns an unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure using the callback state and buffers associated with the specified &lt;see cref=&quot;T:System.Threading.PreAllocatedOverlapped&quot; /&gt; object.">指定した <see cref="T:System.Threading.PreAllocatedOverlapped" /> オブジェクトに関連付けられているコールバック状態とバッファーを使用して、アンマネージ ポインターを <see cref="T:System.Threading.NativeOverlapped" /> 構造体に返します。</summary>
+      <param name="preAllocated" vsli:raw="An object from which to create the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; pointer.">
+        <see cref="T:System.Threading.NativeOverlapped" /> ポインターの作成元のオブジェクト。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;preAllocated&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="preAllocated" /> が <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;preAllocated&quot; /&gt; is currently in use for another I/O operation.">
+        <paramref name="preAllocated" /> は現在別の I/O 操作で使用中です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This method was called after the &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; was disposed.  &#xA;  &#xA; -or-  &#xA;  &#xA; This method was called after &lt;paramref name=&quot;preAllocated&quot; /&gt; was disposed.">このメソッドは <see cref="T:System.Threading.ThreadPoolBoundHandle" /> が破棄された後に呼び出されました。  
+  
+- または - 
+このメソッドは <paramref name="preAllocated" /> が破棄された後に呼び出されました。</exception>
+      <returns vsli:raw="An unmanaged pointer to a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure.">
+        <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.BindHandle(System.Runtime.InteropServices.SafeHandle)">
+      <summary vsli:raw="Returns a &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; for the specified handle, which is bound to the system thread pool.">指定したハンドルに対し、<see cref="T:System.Threading.ThreadPoolBoundHandle" /> が返され、システム スレッド プールにバインドされます。</summary>
+      <param name="handle" vsli:raw="An object that holds the operating system handle. The handle must have been opened for overlapped I/O in unmanaged code.">オペレーティング システム ハンドルを保持するオブジェクト。 ハンドルは、アンマネージ コードの重複 I/O 用に開かれている必要があります。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;handle&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="handle" /> が <see langword="null" />です。</exception>
+      <exception cref="T:System.ArgumentException" vsli:raw="&lt;paramref name=&quot;handle&quot; /&gt; has been disposed.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;handle&quot; /&gt; does not refer to a valid I/O handle.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;handle&quot; /&gt; refers to a handle that has not been opened for overlapped I/O.  &#xA;  &#xA; -or-  &#xA;  &#xA; &lt;paramref name=&quot;handle&quot; /&gt; refers to a handle that has already been bound.">
+        <paramref name="handle" /> は破棄されています。  
+  
+- または - 
+ <paramref name="handle" /> は有効な I/O ハンドルを参照していません。  
+  
+- または - 
+ <paramref name="handle" /> は重複 I/O 用に開かれていないハンドルを参照しています。  
+  
+- または - 
+ <paramref name="handle" /> は既にバインドされているハンドルを参照しています。</exception>
+      <returns vsli:raw="A &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; for &lt;paramref name=&quot;handle&quot; /&gt;, which is bound to the system thread pool.">
+        <paramref name="handle" /> の <see cref="T:System.Threading.ThreadPoolBoundHandle" />。システム スレッド プールにバインドされます。</returns>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.Dispose">
+      <summary vsli:raw="Releases all unmanaged resources used by the &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; instance.">
+        <see cref="T:System.Threading.ThreadPoolBoundHandle" /> インスタンスによって使用されているすべてのアンマネージ リソースを解放します。</summary>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.FreeNativeOverlapped(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Frees the memory associated with a &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure allocated by the &lt;see cref=&quot;Overload:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped&quot; /&gt; method.">
+        <see cref="Overload:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped" /> メソッドによって割り当てられた <see cref="T:System.Threading.NativeOverlapped" /> 構造体と関連付けられたメモリを解放します。</summary>
+      <param name="overlapped" vsli:raw="An unmanaged pointer to the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure to be freed.">解放する <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージド ポインター。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;overlapped&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="overlapped" /> が <see langword="null" />です。</exception>
+      <exception cref="T:System.ObjectDisposedException" vsli:raw="This method was called after the &lt;see cref=&quot;T:System.Threading.ThreadPoolBoundHandle&quot; /&gt; object was disposed.">このメソッドは <see cref="T:System.Threading.ThreadPoolBoundHandle" /> オブジェクトが破棄された後に呼び出されました。</exception>
+    </member>
+    <member name="M:System.Threading.ThreadPoolBoundHandle.GetNativeOverlappedState(System.Threading.NativeOverlapped*)">
+      <summary vsli:raw="Returns the user-provided object that was specified when the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instance was allocated by calling the &lt;see cref=&quot;M:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped(System.Threading.IOCompletionCallback,System.Object,System.Object)&quot; /&gt; method.">
+        <see cref="M:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped(System.Threading.IOCompletionCallback,System.Object,System.Object)" /> メソッドを呼び出して、<see cref="T:System.Threading.NativeOverlapped" /> インスタンスが割り当てられると、指定されたユーザー指定のオブジェクトが返されます。</summary>
+      <param name="overlapped" vsli:raw="An unmanaged pointer to the &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; structure from which to return the associated user-provided object.">関連するユーザー指定のオブジェクトを返す <see cref="T:System.Threading.NativeOverlapped" /> 構造体へのアンマネージ ポインター。</param>
+      <exception cref="T:System.ArgumentNullException" vsli:raw="&lt;paramref name=&quot;overlapped&quot; /&gt; is &lt;see langword=&quot;null&quot; /&gt;.">
+        <paramref name="overlapped" /> が <see langword="null" />です。</exception>
+      <returns vsli:raw="A user-provided object that distinguishes this &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instance from other &lt;see cref=&quot;T:System.Threading.NativeOverlapped&quot; /&gt; instances, or &lt;see langword=&quot;null&quot; /&gt; if one was not specified when the instance was allocated by calling the &lt;see cref=&quot;Overload:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped&quot; /&gt; method.">この <see cref="T:System.Threading.NativeOverlapped" /> インスタンスを別の <see cref="T:System.Threading.NativeOverlapped" /> インスタンス、または <see langword="null" /> と区別する、ユーザー指定のオブジェクト (<see cref="Overload:System.Threading.ThreadPoolBoundHandle.AllocateNativeOverlapped" /> メソッドを呼び出してインスタンスが割り当てられたときにオブジェクトが指定されていない場合)。</returns>
+    </member>
+    <member name="P:System.Threading.ThreadPoolBoundHandle.Handle">
+      <summary vsli:raw="Gets the bound operating system handle.">バインドされているオペレーティング システム ハンドルを取得します。</summary>
+      <returns vsli:raw="An object that holds the bound operating system handle.">バインドされているオペレーティング システム ハンドルを保持するオブジェクト。</returns>
+    </member>
+  </members>
+</doc>
