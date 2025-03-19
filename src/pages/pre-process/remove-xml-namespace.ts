@@ -1,6 +1,6 @@
 import * as fs from "fs";
-import * as fs_async from "fs/promises";
 import * as path from "path";
+import * as fs_async from "fs/promises";
 
 import * as xmldoc from "xmldoc";
 
@@ -8,23 +8,27 @@ import * as xmldoc from "xmldoc";
 const xml = {
 	prefix: "vsli",
 	attribute: {
-		raw: 'raw',
+		raw: "raw",
 	},
-}
+};
 
-const baseDirectoryPath = path.join(__dirname, '..', 'public', 'data', 'intellisense');
+const baseDirectoryPath = path.join(
+	__dirname,
+	"..",
+	"public",
+	"data",
+	"intellisense",
+);
 
 const updateTargetDirectoryNames: ReadonlySet<string> = new Set([
-	'netstandard2.1',
-	'net9.0',
+	"netstandard2.1",
+	"net9.0",
 ]);
-
 
 function getElements(parent: xmldoc.XmlElement): xmldoc.XmlElement[] {
 	const childElements = parent.children
-		.filter(a => a.type === 'element')
-		.map(a => a as xmldoc.XmlElement)
-		;
+		.filter((a) => a.type === "element")
+		.map((a) => a as xmldoc.XmlElement);
 
 	const result = childElements;
 
@@ -39,26 +43,25 @@ function getElements(parent: xmldoc.XmlElement): xmldoc.XmlElement[] {
 }
 
 function getTopLevelSubDirectories(directoryPath: string): string[] {
-	return fs.readdirSync(directoryPath, {
-		recursive: false,
-		withFileTypes: true,
-	})
-		.filter(a => a.isDirectory())
-		.map(a => path.join(a.path, a.name))
-		;
+	return fs
+		.readdirSync(directoryPath, {
+			recursive: false,
+			withFileTypes: true,
+		})
+		.filter((a) => a.isDirectory())
+		.map((a) => path.join(a.path, a.name));
 }
 
 async function getIntellisenseFiles(directoryPath: string): Promise<string[]> {
 	const files = await fs_async.readdir(directoryPath, {
 		recursive: true,
 		withFileTypes: true,
-	})
+	});
 
 	return files
-		.filter(a => a.isFile())
-		.filter(a => path.extname(a.name) === ".xml")
-		.map(a => path.join(a.path, a.name))
-		;
+		.filter((a) => a.isFile())
+		.filter((a) => path.extname(a.name) === ".xml")
+		.map((a) => path.join(a.path, a.name));
 }
 
 async function updateIntellisenseFiles(directoryPath: string): Promise<void> {
@@ -101,4 +104,3 @@ async function updateIntellisenseFiles(directoryPath: string): Promise<void> {
 
 	await Promise.all(promiseItems);
 })();
-

@@ -1,14 +1,14 @@
-import { Metadata } from "next";
+import type { Metadata } from "next";
 
 export function createMetadata(meta: Metadata): Metadata {
 	const base: Metadata = {
-		title: "vs-localized-intellisense"
+		title: "vs-localized-intellisense",
 	} as const;
 
 	const result = { ...base, ...meta };
 
 	if (meta.title) {
-		result.title = `${meta.title} - ${base.title}`
+		result.title = `${meta.title} - ${base.title}`;
 	}
 
 	return result;

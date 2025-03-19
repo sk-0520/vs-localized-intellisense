@@ -1,6 +1,6 @@
-import { NextPage } from "next";
-import Link from "next/link";
 import { createMetadata } from "@/models/meta";
+import type { NextPage } from "next";
+import Link from "next/link";
 
 export const metadata = createMetadata({});
 
@@ -19,7 +19,9 @@ const HomePage: NextPage = () => {
 				</ul>
 			</li>
 			<li>
-				<Link href="https://github.com/sk-0520/vs-localized-intellisense">repository</Link>
+				<Link href="https://github.com/sk-0520/vs-localized-intellisense">
+					repository
+				</Link>
 			</li>
 		</ul>
 	);
