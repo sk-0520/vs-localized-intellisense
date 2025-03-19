@@ -1,6 +1,6 @@
-import * as fs from "fs";
-import * as fs_async from "fs/promises";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as fs_async from "node:fs/promises";
+import * as path from "node:path";
 
 import * as xmldoc from "xmldoc";
 
@@ -8,23 +8,27 @@ import * as xmldoc from "xmldoc";
 const xml = {
 	prefix: "vsli",
 	attribute: {
-		raw: 'raw',
+		raw: "raw",
 	},
-}
+};
 
-const baseDirectoryPath = path.join(__dirname, '..', 'public', 'data', 'intellisense');
+const baseDirectoryPath = path.join(
+	__dirname,
+	"..",
+	"public",
+	"data",
+	"intellisense",
+);
 
 const updateTargetDirectoryNames: ReadonlySet<string> = new Set([
-	'netstandard2.1',
-	'net9.0',
+	"netstandard2.1",
+	"net9.0",
 ]);
-
 
 function getElements(parent: xmldoc.XmlElement): xmldoc.XmlElement[] {
 	const childElements = parent.children
-		.filter(a => a.type === 'element')
-		.map(a => a as xmldoc.XmlElement)
-		;
+		.filter((a) => a.type === "element")
+		.map((a) => a as xmldoc.XmlElement);
 
 	const result = childElements;
 
@@ -39,26 +43,25 @@ function getElements(parent: xmldoc.XmlElement): xmldoc.XmlElement[] {
 }
 
 function getTopLevelSubDirectories(directoryPath: string): string[] {
-	return fs.readdirSync(directoryPath, {
-		recursive: false,
-		withFileTypes: true,
-	})
-		.filter(a => a.isDirectory())
-		.map(a => path.join(a.path, a.name))
-		;
+	return fs
+		.readdirSync(directoryPath, {
+			recursive: false,
+			withFileTypes: true,
+		})
+		.filter((a) => a.isDirectory())
+		.map((a) => path.join(a.path, a.name));
 }
 
 async function getIntellisenseFiles(directoryPath: string): Promise<string[]> {
 	const files = await fs_async.readdir(directoryPath, {
 		recursive: true,
 		withFileTypes: true,
-	})
+	});
 
 	return files
-		.filter(a => a.isFile())
-		.filter(a => path.extname(a.name) === ".xml")
-		.map(a => path.join(a.path, a.name))
-		;
+		.filter((a) => a.isFile())
+		.filter((a) => path.extname(a.name) === ".xml")
+		.map((a) => path.join(a.path, a.name));
 }
 
 async function updateIntellisenseFiles(directoryPath: string): Promise<void> {
@@ -73,7 +76,7 @@ async function updateIntellisenseFiles(directoryPath: string): Promise<void> {
 		const xmlData = await fs_async.readFile(file);
 		const xmlText = xmlData.toString();
 
-		var document = new xmldoc.XmlDocument(xmlText);
+		const document = new xmldoc.XmlDocument(xmlText);
 
 		const elements = getElements(document);
 		for (const element of elements) {
@@ -101,4 +104,3 @@ async function updateIntellisenseFiles(directoryPath: string): Promise<void> {
 
 	await Promise.all(promiseItems);
 })();
-

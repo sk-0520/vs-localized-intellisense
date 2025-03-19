@@ -1,5 +1,5 @@
-import { ReactNode } from "react";
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 
 import "../styles/style.scss";
 
@@ -16,9 +16,7 @@ export default function RootLayout({
 	return (
 		<html lang="ja">
 			<body>
-				<main>
-					{children}
-				</main>
+				<main>{children}</main>
 			</body>
 		</html>
 	);
