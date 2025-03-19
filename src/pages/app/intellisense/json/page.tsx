@@ -1,4 +1,4 @@
-import * as path from "path";
+import * as path from "node:path";
 
 import type { NextPage } from "next";
 
@@ -16,7 +16,7 @@ interface StaticProps {
 }
 
 async function getData(): Promise<StaticProps> {
-	var targetDirectoryPath = path.join(
+	const targetDirectoryPath = path.join(
 		__dirname,
 		"..",
 		"..",

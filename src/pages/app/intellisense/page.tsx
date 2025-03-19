@@ -1,4 +1,4 @@
-import * as path from "path";
+import * as path from "node:path";
 
 import type { NextPage } from "next";
 
@@ -31,7 +31,7 @@ const IntellisenseItemsPage: NextPage = async () => {
 export default IntellisenseItemsPage;
 
 async function getData(): Promise<StaticProps> {
-	var targetDirectoryPath = path.join(
+	const targetDirectoryPath = path.join(
 		__dirname,
 		"..",
 		"..",

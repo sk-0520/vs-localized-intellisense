@@ -1,5 +1,5 @@
-import * as fs from "fs";
-import * as path from "path";
+import * as fs from "node:fs";
+import * as path from "node:path";
 
 export interface FilePath {
 	relative: string;
@@ -27,8 +27,8 @@ export function getFiles(
 
 			return {
 				relative: relativePath,
-				display: basePath + "/" + relativePath.replaceAll("\\", "/"),
-				link: "/" + basePath + "/" + relativePath.replaceAll("\\", "/"),
+				display: `${basePath}/${relativePath.replaceAll("\\", "/")}`,
+				link: `/${basePath}/${relativePath.replaceAll("\\", "/")}`,
 				size: stat.size,
 			} satisfies FilePath;
 		});
